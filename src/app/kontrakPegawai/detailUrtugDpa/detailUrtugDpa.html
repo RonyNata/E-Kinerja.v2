@@ -1,0 +1,42 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">urtugkegiatan</h3>
+</div>
+<form ng-submit="urtugkegiatan.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%; text-align: center">No</th>
+                                    <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                    <th style="width: 5%; text-align: center">Jabatan</th> 
+                                    <th style="width: 5%; text-align: center">Biaya</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="kegiatan in urtugkegiatan.kegiatan" style="text-align: center">
+                                    <td>{{$index + 1}}</td>
+                                    <td style="text-align: left;">{{kegiatan.ketKeg}}</td>
+                                    <td>{{kegiatan.statusPenanggungJawab}}</td>
+                                    <td>{{kegiatan.paguAnggaran}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
+        <button type="button" ng-click="urtugkegiatan.cancel()" class="btn btn-primary waves-effect" data-dismiss="modal">Kembali</button>
+
+    </div> 
+        </form>

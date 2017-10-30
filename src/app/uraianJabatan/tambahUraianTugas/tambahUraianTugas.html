@@ -1,0 +1,39 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Tambah Uraian Tugas kepada <b>{{form_urtug_jabatan.jabatan}}</b></h3>
+</div>
+<form ng-submit="form_urtug_jabatan.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-md-12" style="margin-bottom:10px">
+                                
+                                <div class="col-sm-3" style="margin-top:5px">
+                                    <p><b>Aktivitas</b></p>
+                                </div>
+                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                <div class="col-md-8">
+                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_urtug_jabatan.item.kdUrtug">
+                                <datalist id="aktivitas" style="height: 100px">
+                                    <option ng-repeat="aktivitas in form_urtug_jabatan.available_urtug"
+                                 value="{{aktivitas.deskripsi}}" ng-selected="selected"><!-- {{aktivitas.deskripsi}} --></option>
+                                </datalist>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
+        <button type="button" ng-click="form_urtug_jabatan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+    </div>
+</form> 

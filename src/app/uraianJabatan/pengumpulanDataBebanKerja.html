@@ -1,0 +1,181 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <div class="h2"> 
+                        <h2 class="col-md-8" style="margin-top: -15px">PENGUMPULAN DATA URAIAN TUGAS BERDASARKAN JABATAN UNIT {{urtug_jabatan.unit}}</h2> 
+                        <div class="col-md-4" style="margin-top: -25px"> 
+                            <form method="get">
+                                <input class="form-control" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan">
+                                <datalist id="jabatan" style="height: 100px">
+                                        <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
+                                 value="{{jabatan.kdJabatan}}" ng-selected="selected">{{jabatan.jabatan}}</option>
+                                </datalist>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="body">
+                                <h3>{{urtug_jabatan.jabatan.jabatan}} &nbsp</h3> 
+                                <h5>Pejabat Penilai: {{urtug_jabatan.penilai.nama}}. <a ng-click="urtug_jabatan.changePenilai()" href="">Ubah</a></h5>
+                                <!-- <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="urtug_jabatan.loadUrJab"></span> -->
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#urtugjab" data-toggle="tab">Atur Urtug Jabatan</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#statusurtug" data-toggle="tab">Atur Status Urtug</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#addkegiatan" data-toggle="tab">Tambah Kegiatan Urtug DPA</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="urtugjab">
+                                <div class="col-md-6">
+                                    <div class="col-md-1">
+                                        <label style="margin-top: 5px">Cari</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" placeholder="Rincian Tugas dan Kegiatan...." ng-model="searchName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">    
+                                    <div class="col-md-8"></div>
+                                    <button class="btn btn-primary waves-effect" ng-click="urtug_jabatan.open()" ng-disabled="urtug_jabatan.loadUrtug">Atur Uraian Tugas</button>
+                                </div>
+                                <div style="padding-bottom: 10px"></div>
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th> 
+                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                            <th style="width: 5%; text-align: center">Mutu</th> 
+                                            <th style="width: 5%; text-align: center">Waktu</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="text-align: center">Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in filteredData" style="text-align: center">
+                                            <td>{{$index + 1 + (5 * currentPage )}}</td>
+                                            <td style="text-align: left;">{{urtug.uraianTugas.deskripsi}}</td> 
+                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                            <td>{{urtug.kualitas}}</td> 
+                                            <td>{{urtug.waktu + ' ' + urtug.satuanWaktu}}</td> 
+                                            <td>{{urtug.biaya}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug_jabatan.addSop(urtug.uraianTugas.kdUrtug)"><i class="material-icons">edit</i></button>
+                                                <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div layout="row">
+                                    <div class="col-md-5"></div>
+                                    <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
+                                      <i class="material-icons">navigate_before</i>
+                                    </button>
+                                    <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
+                                    <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
+                                      <i class="material-icons">navigate_next</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="statusurtug">
+                                <div class="col-md-6">
+                                    <div class="col-md-1">
+                                        <label style="margin-top: 5px">Cari</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" placeholder="Rincian Tugas dan Kegiatan...." ng-model="searchName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">    
+                                    <div class="col-md-8"></div>
+                                    <button class="btn btn-primary waves-effect" ng-click="urtug_jabatan.status()" ng-disabled="urtug_jabatan.loadUrtug">Atur Status Uraian Tugas</button>
+                                </div>
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                            <th style="width: 5%; text-align: center">Jenis</th> 
+                                            <th style="text-align: center">Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in filteredDataJenis" style="text-align: center" >
+                                            <!-- ng-click="urtug_jabatan.status(urtug.uraianTugas.kdUrtug)" -->
+                                            <td>{{$index + 1 + (5 * currentPage )}}</td>
+                                            <td style="text-align: left;">{{urtug.urtug}}</td> 
+                                            <td>{{urtug.jenisUrtug}}</td> 
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug_jabatan.open(urtug)"><i class="material-icons">edit</i></button>
+                                                <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="addkegiatan">
+                                <div class="col-md-6"> 
+                                    <div class="col-md-7"> 
+                                        <form method="get">
+                                            <input class="form-control" list="choosen_urtug" name="choosen_urtug" ng-model="choosen_urtug" placeholder="Pilih Urtug">
+                                            <datalist id="choosen_urtug" style="height: 100px">
+                                                    <option ng-repeat="urtug in urtug_jabatan.list_used_urtug"
+                                             value="{{urtug.uraianTugas.kdUrtug}}" ng-selected="selected">{{urtug.uraianTugas.deskripsi}}</option>
+                                            </datalist>
+                                        </form>
+                                    </div>
+                                </div>
+                                <h2 ng-show=""></h2>
+                                <div class="col-md-6">    
+                                    <div class="col-md-5"></div>
+                                    <button class="btn btn-primary waves-effect" ng-click="urtug_jabatan.tambahPj()" ng-disabled="urtug_jabatan.loadUrtug">Tambah Penanggungjawab</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="urtug_jabatan.kegiatan()" ng-disabled="urtug_jabatan.loadUrtug">Tambah Kegiatan</button>
+                                </div>
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th >Kegiatan</th>
+                                            <th style="text-align: center">Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="pj in filteredDataKegiatan" style="text-align: center">
+                                            <td>{{$index + 1 + (5 * currentPage )}}</td>
+                                            <td style="text-align: left;">{{pj.ketKeg}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug_jabatan.open(urtug)"><i class="material-icons">edit</i></button>
+                                                <button type="button" ng-click="urtug_jabatan.delete(urtug.kdUrtug)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg_load animate-show-hide" ng-show="urtug_jabatan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="urtug_jabatan.loadUrtug">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div> 

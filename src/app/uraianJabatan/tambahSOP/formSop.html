@@ -1,0 +1,76 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">sop</h3>
+</div>
+<form ng-submit="sop.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-sm-3" style="margin-top:5px">
+                                        <p><b>Detail Kegiatan</b></p>
+                                    </div>
+                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" list="datasop" name="datasop" ng-model="sop.sop_terpilih" placeholder="Pilih datasop">
+                                            <datalist id="datasop" style="height: 100px">
+                                                    <option ng-repeat="data in sop.list_sop"
+                                             value="{{data.sop}}">{{data.sop}}</option>
+                                            </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-sm-3" style="margin-top:5px">
+                                        <p><b>Template</b></p>
+                                    </div>
+                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-9"></div>
+                                <button type="submit"  class="btn btn-primary waves-effect">Save</button>
+                        </div>
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%; text-align: center">No</th>
+                                    <th style="text-align: center">Deskripsi</th>
+                                    <th style="text-align: center; width: 15%; ">Template</th>
+                                    <th style="width: 10%; text-align: center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in sop.urtugsop">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        {{data.sop}}
+                                    </td>
+                                    <td>{{data.temlate}}</td>
+                                    <td>
+                                        <button type="button" ng-click="sop.remove(pj)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
+        <button type="button" ng-click="sop.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+
+    </div> 
+        </form>

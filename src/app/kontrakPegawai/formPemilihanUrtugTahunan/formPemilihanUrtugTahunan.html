@@ -1,0 +1,75 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">pilihurtug</h3>
+</div>
+<form ng-submit="pilihurtug.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#nondpa" data-toggle="tab">Uraian Tugas Non-DPA</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#dpa" data-toggle="tab">Uraian Tugas DPA</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" style="text-align: center">
+                                            <td>{{$index + 1 }}</td>
+                                            <td style="text-align: left;">{{urtug.urtug}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="dpa">
+                                {{pilihurtug.a}}
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th> 
+                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                            <th style="width: 5%; text-align: center">Mutu</th> 
+                                            <th style="width: 5%; text-align: center">Waktu</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="dpa in pilihurtug.urtugDpa" style="text-align: center" ng-click="pilihurtug.openKegiatan(dpa)">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left;">{{dpa.urtug}}</td>
+                                            <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
+                                            <td>100</td>
+                                            <td>{{dpa.waktu}}</td>
+                                            <td>{{dpa.biaya}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
+        <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+
+    </div> 
+        </form>

@@ -1,0 +1,52 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">skform</h3>
+</div>
+<form ng-submit="skform.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-md-12" style="margin-bottom:10px"> 
+                                <div class="col-sm-3" style="margin-top:5px">
+                                    <p><b>Pegawai Penanggungjawab</b></p>
+                                </div>
+                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                <div class="col-md-6">
+                                    <input class="form-control" list="pegawai" name="kegiiatan" ng-model="skform.pj.nipPegawai" placeholder="Pilih Pegawai">
+                                        <datalist id="pegawai" style="height: 100px">
+                                                <option ng-repeat="data in skform.list_pegawai"
+                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
+                                        </datalist>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom:10px"> 
+                                <div class="col-sm-3" style="margin-top:5px">
+                                    <p><b>Jabatan</b></p>
+                                </div>
+                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                <div class="col-md-6">
+                                    <select type="text" class="form-control" ng-model="skform.pj.jabatan" ng-required="true">
+                                        <option ng-repeat="jabatan in skform.datajabatan" value="{{jabatan.kdStatus}}">{{jabatan.status}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
+        <button type="button" ng-click="skform.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+
+    </div> 
+        </form>

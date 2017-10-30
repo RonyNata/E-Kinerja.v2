@@ -1,0 +1,92 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>FORM SK KEPALA DINAS PENGADAAN BARANG DAN JASA</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                        	<div class="col-md-2">
+                        		Nomor DPA
+                        	</div>
+                        	<div class="col-md-6">
+                        		<input class="form-control" list="DPA" name="kegiatan" ng-model="sk.noDpa" placeholder="Pilih DPA" ng-change="sk.getPJ()">
+                                <datalist id="DPA" style="height: 100px">
+                                        <option ng-repeat="data in sk.dataLookKegiatan"
+                                 value="{{data.ketKeg}}">{{data.ketKeg}}</option>
+                                </datalist>
+                        	</div>
+                        </div>
+                        <div class="row clearfix">
+                        	<div class="col-md-2">
+                        		Keterangan pegawai
+                        	</div>
+                        	<div class="col-md-6">
+                        		<p>{{sk.kegiatan}}</p>
+                        	</div>
+                        </div>
+                        <div class="col-md-12">    
+                            <div class="col-md-9"></div>
+                            <button class="btn btn-primary waves-effect" ng-click="sk.addPJ()" ng-disabled="sk.kegStat">Tambah Penanggungjawab</button>
+                        </div>
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%; text-align: center">No</th>
+                                    <th style="width: 25%; text-align: center">NIP Pegawai</th>
+                                    <th style="text-align: center">Nama Pegawai</th>
+                                    <th style="text-align: center">Jabatan</th>
+                                    <th style="width: 10%; text-align: center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pj in sk.jabatanDpa">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                    	<!-- <input class="form-control" list="pegawai" name="kegiiatan" ng-model="pj.nipPegawai" placeholder="Pilih Pegawai" ng-change="sk.findPegawai(pj)">
+                                        <datalist id="pegawai" style="height: 100px">
+                                                <option ng-repeat="data in sk.pegawai"
+                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
+                                        </datalist> -->
+                                        {{pj.nipPegawai}}
+                                    </td>
+                                    <td>{{pj.namaPegawai}}</td>
+                                    <td>{{pj.statusPenanggungJawab}}</td>
+                                    <td>
+                                    	<!-- <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="sk.addSop(data)"><i class="material-icons">edit</i></button> -->
+                                    	<button type="button" ng-click="sk.remove(pj)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div layout="row">
+                            <div class="col-md-5"></div>
+                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
+                                <i class="material-icons">navigate_before</i>
+                            </button>
+                            <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
+                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
+                              <i class="material-icons">navigate_next</i>
+                            </button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg_load animate-show-hide" ng-show="sk.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="sk.loadData">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

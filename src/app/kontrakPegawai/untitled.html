@@ -1,0 +1,143 @@
+<section class="content">
+    <div class="container-fluit">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="padding-bottom: 10px;">
+                    <div class="header">
+                        <h2>
+                            <i class="material-icons" style="float: left;">receipt</i>
+                            <h2 style="padding-left: 30px;padding-top: 3px;">Daftar Uraian Tugas Tahun </h2>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#dpa" data-toggle="tab">DPA</a>
+                                 <!-- <button class="waves-effect" href="#dpa" data-toggle="tab" style="overflow: hidden;text-decoration: none;background-color: inherit;border: none;padding: 8px 16px;display: inline-block;outline: 0;">DPA</button> -->
+                            </li>
+                            <li role="presentation">
+                                <a href="#nondpa" data-toggle="tab">BUKAN DPA</a>
+                                <!-- <button class="waves-effect" href="#nondpa" data-toggle="tab" style="overflow: hidden;text-decoration: none;background-color: inherit;border: none;padding: 8px 16px;display: inline-block;outline: 0;">BUKAN DPA</button> -->
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="col-md-12" style="margin-right: -30px;margin-bottom: 0px;">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-1" style="margin-top: 6px;padding-left: 120px;">
+                                    <label >Cari</label>
+                                </div>
+                                <div class="col-md-3" style="margin-right: -30px;float: right;">
+                                    <input type="text" class="form-control" placeholder="Rincian Tugas dan Kegiatan...." ng-model="searchName">
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in active" id="dpa">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                            <th style="width: 10%; text-align: center">Satuan</th>
+                                            <th style="width: 5%; text-align: center">jumlah/ Volume Kerja</th>
+                                            <th style="width: 5%; text-align: center">Norma Waktu (Menit)</th>
+                                            <th style="width: 5%; text-align: center">Beban Kerja</th>
+                                            <th style="width: 10%; text-align: center">Peralatan</th>
+                                            <th style="width: 10%; text-align: center">Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in filteredData">
+                                            <td>{{$index + 1 + (5 * currentPage )}}</td>
+                                            <td style="text-align: left;overflow: hidden;word-wrap: break-word;">{{urtug.deskripsi}}</td>
+                                            <td>{{urtug.satuan}}</td>
+                                            <td>{{urtug.volumeKerja}}</td>
+                                            <td>{{urtug.normaWaktu}}</td>
+                                            <td>{{urtug.bebanKerja}}</td>
+                                            <td>{{urtug.peralatan}}</td>
+                                            <td>{{urtug.keterangan}}</td>    
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div style="padding-top: 3px;" class="pull-right">
+                                    <ul>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                              &lt; PREV                          
+                                            </button>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                              NEXT &gt;                          
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="nondpa">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                            <th style="width: 10%; text-align: center">Satuan</th>
+                                            <th style="width: 5%; text-align: center">jumlah/ Volume Kerja</th>
+                                            <th style="width: 5%; text-align: center">Norma Waktu (Menit)</th>
+                                            <th style="width: 5%; text-align: center">Beban Kerja</th>
+                                            <th style="width: 10%; text-align: center">Pern</th>
+                                            <th style="width: 10%; text-align: center">Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in filteredData">
+                                            <td>{{$index + 1 + (5 * currentPage )}}</td>
+                                            <td style="text-align: left;overflow: hidden;word-wrap: break-word;">{{urtug.deskripsi}}</td>
+                                            <td>{{urtug.satuan}}</td>
+                                            <td>{{urtug.volumeKerja}}</td>
+                                            <td>{{urtug.normaWaktu}}</td>
+                                            <td>{{urtug.bebanKerja}}</td>
+                                            <td>{{urtug.peralatan}}</td>
+                                            <td>{{urtug.keterangan}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div style="padding-top: 3px;" class="pull-right">
+                                    <ul>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                              &lt; PREV                          
+                                            </button>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                              NEXT &gt;                          
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg_load animate-show-hide" ng-show="kontrak.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="kontrak.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Catatan Aktivitas Harian</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-md-12" >
+                            <div>
+                                Tanggal: {{aktivitas.date}}
+                            </div>
+                            <div class="col-md-3">
+                                <input type="date" class="form-control" ng-model="tanggal" >
+                            </div>
+                            </div>
+                            <div class="col-md-12" >
+                                NIP : {{aktivitas.pegawai.nipPegawai}}
+                            </div>
+                            <div class="col-md-12" >
+                                Nama : {{aktivitas.pegawai.namaPegawai}}
+                            </div>
+                            <div class="col-md-12" >
+                                Jabatan : {{aktivitas.pegawai.jabatan}}
+                            </div>
+                            <div class="col-md-12" >
+                                Unit : {{aktivitas.pegawai.unit}}
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-10"></div>    
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary waves-effect" ng-click="aktivitas.open()">Tambahkan Aktivitas</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div style="padding-bottom: 10px"></div>
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%; text-align: center">No</th>
+                                    <th style="text-align: center"><input type="text" class="form-control" ng-model="searchName" ng-required="true" placeholder="Aktivitas"></th>
+                                    <th style="width: 10%; text-align: center">Status</th>
+                                    <th style="width: 5%; text-align: center">Capaian (menit)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="rincian in filteredData">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{rincian.namaUrtug}}</td>
+                                    <td>{{rincian.statusEkinerja == 1 ? 'DPA' : ''}}
+                                        {{rincian.statusEkinerja == 2 ? 'Non-DPA' : ''}}
+                                        {{rincian.statusEkinerja == 3 ? 'Lain - Lain' : ''}}
+                                        {{rincian.statusEkinerja == 4 ? 'Inovasi' : ''}}</td>
+                                    <td>{{rincian.capaianMenit}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div layout="row">
+                            <div class="col-md-5"></div>
+                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
+                                <i class="material-icons">navigate_before</i>
+                            </button>
+                            <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
+                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
+                              <i class="material-icons">navigate_next</i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg_load animate-show-hide" ng-show="aktivitas.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="aktivitas.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

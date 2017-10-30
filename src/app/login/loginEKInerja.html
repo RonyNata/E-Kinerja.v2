@@ -1,0 +1,44 @@
+<div style="background-color: #00BCD4;width: 100%;height: 100%;padding-top: 170px; position: absolute;">
+<div class="login-page" style="margin-top: -70px">
+    <div class="login-box">
+        <h2 align="center"><b>E-KINERJA</b></h2>
+        <h6 align="center">Kabupaten Bekasi</h6>
+        <br>
+        <div class="card">
+            <div class="body">
+                <div ng-show="error" class="alert alert-danger">{{error}}</div>
+                <form   name="form" role="form" ng-submit="login.login()">
+                    <div class="msg">Login User</div>
+                    <div class="input-group" ng-class="{ 'has-error': form.nip.$dirty && form.nip.$error.required }">
+                        <span class="input-group-addon" >
+                             <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP" ng-model="nip" required autofocus />
+                        </div>
+                        <span ng-show="form.nip.$dirty && form.nip.$error.required" class="help-block">NIP harus diisi</span>
+                    </div>
+                    <div class="input-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" ng-model="password" required />
+                        </div>
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password harus diisi</span>
+                    </div>
+                    <div class="row"  style="padding-left: 15px;padding-right: 15px; text-align: center">
+                        <button class="btn btn-block btn-block bg-pink waves-effect" ng-disabled="form.$invalid" type="submit" ng-hide="dataLoading">Masuk</button>
+                        <div ng-show="dataLoading">
+                        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ></span> Loading...
+                        </div>
+                    </div>
+                </form>
+                <!-- <div class="loader"></div> -->
+            </div>
+        </div>
+    </div>  
+</div>
+</div>
+<!-- <script src="../assets/plugins/node-waves/waves.js"></script>
+<script src="../assets/js/admin.js"></script> -->
