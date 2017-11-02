@@ -12,9 +12,16 @@ angular.
         getUrtug();
 
         function getUrtug(){
-          KontrakPegawaiService.GetUrtugNonDPA($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          KontrakPegawaiService.GetUrtugNonDPA(
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
+            ).then(
             function(response){
-              vm.urtugNonDpa = response; debugger
+              vm.urtugNonDpa = response.urtugTidakDipilihList; debugger
+              for(var i = 0; i < vm.urtugNonDpa.length; i++){
+                vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
+                vm.urtugNonDpa[i].checked = false;
+              }
             }, function(errResponse){
 
             }
@@ -61,7 +68,19 @@ angular.
         };
 
         vm.save = function(){
-          
+          var data = [];
+          for(var i = 0; i<vm.urtugNonDpa.length; i++)
+            if(vm.urtugNonDpa[i].checked){
+              vm.urtugNonDpa[i].statusApproval = 0;
+              vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+              data.push(vm.urtugNonDpa[i]);
+            }
+          KontrakPegawaiService.ChooseUrtug(data).then(
+            function(response){
+              $uibModalInstance.close();
+            }, function(errResponse){
+
+            })
       	}
 
       	vm.cancel = function () {

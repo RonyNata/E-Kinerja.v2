@@ -1,0 +1,110 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Halaman Persetujuan Kontrak Kerja Pegawai</h2>
+                    </div>
+                    <div class="body">
+                        <div class="col-md-12"> 
+                            <div class="col-md-7"> 
+                                <form method="get">
+                                    <input class="form-control" list="pegawai" name="pegawai" ng-model="nipPegawai" placeholder="Pilih Pegawai">
+                                    <datalist id="pegawai" style="height: 100px">
+                                            <option ng-repeat="pegawai in ajuankontrak.list_pegawai"
+                                     value="{{pegawai.nipPegawai}}" ng-selected="selected">{{pegawai.namaPegawai}}</option>
+                                    </datalist>
+                                </form>
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#ajuan" data-toggle="tab">Uraian Tugas Yang Diajukan</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#ditolak" data-toggle="tab">Uraian Tugas Yang Ditolak</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th >Rincian Tugas dan Kegiatan</th>
+                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                            <th style="width: 5%; text-align: center">Mutu</th> 
+                                            <th style="width: 5%; text-align: center">Waktu</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="text-align: center">Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in ajuankontrak.list_ajuan" style="text-align: center">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left;">{{urtug.urtug}}</td>
+                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                            <td>{{urtug.kualitas}}</td>
+                                            <td>{{urtug.waktu}}</td>
+                                            <td>{{urtug.biayaRp}}</td>
+                                            <td>
+                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug.kdUrtug, 0)" class="btn btn-danger btn waves waves-effect">Tolak</button>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="ditolak">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th >Rincian Tugas dan Kegiatan</th>
+                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                            <th style="width: 5%; text-align: center">Mutu</th> 
+                                            <th style="width: 5%; text-align: center">Waktu</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="text-align: center">Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in ajuankontrak.list_ditolak" style="text-align: center">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left;">{{urtug.urtug}}</td>
+                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                            <td>{{urtug.kualitas}}</td>
+                                            <td>{{urtug.waktu}}</td>
+                                            <td>{{urtug.biayaRp}}</td>
+                                            <td>
+                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug.kdUrtug, 1)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                            </td> 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="col-md-11"></div>
+                                <div class="col-md-1">
+                                    <button type="button" ng-click="ajuankontrak.approve()" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg_load animate-show-hide" ng-show="ajuankontrak.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="ajuankontrak.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

@@ -20,23 +20,23 @@
                                     <tbody>
                                         <tr>
                                             <td style="width: 150px">Nama</td>
-                                            <td>THHH</td>
+                                            <td>{{kontrak.penilai.nama}}</td>
                                         </tr>
                                         <tr>
                                             <td>NIP</td>
-                                            <td>23141</td>
+                                            <td>{{kontrak.penilai.nipPegawai}}</td>
                                         </tr>
                                         <tr>
                                             <td>Pangkat/Gol</td>
-                                            <td>asds</td>
+                                            <td>{{kontrak.penilai.golongan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Jabatan</td>
-                                            <td>dsfs</td>
+                                            <td>{{kontrak.penilai.jabatan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Unit Kerja</td>
-                                            <td>asdad</td>
+                                            <td>{{kontrak.penilai.unitKerja}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -59,7 +59,7 @@
                                         </tr>
                                         <tr>
                                             <td>Pangkat/Gol</td>
-                                            <td>III/a</td>
+                                            <td>{{kontrak.pegawai.golongan}}</td>
                                         </tr>
                                         <tr>
                                             <td>Jabatan</td>
@@ -97,30 +97,26 @@
                                     <th rowspan="2" style="width: 5%; text-align: center">No</th>
                                     <th rowspan="2" style="text-align: center">Rincian Tugas dan Kegiatan</th>
                                     <th colspan="4" style="text-align: center">TARGET</th>
-                                    <th rowspan="2" style="width: 10%; text-align: center">Peralatan</th>
-                                    <th rowspan="2" style="width: 5%; text-align: center">Keterangan</th>
                                 </tr>
                                 <tr>
-                                    <th style="width: 10%; text-align: center">Satuan</th>
-                                    <th style="width: 5%; text-align: center">jumlah/Volume Kerja</th>
-                                    <th style="width: 5%; text-align: center">Norma Waktu (Menit)</th>
-                                    <th style="width: 5%; text-align: center">Beban Kerja</th>
+                                    <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                    <th style="width: 5%; text-align: center">Mutu</th> 
+                                    <th style="width: 5%; text-align: center">Waktu</th> 
+                                    <th style="width: 5%; text-align: center">Biaya</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="urtug in filteredData">
-                                    <td>{{$index + 1 + (5 * currentPage )}}</td>
-                                    <td>{{urtug.deskripsi}}</td>
-                                    <td>{{urtug.satuan}}</td>
-                                    <td>{{urtug.volumeKerja}}</td>
-                                    <td>{{urtug.normaWaktu}}</td>
-                                    <td>{{urtug.bebanKerja}}</td>
-                                    <td>{{urtug.peralatan}}</td>
-                                    <td>{{urtug.keterangan}}</td>
+                                <tr ng-repeat="urtug in kontrak.target" style="text-align: center;">
+                                    <td>{{$index + 1}}</td>
+                                    <td style="text-align: left;">{{urtug.urtug}}</td>
+                                    <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                    <td>{{urtug.kualitas}}</td>
+                                    <td>{{urtug.waktu}}</td>
+                                    <td>{{urtug.biayaRp}}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div layout="row">
+                        <!-- <div layout="row">
                             <div class="col-md-5"></div>
                             <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
                               <i class="material-icons">navigate_before</i>
@@ -129,7 +125,7 @@
                             <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
                               <i class="material-icons">navigate_next</i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -137,7 +133,7 @@
     </div>
 </section>
 
-<!-- <div class="bg_load animate-show-hide" ng-show="kontrak.loading"></div>
+<div class="bg_load animate-show-hide" ng-show="kontrak.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="kontrak.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
@@ -147,4 +143,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div> -->
+</div>

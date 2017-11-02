@@ -19,9 +19,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugNonDPA = function (nipPegawai) {
+        service.GetUrtugNonDPA = function (nipPegawai, kdJabatan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-uraian-tugas-pegawai-tahunan-by-nip/' + nipPegawai).then(
+            $http.get(API + 'get-urtug-non-dpa-by-jabatan/' + kdJabatan + '/' + nipPegawai).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -48,6 +48,45 @@
         service.GetUrtugKegiatan = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'get-kegiatan-pegawai-by-urtug/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetPejabatPenilai = function(kdJabatan) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-pejabat-penilai/' + kdJabatan).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetUrtugByNip = function(nip) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-uraian-tugas-pegawai-tahunan-by-nip/' + nip).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.ChooseUrtug = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

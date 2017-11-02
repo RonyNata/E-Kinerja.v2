@@ -32,8 +32,8 @@ angular.
       		vm.loadUrtug = true;
       		vm.loadUrJab = true;
       		findJabatan();
-      		getUrtugByJabatan();
       		getPejabatPenilai();
+      		getUrtugByJabatan();
       	}
       });
 
@@ -108,7 +108,7 @@ angular.
       		function(response){
       			vm.penilai = response;
       		}, function(errResponse){
-
+      			vm.penilai = "";
       		})
       }
 

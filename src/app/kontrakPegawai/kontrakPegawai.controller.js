@@ -12,18 +12,21 @@ angular.
       EkinerjaService.checkCredential();
       // EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);
 
-      vm.list_urtug = [];
+      // vm.list_urtug = [];
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
 
       getUrtugByJabatan();
+      getPejabatPenilai();
       // getUrtugByJabatan();
 
       function getUrtugByJabatan(){
-        KontrakPegawaiService.GetUrtugByJabatan(vm.pegawai.kdJabatan).then(
+        KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
           function(response){
-            vm.list_urtug = response;
-            vm.dataLook = response;
-            paging();
+            vm.target = response;
+            for(var i = 0; i<vm.target.length; i++)
+              vm.target[i].biayaRp = EkinerjaService.FormatRupiah(vm.target[i].biaya);
+            // vm.dataLook = response;
+            // paging();
             vm.loading = false;
             // debugger
           }, function(errResponse){
@@ -31,6 +34,15 @@ angular.
 
           }
         )
+      }
+
+      function getPejabatPenilai(){
+        KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
+          function(response){
+            vm.penilai = response;debugger
+          }, function(errResponse){
+            vm.penilai = "";
+          })
       }
 
       vm.openUrtug = function (parentSelector) {

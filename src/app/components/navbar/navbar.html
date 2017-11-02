@@ -103,6 +103,12 @@
                         <span>Form Kontrak Tahunan</span>
                     </a>
                 </li>
+                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                    <a href="#/approval">
+                        <i class="material-icons">text_fields</i>
+                        <span>Persetujuan Kontrak Kerja</span>
+                    </a>
+                </li>
                 <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
                     <a href="#/hak-akses">
                         <i class="material-icons">layers</i>

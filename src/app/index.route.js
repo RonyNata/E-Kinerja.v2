@@ -67,6 +67,12 @@
         templateUrl: 'app/pengadaanBarangJasa/pengadaanBarangJasa.html',
         controller: 'PengadaanBarangJasaController',
         controllerAs: 'sk'
+      })
+      .state('approval', {
+        url: '/approval',
+        templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
+        controller: 'AjuanKontrakController',
+        controllerAs: 'ajuankontrak'
       });
 
     // $urlRouterProvider.otherwise('/');
