@@ -72,6 +72,7 @@ angular.
           for(var i = 0; i<vm.urtugNonDpa.length; i++)
             if(vm.urtugNonDpa[i].checked){
               vm.urtugNonDpa[i].statusApproval = 0;
+              vm.urtugNonDpa[i].alasan = "";
               vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
               data.push(vm.urtugNonDpa[i]);
             }

@@ -54,12 +54,14 @@ angular.
           var data = [];
           for(var i = 0; i < vm.list_ajuan.length; i++){
             vm.list_ajuan[i].statusApproval = 1;
+            vm.list_ajuan[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
             data.push(vm.list_ajuan[i]);
           }
           for(var i = 0; i < vm.list_ditolak.length; i++){
             vm.list_ditolak[i].statusApproval = 2;
+            vm.list_ditolak[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
             data.push(vm.list_ditolak[i]);
-          }
+          }console.log(JSON.stringify(data));
 
           AjuanKontrakService.ApproveKontrak(data).then(
             function(response){
