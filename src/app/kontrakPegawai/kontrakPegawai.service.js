@@ -84,9 +84,35 @@
             return deferred.promise;
         };
 
+        service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-urtug-kegiatan-pegawai-approval/' + nip + '/' + kdUnitKerja).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.ChooseUrtug = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.ApproveKegiatan = function (data) {
+            var deferred = $q.defer();
+            $http.put(API + 'change-status-urtug-kegiatan-pegawai-approval/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

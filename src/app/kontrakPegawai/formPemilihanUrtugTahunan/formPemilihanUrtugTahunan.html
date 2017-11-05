@@ -55,13 +55,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="dpa in pilihurtug.urtugDpa" style="text-align: center" ng-click="pilihurtug.openKegiatan(dpa)">
-                                            <td>{{$index + 1}}</td>
+                                        <tr ng-repeat="dpa in pilihurtug.urtugDpa" style="text-align: center">
+                                            <!-- ng-click="pilihurtug.openKegiatan(dpa)" -->
+                                            <td><input type="checkbox" ng-model="dpa.checked"></td>
                                             <td style="text-align: left;">{{dpa.urtug}}</td>
                                             <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
                                             <td>100</td>
                                             <td>{{dpa.waktu}}</td>
-                                            <td>{{dpa.biaya}}</td>
+                                            <td>{{dpa.biayaRp}}</td>
                                         </tr>
                                     </tbody>
                                 </table>

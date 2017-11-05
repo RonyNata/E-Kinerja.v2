@@ -19,25 +19,38 @@ angular.
         function searchPegawaiByNip(){
           vm.list_urtug = EkinerjaService.searchByNip($scope.nipPegawai, vm.list_pegawai);
           vm.list_ajuan = vm.list_urtug[0].uraianTugasDiajukan;
-          vm.list_ditolak = vm.list_urtug[0].uraianTugasTidakDipilih;
-          for(var i = 0; i < vm.list_ajuan.length; i++)
+          vm.list_tidakdiajukan = vm.list_urtug[0].uraianTugasTidakDipilih;
+          for(var i = 0; i < vm.list_ajuan.length; i++){
             vm.list_ajuan[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_ajuan[i].biaya);
-          for(var i = 0; i < vm.list_ditolak.length; i++)
-            vm.list_ditolak[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_ditolak[i].biaya);
+            vm.list_ajuan[i].terima = true;
+          }
+          for(var i = 0; i < vm.list_tidakdiajukan.length; i++)
+            vm.list_tidakdiajukan[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_tidakdiajukan[i].biaya);
         }
 
-        vm.gantiStatusUrtug = function(kdUrtug, terima){
+        vm.gantiStatusUrtug = function(urtug, terima){
           if(terima){
-            var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ditolak);
-            var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ditolak);
-            vm.list_ajuan.push(vm.list_ditolak[indexPush]);
-            vm.list_ditolak.splice(indexSplice, 1);
+            urtug.terima = false;
+            // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
+            // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
+            // vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
+            // vm.list_tidakdiajukan.splice(indexSplice, 1);
           }else{
-            var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-            var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-            vm.list_ditolak.push(angular.copy(vm.list_ajuan[indexPush]));
-            vm.list_ajuan.splice(indexSplice, 1);
+            urtug.terima = true;
+            // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
+            // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
+            // vm.list_tidakdiajukan.push(angular.copy(vm.list_ajuan[indexPush]));
+            // vm.list_ajuan.splice(indexSplice, 1);
           }
+            console.log(urtug);
+        }
+
+        vm.tambahkan = function(kdUrtug){
+          var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
+          var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
+          vm.list_tidakdiajukan[indexPush].terima = true;
+          vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
+          vm.list_tidakdiajukan.splice(indexSplice, 1);
         }
 
         function getPegawaiPengaju(){
@@ -53,14 +66,17 @@ angular.
         vm.approve = function(){
           var data = [];
           for(var i = 0; i < vm.list_ajuan.length; i++){
-            vm.list_ajuan[i].statusApproval = 1;
+            if(vm.list_ajuan[i].terima)
+              vm.list_ajuan[i].statusApproval = 1;
+            else
+              vm.list_ajuan[i].statusApproval = 2;
             vm.list_ajuan[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
             data.push(vm.list_ajuan[i]);
           }
-          for(var i = 0; i < vm.list_ditolak.length; i++){
-            vm.list_ditolak[i].statusApproval = 2;
-            vm.list_ditolak[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-            data.push(vm.list_ditolak[i]);
+          for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
+            vm.list_tidakdiajukan[i].statusApproval = 2;
+            vm.list_tidakdiajukan[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+            data.push(vm.list_tidakdiajukan[i]);
           }console.log(JSON.stringify(data));
 
           AjuanKontrakService.ApproveKontrak(data).then(

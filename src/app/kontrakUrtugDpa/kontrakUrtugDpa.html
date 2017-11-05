@@ -1,0 +1,93 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Halaman Persetujuan Kontrak Kerja Pegawai</h2>
+                    </div>
+                    <div class="body">
+                        <div style="margin-left: -10px; float: center; width: 20%" class="container-fluid">
+                            <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 40px; font-size: 20px"> <b>Kembali</b>
+                            </button>
+                        </div>
+                        <div class="animate-show-hide" ng-show="kontrakdpa.urtug">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th >Rincian Uraian Tugas</th>
+                                        <th style="width: 5%;">Pending</th>
+                                        <th style="width: 5%;">Diterima</th>
+                                        <th style="width: 5%;">Ditolak</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="urtug in kontrakdpa.urtugDpa" ng-click="kontrakdpa.gotoKegiatan(urtug)" style="text-align: center">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left;">{{urtug.deskripsiUrtug}}</td>
+                                        <td>{{urtug.pending}}</td>
+                                        <td>{{urtug.terima}}</td>
+                                        <td>{{urtug.tolak}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="animate-show-hide" ng-show="kontrakdpa.kegiatan">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center;">No</th>
+                                        <th >Rincian Kegiatan</th>
+                                        <th style="width: 5%;">Pending</th>
+                                        <th style="width: 5%;">Diterima</th>
+                                        <th style="width: 5%;">Ditolak</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="kegiatan in kontrakdpa.urtugKegiatan" ng-click="kontrakdpa.gotoPj(kegiatan)" style="text-align: center;">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left;">{{kegiatan.ketKeg}}</td>
+                                        <td>{{kegiatan.pending}}</td>
+                                        <td>{{kegiatan.terima}}</td>
+                                        <td>{{kegiatan.tolak}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="animate-show-hide" ng-show="kontrakdpa.pj">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th >Nip</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pj in kontrakdpa.kegiatanPj" style="text-align: center">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left;">{{pj.nipPegawai}}</td>
+                                        <td><button ng-show="{{pj.statusApproval == 2}}" type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect">Terima</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg_load animate-show-hide" ng-show="kontrakdpa.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="kontrakdpa.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

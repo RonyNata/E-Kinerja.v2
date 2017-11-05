@@ -17,6 +17,7 @@ angular.
 
       getUrtugByJabatan();
       getPejabatPenilai();
+      getUrtugKegiatanApproval();
       // getUrtugByJabatan();
 
       function getUrtugByJabatan(){
@@ -39,9 +40,22 @@ angular.
       function getPejabatPenilai(){
         KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
           function(response){
-            vm.penilai = response;debugger
+            vm.penilai = response;
           }, function(errResponse){
             vm.penilai = "";
+          })
+      }
+
+      function getUrtugKegiatanApproval(){
+        KontrakPegawaiService.GetUrtugKegiatanApproval(
+          $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          function(response){
+            vm.kegiatan = response;
+            for(var i = 0; i < response.length; i++)
+              vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+          }, function(errResponse){
+            // vm.penilai = "";
           })
       }
 

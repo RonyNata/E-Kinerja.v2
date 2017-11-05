@@ -27,7 +27,7 @@ angular.
           console.log(items);
           PengadaanBarangJasaService.AddPJ(items).then(
             function(response){
-      				$uibModalInstance.close();
+      				$uibModalInstance.close(items);
               // setPJ();
             }, function(errResponse){
 

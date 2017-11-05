@@ -73,59 +73,80 @@
                                 </table>
                             </div>
                         </div>
+                        <!-- <div class="col-md-6">
+                        </div> -->
+                        <!-- <div style="padding-bottom: 10px"></div> -->
                         <div class="col-md-6">
-                            <div class="col-md-1">
-                                <label style="margin-top: 5px">Cari</label>
-                            </div>
-                            <div class="col-md-7">
-                                <input type="text" class="form-control" placeholder="Rincian Tugas dan Kegiatan...." ng-model="searchName">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                        <div style="padding-bottom: 10px"></div>
-                        <div class="col-md-12">
-                            <div class="col-md-9"></div>
-                            <div class="col-md-3" style="margin-left: -10px;float: left;">
-                                <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 30px"> <b>Ajukan Kontrak Tahunan</b>
+                            <!-- <div class="col-md-9"></div> -->
+                            <div style="margin-left: -10px; float: center; " class="text-center">
+                                <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 50px; font-size: 20px"> <b>Ajukan Kontrak Tahunan</b>
                                 </button>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2" style="width: 5%; text-align: center">No</th>
-                                    <th rowspan="2" style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                    <th colspan="4" style="text-align: center">TARGET</th>
-                                </tr>
-                                <tr>
-                                    <th style="width: 10%; text-align: center">Kuant/ Output</th>
-                                    <th style="width: 5%; text-align: center">Mutu</th> 
-                                    <th style="width: 5%; text-align: center">Waktu</th> 
-                                    <th style="width: 5%; text-align: center">Biaya</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="urtug in kontrak.target" style="text-align: center;">
-                                    <td>{{$index + 1}}</td>
-                                    <td style="text-align: left;">{{urtug.urtug}}</td>
-                                    <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                    <td>{{urtug.kualitas}}</td>
-                                    <td>{{urtug.waktu}}</td>
-                                    <td>{{urtug.biayaRp}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <!-- <div layout="row">
-                            <div class="col-md-5"></div>
-                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
-                              <i class="material-icons">navigate_before</i>
-                            </button>
-                            <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
-                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
-                              <i class="material-icons">navigate_next</i>
-                            </button>
-                        </div> -->
+                        <div class="col-md-6">
+                            <div >
+                                <input type="text" style="height: 50px; font-size: 20px" class="form-control" placeholder="Cari Rincian Tugas dan Kegiatan" ng-model="searchName">
+                            </div>
+                        </div>
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#tahunannon" data-toggle="tab">Uraian Tugas Non-DPA</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tahunandpa" data-toggle="tab">Uraian Tugas DPA</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="tahunannon">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2" style="width: 5%; text-align: center">No</th>
+                                            <th rowspan="2" style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                            <th colspan="4" style="text-align: center">TARGET</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                            <th style="width: 5%; text-align: center">Mutu</th> 
+                                            <th style="width: 5%; text-align: center">Waktu</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="urtug in kontrak.target" style="text-align: center;">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left;">{{urtug.urtug}}</td>
+                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                            <td>{{urtug.kualitas}}</td>
+                                            <td>{{urtug.waktu}}</td>
+                                            <td>{{urtug.biayaRp}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="tahunandpa">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%; text-align: center">No</th>
+                                            <th style="text-align: center">Rincian Uraian Tugas</th>
+                                            <th style="text-align: center">Kegiatan</th>
+                                            <th style="width: 5%; text-align: center">Jabatan</th> 
+                                            <th style="width: 5%; text-align: center">Biaya</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="kegiatan in kontrak.kegiatan" style="text-align: center">
+                                            <td>{{$index + 1}}</td>
+                                            <td style="text-align: left;">{{kegiatan.deskripsiUrtug}}</td>
+                                            <td style="text-align: left;">{{kegiatan.ketKeg}}</td>
+                                            <td>{{kegiatan.statusPenanggungJawab}}</td>
+                                            <td>{{kegiatan.paguAnggaran}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@
                                 <a href="#ajuan" data-toggle="tab">Uraian Tugas Yang Diajukan</a>
                             </li>
                             <li role="presentation">
-                                <a href="#ditolak" data-toggle="tab">Uraian Tugas Yang Ditolak</a>
+                                <a href="#tidakdiajukan" data-toggle="tab">Uraian Tugas Yang Tidak Diajukan</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -50,13 +50,14 @@
                                             <td>{{urtug.waktu}}</td>
                                             <td>{{urtug.biayaRp}}</td>
                                             <td>
-                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug.kdUrtug, 0)" class="btn btn-danger btn waves waves-effect">Tolak</button>
+                                                <button ng-show="urtug.terima" type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 1)" class="btn btn-danger btn waves waves-effect">Tolak</button>
+                                                <button ng-hide="urtug.terima" type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect">Terima</button>
                                             </td> 
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="ditolak">
+                            <div role="tabpanel" class="tab-pane fade in" id="tidakdiajukan">
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -70,7 +71,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="urtug in ajuankontrak.list_ditolak" style="text-align: center">
+                                        <tr ng-repeat="urtug in ajuankontrak.list_tidakdiajukan" style="text-align: center">
                                             <td>{{$index + 1}}</td>
                                             <td style="text-align: left;">{{urtug.urtug}}</td>
                                             <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
@@ -78,7 +79,7 @@
                                             <td>{{urtug.waktu}}</td>
                                             <td>{{urtug.biayaRp}}</td>
                                             <td>
-                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug.kdUrtug, 1)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                                <button type="button" ng-click="ajuankontrak.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
                                             </td> 
                                         </tr>
                                     </tbody>

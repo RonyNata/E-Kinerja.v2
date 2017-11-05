@@ -73,6 +73,12 @@
         templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
         controller: 'AjuanKontrakController',
         controllerAs: 'ajuankontrak'
+      })
+      .state('kontrakdpa', {
+        url: '/kontrakdpa',
+        templateUrl: 'app/kontrakUrtugDpa/kontrakUrtugDpa.html',
+        controller: 'KontrakUrtugDpaController',
+        controllerAs: 'kontrakdpa'
       });
 
     // $urlRouterProvider.otherwise('/');

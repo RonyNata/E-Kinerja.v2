@@ -32,8 +32,10 @@ angular.
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
             function(response){
               vm.urtugDpa = response; debugger
-              for(var i = 0; i < response.length; i++)
-                vm.urtugDpa[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.urtugDpa[i].paguAnggaran);
+              for(var i = 0; i < response.length; i++){ 
+                vm.urtugDpa[i].checked = false;
+                vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+              }
             }, function(errResponse){
 
             }
@@ -69,6 +71,8 @@ angular.
 
         vm.save = function(){
           var data = [];
+          var dpa = [];
+          var statDpa = false, statNon = false;
           for(var i = 0; i<vm.urtugNonDpa.length; i++)
             if(vm.urtugNonDpa[i].checked){
               vm.urtugNonDpa[i].statusApproval = 0;
@@ -76,13 +80,41 @@ angular.
               vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
               data.push(vm.urtugNonDpa[i]);
             }
+
+          for(var i = 0; i < vm.urtugDpa.length; i++){
+            if(vm.urtugDpa[i].checked)
+              vm.urtugDpa[i].statusApproval = 1;
+            else vm.urtugDpa[i].statusApproval = 2;
+            vm.urtugDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+            dpa.push(vm.urtugDpa[i]);
+          }
+
+          console.log(vm.urtugDpa);
+
+          KontrakPegawaiService.ApproveKegiatan(dpa).then(
+            function(response){
+              EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
+              statDpa = true;
+              successChecker(statDpa, statNon);
+            }, function(errResponse){
+              EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
+            })
+
           KontrakPegawaiService.ChooseUrtug(data).then(
             function(response){
-              $uibModalInstance.close();
+              EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");
+              statNon = true;
+              successChecker(statDpa, statNon);
+              // $uibModalInstance.close();
             }, function(errResponse){
-
+              EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
             })
-      	}
+        }
+
+        function successChecker(dpa,non){
+          if(dpa && non)
+            $uibModalInstance.close();          
+        }
 
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');
