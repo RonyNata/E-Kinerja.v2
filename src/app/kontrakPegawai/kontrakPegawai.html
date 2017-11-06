@@ -103,13 +103,14 @@
                                         <tr>
                                             <th rowspan="2" style="width: 5%; text-align: center">No</th>
                                             <th rowspan="2" style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                            <th colspan="4" style="text-align: center">TARGET</th>
+                                            <th colspan="5" style="text-align: center">TARGET</th>
                                         </tr>
                                         <tr>
                                             <th style="width: 10%; text-align: center">Kuant/ Output</th>
                                             <th style="width: 5%; text-align: center">Mutu</th> 
                                             <th style="width: 5%; text-align: center">Waktu</th> 
                                             <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="width: 5%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,6 +121,7 @@
                                             <td>{{urtug.kualitas}}</td>
                                             <td>{{urtug.waktu}}</td>
                                             <td>{{urtug.biayaRp}}</td>
+                                            <td><button type="button" ng-click="kontrak.openTemplate()" class="btn btn-success btn waves waves-effect">Kerjakan</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -133,6 +135,7 @@
                                             <th style="text-align: center">Kegiatan</th>
                                             <th style="width: 5%; text-align: center">Jabatan</th> 
                                             <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="width: 5%;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -142,6 +145,7 @@
                                             <td style="text-align: left;">{{kegiatan.ketKeg}}</td>
                                             <td>{{kegiatan.statusPenanggungJawab}}</td>
                                             <td>{{kegiatan.paguAnggaran}}</td>
+                                            <td><button type="button" ng-click="kontrak.openTemplate()" class="btn btn-success btn waves waves-effect">Kerjakan</button></td>
                                         </tr>
                                     </tbody>
                                 </table>

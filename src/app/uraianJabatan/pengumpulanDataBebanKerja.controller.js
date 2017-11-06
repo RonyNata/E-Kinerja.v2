@@ -38,10 +38,10 @@ angular.
       });
 
       $scope.$watch('choosen_urtug', function(){
-      	if($scope.choosen_urtug.length == 13){
-      		debugger
+      	// if($scope.choosen_urtug.length == 7){
+      		// debugger/
       		getUrtugKegiatanByJabatan();
-      	}
+      	// }
       });
 
       vm.tambahPj = function(){
@@ -145,11 +145,19 @@ angular.
       	)
       }
 
+      function getAllDpa(){
+      	vm.urtugDpa = [];
+      	for(var i = 0; i < vm.list_jenis_urtug.length; i++)
+      		if(vm.list_jenis_urtug[i].jenisUrtug == 'DPA')
+      			vm.urtugDpa.push(vm.list_jenis_urtug[i]);
+      }
+
       function getJenisUrtugJabatan(){
       	PengumpulanDataBebanKerjaService.GetJenisUrtugJabatan($scope.jabatan).then(
       		function(response){
       			vm.dataLookJenis = response;
       			vm.list_jenis_urtug = response;
+      			getAllDpa();
       			// debugger
       			pagingJenis();
       		}, function(errResponse){

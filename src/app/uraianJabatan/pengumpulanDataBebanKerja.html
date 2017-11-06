@@ -9,7 +9,7 @@
                         <h2 class="col-md-8" style="margin-top: -15px">PENGUMPULAN DATA URAIAN TUGAS BERDASARKAN JABATAN UNIT {{urtug_jabatan.unit}}</h2> 
                         <div class="col-md-4" style="margin-top: -25px"> 
                             <form method="get">
-                                <input class="form-control" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan">
+                                <input class="form-control elder-form elder-font" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan" ng-click="jabatan=''">
                                 <datalist id="jabatan" style="height: 100px">
                                         <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
                                  value="{{jabatan.kdJabatan}}" ng-selected="selected">{{jabatan.jabatan}}</option>
@@ -24,7 +24,7 @@
                                 <h5>Pejabat Penilai: {{urtug_jabatan.penilai.nama}}. <a ng-click="urtug_jabatan.changePenilai()" href="">Ubah</a></h5>
                             </div>
                                 <!-- <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="urtug_jabatan.loadUrJab"></span> -->
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist" style="font-size: 20px">
                             <li role="presentation" class="active">
                                 <a href="#urtugjab" data-toggle="tab">Atur Urtug Jabatan</a>
                             </li>
@@ -128,10 +128,10 @@
                                 <div class="col-md-6"> 
                                     <div class="col-md-7"> 
                                         <form method="get">
-                                            <input class="form-control" list="choosen_urtug" name="choosen_urtug" ng-model="choosen_urtug" placeholder="Pilih Urtug">
+                                            <input class="form-control" list="choosen_urtug" name="choosen_urtug" ng-model="choosen_urtug" placeholder="Pilih Urtug" ng-click="choosen_urtug=''">
                                             <datalist id="choosen_urtug" style="height: 100px">
-                                                    <option ng-repeat="urtug in urtug_jabatan.list_used_urtug"
-                                             value="{{urtug.uraianTugas.kdUrtug}}" ng-selected="selected">{{urtug.uraianTugas.deskripsi}}</option>
+                                                    <option ng-repeat="urtug in urtug_jabatan.urtugDpa"
+                                             value="{{urtug.kdUrtug}}" ng-selected="selected">{{urtug.urtug}}</option>
                                             </datalist>
                                         </form>
                                     </div>

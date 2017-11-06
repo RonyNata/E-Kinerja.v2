@@ -19,6 +19,14 @@ Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
 
+.elder-font{
+  font-size: 18px;
+}
+
+.elder-form{
+  height: 30px;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

@@ -52,17 +52,19 @@
                                             <th style="width: 5%; text-align: center">Mutu</th> 
                                             <th style="width: 5%; text-align: center">Waktu</th> 
                                             <th style="width: 5%; text-align: center">Biaya</th>
+                                            <th style="width: 5%; text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="dpa in pilihurtug.urtugDpa" style="text-align: center">
-                                            <!-- ng-click="pilihurtug.openKegiatan(dpa)" -->
+                                            <!-- ng-click="" -->
                                             <td><input type="checkbox" ng-model="dpa.checked"></td>
                                             <td style="text-align: left;">{{dpa.urtug}}</td>
                                             <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
                                             <td>100</td>
                                             <td>{{dpa.waktu}}</td>
                                             <td>{{dpa.biayaRp}}</td>
+                                            <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-primary btn waves waves-effect">Detail</button></td>
                                         </tr>
                                     </tbody>
                                 </table>

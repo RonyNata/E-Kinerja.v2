@@ -81,6 +81,28 @@ angular.
         });
       };
 
+      vm.openTemplate = function (parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
+        controller: 'TemplateController',
+        controllerAs: 'temp',
+        // windowClass: 'app-modal-window',
+        // size: 'lg',
+        appendTo: parentElem
+        });
+
+        modalInstance.result.then(function () {
+
+        }, function () {
+
+        });
+      };
+
       function paging(){ 
         $scope.filteredData = [];
         $scope.currentPage = 0;
