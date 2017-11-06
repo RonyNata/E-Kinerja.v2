@@ -10,21 +10,21 @@
                         <div class="col-md-4" style="margin-top: -25px"> 
                             <form method="get">
                                 <input class="form-control elder-form elder-font" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan" ng-click="jabatan=''">
-                                <datalist id="jabatan" style="height: 100px">
+                                <datalist id="jabatan">
                                         <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
-                                 value="{{jabatan.kdJabatan}}" ng-selected="selected">{{jabatan.jabatan}}</option>
+                                 value="{{jabatan.kdJabatan}}" ng-selected="selected" >{{jabatan.jabatan}}</option>
                                 </datalist>
                             </form>
                         </div>
                         </div>
                     </div>
-                    <div class="body">
+                    <div class="body" style="font-size: 17px">
                             <div ng-show="urtug_jabatan.jabatan">
                                 <h3>{{urtug_jabatan.jabatan.jabatan}} &nbsp</h3> 
                                 <h5>Pejabat Penilai: {{urtug_jabatan.penilai.nama}}. <a ng-click="urtug_jabatan.changePenilai()" href="">Ubah</a></h5>
                             </div>
                                 <!-- <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="urtug_jabatan.loadUrJab"></span> -->
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist" style="font-size: 20px">
+                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
                             <li role="presentation" class="active">
                                 <a href="#urtugjab" data-toggle="tab">Atur Urtug Jabatan</a>
                             </li>

@@ -6,10 +6,26 @@ angular.
 	.controller('FormPemilihanUrtugTahunanController', FormPemilihanUrtugTahunanController);
 
     
-    function FormPemilihanUrtugTahunanController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $document, $uibModal) {
+    function FormPemilihanUrtugTahunanController($scope, EkinerjaService, KontrakPegawaiService, $uibModalInstance, $document, $uibModal) {
       	var vm = this;
+        $scope.urtugnon = false;
+        $scope.dpaurtug = false;
 
         getUrtug();
+
+        $scope.$watch('urtugnon', function(){
+          checkAll($scope.urtugnon, vm.urtugNonDpa);
+        });
+
+        $scope.$watch('dpaurtug', function(){
+          debugger
+          checkAll($scope.dpaurtug, vm.urtugDpa);
+        });
+
+        function checkAll(status, array){
+          for(var i = 0; i < array.length; i++)
+            array[i].checked = angular.copy(status);
+        }
 
         function getUrtug(){
           KontrakPegawaiService.GetUrtugNonDPA(

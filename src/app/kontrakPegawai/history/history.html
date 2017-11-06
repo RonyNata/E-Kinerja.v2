@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color:#1fcfe0;">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Template</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">historylate</h3>
 </div>
 <div class="modal-body" id="modal-body">
     <div class="form-body">
@@ -11,18 +11,18 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%; text-align: center">No</th>
-                                    <th style="text-align: center">Deskripsi</th>
-                                    <th style="text-align: center; width: 15%; ">Template</th>
-                                    <!-- <th style="width: 10%; text-align: center">Action</th> -->
+                                    <th style="text-align: center">Tanggal Pembuatan</th>
+                                    <!-- <th style="text-align: center; width: 15%; ">historylate</th> -->
+                                    <th style="width: 10%; text-align: center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="data in temp.template">
+                                <tr ng-repeat="data in history.dataHistory">
                                     <td>{{$index + 1}}</td>
                                     <td>
-                                        {{data.nmTemplate}}
+                                        {{data.createdDate}}
                                     </td>
-                                    <td><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary waves-effect">Template</button></td>
+                                    <td><button type="button" ng-click="history.getDocument(data.kdHistory)" class="btn btn-primary waves-effect">Lihat Dokumen</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -36,6 +36,6 @@
 </div>
     <div class="modal-footer">
         <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-        <button type="button" ng-click="temp.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+        <button type="button" ng-click="history.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
 
     </div> 

@@ -13,7 +13,11 @@ angular.
         getPegawaiPengaju();
 
         $scope.$watch('nipPegawai', function(){
-          searchPegawaiByNip();
+          if($scope.nipPegawai != ''){
+            vm.namaPegawai = EkinerjaService.searchByNip($scope.nipPegawai, vm.list_pegawai);
+            vm.namaPegawai = vm.namaPegawai[0].namaPegawai;
+            searchPegawaiByNip();
+          }
         })
 
         function searchPegawaiByNip(){

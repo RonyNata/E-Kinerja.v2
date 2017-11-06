@@ -6,8 +6,24 @@ angular.
 	.controller('TemplateController', TemplateController);
 
     
-    function TemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance) {
+    function TemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $state) {
       	var vm = this;
+
+        getAllTemplate();
+
+        function getAllTemplate(){
+          KontrakPegawaiService.GetAllTemplate().then(
+            function(response){
+              vm.template = response;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.gotoTemplate = function(url){
+          $uibModalInstance.close();
+          $state.go(url);
+        }
 
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');

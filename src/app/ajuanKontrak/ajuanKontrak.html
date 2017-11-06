@@ -7,11 +7,11 @@
                     <div class="header">
                         <h2>Halaman Persetujuan Kontrak Kerja Pegawai</h2>
                     </div>
-                    <div class="body">
+                    <div class="body" style="font-size: 17px">
                         <div class="col-md-12"> 
                             <div class="col-md-7"> 
                                 <form method="get">
-                                    <input class="form-control" list="pegawai" name="pegawai" ng-model="nipPegawai" placeholder="Pilih Pegawai">
+                                    <input class="form-control" list="pegawai" name="pegawai" ng-model="nipPegawai" placeholder="Pilih Pegawai" ng-click="nipPegawai = ''">
                                     <datalist id="pegawai" style="height: 100px">
                                             <option ng-repeat="pegawai in ajuankontrak.list_pegawai"
                                      value="{{pegawai.nipPegawai}}" ng-selected="selected">{{pegawai.namaPegawai}}</option>
@@ -19,6 +19,7 @@
                                 </form>
                             </div>
                         </div>
+                        <h3>{{ajuankontrak.namaPegawai}} &nbsp</h3>
                         <ul class="nav nav-tabs tab-nav-right" role="tablist">
                             <li role="presentation" class="active">
                                 <a href="#ajuan" data-toggle="tab">Uraian Tugas Yang Diajukan</a>
@@ -38,7 +39,7 @@
                                             <th style="width: 5%; text-align: center">Mutu</th> 
                                             <th style="width: 5%; text-align: center">Waktu</th> 
                                             <th style="width: 5%; text-align: center">Biaya</th>
-                                            <th style="text-align: center">Action</th> 
+                                            <th style="text-align: center; width: 15%;">Action</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,8 +51,8 @@
                                             <td>{{urtug.waktu}}</td>
                                             <td>{{urtug.biayaRp}}</td>
                                             <td>
-                                                <button ng-show="urtug.terima" type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 1)" class="btn btn-danger btn waves waves-effect">Tolak</button>
-                                                <button ng-hide="urtug.terima" type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect">Terima</button>
+                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 1)" class="btn btn-danger btn waves waves-effect" ng-disabled="!urtug.terima">Tolak</button>
+                                                <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect" ng-disabled="urtug.terima">Terima</button>
                                             </td> 
                                         </tr>
                                     </tbody>

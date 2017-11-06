@@ -3,12 +3,51 @@
     angular
     .module('eKinerja')
     .factory('KontrakPegawaiService',
-    ['$http', 'API', '$q',
-    function ($http, API, $q) {
+    ['$http', 'API', '$q', 'API_REPORT',
+    function ($http, API, $q, API_REPORT) {
         var service = {}; 
         service.GetUrtugByJabatan = function (kdJabatan) {
             var deferred = $q.defer();
             $http.get(API + 'get-all-urtug-by-jabatan/' + kdJabatan).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetAllTemplate = function () {
+            var deferred = $q.defer();
+            $http.get(API + 'get-all-template/').then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetAllHistory = function (nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API_REPORT + 'get-report-nodin-history-by-nip/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetHistory = function (kdHistory) {
+            var deferred = $q.defer();
+            $http.get(API_REPORT + 'get-nodin-document-by-history/' + kdHistory).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

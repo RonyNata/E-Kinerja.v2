@@ -40,7 +40,8 @@ angular.
       $scope.$watch('choosen_urtug', function(){
       	// if($scope.choosen_urtug.length == 7){
       		// debugger/
-      		getUrtugKegiatanByJabatan();
+      		if($scope.choosen_urtug != '')
+      			getUrtugKegiatanByJabatan();
       	// }
       });
 

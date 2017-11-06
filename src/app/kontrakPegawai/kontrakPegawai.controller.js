@@ -9,6 +9,7 @@ angular.
       var vm = this;
       vm.loading = true;
 
+
       EkinerjaService.checkCredential();
       // EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);
 
@@ -75,7 +76,8 @@ angular.
         });
 
         modalInstance.result.then(function () {
-
+          getUrtugKegiatanApproval();
+          getUrtugByJabatan();
         }, function () {
 
         });
@@ -91,6 +93,27 @@ angular.
         templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
         controller: 'TemplateController',
         controllerAs: 'temp',
+        // windowClass: 'app-modal-window',
+        // size: 'lg',
+        appendTo: parentElem
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+
+        });
+      };
+
+      vm.openHistory = function (parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/kontrakPegawai/history/history.html',
+        controller: 'HistoryController',
+        controllerAs: 'history',
         // windowClass: 'app-modal-window',
         // size: 'lg',
         appendTo: parentElem

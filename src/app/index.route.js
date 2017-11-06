@@ -79,6 +79,12 @@
         templateUrl: 'app/kontrakUrtugDpa/kontrakUrtugDpa.html',
         controller: 'KontrakUrtugDpaController',
         controllerAs: 'kontrakdpa'
+      })
+      .state('notadinas', {
+        url: '/nota-dinas',
+        templateUrl: 'app/template/notaDinas/notaDinas.html',
+        controller: 'NotaDinasController',
+        controllerAs: 'notadinas'
       });
 
     // $urlRouterProvider.otherwise('/');
