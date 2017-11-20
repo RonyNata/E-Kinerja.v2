@@ -63,6 +63,47 @@
             return result;
         }
 
+        service.searchByUrtug = function(name, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].urtug.toLowerCase().search(name.toLowerCase()) != -1){
+                    result.push(array[i]);
+                } 
+            }
+            return result;
+        }
+
+        service.searchByJabatan = function(jabatan, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].jabatan.toLowerCase().search(jabatan.toLowerCase()) != -1) {
+                    result.push(array[i]);
+                }
+            }
+            return result;
+        }
+
+        service.searchByUnitKerja = function(unitKerja, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].unitKerja.toLowerCase().search(unitKerja.toLowerCase()) != -1) {
+                    debugger
+                    result.push(array[i]);
+                }
+            }
+            return result;
+        }
+
+        service.searchByStatus = function(role, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].role.toLowerCase().search(role.toLowerCase()) != -1) {
+                    result.push(array[i]);
+                }
+            }
+            return result;
+        }
+
         service.showToastrSuccess = function(message) {
           toastr.success(message);
 

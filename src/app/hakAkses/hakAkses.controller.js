@@ -11,7 +11,10 @@
 
 			$scope.searchName = '';
 			$scope.searchNip = '';
-			$scope.entries = 5;
+			$scope.searchJabatan = '';
+			$scope.searchUnitKerja = '';
+			$scope.searchStatus = '';
+			$scope.entries = 25;
 			$scope.currentPage = 0;
 
 			var data = [];
@@ -32,7 +35,6 @@
 					})
 			}
 
-
 			$scope.$watch('searchName', function(){
 				if($scope.searchName != ''){
 					$scope.currentPage = 0;
@@ -51,9 +53,36 @@
 				debugger
 			})
 
+			$scope.$watch('searchJabatan', function(){
+				if($scope.searchJabatan != ''){
+					$scope.currentPage = 0;
+					vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, data);
+				}
+				paging();
+				debugger
+			})
+
+			$scope.$watch('searchUnitKerja', function(){
+				if($scope.searchUnitKerja != ''){
+					$scope.currentPage = 0;
+					vm.dataLook = EkinerjaService.searchByUnitKerja($scope.searchUnitKerja, data);
+				}
+				paging();
+				debugger
+			})
+
+			$scope.$watch('searchStatus', function(){
+				if($scope.searchStatus != ''){
+					$scope.currentPage = 0;
+					vm.dataLook = EkinerjaService.searchByStatus($scope.searchStatus, data);
+				}
+				paging();
+				debugger
+			})
+
 			$scope.$watch('entries', function(){
-				if($scope.searchNip != '')
-					vm.dataLook = EkinerjaService.searchByNip($scope.searchNip, data);
+				// if($scope.searchNip != '')
+				// 	vm.dataLook = EkinerjaService.searchByNip($scope.searchNip, data);
 				paging();
 				debugger
 			})
@@ -83,6 +112,7 @@
 		      	// showToastrSuccess('ditambahkan');
 		      	// getUrtugByJabatan();
 		      	EkinerjaService.showToastrSuccess('Role <b>'+pegawai.nama+'</b> Berhasil Diubah Menjadi <b>' + role +'</b>');
+		      	pegawai.role = role;
 		      	getUrtugByJabatan();
 		        // vm.selected = selectedItem;
 		      }, function () {

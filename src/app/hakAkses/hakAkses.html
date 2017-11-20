@@ -1,63 +1,80 @@
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>Daftar Data Pegawai</h2>
-                    </div>
-                    <div class="body">
-                    	<div style="text-align: center" ng-show="akses.loading" >
-                    		<i class="material-icons material-refresh-animate" style="font-size: 200px;">cached</i><br>
-                    		<label for="">Sedang Mengambil Data...</label>
-                    	</div>
-                    	<div ng-hide="akses.loading">
-	                        <div style="padding-bottom: 10px"></div>
-	                        <table class="bebanKerja table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-	                            <thead>
-	                                <tr>
-	                                    <th style="width: 6%; text-align: center"><select type="text" class="form-control" ng-model="entries" ng-required="true" placeholder="Entries">
-	                                    	<option value="5">5</option>
-	                                    	<option value="10">10</option>
-	                                    	<option value="50">50</option>
-	                                    	<option value="100">100</option>
-	                                    </select></th>
-	                                    <th style="width: 20%;"><input type="number" class="form-control" ng-model="searchNip" placeholder="NIP Pegawai"></th>
-		                                <th style="width: 30%; text-align: center"><input type="text" class="form-control" ng-model="searchName" placeholder="Nama Pegawai">
-		                                </div></th>
-		                                <th>Jabatan</th>
-		                                <th>Unit Kerja</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody>
-	                                <tr ng-repeat="data in filteredData" ng-click="akses.open(data)">
-	                                    <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
-	                                    <td>{{data.nipPegawai}}</td>
-	                                    <td>{{data.nama}}</td>
-	                                    <td>{{data.jabatan}}</td>
-	                                    <td>{{data.unitKerja}}</td>
-	                                    </td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                        <div layout="row">
-	                            <div class="col-md-5"></div>
-	                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
-	                              <i class="material-icons">navigate_before</i>
-	                            </button>
-	                            <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
-	                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
-	                              <i class="material-icons">navigate_next</i>
-	                            </button>
-	                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section style="padding-top: 90px;">
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="card">
+					<div class="header">
+						<i class="material-icons" style="float: left;">person</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;">DAFTAR DATA PEGAWAI</h2>
+					</div>
+					<div class="akses.loading">
+						<div class="body table-responsive" style="padding-top: 0px;padding-bottom: 0px;">
+							<table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
+								<thead>
+									<tr>
+										<th style="width: 6%; text-align: center">
+											<select type="text" class="form-control" ng-model="entries" ng-required="true" placeholder="Entries">
+		                                    	<option value="5">5</option>
+		                                    	<option value="10">10</option>
+		                                    	<option value="25">25</option>
+		                                    	<option value="50">50</option>
+		                                    	<option value="100">100</option>
+		                                    </select>
+		                                </th>
+		                                <th style="width: 20%;">
+		                                	<input type="text" class="form-control" ng-model="searchNip" ng-required="true" placeholder="NIP Pegawai">
+		                                </th>
+		                                <th style="width: 30%; text-align: center">
+		                                	<input type="text" class="form-control" ng-model="searchName" ng-required="true" placeholder="Nama Pegawai">
+		                                </th>
+		                                <th style="text-align: center;">
+		                                	<input type="text" class="form-control" ng-model="searchJabatan" ng-required="true" placeholder="Jabatan Pegawai">
+		                                </th>
+		                                <th style="text-align: center;">
+		                                	<input type="text" class="form-control" ng-model="searchUnitKerja" ng-required="true" placeholder="Unit Kerja Pegawai">
+		                                </th>
+		                                <th style="text-align: center;">
+		                                	<input type="text" class="form-control" ng-model="searchStatus" ng-required="true" placeholder="Status Pegawai">
+		                                </th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in filteredData" ng-click="akses.open(data)">
+		                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+		                                <td>{{data.nipPegawai}}</td>
+		                                <td>{{data.nama}}</td>
+		                                <td>{{data.jabatan}}</td>
+		                                <td>{{data.unitKerja}}</td>
+		                                <td>{{data.role}}</td>
+		                            </tr>
+								</tbody>
+							</table>
+							<div style="padding-top: 3px;" class="pull-right">
+		                        <ul>
+		                            <li style="display: inline-block;">
+		                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+		                                  &lt; PREV                          
+		                                </button>
+		                            </li>
+		                            <li style="display: inline-block;">
+		                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+		                            </li>
+		                            <li style="display: inline-block;">
+		                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+		                                  NEXT &gt;                          
+		                                </button>
+		                            </li>
+		                        </ul>
+		                    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
+
 <div class="bg_load animate-show-hide" ng-show="akses.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="akses.loading">
     <div class="inner" style="padding-top: 180px">
