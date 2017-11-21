@@ -85,6 +85,54 @@
         templateUrl: 'app/template/notaDinas/notaDinas.html',
         controller: 'NotaDinasController',
         controllerAs: 'notadinas'
+      })
+      .state('suratperintahpejabat', {
+        url: '/surat-perintah-pejabat',
+        templateUrl: 'app/template/suratPerintah/suratPerintah.html',
+        controller: 'SuratPerintahController',
+        controllerAs: 'suratperintah'
+      })
+      .state('suratperintahnonpejabat', {
+        url: '/surat-perintah-nonpejabat',
+        templateUrl: 'app/template/suratPerintah/suratPerintah.html',
+        controller: 'SuratPerintahController',
+        controllerAs: 'suratperintah'
+      })
+      .state('instruksipejabat', {
+        url: '/surat-instruksi-pejabat',
+        templateUrl: 'app/template/suratInstruksi/pejabat/instruksiPejabat.html',
+        controller: 'InstruksiPejabatController',
+        controllerAs: 'instruksipejabat'
+      })
+      .state('instruksinonpejabat', {
+        url: '/surat-instruksi-nonpejabat',
+        templateUrl: 'app/template/suratInstruksi/pejabat/instruksiPejabat.html',
+        controller: 'InstruksiPejabatController',
+        controllerAs: 'instruksipejabat'
+      })
+      .state('surattugas', {
+        url: '/surat-tugas',
+        templateUrl: 'app/template/suratTugas/suratTugas.html',
+        controller: 'SuratTugasController',
+        controllerAs: 'surattugas'
+      })
+      .state('suratdinaspejabat', {
+        url: '/surat-dinas-pejabat',
+        templateUrl: 'app/template/suratDinas/suratDinas.html',
+        controller: 'SuratDinasController',
+        controllerAs: 'suratdinas'
+      })
+      .state('suratdinasnonpejabat', {
+        url: '/surat-dinas-nonpejabat',
+        templateUrl: 'app/template/suratDinas/suratDinas.html',
+        controller: 'SuratDinasController',
+        controllerAs: 'suratdinas'
+      })
+      .state('suratkeputusan', {
+        url: '/surat-keputusan',
+        templateUrl: 'app/template/suratKeputusan/suratKeputusan.html',
+        controller: 'SuratKeputusanController',
+        controllerAs: 'suratKeputusan'
       });
 
     // $urlRouterProvider.otherwise('/');

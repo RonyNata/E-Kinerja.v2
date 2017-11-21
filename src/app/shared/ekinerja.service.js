@@ -81,6 +81,14 @@
             }
         }
 
+        service.findPegawaiByNip = function(nip, array){
+            for(var i = 0; i<array.length; i++){
+                if (array[i].nipPegawai.search(nip) != -1){
+                    return array[i]; break;
+                } 
+            }
+        }
+
         service.searchByAktivitas = function(aktivitas, array){
             var result = [];
             for(var i = 0; i<array.length; i++){

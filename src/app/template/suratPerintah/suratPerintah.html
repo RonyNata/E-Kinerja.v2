@@ -1,0 +1,196 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Pembuatan Surat Perintah ({{suratperintah.jenis}})</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="suratperintah.save()" class="form-horizontal">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nomor</b></p>
+                                    </div>  
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat1" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Menimbang</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratperintah.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="suratperintah.item.pegawaiPembuat">Nama: {{suratperintah.item.pegawaiPembuat.nama}}</div>
+                                        <div ng-show="suratperintah.item.pegawaiPembuat">Jabatan: {{suratperintah.item.pegawaiPembuat.jabatan}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Menimbang</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="suratperintah.item.menimbang" required style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Dasar</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="suratperintah.item.dasar" required style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-3" style="margin-top:5px">
+                                        <p><b>Memberi Perintah Kepada :</b></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" ng-repeat="target in suratperintah.target">
+                                    <hr>
+                                    <div class="col-md-12" style="margin-bottom:10px;margin-left: 10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nama</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" ng-model="target.nama" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px;margin-left: 10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>NIP</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" ng-model="target.nip" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px;margin-left: 10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Pangkat/Gol. Ruang</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" ng-model="target.gol" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px;margin-left: 10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Jabatan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" ng-model="target.jabatan" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-7"></div>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addTarget()" style="margin-left: 5px">+ Tambah Penerima</button>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Untuk</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="suratperintah.item.untuk" required style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nama Tempat</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <input class="form-control" ng-model="suratperintah.item.tempat" required></input>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tanggal</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-3">
+                                        <input class="form-control" type="date" ng-model="suratperintah.item.tanggal1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tembusan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <div ng-repeat="tembusan in suratperintah.tembusanSurat">
+                                            <input class="form-control" ng-model="tembusan.deskripsi" required>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b></b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6" style="margin-left: 25px">
+                                        <div class="col-md-6"></div>
+                                        <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                        <button class="btn btn-danger waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Kembali</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg_load animate-show-hide" ng-show="suratperintah.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="suratperintah.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

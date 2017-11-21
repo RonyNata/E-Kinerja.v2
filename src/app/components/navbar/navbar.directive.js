@@ -31,6 +31,7 @@
       }
 
       vm.checkLocation = function(state){
+        // console.log($state.current.name);
         if(state == $state.current.name)
           return true;
         else return false;

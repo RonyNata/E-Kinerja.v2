@@ -22,6 +22,7 @@ angular.
 
         vm.gotoTemplate = function(url){
           $uibModalInstance.close();
+          console.log(url);
           $state.go(url);
         }
 

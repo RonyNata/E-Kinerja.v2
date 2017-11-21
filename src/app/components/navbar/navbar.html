@@ -109,7 +109,7 @@
                         <span>Persetujuan Kontrak Kerja</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('kontrakdpa') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                <li class="{{(vm.checkLocation('kontrakdpa') || vm.checkLocation('notadinas')) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
                     <a href="#/kontrakdpa">
                         <i class="material-icons">text_fields</i>
                         <span>Penanggung Jawab Uraian Tugas DPA</span>

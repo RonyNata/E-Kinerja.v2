@@ -5,10 +5,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Pembuatan Nota Dinas</h2>
+                        <h2>Pembuatan Surat Dinas ({{suratdinas.judul}})</h2>
                     </div>
                     <div class="body">
-                        <form ng-submit="notadinas.save()" class="form-horizontal">
+                        <form ng-submit="suratdinas.save()" class="form-horizontal">
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="col-md-12" style="margin-bottom:10px">
@@ -18,33 +18,33 @@
                                     </div>  
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="notadinas.item.nomorSurat" required>
+                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="notadinas.item.nomorSurat1" required>
+                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat1" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="notadinas.item.nomorSurat2" required>
+                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat2" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nama Penerima</b></p>
+                                        <p><b>Sifat</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="notadinas.item.nmTujuan" required>
+                                        <input class="form-control" ng-model="suratdinas.item.sifat" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nama Pemberi</b></p>
+                                        <p><b>Lampiran</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="notadinas.item.nmPemberi" required>
+                                        <input class="form-control" ng-model="suratdinas.item.lampiran" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -54,7 +54,17 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="notadinas.item.hal" required>
+                                        <input class="form-control" ng-model="suratdinas.item.hal" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tempat</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <input class="form-control" ng-model="suratdinas.item.tempat" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -64,37 +74,47 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-3">
-                                        <input class="form-control" type="date" ng-model="notadinas.item.tanggal" required>
+                                        <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Paragraf Pembuka</b></p>
+                                        <p><b>Penerima</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="notadinas.item.pembukaSurat" required style="height: 100px"></textarea>
+                                        <input class="form-control" ng-model="suratdinas.item.penerima" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Paragraf Isi</b></p>
+                                        <p><b>Alinea Pembuka</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="notadinas.item.isiSurat" required style="height: 100px"></textarea>
+                                        <textarea class="form-control" ng-model="suratdinas.item.alineaPembuka" required style="height: 100px"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Paragraf Penutup</b></p>
+                                        <p><b>Alinea Isi</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="notadinas.item.penutupSurat" required style="height: 100px"></textarea>
+                                        <textarea class="form-control" ng-model="suratdinas.item.alineaIsi" required style="height: 100px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Alinea Penutup</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="suratdinas.item.alineaPenutup" required style="height: 100px"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -104,7 +124,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="notadinas.item.nmLengkap" required>
+                                        <input class="form-control" ng-model="suratdinas.item.nmLengkap" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -114,11 +134,11 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <div ng-repeat="tembusan in notadinas.tembusanSurat">
+                                        <div ng-repeat="tembusan in suratdinas.tembusanSurat">
                                             <input class="form-control" ng-model="tembusan.deskripsi" required>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" ng-click="notadinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
