@@ -156,12 +156,22 @@ angular.
         });
       }
 
-      $scope.$watch('searchName', function(){
-        if($scope.searchName != '')
-          vm.dataLook = EkinerjaService.searchByDeskripsi($scope.searchName, vm.list_urtug);
-        else vm.dataLook = vm.list_urtug;
-        // debugger
-        paging();
-      })
+      // $scope.$watch('searchUrtug', function(){
+      //   if($scope.searchUrtug != '')
+      //     vm.dataLook = EkinerjaService.searchByUrtug($scope.searchUrtug, vm.list_urtug);
+      //   else vm.dataLook = vm.list_urtug;
+      //   // debugger
+      //   paging();
+      // })
+
+      $scope.$watch('urtug', function(){
+      // console.log($scope.deskripsi.length)
+      if($scope.urtug != undefined){
+        vm.dataLook = EkinerjaService.searchByUrtug($scope.urtug, vm.list_urtug);
+      }else {
+        vm.dataLook = vm.list_urtug;
+      }
+      paging();
+    });
    } 
 })();

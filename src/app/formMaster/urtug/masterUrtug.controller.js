@@ -233,7 +233,7 @@ angular.
 	    function paging(){ 
           $scope.filteredTodos = [];
           $scope.currentPage = 0;
-          $scope.numPerPage = 5;
+          $scope.numPerPage = 25;
           $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
           function page(){
             $scope.page = [];

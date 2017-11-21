@@ -1,5 +1,5 @@
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+<section style="padding-top: 90px;">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -13,23 +13,23 @@
                             </button>
                         </div>
                         <div class="animate-show-hide" ng-show="kontrakdpa.urtug">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%; text-align: center">No</th>
-                                        <th >Rincian Uraian Tugas</th>
-                                        <th style="width: 5%;">Pending</th>
-                                        <th style="width: 5%;">Diterima</th>
-                                        <th style="width: 5%;">Ditolak</th>
+                                        <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
+                                        <th style="text-align: center;border: 1px solid black" >Rincian Uraian Tugas</th>
+                                        <th style="width: 5%;border: 1px solid black">Pending</th>
+                                        <th style="width: 5%;border: 1px solid black">Diterima</th>
+                                        <th style="width: 5%;border: 1px solid black">Ditolak</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="urtug in kontrakdpa.urtugDpa" ng-click="kontrakdpa.gotoKegiatan(urtug)" style="text-align: center">
-                                        <td>{{$index + 1}}</td>
-                                        <td style="text-align: left;">{{urtug.deskripsiUrtug}}</td>
-                                        <td>{{urtug.pending}}</td>
-                                        <td>{{urtug.terima}}</td>
-                                        <td>{{urtug.tolak}}</td>
+                                        <td style="border: 1px solid black">{{$index + 1}}</td>
+                                        <td style="text-align: left;border: 1px solid black">{{urtug.deskripsiUrtug}}</td>
+                                        <td style="border: 1px solid black">{{urtug.pending}}</td>
+                                        <td style="border: 1px solid black">{{urtug.terima}}</td>
+                                        <td style="border: 1px solid black">{{urtug.tolak}}</td>
                                     </tr>
                                 </tbody>
                             </table>

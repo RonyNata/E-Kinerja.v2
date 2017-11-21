@@ -1,12 +1,13 @@
 <ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 100px">
+<section style="padding-top: 70px">
 	<div class="container-fluid">
 		<div class="block-header"></div>
 		<div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" >
                     <div class="header">
-                        <h2>MASTER DATA</h2>
+                        <i class="material-icons" style="float: left;">assignment</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;">MASTER DATA URAIAN TUGAS </h2>
                     </div>
                     <div class="body">
                         <ul class="nav nav-tabs tab-nav-right" role="tablist">
@@ -22,177 +23,184 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="urtug">
-                                <div class="col-md-12" style="padding-top: 50px">
+                               <div class="col-md-12" style="padding-top: 10px; margin-bottom: -40px; margin-left: -20px;">
                                     <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                        <button type="button" ng-click="urtug.open()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 30px"> <b>Tambah Data</b>
+                                        <button type="button" ng-click="urtug.open()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>TAMBAH DATA URAIAN TUGAS</span>
                                         </button>
                                     </div>
                                     <div class="col-md-10">
                                         <div class="col-md-6"></div>
                                         <div class="col-md-6">
                                             <div class="col-md-2"></div>
-                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  98px;">
+                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
                                                 <label >Cari</label>
                                             </div>
-                                            <div class="col-md-8" style="margin-right: -50px;float: right;">
-                                               <input type="text" class="form-control" ng-model="deskripsi" ng-required="true" placeholder="Cari Uraian Tugas...">
+                                            <div class="col-md-8" style="margin-right: -90px;float: right;">
+                                               <input type="text" class="form-control" ng-model="deskripsi" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="body table-responsive">
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;">   
+                                <div class="body" style="padding-top: 0px;margin-left: -20px;margin-right: -20px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">   
                                         <thead>
                                             <tr>
-                                                <th style="width: 5%;text-align: center">No.</th>
-                                                <th style="text-align: center">Uraian Tugas</th>
-                                                <th style="width: 10%; text-align: center" hidden>Satuan</th>                                      
-                                                <th style="width: 5%; text-align: center" hidden>Jumlah/Volume Kerja</th>                                      
-                                                <th style="width: 5%; text-align: center" hidden>Norma Waktu (Menit)</th>                                      
-                                                <th style="width: 5%; text-align: center" hidden>Beban Kerja</th>                                      
-                                                <th style="width: 10%; text-align: center" hidden>Peralatan</th>                                      
-                                                <th style="width: 5%; text-align: center" hidden>Keterangan</th>                                      
-                                                <th style="width: 10%; text-align: center">Action</th>                                      
-                                            </tr>
-                                            <tr>
-                                                <th style="text-align: center">1</th>
-                                                <th style="text-align: center">2</th>
-                                                <th style="text-align: center" hidden>3</th>
-                                                <th style="text-align: center" hidden>4</th>
-                                                <th style="text-align: center" hidden>5</th>
-                                                <th style="text-align: center" hidden>6(4x5)</th>
-                                                <th style="text-align: center" hidden>7</th>
-                                                <th style="text-align: center" hidden>8</th>
-                                                <th style="text-align: center"></th>
+                                                <th style="width: 6%; text-align: center">
+                                                    No
+                                                </th>
+                                                <th style="text-align: center;">Rincian Tugas/Kegiatan</th>                 
+                                                <th style="width: 15%; text-align: center">Action</th>                          
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="data in filteredData">
-                                                <td scope="row">{{$index + 1 + (5*currentPage)}}</td>
-                                                <td style="text-align: left">{{data.deskripsi}}</td>
-                                                <td hidden>{{data.satuan}}</td>
-                                                <td hidden>{{data.volumeKerja}}</td>
-                                                <td hidden>{{data.normaWaktu}}</td>
-                                                <td hidden>{{data.bebanKerja}}</td>
-                                                <td hidden>{{data.peralatan}}</td>
-                                                <td hidden>
-                                                    {{data.keterangan}}
-                                                </td>
+                                            <tr ng-repeat="data in filteredData" ng-click="akses.open(data)">
+                                                <td scope="row">{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                <td style="text-align: left;overflow: hidden;word-wrap: break-word;">{{data.deskripsi}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug.edit(data)"><i class="material-icons">edit</i></button>
-                                                    <button type="button" ng-click="urtug.deleteUrtug(data.kdUrtug)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                                    <button type="button" class="btn btn-warning waves-effect" ng-click="urtug.edit(data)""><i class="material-icons">edit</i><span>EDIT</span></button>
+                                                    <button type="button" ng-click="urtug.deleteUrtug(data.kdUrtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div layout="row">
-                                        <div class="col-md-5"></div>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
-                                          <i class="material-icons">navigate_before</i>                            </button>
-                                        <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
-                                          <i class="material-icons">navigate_next</i>                            </button>
+                                    <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="sop">
-                                <div class="col-md-12" style="padding-top: 50px">
+                                <div class="col-md-12" style="padding-top: 10px; margin-bottom: -40px; margin-left: -20px;">
                                     <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                        <button type="button" ng-click="urtug.openSop()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 30px"> <b>Tambah Data</b>
+                                        <button type="button" ng-click="urtug.openSop()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>TAMBAH DATA SOP</span>
                                         </button>
                                     </div>
                                     <div class="col-md-10">
                                         <div class="col-md-6"></div>
                                         <div class="col-md-6">
                                             <div class="col-md-2"></div>
-                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  98px;">
+                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
                                                 <label >Cari</label>
                                             </div>
-                                            <div class="col-md-8" style="margin-right: -50px;float: right;">
+                                            <div class="col-md-8" style="margin-right: -90px;float: right;">
                                                <input type="text" class="form-control" ng-model="deskripsi" ng-required="true" placeholder="Cari SOP...">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;">   
+                                <div class="body" style="padding-top: 0px;margin-left: -20px;margin-right: -20px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">   
                                         <thead>
                                             <tr>
-                                                <th style="width: 5%;text-align: center">No.</th>
-                                                <th style="text-align: center">Deskripsi</th>
-                                                <th style="width: 10%; text-align: center">Action</th>                                      
-                                            </tr>
-                                            <tr>
-                                                <th style="text-align: center">1</th>
-                                                <th style="text-align: center">2</th>
-                                                <th style="text-align: center"></th>
+                                                <th style="width: 6%; text-align: center">
+                                                    No
+                                                </th>
+                                                <th style="text-align: center;">Rincian Tugas/Kegiatan</th>                 
+                                                <th style="width: 15%; text-align: center">Action</th>                          
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="data in filteredDataSop">
                                                 <td scope="row">{{$index + 1 + (5*currentPageSop)}}</td>
-                                                <td style="text-align: left">{{data.sop}}</td>
+                                                <td style="text-align: left;overflow: hidden;word-wrap: break-word;">{{data.sop}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug.editSop(data)"><i class="material-icons">edit</i></button>
-                                                    <button type="button" ng-click="urtug.deleteSop(data.kdSop)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                                    <button type="button" class="btn btn-warning waves-effect" ng-click="urtug.editSop(data)"><i class="material-icons">edit</i><span>EDIT</span></button>
+                                                    <button type="button" ng-click="urtug.deleteSop(data.kdSop)" class="btn btn-danger waves-effect"><i class="material-icons">delete_forever</i><span>HAPUS</span></button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div layout="row">
-                                        <div class="col-md-5"></div>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="padSop(-1)" ng-disabled="currentPageSop==0" aria-label="Use Android">
-                                          <i class="material-icons">navigate_before</i>                            </button>
-                                        <label style="margin-top: 20px">{{currentPageSop+1 + '/' + maxSizeSop}}</label>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="padSop(1)" ng-disabled="maxSop()" aria-label="Use Android">
-                                          <i class="material-icons">navigate_next</i>                            </button>
+                                    <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padSop(-1)" ng-disabled="currentPageSop==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageSop+1}} Of {{maxSizeSop}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padSop(1)" ng-disabled="maxSop()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
+                                </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="pj">
-                                <div class="col-md-12" style="padding-top: 50px">
+                                <div class="col-md-12" style="padding-top: 10px; margin-bottom: -40px; margin-left: -20px;">
                                     <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                        <button type="button" ng-click="urtug.openPj()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 30px"> <b>Tambah Data</b>
+                                        <button type="button" ng-click="urtug.openPj()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>TAMBAH DATA PENANGGUNG JAWAB</span>
                                         </button>
                                     </div>
                                     <div class="col-md-10">
                                         <div class="col-md-6"></div>
                                         <div class="col-md-6">
                                             <div class="col-md-2"></div>
-                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  98px;">
+                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
                                                 <label >Cari</label>
                                             </div>
-                                            <div class="col-md-8" style="margin-right: -50px;float: right;">
-                                               <input type="text" class="form-control" ng-model="deskripsi" ng-required="true" placeholder="Cari PJ...">
+                                            <div class="col-md-8" style="margin-right: -90px;float: right;">
+                                               <input type="text" class="form-control" ng-model="deskripsi" ng-required="true" placeholder="Cari Penanggung Jawab...">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;">   
+                                <div class="body" style="padding-top: 0px;margin-left: -20px;margin-right: -20px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">   
                                         <thead>
                                             <tr>
-                                                <th style="width: 5%;text-align: center">No.</th>
-                                                <th style="text-align: center">Deskripsi</th>
-                                                <th style="width: 10%; text-align: center">Action</th>                                      
+                                                <th style="width: 6%; text-align: center">
+                                                    No
+                                                </th>
+                                                <th style="text-align: center;">Penanggung Jawab</th>                 
+                                                <th style="width: 15%; text-align: center">Action</th>                          
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="data in filteredDataPj">
                                                 <td scope="row">{{$index + 1 + (5*currentPagePj)}}</td>
-                                                <td style="text-align: left">{{data.status}}</td>
+                                                <td style="text-align: left;overflow: hidden;word-wrap: break-word;">{{data.status}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="urtug.openPj(data)"><i class="material-icons">edit</i></button>
-                                                    <button type="button" ng-click="urtug.deletePj(data.kdStatus)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                                    <button type="button" class="btn btn-warning waves-effect" ng-click="urtug.openPj(data)"><i class="material-icons">edit</i><span>EDIT</span></button>
+                                                    <button type="button" ng-click="urtug.deletePj(data.kdStatus)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div layout="row">
-                                        <div class="col-md-5"></div>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="padPj(-1)" ng-disabled="currentPagePj==0" aria-label="Use Android">
-                                          <i class="material-icons">navigate_before</i>                            </button>
-                                        <label style="margin-top: 20px">{{currentPagePj+1 + '/' + maxSizePj}}</label>
-                                        <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="padPj(1)" ng-disabled="maxPj()" aria-label="Use Android">
-                                          <i class="material-icons">navigate_next</i>                            </button>
+                                    <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padPj(-1)" ng-disabled="currentPagePj==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">{{currentPagePj+1 + '/' + maxSizePj}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padPj(1)" ng-disabled="maxPj()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
