@@ -133,6 +133,12 @@
         templateUrl: 'app/template/suratKeputusan/suratKeputusan.html',
         controller: 'SuratKeputusanController',
         controllerAs: 'suratKeputusan'
+      })
+        .state('pengumuman', {
+        url: '/pengumuman',
+        templateUrl: 'app/template/pengumuman/pengumuman.html',
+        controller: 'PengumumanController',
+        controllerAs: 'pengumuman'
       });
 
     // $urlRouterProvider.otherwise('/');
