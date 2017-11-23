@@ -145,6 +145,12 @@
             templateUrl: 'app/template/laporan/laporan.html',
             controller: 'LaporanController',
             controllerAs: 'laporan'
+        })
+        .state('suratkuasa', {
+            url: '/surat-kuasa',
+            templateUrl: 'app/template/suratKuasa/suratKuasa.html',
+            controller: 'SuratKuasaController',
+            controllerAs: 'suratkuasa'
         });
 
     // $urlRouterProvider.otherwise('/');
