@@ -139,7 +139,13 @@
         templateUrl: 'app/template/pengumuman/pengumuman.html',
         controller: 'PengumumanController',
         controllerAs: 'pengumuman'
-      });
+      })
+        .state('laporan', {
+            url: '/laporan',
+            templateUrl: 'app/template/laporan/laporan.html',
+            controller: 'LaporanController',
+            controllerAs: 'laporan'
+        });
 
     // $urlRouterProvider.otherwise('/');
   }
