@@ -5,10 +5,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Pembuatan Surat Kuasa</h2>
+                        <h2>Pembuatan Surat Keterangan</h2>
                     </div>
                     <div class="body">
-                        <form ng-submit="suratkuasa.save()" class="form-horizontal">
+                        <form ng-submit="suratketerangan.save()" class="form-horizontal">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <div class="col-md-12" style="margin-bottom:10px">
@@ -18,46 +18,46 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat" required>
+                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat1" required>
+                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat1" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat2" required>
+                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat2" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat3" required>
+                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat3" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.tahun" disabled required>
+                                            <input type="number" class="form-control" ng-model="suratketerangan.item.tahun" disabled required>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:5px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Memberi kuasa kepada</b></p>
+                                            <p><b>Memberi keterangan kepada</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
                                             <form method="get">
                                                 <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
                                                 <datalist id="pegawai">
-                                                    <option ng-repeat="pgw in suratkuasa.list_pegawai"
+                                                    <option ng-repeat="pgw in suratketerangan.list_pegawai"
                                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
                                                 </datalist>
                                             </form>
-                                            <div ng-show="suratkuasa.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
+                                            <div ng-show="suratketerangan.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{suratkuasa.item.pegawaiPenerima.nama}}</td>
+                                                        <td>{{suratketerangan.item.pegawaiPenerima.nama}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{suratkuasa.item.pegawaiPenerima.jabatan}}</td>
+                                                        <td>{{suratketerangan.item.pegawaiPenerima.jabatan}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -66,21 +66,21 @@
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Isi kuasa</b></p>
+                                            <p><b>Isi keterangan</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="suratkuasa.item.isikuasa" required style="height: 100px"></textarea>
+                                            <textarea class="form-control" ng-model="suratketerangan.item.isiketerangan" required style="height: 100px"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Kota dikeluarkan surat kuasa </b></p>
+                                            <p><b>Kota dikeluarkan surat keterangan </b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratkuasa.item.tempat" required></input>
+                                            <input class="form-control" ng-model="suratketerangan.item.tempat" required></input>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px">

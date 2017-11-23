@@ -2,9 +2,9 @@
     'use strict';
     angular.
     module('eKinerja')
-        .controller('SuratKuasaController', SuratKuasaController);
+        .controller('SuratKeteranganController', SuratKeteranganController);
 
-    function SuratKuasaController(EkinerjaService, SuratKuasaService, HakAksesService, $scope, $state) {
+    function SuratKeteranganController(EkinerjaService, SuratKeteranganService, HakAksesService, $scope, $state) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -73,7 +73,7 @@
                         layout: 'noBorders'
                     },
                     {
-                        text: 'SURAT KUASA',
+                        text: 'SURAT KETERANGAN',
                         style: 'header'
                     },
                     {
@@ -139,30 +139,13 @@
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan,
                                         fontSize: 10
                                     }
-                                ],
-                                [
-                                    {
-                                        border: [false, false, false, false],
-                                        text: 'Alamat',
-                                        fontSize: 10
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        text: ':',
-                                        fontSize: 10
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        text: 'Kota Deltamas',
-                                        fontSize: 10
-                                    }
                                 ]
                             ]
                         }
                     },
                     {
                         margin: [0, 30, 0, 0],
-                        text: 'Memberi kuasa kepada'
+                        text: 'Dengan ini menerangkan bahwa'
                     },
                     {
                         margin: [40, 10, 0 ,0],
@@ -206,6 +189,23 @@
                                 [
                                     {
                                         border: [false, false, false, false],
+                                        text: 'Pangkat/Golongan',
+                                        fontSize: 10
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ':',
+                                        fontSize: 10
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        text: ''+ vm.item.pegawaiPenerima.golongan,
+                                        fontSize: 10
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
                                         text: 'Jabatan',
                                         fontSize: 10
                                     },
@@ -217,23 +217,6 @@
                                     {
                                         border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.jabatan,
-                                        fontSize: 10
-                                    }
-                                ],
-                                [
-                                    {
-                                        border: [false, false, false, false],
-                                        text: 'Alamat',
-                                        fontSize: 10
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        text: ':',
-                                        fontSize: 10
-                                    },
-                                    {
-                                        border: [false, false, false, false],
-                                        text: 'Indonesia',
                                         fontSize: 10
                                     }
                                 ]
@@ -249,7 +232,7 @@
                                 [
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + vm.item.isikuasa,
+                                        text: '' + vm.item.isiketerangan,
                                         fontSize: 10
                                     }
                                 ]
@@ -257,39 +240,48 @@
                         }
                     },
                     {
-                        margin: [300, 40, 0, 0],
-                        text: '' + vm.item.tempat + ', ' + EkinerjaService.IndonesianDateFormat(new Date()),
-                        fontSize: 10
-                    },
-                    {
-                        margin: [0, 10, 0 , 0],
-                        text: 'Penerima Kuasa,',
-                        fontSize: 10
-                    },
-                    {
-                        margin: [0, 10, 0 , 0],
-                        text: 'Tanda Tangan',
-                        fontSize: 10
-                    },
-                    {
-                        margin: [0, 10, 0, 0],
-                        text: '' + vm.item.pegawaiPenerima.nama,
-                        fontSize: 10
-                    },
-                    {
-                        margin: [300, -50, 0 , 0],
-                        text: 'Pemberi Kuasa,',
-                        fontSize: 10
-                    },
-                    {
-                        margin: [300, 10, 0, 0],
-                        text: 'Materai dan Tandatangan',
-                        fontSize: 10
-                    },
-                    {
-                        margin: [300, 10, 0, 0],
-                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
-                        fontSize: 10
+                        margin: [330,30,0,0],
+                        table: {
+                            widths: [40, 120],
+                            body: [
+                                [
+                                    {
+                                        alignment: 'left',
+                                        border: [false, false, false, false],
+                                        text: '' + vm.item.tempat+', '
+                                    },
+                                    {
+                                        border: [false, false, false, false],
+                                        alignment: 'left',
+                                        text: '' + EkinerjaService.IndonesianDateFormat(new Date())
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: 'Pemberi Keterangan'
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: 'tanda tangan\n\n'
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai
+                                    }
+                                ]
+                            ]
+                        }
                     }
                 ],
                 styles: {

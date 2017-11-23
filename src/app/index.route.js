@@ -151,6 +151,12 @@
             templateUrl: 'app/template/suratKuasa/suratKuasa.html',
             controller: 'SuratKuasaController',
             controllerAs: 'suratkuasa'
+        })
+        .state('suratketerangan', {
+            url: '/surat-keterangan',
+            templateUrl: 'app/template/suratKeterangan/suratKeterangan.html',
+            controller: 'SuratKeteranganController',
+            controllerAs: 'suratketerangan'
         });
 
     // $urlRouterProvider.otherwise('/');
