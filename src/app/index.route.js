@@ -158,8 +158,8 @@
             controller: 'SuratKeteranganController',
             controllerAs: 'suratketerangan'
         })
-        .state('suratundangan', {
-            url: '/surat-undangan',
+        .state('suratundanganpejabat', {
+            url: '/surat-undangan-pejabat',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
