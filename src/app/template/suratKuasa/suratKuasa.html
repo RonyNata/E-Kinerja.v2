@@ -1,0 +1,106 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Pembuatan Surat Kuasa</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="suratkuasa.save()" class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nomor</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat1" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat2" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorSurat3" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.tahun" disabled required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Memberi kuasa kepada</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratkuasa.list_pegawai"
+                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="suratkuasa.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratkuasa.item.pegawaiPenerima.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratkuasa.item.pegawaiPenerima.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Isi kuasa</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="suratkuasa.item.isikuasa" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Kota dikeluarkan surat kuasa </b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratkuasa.item.tempat" required></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b></b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8" style="margin-left: 25px">
+                                            <div class="col-md-8"></div>
+                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                            <button class="btn btn-danger waves-effect" ng-click="openPdf()" style="font-size: 20px">Kembali</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
