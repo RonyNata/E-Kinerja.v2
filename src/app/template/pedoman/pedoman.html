@@ -1,0 +1,152 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Pembuatan Naskah Pedoman ({{pedoman.jenis}})</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="pedoman.save()" class="form-horizontal">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nama Menteri</b></p>
+                                    </div>  
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" ng-model="pedoman.item.namaMenteri" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nomor Surat</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-2">
+                                        <input class="form-control" type="number" ng-model="pedoman.item.nomorSurat" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tentang Pedoman</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <input class="form-control" ng-model="pedoman.item.ttgPedoman" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nama Penandatangan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in pedoman.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="pedoman.item.pegawaiPembuat">Nama: {{pedoman.item.pegawaiPembuat.nama}}</div>
+                                        <div ng-show="pedoman.item.pegawaiPembuat">Jabatan: {{pedoman.item.pegawaiPembuat.jabatan}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" ng-repeat="bab in pedoman.isiPedoman">
+                                    <div class="col-md-12" style="text-align: center">
+                                        <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
+                                        <h3>{{bab.bab}}</h3>
+                                        <div class="col-md-12" style="margin-bottom:10px"> 
+                                            <div class="col-md-1"></div> 
+                                            <div class="col-sm-2" style="margin-top:5px">
+                                                <p><b>Judul Bab</b></p>
+                                            </div>
+                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                            <div class="col-md-6">
+                                                <input class="form-control" ng-model="bab.judul" required>
+                                            </div>
+                                        </div>
+                                        <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
+                                    </div>
+                                    <div class="col-md-12" ng-repeat="subab in bab.subab">
+                                        <div class="col-md-12" style="margin-bottom:10px"> 
+                                            <div class="col-md-1"></div> 
+                                            <div class="col-sm-2" style="margin-top:5px">
+                                                <p><b>Judul Subab {{subab.nomor}}</b></p>
+                                            </div>
+                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                            <div class="col-md-3">
+                                                <input class="form-control" ng-model="subab.judul" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-bottom:10px"> 
+                                            <div class="col-md-1"></div> 
+                                            <div class="col-sm-2" style="margin-top:5px">
+                                                <p><b>Isi Subab {{subab.nomor}}</b></p>
+                                            </div>
+                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                            <div class="col-md-6">
+                                                <textarea class="form-control" ng-model="subab.isi" required style="height: 100px"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333; margin-left: 10px">
+                                    <div class="col-md-12" style="margin-bottom:10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tambah Form</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <select class="form-control" ng-model="jenisTambahan" id="sel1">
+                                                <option value="0">Bab Baru</option>
+                                                <option value="1">Subab Baru</option>
+                                            </select>
+                                        </div>
+                                        <button class="btn btn-primary waves-effect" type="button" ng-click="pedoman.addElement(jenisTambahan)" style="margin-left: 15px">+ Tambahkan</button>
+                                    </div>
+                                    <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333; margin-left: 10px">
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b></b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6" style="margin-left: 25px">
+                                        <div class="col-md-6"></div>
+                                        <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                        <button class="btn btn-danger waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Kembali</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="bg_load animate-show-hide" ng-show="pedoman.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="pedoman.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

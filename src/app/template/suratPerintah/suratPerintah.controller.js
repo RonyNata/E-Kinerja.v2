@@ -94,7 +94,7 @@ angular.
               },
 
               {
-                text: 'NOMOR ' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/'+ vm.item.nomorSurat2 + '/2017', style: 'judul_nomor'
+                text: 'NOMOR ' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/'+ vm.item.nomorSurat2 + '/' + ((new Date()).getYear() + 1900), style: 'judul_nomor'
               },
 
               {

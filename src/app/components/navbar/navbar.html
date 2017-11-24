@@ -109,7 +109,7 @@
                         <span>Persetujuan Kontrak Kerja</span>
                     </a>
                 </li>
-                <li class="{{(vm.checkLocation('kontrakdpa') || vm.checkLocation('notadinas')) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                <li class="{{(vm.checkLocation('kontrakdpa') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
                     <a href="#/kontrakdpa">
                         <i class="material-icons">text_fields</i>
                         <span>Penanggung Jawab Uraian Tugas DPA</span>
@@ -121,7 +121,8 @@
                         <span>Atur Hak Akses Pegawai</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('kontrak') ? 'active' : ''}}">
+                <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas')
+                || vm.checkLocation('suratperintahpejabat')) ? 'active' : ''}}">
                     <a href="#/kontrak-pegawai">
                         <i class="material-icons">layers</i>
                         <span>Kontrak Kerja</span>

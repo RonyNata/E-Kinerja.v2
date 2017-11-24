@@ -132,7 +132,49 @@
         url: '/surat-keputusan',
         templateUrl: 'app/template/suratKeputusan/suratKeputusan.html',
         controller: 'SuratKeputusanController',
-        controllerAs: 'suratKeputusan'
+        controllerAs: 'suratkeputusan'
+      })
+      .state('naskahpedoman', {
+        url: '/naskah-pedoman',
+        templateUrl: 'app/template/pedoman/pedoman.html',
+        controller: 'PedomanController',
+        controllerAs: 'pedoman'
+      })
+      .state('pedomannonpejabat', {
+        url: '/naskah-pedoman-nonpejabat',
+        templateUrl: 'app/template/pedoman/pedoman.html',
+        controller: 'PedomanController',
+        controllerAs: 'pedoman'
+      })
+      .state('naskahpetunjuk', {
+        url: '/naskah-petunjuk',
+        templateUrl: 'app/template/petunjuk/petunjuk.html',
+        controller: 'PetunjukController',
+        controllerAs: 'petunjuk'
+      })
+      .state('petunjuknonpejabat', {
+        url: '/naskah-petunjuk-nonpejabat',
+        templateUrl: 'app/template/petunjuk/petunjuk.html',
+        controller: 'PetunjukController',
+        controllerAs: 'petunjuk'
+      })
+      .state('suratedaran', {
+        url: '/surat-edaran',
+        templateUrl: 'app/template/suratEdaran/suratEdaran.html',
+        controller: 'SuratEdaranController',
+        controllerAs: 'suratedaran'
+      })
+      .state('suratedarannonpejabat', {
+        url: '/surat-edaran-nonpejabat',
+        templateUrl: 'app/template/suratEdaran/suratEdaran.html',
+        controller: 'SuratEdaranController',
+        controllerAs: 'suratedaran'
+      })
+      .state('suratpengantar', {
+        url: '/surat-pengantar',
+        templateUrl: 'app/template/suratPengantar/suratPengantar.html',
+        controller: 'SuratPengantarController',
+        controllerAs: 'suratpengantar'
       });
 
     // $urlRouterProvider.otherwise('/');
