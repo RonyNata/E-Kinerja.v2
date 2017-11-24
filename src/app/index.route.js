@@ -157,7 +157,20 @@
             templateUrl: 'app/template/suratKeterangan/suratKeterangan.html',
             controller: 'SuratKeteranganController',
             controllerAs: 'suratketerangan'
+        })
+        .state('suratundangan', {
+            url: '/surat-undangan',
+            templateUrl: 'app/template/suratUndangan/suratUndangan.html',
+            controller: 'SuratUndanganController',
+            controllerAs: 'suratundangan'
+        })
+        .state('suratundangannonpejabat', {
+            url: '/surat-undangan-nonpejabat',
+            templateUrl: 'app/template/suratUndangan/suratUndangan.html',
+            controller: 'SuratUndanganController',
+            controllerAs: 'suratundangan'
         });
+
 
     // $urlRouterProvider.otherwise('/');
   }
