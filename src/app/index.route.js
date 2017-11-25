@@ -132,7 +132,6 @@
         url: '/surat-keputusan',
         templateUrl: 'app/template/suratKeputusan/suratKeputusan.html',
         controller: 'SuratKeputusanController',
-<<<<<<< HEAD
         controllerAs: 'suratkeputusan'
       })
       .state('naskahpedoman', {
@@ -176,9 +175,6 @@
         templateUrl: 'app/template/suratPengantar/suratPengantar.html',
         controller: 'SuratPengantarController',
         controllerAs: 'suratpengantar'
-      });
-=======
-        controllerAs: 'suratKeputusan'
       })
         .state('pengumuman', {
         url: '/pengumuman',
@@ -216,8 +212,6 @@
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
         });
-
->>>>>>> master
 
     // $urlRouterProvider.otherwise('/');
   }

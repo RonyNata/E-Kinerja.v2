@@ -6,7 +6,7 @@ angular.
 	.controller('InstruksiPejabatController', InstruksiPejabatController);
 
     
-    function InstruksiPejabatController(EkinerjaService, InstruksiPejabatService, $scope, $state) {
+    function InstruksiPejabatController(EkinerjaService, InstruksiPejabatService, HakAksesService, $scope, $state) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -27,16 +27,59 @@ angular.
           vm.target.push(data);
         }
 
+        getAllPegawai();
+
+        function getAllPegawai(){
+          HakAksesService.GetAllPegawai().then(
+            function(response){
+              vm.list_pegawai = response;
+              vm.loading = false;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.getPegawai = function(idx){
+          if(vm.target[idx].pegawai.length == 18)
+            vm.target[idx].pegawaiPembuat = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        }        
+
+        vm.getPegawaiPd = function(){
+          if(vm.item.pegawai.length == 18)
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawai,vm.list_pegawai);
+        }        
+
+        // $scope.$watch('pegawai', function(){
+        //     vm.target.pegawaiPembuat = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        //   debugger
+        // })
+
         vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
-          console.log(vm.item);
-          InstruksiPejabatService.save(vm.item).then(
+          var data = {
+            "judulInstruksi": vm.item.judulInstruksi,
+            "nomor": vm.item.nomorSurat,
+            "tentang": vm.item.tentang,
+            "alasan": "",
+            "daftarIsiInstruksi": [],
+            "dikeluarkanDi": vm.item.tempat,
+            "tanggalDibuat": (new Date()).getTime(),
+            "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+            "targetPegawaiList": [],
+            "targetJabatanList": [],
+            "suratPejabat": false,
+            "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
+            "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja
+          }
+
+          if($state.current.name != 'instruksinonpejabat')
+            data.suratPejabat = true;
+          for(var i = 0; i < vm.maksud.length; i++)
+            data.daftarIsiInstruksi.push(vm.maksud[i].deskripsi);
+          for(var i = 0; i < vm.target.length; i++)
+            data.targetPegawaiList.push(vm.target[i].pegawaiPembuat.nipPegawai);
+          console.log(data);
+          InstruksiPejabatService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
             }, function(errResponse){
@@ -110,9 +153,9 @@ angular.
                         body: [
                             [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left', border: [false, false, false, false]}],
                             [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left', border: [false, false, false, false]}],
-                            [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
                             [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                            [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai, alignment : 'left', border: [false, false, false, false]}]
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', border: [false, false, false, false]}]
                         ]
                     }
                 }
@@ -180,10 +223,10 @@ angular.
                 widths: ['*', '*', '*'],
                 table: {
                     body: [
-                        [{text: 'Nama', bold: true , border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].nama, border: [false, false, false, false]}],
-                        [{text: 'NIP', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].nip, border: [false, false, false, false]}],
-                        [{text: 'Pangkat/Gol. Ruang', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].gol, border: [false, false, false, false]}],
-                        [{text: 'Jabatan', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].jabatan, border: [false, false, false, false]}]
+                        [{text: 'Nama', bold: true , border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawaiPembuat.nama, border: [false, false, false, false]}],
+                        [{text: 'NIP', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawaiPembuat.nipPegawai, border: [false, false, false, false]}],
+                        [{text: 'Pangkat/Gol. Ruang', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawaiPembuat.golongan, border: [false, false, false, false]}],
+                        [{text: 'Jabatan', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawaiPembuat.jabatan, border: [false, false, false, false]}]
                     ]
                 }
             }
