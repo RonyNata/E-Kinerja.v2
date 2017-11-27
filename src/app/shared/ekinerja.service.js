@@ -148,6 +148,29 @@
             return result;
         }
 
+        service.IndonesianDay = function(date){
+            var day = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu']
+            var result = ' ' + day[date.getDay()];
+            return result;
+        }
+
+        service.IndonesianDate= function(date){
+            var result = date.getDate().toString();
+            return result;
+        }
+
+        service.IndonesianMonth = function(date){
+            var month = ['Januari', 'February', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+            var result = ' ' + month[date.getMonth()];
+            return result;
+        }
+
+        service.IndonesianYear = function(date){
+            var result = ' ' + (1900 + date.getYear()).toString();
+            return result;
+        }
+
         service.FormatRupiah = function(value){
             var money = value.toString();
             money = money.split('');

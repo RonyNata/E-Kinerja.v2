@@ -1,0 +1,106 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Pembuatan Telaahan Staff</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="telaahanstaff.save()" class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tentang</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.tentang" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:20px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>A. Persoalan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.persoalan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>B. Praanggapan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.praanggapan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>C. Fakta yang Mempengaruhi</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.faktayangmempengaruhi" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>D. Analisis</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.analisis" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>E. Simpulan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.simpulan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>F. Saran</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="telaahanstaff.item.saran" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b></b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8" style="margin-left: 25px">
+                                            <div class="col-md-8"></div>
+                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                            <button class="btn btn-danger waves-effect" ng-click="openPdf()" style="font-size: 20px">Kembali</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
