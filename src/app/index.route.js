@@ -211,6 +211,30 @@
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
+        })
+        .state('beritaacara', {
+            url: '/berita-acara',
+            templateUrl: 'app/template/beritaAcara/beritaAcara.html',
+            controller: 'BeritaAcaraController',
+            controllerAs: 'beritaacara'
+        })
+        .state('telaahanstaff', {
+            url: '/telaahan-staff',
+            templateUrl: 'app/template/telaahanStaff/telaahanStaff.html',
+            controller: 'TelaahanStaffController',
+            controllerAs: 'telaahanstaff'
+        })
+        .state('memorandumpejabat', {
+            url: '/memorandum-pejabat',
+            templateUrl: 'app/template/memorandum/memorandum.html',
+            controller: 'MemorandumController',
+            controllerAs: 'memorandum'
+        })
+        .state('memorandumnonpejabat', {
+            url: '/memorandum-nonpejabat',
+            templateUrl: 'app/template/memorandum/memorandum.html',
+            controller: 'MemorandumController',
+            controllerAs: 'memorandum'
         });
 
     // $urlRouterProvider.otherwise('/');
