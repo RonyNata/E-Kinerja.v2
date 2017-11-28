@@ -39,6 +39,10 @@
             debugger
         })
 
+        vm.back =  function(){
+          $state.go('kontrak');
+        }
+
         function template(){
             vm.docDefinition = {
                 content: [

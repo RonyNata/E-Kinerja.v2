@@ -46,13 +46,31 @@ angular.
         })
 
         vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal1.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
+          // var data = {
+          //   "kdSuratPerintah": "",
+          //   "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          //   "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+          //   "nomorSurat1": vm.item.nomorSurat,
+          //   "nomorSurat2": vm.item.nomorSurat1,
+          //   "nomorSurat3": vm.item.nomorSurat2,
+          //   "nomorTahun": ((new Date()).getYear() + 1900),
+          //   "menimbangList": [],
+          //   "dasarList": [],
+          //   "untukList": [],
+          //   "tempat": vm.item.tempat,
+          //   "tanggalPerintahMilis": vm.item.tanggal.getTime(),
+          //   "kdJabatan": vm.item.jabatan,
+          //   "ttdPath": "",
+          //   "kdTargetList": [],
+          //   "kdTembusanList": []
+          // }
+          var menimbang = vm.item.menimbang.split("\n");
+          for(var i = 0; i < menimbang.length; i++){
+            var kata = '';
+            for(var j = 1; j < (menimbang[i].split(" ")).length; j++)
+              kata += (menimbang[i].split(" "))[j] + ' ';
+            data.menimbangList.push(kata);
+          }
           console.log(vm.item);
           SuratPerintahService.save(vm.item).then(
             function(response){

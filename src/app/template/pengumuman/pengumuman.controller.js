@@ -11,6 +11,24 @@
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
+        getAllPegawai();
+
+        function getAllPegawai(){
+          HakAksesService.GetAllPegawai().then(
+            function(response){
+              vm.list_pegawai = response;
+              vm.loading = false;
+            }, function(errResponse){
+
+            })
+        }
+
+        $scope.$watch('pegawai', function(){
+          if($scope.pegawai.length == 18)
+            vm.item.pegawaiPembuat = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+          debugger
+        })
+
         function template(){
             vm.docDefinition = {
                 content: [
@@ -79,9 +97,9 @@
                             body: [
                                 [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
                                 [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
+                                [{text: '' + vm.item.pegawaiPembuat.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
                                 [{text: ' ',margin: [0,20]}],
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai, alignment : 'left'}]
+                                [{text: '' + vm.item.pegawaiPembuat.nama, alignment : 'left'}]
                             ]
                         },
                         layout: 'noBorders'
@@ -140,6 +158,10 @@
             template();
             pdfMake.createPdf(vm.docDefinition).open();
         };
+
+        vm.back =  function(){
+          $state.go('kontrak');
+        }
 
         $scope.downloadPdf = function() {
             pdfMake.createPdf(vm.docDefinition).download();

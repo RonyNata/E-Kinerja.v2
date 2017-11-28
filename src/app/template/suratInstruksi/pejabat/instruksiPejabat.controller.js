@@ -71,7 +71,7 @@ angular.
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
             "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja
           }
-
+          debugger
           if($state.current.name != 'instruksinonpejabat')
             data.suratPejabat = true;
           for(var i = 0; i < vm.maksud.length; i++)
@@ -200,7 +200,7 @@ angular.
           };
 
 
-          for(i = 0; i < vm.maksud.length; i++){
+          for(var i = 0; i < vm.maksud.length; i++){
             var style = [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}];
             var body = [{text: '' + InstruksiPejabatService.FindUrutan(i), 
                         style: 'header', border: [false, false, false, false]},
@@ -301,7 +301,7 @@ angular.
                         [
                             {
                                 border: [false, false, false, false],
-                                text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                text: '' + vm.item.pegawaiPenandatangan.unitKerja,
                                 style: 'header1'
                             }
                         ]

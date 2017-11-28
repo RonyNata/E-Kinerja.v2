@@ -11,6 +11,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%; text-align: center">No</th>
+                                    <th style="text-align: center">Nama File</th>
                                     <th style="text-align: center">Tanggal Pembuatan</th>
                                     <!-- <th style="text-align: center; width: 15%; ">historylate</th> -->
                                     <th style="width: 10%; text-align: center">Action</th>
@@ -19,10 +20,11 @@
                             <tbody>
                                 <tr ng-repeat="data in history.dataHistory">
                                     <td>{{$index + 1}}</td>
+                                    <td>{{data.nama}}</td>
                                     <td>
-                                        {{data.createdDate}}
+                                        {{data.tanggalDibuat}}
                                     </td>
-                                    <td><button type="button" ng-click="history.getDocument(data.kdHistory)" class="btn btn-primary waves-effect">Lihat Dokumen</button></td>
+                                    <td><button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi)" class="btn btn-primary waves-effect">Lihat Dokumen</button></td>
                                 </tr>
                             </tbody>
                         </table>
