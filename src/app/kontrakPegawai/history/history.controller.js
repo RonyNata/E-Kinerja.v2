@@ -29,11 +29,13 @@ angular.
             })
         }
 
-        vm.getDocumentInstruksi = function(kdHistory){
+        vm.getDocumentInstruksi = function(kdHistory, idx){
+          vm.dataHistory[idx].loading = true;
           KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
-            function(response){debugger
+            function(response){
               vm.data = response;
               template();
+              vm.dataHistory[idx].loading = false;
               pdfMake.createPdf(vm.docDefinition).open();
             }, function(errResponse){
 
