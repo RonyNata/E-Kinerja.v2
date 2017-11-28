@@ -235,6 +235,18 @@
             templateUrl: 'app/template/memorandum/memorandum.html',
             controller: 'MemorandumController',
             controllerAs: 'memorandum'
+        })
+        .state('suratperjanjianantarinstansidalamnegeri', {
+            url: '/surat-perjanjian-antar-instansi-dalam-negeri',
+            templateUrl: 'app/template/suratPerjanjian/antarInstansiDalamNegeri/suratPerjanjianAntarInstansiDalamNegeri.html',
+            controller: 'SuratPerjanjianAntarInstansiDalamNegeriController',
+            controllerAs: 'suratperjanjianantarinstansidalamnegeri'
+        })
+        .state('suratperjanjiankerjasamapemerintahlingkupnasional', {
+            url: '/surat-perjanjian-kerja-sama-pemerintah-lingkup-nasional',
+            templateUrl: 'app/template/suratPerjanjian/pemerintahLingkupNasional/suratPerjanjianKerjaSamaPemerintahLingkupNasional.html',
+            controller: 'SuratPerjanjianKerjaSamaPemerintahLingkupNasionalController',
+            controllerAs: 'suratperjanjiankerjasamapemerintahlingkupnasional'
         });
 
     // $urlRouterProvider.otherwise('/');

@@ -1,0 +1,270 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Pembuatan Surat Perjanjian Antar Instansi Dalam Negeri</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="suratperjanjianantarinstansidalamnegeri.save()" class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-10" style="margin-top:5px; text-align: center">
+                                            <p><b>PERJANJIAN KERJASAMA ANTARA</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:-30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Nama instansi PIHAK KESATU</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.namainstansi1" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:-25px; text-align: center">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-10">
+                                            <p><b>DAN</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:-30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Nama instansi PIHAK KEDUA</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.namainstansi2" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:20px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tentang</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.tentang" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nomor Kesatu</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.nomorSurat1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nomor Kedua</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.nomorSurat2" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Kota dikeluarkan surat perjanjian </b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.tempat" required></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-top: 30px">
+                                        <div class="col-sm-10">
+                                            <p><b>IDENTITAS PIHAK KESATU</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -35px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Nama</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.namapihakkesatu" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>NIP</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.nippihakkesatu" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Pangkat/Gol. Ruang</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.golonganpihakkesatu" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Jabatan</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.jabatanpihakkesatu" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-top: 30px">
+                                        <div class="col-sm-10">
+                                            <p><b>IDENTITAS PIHAK KEDUA</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -35px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Nama</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.namapihakkedua" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>NIP</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.nippihakkedua" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Pangkat/Gol. Ruang</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.golonganpihakkedua" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -30px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2">
+                                            <p><b>Jabatan</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.jabatanpihakkedua" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-top: 30px">
+                                        <div class="col-sm-10">
+                                            <p><b>BAGIAN ISI SURAT</b></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top: -35px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 1 (Tujuan Kerjasama)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.tujuan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 2 (Ruang Lingkup Kerjasama)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.ruanglingkup" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 3 (Pelaksanaan Kegiatan)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.pelaksanaankegiatan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 4 (Pembiayaan)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.pembiayaan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 5 (Penyelesaian Perselisihan)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.penyelesaianperselisihan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 6 (Lain-Lain)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.lainlain" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-3" style="margin-top:5px">
+                                            <p><b>Pasal 7 (Penutup)</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-7">
+                                            <textarea class="form-control" ng-model="suratperjanjianantarinstansidalamnegeri.item.penutup" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b></b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8" style="margin-left: 25px">
+                                            <div class="col-md-6"></div>
+                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                            <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                            <button class="btn btn-danger waves-effect" type="button" ng-click="suratkuasa.back()" style="font-size: 20px">Kembali</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
