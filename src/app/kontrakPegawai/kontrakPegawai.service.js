@@ -189,6 +189,19 @@
             );
             return deferred.promise;
         };
+
+        service.uploadTemplate = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
  
         return service;
     }])

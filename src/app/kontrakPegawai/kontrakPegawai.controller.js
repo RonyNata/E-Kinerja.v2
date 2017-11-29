@@ -83,7 +83,7 @@ angular.
         });
       };
 
-      vm.openTemplate = function (parentSelector) {
+      vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
@@ -95,7 +95,15 @@ angular.
         controllerAs: 'temp',
         // windowClass: 'app-modal-window',
         // size: 'lg',
-        appendTo: parentElem
+        appendTo: parentElem,
+            resolve: {
+                urtug: function () {
+                    return uraianTugas;
+                },
+                isDPA: function () {
+                    return isDPA;
+                }
+            }
         });
 
         modalInstance.result.then(function () {
