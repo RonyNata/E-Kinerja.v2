@@ -19,9 +19,9 @@
             return deferred.promise;
         };
 
-        service.GetPegawaiPengaju = function (kdUnitKerja) {
+        service.GetPegawaiPengaju = function (kdUnitKerja, nipPegawai) {
             var deferred = $q.defer();
-            $http.get(API + 'get-uraian-tugas-tahunan-by-unit-kerja/' + kdUnitKerja).then(
+            $http.get(API + 'get-uraian-tugas-tahunan-by-penilai/' + kdUnitKerja + '/' + nipPegawai).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

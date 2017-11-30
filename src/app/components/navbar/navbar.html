@@ -103,7 +103,7 @@
                         <span>Atur Uraian Tugas Jabatan</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}">
                     <a href="#/approval">
                         <i class="material-icons">text_fields</i>
                         <span>Persetujuan Kontrak Kerja</span>
@@ -126,6 +126,12 @@
                     <a href="#/kontrak-pegawai">
                         <i class="material-icons">layers</i>
                         <span>Kontrak Kerja</span>
+                    </a>
+                </li>
+                <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}">
+                    <a href="#/penugasan">
+                        <i class="material-icons">layers</i>
+                        <span>Penugasan</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('aktivitas') ? 'active' : ''}}">

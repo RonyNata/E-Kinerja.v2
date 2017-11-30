@@ -58,7 +58,8 @@ angular.
         }
 
         function getPegawaiPengaju(){
-          AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
               vm.list_pegawai = response;debugger
               vm.loading = false;
@@ -70,16 +71,17 @@ angular.
         vm.approve = function(){
           var data = [];
           for(var i = 0; i < vm.list_ajuan.length; i++){
-            if(vm.list_ajuan[i].terima)
-              vm.list_ajuan[i].statusApproval = 1;
+            if(vm.list_ajuan[i].terima){
+              vm.list_ajuan[i].statusApproval = 1;debugger
+            }
             else
               vm.list_ajuan[i].statusApproval = 2;
-            vm.list_ajuan[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+            vm.list_ajuan[i].nipPegawai = $scope.nipPegawai;
             data.push(vm.list_ajuan[i]);
           }
           for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
             vm.list_tidakdiajukan[i].statusApproval = 2;
-            vm.list_tidakdiajukan[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+            vm.list_tidakdiajukan[i].nipPegawai = $scope.nipPegawai;
             data.push(vm.list_tidakdiajukan[i]);
           }console.log(JSON.stringify(data));
 

@@ -247,6 +247,12 @@
             templateUrl: 'app/template/suratPerjanjian/pemerintahLingkupNasional/suratPerjanjianKerjaSamaPemerintahLingkupNasional.html',
             controller: 'SuratPerjanjianKerjaSamaPemerintahLingkupNasionalController',
             controllerAs: 'suratperjanjiankerjasamapemerintahlingkupnasional'
+        })
+        .state('penugasan', {
+          url: '/penugasan',
+          templateUrl: 'app/penugasan/penugasan.html',
+          controller: 'PenugasanController',
+          controllerAs: 'penugasan'
         });
 
     // $urlRouterProvider.otherwise('/');

@@ -76,10 +76,17 @@
                         <!-- <div class="col-md-6">
                         </div> -->
                         <!-- <div style="padding-bottom: 10px"></div> -->
-                        <div class="col-md-6">
+                        <div class="col-md-6" ng-show="kontrak.statusAjuanDpa && kontrak.statusAjuanNonDpa">
                             <!-- <div class="col-md-9"></div> -->
                             <div style="margin-left: -10px; float: center; " class="text-center">
                                 <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 50px; font-size: 20px"> <b>Pilih Uraian Tugas</b>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6" ng-hide="kontrak.statusAjuanDpa && kontrak.statusAjuanNonDpa">
+                            <!-- <div class="col-md-9"></div> -->
+                            <div style="margin-left: -10px; float: center; " class="text-center">
+                                <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 50px; font-size: 20px" disabled> <b>Uraian Tugas Telah Dipilih</b>
                                 </button>
                             </div>
                         </div>

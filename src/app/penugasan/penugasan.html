@@ -1,0 +1,101 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 90px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="row clearfix">
+                        <div class="header">
+                            <i class="material-icons" style="float: left;">assignment</i>
+                            <h2>Halaman Penugasan</h2>
+                        </div>
+                        <div class="body" style="font-size: 17px">
+                            <div class="col-md-12">
+                                <div class="col-md-2" style="margin-left: -10px;float: left;">
+                                    <button type="button" ng-click="penugasan.openTemplate()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>Buat Naskah Penugasan</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist" ">
+                                <li role="presentation" class="active">
+                                    <a href="#ajuan" data-toggle="tab">Naskah Penugasan Masuk</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#tidakdiajukan" data-toggle="tab">Naskah Penugasan Yang Pernah Dibuat</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
+                                    <div class="body table-responsive" style="margin-bottom: -10px;">
+                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
+                                                    <th style="width: 10%; text-align: center;border: 1px solid black">Jenis Naskah</th>
+                                                    <th style="text-align: center;" >Judul Naskah</th>
+                                                    <th style="width: 15%; text-align: center;border: 1px solid black">Tanggal Dibuat</th> 
+                                                    <th style="text-align: center; width: 15%;border: 1px solid black">Action</th> 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="naskah in penugasan.naskah" style="text-align: center">
+                                                    <td style="border: 1px solid black">{{$index + 1}}</td>
+                                                    <td style="border: 1px solid black">{{naskah.nama}}</td>
+                                                    <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td>
+                                                    <td style="border: 1px solid black">{{naskah.tanggalDibuat}}</td>
+                                                    <td style="border: 1px solid black">
+                                                        <button type="button" ng-click="penugasan.getDocumentInstruksi(naskah.kdInstruksi, $index)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
+                                                        <button type="button" ng-click="penugasan.getDocumentInstruksi(naskah.kdInstruksi, $index)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
+                                                    </td> 
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade in" id="tidakdiajukan">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
+                                                <th >Rincian Tugas dan Kegiatan</th>
+                                                <th style="width: 10%; text-align: center;border: 1px solid black">Kuant/ Output</th>
+                                                <th style="width: 5%; text-align: center;border: 1px solid black">Mutu</th> 
+                                                <th style="width: 5%; text-align: center;border: 1px solid black">Waktu</th> 
+                                                <th style="width: 5%; text-align: center;border: 1px solid black">Biaya</th>
+                                                <th style="text-align: center;border: 1px solid black">Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="urtug in penugasan.list_tidakdiajukan" style="text-align: center">
+                                                <td style="border: 1px solid black">{{$index + 1}}</td>
+                                                <td style="text-align: left;border: 1px solid black">{{urtug.urtug}}</td>
+                                                <td style="border: 1px solid black">{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                <td style="border: 1px solid black">{{urtug.kualitas}}</td>
+                                                <td style="border: 1px solid black">{{urtug.waktu}}</td>
+                                                <td style="border: 1px solid black">{{urtug.biayaRp}}</td>
+                                                <td style="border: 1px solid black">
+                                                    <button type="button" ng-click="penugasan.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                                </td> 
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div class="bg_load animate-show-hide" ng-show="penugasan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="penugasan.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div> -->

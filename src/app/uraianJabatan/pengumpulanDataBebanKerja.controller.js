@@ -366,6 +366,7 @@ angular.
 
 	      modalInstance.result.then(function () {
       		getJenisUrtugJabatan();
+      		getPejabatPenilai();
 	        // vm.selected = selectedItem;
 	      }, function () {
 	      	// showToastrFailed('menambahkan data');

@@ -21,6 +21,31 @@ angular.
       getUrtugKegiatanApproval();
       // getUrtugByJabatan();
 
+      KontrakPegawaiService.GetUrtugNonDPA(
+        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+        $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
+        ).then(
+        function(response){
+          if(response.length == 0)
+            vm.statusAjuanNonDpa = false;
+          else vm.statusAjuanNonDpa = true;
+        }, function(errResponse){
+
+        }
+      );
+
+      KontrakPegawaiService.GetUrtugDPA(
+        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+        $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+        function(response){
+          if(response.length == 0)
+            vm.statusAjuanDpa = false;
+          else vm.statusAjuanDpa = true;
+        }, function(errResponse){
+
+        }
+      );
+
       function getUrtugByJabatan(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
           function(response){
