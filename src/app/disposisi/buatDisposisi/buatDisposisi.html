@@ -1,0 +1,98 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 90px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <i class="material-icons" style="float: left;">assignment</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;">DISPOSISI {{urtug_jabatan.unit}}</h>
+                    </div>
+                    <div class="body" style="margin-top: 0px;font-size: 16px;"> 
+                        <div class="col-md-12">
+                            <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
+                                <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;">
+                                    <li role="presentation" class="active">
+                                        <a href="#disposisi" data-toggle="tab">Tambah Disposisi Surat</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#instruksi" data-toggle="tab">List Disposisi Diterima</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>     
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="disposisi">
+                                <div class="col-md-12" style="margin-top: 0px; margin-bottom: -40px; margin-left: -7px;">
+                                    <div class="col-md-2" style="margin-left: -10px;float: left;">
+                                        <button type="button" ng-click="perpindahan.open()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>BUAT DISPOSISI</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="col-md-6"></div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  123px;">
+                                                <label >Cari</label>
+                                            </div>
+                                            <div class="col-md-8" style="margin-right: -63px;float: right;">
+                                               <input type="text" class="form-control" ng-model="searchName" ng-required="true" placeholder="Cari berdasarkan Nomor Agenda...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="body table-responsive" style="padding-top: 0px;margin-left: -7px;margin-right: -7px;margin-bottom: -30px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;margin-left: 0px;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Kode Lembar Disposisi</th>
+                                                <th style="text-align: center">Tingkat Keamanan</th> 
+                                                <th style="text-align: center; width: 30%" >Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ambil in ambilperpindahan.dataHistory" style="text-align: center">
+                                                <td>{{$index + 1}}</td>
+                                                <td style="text-align: left;">{{ambil.kdLembarDisposisi}}</td>
+                                                <td style="text-align: left;">{{ambil.tktKeamanan == 1 ? 'SR' : ''}}
+                                                {{ambil.tktKeamanan == 2 ? 'R' : ''}}
+                                                {{ambil.tktKeamanan == 3 ? 'B' : ''}}
+                                                </td> 
+                                                <td>
+                                                    <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.viewDisposisi(surat.disposisi.kdLembarDisposisiParent)"><i class="material-icons">edit</i><span>LANJUT</span></button>
+                                                    <button type="button" ng-click="ambilperpindahan.deleteDisposisi(surat.disposisi.kdLembarDisposisiParent)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
+                                                </td> 
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="instruksi">
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

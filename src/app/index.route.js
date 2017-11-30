@@ -80,6 +80,18 @@
         controller: 'KontrakUrtugDpaController',
         controllerAs: 'kontrakdpa'
       })
+      .state('ambilperpindahan', {
+        url: '/ambil-disposisi',
+        templateUrl: 'app/disposisi/buatDisposisi/buatDisposisi.html',
+        controller: 'AmbilDisposisiController',
+        controllerAs: 'ambilperpindahan'
+      })
+      .state('perpindahan', {
+        url: '/disposisi',
+        templateUrl: 'app/disposisi/disposisi.html',
+        controller: 'DisposisiController',
+        controllerAs: 'perpindahan'
+      })
       .state('notadinas', {
         url: '/nota-dinas',
         templateUrl: 'app/template/notaDinas/notaDinas.html',
