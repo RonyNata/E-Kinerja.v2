@@ -132,6 +132,10 @@
             };
         }
 
+        vm.back =  function(){
+          $state.go('kontrak');
+        }
+
         $scope.openPdf = function() {
             var blb;
             // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {

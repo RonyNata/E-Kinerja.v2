@@ -222,7 +222,7 @@ angular.
                         [
                             {
                                 border: [false, false, false, false],
-                                text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase(),
                                 style: 'header1'
                             }
                         ]

@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color:#1fcfe0;">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">historylate</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">History</h3>
 </div>
 <div class="modal-body" id="modal-body">
     <div class="form-body">
@@ -11,6 +11,7 @@
                             <thead>
                                 <tr>
                                     <th style="width: 5%; text-align: center">No</th>
+                                    <th style="text-align: center">Nama File</th>
                                     <th style="text-align: center">Tanggal Pembuatan</th>
                                     <!-- <th style="text-align: center; width: 15%; ">historylate</th> -->
                                     <th style="width: 10%; text-align: center">Action</th>
@@ -19,10 +20,12 @@
                             <tbody>
                                 <tr ng-repeat="data in history.dataHistory">
                                     <td>{{$index + 1}}</td>
+                                    <td>{{data.nama}}</td>
                                     <td>
-                                        {{data.createdDate}}
+                                        {{data.tanggalDibuat}}
                                     </td>
-                                    <td><button type="button" ng-click="history.getDocument(data.kdHistory)" class="btn btn-primary waves-effect">Lihat Dokumen</button></td>
+                                    <td><button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary waves-effect" ng-hide="data.loading">Lihat Dokumen</button>
+                                    <button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary waves-effect" ng-show="data.loading" disabled>Mohon Tunggu</button></td>
                                 </tr>
                             </tbody>
                         </table>

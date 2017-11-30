@@ -21,6 +21,31 @@ angular.
       getUrtugKegiatanApproval();
       // getUrtugByJabatan();
 
+      KontrakPegawaiService.GetUrtugNonDPA(
+        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+        $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
+        ).then(
+        function(response){
+          if(response.length == 0)
+            vm.statusAjuanNonDpa = false;
+          else vm.statusAjuanNonDpa = true;
+        }, function(errResponse){
+
+        }
+      );
+
+      KontrakPegawaiService.GetUrtugDPA(
+        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+        $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+        function(response){
+          if(response.length == 0)
+            vm.statusAjuanDpa = false;
+          else vm.statusAjuanDpa = true;
+        }, function(errResponse){
+
+        }
+      );
+
       function getUrtugByJabatan(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
           function(response){
@@ -83,7 +108,7 @@ angular.
         });
       };
 
-      vm.openTemplate = function (parentSelector) {
+      vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
@@ -95,7 +120,15 @@ angular.
         controllerAs: 'temp',
         // windowClass: 'app-modal-window',
         // size: 'lg',
-        appendTo: parentElem
+        appendTo: parentElem,
+            resolve: {
+                urtug: function () {
+                    return uraianTugas;
+                },
+                isDPA: function () {
+                    return isDPA;
+                }
+            }
         });
 
         modalInstance.result.then(function () {

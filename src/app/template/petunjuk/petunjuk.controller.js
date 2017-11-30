@@ -113,7 +113,7 @@ angular.
                 },
 
                 {
-                    text: '(Nama Jabatan)', style: 'nama_judul'
+                    text: '' + vm.item.pegawaiPembuat.jabatan.toUpperCase(), style: 'nama_judul'
                 },
 
                 {
@@ -260,7 +260,7 @@ angular.
                         [
                             {
                                 border: [false, false, false, false],
-                                text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                text: '' + vm.item.pegawaiPembuat.unit.toUpperCase(),
                                 style: 'header1'
                             }
                         ]

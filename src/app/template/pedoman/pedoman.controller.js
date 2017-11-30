@@ -123,7 +123,7 @@ angular.
                 },
 
                 {
-                    text: '(Nama Jabatan)', style: 'nama_judul'
+                    text: '' + vm.item.pegawaiPembuat.jabatan.toUpperCase(), style: 'nama_judul'
                 },
 
                 {

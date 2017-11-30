@@ -161,6 +161,47 @@
             );
             return deferred.promise;
         };
+
+        service.GetHistoryInstruksi = function (nip) {
+            debugger
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-instruksi-by-pembuat/' + nip).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataInstruksi = function (kdSurat) {
+            debugger
+            var deferred = $q.defer();
+            $http.get(API + 'get-dokumen-surat-instruksi/' + kdSurat).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.uploadTemplate = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
  
         return service;
     }])
