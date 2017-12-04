@@ -59,6 +59,9 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
         "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
     }
 
+    if($state.current.name != undefined)
+    	vm.item.kdLembarDisposisiParent = $state.params.kdSurat;
+
     if(vm.item.kdLembarDisposisiParent == undefined){
     	data.kdLembarDisposisiParent = null;
     }else{
@@ -266,7 +269,7 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['', + vm.item.tanggalSuratDisposisiMilis + ' dan ' + vm.item.noSuratDisposisi],
+		                          text: ['' + vm.item.tanggalSuratDisposisiMilis + ' dan ' + vm.item.noSuratDisposisi],
 		                          fontSize: 9
 		                        }
 		                      ],
@@ -300,7 +303,7 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['', + vm.item.ringkasanIsiSuratDisposisi],
+		                          text: ['' + vm.item.ringkasanIsiSuratDisposisi],
 		                          fontSize: 9
 		                        }
 		                      ],

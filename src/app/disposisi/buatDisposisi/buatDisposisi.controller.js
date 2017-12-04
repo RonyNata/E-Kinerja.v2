@@ -3,11 +3,12 @@
 
 	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
-	function AmbilDisposisiController(EkinerjaService, AmbilDisposisiService, $scope, $state){
+	function AmbilDisposisiController(EkinerjaService, AmbilDisposisiService, $scope, $state, $uibModal, $document){
 		var vm = this;
       	vm.loading = true;
 
       	getAllDisposisi();
+        getHistoryDisposisi();
 
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
@@ -20,11 +21,30 @@
 
         function getDokumenDisposisi(kdLembarDisposisi){
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
-            function(response){
+            function(response){debugger
               template(response);
             }, function(errResponse){
 
             })
+        }
+
+        function getHistoryDisposisi(){
+          AmbilDisposisiService.GetHistoryDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            function(response){debugger
+              vm.history = response;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.forward = function(kdLembarDisposisi){
+          $state.go('perpindahandisposisi', {
+            "kdSurat": kdLembarDisposisi
+          });
+        }
+
+        vm.createDisposisi = function(){
+          $state.go('perpindahan');
         }
 
         function template(item){
@@ -213,7 +233,7 @@
                                 },
                                 {
                                   border: [false, false, false, false],
-                                  text: ['', + item.tanggalSuratDisposisi + ' dan ' + item.noSuratDisposisi],
+                                  text: ['' + item.tanggalSuratDisposisi + ' dan ' + item.noSuratDisposisi],
                                   fontSize: 9
                                 }
                               ],
@@ -247,7 +267,7 @@
                                 },
                                 {
                                   border: [false, false, false, false],
-                                  text: ['', + item.ringkasanIsi],
+                                  text: ['' + item.ringkasanIsi],
                                   fontSize: 9
                                 }
                               ],
@@ -362,5 +382,34 @@
             $scope.downloadPdf = function() {
               pdfMake.createPdf(vm.docDefinition).download();
             };
+
+            vm.tree = function (kdSurat, parentSelector) {
+            var parentElem = parentSelector ? 
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/disposisi/lihatTree/lihatTree.html',
+              controller: 'LihatTreeController',
+              controllerAs: 'tree',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                kdSurat: function () {
+                  return kdSurat;
+                }
+              }
+            });
+
+            modalInstance.result.then(function (kdSurat) {
+              getDokumenDisposisi(kdSurat);
+              // vm.selected = selectedItem;
+            }, function () {
+              // showToastrFailed('menambahkan data');
+              // $log.info('Modal dismissed at: ' + new Date());
+            });
+          };
         } 	 
 })();

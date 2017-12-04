@@ -92,6 +92,12 @@
         controller: 'DisposisiController',
         controllerAs: 'perpindahan'
       })
+      .state('perpindahandisposisi', {
+        url: '/disposisi/:kdSurat',
+        templateUrl: 'app/disposisi/disposisi.html',
+        controller: 'DisposisiController',
+        controllerAs: 'perpindahan'
+      })
       .state('notadinas', {
         url: '/nota-dinas',
         templateUrl: 'app/template/notaDinas/notaDinas.html',
