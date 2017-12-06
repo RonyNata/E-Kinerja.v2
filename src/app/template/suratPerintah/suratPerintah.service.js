@@ -4,12 +4,12 @@
 	angular.module('eKinerja')
 		.service('SuratPerintahService', SuratPerintahService);
 
-	function SuratPerintahService(API_REPORT, $http, $q){
+	function SuratPerintahService(API, $http, $q){
 		var service = {};
 
 		service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-nodin-report/', data).then(
+            $http.post(API + 'create-surat-perintah/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

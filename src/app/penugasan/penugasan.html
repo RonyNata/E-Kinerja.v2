@@ -32,7 +32,7 @@
                                                 <tr>
                                                     <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
                                                     <th style="width: 10%; text-align: center;border: 1px solid black">Jenis Naskah</th>
-                                                    <th style="text-align: center;" >Judul Naskah</th>
+                                                    <!-- <th style="text-align: center;" >Judul Naskah</th> -->
                                                     <th style="width: 15%; text-align: center;border: 1px solid black">Tanggal Dibuat</th> 
                                                     <th style="text-align: center; width: 15%;border: 1px solid black">Action</th> 
                                                 </tr>
@@ -41,11 +41,11 @@
                                                 <tr ng-repeat="naskah in penugasan.naskah" style="text-align: center">
                                                     <td style="border: 1px solid black">{{$index + 1}}</td>
                                                     <td style="border: 1px solid black">{{naskah.nama}}</td>
-                                                    <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td>
+                                                    <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                     <td style="border: 1px solid black">{{naskah.tanggalDibuat}}</td>
                                                     <td style="border: 1px solid black">
-                                                        <button type="button" ng-click="penugasan.getDocumentInstruksi(naskah.kdInstruksi, $index)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
-                                                        <button type="button" ng-click="penugasan.getDocumentInstruksi(naskah.kdInstruksi, $index)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
+                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
+                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
                                                     </td> 
                                                 </tr>
                                             </tbody>
@@ -57,25 +57,22 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                                <th >Rincian Tugas dan Kegiatan</th>
-                                                <th style="width: 10%; text-align: center;border: 1px solid black">Kuant/ Output</th>
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Mutu</th> 
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Waktu</th> 
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Biaya</th>
-                                                <th style="text-align: center;border: 1px solid black">Action</th> 
+                                                <th style="width: 10%; text-align: center;border: 1px solid black">Jenis Naskah</th>
+                                                <!-- <th style="text-align: center;" >Judul Naskah</th> -->
+                                                <th style="width: 15%; text-align: center;border: 1px solid black">Tanggal Dibuat</th> 
+                                                <th style="text-align: center; width: 15%;border: 1px solid black">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="urtug in penugasan.list_tidakdiajukan" style="text-align: center">
+                                            <tr ng-repeat="history in penugasan.naskahHistory" style="text-align: center">
                                                 <td style="border: 1px solid black">{{$index + 1}}</td>
-                                                <td style="text-align: left;border: 1px solid black">{{urtug.urtug}}</td>
-                                                <td style="border: 1px solid black">{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                <td style="border: 1px solid black">{{urtug.kualitas}}</td>
-                                                <td style="border: 1px solid black">{{urtug.waktu}}</td>
-                                                <td style="border: 1px solid black">{{urtug.biayaRp}}</td>
+                                                <td style="border: 1px solid black">{{history.nama}}</td>
+                                                <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
+                                                <td style="border: 1px solid black">{{history.tanggalDibuat}}</td>
                                                 <td style="border: 1px solid black">
-                                                    <button type="button" ng-click="penugasan.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
-                                                </td> 
+                                                    <button type="button" ng-click="penugasan.getDocument(history, $index)" class="btn btn-primary waves-effect" ng-hide="history.loading">Lihat Dokumen</button>
+                                                    <button type="button" ng-click="penugasan.getDocument(history, $index)" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -88,7 +85,7 @@
         </div>
     </div>
 </section>
-<!-- <div class="bg_load animate-show-hide" ng-show="penugasan.loading"></div>
+<div class="bg_load animate-show-hide" ng-show="penugasan.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="penugasan.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
@@ -98,4 +95,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div> -->
+</div>

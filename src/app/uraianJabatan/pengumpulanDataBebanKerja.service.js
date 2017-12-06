@@ -9,7 +9,7 @@
         service.GetAllJabatan = function () {
             var deferred = $q.defer();
             // debugger
-            $http.get(API + 'get-jabatan-list/').then(
+            $http.get(API + 'get-all-jabatan/').then(
                 function (response){
                     deferred.resolve(response.data);
                 },

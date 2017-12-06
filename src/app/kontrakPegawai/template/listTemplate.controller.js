@@ -9,6 +9,8 @@ angular.
     function TemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $uibModal, $document, $state, urtug, isDPA) {
       	var vm = this;
 
+        vm.isDPA = isDPA;
+
         getAllTemplate();
 
         function getAllTemplate(){
