@@ -122,7 +122,7 @@
                     </a>
                 </li>
                 <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas')
-                || vm.checkLocation('suratperintahpejabat')) ? 'active' : ''}}">
+                || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) ? 'active' : ''}}">
                     <a href="#/kontrak-pegawai">
                         <i class="material-icons">layers</i>
                         <span>Kontrak Kerja</span>
@@ -280,8 +280,8 @@
         </div>
     </aside>
 </section>
-<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="assets/js/demo.js"></script>
 <script src="assets/js/admin.js"></script>
 <script src="assets/plugins/node-waves/waves.js"></script>

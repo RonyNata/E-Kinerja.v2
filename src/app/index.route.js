@@ -30,11 +30,38 @@
         url: '/master/urtug',
         templateUrl: 'app/formMaster/urtug/masterUrtug.html',
         controller: 'MasterUrtugController',
+        controllerAs: 'urtug'
+      })
+      .state('master-urtugg', {
+        url: '/sop',
+        templateUrl: 'app/formMaster/urtug/masterUrtug.html',
+        controller: 'MasterUrtugController',
         controllerAs: 'urtug',
         resolve:{
-          check: function(EkinerjaService){
-              console.log('kjs');
-              EkinerjaService.checkCredential();
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('master-urtuggg', {
+        url: '/urtug',
+        templateUrl: 'app/formMaster/urtug/masterUrtug.html',
+        controller: 'MasterUrtugController',
+        controllerAs: 'urtug',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('master-urtugggg', {
+        url: '/pj',
+        templateUrl: 'app/formMaster/urtug/masterUrtug.html',
+        controller: 'MasterUrtugController',
+        controllerAs: 'urtug',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
           }
         }
       })
@@ -43,6 +70,39 @@
         templateUrl: 'app/uraianJabatan/pengumpulanDataBebanKerja.html',
         controller: 'PengumpulanDataBebanKerjaController',
         controllerAs: 'urtug_jabatan'
+      })
+      .state('urtug-jabatann', {
+        url: '/urtugjab',
+        templateUrl: 'app/uraianJabatan/pengumpulanDataBebanKerja.html',
+        controller: 'PengumpulanDataBebanKerjaController',
+        controllerAs: 'urtug_jabatan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('urtug-jabatannn', {
+        url: '/statusurtug',
+        templateUrl: 'app/uraianJabatan/pengumpulanDataBebanKerja.html',
+        controller: 'PengumpulanDataBebanKerjaController',
+        controllerAs: 'urtug_jabatan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('urtug-jabatannnn', {
+        url: '/addkegiatan',
+        templateUrl: 'app/uraianJabatan/pengumpulanDataBebanKerja.html',
+        controller: 'PengumpulanDataBebanKerjaController',
+        controllerAs: 'urtug_jabatan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
       })
       .state('aktivitas', {
         url: '/aktivitas',
@@ -62,6 +122,66 @@
         controller: 'KontrakPegawaiController',
         controllerAs: 'kontrak'
       })
+      .state('skin', {
+        url: '/skins',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('setting', {
+        url: '/settings',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('kontrakdp', {
+        url: '/tahunandpa',
+        templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
+        controller: 'KontrakPegawaiController',
+        controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('kontraknon', {
+        url: '/tahunannon',
+        templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
+        controller: 'KontrakPegawaiController',
+        controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('dpa', {
+        url: '/dpa',
+        templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
+        controller: 'KontrakPegawaiController',
+        controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('nondpa', {
+        url: '/nondpa',
+        templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
+        controller: 'KontrakPegawaiController',
+        controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('sk', {
         url: '/skkpd/:kdUrtug/:kdJenis/:kdJabatan/:tahun',
         templateUrl: 'app/pengadaanBarangJasa/pengadaanBarangJasa.html',
@@ -74,6 +194,28 @@
         controller: 'AjuanKontrakController',
         controllerAs: 'ajuankontrak'
       })
+      .state('approvall', {
+        url: '/ajuan',
+        templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
+        controller: 'AjuanKontrakController',
+        controllerAs: 'ajuankontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('approvalll', {
+        url: '/tidakdiajukan',
+        templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
+        controller: 'AjuanKontrakController',
+        controllerAs: 'ajuankontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('kontrakdpa', {
         url: '/kontrakdpa',
         templateUrl: 'app/kontrakUrtugDpa/kontrakUrtugDpa.html',
@@ -85,6 +227,28 @@
         templateUrl: 'app/disposisi/buatDisposisi/buatDisposisi.html',
         controller: 'AmbilDisposisiController',
         controllerAs: 'ambilperpindahan'
+      })
+      .state('disposisii', {
+        url: '/disposisii',
+        templateUrl: 'app/disposisi/buatDisposisi/buatDisposisi.html',
+        controller: 'AmbilDisposisiController',
+        controllerAs: 'ambilperpindahan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('instruksii', {
+        url: '/instruksi',
+        templateUrl: 'app/disposisi/buatDisposisi/buatDisposisi.html',
+        controller: 'AmbilDisposisiController',
+        controllerAs: 'ambilperpindahan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
       })
       .state('perpindahan', {
         url: '/disposisi',
@@ -271,9 +435,31 @@
           templateUrl: 'app/penugasan/penugasan.html',
           controller: 'PenugasanController',
           controllerAs: 'penugasan'
+        })
+        .state('penugasann', {
+          url: '/masuk',
+          templateUrl: 'app/penugasan/penugasan.html',
+          controller: 'PenugasanController',
+          controllerAs: 'penugasan',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
+        })
+        .state('penugasannn', {
+          url: '/dibuat',
+          templateUrl: 'app/penugasan/penugasan.html',
+          controller: 'PenugasanController',
+          controllerAs: 'penugasan',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
         });
 
-    // $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/');
   }
 
 
