@@ -9,7 +9,11 @@ angular.
       var vm = this;
       vm.loading = true;
 
-
+      var eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
+      switch(eselon){
+        case 'i' : case 'ii' : case 'iii' : vm.isEselon4 = false; break;
+        default : vm.isEselon4 = true; break;
+      }
       EkinerjaService.checkCredential();
       // EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);
 
@@ -34,17 +38,31 @@ angular.
         }
       );
 
-      KontrakPegawaiService.GetUrtugDPA(
-        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-        $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-        function(response){
-          if(response.length == 0)
-            vm.statusAjuanDpa = false;
-          else vm.statusAjuanDpa = true;
-        }, function(errResponse){
+      // if(vm.isEselon4)  
+        KontrakPegawaiService.GetUrtugDPA(
+          $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          function(response){
+            if(response.length == 0)
+              vm.statusAjuanDpa = false;
+            else vm.statusAjuanDpa = true;
+          }, function(errResponse){
 
-        }
-      );
+          }
+        );
+      // else
+      //   KontrakPegawaiService.GetUrtugProgram(
+      //     $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+      //     $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+      //     function(response){
+      //       if(response.length == 0)
+      //         vm.statusAjuanDpa = false;
+      //       else vm.statusAjuanDpa = true;
+      //     }, function(errResponse){
+
+      //     }
+      //   );
+
 
       function getUrtugByJabatan(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
@@ -97,7 +115,12 @@ angular.
         controllerAs: 'pilihurtug',
         // windowClass: 'app-modal-window',
         size: 'lg',
-        appendTo: parentElem
+        appendTo: parentElem,
+        resolve: {
+          isEselon4: function(){
+            return vm.isEselon4;
+          }
+        }
         });
 
         modalInstance.result.then(function () {

@@ -6,10 +6,11 @@ angular.
 	.controller('FormPemilihanUrtugTahunanController', FormPemilihanUrtugTahunanController);
 
     
-    function FormPemilihanUrtugTahunanController($scope, EkinerjaService, KontrakPegawaiService, $uibModalInstance, $document, $uibModal) {
+    function FormPemilihanUrtugTahunanController($scope, EkinerjaService, KontrakPegawaiService, isEselon4, $uibModalInstance, $document, $uibModal) {
       	var vm = this;
         $scope.urtugnon = false;
         $scope.dpaurtug = false;
+        vm.isEselon4 = isEselon4;
 
         getUrtug();
 
@@ -43,19 +44,34 @@ angular.
             }
           );
 
-          KontrakPegawaiService.GetUrtugDPA(
-            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-            $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-            function(response){
-              vm.urtugDpa = response; debugger
-              for(var i = 0; i < response.length; i++){ 
-                vm.urtugDpa[i].checked = false;
-                vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
-              }
-            }, function(errResponse){
+          // if(isEselon4)
+            KontrakPegawaiService.GetUrtugDPA(
+              $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+              $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+              function(response){
+                vm.urtugDpa = response; debugger
+                for(var i = 0; i < response.length; i++){ 
+                  vm.urtugDpa[i].checked = false;
+                  vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+                }
+              }, function(errResponse){
 
-            }
-          );
+              }
+            );
+          // else
+          //   KontrakPegawaiService.GetUrtugProgram(
+          //     $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          //     $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          //     function(response){
+          //       vm.urtugDpa = response; debugger
+          //       for(var i = 0; i < response.length; i++){ 
+          //         vm.urtugDpa[i].checked = false;
+          //         vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+          //       }
+          //     }, function(errResponse){
+
+          //     }
+          //   );
         }
 
         vm.openKegiatan = function (item, parentSelector) {
@@ -74,6 +90,9 @@ angular.
           resolve: {
             urtug: function () {
               return item;
+            },
+            isEselon4: function(){
+              return isEselon4;
             }
           }
           });

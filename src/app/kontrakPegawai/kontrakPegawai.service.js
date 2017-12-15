@@ -84,9 +84,35 @@
             return deferred.promise;
         };
 
+        service.GetUrtugProgram = function (nipPegawai, kdUnitKerja) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-urtug-program-pegawai/' + nipPegawai + '/' + kdUnitKerja).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.GetUrtugKegiatan = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'get-kegiatan-pegawai-by-urtug/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetUrtugProgram = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'get-urtug-program-pegawai-by-urtug-jabatan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -201,6 +227,16 @@
                 }
             );
             return deferred.promise;
+        };
+
+        service.SearchTemplate = function(template, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].nmTemplate.toLowerCase().search(template.toLowerCase()) != -1) {
+                    result.push(array[i]);
+                }
+            }
+            return result;
         };
  
         return service;

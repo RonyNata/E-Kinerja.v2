@@ -6,10 +6,11 @@ angular.
 	.controller('DetailUrtugDpaController', DetailUrtugDpaController);
 
     
-    function DetailUrtugDpaController(EkinerjaService, urtug, KontrakPegawaiService, $uibModalInstance, $document, $uibModal) {
+    function DetailUrtugDpaController(EkinerjaService, urtug, KontrakPegawaiService, isEselon4, $uibModalInstance, $document, $uibModal) {
       	var vm = this;
 
         getKegiatan();
+        vm.isEselon4 = isEselon4;
 
         function getKegiatan(){
           var data = {
@@ -20,15 +21,26 @@ angular.
             "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
           }
-          KontrakPegawaiService.GetUrtugKegiatan(data).then(
-            function(response){
-              vm.kegiatan = response; debugger
-              for(var i = 0; i < response.length; i++)
-                vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
-            }, function(errResponse){
+          if(isEselon4)
+            KontrakPegawaiService.GetUrtugKegiatan(data).then(
+              function(response){
+                vm.kegiatan = response; debugger
+                for(var i = 0; i < response.length; i++)
+                  vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+              }, function(errResponse){
 
-            }
-          );
+              }
+            );
+          else
+            KontrakPegawaiService.GetUrtugProgram(data).then(
+              function(response){
+                vm.kegiatan = response; debugger
+                for(var i = 0; i < response.length; i++)
+                  vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+              }, function(errResponse){
+
+              }
+            );
         }
 
         vm.save = function(){

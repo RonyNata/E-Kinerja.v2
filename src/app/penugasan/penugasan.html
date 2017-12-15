@@ -1,5 +1,5 @@
 <ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;">
+<section style="padding-top: 90px; font-size: 17px">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -9,7 +9,7 @@
                             <i class="material-icons" style="float: left;">assignment</i>
                             <h2>Halaman Penugasan</h2>
                         </div>
-                        <div class="body" style="font-size: 17px">
+                        <div class="body" style="">
                             <div class="col-md-12">
                                 <div class="col-md-2" style="margin-left: -10px;float: left;">
                                     <button type="button" ng-click="penugasan.openTemplate()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>Buat Naskah Penugasan</span>
@@ -44,8 +44,8 @@
                                                     <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                     <td style="border: 1px solid black">{{naskah.tanggalDibuat}}</td>
                                                     <td style="border: 1px solid black">
-                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
-                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
+                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
+                                                        <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
                                                     </td> 
                                                 </tr>
                                             </tbody>
@@ -70,8 +70,8 @@
                                                 <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                 <td style="border: 1px solid black">{{history.tanggalDibuat}}</td>
                                                 <td style="border: 1px solid black">
-                                                    <button type="button" ng-click="penugasan.getDocument(history, $index)" class="btn btn-primary waves-effect" ng-hide="history.loading">Lihat Dokumen</button>
-                                                    <button type="button" ng-click="penugasan.getDocument(history, $index)" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
+                                                    <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-primary waves-effect" ng-hide="history.loading">Lihat Dokumen</button>
+                                                    <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
                                                 </td>
                                             </tr>
                                         </tbody>

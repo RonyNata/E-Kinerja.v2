@@ -46,6 +46,19 @@
             return deferred.promise;
         }
 
+        service.GetUrtugProgramPenanggungjawab = function(data){
+            var deferred = $q.defer();
+            $http.post(API + 'get-urtug-program-pegawai-by-urtug-kegiatan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
         service.FindPegawai = function(list, nip){
         	for(var i = 0; i<list.length;i++)
         		if(list[i].nipPegawai == nip){
@@ -92,6 +105,19 @@
         service.AddPJ = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'create-urtug-kegiatan-pegawai/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.AddPJProgram = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-urtug-program-pegawai/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

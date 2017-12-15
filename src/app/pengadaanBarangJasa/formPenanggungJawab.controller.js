@@ -6,7 +6,7 @@ angular.
 	.controller('FormPenanggungJawabController', FormPenanggungJawabController);
 
     
-    function FormPenanggungJawabController(EkinerjaService, items, pegawai, PengadaanBarangJasaService, $uibModalInstance) {
+    function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, PengadaanBarangJasaService, $uibModalInstance) {
       	var vm = this;
         vm.pj = {};
         vm.list_pegawai = pegawai;
@@ -25,13 +25,22 @@ angular.
           items.nipPegawai = vm.pj.nipPegawai;
           items.kdStatusPenanggungJawab = vm.pj.jabatan;
           console.log(items);
-          PengadaanBarangJasaService.AddPJ(items).then(
-            function(response){
-      				$uibModalInstance.close(items);
-              // setPJ();
-            }, function(errResponse){
+          if(isEselon4)
+            PengadaanBarangJasaService.AddPJ(items).then(
+              function(response){
+        				$uibModalInstance.close(items);
+                // setPJ();
+              }, function(errResponse){
 
-            })
+              })
+          else 
+            PengadaanBarangJasaService.AddPJProgram(items).then(
+              function(response){
+                $uibModalInstance.close(items);
+                // setPJ();
+              }, function(errResponse){
+
+              })
           // vm.item
           // console.log(JSON.stringify(vm.item));
           // PengadaanBarangJasaService.SetUrtugAndJabatan(vm.item).then(

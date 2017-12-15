@@ -1,0 +1,72 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar Pejabat Dalam {{pj.isEselon4 ? 'Kegiatan' : ''}} {{pj.isEselon4 ? pj.kegiatan.ketKeg : pj.kegiatan.ketProgram}}</h3>
+</div>
+<form ng-submit="kegiatanlist.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-md-12">    
+                            <div class="col-md-9"></div>
+                            <button class="btn btn-primary waves-effect" ng-click="pj.addPJ()" ng-disabled="pj.kegStat">Tambah Penanggungjawab</button>
+                        </div>
+                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%; text-align: center">No</th>
+                                    <th style="width: 25%; text-align: center">NIP Pegawai</th>
+                                    <th style="text-align: center">Nama Pegawai</th>
+                                    <th style="text-align: center">Jabatan</th>
+                                    <th style="width: 10%; text-align: center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pjj in pj.jabatanDpa">
+                                    <td>{{$index + 1}}</td>
+                                    <td>
+                                        <!-- <input class="form-control" list="pegawai" name="kegiiatan" ng-model="pj.nipPegawai" placeholder="Pilih Pegawai" ng-change="pj.findPegawai(pj)">
+                                        <datalist id="pegawai" style="height: 100px">
+                                                <option ng-repeat="data in pj.pegawai"
+                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
+                                        </datalist> -->
+                                        {{pjj.nipPegawai}}
+                                    </td>
+                                    <td>{{pjj.namaPegawai}}</td>
+                                    <td>{{pjj.statusPenanggungJawab}}</td>
+                                    <td>
+                                        <!-- <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="pj.addSop(data)"><i class="material-icons">edit</i></button> -->
+                                        <button type="button" ng-click="pj.remove(pjj)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="button" ng-click="pj.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+
+    </div> 
+        </form>
+
+<div class="wrapper animate-show-hide" ng-show="pj.loadUrtug">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div> 

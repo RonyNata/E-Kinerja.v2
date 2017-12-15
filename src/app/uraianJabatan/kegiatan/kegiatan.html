@@ -1,0 +1,61 @@
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar {{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}} Pada Urtug {{kegiatanlist.urtug.urtug}}</h3>
+</div>
+<form ng-submit="kegiatanlist.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary waves-effect" ng-click="kegiatanlist.kegiatanadd()" ng-disabled="kegiatanlist.loadUrtug">Tambah {{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}}</button>
+                            </div>
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th >{{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}}</th>
+                                        <th style="text-align: center">Action</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pj in kegiatanlist.kegiatan" style="text-align: center">
+                                        <td>{{$index + 1 }}</td>
+                                        <td style="text-align: left;" ng-show="kegiatanlist.isEselon4">{{pj.ketKeg}}</td>
+                                        <td style="text-align: left;" ng-hide="kegiatanlist.isEselon4">{{pj.ketProgram}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary waves-effect" ng-click="kegiatanlist.pj(pj)"><i class="material-icons">edit</i><span>PENANGGUNGJAWAB</span></button>
+                                            <button type="button" ng-click="kegiatanlist.deleteUrtugJenis(urtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
+                                        </td> 
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="button" ng-click="kegiatanlist.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+
+    </div> 
+        </form>
+
+<div class="wrapper animate-show-hide" ng-show="kegiatanlist.loadUrtug">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div> 

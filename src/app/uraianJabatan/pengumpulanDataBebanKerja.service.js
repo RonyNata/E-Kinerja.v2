@@ -142,6 +142,19 @@
             return deferred.promise;
         };
 
+        service.GetUrtugProgramByJabatan = function (urjab) {
+            var deferred = $q.defer();
+            $http.post(API + 'get-urtug-program-by-jabatan/', urjab).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.GetUrtugForStatus = function (kdJabatan) {
             var deferred = $q.defer();
             $http.get(API + 'get-uraian-tugas-jabatan-by-jabatan/' + kdJabatan).then(
@@ -259,6 +272,19 @@
             return deferred.promise;  
         }
 
+        service.CreateUrtugProgram = function(program){
+          var deferred = $q.defer();
+            $http.post(API + 'create-urtug-program', program).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;  
+        }
+
         service.CreateUrtugKegiatanPegawai = function(data){
           var deferred = $q.defer();
             $http.post(API + 'create-urtug-kegiatan-pegawai/', data).then(
@@ -311,6 +337,45 @@
             return deferred.promise;  
         }
 
+        service.GetPegawaiPenanggungJawab = function(data){
+            var deferred = $q.defer();
+            $http.post(API + 'get-pegawai-penanggung-jawab', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
+        service.GetPegawaiByJabatan = function(kdJabatan){
+            var deferred = $q.defer();
+            $http.get(API + 'get-pegawai-by-jabatan/' + kdJabatan).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
+        service.GetProgram = function(kdUnit){
+            var deferred = $q.defer();
+            $http.get(API + 'program-simda-unit-kerja/' + kdUnit).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
         service.SetDataUrtug = function(used_urtug, available_urtug){
             var urtug = angular.copy(available_urtug);
             for(var i = 0; i < used_urtug.length; i++){
@@ -352,6 +417,15 @@
         service.GetKegiatan = function(array, data){
             for(var i = 0; i < array.length; i++){
                 if(array[i].ketKegiatan == data){
+                    return array[i];
+                    break;
+                }
+            }
+        }
+
+        service.GetDataProgram = function(array, data){
+            for(var i = 0; i < array.length; i++){
+                if(array[i].ketProgram == data){
                     return array[i];
                     break;
                 }

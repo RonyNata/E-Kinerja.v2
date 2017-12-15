@@ -11,15 +11,22 @@ angular.
 
         vm.isDPA = isDPA;
 
+        vm.searchName = "";
+
         getAllTemplate();
 
         function getAllTemplate(){
           KontrakPegawaiService.GetAllTemplate().then(
             function(response){
               vm.template = response;
+              vm.result = response;
             }, function(errResponse){
 
             })
+        }
+
+        vm.search = function(){
+          vm.result = KontrakPegawaiService.SearchTemplate(vm.searchName, vm.template);
         }
 
         vm.gotoTemplate = function(url){

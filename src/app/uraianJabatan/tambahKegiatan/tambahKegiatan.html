@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color:#1fcfe0;">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Tambah Kegiatan</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Tambah {{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</h3>
 </div>
 <form ng-submit="kegiatan.save()" class="form-horizontal">
 <div class="modal-body" id="modal-body">
@@ -12,14 +12,21 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="col-md-12" style="margin-bottom:10px"> 
                                 <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>Kegiatan</b></p>
+                                    <p><b>{{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</b></p>
                                 </div>
                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-show="kegiatan.isEselon4">
                                     <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan">
                                         <datalist id="kegiatan" style="height: 100px">
                                                 <option ng-repeat="data in kegiatan.list_kegiatan"
                                          value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
+                                        </datalist>
+                                </div>
+                                <div class="col-md-6" ng-hide="kegiatan.isEselon4">
+                                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program">
+                                        <datalist id="kegiaatan" style="height: 100px">
+                                                <option ng-repeat="data in kegiatan.list_program"
+                                         value="{{data.ketProgram}}">{{data.ketProgram}}</option>
                                         </datalist>
                                 </div>
                             </div>

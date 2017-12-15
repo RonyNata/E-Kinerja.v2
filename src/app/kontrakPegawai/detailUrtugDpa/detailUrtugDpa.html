@@ -20,7 +20,8 @@
                             <tbody>
                                 <tr ng-repeat="kegiatan in urtugkegiatan.kegiatan" style="text-align: center">
                                     <td>{{$index + 1}}</td>
-                                    <td style="text-align: left;">{{kegiatan.ketKeg}}</td>
+                                    <td style="text-align: left;" ng-show="urtugkegiatan.isEselon4">{{kegiatan.ketKeg}}</td>
+                                    <td style="text-align: left;" ng-hide="urtugkegiatan.isEselon4">{{kegiatan.ketProg}}</td>
                                     <td>{{kegiatan.statusPenanggungJawab}}</td>
                                     <td>{{kegiatan.paguAnggaran}}</td>
                                 </tr>

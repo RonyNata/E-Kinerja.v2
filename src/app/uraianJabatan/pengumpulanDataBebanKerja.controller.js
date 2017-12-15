@@ -89,6 +89,13 @@ angular.
       	vm.loading = true;
       	PengumpulanDataBebanKerjaService.GetAllJabatanByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
       		function(response){
+      			for(var i = 0; i < response.length; i++){
+      				var eselon = response[i].eselon.split('.')[0].toLowerCase();
+      				switch(eselon){
+      					case 'i' : case 'ii' : case 'iii' : response[i].isEselon4 = false; break;
+      					default : response[i].isEselon4 = true; break;
+      				}
+      			}
       			vm.list_jabatan = response;
       			vm.loading = false;
       			vm.loadUrtug = false;
@@ -149,8 +156,10 @@ angular.
       function getAllDpa(){
       	vm.urtugDpa = [];
       	for(var i = 0; i < vm.list_jenis_urtug.length; i++)
-      		if(vm.list_jenis_urtug[i].jenisUrtug == 'DPA')
+      		if(vm.list_jenis_urtug[i].jenisUrtug == 'DPA'){
+      			vm.list_jenis_urtug[i].jenis = true;
       			vm.urtugDpa.push(vm.list_jenis_urtug[i]);
+      		}
       }
 
       function getJenisUrtugJabatan(){
@@ -254,33 +263,39 @@ angular.
 	      });
 	    };
 
-	    vm.kegiatan = function (parentSelector) {
-	      var tugas = PengumpulanDataBebanKerjaService.GetUrtugStatus(vm.list_jenis_urtug, $scope.choosen_urtug);
-	      var item = {
-	      	"kdJabatan": $scope.jabatan,
-	      	"kdUrtug": tugas.kdUrtug,
-	      	"kdJenisUrtug": tugas.kdJenisUrtug,
-	      	"tahunUrtug": tugas.tahunUrtug
-	      };
-	      console.log(item);
+	    vm.kegiatan = function (urtug, parentSelector) {
+	      // var tugas = PengumpulanDataBebanKerjaService.GetUrtugStatus(vm.list_jenis_urtug, $scope.choosen_urtug);
+	      // var item = {
+	      // 	"kdJabatan": $scope.jabatan,
+	      // 	"kdUrtug": tugas.kdUrtug,
+	      // 	"kdJenisUrtug": tugas.kdJenisUrtug,
+	      // 	"tahunUrtug": tugas.tahunUrtug
+	      // };
+	      // console.log(item);
 	      var parentElem = parentSelector ? 
 	        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
 	      var modalInstance = $uibModal.open({
 	        animation: true,
 	        ariaLabelledBy: 'modal-title',
 	        ariaDescribedBy: 'modal-body',
-	        templateUrl: 'app/uraianJabatan/tambahKegiatan/tambahKegiatan.html',
-	        controller: 'KegiatanController',
-	        controllerAs: 'kegiatan',
+	        templateUrl: 'app/uraianJabatan/kegiatan/kegiatan.html',
+	        controller: 'KegiatanListController',
+	        controllerAs: 'kegiatanlist',
 	        // windowClass: 'app-modal-window',
 	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
-	          items: function () {
-	            return item;
+	          urtug: function () {
+	            return urtug;
+	          }, 
+	          jabatan: function(){
+	          	return $scope.jabatan;
 	          }, 
 	          pegawai: function(){
 	          	return vm.list_pegawai;
+	          },
+	          isEselon4: function(){
+	          	return vm.jabatan.isEselon4;
 	          }
 	        }
 	      });
@@ -288,7 +303,7 @@ angular.
 	      modalInstance.result.then(function () {
 	      	// showToastrSuccess('ditambahkan');
 	      	// getUrtugByJabatan();
-	      	getUrtugKegiatanByJabatan();
+	      	// getUrtugKegiatanByJabatan();
 	        // vm.selected = selectedItem;
 	      }, function () {
 	      	// showToastrFailed('menambahkan data');
@@ -300,7 +315,8 @@ angular.
 	      // console.log(items);
 	      var item = {
 	      	"kdJabatan": vm.jabatan.kdJabatan,
-	      	"tahunUrtug": tahun
+	      	"tahunUrtug": tahun,
+	      	"isEselon4": vm.jabatan.isEselon4
 	      	// "kdUrtug": items.kdUrtug,
 	      	// "kdJenisUrtug": items.kdJenisUrtug
 	      };

@@ -36,6 +36,7 @@ angular.
             function(response){
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Perintah";
+                response[i].jenis = 1;
                 response[i].tanggalDibuat = response[i].createdDate;
                 vm.naskahHistory.push(response[i]);
               }
@@ -76,8 +77,10 @@ angular.
             })
         }
 
-        vm.getDocument = function(naskah, idx){
-          vm.naskah[idx].loading = true;
+        vm.getDocument = function(naskah, idx, isHistory){
+          if(!isHistory)
+            vm.naskah[idx].loading = true;
+          else vm.naskahHistory[idx].loading = true;
           switch(naskah.jenis){
             case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx); break;
@@ -102,7 +105,7 @@ angular.
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              vm.naskah[idx].loading = false;
+              vm.naskahHistory[idx].loading = false;
               pdfMake.createPdf(doc).open();
             }, function(errResponse){
 
