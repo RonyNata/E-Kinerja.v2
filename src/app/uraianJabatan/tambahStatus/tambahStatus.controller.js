@@ -14,9 +14,11 @@ angular.
         vm.target = {
           "kuantitas": 0,
           "satuanKuantitas": "",
-          "kualitas": 0,
-          "waktu": 0,
-          "biaya": 0
+          "kualitas": 100,
+          "waktu": 12,
+          "waktuDisplay": "12 Bulan",
+          "biaya": 0,
+          "biayaDisplay": "Rp. 0"
         }
         $scope.statusUrtug = "";
         getJenisUrtug();
@@ -52,9 +54,11 @@ angular.
             vm.target = {
               "kuantitas": 0,
               "satuanKuantitas": "",
-              "kualitas": 0,
-              "waktu": 0,
-              "biaya": 0
+              "kualitas": 100,
+              "waktu": 12,
+              "waktuDisplay": "12 Bulan",
+              "biaya": 0,
+              "biayaDisplay": "Rp. 0"
             }
           };
         });
