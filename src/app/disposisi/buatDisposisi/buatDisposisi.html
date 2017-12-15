@@ -55,9 +55,9 @@
                                             <tr ng-repeat="ambil in ambilperpindahan.dataHistory" style="text-align: center">
                                                 <td>{{$index + 1}}</td>
                                                 <td style="text-align: left;">{{ambil.kdLembarDisposisi}}</td>
-                                                <td style="text-align: left;">{{ambil.tktKeamanan == 1 ? 'SR' : ''}}
-                                                {{ambil.tktKeamanan == 2 ? 'R' : ''}}
-                                                {{ambil.tktKeamanan == 3 ? 'B' : ''}}
+                                                <td style="text-align: left;">{{ambil.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
+                                                {{ambil.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
+                                                {{ambil.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                 </td> 
                                                 <td>
                                                     <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)"><i class="material-icons">edit</i><span>LANJUT</span></button>
@@ -101,9 +101,9 @@
                                             <tr ng-repeat="history in ambilperpindahan.history" style="text-align: center">
                                                 <td>{{$index + 1}}</td>
                                                 <td style="text-align: left;">{{history.kdLembarDisposisi}}</td>
-                                                <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR' : ''}}
-                                                {{history.tktKeamanan == 2 ? 'R' : ''}}
-                                                {{history.tktKeamanan == 3 ? 'B' : ''}}
+                                                <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
+                                                {{history.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
+                                                {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                 </td> 
                                                 <td>
                                                     <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi)"><i class="material-icons">edit</i><span>TREE</span></button>

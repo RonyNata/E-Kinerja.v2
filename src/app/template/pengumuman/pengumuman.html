@@ -68,14 +68,14 @@
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
                                             <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
+                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="pengumuman.item.pegawaiPenandatanganSurat" placeholder="Pilih Pegawai" ng-change="pengumuman.getPegawaiPenandatangan()">
                                                 <datalist id="pegawai">
                                                         <option ng-repeat="pgw in pengumuman.list_pegawai"
                                                  value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
                                                 </datalist>
                                             </form>
-                                            <div ng-show="pengumuman.item.pegawaiPembuat">Nama: {{pengumuman.item.pegawaiPembuat.nama}}</div>
-                                            <div ng-show="pengumuman.item.pegawaiPembuat">Jabatan: {{pengumuman.item.pegawaiPembuat.jabatan}}</div>
+                                            <div ng-show="pengumuman.item.pegawaiPenandatangan">Nama: {{pengumuman.item.pegawaiPenandatangan.nama}}</div>
+                                            <div ng-show="pengumuman.item.pegawaiPenandatangan">Jabatan: {{pengumuman.item.pegawaiPenandatangan.jabatan}}</div>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px">

@@ -6,7 +6,7 @@ angular.
 	.controller('SuratDinasController', SuratDinasController);
 
     
-    function SuratDinasController(EkinerjaService, NotaDinasService, $scope, $state) {
+    function SuratDinasController(EkinerjaService,  HakAksesService, NotaDinasService, $scope, $state) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -19,6 +19,42 @@ angular.
         vm.addTembusan = function(){
           var data = {"id": new Date().getTime(), "deskripsi": ''};
           vm.tembusanSurat.push(data);
+        }
+
+        vm.target = [{"id": new Date().getTime()}];
+        
+        vm.addTarget = function(){
+          var data = {"id": new Date().getTime()};
+          vm.target.push(data);
+        }
+        getAllPegawai();
+
+        function getAllPegawai(){
+          HakAksesService.GetAllPegawai().then(
+            function(response){
+              vm.list_pegawai = response;
+              vm.loading = false;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.getPegawai = function(idx){
+          if(vm.target[idx].pegawai.length == 18)
+            vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        } 
+        vm.getPegawaiPenerima = function(){
+          if(vm.item.pegawaiPenerimaSurat.length == 18){
+            vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenerimaSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPenerima);
+          }
+        }
+
+        vm.getPegawaiPenandatangan = function(){
+          if(vm.item.pegawaiPenandatanganSurat.length == 18){
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenandatanganSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPenandatangan);
+          }
         }
 
         vm.save = function(){
