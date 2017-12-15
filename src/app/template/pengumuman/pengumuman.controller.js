@@ -4,13 +4,20 @@
     module('eKinerja')
         .controller('PengumumanController', PengumumanController);
 
-    function PengumumanController(EkinerjaService, PengumumanService, $scope, $state) {
+    function PengumumanController(EkinerjaService, HakAksesService, PengumumanService, $scope, $state) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
-
+        
+        // vm.target = [{"id": new Date().getTime()}];
+        
+        // vm.addTarget = function(){
+        //   var data = {"id": new Date().getTime()};
+        //   vm.target.push(data);
+        // } 
+        
         getAllPegawai();
 
         function getAllPegawai(){
@@ -23,11 +30,12 @@
             })
         }
 
-        $scope.$watch('pegawai', function(){
-          if($scope.pegawai.length == 18)
-            vm.item.pegawaiPembuat = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-          debugger
-        })
+        vm.getPegawaiPenandatangan = function(){
+          if(vm.item.pegawaiPenandatanganSurat.length == 18){
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenandatanganSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPenandatangan);
+          }
+        }
 
         function template(){
             vm.docDefinition = {

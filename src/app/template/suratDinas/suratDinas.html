@@ -84,7 +84,15 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="suratdinas.item.penerima" required>
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="suratdinas.item.pegawaiPenerimaSurat" placeholder="Pilih Pegawai" ng-change="suratdinas.getPegawaiPenerima()">
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratdinas.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="suratdinas.item.pegawaiPenerima">Nama: {{suratdinas.item.pegawaiPenerima.nama}}</div>
+                                        <div ng-show="suratdinas.item.pegawaiPenerima">Jabatan: {{suratdinas.item.pegawaiPenerima.jabatan}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -124,21 +132,35 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="suratdinas.item.nmLengkap" required>
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="suratdinas.item.pegawaiPenandatanganSurat" placeholder="Pilih Pegawai" ng-change="suratdinas.getPegawaiPenandatangan()">
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratdinas.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="suratdinas.item.pegawaiPenandatangan">Nama: {{suratdinas.item.pegawaiPenandatangan.nama}}</div>
+                                        <div ng-show="suratdinas.item.pegawaiPenandatangan">Jabatan: {{suratdinas.item.pegawaiPenandatangan.jabatan}}</div>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                <div class="col-md-12" style="margin-bottom:10px" ng-repeat="target in suratdinas.target"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Tembusan</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <div ng-repeat="tembusan in suratdinas.tembusanSurat">
-                                            <input class="form-control" ng-model="tembusan.deskripsi" required>
-                                        </div>
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="target.pegawai" placeholder="Pilih Pegawai" ng-change="suratdinas.getPegawai($index)">
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratdinas.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.jabatan}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="target.pegawaiTarget">Nama: {{target.pegawaiTarget.nama}}</div>
+                                        <div ng-show="target.pegawaiTarget">Jabatan: {{target.pegawaiTarget.jabatan}}</div>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
+                                    <button type="button" class="btn btn-primary waves-effect" ng-click="suratdinas.addTarget()" style="margin-left: 15px">+ Tambah Tembusan</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 

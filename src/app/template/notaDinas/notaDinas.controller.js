@@ -6,17 +6,67 @@ angular.
 	.controller('NotaDinasController', NotaDinasController);
 
     
-    function NotaDinasController(EkinerjaService, NotaDinasService, $scope, $state) {
+    function NotaDinasController(EkinerjaService, HakAksesService, NotaDinasService, $scope, $state) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
 
-        vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
+        // vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
+        vm.target = [{"id": new Date().getTime()}];
 
-        vm.addTembusan = function(){
-          var data = {"id": new Date().getTime(), "deskripsi": ''};
-          vm.tembusanSurat.push(data);
+        // vm.addTembusan = function(){
+        //   var data = {"id": new Date().getTime(), "deskripsi": ''};
+        //   vm.tembusanSurat.push(data);
+        // }
+
+        vm.addTarget = function(){
+          var data = {"id": new Date().getTime()};
+          vm.target.push(data);
         }
+        getAllPegawai();
+
+        function getAllPegawai(){
+          HakAksesService.GetAllPegawai().then(
+            function(response){
+              vm.list_pegawai = response;
+              vm.loading = false;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.getPegawai = function(idx){
+          if(vm.target[idx].pegawai.length == 18)
+            vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        } 
+
+        vm.getPegawaiPenerima = function(){
+          if(vm.item.pegawaiPenerimaSurat.length == 18){
+            vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenerimaSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPenerima);
+          }
+        }
+
+        vm.getPegawaiPemberi = function(){
+          if(vm.item.pegawaiPemberiSurat.length == 18){
+            vm.item.pegawaiPemberi = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPemberiSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPemberi);
+          }
+        }
+
+        vm.getPegawaiPenandatangan = function(){
+          if(vm.item.pegawaiPenandatanganSurat.length == 18){
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenandatanganSurat,vm.list_pegawai);
+            console.log(vm.item.pegawaiPenandatangan);
+          }
+        }
+
+        // vm.getPegawaiJabatan = function(){
+        //   if(vm.item.pegawaiJabatanSurat.length == 18){
+        //     vm.item.pegawaiJabatan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiJabatanSurat,vm.list_pegawai);
+        //     console.log(vm.item.pegawaiJabatan);
+        //   }
+        // }
 
         vm.save = function(){
           vm.item.tembusanSurat = [];
@@ -27,6 +77,8 @@ angular.
           for(var i = 0; i < vm.tembusanSurat.length; i++)
             vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
           console.log(vm.item);
+          for(var i = 0; i < vm.notadinas.length; i++)
+            data.targetPegawaiList.push(vm.target[i].pegawaiPembuat.nipPegawai);
           NotaDinasService.save(vm.item).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
