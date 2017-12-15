@@ -95,7 +95,7 @@ angular.
           $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
           $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
           function(response){
-            vm.kegiatan = response;
+            vm.kegiatan = response;debugger
             for(var i = 0; i < response.length; i++)
               vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
           }, function(errResponse){

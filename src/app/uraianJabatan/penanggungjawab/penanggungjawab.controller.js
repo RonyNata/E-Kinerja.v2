@@ -43,7 +43,7 @@ angular.
           }
 
           getPegawaiJabatan();
-          if(isEselon4){
+          if(vm.isEselon4){
             data.kdKeg = kegiatan.kdKeg;
             PengadaanBarangJasaService.GetUrtugKegiatanPenanggungjawab(data).then(
               function(response){

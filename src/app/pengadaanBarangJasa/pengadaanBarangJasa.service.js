@@ -48,7 +48,7 @@
 
         service.GetUrtugProgramPenanggungjawab = function(data){
             var deferred = $q.defer();
-            $http.post(API + 'get-urtug-program-pegawai-by-urtug-kegiatan/', data).then(
+            $http.post(API + 'get-urtug-program-pegawai-by-urtug-jabatan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
