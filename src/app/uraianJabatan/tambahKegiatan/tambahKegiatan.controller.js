@@ -12,6 +12,15 @@ angular.
         vm.list_pegawai = pegawai;
         vm.isEselon4 = isEselon4;
         // vm.pegawai_pj = {};
+        vm.target = {
+          "kuantitas": 0,
+          "satuanKuantitas": "",
+          "kualitas": 100,
+          "waktu": 12,
+          "waktuDisplay": "12 Bulan",
+          "biaya": 0,
+          "biayaDisplay": "Rp. 0"
+        }
         vm.pj = {}; 
         if(isEselon4)
           getAllKegiatan();
@@ -43,6 +52,14 @@ angular.
             )
         }
 
+        vm.getKegiatan = function(){
+          if(isEselon4 && vm.kegiatan_pj.length >= 15){
+            var kegiatan = PengumpulanDataBebanKerjaService.GetKegiatan(vm.list_kegiatan, vm.kegiatan_pj);
+            vm.target.biaya = kegiatan.paguAnggaran;debugger;
+            vm.target.biayaDisplay = "Rp. " + EkinerjaService.FormatRupiah(kegiatan.paguAnggaran);
+          }
+        }
+
         function getAllStatusPJ(){
           PengumpulanDataBebanKerjaService.GetStatusPJ().then(
             function(response){
@@ -65,7 +82,12 @@ angular.
           items.kdProg = kegiatan.kdProg;
           items.idProg = kegiatan.idProg;
           console.log(items);
-          if(isEselon4)
+          if(isEselon4){
+            items.kuantitas = vm.target.kuantitas;
+            items.satuanKuantitas = vm.target.satuanKuantitas;
+            items.kualitas = vm.target.kualitas;
+            items.waktu = vm.target.waktu;
+            items.biaya = vm.target.biaya;
             PengumpulanDataBebanKerjaService.CreateUrtugKegiatan(items).then(
               function(response){
         				$uibModalInstance.close();
@@ -73,6 +95,7 @@ angular.
               }, function(errResponse){
 
               })
+          }
           else 
             PengumpulanDataBebanKerjaService.CreateUrtugProgram(items).then(
               function(response){
