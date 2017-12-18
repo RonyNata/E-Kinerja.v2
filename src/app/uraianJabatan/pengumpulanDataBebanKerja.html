@@ -1,5 +1,5 @@
 <ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;px;">
+<section style="padding-top: 90px;">
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -21,9 +21,9 @@
                         <!-- <h2 class="col-md-8" style="margin-top: -15px"></h2>  -->    
                     </div>
                     
-                    <div class="body" style="margin-top: 0px;font-size: 16px;"> 
+                    <div class="body" style="margin-top: 0px;font-size: 16px;">
                                 <!-- {{urtug_jabatan.jabatan}} -->
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-bottom: -5px">
                             <div class="col-md-4">
                                 <form method="get" style="margin-left: -30px;">
                                     <input class="form-control" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas">
@@ -33,17 +33,48 @@
                                     </datalist>
                                 </form>
                             </div>
-                            <div class="col-md-8" style="margin-top: -60px;">
-                                <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;">
-                                    <li role="presentation" class="active">
-                                        <a href="#urtugjab" data-toggle="tab">Atur Urtug Jabatan</a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="#statusurtug" data-toggle="tab">Atur Status Urtug</a>
-                                    </li>
-                                </ul>
+                        </div>
+                        <div class="col-md-12" style="margin-bottom: 5px; padding-left: 0px">
+                            <div class="col-md-6" style="padding-left: 0px">
+                                <table>
+                                    <tr>
+                                        <td>Nama Jabatan :</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 8px"><b>{{urtug_jabatan.jabatan.jabatan}}</b></td>
+                                    </tr>
+                                </table>
                             </div>
-                        </div>     
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <table>
+                                    <tr>
+                                        <td>Pejabat Penilai :</td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-show="urtug_jabatan.jabatan" >
+                                            <b>{{urtug_jabatan.penilai.nama}}</b>&nbsp&nbsp&nbsp
+                                        </td>
+                                        <td ng-show="urtug_jabatan.jabatan">
+                                            <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info waves-effect">
+                                                <i class="material-icons">edit</i>
+                                                <span>UBAH</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-bottom: 30px; padding-left: 0px; padding-right: 0px">
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#urtugjab" data-toggle="tab"><b>Atur Urtug Jabatan</b></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#statusurtug" data-toggle="tab"><b>Atur Status Urtug</b></a>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="urtugjab">
                                  <div class="col-md-12" style="margin-top: -20px; margin-bottom: -40px; margin-left: -20px;">
@@ -52,12 +83,7 @@
                                         </button>
                                     </div>
                                     <div class="col-md-10">
-                                        <div class="col-md-6">
-                                            <div ng-show="urtug_jabatan.jabatan" style="margin-top: -10px;">
-                                                <h5>Pejabat Penilai: {{urtug_jabatan.penilai.nama}}.&nbsp
-                                                <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info waves-effect"><i class="material-icons">edit</i><span>UBAH</span> </button>   
-                                            </div>
-                                        </div>
+                                        <div class="col-md-6"></div>
                                         <div class="col-md-6">
                                             <div class="col-md-2"></div>
                                             <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
@@ -74,7 +100,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%; text-align: center">No</th>
-                                                <th style="text-align: center">Rincian Tugas dan Kegiatan {{urtug_jabatan.jabatan.jabatan}}</th> 
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
                                                 <th style="width: 10%; text-align: center">Kuant/ Output</th>
                                                 <th style="width: 5%; text-align: center">Mutu</th> 
                                                 <th style="width: 5%; text-align: center">Waktu</th> 
@@ -104,7 +130,7 @@
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
@@ -139,7 +165,7 @@
                                         <thead>
                                             <tr>
                                                 <th style="width: 5%; text-align: center">No</th>
-                                                <th style="text-align: center">Rincian Tugas dan Kegiatan {{urtug_jabatan.jabatan.jabatan}}</th>
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
                                                 <th style="width: 5%; text-align: center">Jenis</th> 
                                                 <th style="text-align: center;width: 30%">Action</th>  
                                             </tr>
@@ -151,6 +177,7 @@
                                                 <td>{{urtug.jenisUrtug}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary waves-effect" ng-click="urtug_jabatan.kegiatan(urtug)" ng-show="urtug.jenis"><i class="material-icons">edit</i><span>{{urtug_jabatan.jabatan.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-show="!urtug.jenis"><i class="material-icons">edit</i><span>DETAIL</span></button>
                                                     <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                                 </td> 
                                             </tr>
@@ -164,7 +191,7 @@
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
