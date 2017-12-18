@@ -390,6 +390,24 @@ angular.
 	      });
 	    };
 
+        vm.openDetailUrtug = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
+                controller: 'DetailUrtugController',
+                controllerAs: 'detailUrtug'
+                // windowClass: 'app-modal-window',
+                // size: 'lg',
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
+        };
+
 	    vm.addSop = function (kdUrtug, parentSelector) {
 	      var parentElem = parentSelector ? 
 	        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

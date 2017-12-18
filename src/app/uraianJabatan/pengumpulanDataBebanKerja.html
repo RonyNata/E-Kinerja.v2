@@ -101,10 +101,10 @@
                                             <tr>
                                                 <th style="width: 5%; text-align: center">No</th>
                                                 <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                                <th style="width: 10%; text-align: center">Kuant/ Output</th>
-                                                <th style="width: 5%; text-align: center">Mutu</th> 
-                                                <th style="width: 5%; text-align: center">Waktu</th> 
-                                                <th style="width: 5%; text-align: center">Biaya</th>
+                                                <!--<th style="width: 10%; text-align: center">Kuant/ Output</th>-->
+                                                <!--<th style="width: 5%; text-align: center">Mutu</th> -->
+                                                <!--<th style="width: 5%; text-align: center">Waktu</th> -->
+                                                <!--<th style="width: 5%; text-align: center">Biaya</th>-->
                                                 <th style="text-align: center; width: 20%" >Action</th> 
                                             </tr>
                                         </thead>
@@ -112,10 +112,10 @@
                                             <tr ng-repeat="urtug in filteredData" style="text-align: center">
                                                 <td>{{$index + 1 + (5 * currentPage )}}</td>
                                                 <td style="text-align: left;">{{urtug.uraianTugas.deskripsi}}</td> 
-                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                <td>{{urtug.kualitas}}</td> 
-                                                <td>{{urtug.waktu + ' ' + urtug.satuanWaktu}}</td> 
-                                                <td>{{urtug.biaya}}</td>
+                                                <!--<td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>-->
+                                                <!--<td>{{urtug.kualitas}}</td> -->
+                                                <!--<td>{{urtug.waktu + ' ' + urtug.satuanWaktu}}</td> -->
+                                                <!--<td>{{urtug.biaya}}</td>-->
                                                 <td>
                                                     <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                                 </td> 
@@ -177,7 +177,7 @@
                                                 <td>{{urtug.jenisUrtug}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-primary waves-effect" ng-click="urtug_jabatan.kegiatan(urtug)" ng-show="urtug.jenis"><i class="material-icons">edit</i><span>{{urtug_jabatan.jabatan.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
-                                                    <button type="button" class="btn btn-success waves-effect" ng-show="!urtug.jenis"><i class="material-icons">edit</i><span>DETAIL</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis"><i class="material-icons">visibility</i><span>DETAIL</span></button>
                                                     <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                                 </td> 
                                             </tr>

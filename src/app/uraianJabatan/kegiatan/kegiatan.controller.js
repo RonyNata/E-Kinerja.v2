@@ -124,6 +124,24 @@ angular.
           });
         };
 
+        vm.openDetailUrtug = function () {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
+                controller: 'DetailUrtugController',
+                controllerAs: 'detailUrtug'
+                // windowClass: 'app-modal-window',
+                // size: 'lg',
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
+        };
+
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');
   	    };
