@@ -91,6 +91,12 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">FITUR E-KINERJA</li>
+                <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}">
+                    <a href="#/dashboard">
+                        <i class="material-icons">home</i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
                 <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
                     <a href="#/master/urtug">
                         <i class="material-icons">home</i>

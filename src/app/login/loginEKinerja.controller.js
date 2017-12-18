@@ -6,7 +6,7 @@ angular
     .controller('LoginEKinerjaController', LoginEKinerjaController);
 
     function LoginEKinerjaController($scope, $rootScope, $location, LoginEKinerjaService, $cookieStore, $state,
-        EkinerjaService){
+        EkinerjaService, TemplateSuratPerintahService){
         // reset login status
         // LoginEKinerjaService.ClearCredentials();
         // var ses = {
@@ -30,7 +30,8 @@ angular
                     // LoginEKinerjaService.SetCredentials($scope.nip, $scope.password);
                     debugger;
                     sessionStorage.setItem('credential', JSON.stringify(response.data));
-                    EkinerjaService.checkRole(response.data.role.id);
+                    // EkinerjaService.checkRole(response.data.role.id);
+                    $state.go('dashboard');
                     $scope.dataLoading = false;
                     // $state.go('master-urtug');
                 }, function(errResponse) {

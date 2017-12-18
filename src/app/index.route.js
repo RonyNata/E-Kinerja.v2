@@ -457,6 +457,12 @@
               $state.go($state.current.name);
             }
           }
+        })
+        .state('dashboard', {
+          url: '/dashboard',
+          templateUrl: 'app/dashboard/dashboard.html',
+          controller: 'DashboardController',
+          controllerAs: 'dashboard'
         });
 
     $urlRouterProvider.otherwise('/');
