@@ -20,7 +20,7 @@
               },
 
               {
-                text: '' + data.jabatanPenandatangan.toUpperCase(), style: ['nama_instansi', 'nama_judul']
+                text: '' , style: ['nama_instansi', 'nama_judul']
               },
 
               {
@@ -183,7 +183,7 @@
             docDefinition.content[8].table.body[2][2].ol.push(data.untukList[i]);
           }
 
-          if($state.current.name == "suratperintahnonpejabat"){
+          if($state.current.name == "suratperintahnonpejabat" || !data.suratPejabat){
             docDefinition.content[2] = {
                 margin: [0, 10, 0, 15],
                 table: {
@@ -281,6 +281,7 @@
                 height: 90
             });
           }
+          else docDefinition.content[1].text += data.jabatanPenandatangan.toUpperCase();
           return docDefinition;
         }
  

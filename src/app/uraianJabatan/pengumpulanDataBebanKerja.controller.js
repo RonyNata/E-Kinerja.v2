@@ -390,14 +390,20 @@ angular.
 	      });
 	    };
 
-        vm.openDetailUrtug = function () {
+        vm.openDetailUrtug = function (urtug) {
+        	console.log(urtug);
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
                 templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
                 controller: 'DetailUrtugController',
-                controllerAs: 'detailUrtug'
+                controllerAs: 'detailUrtug',
+                resolve: {
+                	urtug: function(){
+                		return urtug;
+                	}
+                }
                 // windowClass: 'app-modal-window',
                 // size: 'lg',
             });

@@ -376,6 +376,19 @@
             return deferred.promise;
         }
 
+        service.GetUrtugKegiatan = function(data){
+            var deferred = $q.defer();
+            $http.post(API + 'get-urtug-kegiatan-by-id/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
         service.SetDataUrtug = function(used_urtug, available_urtug){
             var urtug = angular.copy(available_urtug);
             for(var i = 0; i < used_urtug.length; i++){

@@ -19,7 +19,7 @@
                 },
 
                 {
-                    text: '' + data.jabatanPenandaTangan.toUpperCase(), style: 'nama_judul'
+                    text: '', style: 'nama_judul'
                 },
                 {
                     text: 'REPUBLIK INDONESIA', style: 'nama_judul', margin: [0,0,0,15]
@@ -244,6 +244,7 @@
                 height: 90
             });
           }
+          else docDefinition.content[1].text += data.jabatanPenandaTangan.toUpperCase();
           return docDefinition;
         }
  

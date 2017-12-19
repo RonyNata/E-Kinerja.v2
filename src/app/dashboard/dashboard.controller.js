@@ -96,7 +96,7 @@
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          vm.naskahHistory[idx].loading = false;
+          vm.naskah[idx].loading = false;
           pdfMake.createPdf(doc).open();
         }, function(errResponse){
 

@@ -141,6 +141,19 @@
             return deferred.promise;
         };
 
+        service.RemovePJProgram = function (data) {
+            var deferred = $q.defer();debugger
+            $http.post(API + 'delete-urtug-program-pegawai/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
 		return service;
 	}
 })();

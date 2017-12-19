@@ -124,22 +124,35 @@ angular.
           });
         };
 
-        vm.openDetailUrtug = function () {
-            var modalInstance = $uibModal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
-                controller: 'DetailUrtugController',
-                controllerAs: 'detailUrtug'
-                // windowClass: 'app-modal-window',
-                // size: 'lg',
-            });
+        vm.openDetailUrtug = function (urtug) {
+          urtug.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
+          PengumpulanDataBebanKerjaService.GetUrtugKegiatan(urtug).then(
+            function(response){debugger
+              var dataUrtug = response;
+              console.log(response);
+              var modalInstance = $uibModal.open({
+                  animation: true,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
+                  controller: 'DetailUrtugController',
+                  controllerAs: 'detailUrtug',
+                  resolve: {
+                    urtug: function(){
+                      return dataUrtug;
+                    }
+                  }
+                  // windowClass: 'app-modal-window',
+                  // size: 'lg',
+              });
 
-            modalInstance.result.then(function () {
-            }, function () {
+              modalInstance.result.then(function () {
+              }, function () {
 
-            });
+              });
+            }, function(errResponse){
+
+            })
         };
 
       	vm.cancel = function () {

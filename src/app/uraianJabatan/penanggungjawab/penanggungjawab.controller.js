@@ -128,20 +128,30 @@ angular.
             "tahun": kegiatan.tahun,
             "kdProg": kegiatan.kdProg,
             "idProg": kegiatan.idProg,
-            "kdKeg": kegiatan.kdKeg,
             "nipPegawai": data.nipPegawai,
             "kdStatusPenanggungJawab": data.kdStatusPenanggungJawab
           }
-          console.log(item);
-          PengadaanBarangJasaService.RemovePJ(item).then(
-            function(response){
-              EkinerjaService.showToastrSuccess('Data Penanggungjawab berhasil dihapus dari kegiatan');
-              getPJ();
-            }, function(errResponse){
-              EkinerjaService.showToastrError('Gagal Dihapus');
-            })
-
+          if(isEselon4){
+            console.log(item);
+            item.kdKeg = kegiatan.kdKeg;
+            PengadaanBarangJasaService.RemovePJ(item).then(
+              function(response){
+                EkinerjaService.showToastrSuccess('Data Penanggungjawab berhasil dihapus dari kegiatan');
+                getPJ();
+              }, function(errResponse){
+                EkinerjaService.showToastrError('Gagal Dihapus');
+              })
           }
+          else
+            PengadaanBarangJasaService.RemovePJProgram(item).then(
+              function(response){
+                EkinerjaService.showToastrSuccess('Data Penanggungjawab berhasil dihapus dari program');
+                getPJ();
+              }, function(errResponse){
+                EkinerjaService.showToastrError('Gagal Dihapus');
+              })
+
+        }
 
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');
