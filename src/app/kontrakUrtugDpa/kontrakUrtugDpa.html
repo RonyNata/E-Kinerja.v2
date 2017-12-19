@@ -8,36 +8,37 @@
                         <h2>Halaman Persetujuan Kontrak Kerja Pegawai</h2>
                     </div>
                     <div class="body" style="font-size: 17px">
-                        <div style="margin-left: -10px; float: center; width: 20%" class="container-fluid">
-                            <button type="button" ng-hide="kontrakdpa.urtug" ng-click="kontrakdpa.kembali()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 40px; font-size: 20px"> <b>Kembali</b>
-                            </button>
+                        <div class="col-md-12" style="padding-left: 0px;margin-bottom: 10px">
+                            <div class="col-md-2" style="padding-left: 0px;margin-bottom: 10px">
+                                <button type="button" ng-hide="kontrakdpa.urtug" ng-click="kontrakdpa.kembali()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 40px; font-size: 20px"> <b>Kembali</b></button>
+                            </div>
                         </div>
                         <div class="animate-show-hide" ng-show="kontrakdpa.urtug">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                            <table class="table table-bordered table-striped table-hover" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                        <th style="text-align: center;border: 1px solid black" >Rincian Uraian Tugas</th>
-                                        <th style="width: 5%;border: 1px solid black">Pending</th>
-                                        <th style="width: 5%;border: 1px solid black">Diterima</th>
-                                        <th style="width: 5%;border: 1px solid black">Ditolak</th>
+                                    <tr style="background:#D32F2F; color:#ffff">
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th style="text-align: center" >Rincian Uraian Tugas</th>
+                                        <th style="width: 5%">Pending</th>
+                                        <th style="width: 5%">Diterima</th>
+                                        <th style="width: 5%">Ditolak</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="urtug in kontrakdpa.urtugDpa" ng-click="kontrakdpa.gotoKegiatan(urtug)" style="text-align: center">
-                                        <td style="border: 1px solid black">{{$index + 1}}</td>
-                                        <td style="text-align: left;border: 1px solid black">{{urtug.deskripsiUrtug}}</td>
-                                        <td style="border: 1px solid black">{{urtug.pending}}</td>
-                                        <td style="border: 1px solid black">{{urtug.terima}}</td>
-                                        <td style="border: 1px solid black">{{urtug.tolak}}</td>
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left">{{urtug.deskripsiUrtug}}</td>
+                                        <td>{{urtug.pending}}</td>
+                                        <td>{{urtug.terima}}</td>
+                                        <td>{{urtug.tolak}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="animate-show-hide" ng-show="kontrakdpa.kegiatan">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <table class="table table-bordered table-striped table-hover" cellspacing="0">
                                 <thead>
-                                    <tr>
+                                    <tr style="background:#D32F2F; color:#ffff">
                                         <th style="width: 5%; text-align: center;">No</th>
                                         <th >Rincian Kegiatan</th>
                                         <th style="width: 5%;">Pending</th>
@@ -57,9 +58,9 @@
                             </table>
                         </div>
                         <div class="animate-show-hide" ng-show="kontrakdpa.pj">
-                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                            <table class="table table-bordered table-striped table-hover" cellspacing="0">
                                 <thead>
-                                    <tr>
+                                    <tr style="background:#D32F2F; color:#ffff">
                                         <th style="width: 5%; text-align: center">No</th>
                                         <th >Nip</th>
                                         <th style="width: 5%;">Jabatan</th>

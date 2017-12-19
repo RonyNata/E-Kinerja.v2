@@ -1,4 +1,4 @@
-<div class="modal-header" style="background-color:#1fcfe0;">
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar Pejabat Dalam {{pj.isEselon4 ? 'Kegiatan' : ''}} {{pj.isEselon4 ? pj.kegiatan.ketKeg : pj.kegiatan.ketProgram}}</h3>
 </div>
 <form ng-submit="kegiatanlist.save()" class="form-horizontal">
@@ -10,13 +10,15 @@
                     <div class="body">
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-                            <div class="col-md-12">    
-                            <div class="col-md-9"></div>
-                            <button style="margin-bottom: 10px" class="btn btn-primary waves-effect" ng-click="pj.addPJ()">Tambah Penanggungjawab</button>
-                        </div>
+                            <div class="col-md-12" style="padding-right: 0px">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4" style="padding-right: 0px; text-align: right">
+                                    <button style="margin-bottom: 10px" class="btn btn-primary waves-effect" ng-click="pj.addPJ()"><i class="material-icons">add</i><span>TAMBAH PENANGGUNGJAWAB</span></button>
+                                </div>
+                            </div>
                         <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
                             <thead>
-                                <tr>
+                                <tr style="background:#D32F2F; color:#ffff">
                                     <th style="width: 5%; text-align: center">No</th>
                                     <th style="width: 25%; text-align: center">NIP Pegawai</th>
                                     <th style="text-align: center">Nama Pegawai</th>
@@ -39,7 +41,7 @@
                                     <td>{{pjj.statusPenanggungJawab}}</td>
                                     <td>
                                         <!-- <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="pj.addSop(data)"><i class="material-icons">edit</i></button> -->
-                                        <button type="button" ng-click="pj.remove(pjj)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
+                                        <button type="button" ng-click="pj.remove(pjj)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
                                     </td>
                                 </tr>
                             </tbody>
