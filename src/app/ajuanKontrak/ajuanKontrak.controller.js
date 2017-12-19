@@ -6,7 +6,7 @@ angular.
 	.controller('AjuanKontrakController', AjuanKontrakController);
 
     
-    function AjuanKontrakController(EkinerjaService, AjuanKontrakService, $scope) {
+    function AjuanKontrakController(EkinerjaService, AjuanKontrakService, $document, $uibModal, $scope) {
       	var vm = this;
         vm.loading = true;
 
@@ -20,10 +20,9 @@ angular.
           }
         })
 
-        function searchPegawaiByNip(){
-          vm.list_urtug = EkinerjaService.searchByNip($scope.nipPegawai, vm.list_pegawai);
-          vm.list_ajuan = vm.list_urtug[0].uraianTugasDiajukan;
-          vm.list_tidakdiajukan = vm.list_urtug[0].uraianTugasTidakDipilih;
+        function searchPegawaiByNip(pegawai){
+          vm.list_ajuan = pegawai.uraianTugasDiajukan;
+          vm.list_tidakdiajukan = pegawai.uraianTugasTidakDipilih;
           for(var i = 0; i < vm.list_ajuan.length; i++){
             vm.list_ajuan[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_ajuan[i].biaya);
             vm.list_ajuan[i].terima = true;
@@ -92,5 +91,47 @@ angular.
               EkinerjaService.showToastrError("Kontrak Tahunan Gagal Disetujui");
             })
         }
+
+        vm.open = function (pegawai, parentSelector) {
+          searchPegawaiByNip(pegawai);
+          var parentElem = parentSelector ? 
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/ajuanKontrak/detailAjuan/detailAjuan.html',
+            controller: 'DetailAjuanController',
+            controllerAs: 'ajuan',
+            windowClass: 'app-modal-windows',
+            size: 'lg',
+            appendTo: parentElem,
+            resolve: {
+              list_ajuan: function () {
+                return vm.list_ajuan;
+              },
+              list_tidakdiajukan: function () {
+                return vm.list_tidakdiajukan;
+              },
+              nama: function(){
+                return pegawai.namaPegawai;
+              },
+              nip: function(){
+                return pegawai.nipPegawai;
+              }
+            }
+          });
+
+          modalInstance.result.then(function () {
+            // showToastrSuccess('ditambahkan');
+            // getUrtugByJabatan();
+            getPegawaiPengaju();
+            EkinerjaService.showToastrSuccess('Ajuan Berhasil Disetujui');
+            // vm.selected = selectedItem;
+          }, function () {
+            // showToastrFailed('menambahkan data');
+            // $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
    	} 
 })();

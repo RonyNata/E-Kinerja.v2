@@ -108,13 +108,14 @@ angular.
           var data = [];
           var dpa = [];
           var statDpa = false, statNon = false;
-          for(var i = 0; i<vm.urtugNonDpa.length; i++)
+          for(var i = 0; i<vm.urtugNonDpa.length; i++){
             if(vm.urtugNonDpa[i].checked){
               vm.urtugNonDpa[i].statusApproval = 0;
-              vm.urtugNonDpa[i].alasan = "";
-              vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-              data.push(vm.urtugNonDpa[i]);
-            }
+            } else vm.urtugNonDpa[i].statusApproval = 3;
+            vm.urtugNonDpa[i].alasan = "";
+            vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+            data.push(vm.urtugNonDpa[i]);
+          }
 
           for(var i = 0; i < vm.urtugDpa.length; i++){
             if(vm.urtugDpa[i].checked)

@@ -182,6 +182,10 @@ can be found in the LICENSE file at http://angular.io/license
 .app-modal-window .modal-dialog {
   width: 640px;
 }
+
+.app-modal-windows .modal-dialog {
+  width: 1020px;
+}
 .navbar-nav .dropdown-menu {
   margin-top: -40px !important; }
 

@@ -1,0 +1,96 @@
+ <div class="modal-header" style="background-color:#F44236; color:#ffff;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Ajuan Kontrak {{ajuan.nama}}</h3>
+</div>
+<form ng-submit="ajuan.save()" class="form-horizontal">
+<div class="modal-body" id="modal-body">
+    <input type="hidden" value=""/>
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#ajuan" data-toggle="tab">Uraian Tugas Yang Diajukan</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tidakdiajukan" data-toggle="tab">Uraian Tugas Yang Tidak Diajukan</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
+                                <div class="body table-responsive">
+                                    <table class="table table-bordered table-striped" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                                <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                                <th style="width: 10%; text-align: center">Mutu</th>
+                                                <th style="width: 10%; text-align: center">Waktu</th>
+                                                <th style="width: 10%; text-align: center">Biaya</th>
+                                                <th style="text-align: center; width: 15%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="urtug in ajuan.list_ajuan" style="text-align: center">
+                                                <td>{{$index + 1}}</td>
+                                                <td style="text-align: left">{{urtug.urtug}}</td>
+                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                <td>{{urtug.kualitas}}</td>
+                                                <td>{{urtug.waktu}}</td>
+                                                <td>{{urtug.biayaRp}}</td>
+                                                <td>
+                                                    <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 1)" class="btn btn-danger btn waves waves-effect" ng-disabled="!urtug.terima">Tolak</button>
+                                                    <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect" ng-disabled="urtug.terima">Terima</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="tidakdiajukan">
+                                <div class="body table-responsive">
+                                    <table class="table table-bordered table-striped" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                                <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                                <th style="width: 10%; text-align: center">Mutu</th>
+                                                <th style="width: 10%; text-align: center">Waktu</th>
+                                                <th style="width: 10%; text-align: center">Biaya</th>
+                                                <th style="text-align: center; width: 15%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="urtug in ajuan.list_tidakdiajukan" style="text-align: center">
+                                                <td>{{$index + 1}}</td>
+                                                <td style="text-align: left">{{urtug.urtug}}</td>
+                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                <td>{{urtug.kualitas}}</td>
+                                                <td>{{urtug.waktu}}</td>
+                                                <td>{{urtug.biayaRp}}</td>
+                                                <td>
+                                                    <button type="button" ng-click="ajuan.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>                              
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="submit" ng-click="ajuan.approve()" class="btn btn-success btn waves waves-effect">Menyetujui</button>
+        <button type="button" ng-click="ajuan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
