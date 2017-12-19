@@ -1,4 +1,4 @@
-<div class="modal-header" style="background-color:#1fcfe0;">
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Pilih Uraian Tugas</h3>
 </div>
 <form ng-submit="pilihurtug.save()" class="form-horizontal">
@@ -23,7 +23,7 @@
                                 </div>  
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr style="background:#D32F2F; color:#ffff">
                                             <th style="width: 5%; text-align: center">No</th>
                                             <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
                                             <th style="width: 10%; text-align: center">Kuant/ Output</th>
@@ -50,8 +50,8 @@
                                 </div>
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
                                     <thead>
-                                        <tr>
-                                            <th style="width: 5%; text-align: center"><label>Pilih</th>
+                                        <tr style="background:#D32F2F; color:#ffff">
+                                            <th style="width: 5%; text-align: center"><label>Pilih</label></th>
                                             <th style="text-align: center">Rincian Tugas dan Kegiatan</th> 
                                             <th style="width: 10%; text-align: center">Kuant/ Output</th>
                                             <th style="width: 5%; text-align: center">Mutu</th> 
@@ -70,7 +70,7 @@
                                             <td>100</td>
                                             <td>{{dpa.waktu}}</td>
                                             <td>{{dpa.biayaRp}}</td>
-                                            <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-primary btn waves waves-effect">Detail</button></td>
+                                            <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success btn waves waves-effect"><i class="material-icons">visibility</i><span>Detail</span></button></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -1,4 +1,4 @@
-<div class="modal-header" style="background-color:#1fcfe0;">
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar {{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}} Pada Urtug {{kegiatanlist.urtug.urtug}}</h3>
 </div>
 <form ng-submit="kegiatanlist.save()" class="form-horizontal">
@@ -10,12 +10,12 @@
                     <div class="body">
                     <div class="row clearfix">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-md-6" style="margin-bottom: 10px">
-                                <button class="btn btn-primary waves-effect" ng-click="kegiatanlist.kegiatanadd()" ng-disabled="kegiatanlist.loadUrtug">Tambah {{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}}</button>
+                            <div class="col-md-6" style="margin-bottom: 10px; padding-left: 0px">
+                                <button class="btn btn-primary waves-effect" ng-click="kegiatanlist.kegiatanadd()" ng-disabled="kegiatanlist.loadUrtug"><i class="material-icons">add</i><span>TAMBAH {{kegiatanlist.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
                             </div>
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
                                 <thead>
-                                    <tr>
+                                    <tr style="background:#D32F2F; color:#ffff">
                                         <th style="width: 5%; text-align: center">No</th>
                                         <th >{{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}}</th>
                                         <th style="text-align: center">Action</th> 

@@ -10,40 +10,40 @@
                             <h2>Halaman Penugasan</h2>
                         </div>
                         <div class="body" style="">
-                            <div class="col-md-12">
-                                <div class="col-md-2" style="margin-left: -10px;float: left;">
+                            <div class="col-md-12" style="margin-bottom: 0px">
+                                <div class="col-md-2" style="margin-left: -10px;float: left; margin-bottom: 10px">
                                     <button type="button" ng-click="penugasan.openTemplate()" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>Buat Naskah Penugasan</span>
                                     </button>
                                 </div>
                             </div>
                             <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                 <li role="presentation" class="active">
-                                    <a href="#masuk" data-toggle="tab">Naskah Penugasan Masuk</a>
+                                    <a href="#masuk" data-toggle="tab"><b>Naskah Penugasan Masuk</b></a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#dibuat" data-toggle="tab">Naskah Penugasan Yang Pernah Dibuat</a>
+                                    <a href="#dibuat" data-toggle="tab"><b>Naskah Penugasan Yang Pernah Dibuat</b></a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="masuk">
                                     <div class="body table-responsive" style="margin-bottom: -10px;">
-                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
                                             <thead>
-                                                <tr>
-                                                    <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                                    <th style="width: 10%; text-align: center;border: 1px solid black">Jenis Naskah</th>
+                                                <tr style="background:#D32F2F; color:#ffff">
+                                                    <th style="width: 2%; text-align: center">No</th>
+                                                    <th style="width: 10%; text-align: center">Jenis Naskah</th>
                                                     <!-- <th style="text-align: center;" >Judul Naskah</th> -->
-                                                    <th style="width: 15%; text-align: center;border: 1px solid black">Tanggal Dibuat</th> 
-                                                    <th style="text-align: center; width: 15%;border: 1px solid black">Action</th> 
+                                                    <th style="width: 15%; text-align: center">Tanggal Dibuat</th>
+                                                    <th style="text-align: center; width: 15%">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="naskah in penugasan.naskah" style="text-align: center">
-                                                    <td style="border: 1px solid black">{{$index + 1}}</td>
-                                                    <td style="border: 1px solid black">{{naskah.nama}}</td>
+                                                    <td>{{$index + 1}}</td>
+                                                    <td>{{naskah.nama}}</td>
                                                     <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
-                                                    <td style="border: 1px solid black">{{naskah.tanggalDibuat}}</td>
-                                                    <td style="border: 1px solid black">
+                                                    <td>{{naskah.tanggalDibuat}}</td>
+                                                    <td>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
                                                     </td> 
@@ -53,23 +53,23 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade in" id="dibuat">
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" >
                                         <thead>
-                                            <tr>
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                                <th style="width: 10%; text-align: center;border: 1px solid black">Jenis Naskah</th>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 2%; text-align: center">No</th>
+                                                <th style="width: 10%; text-align: center">Jenis Naskah</th>
                                                 <!-- <th style="text-align: center;" >Judul Naskah</th> -->
-                                                <th style="width: 15%; text-align: center;border: 1px solid black">Tanggal Dibuat</th> 
-                                                <th style="text-align: center; width: 15%;border: 1px solid black">Action</th>
+                                                <th style="width: 15%; text-align: center">Tanggal Dibuat</th>
+                                                <th style="text-align: center; width: 15%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="history in penugasan.naskahHistory" style="text-align: center">
-                                                <td style="border: 1px solid black">{{$index + 1}}</td>
-                                                <td style="border: 1px solid black">{{history.nama}}</td>
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{history.nama}}</td>
                                                 <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
-                                                <td style="border: 1px solid black">{{history.tanggalDibuat}}</td>
-                                                <td style="border: 1px solid black">
+                                                <td>{{history.tanggalDibuat}}</td>
+                                                <td>
                                                     <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-primary waves-effect" ng-hide="history.loading">Lihat Dokumen</button>
                                                     <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
                                                 </td>

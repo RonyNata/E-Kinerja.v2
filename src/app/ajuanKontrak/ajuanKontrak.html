@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
+                <div class="card" style="margin-bottom: 20px; padding-bottom: 10px;">
                     <div class="header">
                         <i class="material-icons" style="float: left;">assignment</i>
                         <h2>Halaman Persetujuan Kontrak Kerja Pegawai</h2>
@@ -19,6 +19,14 @@
                                     </datalist>
                                 </form>
                             </div>
+                            <div class="col-md-6" style="padding-left: 0px">
+                                <table>
+                                    <tr>
+                                        <td>Nama Pegawai :</td>
+                                        <td style="padding-left: 3px"><b>{{ajuankontrak.namaPegawai}}</b></td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                         <ul class="nav nav-tabs tab-nav-right" role="tablist">
                             <li role="presentation" class="active">
@@ -30,28 +38,28 @@
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
-                                <div class="body table-responsive" style="margin-bottom: -10px;">
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
+                                <div class="body table-responsive" style="padding-bottom: 0px">
+                                    <table class="table table-bordered table-striped " cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
                                         <thead>
-                                            <tr>
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                                <th style="text-align: center;" >Rincian Tugas dan Kegiatan {{ajuankontrak.namaPegawai}}</th>
-                                                <th style="width: 10%; text-align: center;border: 1px solid black">Kuant/ Output</th>
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Mutu</th> 
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Waktu</th> 
-                                                <th style="width: 5%; text-align: center;border: 1px solid black">Biaya</th>
-                                                <th style="text-align: center; width: 15%;border: 1px solid black">Action</th> 
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                                <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                                <th style="width: 5%; text-align: center">Mutu</th>
+                                                <th style="width: 5%; text-align: center">Waktu</th>
+                                                <th style="width: 5%; text-align: center">Biaya</th>
+                                                <th style="text-align: center; width: 15%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="urtug in ajuankontrak.list_ajuan" style="text-align: center">
-                                                <td style="border: 1px solid black">{{$index + 1}}</td>
-                                                <td style="text-align: left;border: 1px solid black">{{urtug.urtug}}</td>
-                                                <td style="border: 1px solid black">{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                <td style="border: 1px solid black">{{urtug.kualitas}}</td>
-                                                <td style="border: 1px solid black">{{urtug.waktu}}</td>
-                                                <td style="border: 1px solid black">{{urtug.biayaRp}}</td>
-                                                <td style="border: 1px solid black">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{urtug.urtug}}</td>
+                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                <td>{{urtug.kualitas}}</td>
+                                                <td>{{urtug.waktu}}</td>
+                                                <td>{{urtug.biayaRp}}</td>
+                                                <td>
                                                     <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 1)" class="btn btn-danger btn waves waves-effect" ng-disabled="!urtug.terima">Tolak</button>
                                                     <button type="button" ng-click="ajuankontrak.gantiStatusUrtug(urtug, 0)" class="btn btn-success btn waves waves-effect" ng-disabled="urtug.terima">Terima</button>
                                                 </td> 
@@ -61,36 +69,38 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane fade in" id="tidakdiajukan">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="border: 1px solid black">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 5%; text-align: center;border: 1px solid black">No</th>
-                                            <th >Rincian Tugas dan Kegiatan</th>
-                                            <th style="width: 10%; text-align: center;border: 1px solid black">Kuant/ Output</th>
-                                            <th style="width: 5%; text-align: center;border: 1px solid black">Mutu</th> 
-                                            <th style="width: 5%; text-align: center;border: 1px solid black">Waktu</th> 
-                                            <th style="width: 5%; text-align: center;border: 1px solid black">Biaya</th>
-                                            <th style="text-align: center;border: 1px solid black">Action</th> 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="urtug in ajuankontrak.list_tidakdiajukan" style="text-align: center">
-                                            <td style="border: 1px solid black">{{$index + 1}}</td>
-                                            <td style="text-align: left;border: 1px solid black">{{urtug.urtug}}</td>
-                                            <td style="border: 1px solid black">{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                            <td style="border: 1px solid black">{{urtug.kualitas}}</td>
-                                            <td style="border: 1px solid black">{{urtug.waktu}}</td>
-                                            <td style="border: 1px solid black">{{urtug.biayaRp}}</td>
-                                            <td style="border: 1px solid black">
-                                                <button type="button" ng-click="ajuankontrak.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
-                                            </td> 
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="body table-responsive">
+                                    <table class="table table-bordered table-striped" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
+                                                <th style="width: 10%; text-align: center">Kuant/ Output</th>
+                                                <th style="width: 5%; text-align: center">Mutu</th>
+                                                <th style="width: 5%; text-align: center">Waktu</th>
+                                                <th style="width: 5%; text-align: center">Biaya</th>
+                                                <th style="text-align: center; width: 15%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="urtug in ajuankontrak.list_tidakdiajukan" style="text-align: center">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{urtug.urtug}}</td>
+                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                <td>{{urtug.kualitas}}</td>
+                                                <td>{{urtug.waktu}}</td>
+                                                <td>{{urtug.biayaRp}}</td>
+                                                <td>
+                                                    <button type="button" ng-click="ajuankontrak.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="col-md-12" style="margin-bottom: -2000px;">
+                            <div class="col-md-12" style="margin-bottom: 0px">
                                 <div class="col-md-11"></div>
-                                <div class="col-md-1" style="float: right;">
+                                <div class="col-md-1" style="float: right">
                                     <button type="button" ng-click="ajuankontrak.approve()" class="btn btn-success btn waves waves-effect">Menyetujui</button>
                                 </div>
                             </div>
