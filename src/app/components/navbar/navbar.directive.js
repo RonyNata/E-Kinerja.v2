@@ -26,6 +26,8 @@
 
       // "vm.creationDate" is available by directive option "bindToController: true"
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
+      vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
+      // console.log(vm.pegawai);
       vm.logout = function(){
         EkinerjaService.logout();
       }

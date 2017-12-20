@@ -8,12 +8,12 @@
       	vm.loading = true;
 
       	getAllDisposisi();
-        getHistoryDisposisi();
 
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
               vm.dataHistory = response;debugger
+              getHistoryDisposisi();
             }, function(errResponse){
 
             })
@@ -32,6 +32,7 @@
           AmbilDisposisiService.GetHistoryDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               vm.history = response;
+              vm.loading = false;
             }, function(errResponse){
 
             })

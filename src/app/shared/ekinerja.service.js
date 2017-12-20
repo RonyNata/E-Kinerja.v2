@@ -63,6 +63,16 @@
             return result;
         }
 
+        service.searchByDeskripsiUrtug = function(name, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].uraianTugas.deskripsi.toLowerCase().search(name.toLowerCase()) != -1){
+                    result.push(array[i]);
+                } 
+            }
+            return result;
+        }
+
         service.searchByUrtug = function(name, array){
             var result = [];
             for(var i = 0; i<array.length; i++){

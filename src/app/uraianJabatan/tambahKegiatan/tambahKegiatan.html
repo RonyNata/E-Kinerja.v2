@@ -16,14 +16,14 @@
                                 </div>
                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
                                 <div class="col-md-6" ng-show="kegiatan.isEselon4">
-                                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()">
+                                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off">
                                         <datalist id="kegiatan" style="height: 100px">
                                                 <option ng-repeat="data in kegiatan.list_kegiatan"
                                          value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
                                         </datalist>
                                 </div>
                                 <div class="col-md-6" ng-hide="kegiatan.isEselon4">
-                                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program">
+                                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off">
                                         <datalist id="kegiaatan" style="height: 100px">
                                                 <option ng-repeat="data in kegiatan.list_program"
                                          value="{{data.ketProgram}}">{{data.ketProgram}}</option>

@@ -13,10 +13,10 @@
                             <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
                                 <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;">
                                     <li role="presentation" class="active">
-                                        <a href="#disposisii" data-toggle="tab"><b>Tambah Disposisi Surat</b></a>
+                                        <a href="#disposisii" data-toggle="tab"><b>Surat Disposisi Masuk</b></a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#instruksi" data-toggle="tab"><b>List Disposisi Diterima</b></a>
+                                        <a href="#instruksi" data-toggle="tab"><b>Disposisi Yang Pernah Dibuat</b></a>
                                     </li>
                                 </ul>
                             </div>
@@ -137,3 +137,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="ambilperpindahan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="ambilperpindahan.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

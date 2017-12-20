@@ -82,30 +82,33 @@ angular.
             vm.naskah[idx].loading = true;
           else vm.naskahHistory[idx].loading = true;
           switch(naskah.jenis){
-            case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx); break;
-            case 1 : getDocumentPerintah(naskah.kdSurat, idx); break;
+            case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
+            case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
           }
-
         }
 
-        function getDocumentInstruksi(kdHistory, idx){
+        function getDocumentInstruksi(kdHistory, idx, isHistory){
           KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
             function(response){
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
-              vm.naskah[idx].loading = false;
+              if(!isHistory)
+                vm.naskah[idx].loading = false;
+              else vm.naskahHistory[idx].loading = false;
               pdfMake.createPdf(doc).open();
             }, function(errResponse){
 
             })
         }
 
-        function getDocumentPerintah(kdHistory, idx){
+        function getDocumentPerintah(kdHistory, idx, isHistory){
           PenugasanService.GetDataPerintah(kdHistory).then(
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              vm.naskahHistory[idx].loading = false;
+              if(!isHistory)
+                vm.naskah[idx].loading = false;
+              else vm.naskahHistory[idx].loading = false;
               pdfMake.createPdf(doc).open();
             }, function(errResponse){
 

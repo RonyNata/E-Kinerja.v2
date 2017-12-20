@@ -19,30 +19,21 @@
                                     </ul> -->
                                 <!-- </div> -->
                                 <div class="list-group">
-                                  <a href="" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                      <h5 class="mb-1">Nama Pengirim</h5>
-                                      <small>Waktu Masuk</small>
-                                    </div>
-                                    <p class="mb-1">Ringkasan Isi</p>
-                                    <small>Status Rahasia</small>
-                                  </a>
-                                  <a href="" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                      <h5 class="mb-1">Nama Pengirim</h5>
-                                      <small class="text-muted">Waktu Masuk</small>
-                                    </div>
-                                    <p class="mb-1">Ringkasan Isi</p>
-                                    <small class="text-muted">Status Rahasia</small>
-                                  </a>
-                                  <a href="" class="list-group-item list-group-item-action flex-column align-items-start">
-                                    <div class="d-flex w-100 justify-content-between">
-                                      <h5 class="mb-1">Nama Pengirim</h5>
-                                      <small class="text-muted">Waktu Masuk</small>
-                                    </div>
-                                    <p class="mb-1">Ringkasan Isi</p>
-                                    <small class="text-muted">Status Rahasia</small>
-                                  </a>
+                                  <div ng-repeat="disposisi in dashboard.naskahDisposisi">
+                                    <a href="" ng-click="dashboard.getDokumenDisposisi(disposisi.kdLembarDisposisi, $index)" class="list-group-item list-group-item-action flex-column align-items-start">
+                                      <div ng-hide="disposisi.loading">
+                                        <div class="d-flex w-100 justify-content-between">
+                                          <h5 class="mb-1" style="font-size: 20px">{{disposisi.rahasia}}</h5>
+                                          <small style="font-size: 14px">{{disposisi.tglPengiriman}}</small>
+                                        </div>
+                                        <p class="mb-1" style="font-size: 16px">{{disposisi.ringkasanIsi}}</p>
+                                        <small style="font-size: 14px">Oleh {{disposisi.namaPengirim}}</small>
+                                      </div>
+                                      <div ng-show="disposisi.loading">
+                                          <p class="mb-1">MOHON TUNGGU...</p>
+                                      </div>
+                                    </a>
+                                  </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -78,3 +69,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="dashboard.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="dashboard.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

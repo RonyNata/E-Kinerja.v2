@@ -45,6 +45,20 @@ angular.
       	// }
       });
 
+  //     $scope.$watch('searchNameUrtug', function(){
+  //     	if($scope.searchNameUrtug != ''){
+		// 	// $scope.currentPage = 0;
+		// 	vm.dataLook = EkinerjaService.searchByUrtug($scope.searchNameUrtug, data);
+		// }
+  //     });
+
+      $scope.$watch('searchNameJenis', function(){
+      	if($scope.searchNameJenis != ''){
+			// $scope.currentPage = 0;
+			vm.dataLook = EkinerjaService.searchByName($scope.searchName, data);
+		}
+      });
+
       vm.tambahPj = function(){
       	var tugas = PengumpulanDataBebanKerjaService.GetUrtugStatus(vm.list_jenis_urtug, $scope.choosen_urtug);
       	$state.go('sk', {
@@ -443,12 +457,20 @@ angular.
 	      });
 	    };
 
-	    $scope.$watch('searchName', function(){
-			if($scope.searchName != '')
-				vm.dataLook = EkinerjaService.searchByDeskripsi($scope.searchName, vm.list_used_urtug);
+	    $scope.$watch('searchNameUrtug', function(){
+			if($scope.searchNameUrtug.length != 0)
+				vm.dataLook = EkinerjaService.searchByDeskripsiUrtug($scope.searchNameUrtug, vm.list_used_urtug);
 			else vm.dataLook = vm.list_used_urtug;
 			// debugger
 			paging();
+		})
+
+		$scope.$watch('searchNameJenis', function(){
+			if($scope.searchNameJenis.length != 0)
+				vm.dataLookJenis = EkinerjaService.searchByUrtug($scope.searchNameJenis, vm.list_jenis_urtug);
+			else vm.dataLookJenis = vm.list_jenis_urtug;
+			// debugger
+			pagingJenis();
 		})
 
 	    function paging(){ 

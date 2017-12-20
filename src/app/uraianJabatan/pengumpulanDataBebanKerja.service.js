@@ -376,9 +376,22 @@
             return deferred.promise;
         };
 
-        service.GetPegawaiByJabatan = function(kdJabatan){
+        service.GetPegawaiByJabatan = function(data){
             var deferred = $q.defer();
-            $http.get(API + 'get-pegawai-by-jabatan/' + kdJabatan).then(
+            $http.post(API + 'get-pegawai-penanggung-jawab/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
+        service.GetPegawaiByJabatanProgram = function(data){
+            var deferred = $q.defer();
+            $http.post(API + 'get-pegawai-penanggung-jawab-program/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

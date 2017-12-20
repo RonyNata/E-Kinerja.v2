@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
                                 <div class="col-md-8">
-                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="status.item.kdUrtug">
+                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="status.item.kdUrtug" autocomplete="off">
                                 <datalist id="aktivitas" style="height: 100px">
                                     <option ng-repeat="aktivitas in status.used_urtug"
                                  value="{{aktivitas.urtug}}" ng-selected="selected"> </option>

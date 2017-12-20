@@ -128,7 +128,7 @@
                         <!--<span>Input Aktivitas</span>-->
                     <!--</a>-->
                 <!--</li>-->
-                <li class="header">FITUR SEBAGAI ...</li>
+                <li class="header" ng-hide="vm.checkRole('AD003')">FITUR SEBAGAI {{vm.pegawai.role.role}}</li>
                 <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
                     <a href="#/master/urtug">
                         <i class="material-icons">home</i>

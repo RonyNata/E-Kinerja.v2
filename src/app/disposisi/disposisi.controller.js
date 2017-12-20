@@ -56,7 +56,8 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
         "tanggalSuratDisposisiMilis": (new Date()).getTime(),
         "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
         "daftarTargetLembarDisposisi": [],
-        "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
+        "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+        "isiDisposisi": vm.item.isiDisposisi
     }
 
     if($state.current.name != undefined)
@@ -353,7 +354,7 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
 		                {
 		                  fontSize:9,
 		                  colSpan: 2,
-		                  text: 'Disposisi Surat Perintah Mengembangkan Diri'
+		                  text: '' + vm.item.isiDisposisi
 		                },
 		                {
 		                  

@@ -13,14 +13,23 @@ angular.
         vm.kegiatan = kegiatan;
         vm.isEselon4 = isEselon4;
 
-        function getPegawaiJabatan(){
-          PengumpulanDataBebanKerjaService.GetPegawaiByJabatan(jabatan)
-            .then(function(response){
-              vm.pegawai = response;
-              debugger
-            }, function(errResponse){
+        function getPegawaiJabatan(data){
+          if(isEselon4)
+            PengumpulanDataBebanKerjaService.GetPegawaiByJabatan(data)
+              .then(function(response){
+                vm.pegawai = response;
+                debugger
+              }, function(errResponse){
 
-            })
+              })
+          else
+            PengumpulanDataBebanKerjaService.GetPegawaiByJabatanProgram(data)
+              .then(function(response){
+                vm.pegawai = response;
+                debugger
+              }, function(errResponse){
+
+              })
         }
 
         console.log(urtug);
@@ -42,7 +51,6 @@ angular.
             "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
           };
 
-          getPegawaiJabatan();
           if(vm.isEselon4){
             data.kdKeg = kegiatan.kdKeg;
             PengadaanBarangJasaService.GetUrtugKegiatanPenanggungjawab(data).then(
@@ -63,6 +71,7 @@ angular.
               }, function(errResponse){
                 vm.kegStat = true;
               })
+          getPegawaiJabatan(data);
         }
         getPJ();
 

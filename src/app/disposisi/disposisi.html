@@ -132,6 +132,15 @@
                                         <textarea class="form-control" ng-model="perpindahan.item.ringkasanIsiSuratDisposisi" required style="height: 100px"></textarea>
                                     </div>
 	                            </div>
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-sm-5" style="margin-top:5px">
+                                        <p><b>Isi</b></p>
+                                    </div>
+                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                    <div class="col-md-6">
+                                        <textarea class="form-control" ng-model="perpindahan.item.isiDisposisi" required style="height: 100px"></textarea>
+                                    </div>
+                                </div>
 	                            <div class="col-md-12" style="margin-bottom:10px">
 	                                <div class="col-sm-5" style="margin-top:5px">
 	                                    <p><b>Lampiran</b></p>
@@ -193,3 +202,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="perpindahan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="perpindahan.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

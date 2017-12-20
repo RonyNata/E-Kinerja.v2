@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
                                 <div class="col-md-6">
-                                    <input class="form-control" list="penilai" name="kegiiatan" ng-model="penilai.pejabatPenilai" placeholder="Pilih Penilai">
+                                    <input class="form-control" list="penilai" name="kegiiatan" ng-model="penilai.pejabatPenilai" placeholder="Pilih Penilai" autocomplete="off">
                                         <datalist id="penilai" style="height: 100px">
                                                 <option ng-repeat="data in penilai.list_pegawai"
                                          value="{{data.nipPegawai}}">{{data.nama}}</option>
