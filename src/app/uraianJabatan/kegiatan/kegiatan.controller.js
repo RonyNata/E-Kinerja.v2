@@ -155,6 +155,28 @@ angular.
             })
         };
 
+        vm.deleteKegiatanOrProgram = function(data){
+            if (isEselon4){
+                console.log(data);
+                PengumpulanDataBebanKerjaService.DeleteUrtugKegiatan(data)
+                    .then(function(response){
+                        EkinerjaService.showToastrSuccess('Kegiatan Berhasil Dihapus');
+                        getUrtugKegiatanByJabatan();
+                    },function(errResponse){
+                        EkinerjaService.showToastrError('Gagal Menghapus Urtug');
+                    })
+            } else {
+                console.log(data);
+                PengumpulanDataBebanKerjaService.DeleteUrtugProgram(data)
+                    .then(function(response){
+                        EkinerjaService.showToastrSuccess('Program Berhasil Dihapus');
+                        getUrtugKegiatanByJabatan();
+                    },function(errResponse){
+                        EkinerjaService.showToastrError('Gagal Menghapus Urtug');
+                    })
+            }
+        };
+
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');
   	    };

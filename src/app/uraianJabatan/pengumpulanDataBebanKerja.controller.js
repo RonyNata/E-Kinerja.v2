@@ -183,7 +183,7 @@ angular.
       		},function(errResponse){
       			EkinerjaService.showToastrError('Gagal Menghapus Urtug');
       		})
-      }
+      };
 
       vm.deleteUrtugJenis = function(data){
       	console.log(data);
@@ -194,7 +194,7 @@ angular.
       		},function(errResponse){
       			EkinerjaService.showToastrError('Gagal Menghapus Urtug');
       		})
-      }
+      };
 
       vm.open = function (items, parentSelector) {
 	      // console.log(items);

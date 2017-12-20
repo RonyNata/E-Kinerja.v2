@@ -335,7 +335,33 @@
                 }
             );
             return deferred.promise;  
-        }
+        };
+
+        service.DeleteUrtugKegiatan = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'delete-urtug-kegiatan', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.DeleteUrtugProgram = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'delete-urtug-program', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
 
         service.GetPegawaiPenanggungJawab = function(data){
             var deferred = $q.defer();
@@ -348,7 +374,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
         service.GetPegawaiByJabatan = function(kdJabatan){
             var deferred = $q.defer();
@@ -361,7 +387,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
         service.GetProgram = function(kdUnit){
             var deferred = $q.defer();
@@ -374,7 +400,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
         service.GetUrtugKegiatan = function(data){
             var deferred = $q.defer();
@@ -387,7 +413,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
         service.SetDataUrtug = function(used_urtug, available_urtug){
             var urtug = angular.copy(available_urtug);
@@ -396,7 +422,7 @@
                 urtug.unshift(angular.copy(used_urtug[i]));
             }
             return urtug;
-        }
+        };
 
         service.FindIndex = function(array, id){
             var index = -1;

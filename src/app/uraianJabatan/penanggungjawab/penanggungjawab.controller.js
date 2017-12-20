@@ -40,7 +40,7 @@ angular.
             "kdProg": kegiatan.kdProg,
             "idProg": kegiatan.idProg,
             "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
-          }
+          };
 
           getPegawaiJabatan();
           if(vm.isEselon4){
@@ -151,7 +151,7 @@ angular.
                 EkinerjaService.showToastrError('Gagal Dihapus');
               })
 
-        }
+        };
 
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');

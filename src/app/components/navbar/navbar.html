@@ -90,41 +90,11 @@
     <aside id="leftsidebar" class="sidebar">
         <div class="menu">
             <ul class="list">
-                <li class="header">FITUR E-KINERJA</li>
+                <li class="header">FITUR PEGAWAI</li>
                 <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}">
                     <a href="#/dashboard">
                         <i class="material-icons">home</i>
                         <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
-                    <a href="#/master/urtug">
-                        <i class="material-icons">home</i>
-                        <span>Data Master</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
-                    <a href="#/urtug/jabatan">
-                        <i class="material-icons">text_fields</i>
-                        <span>Atur Uraian Tugas Jabatan</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}">
-                    <a href="#/approval">
-                        <i class="material-icons">text_fields</i>
-                        <span>Persetujuan Kontrak Kerja</span>
-                    </a>
-                </li>
-                <li class="{{(vm.checkLocation('kontrakdpa') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
-                    <a href="#/kontrakdpa">
-                        <i class="material-icons">text_fields</i>
-                        <span>Penanggung Jawab Uraian Tugas DPA</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
-                    <a href="#/hak-akses">
-                        <i class="material-icons">layers</i>
-                        <span>Atur Hak Akses Pegawai</span>
                     </a>
                 </li>
                 <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas')
@@ -146,10 +116,41 @@
                         <span>Penugasan</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('aktivitas') ? 'active' : ''}}">
-                    <a href="#/aktivitas">
+                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}">
+                    <a href="#/approval">
+                        <i class="material-icons">text_fields</i>
+                        <span>Persetujuan Kontrak Kerja</span>
+                    </a>
+                </li>
+                <!--<li class="{{vm.checkLocation('aktivitas') ? 'active' : ''}}">-->
+                    <!--<a href="#/aktivitas">-->
+                        <!--<i class="material-icons">layers</i>-->
+                        <!--<span>Input Aktivitas</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <li class="header">FITUR SEBAGAI ...</li>
+                <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
+                    <a href="#/master/urtug">
+                        <i class="material-icons">home</i>
+                        <span>Data Master</span>
+                    </a>
+                </li>
+                <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                    <a href="#/urtug/jabatan">
+                        <i class="material-icons">text_fields</i>
+                        <span>Atur Uraian Tugas Jabatan</span>
+                    </a>
+                </li>
+                <li class="{{(vm.checkLocation('kontrakdpa') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+                    <a href="#/kontrakdpa">
+                        <i class="material-icons">text_fields</i>
+                        <span>Penanggung Jawab Uraian Tugas DPA</span>
+                    </a>
+                </li>
+                <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
+                    <a href="#/hak-akses">
                         <i class="material-icons">layers</i>
-                        <span>Input Aktivitas</span>
+                        <span>Atur Hak Akses Pegawai</span>
                     </a>
                 </li>
             </ul>
