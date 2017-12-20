@@ -1,14 +1,14 @@
-<div style="background-color: #D32F2F;width: 100%;height: 100%;padding-top: 170px; position: absolute; color:#ffff">
-<div class="login-page" style="background-color: #D32F2F; margin-top: -70px">
-    <div class="login-box" style="background-color: #D32F2F">
-        <h2 align="center"><b>E-KINERJA</b></h2>
-        <h6 align="center">Kabupaten Bekasi</h6>
+<div style="background-color: #00BCD4;width: 100%;height: 100%;padding-top: 170px; position: absolute;">
+<div class="login-page" style="margin-top: -70px">
+    <div class="login-box">
+        <div>
+            <h2 align="center" style="margin-top: -20px;margin-left: -20px;"><img src="assets/images/ekl.png" style="height: 170px;width: 310px;"></h2>
+        </div>
         <br>
-        <div class="card">
+        <div class="card" style="margin-top: -70px;">
             <div class="body">
                 <div ng-show="error" class="alert alert-danger">{{error}}</div>
                 <form   name="form" role="form" ng-submit="login.login()">
-                    <div class="msg">Login User</div>
                     <div class="input-group" ng-class="{ 'has-error': form.nip.$dirty && form.nip.$error.required }">
                         <span class="input-group-addon" >
                              <i class="material-icons">person</i>
@@ -37,6 +37,7 @@
                 <!-- <div class="loader"></div> -->
             </div>
         </div>
+        <div class="msg" style="color: white;"><b>Thanks for your partisipation<br>Let's make success E-Kinerja Kabupaten Bekasi</b></div>
     </div>  
 </div>
 </div>
