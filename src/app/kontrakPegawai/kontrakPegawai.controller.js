@@ -71,7 +71,7 @@ angular.
             for(var i = 0; i<vm.target.length; i++)
               vm.target[i].biayaRp = EkinerjaService.FormatRupiah(vm.target[i].biaya);
             // vm.dataLook = response;
-            // paging();
+            pagingUrtug();
             vm.loading = false;
             // debugger
           }, function(errResponse){
@@ -99,6 +99,7 @@ angular.
               vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)
                 vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+                pagingKegiatan();
             }, function(errResponse){
               // vm.penilai = "";
             })
@@ -110,6 +111,7 @@ angular.
             vm.kegiatan = response;debugger
             for(var i = 0; i < response.length; i++)
               vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
+              pagingKegiatan();
           }, function(errResponse){
             // vm.penilai = "";
           })
@@ -194,14 +196,44 @@ angular.
         });
       };
 
-      function paging(){ 
+      function pagingUrtug(){ 
+        $scope.filteredDataTarget = [];
+        $scope.currentPageTarget = 0;
+        $scope.numPerPageTarget = 10;
+        $scope.maxSizeTarget = Math.ceil(vm.target.length/$scope.numPerPageTarget);
+        function pageUrtug(){
+          $scope.pageTarget = [];
+          for(var i = 0; i < vm.target.length/$scope.numPerPageTarget; i++){
+              $scope.pageTarget.push(i+1);
+          }
+        }
+        pageUrtug();
+        $scope.padTarget = function(i){
+          $scope.currentPageTarget += i;
+        }
+
+        $scope.maxTarget = function(){
+          if($scope.currentPageTarget >= $scope.maxSizeTarget - 1)
+              return true;
+          else return false;
+        }
+
+        $scope.$watch("currentPageTarget + numPerPageTarget", function() {
+          var begin = (($scope.currentPageTarget) * $scope.numPerPageTarget)
+          , end = begin + $scope.numPerPageTarget;
+
+          $scope.filteredDataTarget = vm.target.slice(begin, end);
+        });
+      }
+
+      function pagingKegiatan(){ 
         $scope.filteredData = [];
         $scope.currentPage = 0;
         $scope.numPerPage = 10;
-        $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
+        $scope.maxSize = Math.ceil(vm.kegiatan.length/$scope.numPerPage);
         function page(){
           $scope.page = [];
-          for(var i = 0; i < vm.dataLook.length/$scope.numPerPage; i++){
+          for(var i = 0; i < vm.kegiatan.length/$scope.numPerPage; i++){
               $scope.page.push(i+1);
           }
         }
@@ -211,7 +243,7 @@ angular.
         }
 
         $scope.max = function(){
-          if($scope.currentPage >= $scope.maxSize - 1)
+          if($scope.currentPage >= $scope.maxSizeKegiatan - 1)
               return true;
           else return false;
         }
@@ -220,7 +252,7 @@ angular.
           var begin = (($scope.currentPage) * $scope.numPerPage)
           , end = begin + $scope.numPerPage;
 
-          $scope.filteredData = vm.dataLook.slice(begin, end);
+          $scope.filteredDataKegiatan = vm.kegiatan.slice(begin, end);
         });
       }
 
@@ -239,7 +271,7 @@ angular.
       }else {
         vm.dataLook = vm.list_urtug;
       }
-      paging();
+      pagingUrtug();
     });
    } 
 })();
