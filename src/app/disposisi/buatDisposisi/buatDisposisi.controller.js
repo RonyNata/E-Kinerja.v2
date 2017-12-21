@@ -8,11 +8,13 @@
       	vm.loading = true;
 
       	getAllDisposisi();
+        getHistoryDisposisi();
 
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
               vm.dataHistory = response;debugger
+              vm.loading = false;
               vm.dataLookDisposisi = angular.copy(vm.dataHistory);
               pagingDisposisi();
             }, function(errResponse){
@@ -33,6 +35,8 @@
           AmbilDisposisiService.GetHistoryDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               vm.history = response;
+              vm.dataLook = angular.copy(vm.history);
+              pagingHistori();
             }, function(errResponse){
 
             })
@@ -46,7 +50,7 @@
             function pageDisposisi(){
               $scope.pageDisposisi = [];
               for(var i = 0; i < vm.dataLookDisposisi.length/$scope.numPerPageDisposisi; i++){
-                  $scope.page.push(i+1);
+                  $scope.pageDisposisi.push(i+1);
               }
             }
             pageDisposisi();

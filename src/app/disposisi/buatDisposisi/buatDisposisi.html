@@ -97,7 +97,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="history in dataLook" style="text-align: center">
+                                            <tr ng-repeat="history in filteredData" style="text-align: center">
                                                 <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                 <td style="text-align: left;">{{history.kdLembarDisposisi}}</td>
                                                 <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
