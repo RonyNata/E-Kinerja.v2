@@ -6,12 +6,38 @@ angular.
 	.controller('DetailAjuanController', DetailAjuanController);
 
     
-    function DetailAjuanController(list_ajuan, list_tidakdiajukan, nama, nip, EkinerjaService, AjuanKontrakService, $uibModalInstance) {
+    function DetailAjuanController(list_ajuan, list_tidakdiajukan, nama, nip, isEselon4, unit, EkinerjaService, 
+      KontrakPegawaiService, AjuanKontrakService, $uibModalInstance) {
       	var vm = this;
 
             vm.list_ajuan = angular.copy(list_ajuan);
             vm.list_tidakdiajukan = angular.copy(list_tidakdiajukan);
             vm.nama = nama;
+
+            vm.isEselon4 = isEselon4;
+
+            getUrtugKegiatanApproval();
+
+            function getUrtugKegiatanApproval(){
+              if(vm.isEselon4)
+                KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit).then(
+                  function(response){
+                    vm.kegiatan = response;debugger
+                    for(var i = 0; i < response.length; i++)
+                      vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+                  }, function(errResponse){
+                    // vm.penilai = "";
+                  })
+              else
+                KontrakPegawaiService.GetUrtugProgramApproval(nip,unit).then(
+                function(response){
+                  vm.kegiatan = response;debugger
+                  for(var i = 0; i < response.length; i++)
+                    vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
+                }, function(errResponse){
+                  // vm.penilai = "";
+                })
+            }
 
             vm.gantiStatusUrtug = function(urtug, terima){
                 if(terima){

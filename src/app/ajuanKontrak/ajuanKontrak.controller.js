@@ -94,6 +94,11 @@ angular.
 
         vm.open = function (pegawai, parentSelector) {
           searchPegawaiByNip(pegawai);
+          var eselon = pegawai.eselon.split('.')[0].toLowerCase();
+          switch(eselon){
+            case 'i' : case 'ii' : case 'iii' : vm.isEselon4 = false; break;
+            default : vm.isEselon4 = true; break;
+          }
           var parentElem = parentSelector ? 
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
           var modalInstance = $uibModal.open({
@@ -118,6 +123,12 @@ angular.
               },
               nip: function(){
                 return pegawai.nipPegawai;
+              },
+              isEselon4: function(){
+                return vm.isEselon4;
+              },
+              unit: function(){
+                return pegawai.kdUnitKerja;
               }
             }
           });

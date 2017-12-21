@@ -216,6 +216,17 @@
           }
         }
       })
+      .state('approvallll', {
+        url: '/ajuanDpa',
+        templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
+        controller: 'AjuanKontrakController',
+        controllerAs: 'ajuankontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('kontrakdpa', {
         url: '/kontrakdpa',
         templateUrl: 'app/kontrakUrtugDpa/kontrakUrtugDpa.html',

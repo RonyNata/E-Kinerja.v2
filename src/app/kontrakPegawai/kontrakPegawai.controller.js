@@ -23,20 +23,23 @@ angular.
       getUrtugByJabatan();
       getPejabatPenilai();
       getUrtugKegiatanApproval();
+      getStatAjuan();
       // getUrtugByJabatan();
+      function getStatAjuan(){
+        KontrakPegawaiService.GetUrtugNonDPA(
+          $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
+          ).then(
+          function(response){
+            if(response.urtugTidakDipilihList.length == 0){
+              vm.statusAjuanNonDpa = true;
+            }
+            else vm.statusAjuanNonDpa = false;debugger
+          }, function(errResponse){
 
-      KontrakPegawaiService.GetUrtugNonDPA(
-        $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-        $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
-        ).then(
-        function(response){
-          if(response.length == 0)
-            vm.statusAjuanNonDpa = false;
-          else vm.statusAjuanNonDpa = true;
-        }, function(errResponse){
-
-        }
-      );
+          }
+        );
+      }
 
       // if(vm.isEselon4)  
         KontrakPegawaiService.GetUrtugDPA(
@@ -68,6 +71,8 @@ angular.
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
           function(response){
             vm.target = response;
+            if(response.length != 0)
+              vm.statusKontrak = true;
             for(var i = 0; i<vm.target.length; i++)
               vm.target[i].biayaRp = EkinerjaService.FormatRupiah(vm.target[i].biaya);
             // vm.dataLook = response;
@@ -138,6 +143,7 @@ angular.
         modalInstance.result.then(function () {
           getUrtugKegiatanApproval();
           getUrtugByJabatan();
+          getStatAjuan();
         }, function () {
 
         });

@@ -91,7 +91,7 @@
 
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + vm.item.nomorSurat3 + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit +  '/' + ((new Date()).getYear() + 1900)]
                     },
 
                     {
@@ -146,7 +146,7 @@
                                                 text: [
                                                     {text: 'Selanjutnya disebut '},
                                                     {text: 'PIHAK KESATU', bold:true},
-                                                    {text: ' ( ' + '' + vm.item.peranpihakkesatu + ' ).'}
+                                                    {text: ' ( ' + '' + vm.item.peranPihakKesatu + ' ).'}
                                                 ]
                                             }
                                         ]
@@ -186,7 +186,7 @@
                                                 text: [
                                                     {text: 'Selanjutnya disebut '},
                                                     {text: 'PIHAK KEDUA', bold:true},
-                                                    {text: ' ( ' + '' + vm.item.peranpihakkedua + ' ).'}
+                                                    {text: ' ( ' + '' + vm.item.peranPihakKedua + ' ).'}
                                                 ]
                                             }
                                         ]

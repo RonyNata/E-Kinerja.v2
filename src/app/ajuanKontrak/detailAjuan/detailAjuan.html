@@ -18,6 +18,9 @@
                             <li role="presentation">
                                 <a href="#tidakdiajukan" data-toggle="tab">Uraian Tugas Yang Tidak Diajukan</a>
                             </li>
+                            <li role="presentation">
+                                <a href="#ajuanDpa" data-toggle="tab">Uraian Tugas DPA Yang Diterima</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
@@ -76,6 +79,31 @@
                                                 <td>
                                                     <button type="button" ng-click="ajuan.tambahkan(urtug.kdUrtug)" class="btn btn-success btn waves waves-effect">Tambahkan</button>
                                                 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade in" id="ajuanDpa">
+                                <div class="body table-responsive">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="font-size: 16px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Rincian Uraian Tugas</th>
+                                                <th style="text-align: center">{{ajuan.isEselon4 ? 'Kegiatan' : 'Program'}}</th>
+                                                <th style="width: 5%;text-align: center">Jabatan</th>
+                                                <th style="width: 5%;text-align: center">Biaya</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="kegiatan in ajuan.kegiatan" style="text-align: center">
+                                                <td>{{$index + 1}}</td>
+                                                <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
+                                                <td style="text-align: left" ng-show="ajuan.isEselon4">{{kegiatan.ketKeg}}</td>
+                                                <td style="text-align: left" ng-hide="ajuan.isEselon4">{{kegiatan.ketProgram}}</td>
+                                                <td>{{kegiatan.statusPenanggungJawab}}</td>
+                                                <td>{{kegiatan.paguAnggaran}}</td>
                                             </tr>
                                         </tbody>
                                     </table>

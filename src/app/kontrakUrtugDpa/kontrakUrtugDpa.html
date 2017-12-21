@@ -63,6 +63,7 @@
                                     <tr style="background:#D32F2F; color:#ffff">
                                         <th style="width: 5%; text-align: center">No</th>
                                         <th >Nip</th>
+                                        <th >Nama Pegawai</th>
                                         <th style="width: 5%;">Jabatan</th>
                                         <th style="width: 5%;">Status</th>
                                         <th>Action</th>
@@ -72,6 +73,7 @@
                                     <tr ng-repeat="pj in kontrakdpa.kegiatanPj" style="text-align: center;">
                                         <td>{{$index + 1}}</td>
                                         <td style="text-align: left;">{{pj.nipPegawai}}</td>
+                                        <td style="text-align: left;">{{pj.namaPegawai}}</td>
                                         <td>{{pj.statusPenanggungJawab}}</td>
                                         <td>{{pj.statusApproval == 0 ? 'Pending' : pj.statusApproval == 1 ? 'Diterima' : 'Ditolak'}}</td>
                                         <td><button ng-show="{{pj.statusApproval == 2}}" type="button" ng-click="kontrakdpa.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button></td>
