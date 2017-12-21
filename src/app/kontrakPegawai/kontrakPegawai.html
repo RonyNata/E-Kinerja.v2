@@ -111,12 +111,12 @@
                                 <div class="body table-responsive" style="margin-bottom: -50px;">
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="font-size: 16px;">
                                         <thead>
-                                            <tr style="background:#D32F2F; color:#ffff">
+                                            <tr style="background:#D32F2F; color:#fff">
                                                 <th rowspan="2" style="width: 5%; text-align: center; padding-bottom: 30px">No</th>
                                                 <th rowspan="2" style="text-align: center; padding-bottom: 30px">Rincian Tugas dan Kegiatan</th>
                                                 <th colspan="5" style="text-align: center">TARGET</th>
                                             </tr>
-                                            <tr style="background:#D32F2F; color:#ffff">
+                                            <tr style="background:#D32F2F; color:#fff">
                                                 <th style="width: 10%; text-align: center">Kuant/ Output</th>
                                                 <th style="width: 5%; text-align: center">Mutu</th>
                                                 <th style="width: 5%; text-align: center">Waktu</th>
@@ -125,8 +125,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="urtug in kontrak.target" style="text-align: center;">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="urtug in filteredDataTarget" style="text-align: center;">
+                                                <td>{{$index + 1 + (numPerPageTarget*currentPageTarget)}}</td>
                                                 <td style="text-align: left">{{urtug.urtug}}</td>
                                                 <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
                                                 <td>{{urtug.kualitas}}</td>
@@ -139,15 +139,15 @@
                                     <div style="padding-top: 3px;" class="pull-right">
                                         <ul>
                                             <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                <button class="btn btn-primary" ng-click="padTarget(-1)" ng-disabled="currentPageTarget==0" aria-label="Use Android" style="cursor: pointer;">
                                                   &lt; PREV                          
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">halaman {{currentPage+1 + ' dari ' + maxSize}}</span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageTarget+1}} Of {{maxSizeTarget}}<span>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                <button class="btn btn-primary" ng-click="padTarget(1)" ng-disabled="maxTarget()" aria-label="Use Android" style="cursor: pointer;">
                                                   NEXT &gt;                          
                                                 </button>
                                             </li>
@@ -159,7 +159,7 @@
                                 <div class="body table-responsive" style="margin-bottom: -50px;">
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="font-size: 16px;">
                                         <thead>
-                                            <tr style="background:#D32F2F; color:#ffff">
+                                            <tr style="background:#D32F2F; color:#fff">
                                                 <th style="width: 5%; text-align: center">No</th>
                                                 <th style="text-align: center">Rincian Uraian Tugas</th>
                                                 <th style="text-align: center">{{kontrak.isEselon4 ? 'Kegiatan' : 'Program'}}</th>
@@ -169,8 +169,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="kegiatan in kontrak.kegiatan" style="text-align: center">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="kegiatan in filteredDataKegiatan" style="text-align: center">
+                                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                 <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
                                                 <td style="text-align: left" ng-show="kontrak.isEselon4">{{kegiatan.ketKeg}}</td>
                                                 <td style="text-align: left" ng-hide="kontrak.isEselon4">{{kegiatan.ketProgram}}</td>
@@ -188,7 +188,7 @@
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">halaman {{currentPage+1 + ' dari ' + maxSize}}</span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">

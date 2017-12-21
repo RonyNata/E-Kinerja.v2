@@ -38,8 +38,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr ng-repeat="naskah in penugasan.naskah" style="text-align: center">
-                                                    <td>{{$index + 1}}</td>
+                                                <tr ng-repeat="naskah in filteredDataPenugasan" style="text-align: center">
+                                                    <td>{{$index + 1 + (numPerPagePenugasan*currentPagePenugasan)}}</td>
                                                     <td>{{naskah.nama}}</td>
                                                     <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                     <td>{{naskah.tanggalDibuat}}</td>
@@ -50,6 +50,23 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padPenugasan(-1)" ng-disabled="currentPagePenugasan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPagePenugasan+1}} Of {{maxSizePenugasan}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padPenugasan(1)" ng-disabled="maxPenugasan()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade in" id="dibuat">
@@ -64,8 +81,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="history in penugasan.naskahHistory" style="text-align: center">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="history in filteredData" style="text-align: center">
+                                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                 <td>{{history.nama}}</td>
                                                 <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                 <td>{{history.tanggalDibuat}}</td>
@@ -76,6 +93,23 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
