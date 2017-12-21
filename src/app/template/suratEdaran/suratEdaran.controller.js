@@ -11,6 +11,10 @@ angular.
         vm.loading = true;
         vm.item = {};
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         if($state.current.name == 'suratedarannonpejabat')
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';

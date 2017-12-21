@@ -19,6 +19,10 @@ angular.
         //   vm.tembusanSurat.push(data);
         // }
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         vm.addTarget = function(){
           var data = {"id": new Date().getTime()};
           vm.target.push(data);

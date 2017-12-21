@@ -11,6 +11,10 @@ angular.
         vm.loading = true;
         vm.item = {};
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
         vm.target = [{"id": new Date().getTime()}];
 

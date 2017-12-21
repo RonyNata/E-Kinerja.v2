@@ -17,6 +17,10 @@ angular.
         vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
         vm.target = [{"id": new Date().getTime()}];
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         vm.addTembusan = function(){
           var data = {"id": new Date().getTime(), "deskripsi": ''};
           vm.tembusanSurat.push(data);
