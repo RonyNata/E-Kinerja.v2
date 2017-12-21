@@ -6,59 +6,61 @@
                 <div class="card">
                     <div class="header">
                         <i class="material-icons" style="float: left;">assignment</i>
-                        <h2 style="padding-left: 30px;padding-top: 3px;">DASHBOARD</h>
+                        <h2 style="padding-left: 30px;padding-top: 3px;">DASHBOARD</h2>
                     </div>
                     <div class="body" style="margin-top: 0px;font-size: 16px;">
                         <div class="body table-responsive" style="padding-top: 0px;margin-left: -7px;margin-right: -7px;margin-bottom: -30px;">
-                            <div class="col-md-6">
-                                <!-- <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;"> -->
+                            <div class="col-md-12" style="margin-bottom: 12px">
+                                <div class="col-md-6" style="margin-bottom: 0px">
+                                    <!-- <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;"> -->
                                     <!-- <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;font-size: 16px;">
                                         <li role="presentation" class="active"> -->
-                                            <h4>DISPOSISI MASUK</h4><hr>
-                                        <!-- </li>
-                                    </ul> -->
-                                <!-- </div> -->
-                                <div class="list-group">
-                                  <div ng-repeat="disposisi in dashboard.naskahDisposisi">
-                                    <a href="" ng-click="dashboard.getDokumenDisposisi(disposisi.kdLembarDisposisi, $index)" class="list-group-item list-group-item-action flex-column align-items-start">
-                                      <div ng-hide="disposisi.loading">
-                                        <div class="d-flex w-100 justify-content-between">
-                                          <h5 class="mb-1" style="font-size: 20px">{{disposisi.rahasia}}</h5>
-                                          <small style="font-size: 14px">{{disposisi.tglPengiriman}}</small>
+                                    <h4>DISPOSISI MASUK</h4><hr style="margin-bottom: 10px">
+                                    <!-- </li>
+                                </ul> -->
+                                    <!-- </div> -->
+                                    <div class="list-group" style="overflow-y: scroll; height:380px; margin-bottom: 0px; border-style: solid;">
+                                        <div ng-repeat="disposisi in dashboard.naskahDisposisi">
+                                            <a href="" ng-click="dashboard.getDokumenDisposisi(disposisi.kdLembarDisposisi, $index)" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div ng-hide="disposisi.loading">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1" style="font-size: 20px">{{disposisi.rahasia}}</h5>
+                                                        <small style="font-size: 14px">{{disposisi.tglPengiriman}}</small>
+                                                    </div>
+                                                    <p class="mb-1" style="font-size: 16px">{{disposisi.ringkasanIsi}}</p>
+                                                    <small style="font-size: 14px">Oleh {{disposisi.namaPengirim}}</small>
+                                                </div>
+                                                <div ng-show="disposisi.loading">
+                                                    <p class="mb-1">MOHON TUNGGU...</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <p class="mb-1" style="font-size: 16px">{{disposisi.ringkasanIsi}}</p>
-                                        <small style="font-size: 14px">Oleh {{disposisi.namaPengirim}}</small>
-                                      </div>
-                                      <div ng-show="disposisi.loading">
-                                          <p class="mb-1">MOHON TUNGGU...</p>
-                                      </div>
-                                    </a>
-                                  </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <!-- <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
-                                    <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;font-size: 16px;">
-                                        <li role="presentation" class="active"> -->
-                                            <h4>PENUGASAN MASUK</h4><hr>
-                                        <!-- </li>
-                                    </ul>
-                                </div> -->
-                                <div class="list-group">
-                                    <div ng-repeat="tugas in dashboard.naskah">
-                                      <a href="" ng-click="dashboard.getDocument(tugas, $index, 1)" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div ng-hide="tugas.loading">
-                                            <div class="d-flex w-100 justify-content-between">
-                                              <h5 class="mb-1" style="font-size: 20px">{{tugas.nama}}</h5>
-                                              <small style="font-size: 14px">{{tugas.tanggalDibuat}}</small>
-                                            </div>
-                                            <p class="mb-1" style="font-size: 16px">{{tugas.judulNaskah}}</p>
-                                            <small style="font-size: 14px">Oleh {{tugas.namaPengirim}}</small>
+                                <div class="col-md-6" style="margin-bottom: 0px">
+                                    <!-- <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
+                                        <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;font-size: 16px;">
+                                            <li role="presentation" class="active"> -->
+                                    <h4>PENUGASAN MASUK</h4><hr style="margin-bottom: 10px">
+                                    <!-- </li>
+                                </ul>
+                            </div> -->
+                                    <div class="list-group" style="overflow-y: scroll; height:380px; margin-bottom: 0px;border-style: solid;">
+                                        <div ng-repeat="tugas in dashboard.naskah">
+                                            <a href="" ng-click="dashboard.getDocument(tugas, $index, 1)" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div ng-hide="tugas.loading">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1" style="font-size: 20px">{{tugas.nama}}</h5>
+                                                        <small style="font-size: 14px">{{tugas.tanggalDibuat}}</small>
+                                                    </div>
+                                                    <p class="mb-1" style="font-size: 16px">{{tugas.judulNaskah}}</p>
+                                                    <small style="font-size: 14px">Oleh {{tugas.namaPengirim}}</small>
+                                                </div>
+                                                <div ng-show="tugas.loading">
+                                                    <p class="mb-1">MOHON TUNGGU...</p>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div ng-show="tugas.loading">
-                                            <p class="mb-1">MOHON TUNGGU...</p>
-                                        </div>
-                                      </a>
                                     </div>
                                 </div>
                             </div>
