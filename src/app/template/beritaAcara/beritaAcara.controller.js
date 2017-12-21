@@ -16,7 +16,11 @@
         vm.addIsiBeritaAcara = function(){
             var data = {"id": new Date().getTime(), "deskripsi": ''};
             vm.isiBeritaAcara.push(data);
-        }
+        };
+
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
 
         getAllPegawai();
 

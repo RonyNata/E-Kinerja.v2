@@ -7,7 +7,11 @@
     function SuratPerjanjianAntarInstansiDalamNegeriController(EkinerjaService, SuratPerjanjianAntarInstansiDalamNegeriService, HakAksesService, $scope, $state) {
         var vm = this;
         vm.loading = true;
-        vm.item = {};
+        vm.item = {}
+
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
 

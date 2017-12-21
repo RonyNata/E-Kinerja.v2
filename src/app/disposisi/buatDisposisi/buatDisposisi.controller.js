@@ -8,12 +8,15 @@
       	vm.loading = true;
 
       	getAllDisposisi();
+        getHistoryDisposisi();
 
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
               vm.dataHistory = response;debugger
-              getHistoryDisposisi();
+              vm.loading = false;
+              vm.dataLookDisposisi = angular.copy(vm.dataHistory);
+              pagingDisposisi();
             }, function(errResponse){
 
             })
@@ -32,11 +35,72 @@
           AmbilDisposisiService.GetHistoryDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               vm.history = response;
-              vm.loading = false;
+              vm.dataLook = angular.copy(vm.history);
+              pagingHistori();
             }, function(errResponse){
 
             })
         }
+
+        function pagingDisposisi(){ 
+            $scope.filteredDataDisposisi = [];
+            $scope.currentPageDisposisi = 0;
+            $scope.numPerPageDisposisi = 10;
+            $scope.maxSizeDisposisi = Math.ceil(vm.dataLookDisposisi.length/$scope.numPerPageDisposisi);
+            function pageDisposisi(){
+              $scope.pageDisposisi = [];
+              for(var i = 0; i < vm.dataLookDisposisi.length/$scope.numPerPageDisposisi; i++){
+                  $scope.pageDisposisi.push(i+1);
+              }
+            }
+            pageDisposisi();
+            $scope.padDisposisi = function(i){
+              $scope.currentPageDisposisi += i;
+            }
+
+            $scope.maxDisposisi = function(){
+              if($scope.currentPageDisposisi >= $scope.maxSizeDisposisi - 1)
+                  return true;
+              else return false;
+            }
+
+            $scope.$watch("currentPageDisposisi + numPerPageDisposisi", function() {
+              var begin = (($scope.currentPageDisposisi) * $scope.numPerPageDisposisi)
+              , end = begin + $scope.numPerPageDisposisi;
+
+              $scope.filteredDataDisposisi = vm.dataLookDisposisi.slice(begin, end);
+            });
+          }
+
+          function pagingHistori(){ 
+            $scope.filteredData = [];
+            $scope.currentPage = 0;
+            $scope.numPerPage = 10;
+            $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
+            function page(){
+              $scope.page = [];
+              for(var i = 0; i < vm.dataLook.length/$scope.numPerPage; i++){
+                  $scope.page.push(i+1);
+              }
+            }
+            page();
+            $scope.pad = function(i){
+              $scope.currentPage += i;
+            }
+
+            $scope.max = function(){
+              if($scope.currentPage >= $scope.maxSize - 1)
+                  return true;
+              else return false;
+            }
+
+            $scope.$watch("currentPage + numPerPage", function() {
+              var begin = (($scope.currentPage) * $scope.numPerPage)
+              , end = begin + $scope.numPerPage;
+
+              $scope.filteredData = vm.dataLook.slice(begin, end);
+            });
+          }
 
         vm.forward = function(kdLembarDisposisi){
           $state.go('perpindahandisposisi', {

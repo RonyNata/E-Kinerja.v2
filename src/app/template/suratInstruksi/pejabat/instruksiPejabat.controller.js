@@ -87,11 +87,11 @@ angular.
             }, function(errResponse){
 
             })
-        }
+        };
 
         vm.back =  function(){
           $state.go('kontrak');
-        }
+        };
 
 
         // docDefinition.content[0].text = 'baka aweu';

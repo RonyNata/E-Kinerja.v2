@@ -37,7 +37,11 @@
             if($scope.pegawai.length == 18)
                 vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
             debugger
-        })
+        });
+
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
 
         function template(){
             vm.docDefinition = {

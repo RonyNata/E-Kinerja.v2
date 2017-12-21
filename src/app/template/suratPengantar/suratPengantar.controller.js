@@ -11,6 +11,10 @@ angular.
         vm.loading = true;
         vm.item = {};
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         vm.isi = [{"id": new Date().getTime()}];
 
         getAllPegawai();

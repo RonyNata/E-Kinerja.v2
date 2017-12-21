@@ -55,6 +55,8 @@ angular.
                 response[i].judulNaskah = response[i].judulInstruksi;
                 vm.naskahHistory.push(response[i]);
               }
+              vm.dataLook = angular.copy(vm.naskahHistory);
+              pagingHistori(); 
               getNaskahPenugasanInstruksiTarget();
             }, function(errResponse){
 
@@ -72,6 +74,9 @@ angular.
                 vm.naskah.push(response[i]);
               }
               vm.loading = false;
+              vm.dataLookPenugasan = angular.copy(vm.naskah);
+              pagingPenugasan();
+              
             }, function(errResponse){
 
             })
@@ -114,6 +119,66 @@ angular.
 
             })
         }
+
+        function pagingPenugasan(){ 
+            $scope.filteredDataPenugasan = [];
+            $scope.currentPagePenugasan = 0;
+            $scope.numPerPagePenugasan = 10;
+            $scope.maxSizePenugasan = Math.ceil(vm.dataLookPenugasan.length/$scope.numPerPagePenugasan);
+            function pagePenugasan(){
+              $scope.pagePenugasan = [];
+              for(var i = 0; i < vm.dataLookPenugasan.length/$scope.numPerPagePenugasan; i++){
+                  $scope.page.push(i+1);
+              }
+            }
+            pagePenugasan();
+            $scope.padPenugasan = function(i){
+              $scope.currentPagePenugasan += i;
+            }
+
+            $scope.maxPenugasan = function(){
+              if($scope.currentPagePenugasan >= $scope.maxSizePenugasan - 1)
+                  return true;
+              else return false;
+            }
+
+            $scope.$watch("currentPagePenugasan + numPerPagePenugasan", function() {
+              var begin = (($scope.currentPagePenugasan) * $scope.numPerPagePenugasan)
+              , end = begin + $scope.numPerPagePenugasan;
+
+              $scope.filteredDataPenugasan = vm.dataLookPenugasan.slice(begin, end);
+            });
+          }
+
+          function pagingHistori(){ 
+            $scope.filteredData = [];
+            $scope.currentPage = 0;
+            $scope.numPerPage = 10;
+            $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
+            function page(){
+              $scope.page = [];
+              for(var i = 0; i < vm.dataLook.length/$scope.numPerPage; i++){
+                  $scope.page.push(i+1);
+              }
+            }
+            page();
+            $scope.pad = function(i){
+              $scope.currentPage += i;
+            }
+
+            $scope.max = function(){
+              if($scope.currentPage >= $scope.maxSize - 1)
+                  return true;
+              else return false;
+            }
+
+            $scope.$watch("currentPage + numPerPage", function() {
+              var begin = (($scope.currentPage) * $scope.numPerPage)
+              , end = begin + $scope.numPerPage;
+
+              $scope.filteredData = vm.dataLook.slice(begin, end);
+            });
+          }
 
         vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
             var parentElem = parentSelector ?

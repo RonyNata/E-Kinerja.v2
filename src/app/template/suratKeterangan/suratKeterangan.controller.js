@@ -9,6 +9,10 @@
         vm.loading = true;
         vm.item = {};
 
+        vm.back =  function(){
+            $state.go('kontrak');
+        };
+
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
         getAllPegawai();
