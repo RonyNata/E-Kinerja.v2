@@ -3,7 +3,7 @@
 
 angular.module('eKinerja').controller('DisposisiController', DisposisiController);
 
-function DisposisiController(EkinerjaService, HakAksesService, DisposisiService, $scope, $state) {
+function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiService, DisposisiService, $scope, $state) {
 	var vm = this;
 	vm.loading = true;
 	vm.item = {};
@@ -32,6 +32,26 @@ function DisposisiController(EkinerjaService, HakAksesService, DisposisiService,
 
         })
     }
+
+    function getDisposisi(){
+    	AmbilDisposisiService.GetDokumenDisposisi($state.params.kdSurat).then(
+	        function(response){debugger
+	          // template(response);
+	          vm.item.tktKeamanan = response.tktKeamanan;
+	          vm.item.tanggalPenerimaanMilis = new Date(response.tanggalPenerimaanMilis);
+	          vm.item.noSuratDisposisi = $state.params.kdSurat;
+	          vm.item.tglPenyelesaianMilis = new Date(response.tglPenyelesaianMilis);
+	          vm.item.lampiran = response.lampiran;
+	          vm.item.ringkasanIsiSuratDisposisi = response.ringkasanIsi;
+	          vm.item.isiDisposisi = response.isiDisposisi;
+	          vm.item.tanggalSuratDisposisiMilis = new Date(response.tanggalSuratDisposisiMilis);
+	        }, function(errResponse){
+
+	        })
+    }
+
+    if($state.current.name != undefined)
+    	getDisposisi();
 
     vm.getPegawai = function(idx){
       if(vm.target[idx].pegawai.length == 18)

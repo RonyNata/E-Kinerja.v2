@@ -84,8 +84,8 @@ angular.
 
         vm.getDocument = function(naskah, idx, isHistory){
           if(!isHistory)
-            vm.naskah[idx].loading = true;
-          else vm.naskahHistory[idx].loading = true;
+            $scope.filteredDataPenugasan[idx].loading = true;
+          else $scope.filteredData[idx].loading = true;
           switch(naskah.jenis){
             case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
@@ -98,8 +98,8 @@ angular.
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
               if(!isHistory)
-                vm.naskah[idx].loading = false;
-              else vm.naskahHistory[idx].loading = false;
+                $scope.filteredDataPenugasan[idx].loading = false;
+              else $scope.filteredData[idx].loading = false;
               pdfMake.createPdf(doc).open();
             }, function(errResponse){
 
@@ -112,8 +112,8 @@ angular.
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
               if(!isHistory)
-                vm.naskah[idx].loading = false;
-              else vm.naskahHistory[idx].loading = false;
+                $scope.filteredDataPenugasan[idx].loading = false;
+              else $scope.filteredData[idx].loading = false;
               pdfMake.createPdf(doc).open();
             }, function(errResponse){
 
