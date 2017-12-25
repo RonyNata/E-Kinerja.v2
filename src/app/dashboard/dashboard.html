@@ -20,20 +20,31 @@
                                 </ul> -->
                                     <!-- </div> -->
                                     <div class="list-group" style="overflow-y: scroll; height:380px; margin-bottom: 0px; border-style: solid;">
-                                        <div ng-repeat="disposisi in dashboard.naskahDisposisi">
-                                            <a href="" ng-click="dashboard.getDokumenDisposisi(disposisi.kdLembarDisposisi, $index)" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div ng-hide="disposisi.loading">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1" style="font-size: 20px">{{disposisi.rahasia}}</h5>
-                                                        <small style="font-size: 14px">{{disposisi.tglPengiriman}}</small>
+                                        <div class="list-group">
+                                            <div ng-repeat="disposisi in dashboard.naskahDisposisi">
+                                                <div class="list-group-item">
+                                                    <div ng-hide="disposisi.loading">
+                                                        <table style="width: 100%">
+                                                            <tr>
+                                                                <td style="padding-right:10px; width:30%" rowspan="3"><h4 class="list-group-item-heading"><b>{{disposisi.rahasia}}</b></h4></td>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">{{disposisi.tglPengiriman}}</p></td>
+                                                                <td><button ng-click="dashboard.getDokumenDisposisi(disposisi.kdLembarDisposisi, $index)" type="button" class="btn btn-primary btn-block">Buka</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">{{disposisi.ringkasanIsi}}</p></td>
+                                                                <td><p class="list-group-item-text"></p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">Oleh <b>{{disposisi.namaPengirim}}</b></p></td>
+                                                                <td><button type="button" class="btn btn-success btn-block">Kerjakan</button></td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
-                                                    <p class="mb-1" style="font-size: 16px">{{disposisi.ringkasanIsi}}</p>
-                                                    <small style="font-size: 14px">Oleh {{disposisi.namaPengirim}}</small>
+                                                    <div ng-show="tugas.loading">
+                                                        <p class="mb-1">MOHON TUNGGU...</p>
+                                                    </div>
                                                 </div>
-                                                <div ng-show="disposisi.loading">
-                                                    <p class="mb-1">MOHON TUNGGU...</p>
-                                                </div>
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -46,20 +57,31 @@
                                 </ul>
                             </div> -->
                                     <div class="list-group" style="overflow-y: scroll; height:380px; margin-bottom: 0px;border-style: solid;">
-                                        <div ng-repeat="tugas in dashboard.naskah">
-                                            <a href="" ng-click="dashboard.getDocument(tugas, $index, 1)" class="list-group-item list-group-item-action flex-column align-items-start">
-                                                <div ng-hide="tugas.loading">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1" style="font-size: 20px">{{tugas.nama}}</h5>
-                                                        <small style="font-size: 14px">{{tugas.tanggalDibuat}}</small>
+                                        <div class="list-group">
+                                            <div ng-repeat="tugas in dashboard.naskah">
+                                                <div class="list-group-item">
+                                                    <div ng-hide="tugas.loading">
+                                                        <table style="width: 100%">
+                                                            <tr>
+                                                                <td style="padding-right:10px; width:30%" rowspan="3"><h4 class="list-group-item-heading"><b>{{tugas.nama}}</b></h4></td>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">{{tugas.tanggalDibuat}}</p></td>
+                                                                <td><button ng-click="dashboard.getDocument(tugas, $index, 1)" type="button" class="btn btn-primary btn-block">Buka</button></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">{{tugas.judulNaskah}}</p></td>
+                                                                <td><p class="list-group-item-text"></p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="padding-right:10px"><p class="list-group-item-text">Oleh <b>{{tugas.namaPengirim}}</b></p></td>
+                                                                <td><button type="button" class="btn btn-success btn-block">Kerjakan</button></td>
+                                                            </tr>
+                                                        </table>
                                                     </div>
-                                                    <p class="mb-1" style="font-size: 16px">{{tugas.judulNaskah}}</p>
-                                                    <small style="font-size: 14px">Oleh {{tugas.namaPengirim}}</small>
+                                                    <div ng-show="tugas.loading">
+                                                        <p class="mb-1">MOHON TUNGGU...</p>
+                                                    </div>
                                                 </div>
-                                                <div ng-show="tugas.loading">
-                                                    <p class="mb-1">MOHON TUNGGU...</p>
-                                                </div>
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
