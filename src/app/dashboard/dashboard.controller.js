@@ -4,7 +4,7 @@
 	angular.module('eKinerja').controller('DashboardController', DashboardController);
 
 	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService,
-    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService){
+    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, $uibModal){
 		var vm = this;
     vm.loading = true;
 
@@ -60,6 +60,35 @@
         })
     }
     
+     vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
+        controller: 'TemplateController',
+        controllerAs: 'temp',
+        // windowClass: 'app-modal-window',
+        // size: 'lg',
+        appendTo: parentElem,
+            resolve: {
+                urtug: function () {
+                    return uraianTugas;
+                },
+                isDPA: function () {
+                    return isDPA;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+
+        });
+      };
+
     function getNaskahPenugasanPerintahTarget(){
       DashboardService.GetPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){
