@@ -119,7 +119,7 @@
         case 1 : getDocumentPerintah(naskah.kdSurat, idx); break;
       }
 
-    }
+    };
 
     function getDocumentInstruksi(kdHistory, idx){
       KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
