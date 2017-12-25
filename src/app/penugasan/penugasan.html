@@ -46,6 +46,7 @@
                                                     <td>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
+                                                        <button type="button" class="btn btn-success">Kerjakan</button>
                                                     </td> 
                                                 </tr>
                                             </tbody>
@@ -58,7 +59,7 @@
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPagePenugasan+1}} Of {{maxSizePenugasan}}<span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPagePenugasan+1}} Of {{maxSizePenugasan}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="padPenugasan(1)" ng-disabled="maxPenugasan()" aria-label="Use Android" style="cursor: pointer;">
@@ -101,7 +102,7 @@
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
