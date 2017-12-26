@@ -6,7 +6,7 @@ angular.
 	.controller('InstruksiPejabatController', InstruksiPejabatController);
 
     
-    function InstruksiPejabatController(EkinerjaService, InstruksiPejabatService, HakAksesService, $scope, $state) {
+    function InstruksiPejabatController(EkinerjaService, InstruksiPejabatService, KontrakPegawaiService, HakAksesService, $scope, $state) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -49,7 +49,38 @@ angular.
             vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawai,vm.list_pegawai);
             console.log(vm.item.pegawaiPenandatangan);
           }
-        }        
+        }  
+
+        if($state.current.name == 'instruksinonpejabatterusan' || $state.current.name == 'instruksipejabatterusan')
+          getDocumentInstruksi();
+
+        function getDocumentInstruksi(){
+          KontrakPegawaiService.GetDataInstruksi($state.params.kdSurat).then(
+            function(response){
+              vm.item.judulInstruksi = response.judulInstruksi;
+              vm.item.nomorSurat = response.nomor;
+              vm.item.tempat = response.dikeluarkanDi;
+              vm.item.tentang = response.tentang;
+              vm.item.pegawai = response.nipPenandatangan;
+              vm.getPegawaiPd();
+              vm.maksud = [];
+              for(var i = 0; i < response.daftarIsiInstruksi.length; i++)
+                vm.maksud.push({
+                  "id": new Date().getTime(),
+                  "deskripsi": response.daftarIsiInstruksi[i]
+                });
+              vm.target = [];
+              for(var i = 0; i < response.targetPegawaiList.length; i++){debugger
+                vm.target.push({
+                  "id": new Date().getTime(), 
+                  "pegawai": response.targetPegawaiList[i].nipPegawai,
+                  "pegawaiPembuat": response.targetPegawaiList[i]
+                });
+              }
+            }, function(errResponse){
+
+            })
+        }      
 
         // $scope.$watch('pegawai', function(){
         //     vm.target.pegawaiPembuat = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
@@ -71,11 +102,13 @@ angular.
             "targetJabatanList": [],
             "suratPejabat": false,
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
-            "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja
+            "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja,
           }
           debugger
           if($state.current.name != 'instruksinonpejabat')
             data.suratPejabat = true;
+          if($state.current.name != 'instruksinonpejabatterusan' || $state.current.name != 'instruksipejabatterusan')
+            data.kdSuratInstruksiParent = $state.params.kdSurat;
           for(var i = 0; i < vm.maksud.length; i++)
             data.daftarIsiInstruksi.push(vm.maksud[i].deskripsi);
           for(var i = 0; i < vm.target.length; i++)
@@ -235,7 +268,7 @@ angular.
             vm.docDefinition.content[7].table.body[0][2].ol.push(data);
           }
 
-          if($state.current.name == "instruksinonpejabat"){
+          if($state.current.name == "instruksinonpejabat" || $state.current.name == "instruksinonpejabatterusan"){
             vm.docDefinition.content[0] = {
                 table:{
                     widths: [100,'*'],

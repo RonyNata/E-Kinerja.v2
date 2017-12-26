@@ -44,6 +44,7 @@
                                                     <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                     <td>{{naskah.tanggalDibuat}}</td>
                                                     <td>
+                                                        <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdInstruksi, naskah.suratPejabat)" class="btn btn-success waves-effect">Teruskan</button>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-primary waves-effect" ng-hide="naskah.loading">Lihat Dokumen</button>
                                                         <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary waves-effect" ng-show="naskah.loading" disabled>Mohon Tunggu</button>
                                                         <button type="button" class="btn bg-green waves-effect" ng-click="penugasan.openTemplate(urtug,0)">KERJAKAN</button>
@@ -88,6 +89,7 @@
                                                 <!-- <td style="text-align: left;border: 1px solid black">{{naskah.judulNaskah}}</td> -->
                                                 <td>{{history.tanggalDibuat}}</td>
                                                 <td>
+                                                    <button type="button" ng-show="history.jenis == 0" ng-click="penugasan.tree(history.kdInstruksi)" class="btn btn-success waves-effect">Tree</button>
                                                     <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-primary waves-effect" ng-hide="history.loading">Lihat Dokumen</button>
                                                     <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
                                                 </td>

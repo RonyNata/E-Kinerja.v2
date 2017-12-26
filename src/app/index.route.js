@@ -303,6 +303,18 @@
         controller: 'InstruksiPejabatController',
         controllerAs: 'instruksipejabat'
       })
+      .state('instruksipejabatterusan', {
+        url: '/surat-instruksi-pejabat/:kdSurat',
+        templateUrl: 'app/template/suratInstruksi/pejabat/instruksiPejabat.html',
+        controller: 'InstruksiPejabatController',
+        controllerAs: 'instruksipejabat'
+      })
+      .state('instruksinonpejabatterusan', {
+        url: '/surat-instruksi-nonpejabat/:kdSurat',
+        templateUrl: 'app/template/suratInstruksi/pejabat/instruksiPejabat.html',
+        controller: 'InstruksiPejabatController',
+        controllerAs: 'instruksipejabat'
+      })
       .state('surattugas', {
         url: '/surat-tugas',
         templateUrl: 'app/template/suratTugas/suratTugas.html',

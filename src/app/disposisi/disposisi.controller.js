@@ -39,7 +39,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	          // template(response);
 	          vm.item.tktKeamanan = response.tktKeamanan;
 	          vm.item.tanggalPenerimaanMilis = new Date(response.tanggalPenerimaanMilis);
-	          vm.item.noSuratDisposisi = $state.params.kdSurat;
+	          vm.item.noSuratDisposisi = response.noSuratDisposisi;
 	          vm.item.tglPenyelesaianMilis = new Date(response.tglPenyelesaianMilis);
 	          vm.item.lampiran = response.lampiran;
 	          vm.item.ringkasanIsiSuratDisposisi = response.ringkasanIsi;
@@ -243,7 +243,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.tanggalPenerimaanMilis],
+		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalPenerimaanMilis)],
 		                          fontSize: 9
 		                        }
 		                      ]
@@ -263,7 +263,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.tglPenyelesaianMilis],
+		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tglPenyelesaianMilis)],
 		                          fontSize: 9
 		                        }
 		                      ]
@@ -290,7 +290,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.tanggalSuratDisposisiMilis + ' dan ' + vm.item.noSuratDisposisi],
+		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalSuratDisposisiMilis) + ' dan ' + vm.item.noSuratDisposisi],
 		                          fontSize: 9
 		                        }
 		                      ],
