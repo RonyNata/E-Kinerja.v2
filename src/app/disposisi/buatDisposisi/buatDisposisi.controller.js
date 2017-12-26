@@ -43,7 +43,7 @@
         }
 
         vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
-        var parentElem = parentSelector ? 
+        var parentElem = parentSelector ?
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
         animation: true,

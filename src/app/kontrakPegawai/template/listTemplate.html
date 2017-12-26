@@ -12,30 +12,28 @@
                                 <label >Cari</label>
                             </div>
                             <div class="col-md-6">
-                               <input type="text" class="form-control" ng-model="temp.searchName" ng-required="true" placeholder="Nama Template" ng-change="temp.search()">
+                                <input type="text" class="form-control" ng-model="temp.searchName" ng-required="true" placeholder="Nama Template" ng-change="temp.search()">
                             </div>
                         </div>
                         <div class="col-md-12">&nbsp</div>
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
+                        <table class="table table-fixed" cellspacing="0">
                             <thead>
-                                <tr style="background:#D32F2F; color:#ffff">
-                                    <th style="width: 5%; text-align: center">No</th>
-                                    <th style="text-align: center">Deskripsi</th>
-                                    <th style="text-align: center; width: 15%; ">Template</th>
-                                    <!-- <th style="width: 10%; text-align: center">Action</th> -->
-                                </tr>
+                            <tr>
+                                <th class="col-xs-2">No</th>
+                                <th class="col-xs-8" style="text-align: left;">Deskripsi</th>
+                                <th class="col-xs-2">Template</th>
+                                <!-- <th style="width: 10%; text-align: center">Action</th> -->
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="data in temp.result">
-                                    <td>{{$index + 1}}</td>
-                                    <td>
-                                        {{data.nmTemplate}}
-                                    </td>
-                                    <td><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary waves-effect">Template</button></td>
-                                </tr>
+                            <tr ng-repeat="data in temp.result">
+                                <td class="col-xs-2" style="text-align: center;">{{$index + 1}}</td>
+                                <td class="col-xs-8">{{data.nmTemplate}} </td>
+                                <td class="col-xs-2"><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary waves-effect">Template</button></td>
+                            </tr>
                             </tbody>
                         </table>
-                    </div>                              
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,9 +41,9 @@
         </div>
     </div>
 </div>
-    <div class="modal-footer">
-        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-        <button type="button" ng-hide="temp.isDPA == 2" ng-click="temp.openUploadTemplate()" class="btn btn-primary waves-effect" data-dismiss="modal">Template Lain</button>
-        <button type="button" ng-click="temp.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+<div class="modal-footer">
+    <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
+    <button type="button" ng-hide="temp.isDPA == 2" ng-click="temp.openUploadTemplate()" class="btn btn-primary waves-effect" data-dismiss="modal">Template Lain</button>
+    <button type="button" ng-click="temp.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
 
-    </div> 
+</div>

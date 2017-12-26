@@ -8125,3 +8125,24 @@ html.ie11 .bs-searchbox .form-control {
   margin-left: 100px;
   margin-top: 50px;
 }
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+  float: left;
+  border-bottom-width: 0;
+}
+.table-fixed thead > tr> th {
+  text-align: center;
+  background: #D32F2F;
+  color: #ffff;
+}
