@@ -1,0 +1,131 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 90px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <i class="material-icons" style="float: left;">assignment</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;">PENILAIAN</h2>
+                    </div>
+                    <div class="body" style="margin-top: 0px;font-size: 16px;"> 
+                        <div class="col-md-12">
+                            <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
+                                <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;">
+                                    <li role="presentation" class="active">
+                                        <a href="#laporanbawah" data-toggle="tab"><b>Laporan Bawahan</b></a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#laporanajuan" data-toggle="tab"><b>Laporan Yang Diajukan</b></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>     
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="laporanbawah">
+                                <div class="body table-responsive" style="padding-top: 0px;margin-left: -7px;margin-right: -7px;margin-bottom: -30px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;margin-left: 0px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Jenis Surat</th>
+                                                <th style="text-align: center; width: 10%">Status</th>
+                                                <th style="text-align: center; width: 30%" >Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="ambil in penilaian.laporanbawahan" style="text-align: center">
+                                                <td>{{$index + 1 }}</td>
+                                                <td style="text-align: left;">{{ambil.jenisSurat}}</td>
+                                                <td style="text-align: left;">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil.kdSurat, false)"><i class="material-icons">edit</i><span>Terima</span></button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocumentPerintah(ambil.kdSurat, $index)" ng-hide="ambil.loading"><i class="material-icons">edit</i><span>Lihat Dokumen</span></button>
+                                                    <button type="button" class="btn btn-secondary waves-effect" ng-show="ambil.loading" disabled>Mohon Tunggu</button>
+                                                    <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)"><i class="material-icons">delete</i>Tolak</button>
+                                                </td> 
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padDisposisi(-1)" ng-disabled="currentPageDisposisi==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageDisposisi+1}} Of {{maxSizeDisposisi}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padDisposisi(1)" ng-disabled="maxDisposisi()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="laporanajuan">
+                                 <div class="body table-responsive" style="padding-top: 0px;margin-left: -7px;margin-right: -7px;margin-bottom: -30px;">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;margin-left: 0px;">
+                                        <thead>
+                                            <tr style="background:#D32F2F; color:#ffff">
+                                                <th style="width: 5%; text-align: center">No</th>
+                                                <th style="text-align: center">Kode Lembar Disposisi</th>
+                                                <th style="text-align: center">Tingkat Keamanan</th> 
+                                                <th style="text-align: center; width: 30%" >Action</th> 
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="history in filteredData" style="text-align: center">
+                                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                <td style="text-align: left;">{{history.kdLembarDisposisi}}</td>
+                                                <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
+                                                {{history.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
+                                                {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
+                                                </td> 
+                                                <td>
+                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tree(history.kdLembarDisposisi)"><i class="material-icons">edit</i><span>TREE</span></button>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
+                                                </td> 
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- <div style="padding-top: 3px;" class="pull-right">
+                                        <ul>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                  &lt; PREV                          
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                  NEXT &gt;                          
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <div class="bg_load animate-show-hide" ng-show="penilaian.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="penilaian.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div> -->

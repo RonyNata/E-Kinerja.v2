@@ -45,6 +45,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	          vm.item.ringkasanIsiSuratDisposisi = response.ringkasanIsi;
 	          vm.item.isiDisposisi = response.isiDisposisi;
 	          vm.item.tanggalSuratDisposisiMilis = new Date(response.tanggalSuratDisposisiMilis);
+	          vm.item.nipDari = response.dari;
 	        }, function(errResponse){
 
 	        })
@@ -71,7 +72,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "noSuratDisposisi": vm.item.noSuratDisposisi,
         "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
         "lampiran": vm.item.lampiran,
-        "dariSuratDisposisi": vm.item.dariSuratDisposisi.nama,
+        "dariSuratDisposisi": vm.item.nipDari,
         "ringkasanIsiSuratDisposisi": vm.item.ringkasanIsiSuratDisposisi,
         "tanggalSuratDisposisiMilis": (new Date()).getTime(),
         "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
@@ -307,7 +308,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.dariSuratDisposisi.nama],
+		                          text: ['' + vm.item.nipDari],
 		                          fontSize: 9
 		                        }
 		                      ],

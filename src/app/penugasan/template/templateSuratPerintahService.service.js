@@ -41,7 +41,7 @@
                   widths: [50, 5, '*'],
                   body: [
                     [{text: 'Nama', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + data.nmPenandatangan, border: [false, false, false, false]}],
-                    [{text: 'Jabatan', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + data.jabatanPenandatangan, border: [false, false, false, false]}]
+                    [{text: 'Jabatan', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + data.nmJabatanPenandatangan, border: [false, false, false, false]}]
                   ]
                 }
               },
@@ -98,7 +98,7 @@
                       widths: [250], 
                       body: [
                           [{text: '' + data.tempat + ', ' + data.tanggalDibuat, alignment : 'left', border: [false, false, false, false]}],
-                          [{text: ''+ data.jabatanPenandatangan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
+                          [{text: ''+ data.nmJabatanPenandatangan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
                           [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
                           [{text: '' + data.nmPenandatangan, alignment : 'left', border: [false, false, false, false]}]
                       ]

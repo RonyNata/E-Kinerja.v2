@@ -6,7 +6,8 @@ angular.
 	.controller('SuratPerintahController', SuratPerintahController);
 
     
-    function SuratPerintahController(EkinerjaService, SuratPerintahService, $scope, $state, HakAksesService, PengumpulanDataBebanKerjaService) {
+    function SuratPerintahController(EkinerjaService, SuratPerintahService, $scope, $state, HakAksesService, 
+      PengumpulanDataBebanKerjaService, PenugasanService) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -60,11 +61,72 @@ angular.
             vm.target[idx].pegawai = EkinerjaService.findPegawaiByNip(vm.target[idx].pgw,vm.list_pegawai);
         }
 
-        $scope.$watch('pegawai', function(){
+        vm.getPegawai = function(){
           if($scope.pegawai.length == 18)
             vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
           debugger
-        })
+        }
+debugger
+        if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
+          getDocumentPerintah();
+
+        function getDocumentPerintah(){debugger
+          PenugasanService.GetDataPerintah($state.params.kdSurat).then(
+            function(response){
+              vm.item.nomorSurat = response.nomorSurat;
+              vm.item.nomorSurat1 = response.nomorSurat1;
+              vm.item.nomorSurat2 = response.nomorSurat2;
+              vm.item.tempat = response.tempat;
+              $scope.pegawai = response.nipPenandatangan;
+              vm.getPegawai();
+              vm.item.tanggal1 = new Date(response.tanggalDibuatMilis);
+              // vm.maksud = [];
+              // for(var i = 0; i < response.daftarIsiInstruksi.length; i++)
+              //   vm.maksud.push({
+              //     "id": new Date().getTime(),
+              //     "deskripsi": response.daftarIsiInstruksi[i]
+              //   });
+              vm.tembusanSurat = [];
+              for(var i = 0; i < response.daftarTembusan.length; i++){
+                vm.tembusanSurat.push({
+                  "id": new Date().getTime(), 
+                  "jabat": response.daftarTembusan[i].kdJabatan,
+                  "jabatan": response.daftarTembusan[i]
+                });
+              }
+              vm.target = [];
+              for(var i = 0; i < response.daftarTargetPegawai.length; i++){debugger
+                response.daftarTargetPegawai[i].nipPegawai = response.daftarTargetPegawai[i].nip;
+                vm.target.push({
+                  "id": new Date().getTime(), 
+                  "pgw": response.daftarTargetPegawai[i].nip,
+                  "pegawai": response.daftarTargetPegawai[i]
+                });
+              }
+
+              vm.item.menimbang = "";
+              for(var i = 0; i < response.menimbangList.length;i++){
+                vm.item.menimbang += (i+1) + '. ' + response.menimbangList;
+                if(i != response.menimbangList.length-1)
+                  vm.item.menimbang += '\n';
+              }
+              vm.item.dasar = "";
+              for(var i = 0; i < response.dasarList.length;i++){
+                vm.item.dasar += (i+1) + '. ' + response.dasarList + '\n';
+                if(i != response.dasarList.length-1)
+                  vm.item.dasar += '\n';
+              }
+              vm.item.untuk = "";
+              for(var i = 0; i < response.untukList.length;i++){
+                vm.item.untuk += (i+1) + '. ' + response.untukList + '\n';
+                if(i != response.untukList.length-1)
+                  vm.item.untuk += '\n';
+              }
+              debugger
+            }, function(errResponse){
+
+            })
+        } 
 
         vm.save = function(){
           var data = {
@@ -88,6 +150,10 @@ angular.
             "suratPejabat": true,
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan
           }
+
+          if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
+            data.kdSuratPerintahBawahan = $state.params.kdSurat;
+
           var menimbang = vm.item.menimbang.split("\n");
           for(var i = 0; i < menimbang.length; i++){
             var kata = '';

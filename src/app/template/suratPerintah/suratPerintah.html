@@ -18,13 +18,13 @@
                                     </div>  
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat" required>
+                                        <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat1" required>
+                                        <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat1" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratperintah.item.nomorSurat2" required>
+                                        <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat2" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -35,7 +35,7 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <form method="get">
-                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" ng-change="suratperintah.getPegawai()">
                                             <datalist id="pegawai">
                                                     <option ng-repeat="pgw in suratperintah.list_pegawai"
                                              value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>

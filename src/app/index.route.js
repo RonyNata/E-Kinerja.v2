@@ -291,6 +291,18 @@
         controller: 'SuratPerintahController',
         controllerAs: 'suratperintah'
       })
+      .state('perintahnonpejabatterusan', {
+        url: '/surat-perintah-nonpejabat/:kdSurat',
+        templateUrl: 'app/template/suratPerintah/suratPerintah.html',
+        controller: 'SuratPerintahController',
+        controllerAs: 'suratperintah'
+      })
+      .state('perintahpejabatterusan', {
+        url: '/surat-perintah-nonpejabat/:kdSurat',
+        templateUrl: 'app/template/suratPerintah/suratPerintah.html',
+        controller: 'SuratPerintahController',
+        controllerAs: 'suratperintah'
+      })
       .state('instruksipejabat', {
         url: '/surat-instruksi-pejabat',
         templateUrl: 'app/template/suratInstruksi/pejabat/instruksiPejabat.html',
@@ -486,6 +498,34 @@
           templateUrl: 'app/dashboard/dashboard.html',
           controller: 'DashboardController',
           controllerAs: 'dashboard'
+        })
+        .state('penilaian', {
+          url: '/penilaian',
+          templateUrl: 'app/penilaian/penilaian.html',
+          controller: 'PenilaianController',
+          controllerAs: 'penilaian'
+        })
+        .state('laporanbawah', {
+          url: '/laporanbawah',
+          templateUrl: 'app/penilaian/penilaian.html',
+          controller: 'PenilaianController',
+          controllerAs: 'penilaian',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
+        })
+        .state('laporanajuan', {
+          url: '/laporanajuan',
+          templateUrl: 'app/penilaian/penilaian.html',
+          controller: 'PenilaianController',
+          controllerAs: 'penilaian',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
         });
 
     $urlRouterProvider.otherwise('/');
