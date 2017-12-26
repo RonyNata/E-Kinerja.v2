@@ -411,7 +411,7 @@
                         {
                           fontSize:9,
                           colSpan: 2,
-                          text: 'Disposisi Surat Perintah Mengembangkan Diri'
+                          text: '' + item.isiDisposisi
                         },
                         {
                           

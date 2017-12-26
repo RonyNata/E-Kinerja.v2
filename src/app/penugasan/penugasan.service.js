@@ -71,6 +71,19 @@
             );
             return deferred.promise;
         }
+
+        service.GetTree = function(kdSurat){
+            var deferred = $q.defer();debugger
+            $http.get(API + 'get-surat-instruksi-tree/' + kdSurat).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
  
         return service;
     }])

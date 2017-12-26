@@ -7,7 +7,7 @@ angular.
 
     
     function PenugasanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
-     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document) {
+     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state) {
         var vm = this;
         vm.loading = true;
 
@@ -80,6 +80,17 @@ angular.
             }, function(errResponse){
 
             })
+        }
+
+        vm.teruskan = function(kdSurat, isPejabat){
+          if(isPejabat)
+            $state.go('instruksipejabatterusan', {
+              "kdSurat": kdSurat
+            });
+          else
+            $state.go('instruksinonpejabatterusan', {
+              "kdSurat": kdSurat
+            });
         }
 
         vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
@@ -208,6 +219,35 @@ angular.
               $scope.filteredData = vm.dataLook.slice(begin, end);
             });
           }
+
+        vm.tree = function (kdSurat, parentSelector) {
+            var parentElem = parentSelector ? 
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/penugasan/lihatTree/lihatTree.html',
+              controller: 'LihatTreeInstruksiController',
+              controllerAs: 'tree',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                kdSurat: function () {
+                  return kdSurat;
+                }
+              }
+            });
+
+            modalInstance.result.then(function (kdSurat) {
+              getDokumenDisposisi(kdSurat);
+              // vm.selected = selectedItem;
+            }, function () {
+              // showToastrFailed('menambahkan data');
+              // $log.info('Modal dismissed at: ' + new Date());
+            });
+          };
 
         vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
             var parentElem = parentSelector ?
