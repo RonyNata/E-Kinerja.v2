@@ -110,7 +110,7 @@ angular.
               },
 
               {
-                text: [{text : 'NOMOR', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2]
+                text: [{text : 'NOMOR ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2]
               },
 
               {
@@ -118,8 +118,8 @@ angular.
                 table: {
                   widths: [50, 5, 150],
                   body: [
-                    [{text: 'Yth', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + vm.item.nmTujuan, border: [false, false, false, false]}],
-                    [{text: 'Dari', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + vm.item.nmPemberi, border: [false, false, false, false]}],
+                    [{text: 'Yth', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + vm.item.pegawaiPenerima.nama, border: [false, false, false, false]}],
+                    [{text: 'Dari', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + vm.item.pegawaiPemberi.nama, border: [false, false, false, false]}],
                     [{text: 'Hal', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + vm.item.hal, border: [false, false, false, false]}],
                     [{text: 'Tanggal', style: 'header', border: [false, false, false, false]},{text:':', border: [false, false, false, false]}, {text: '' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), border: [false, false, false, false]}]
                   ]
@@ -154,7 +154,7 @@ angular.
                       body: [
                           [{text: 'Tanda Tangan', alignment : 'center', bold: true, border: [false, false, false, false]}],
                           [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                          [{text: '' + vm.item.nmLengkap, alignment : 'center', border: [false, false, false, false]}]
+                          [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'center', border: [false, false, false, false]}]
                       ]
                   }
               },

@@ -13,18 +13,24 @@
       function getLaporanBawahan(){
         PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
           function(response){debugger
+            response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+            for(var i = 0; i < response.length;i++){
+              var date = new Date(response[i].tanggalDibuatMilis);
+              response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
+              response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+            }
             vm.laporanbawahan = response;
           }, function(errResponse){
 
           })
       }
 
-      vm.terima = function(kdSurat, isPejabat){
-        if(isPejabat)
+      vm.terima = function(kdSurat, isPejabat){debugger
+        if(isPejabat == 1)
             $state.go('perintahpejabatterusan', {
               "kdSurat": kdSurat
             });
-          else
+          else if(isPejabat == 2)
             $state.go('perintahnonpejabatterusan', {
               "kdSurat": kdSurat
             });

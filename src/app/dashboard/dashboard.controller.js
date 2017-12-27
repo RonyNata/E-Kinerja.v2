@@ -3,8 +3,8 @@
 
 	angular.module('eKinerja').controller('DashboardController', DashboardController);
 
-	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService,
-    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, $uibModal){
+	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService, $state,
+    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal){
 		var vm = this;
     vm.loading = true;
 
@@ -24,7 +24,7 @@
             var date = new Date(response[i].tglPengirimanMilis);
             response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
           }
-          getNaskahPenugasanInstruksiTarget();
+          getLaporan();
           vm.naskahDisposisi = response;debugger
         }, function(errResponse){
 
@@ -39,6 +39,31 @@
           vm.naskahDisposisi[idx].loading = false;
           DashboardService.ChangeRead(kdLembarDisposisi, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
         }, function(errResponse){
+
+        })
+    }
+
+    function getPerintahHistory(){
+      PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+        function(response){debugger
+          vm.perintahHistory = response;
+          getNaskahPenugasanInstruksiTarget();
+        },function(errResponse){
+
+        })
+    }
+
+    function getLaporan(){
+      EkinerjaService.GetNotifLaporan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+        function(response){debugger
+          for(var i = 0; i < response.length;i++){
+            var date = new Date(response[i].tanggalDibuatMilis);
+            response[i].tglMasuk = EkinerjaService.IndonesianDateFormat(date);
+            response[i].tglMasuk += " pukul " + date.getHours() + ":" + date.getMinutes();
+          }
+          vm.laporan = response;
+          getPerintahHistory();
+        },function(errResponse){
 
         })
     }
@@ -145,6 +170,24 @@
         }, function(errResponse){
 
         })
+    }
+
+    vm.getDocumentPerintahLaporan = function(kdHistory, idx){
+      vm.laporan[idx].loading = true;
+      PenugasanService.GetDataPerintah(kdHistory).then(
+        function(response){
+          vm.data = response;debugger
+          var doc = TemplateSuratPerintahService.template(vm.data);
+          vm.laporan[idx].loading = false;
+          DashboardService.ChangeReadPerintah(kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+          pdfMake.createPdf(doc).open();
+        }, function(errResponse){
+
+        })
+    }
+
+    vm.tanggapi = function(){
+      $state.go('penilaian');
     }
 
     function template(item){

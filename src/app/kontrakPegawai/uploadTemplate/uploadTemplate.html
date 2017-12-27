@@ -58,7 +58,27 @@
                                 <p style="margin-top: 10px"><b>Bukti (File)</b></p>
                             </div>
                             <div class="col-md-8">
-                                <input type="file" class="form-control" ng-model="uptemp.item.file" required>
+                                <!-- <input type="file" id="file1" class="form-control" name="file" multiple ng-files="getTheFiles($files)" required> -->
+                                <form name="myForm">
+                                    <fieldset>
+                                      <input type="file" class="form-control" ngf-select ng-model="picFile" name="file" ngf-max-size="2MB" required
+                                             ngf-model-invalid="errorFile">
+                                      <i ng-show="myForm.file.$error.required">*required</i><br>
+                                      <i ng-show="myForm.file.$error.maxSize">File too large 
+                                          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+                                      <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+                                      <br>
+                                      <button  
+                                              ng-click="uploadPic(picFile)">Submit</button>
+                                      <span class="progress" ng-show="picFile.progress >= 0">
+                                        <div style="width:{{picFile.progress}}%" 
+                                            ng-bind="picFile.progress + '%'"></div>
+                                      </span>
+                                      <span ng-show="picFile.result">Upload Successful</span>
+                                      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+                                    </fieldset>
+                                    <br>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -71,7 +91,7 @@
 </div>
 <div class="modal-footer">
     <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-    <button type="button" ng-click="uptemp.uploadTemplate()" class="btn btn-success waves-effect" data-dismiss="modal">Simpan</button>
+    <button type="button" ng-click="save()" class="btn btn-success waves-effect" data-dismiss="modal">Simpan</button>
     <button type="button" ng-click="uptemp.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
 
 </div>

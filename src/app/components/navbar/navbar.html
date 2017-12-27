@@ -33,10 +33,7 @@
                                 </li> -->
                                 <li ng-repeat="notif in vm.notif">
                                     <a href="#penilaian">
-                                        <div class="icon-circle bg-blue-grey">
-                                            <i class="material-icons">comment</i>
-                                        </div>
-                                        <div class="menu-info">
+                                        <div class="menu-info" >
                                             <h4>Laporan baru dari {{notif.namaBawahan}}</h4>
                                             <p>
                                                 <i class="material-icons">access_time</i> 4 hours ago
@@ -53,8 +50,8 @@
                 </li>
                 <li class="pull-right">
                     <a href="javascript:void(0);" class="js-right-sidebar" data-toggle="dropdown" role="button" data-close="true">
-                        <span class="material-icons" style="font-size: 14px">{{vm.pegawai.namaPegawai}}</span>
-                        <!-- <i class="material-icons">more_vert</i> -->
+                        <span class="material-icons" style="font-size: 14px">{{vm.pegawai.namaPegawai}} </span>
+                        <!-- <i class="material-icons" style="font-size: 14px">more_vert</i> -->
                     </a>
                 </li>
             </ul>

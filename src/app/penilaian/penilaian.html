@@ -17,6 +17,7 @@
                                     </li>
                                     <li role="presentation">
                                         <a href="#laporanajuan" data-toggle="tab"><b>Laporan Yang Diajukan</b></a>
+                                        <!-- <span class="label-count" style="font-size: 14px;background-color: red; color: white">1</span> -->
                                     </li>
                                 </ul>
                             </div>
@@ -30,6 +31,7 @@
                                                 <th style="width: 5%; text-align: center">No</th>
                                                 <th style="text-align: center">Jenis Surat</th>
                                                 <th style="text-align: center">Nama Pelapor</th>
+                                                <th style="text-align: center">Waktu Penerimaan</th>
                                                 <th style="text-align: center; width: 10%">Status</th>
                                                 <th style="text-align: center; width: 30%" >Action</th> 
                                             </tr>
@@ -39,9 +41,10 @@
                                                 <td>{{$index + 1 }}</td>
                                                 <td style="text-align: left;">{{ambil.jenisSurat}}</td>
                                                 <td style="text-align: left;">{{ambil.namaBawahan}}</td>
+                                                <td style="text-align: left;">{{ambil.tglPengiriman}}</td>
                                                 <td style="text-align: left;">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil.kdSurat, false)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">edit</i><span>Terima</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil.kdSurat, ambil.suratPejabat)" ><i class="material-icons">edit</i><span>Terima</span></button>
                                                     <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocumentPerintah(ambil.kdSurat, $index)" ng-hide="ambil.loading"><i class="material-icons">edit</i><span>Lihat Dokumen</span></button>
                                                     <button type="button" class="btn btn-secondary waves-effect" ng-show="ambil.loading" disabled>Mohon Tunggu</button>
                                                     <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">delete</i>Tolak</button>
