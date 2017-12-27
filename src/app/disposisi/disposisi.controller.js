@@ -78,7 +78,8 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
         "daftarTargetLembarDisposisi": [],
         "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-        "isiDisposisi": vm.item.isiDisposisi
+        "isiDisposisi": vm.item.isiDisposisi,
+        "durasiPengerjaan": vm.item.durasiPengerjaan
     }
 
     if($state.current.name != undefined)
