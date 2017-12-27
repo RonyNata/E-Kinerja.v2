@@ -52,8 +52,11 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="suratperintah.item.menimbang" required style="height: 100px"></textarea>
+                                        <div ng-repeat="data1 in suratperintah.menimbang">
+                                            <input class="form-control" ng-model="data1.deskripsimenimbang">
+                                        </div>
                                     </div>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addMenimbang()" style="margin-left: 15px">+ Tambah Menimbang</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
@@ -62,8 +65,11 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="suratperintah.item.dasar" required style="height: 100px"></textarea>
+                                        <div ng-repeat="data2 in suratperintah.dasar">
+                                            <input class="form-control" ng-model="data2.deskripsidasar">
+                                        </div>
                                     </div>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addDasar()" style="margin-left: 15px">+ Tambah Dasar</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:0px">
                                     <div class="col-md-1"></div> 
@@ -97,8 +103,11 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="suratperintah.item.untuk" required style="height: 100px"></textarea>
+                                        <div ng-repeat="data3 in suratperintah.untuk">
+                                            <input class="form-control" ng-model="data3.deskripsiuntuk">
+                                        </div>
                                     </div>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addUntuk()" style="margin-left: 15px">+ Tambah Maksud</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 

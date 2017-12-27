@@ -42,6 +42,16 @@
             })
         }
 
+      //   $scope.$watch('searchNameDisposisi', function(){
+      //   // console.log($scope.deskripsi.length)
+      //   if($scope.searchNameDisposisi != undefined){
+      //     vm.dataLook = EkinerjaService.searchByDeskripsi($scope.searchNameDisposisi, vm.data_urtug);
+      //   }else {
+      //     vm.dataLook = vm.data_urtug;
+      //   }
+      //   paging();
+      // });
+
         vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
         var parentElem = parentSelector ?
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

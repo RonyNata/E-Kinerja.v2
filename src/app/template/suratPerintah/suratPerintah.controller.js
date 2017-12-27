@@ -16,6 +16,9 @@ angular.
         else vm.jenis = 'Pejabat';
 
         vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
+        vm.untuk = [{"id": new Date().getTime(), "deskripsiuntuk": ''}];
+        vm.dasar = [{"id": new Date().getTime(), "deskripsidasar": ''}];
+        vm.menimbang = [{"id": new Date().getTime(), "deskripsimenimbang": ''}];
         vm.target = [{"id": new Date().getTime()}];
 
         vm.back =  function(){
@@ -25,6 +28,21 @@ angular.
         vm.addTembusan = function(){
           var data = {"id": new Date().getTime(), "deskripsi": ''};
           vm.tembusanSurat.push(data);
+        }
+
+        vm.addMenimbang = function(){
+          var dataMenimbang = {"id": new Date().getTime(), "deskripsimenimbang": ''};
+          vm.menimbang.push(dataMenimbang);
+        }
+
+        vm.addDasar = function(){
+          var dataDasar = {"id": new Date().getTime(), "deskripsidasar": ''};
+          vm.dasar.push(dataDasar);
+        }
+
+        vm.addUntuk = function(){
+          var dataUntuk = {"id": new Date().getTime(), "deskripsiuntuk": ''};
+          vm.untuk.push(dataUntuk);
         }
 
         vm.addTarget = function(){
@@ -149,41 +167,54 @@ debugger
             "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
             "suratPejabat": true,
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
-            "durasiPengerjaan": vm.item.durasiPengerjaan
+            "durasiPengerjaan": vm.item.durasiPengerjaan,
           }
+
+          // if(save() == true){
+          //   $state.go('kontak');
+          // }
 
           if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
             data.kdSuratPerintahBawahan = $state.params.kdSurat;
 
-          var menimbang = vm.item.menimbang.split("\n");
-          for(var i = 0; i < menimbang.length; i++){
-            var kata = '';
-            for(var j = 1; j < (menimbang[i].split(" ")).length; j++)
-              kata += (menimbang[i].split(" "))[j] + ' ';
-            data.menimbangList.push(kata);
-          }
+          // var menimbang = vm.item.menimbang.split("\n");
+          // for(var i = 0; i < menimbang.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (menimbang[i].split(" ")).length; j++)
+          //     kata += (menimbang[i].split(" "))[j] + ' ';
+          //   data.menimbangList.push(kata);
+          // }
 
-          var dasar = vm.item.dasar.split("\n");
-          for(var i = 0; i < dasar.length; i++){
-            var kata = '';
-            for(var j = 1; j < (dasar[i].split(" ")).length; j++)
-              kata += (dasar[i].split(" "))[j] + ' ';
-            data.dasarList.push(kata);
-          }
+          // var dasar = vm.item.dasar.split("\n");
+          // for(var i = 0; i < dasar.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (dasar[i].split(" ")).length; j++)
+          //     kata += (dasar[i].split(" "))[j] + ' ';
+          //   data.dasarList.push(kata);
+          // }
             
-          var untuk = vm.item.untuk.split("\n");
-          for(var i = 0; i < untuk.length; i++){
-            var kata = '';
-            for(var j = 1; j < (untuk[i].split(" ")).length; j++)
-              kata += (untuk[i].split(" "))[j] + ' ';
-            data.untukList.push(kata);
-          }
+          // var untuk = vm.item.untuk.split("\n");
+          // for(var i = 0; i < untuk.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (untuk[i].split(" ")).length; j++)
+          //     kata += (untuk[i].split(" "))[j] + ' ';
+          //   data.untukList.push(kata);
+          // }
 
           for(var i = 0; i < vm.target.length; i++)
             data.kdTargetPegawaiList.push(vm.target[i].pegawai.nipPegawai);
 
           for(var i = 0; i < vm.tembusanSurat.length; i++)
             data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+
+          for(var i = 0; i < vm.untuk.length; i++)
+            data.untukList.push(vm.untuk[i].deskripsiuntuk);
+
+          for(var i = 0; i < vm.dasar.length; i++)
+            data.dasarList.push(vm.dasar[i].deskripsidasar);
+
+          for(var i = 0; i < vm.menimbang.length; i++)
+            data.menimbangList.push(vm.menimbang[i].deskripsimenimbang);
 
           if($state.current.name == "suratperintahnonpejabat")
             data.suratPejabat = false;
