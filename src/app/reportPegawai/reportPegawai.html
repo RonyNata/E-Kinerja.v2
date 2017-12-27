@@ -1,0 +1,48 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 90px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="margin-bottom: 20px; padding-bottom: 10px;">
+                    <div class="header">
+                        <i class="material-icons" style="float: left;">assignment</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;"><b> HALAMAN REPORT PEGAWAI</b></h2>
+                    </div>
+                    <div class="body" style="font-size: 17px">
+                        <div class="body table-responsive" style="padding-bottom: 0px">
+                            <table class="table table-bordered table-striped " cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
+                                <thead>
+                                    <tr style="background:#D32F2F; color:#ffff">
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th style="text-align: center">Nama Pegawai</th>
+                                        <th style="text-align: center; width: 15%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pgw in reportPegawai.list_pegawai" style="text-align: center">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left">{{pgw.namaPegawai}}</td>
+                                        <td>
+                                            <button type="button" ng-click="reportPegawai.open(pgw)" class="btn btn-success btn waves waves-effect">Lihat Report</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg_load animate-show-hide" ng-show="reportPegawai.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="reportPegawai.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

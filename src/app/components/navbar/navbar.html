@@ -17,26 +17,9 @@
                         <li class="header">Pesan</li>
                         <li class="body">
                             <ul class="menu">
-                                <!-- <li ng-repeat="notif in vm.notif">
-                                    <a href="javascript:void(0);">
-                                        <div class="icon-circle bg-blue-grey">
-                                            <i class="material-icons">comment</i>
-                                        </div>
-                                        <div class="menu-info">
-                                            <h4>pesan</h4>
-                                            <h4>pesan</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 4 hours ago
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li> -->
-                                <li ng-repeat="notif in vm.notif">
+                                <li ng-repeat="notif in vm.notif" style="padding-top: 10px; padding-bottom: 10px">
                                     <a href="#penilaian">
-                                        <div class="icon-circle bg-blue-grey">
-                                            <i class="material-icons">comment</i>
-                                        </div>
-                                        <div class="menu-info">
+                                        <div class="menu-info" >
                                             <h4>Laporan baru dari {{notif.namaBawahan}}</h4>
                                             <p>
                                                 <i class="material-icons">access_time</i> 4 hours ago
@@ -52,8 +35,13 @@
                     </ul>
                 </li>
                 <li class="pull-right">
-                    <a href="javascript:void(0);" class="js-right-sidebar" data-toggle="dropdown" role="button" data-close="true">
-                        <span class="material-icons" style="font-size: 14px">{{vm.pegawai.namaPegawai}}</span>
+                    <a href="javascript:void(0);" class="js-right-sidebar" data-toggle="dropdown" role="button" data-close="true" style="margin-top: 15px;">
+                        <table>
+                            <tr>
+                                <td><span class="material-icons" style="font-size: 14px"><b>{{vm.pegawai.namaPegawai}}</b></span></td>
+                                <td style="padding-left: 5px"><i class="material-icons">expand_more</i></td>
+                            </tr>
+                        </table>
                         <!-- <i class="material-icons">more_vert</i> -->
                     </a>
                 </li>
@@ -102,6 +90,12 @@
                     <a href="#/penilaian">
                         <i class="material-icons">text_fields</i>
                         <span>Penilaian</span>
+                    </a>
+                </li>
+                <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}">
+                    <a href="#/reportPegawai">
+                        <i class="material-icons">text_fields</i>
+                        <span>Report Pegawai</span>
                     </a>
                 </li>
                 <!--<li class="{{vm.checkLocation('aktivitas') ? 'active' : ''}}">-->
@@ -251,8 +245,8 @@
                     <ul class="setting-list" >
                         <li>
                             <a href="#gantipwd" data-toggle="tab" class="btn btn-info btn-block waves-effect">
-                                <i class="material-icons">person</i>
-                                <span>Profile</span>
+                                <i class="material-icons">vpn_key</i>
+                                <span>GANTI PASSWORD</span>
                             </a>
                         </li>
                     </ul>
@@ -267,26 +261,24 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="gantipwd">
-                <div class="col-md-12">
-                    <div class="col-sm-12" style="text-align: left">
-                        <p style="text-align: left; margin-left: -5px"><b>Password Baru</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <input style="text-align: justify;" class="form-control" type="password" ng-model="vm.password" required>
-                    </div>
+                <div style="padding: 20px">
+                    <form>
+                        <div class="form-group">
+                            <label>Password Baru</label>
+                            <input style="border: 1px solid #ccc; border-radius: 4px; padding: 6px 12px" placeholder="password" type="password" class="form-control" ng-model="vm.password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tulis Kembali Password Baru</label>
+                            <input style="border: 1px solid #ccc; border-radius: 4px; padding: 6px 12px" placeholder="password" type="password" class="form-control" ng-model="vm.retypePassword" required>
+                        </div>
+                        <button class="btn btn-info btn-block waves-effect col-md-6" ng-click="vm.gantipwd()">
+                            <span>SIMPAN</span>
+                        </button>
+                        <a href="#settings" data-toggle="tab" class="btn btn-danger btn-block waves-effect">
+                            <span>KEMBALI</span>
+                        </a>
+                    </form>
                 </div>
-                <div class="col-md-12">
-                    <div class="col-sm-12">
-                        <p style="text-align: left; margin-left: -5px"><b>Tulis Kembali Password Baru</b></p>
-                    </div>
-                    <div class="col-md-10">
-                        <input style="text-align: justify;" type="password" class="form-control" ng-model="vm.retypePassword" required>
-                    </div>
-                </div>
-                <button class="btn btn-info btn-block waves-effect col-md-6" ng-click="vm.gantipwd()">
-                    <i class="material-icons">lock</i>
-                    <span>LOGOUT</span>
-                </button>
             </div>
         </div>
     </aside>
