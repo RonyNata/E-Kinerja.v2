@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .service('EkinerjaService',
-    ['$state', 'toastr',
-    function ($state, toastr) {
+    ['$state', 'toastr', '$q', 'API', '$http',
+    function ($state, toastr, $q, API, $http) {
         var service = {}; 
         
         service.checkCredential = function(){
@@ -192,6 +192,32 @@
             }
             return result.join("");
         }
+
+        service.GetNotifLaporan = function (nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-laporan-bawahan-notif/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GantiPassword = function (data) {
+            var deferred = $q.defer();
+            $http.put(API + 'change-password-pegawai/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
  
         return service;
     }])

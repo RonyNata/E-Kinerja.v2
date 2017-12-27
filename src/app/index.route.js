@@ -138,6 +138,14 @@
           }
         }
       })
+      .state('gantipwd', {
+        url: '/gantipwd',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('kontrakdp', {
         url: '/tahunandpa',
         templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',

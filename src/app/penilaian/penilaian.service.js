@@ -31,6 +31,19 @@
             return deferred.promise;
         };
 
+        service.OpenSurat = function (kdSurat, nip) {
+            var deferred = $q.defer();
+            $http.put(API + 'open-surat-perintah-pegawai/' + kdSurat + '/' + nip).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 

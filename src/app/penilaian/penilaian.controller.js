@@ -38,10 +38,20 @@
               var doc = TemplateSuratPerintahService.template(vm.data);
               vm.laporanbawahan[idx].loading = false;
               pdfMake.createPdf(doc).open();
+              openSurat(kdHistory);
             }, function(errResponse){
 
             })
         }
+
+      function openSurat(kdSurat){
+        PenilaianService.OpenSurat(kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            getLaporanBawahan();
+          }, function(errResponse){
+
+          })
+      }
 
       vm.tolak = function(data, parentSelector){
         var item = angular.copy(data);

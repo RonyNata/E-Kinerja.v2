@@ -78,8 +78,8 @@ angular.
           vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
           vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
           vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
+          for(var i = 0; i < vm.target.length; i++)
+            vm.item.tembusanSurat.push(vm.target[i].pegawaiTarget.nipPegawai);
           console.log(vm.item);
           for(var i = 0; i < vm.notadinas.length; i++)
             data.targetPegawaiList.push(vm.target[i].pegawaiPembuat.nipPegawai);
@@ -211,8 +211,8 @@ angular.
             ol:[]
           }
 
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            tembusan.ol.push(vm.tembusanSurat[i].deskripsi);
+          for(var i = 0; i < vm.target.length; i++)
+            tembusan.ol.push(vm.target[i].pegawaiTarget.nama);
           vm.docDefinition.content.push(tembusan);
         }
 
@@ -223,8 +223,8 @@ angular.
           //     blb = buffer;
           // });
           // blb = new Blob(blb);
-          console.log(vm.item.pembukaSurat);
           template();
+          console.log(vm.docDefinition);
           pdfMake.createPdf(vm.docDefinition).open();
         };
 
