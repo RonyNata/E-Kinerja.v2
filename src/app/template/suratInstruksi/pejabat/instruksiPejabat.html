@@ -106,23 +106,37 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
-                                        <div class="col-md-1"></div> 
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Pegawai Penandatangan</b></p>
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Pegawai Penandatangan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <form method="get">
+                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="instruksipejabat.item.pegawai" placeholder="Pilih Pegawai" ng-change="instruksipejabat.getPegawaiPd()">
+                                            <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in instruksipejabat.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Nama: {{instruksipejabat.item.pegawaiPenandatangan.nama}}</div>
+                                        <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Jabatan: {{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Waktu Pembuatan</b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-4" style="margin-left: -15px;">
+                                            <input class="form-control" ng-model="instruksipejabat.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
                                         </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-6">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="instruksipejabat.item.pegawai" placeholder="Pilih Pegawai" ng-change="instruksipejabat.getPegawaiPd()">
-                                                <datalist id="pegawai">
-                                                        <option ng-repeat="pgw in instruksipejabat.list_pegawai"
-                                                 value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
-                                            <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Nama: {{instruksipejabat.item.pegawaiPenandatangan.nama}}</div>
-                                            <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Jabatan: {{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</div>
+                                        <div class="col-md-4" style="padding-top: 8px;">
+                                            <span><b>Menit</b></span>
                                         </div>
                                     </div>
+                                </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
