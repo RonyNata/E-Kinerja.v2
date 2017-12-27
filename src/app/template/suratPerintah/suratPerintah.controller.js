@@ -148,7 +148,8 @@ debugger
             "kdTembusanList": [], 
             "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
             "suratPejabat": true,
-            "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan
+            "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
+            "durasiPengerjaan": vm.item.durasiPengerjaan
           }
 
           if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')

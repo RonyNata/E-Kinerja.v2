@@ -103,6 +103,7 @@ angular.
             "suratPejabat": false,
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
             "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja,
+            "durasiPengerjaan": vm.item.durasiPengerjaan,
           }
           debugger
           if($state.current.name != 'instruksinonpejabat')
