@@ -231,7 +231,11 @@
 
         service.uploadTemplate = function (data) {
             var deferred = $q.defer();
-            $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
+            $http.post(API + 'create-template-lain/', data, {
+                    transformRequest : angular.identity,
+                    headers : {
+                        'Content-Type' : undefined
+                    }}).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

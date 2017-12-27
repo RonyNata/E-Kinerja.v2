@@ -534,6 +534,12 @@
               $state.go($state.current.name);
             }
           }
+        })
+        .state('reportPegawai', {
+            url: '/reportPegawai',
+            templateUrl: 'app/reportPegawai/reportPegawai.html',
+            controller: 'ReportPegawaiController',
+            controllerAs: 'reportPegawai'
         });
 
     $urlRouterProvider.otherwise('/');

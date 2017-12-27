@@ -73,7 +73,7 @@
       getNotif();
 
       $interval(function(){
-      getNotif();
+      // getNotif();
     }, 1000);
     }
   }
