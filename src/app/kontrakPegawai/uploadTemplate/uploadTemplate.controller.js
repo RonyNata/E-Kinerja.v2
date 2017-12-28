@@ -22,24 +22,41 @@
         vm.data.tahunUrtug = urtug.tahunUrtug;
 
         $scope.uploadPic = function(files) {
-            console.log(vm.data);
-            $http({  
-                method: 'POST',  
-                url: API + 'create-template-lain',  
-                headers: { 'Content-Type': undefined },  
+            console.log(files);
+
+            var fd = new FormData();
+            //Take the first selected file
+            // fd.append("file", new Blob([JSON.stringify(vm.data)], {type:"aplication/json"}));
+
+
+            var data = {metadata: new Blob([JSON.stringify(vm.data)], {type:"aplication/json"}), file: files[0]};
+            console.log(data);
+            // $http.post(API + 'create-template-lain', data, {
+            //     headers: {'Content-Type': 'multipart/form' },
+            //     transformRequest: angular.identity
+            // }).success( '...all right!...' ).error( '..damn!...' );
+            // var formData = new FormData();
+            // formData.append('file', file);
+            // vm.data.file = formData;
+            // vm.data.file = file;
+            // $http({  
+            //     method: 'POST',  
+            //     url: API + 'create-template-lain',  
+            //     headers: { 'Content-Type': undefined },  
                  
-                data: {metadata: vm.data, file: new Blob(files)}  
-            }).  
-            success(function (data, status, headers, config) {  
-                alert("success!");
-            }).  
-            error(function (data, status, headers, config) {  
-                alert("failed!");  
-            });  
-            // file.upload = Upload.upload({
-            //   url: API + 'create-template-lain',
-            //   headers: {'Content-Type': undefined},
-            //   data: {metadata: vm.data, file: file}
+            //     data: {metadata: vm.data, file: file}  
+            // }).  
+            // success(function (data, status, headers, config) {  
+            //     alert("success!");
+            // }).  
+            // error(function (data, status, headers, config) {  
+            //     alert("failed!");  
+            // });  
+            // files[0].upload = Upload.upload({
+            //   url: 'http://10.2.1.32:8080/api/create-template-lain/',
+            //   headers: { 'Content-Type': 'undefined' },
+            //   data: {file: files[0]},
+            //   param: vm.data
             // });
 
             // file.upload.then(function (response) {

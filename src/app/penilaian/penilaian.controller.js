@@ -51,8 +51,8 @@
         }
 
       function openSurat(kdSurat){
-        PenilaianService.OpenSurat(kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-          function(response){
+        PenilaianService.OpenSurat(kdSurat).then(
+          function(response){debugger
             getLaporanBawahan();
           }, function(errResponse){
 

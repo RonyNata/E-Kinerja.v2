@@ -62,12 +62,13 @@
 	                                    <p><b>Tkt.Keamanan</b></p>
 	                                </div>
 	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-2">
-	                                    <select type="text" class="form-control" ng-model="perpindahan.item.tktKeamanan" ng-required="true">
+	                                <div class="col-md-3">
+	                                    <select type="text" class="form-control" ng-hide="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamanan" ng-required="true">
 	                                            <option value="1">SR (Sangat Rahasia)</option>
 	                                            <option value="2">R (Rahasia)</option>
 	                                            <option value="3">B (Biasa)</option>
 	                                    </select>
+                                        <input type="text" ng-show="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamananKet" disabled="true" class="form-control">
 	                                </div>
 	                            </div>
 	                            <div class="col-md-12" style="margin-bottom:10px">

@@ -11,7 +11,7 @@ angular.
       	var vm = this;
         vm.loading = true;
         vm.item = {};
-        if($state.current.name == 'suratperintahnonpejabat')
+        if($state.current.name == 'suratperintahnonpejabat' || $state.current.name == 'perintahnonpejabatterusan')
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';
 
@@ -91,7 +91,7 @@ debugger
         function getDocumentPerintah(){debugger
           PenugasanService.GetDataPerintah($state.params.kdSurat).then(
             function(response){
-              vm.item.nomorSurat = response.nomorSurat;
+              // vm.item.nomorSurat = response.nomorSurat;
               vm.item.nomorSurat1 = response.nomorSurat1;
               vm.item.nomorSurat2 = response.nomorSurat2;
               vm.item.tempat = response.tempat;
@@ -122,23 +122,39 @@ debugger
                 });
               }
 
-              vm.item.menimbang = "";
-              for(var i = 0; i < response.menimbangList.length;i++){
-                vm.item.menimbang += (i+1) + '. ' + response.menimbangList;
-                if(i != response.menimbangList.length-1)
-                  vm.item.menimbang += '\n';
+              // vm.item.menimbang = "";
+              // for(var i = 0; i < response.menimbangList.length;i++){
+              //   vm.item.menimbang += (i+1) + '. ' + response.menimbangList;
+              //   if(i != response.menimbangList.length-1)
+              //     vm.item.menimbang += '\n';
+              // }
+              vm.menimbang = [];
+              for(var i = 0; i < response.menimbangList.length; i++){
+                vm.addMenimbang();
+                vm.menimbang[i].deskripsimenimbang = response.menimbangList[i];
               }
-              vm.item.dasar = "";
-              for(var i = 0; i < response.dasarList.length;i++){
-                vm.item.dasar += (i+1) + '. ' + response.dasarList + '\n';
-                if(i != response.dasarList.length-1)
-                  vm.item.dasar += '\n';
+                
+              // vm.item.dasar = "";
+              // for(var i = 0; i < response.dasarList.length;i++){
+              //   vm.item.dasar += (i+1) + '. ' + response.dasarList + '\n';
+              //   if(i != response.dasarList.length-1)
+              //     vm.item.dasar += '\n';
+              // }
+              vm.dasar = [];
+              for(var i = 0; i < response.dasarList.length; i++){
+                vm.addDasar();
+                vm.dasar[i].deskripsidasar = response.dasarList[i];
               }
-              vm.item.untuk = "";
-              for(var i = 0; i < response.untukList.length;i++){
-                vm.item.untuk += (i+1) + '. ' + response.untukList + '\n';
-                if(i != response.untukList.length-1)
-                  vm.item.untuk += '\n';
+              // vm.item.untuk = "";
+              // for(var i = 0; i < response.untukList.length;i++){
+              //   vm.item.untuk += (i+1) + '. ' + response.untukList + '\n';
+              //   if(i != response.untukList.length-1)
+              //     vm.item.untuk += '\n';
+              // }
+              vm.untuk = [];
+              for(var i = 0; i < response.untukList.length; i++){
+                vm.addUntuk();
+                vm.untuk[i].deskripsiuntuk = response.untukList[i];
               }
               debugger
             }, function(errResponse){
@@ -399,29 +415,35 @@ debugger
             tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
           vm.docDefinition.content.push(tembusan);
 
-          var menimbang = vm.item.menimbang.split("\n");
-          for(var i = 0; i < menimbang.length; i++){
-            var kata = '';
-            for(var j = 1; j < (menimbang[i].split(" ")).length; j++)
-              kata += (menimbang[i].split(" "))[j] + ' ';
-            vm.docDefinition.content[6].table.body[0][2].ol.push(kata);
-          }
+          // var menimbang = vm.item.menimbang.split("\n");
+          // for(var i = 0; i < menimbang.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (menimbang[i].split(" ")).length; j++)
+          //     kata += (menimbang[i].split(" "))[j] + ' ';
+          //   vm.docDefinition.content[6].table.body[0][2].ol.push(kata);
+          // }
+          for(var i = 0; i < vm.menimbang.length; i++)
+            vm.docDefinition.content[6].table.body[0][2].ol.push(vm.menimbang[i].deskripsimenimbang);
           
-          var dasar = vm.item.dasar.split("\n");
-          for(var i = 0; i < dasar.length; i++){
-            var kata = '';
-            for(var j = 1; j < (dasar[i].split(" ")).length; j++)
-              kata += (dasar[i].split(" "))[j] + ' ';
-            vm.docDefinition.content[6].table.body[2][2].ol.push(kata);
-          }
+          // var dasar = vm.item.dasar.split("\n");
+          // for(var i = 0; i < dasar.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (dasar[i].split(" ")).length; j++)
+          //     kata += (dasar[i].split(" "))[j] + ' ';
+          //   vm.docDefinition.content[6].table.body[2][2].ol.push(kata);
+          // }
+          for(var i = 0; i < vm.dasar.length; i++)
+            vm.docDefinition.content[6].table.body[2][2].ol.push(vm.dasar[i].deskripsidasar);
             
-          var untuk = vm.item.untuk.split("\n");
-          for(var i = 0; i < untuk.length; i++){
-            var kata = '';
-            for(var j = 1; j < (untuk[i].split(" ")).length; j++)
-              kata += (untuk[i].split(" "))[j] + ' ';
-            vm.docDefinition.content[8].table.body[2][2].ol.push(kata);
-          }
+          // var untuk = vm.item.untuk.split("\n");
+          // for(var i = 0; i < untuk.length; i++){
+          //   var kata = '';
+          //   for(var j = 1; j < (untuk[i].split(" ")).length; j++)
+          //     kata += (untuk[i].split(" "))[j] + ' ';
+          //   vm.docDefinition.content[8].table.body[2][2].ol.push(kata);
+          // }
+          for(var i = 0; i < vm.untuk.length; i++)
+            vm.docDefinition.content[8].table.body[2][2].ol.push(vm.untuk[i].deskripsiuntuk);
 
           if($state.current.name == "suratperintahnonpejabat"){
             vm.docDefinition.content[2] = {

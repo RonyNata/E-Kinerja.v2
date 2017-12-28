@@ -18,7 +18,7 @@
                                     </div>  
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat" required>
+                                        <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat">
                                     </div>
                                     <div class="col-md-2">
                                         <input type="text" class="form-control" ng-model="suratperintah.item.nomorSurat1" required>
@@ -53,10 +53,10 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <div ng-repeat="data1 in suratperintah.menimbang">
-                                            <input class="form-control" ng-model="data1.deskripsimenimbang">
+                                            <textarea class="form-control" style="height: 100px" ng-model="data1.deskripsimenimbang"></textarea>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addMenimbang()" style="margin-left: 15px">+ Tambah Menimbang</button>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addMenimbang()" style="margin-left: 15px">+ Tambah Menimbang</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
@@ -66,10 +66,10 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <div ng-repeat="data2 in suratperintah.dasar">
-                                            <input class="form-control" ng-model="data2.deskripsidasar">
+                                            <textarea class="form-control" ng-model="data2.deskripsidasar" style="height: 100px"></textarea>  
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addDasar()" style="margin-left: 15px">+ Tambah Dasar</button>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addDasar()" style="margin-left: 15px">+ Tambah Dasar</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:0px">
                                     <div class="col-md-1"></div> 
@@ -104,10 +104,10 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <div ng-repeat="data3 in suratperintah.untuk">
-                                            <input class="form-control" ng-model="data3.deskripsiuntuk">
+                                            <textarea style="height: 100px" class="form-control" ng-model="data3.deskripsiuntuk"></textarea>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.addUntuk()" style="margin-left: 15px">+ Tambah Maksud</button>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addUntuk()" style="margin-left: 15px">+ Tambah Maksud</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
