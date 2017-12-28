@@ -31,9 +31,9 @@
             return deferred.promise;
         };
 
-        service.OpenSurat = function (kdSurat, nip) {
+        service.OpenSurat = function (kdSurat) {
             var deferred = $q.defer();
-            $http.put(API + 'open-surat-perintah-pegawai/' + kdSurat + '/' + nip).then(
+            $http.put(API + 'open-surat-perintah-penilai/' + kdSurat ).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

@@ -44,7 +44,7 @@
                                                 <td style="text-align: left;">{{ambil.tglPengiriman}}</td>
                                                 <td style="text-align: left;">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil.kdSurat, ambil.suratPejabat)" ><i class="material-icons">edit</i><span>Terima</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">edit</i><span>Terima</span></button>
                                                     <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocumentPerintah(ambil.kdSurat, $index)" ng-hide="ambil.loading"><i class="material-icons">edit</i><span>Lihat Dokumen</span></button>
                                                     <button type="button" class="btn btn-secondary waves-effect" ng-show="ambil.loading" disabled>Mohon Tunggu</button>
                                                     <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">delete</i>Tolak</button>

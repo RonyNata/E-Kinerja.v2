@@ -15,6 +15,7 @@
     function getAllDisposisi(){
       DashboardService.GetDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){
+          response = response.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
           for(var i = 0; i < response.length; i++){
             switch(response[i].tktKeamanan){
               case 1: response[i].rahasia = "Sangat Rahasia"; break;
@@ -46,6 +47,12 @@
     function getPerintahHistory(){
       PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){debugger
+          response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+          for(var i = 0; i < response.length;i++){
+            var date = new Date(response[i].tanggalDibuatMilis);
+            response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+            response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+          }
           vm.perintahHistory = response;
           getNaskahPenugasanInstruksiTarget();
         },function(errResponse){
@@ -56,6 +63,7 @@
     function getLaporan(){
       EkinerjaService.GetNotifLaporan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){debugger
+          response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             var date = new Date(response[i].tanggalDibuatMilis);
             response[i].tglMasuk = EkinerjaService.IndonesianDateFormat(date);
@@ -71,6 +79,7 @@
     function getNaskahPenugasanInstruksiTarget(){
       DashboardService.GetInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){debugger
+          response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             var waktu = new Date(response[i].tanggalDibuatMilis);
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
@@ -127,9 +136,11 @@
             response[i].jenis = 1;
             response[i].judulNaskah = "Surat Perintah";
             response[i].namaPengirim = response[i].namaPemberi;
+            response[i].tanggalDibuatMilis = response[i].createdDateMilis
             // response[i].tanggalDibuat = response[i].createdDate;
             vm.naskah.push(response[i]);
           }
+          vm.naskah = vm.naskah.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           vm.loading = false;
           // getNaskahPenugasanPerintah();
         }, function(errResponse){
@@ -172,13 +183,13 @@
         })
     }
 
-    vm.getDocumentPerintahLaporan = function(kdHistory, idx){
-      vm.laporan[idx].loading = true;
+    vm.getDocumentPerintahLaporan = function(laporan, kdHistory, idx){
+      laporan.loading = true;
       PenugasanService.GetDataPerintah(kdHistory).then(
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          vm.laporan[idx].loading = false;
+          laporan.loading = false;
           DashboardService.ChangeReadPerintah(kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
         }, function(errResponse){

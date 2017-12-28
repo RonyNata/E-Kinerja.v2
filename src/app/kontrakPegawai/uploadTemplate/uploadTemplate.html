@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-md-8">
                                 <!-- <input type="file" id="file1" class="form-control" name="file" multiple ng-files="getTheFiles($files)" required> -->
-                                <form name="myForm">
+                                <!-- <form name="myForm">
                                     <fieldset>
                                       <input type="file" class="form-control" ngf-select ng-model="picFile" name="file" ngf-max-size="2MB" required
                                              ngf-model-invalid="errorFile">
@@ -78,6 +78,9 @@
                                       <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
                                     </fieldset>
                                     <br>
+                                </form> -->
+                                <form enctype="multipart/form-data">
+                                    <input type="file" name="file" onchange="angular.element(this).scope().uploadPic(this.files)">
                                 </form>
                             </div>
                         </div>

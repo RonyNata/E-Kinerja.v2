@@ -18,8 +18,7 @@
                                                 <div class="col-md-12" style="padding-top: 10px; padding-bottom: 20px">
                                                     <div class="col-md-1" style="padding: 0px; padding-top: 6px"><label>Bulan</label></div>
                                                     <div class="col-md-3" style="padding: 0px">
-                                                        <select type="text" class="form-control" ng-required="true">
-                                                            <option>-</option>
+                                                        <select type="text" ng-model="detailReportPegawai.bulan" class="form-control" ng-required="true">
                                                             <option value="1">Januari</option>
                                                             <option value="2">Februari</option>
                                                             <option value="3">Maret</option>
@@ -36,24 +35,24 @@
                                                     </div>
                                                     <div class="col-md-1"></div>
                                                     <div class="col-md-1" style="padding: 0px; padding-top: 6px"><label>Tahun</label></div>
-                                                    <div class="col-md-3" style="padding: 0px"><input type="number" class="form-control" placeholder="2017"></div>
+                                                    <div class="col-md-3" style="padding: 0px"><input type="number" ng-model="detailReportPegawai.tahun" class="form-control" placeholder="2017"></div>
                                                     <div class="col-md-1"></div>
-                                                    <div class="col-md-2"><button style="width: 100%" type="button" class="btn btn-info waves-effect" data-dismiss="modal">Cari</button></div>
+                                                    <div class="col-md-2"><button style="width: 100%" type="button" class="btn btn-info waves-effect" ng-click="detailReportPegawai.report()" data-dismiss="modal">Cari</button></div>
                                                 </div>
 
                                                 <table class="table table-bordered table-striped" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
                                                     <thead>
                                                         <tr style="background:#D32F2F; color:#ffff">
-                                                            <th style="text-align: center">No</th>
+                                                            <th style="width: 5%; text-align: center">No</th>
                                                             <th style="text-align: center">Tanggal Login</th>
                                                             <th style="text-align: center">Kegiatan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr style="text-align: center">
-                                                            <td>1</td>
-                                                            <td style="text-align: left">1</td>
-                                                            <td><button style="width: 100%" ng-click="detailReportPegawai.open()" type="button" class="btn btn-info waves-effect" data-dismiss="modal">Detail Kegiatan</button></td>
+                                                        <tr style="text-align: center" ng-repeat="rekap in detailReportPegawai.rekap">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td style="text-align: left">{{rekap.tanggal}}</td>
+                                                            <td><button style="width: 100%" ng-click="detailReportPegawai.open(rekap.daftarKinerjaPegawaiWrapper, rekap.tanggal)" type="button" class="btn btn-info waves-effect" data-dismiss="modal">Detail Kegiatan</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -68,7 +67,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+            <button type="button" ng-click="detailReportPegawai.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
         </div>
     </div>
 </form>

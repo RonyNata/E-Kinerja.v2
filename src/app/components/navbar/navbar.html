@@ -68,7 +68,7 @@
                         <span>Kontrak Kerja</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('ambilperpindahan') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}">
                     <a href="#/ambil-disposisi">
                         <i class="material-icons">layers</i>
                         <span>Disposisi</span>

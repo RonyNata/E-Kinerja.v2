@@ -18,11 +18,12 @@ angular.
 
         function getNaskahPenugasanPerintahTarget(){
           PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-            function(response){
+            function(response){debugger
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Perintah";
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = response[i].createdDate;
+                response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
               }
               getNaskahPenugasanPerintah();
@@ -38,6 +39,7 @@ angular.
                 response[i].nama = "Perintah";
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = response[i].createdDate;
+                response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskahHistory.push(response[i]);
               }
               getNaskahPenugasanInstruksi();
@@ -55,6 +57,7 @@ angular.
                 response[i].judulNaskah = response[i].judulInstruksi;
                 vm.naskahHistory.push(response[i]);
               }
+              vm.naskahHistory = vm.naskahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
               vm.dataLook = angular.copy(vm.naskahHistory);
               pagingHistori(); 
               getNaskahPenugasanInstruksiTarget();
@@ -66,7 +69,7 @@ angular.
 
         function getNaskahPenugasanInstruksiTarget(){
           PenugasanService.GetNaskahPenugasanInstruksiTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-            function(response){
+            function(response){debugger
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Instruksi";
                 response[i].jenis = 0;
@@ -74,6 +77,7 @@ angular.
                 vm.naskah.push(response[i]);
               }
               vm.loading = false;
+              vm.naskah = vm.naskah.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
               vm.dataLookPenugasan = angular.copy(vm.naskah);
               pagingPenugasan();
               
