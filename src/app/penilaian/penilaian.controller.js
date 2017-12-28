@@ -9,6 +9,7 @@
     	vm.loading = true;
 
       getLaporanBawahan();
+      getPerintahHistory();
 
       function getLaporanBawahan(){
         PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
@@ -34,7 +35,7 @@
             $state.go('perintahnonpejabatterusan', {
               "kdSurat": kdSurat
             });
-      }
+      };
 
       vm.getDocumentPerintah = function(kdHistory, idx){
           vm.laporanbawahan[idx].loading = true;
@@ -48,7 +49,7 @@
             }, function(errResponse){
 
             })
-        }
+        };
 
       function openSurat(kdSurat){
         PenilaianService.OpenSurat(kdSurat).then(
@@ -58,6 +59,21 @@
 
           })
       }
+
+        function getPerintahHistory(){
+            PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+                function(response){debugger
+                    response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+                    for(var i = 0; i < response.length;i++){
+                        var date = new Date(response[i].tanggalDibuatMilis);
+                        response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+                        response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+                    }
+                    vm.perintahHistory = response;
+                },function(errResponse){
+
+                })
+        }
 
       vm.tolak = function(data, parentSelector){
         var item = angular.copy(data);

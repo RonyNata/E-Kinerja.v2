@@ -8,16 +8,21 @@
 
     function DetailReportPegawaiController(pegawai, EkinerjaService,$document,
                                    KontrakPegawaiService, ReportPegawaiService, $uibModalInstance, $uibModal) {
-        var vm = this;debugger
+        var vm = this;
+        vm.nama = pegawai.namaPegawai;
 
         vm.report = function(){
             ReportPegawaiService.GetReport(pegawai.nipPegawai, vm.bulan, vm.tahun).then(
                 function(response){
-                    vm.rekap = response;
+                    if(response.length == 0){
+                        EkinerjaService.showToastrError("TIDAK ADA DATA");
+                    } else {
+                        vm.rekap = response;
+                    }
                 }, function(errResponse){
 
                 })
-        }
+        };
 
         vm.open = function (list,tanggal, parentSelector) {
             var parentElem = parentSelector ?

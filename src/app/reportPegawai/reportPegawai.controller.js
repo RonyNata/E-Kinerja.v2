@@ -16,7 +16,7 @@
             ReportPegawaiService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
                 function(response){
-                    vm.list_pegawai = response;debugger
+                    vm.list_pegawai = response;
                     vm.loading = false;
                 }, function(errResponse){
 

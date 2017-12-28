@@ -13,6 +13,12 @@
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
+              response = response.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
+              for(var i = 0; i < response.length; i++){
+                  var date = new Date(response[i].tglPengirimanMilis);
+                  response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+              }
+
               vm.dataHistory = response;debugger
               vm.loading = false;
               vm.dataLookDisposisi = angular.copy(vm.dataHistory);
@@ -34,6 +40,11 @@
         function getHistoryDisposisi(){
           AmbilDisposisiService.GetHistoryDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
+              response = response.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
+              for(var i = 0; i < response.length; i++){
+                  var date = new Date(response[i].tglPengirimanMilis);
+                  response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+              }
               vm.history = response;
               vm.dataLook = angular.copy(vm.history);
               pagingHistori();
