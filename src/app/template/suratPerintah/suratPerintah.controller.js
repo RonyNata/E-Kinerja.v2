@@ -226,6 +226,7 @@ debugger
             }, function(errResponse){
 
             })
+            $state.go('kontrak');
         }
 
         vm.back =  function(){
