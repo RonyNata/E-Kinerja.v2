@@ -121,6 +121,7 @@ angular.
             }, function(errResponse){
 
             })
+            return $state.go('kontrak');
         };
 
         vm.back =  function(){

@@ -67,9 +67,9 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
     } 
 
     vm.getPegawaiDari = function(){
-    debugger
-      if(vm.nipDari.length == 18)
-        vm.item.dariSuratDisposisi = EkinerjaService.findPegawaiByNip(vm.nipDari,vm.list_pegawai);
+      if(vm.item.nipDari.length == 18)
+        vm.item.dariSuratDisposisi = EkinerjaService.findPegawaiByNip(vm.item.nipDari,vm.list_pegawai);
+    	console.log(vm.item.dariSuratDisposisi);
     } 
     vm.save = function(){
       var data = {
@@ -89,6 +89,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "durasiPengerjaan": vm.item.durasiPengerjaan
     }
 
+    
     if($state.current.name != undefined)
     	vm.item.kdLembarDisposisiParent = $state.params.kdSurat;
 
@@ -107,10 +108,14 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         }, function(errResponse){
 
         })
+        return $state.go('ambilperpindahan');
     }
-
+    
+    // vm.save = function(){
+    // 	$state.go('perpindahan');
+    // } 
     vm.back =  function(){
-      $state.go('perpindahan');
+      $state.go('ambilperpindahan');
     }
 
     function template(){

@@ -115,11 +115,11 @@
 	                                <div class="col-md-6">
 	                                    <!-- <input type="text" class="form-control" ng-model="perpindahan.item.dariSuratDisposisi" ng-required="true"> -->
 	                                    <form method="get">
-                                                <input class="form-control"  name="pegawai" ng-model="perpindahan.item.nipDari"  >
-                                                <!-- <datalist id="pegawai">
+                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="perpindahan.item.nipDari"  ng-change="perpindahan.getPegawaiDari()" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawai">
                                                         <option ng-repeat="pgw in perpindahan.list_pegawai"
                                                  value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist> -->
+                                                </datalist>
                                             </form>
                                             <div ng-show="perpindahan.item.dariSuratDisposisi">Nama: {{perpindahan.item.dariSuratDisposisi.nama}}</div>
                                             <div ng-show="perpindahan.item.dariSuratDisposisi">Jabatan: {{perpindahan.item.dariSuratDisposisi.jabatan}}</div>
@@ -207,6 +207,7 @@
                                         <div class="col-md-6"></div> 
                                         <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
                                         <button type="button" class="btn btn-danger waves-effect" ng-click="openPdf()" style="font-size: 20px">PDF</button>
+                                        <button type="button" class="btn btn-danger waves-effect" ng-click="back()" style="font-size: 20px">Back</button>
                                     </div>
                                 </div>
                             </div>
