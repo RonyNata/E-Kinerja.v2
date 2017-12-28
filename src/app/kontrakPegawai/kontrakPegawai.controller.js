@@ -34,7 +34,7 @@ angular.
             if(response.urtugTidakDipilihList.length == 0){
               vm.statusAjuanNonDpa = true;
             }
-            else vm.statusAjuanNonDpa = false;debugger
+            else vm.statusAjuanNonDpa = false;
           }, function(errResponse){
 
           }
@@ -101,7 +101,7 @@ angular.
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
             function(response){
-              vm.kegiatan = response;debugger
+              vm.kegiatan = response;
               for(var i = 0; i < response.length; i++)
                 vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
                 pagingKegiatan();
@@ -113,7 +113,7 @@ angular.
           $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
           $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
           function(response){
-            vm.kegiatan = response;debugger
+            vm.kegiatan = response;
             for(var i = 0; i < response.length; i++)
               vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
               pagingKegiatan();

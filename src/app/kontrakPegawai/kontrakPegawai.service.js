@@ -229,10 +229,22 @@
             return deferred.promise;
         };
 
-        service.uploadTemplate = function (data) {
+        service.UploadTemplateData = function (data) {
             var deferred = $q.defer();
-            $http.post(API + 'create-template-lain/', data, {
-                    transformRequest : angular.identity,
+            $http.post(API + 'create-template-lain-data/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.UploadTemplateFile = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-template-lain-file/', data, {
                     headers : {
                         'Content-Type' : undefined
                     }}).then(

@@ -1,0 +1,32 @@
+<!--<div style="margin-top: 100px"></div>-->
+<div class="modal-header" style="background-color:#1fcfe0;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Teruskan Ke Atasan</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="body">
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="body">
+                        <div class="col-md-12" style="margin-top: 10px">
+                            <div class="col-sm-4">
+                                <p><b>Keterangan:</b></p>
+                            </div>
+                            <div class="col-md-12">
+                                <textarea class="form-control" ng-model="uptempterus.template.keterangan" style="height: 100px" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
+    <button type="button" ng-click="uptempterus.save()" class="btn btn-success waves-effect" data-dismiss="modal">Teruskan</button>
+    <button type="button" ng-click="uptempterus.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+
+</div>

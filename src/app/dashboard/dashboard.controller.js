@@ -3,8 +3,8 @@
 
 	angular.module('eKinerja').controller('DashboardController', DashboardController);
 
-	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService, $state,
-    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal){
+	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService, $state, PenilaianService,
+    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal, $window){
 		var vm = this;
     vm.loading = true;
 
@@ -183,19 +183,49 @@
         })
     }
 
-    vm.getDocumentPerintahLaporan = function(laporan, kdHistory, idx){
+    vm.getDokumenLaporan = function(laporan, kdHistory, idx){
       laporan.loading = true;
+      switch(laporan.kdJenisSurat){
+        case 15: getLaporanLain(laporan); break;
+        default: vm.getDocumentPerintahLaporan(laporan, kdHistory); break;
+      }
+    }
+
+    function getLaporanLain(laporan){
+      DashboardService.GetLaporanLain(laporan.namaFileTemplateLain, laporan.extensiFile).then(
+        function(response){
+          laporan.loading = false;
+          var landingUrl = 'http://10.2.1.32:8080/api/get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile;
+          $window.location.href = landingUrl;
+
+        }, function(errResponse){
+          laporan.loading = false;
+          // EkinerjaService.showToastrError("Gagal Mengambil Data");
+        })
+    }
+
+    vm.getDocumentPerintahLaporan = function(laporan, kdHistory){
       PenugasanService.GetDataPerintah(kdHistory).then(
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          laporan.loading = false;
           DashboardService.ChangeReadPerintah(kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
+          laporan.loading = false;
+          openSurat()
         }, function(errResponse){
 
         })
     }
+
+    function openSurat(kdSurat){
+        PenilaianService.OpenSurat(kdSurat).then(
+          function(response){debugger
+            getLaporanBawahan();
+          }, function(errResponse){
+
+          })
+      }
 
     vm.tanggapi = function(){
       $state.go('penilaian');
