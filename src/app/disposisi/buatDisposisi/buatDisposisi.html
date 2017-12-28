@@ -8,10 +8,15 @@
                         <i class="material-icons" style="float: left;">assignment</i>
                         <h2 style="padding-left: 30px;padding-top: 3px;"><b> DISPOSISI {{urtug_jabatan.unit}}</b></h2>
                     </div>
-                    <div class="body" style="margin-top: 0px;font-size: 16px;"> 
+                    <div class="body" style="margin-top: 0px;font-size: 16px;">
+                        <div class="col-md-12" style="margin: 0px">
+                            <div class="col-md-2"style="padding:0px;margin: 0px">
+                                <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>BUAT DISPOSISI</span></button>
+                            </div>
+                        </div>
                         <div class="col-md-12">
-                            <div style="margin-top: -60px;margin-left: 0px;margin-right: 0;">
-                                <ul class="nav nav-tabs tab-nav-right" role="tablist" style="padding-top: 50px;">
+                            <div style="margin-left: 0px;margin-right: 0;">
+                                <ul class="nav nav-tabs tab-nav-right" role="tablist">
                                     <li role="presentation" class="active">
                                         <a href="#disposisii" data-toggle="tab"><b>Surat Disposisi Masuk</b></a>
                                     </li>
@@ -20,35 +25,17 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>     
+                        </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane fade in active" id="disposisii">
-                                <div class="col-md-12" style="margin-top: 0px; margin-bottom: -40px; margin-left: -7px;">
-                                    <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                        <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary waves-effect"><i class="material-icons">add</i><span>BUAT DISPOSISI</span>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="col-md-6"></div>
-                                        <div class="col-md-6">
-                                            <div class="col-md-2"></div>
-                                            <div class="col-md-2" style="margin-top: 6px;padding-left:  123px;">
-                                                <!-- <label >Cari</label> -->
-                                            </div>
-                                            <div class="col-md-8" style="margin-right: -63px;float: right;">
-                                               <!-- <input type="text" class="form-control" ng-model="searchNameDisposisi" ng-required="true" placeholder="Cari berdasarkan Nomor Agenda..."> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br><br><br><br>
                                 <div class="body table-responsive" style="padding-top: 0px;margin-left: -7px;margin-right: -7px;margin-bottom: -30px;">
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;margin-left: 0px;">
                                         <thead>
                                             <tr style="background:#D32F2F; color:#ffff">
                                                 <th style="width: 5%; text-align: center">No</th>
                                                 <th style="text-align: center">Kode Lembar Disposisi</th>
-                                                <th style="text-align: center">Tingkat Keamanan</th> 
+                                                <th style="text-align: center">Tingkat Keamanan</th>
+                                                <th style="text-align: center">Tanggal Dibuat</th>
                                                 <th style="text-align: center; width: 30%" >Action</th> 
                                             </tr>
                                         </thead>
@@ -59,7 +46,8 @@
                                                 <td style="text-align: left;">{{ambil.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
                                                 {{ambil.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
                                                 {{ambil.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
-                                                </td> 
+                                                </td>
+                                                <td>{{ambil.tglPengiriman}}</td>
                                                 <td>
                                                     <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)"><i class="material-icons">edit</i><span>LANJUT</span></button>
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
@@ -95,7 +83,8 @@
                                                 <th style="width: 5%; text-align: center">No</th>
                                                 <th style="text-align: center">Kode Lembar Disposisi</th>
                                                 <th style="text-align: center">Tingkat Keamanan</th> 
-                                                <th style="text-align: center; width: 30%" >Action</th> 
+                                                <th style="text-align: center">Tanggal Dibuat</th>
+                                                <th style="text-align: center; width: 30%" >Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -105,7 +94,8 @@
                                                 <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
                                                 {{history.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
                                                 {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
-                                                </td> 
+                                                </td>
+                                                <td>{{history.tglPengiriman}}</td>
                                                 <td>
                                                     <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi)"><i class="material-icons">edit</i><span>TREE</span></button>
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>

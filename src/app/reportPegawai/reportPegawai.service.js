@@ -20,6 +20,19 @@
                         return deferred.promise;
                     };
 
+                    service.GetReport = function (nip, bulan, tahun) {
+                        var deferred = $q.defer();
+                        $http.get(API + 'get-report-bulanan/' + nip + '/' + bulan + '/' + tahun).then(
+                            function (response){
+                                deferred.resolve(response.data);
+                            },
+                            function(errResponse){
+                                deferred.reject(errResponse);
+                            }
+                        );
+                        return deferred.promise;
+                    };
+
                     return service;
                 }])
     /* jshint ignore:end */

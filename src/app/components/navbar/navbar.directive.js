@@ -72,9 +72,9 @@
 
       getNotif();
 
-      $interval(function(){
+      // $interval(function(){
       // getNotif();
-    }, 1000);
+    // }, 1000);
     }
   }
 

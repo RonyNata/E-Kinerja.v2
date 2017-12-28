@@ -4,11 +4,12 @@
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
 	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document){
+    $scope, $state, $uibModal, $document, DashboardService, $window){
 		var vm = this;
     	vm.loading = true;
 
       getLaporanBawahan();
+      getPerintahHistory();
 
       function getLaporanBawahan(){
         PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
@@ -25,39 +26,109 @@
           })
       }
 
-      vm.terima = function(kdSurat, isPejabat){debugger
-        if(isPejabat == 1)
-            $state.go('perintahpejabatterusan', {
-              "kdSurat": kdSurat
-            });
-          else if(isPejabat == 2)
-            $state.go('perintahnonpejabatterusan', {
-              "kdSurat": kdSurat
-            });
+      vm.terima = function(laporan, kdSurat, isPejabat){debugger
+        if(laporan.kdJenisSurat == 15)
+          openTeruskanTemplate(laporan);
+        else{
+          if(isPejabat == 1)
+              $state.go('perintahpejabatterusan', {
+                "kdSurat": kdSurat
+              });
+            else if(isPejabat == 2)
+              $state.go('perintahnonpejabatterusan', {
+                "kdSurat": kdSurat
+              });
+        }
       }
 
-      vm.getDocumentPerintah = function(kdHistory, idx){
-          vm.laporanbawahan[idx].loading = true;
-          PenugasanService.GetDataPerintah(kdHistory).then(
+      vm.getDocument = function(laporan){
+        laporan.loading = true;
+        switch(laporan.kdJenisSurat){
+          case 15: getLaporanLain(laporan); break;
+          default: vm.getDocumentPerintah(laporan); break;
+        }
+      }
+
+      function getLaporanLain(laporan){
+        DashboardService.GetLaporanLain(laporan.namaFileTemplateLain, laporan.extensiFile).then(
+          function(response){
+            laporan.loading = false;
+            var landingUrl = 'http://10.2.1.32:8080/api/get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile;
+            $window.location.href = landingUrl;
+            getLaporanBawahan();
+
+          }, function(errResponse){
+            laporan.loading = false;
+            getLaporanBawahan();
+            // EkinerjaService.showToastrError("Gagal Mengambil Data");
+          })
+      }
+
+      vm.getDocumentPerintah = function(laporan){
+          // laporan.loading = true;
+          PenugasanService.GetDataPerintah(laporan.kdSurat).then(
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              vm.laporanbawahan[idx].loading = false;
+              laporan.loading = false;
               pdfMake.createPdf(doc).open();
-              openSurat(kdHistory);
+              if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                openSurat(laporan.kdSurat);
             }, function(errResponse){
 
             })
-        }
+        };
 
       function openSurat(kdSurat){
-        PenilaianService.OpenSurat(kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-          function(response){
+        PenilaianService.OpenSurat(kdSurat).then(
+          function(response){debugger
             getLaporanBawahan();
           }, function(errResponse){
 
           })
       }
+
+        function getPerintahHistory(){
+            PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+                function(response){debugger
+                    response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+                    for(var i = 0; i < response.length;i++){
+                        var date = new Date(response[i].tanggalDibuatMilis);
+                        response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+                        response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+                    }
+                    vm.perintahHistory = response;
+                },function(errResponse){
+
+                })
+        }
+
+      function openTeruskanTemplate(laporan, parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/penilaian/teruskanTemplate/teruskanTemplate.html',
+              controller: 'TeruskanTemplateController',
+              controllerAs: 'uptempterus',
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                  template: function () {
+                      return laporan;
+                  }
+              }
+          });
+
+          modalInstance.result.then(function () {
+            getLaporanBawahan();
+          }, function () {
+
+          });
+      };
 
       vm.tolak = function(data, parentSelector){
         var item = angular.copy(data);

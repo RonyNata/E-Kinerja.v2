@@ -38,6 +38,11 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	        function(response){debugger
 	          // template(response);
 	          vm.item.tktKeamanan = response.tktKeamanan;
+	          switch(response.tktKeamanan){
+	          	case 1 : vm.item.tktKeamananKet = 'Sangat Rahasia'; break; 
+	          	case 2 : vm.item.tktKeamananKet = 'Rahasia'; break; 
+	          	case 3 : vm.item.tktKeamananKet = 'Biasa'; break; 
+	          }
 	          vm.item.tanggalPenerimaanMilis = new Date(response.tanggalPenerimaanMilis);
 	          vm.item.noSuratDisposisi = response.noSuratDisposisi;
 	          vm.item.tglPenyelesaianMilis = new Date(response.tglPenyelesaianMilis);
@@ -51,8 +56,10 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	        })
     }
 
-    if($state.current.name != undefined)
+    if($state.params.kdSurat != undefined){
     	getDisposisi();
+    	vm.penerusan = true;
+    }else vm.penerusan = false;
 
     vm.getPegawai = function(idx){
       if(vm.target[idx].pegawai.length == 18)
