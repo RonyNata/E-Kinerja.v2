@@ -77,23 +77,25 @@
                                         <thead>
                                             <tr style="background:#D32F2F; color:#ffff">
                                                 <th style="width: 5%; text-align: center">No</th>
-                                                <th style="text-align: center">Kode Lembar Disposisi</th>
-                                                <th style="text-align: center">Tingkat Keamanan</th> 
-                                                <th style="text-align: center; width: 30%" >Action</th> 
+                                                <th style="text-align: center">Jenis Surat</th>
+                                                <th style="text-align: center">Type Surat</th>
+                                                <th style="text-align: center">Waktu Penerimaan</th>
+                                                <th style="text-align: center; width: 10%">Status</th>
+                                                <!--<th style="text-align: center; width: 30%" >Action</th>-->
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="history in filteredData" style="text-align: center">
-                                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
-                                                <td style="text-align: left;">{{history.kdLembarDisposisi}}</td>
-                                                <td style="text-align: left;">{{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
-                                                {{history.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
-                                                {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
-                                                </td> 
-                                                <td>
-                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tree(history.kdLembarDisposisi)"><i class="material-icons">edit</i><span>TREE</span></button>
-                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
-                                                </td> 
+                                            <tr ng-repeat="history in penilaian.perintahHistory" style="text-align: center">
+                                                <td>{{$index + 1 }}</td>
+                                                <td style="text-align: left;">{{history.jenisSurat}}</td>
+                                                <td style="text-align: left;">{{history.suratPejabat == true ? 'Pejabat' : 'Non-Pejabat'}}</td>
+                                                <td style="text-align: left;">{{history.tanggalDibuat}}</td>
+                                                <td style="text-align: left;">{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                <!--<td>-->
+                                                    <!--<button type="button" class="btn btn-success waves-effect" ng-disabled="history.statusPenilaian !=1"><i class="material-icons">edit</i><span>Edit</span></button>-->
+                                                    <!--<button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocumentPerintah(history.kdSurat, $index)" ng-hide="history.loading"><i class="material-icons">remove_red_eye</i><span>Lihat Dokumen</span></button>-->
+                                                    <!--<button type="button" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>-->
+                                                <!--</td>-->
                                             </tr>
                                         </tbody>
                                     </table>
