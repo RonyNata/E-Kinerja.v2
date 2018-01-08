@@ -466,6 +466,15 @@
             }
         }
 
+        service.GetUrtugByyId = function(array, data){
+            for(var i = 0; i < array.length; i++){
+                if(array[i].kdUrtug == data){
+                    return array[i];
+                    break;
+                }
+            }
+        }
+
         service.GetKegiatan = function(array, data){
             for(var i = 0; i < array.length; i++){
                 if(array[i].ketKegiatan == data){

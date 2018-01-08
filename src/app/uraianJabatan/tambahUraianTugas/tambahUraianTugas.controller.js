@@ -10,7 +10,7 @@ angular.
       	var vm = this;
 
       	vm.available_urtug = angular.copy(available_urtug);
-        vm.item = angular.copy(items);
+        vm.item = angular.copy(items);debugger
         vm.jabatan = jabatan;
         // getJenisUrtug();
 
@@ -26,10 +26,17 @@ angular.
         //     )
         // }
 
+        vm.getUrtug = function(){
+          if(vm.item.kdUrtug.length == 8){
+            vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.available_urtug, vm.item.kdUrtug);
+            vm.item.kdUrtug = vm.urtug.kdUrtug;
+          }
+        }
+
       	vm.save = function setUrtugAndJabatan(){
           console.log(JSON.stringify(vm.item));
           // if(status == 'create'){
-            vm.item.kdUrtug = PengumpulanDataBebanKerjaService.GetUrtugId(vm.available_urtug, vm.item.kdUrtug);
+            // vm.item.kdUrtug = PengumpulanDataBebanKerjaService.GetUrtugId(vm.available_urtug, vm.item.kdUrtug);
             // console.log('true');
         		PengumpulanDataBebanKerjaService.SetUrtugAndJabatan(vm.item).then(
         			function(response){

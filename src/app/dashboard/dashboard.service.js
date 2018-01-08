@@ -84,9 +84,9 @@
             return deferred.promise;
         };
 
-        service.GetLaporanLain = function (nama, ekstensi) {
+        service.GetLaporanLain = function (nama, ekstensi, kdSurat) {
             var deferred = $q.defer();
-            $http.get(API + 'get-template-lain-file-revisi/' + nama + "/" + ekstensi).then(
+            $http.get(API + 'get-template-lain-file-revisi/' + nama + "/" + ekstensi + '/' + kdSurat).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

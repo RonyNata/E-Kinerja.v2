@@ -17,11 +17,21 @@
                                 </div>
                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
                                 <div class="col-md-8">
-                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_urtug_jabatan.item.kdUrtug">
+                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_urtug_jabatan.item.kdUrtug" ng-change="form_urtug_jabatan.getUrtug()" autocomplete="off">
                                 <datalist id="aktivitas" style="height: 100px">
                                     <option ng-repeat="aktivitas in form_urtug_jabatan.available_urtug"
-                                 value="{{aktivitas.deskripsi}}" ng-selected="selected"><!-- {{aktivitas.deskripsi}} --></option>
+                                 value="{{aktivitas.kdUrtug}}" ng-selected="selected">{{aktivitas.deskripsi}}</option>
                                 </datalist>
+                                </div>
+                            </div> 
+                            <div class="col-md-12" style="margin-bottom:10px" ng-show="form_urtug_jabatan.urtug">
+                                
+                                <div class="col-sm-3" style="margin-top:5px">
+                                    <p><b>Deskripsi</b></p>
+                                </div>
+                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" style="height: 100px" ng-model="form_urtug_jabatan.urtug.deskripsi"  readonly></textarea>
                                 </div>
                             </div> 
                         </div>

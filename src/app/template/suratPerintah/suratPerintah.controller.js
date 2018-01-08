@@ -63,6 +63,8 @@ angular.
           HakAksesService.GetAllPegawai().then(
             function(response){
               vm.list_pegawai = response;
+              if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
+                getDocumentPerintah();
               vm.loading = false;
             }, function(errResponse){
 
@@ -85,8 +87,6 @@ angular.
           debugger
         }
 debugger
-        if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
-          getDocumentPerintah();
 
         function getDocumentPerintah(){debugger
           PenugasanService.GetDataPerintah($state.params.kdSurat).then(
