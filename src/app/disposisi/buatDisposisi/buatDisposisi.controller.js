@@ -3,7 +3,7 @@
 
 	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
-	function AmbilDisposisiController(EkinerjaService, AmbilDisposisiService, KontrakPegawaiService, $scope, $state, $uibModal, $document){
+	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService, KontrakPegawaiService, $scope, $state, $uibModal, $document){
 		var vm = this;
       	vm.loading = true;
 
@@ -20,7 +20,7 @@
               }
 
               vm.dataHistory = response;debugger
-              vm.loading = false;
+              // vm.loading = false;
               vm.dataLookDisposisi = angular.copy(vm.dataHistory);
               pagingDisposisi();
             }, function(errResponse){
@@ -52,6 +52,13 @@
 
             })
         }
+        HakAksesService.GetAllPegawai().then(
+        function(response){
+          vm.list_pegawai = response;
+          vm.loading = false;
+        }, function(errResponse){
+
+        })
 
       //   $scope.$watch('searchNameDisposisi', function(){
       //   // console.log($scope.deskripsi.length)
@@ -163,6 +170,7 @@
         }
 
         function template(item){
+          var pegawai = EkinerjaService.findPegawaiByNip(item.dari,vm.list_pegawai);
           var docDefinition = {
             pageSize: 'A4',
             content: [
@@ -181,7 +189,7 @@
                       [
                         {
                           border: [true, false, true, false],
-                          text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                          text: '' + item.targetPegawaiLembarDisposisi[0].unitKerja,
                           style: 'header',
                           colSpan: 4
                         },{},{},{}
@@ -365,7 +373,7 @@
                                 },
                                 {
                                   border: [false, false, false, false],
-                                  text: ['' + item.dari],
+                                  text: ['' + pegawai.nama],
                                   fontSize: 9
                                 }
                               ],

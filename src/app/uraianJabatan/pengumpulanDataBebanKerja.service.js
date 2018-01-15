@@ -130,7 +130,7 @@
         };
 
         service.GetUrtugKegiatanByJabatan = function (urjab) {
-            var deferred = $q.defer();
+            var deferred = $q.defer();console.log(JSON.stringify(urjab));
             $http.post(API + 'get-urtug-kegiatan-by-jabatan/', urjab).then(
                 function (response){
                     deferred.resolve(response.data);

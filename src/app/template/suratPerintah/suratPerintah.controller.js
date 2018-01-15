@@ -277,7 +277,7 @@ debugger
               },
 
               {
-                text: 'NOMOR ' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/'+ vm.item.nomorSurat2 + '/' + ((new Date()).getYear() + 1900), style: 'judul_nomor'
+                text: 'NOMOR ' + vm.item.nomorSurat1 + '/....-' + vm.item.nomorSurat2 + '/'+ ((new Date()).getYear() + 1900), style: 'judul_nomor'
               },
 
               {
@@ -514,7 +514,7 @@ debugger
                         [
                             {
                                 border: [false, false, false, false],
-                                text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                text: '' + vm.item.pegawaiPenandatangan.unitKerja,
                                 style: 'header1'
                             }
                         ]

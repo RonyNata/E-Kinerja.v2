@@ -33,6 +33,8 @@ angular.
           HakAksesService.GetAllPegawai().then(
             function(response){
               vm.list_pegawai = response;
+              if($state.current.name == 'instruksinonpejabatterusan' || $state.current.name == 'instruksipejabatterusan')
+                getDocumentInstruksi();
               vm.loading = false;
             }, function(errResponse){
 
@@ -51,8 +53,6 @@ angular.
           }
         }  
 
-        if($state.current.name == 'instruksinonpejabatterusan' || $state.current.name == 'instruksipejabatterusan')
-          getDocumentInstruksi();
 
         function getDocumentInstruksi(){
           KontrakPegawaiService.GetDataInstruksi($state.params.kdSurat).then(
@@ -69,6 +69,7 @@ angular.
                   "id": new Date().getTime(),
                   "deskripsi": response.daftarIsiInstruksi[i]
                 });
+              debugger
               vm.target = [];
               for(var i = 0; i < response.targetPegawaiList.length; i++){debugger
                 vm.target.push({

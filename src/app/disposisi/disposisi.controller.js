@@ -137,7 +137,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		              [
 		                {
 		                  border: [true, false, true, false],
-		                  text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+		                  text: '' + vm.target[0].pegawaiTarget.unitKerja,
 		                  style: 'header',
 		                  colSpan: 4
 		                },{},{},{}
@@ -321,7 +321,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		                        },
 		                        {
 		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.nipDari],
+		                          text: ['' + vm.item.dariSuratDisposisi.nama],
 		                          fontSize: 9
 		                        }
 		                      ],
