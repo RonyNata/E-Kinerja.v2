@@ -183,8 +183,8 @@ debugger
             "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
             "suratPejabat": true,
             "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
-            "durasiPengerjaan": vm.item.durasiPengerjaan,
-          }
+            "durasiPengerjaan": vm.item.durasiPengerjaan
+          };
 
           // if(save() == true){
           //   $state.go('kontak');
@@ -243,7 +243,7 @@ debugger
 
             })
             $state.go('kontrak');
-        }
+        };
 
         vm.back =  function(){
           $state.go('kontrak');

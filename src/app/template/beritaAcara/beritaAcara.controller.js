@@ -11,11 +11,45 @@
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
-        vm.isiBeritaAcara = [{"id": new Date().getTime(), "deskripsi": ''}];
+        vm.isiBeritaAcara = [{"id": new Date().getTime(), "deskripsiisiberitaacara": ''}];
 
         vm.addIsiBeritaAcara = function(){
-            var data = {"id": new Date().getTime(), "deskripsi": ''};
+            var data = {"id": new Date().getTime(), "deskripsiisiberitaacara": ''};
             vm.isiBeritaAcara.push(data);
+        };
+
+        vm.save = function(){
+            var data = {
+                "kdBeritaAcara": "",
+                "nomorUrusan": vm.item.nomorUrusan,
+                "nomorPasanganUrut": vm.item.nomorPasanganUrut,
+                "nomorUnit": vm.item.nomorUnit,
+                "nipPihakKesatu": vm.item.pegawaiKesatu.nipPegawai,
+                "peranPihakKesatu": vm.item.peranPihakKesatu,
+                "nipPihakKedua": vm.item.pegawaiKedua.nipPegawai,
+                "peranPihakKedua": vm.item.peranPihakKedua,
+                "isiBeritaAcara" : [],
+                "dasarBeritaAcara" : vm.item.dasarberitaacara,
+                "nipMengetahui": vm.item.pegawaiMengetahui.nipPegawai,
+                "kotaPembuatanSurat": vm.item.tempat,
+                "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+                "tanggalBeritaAcaraMilis": vm.item.tanggal1.getTime(),
+                "durasiPengerjaan": vm.item.durasiPengerjaan
+            };
+
+            for(var i = 0; i < vm.isiBeritaAcara.length; i++)
+                data.isiBeritaAcara.push(vm.isiBeritaAcara[i].deskripsiisiberitaacara);
+
+            console.log(data);
+            BeritaAcaraService.save(data).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                }, function(errResponse){
+
+                });
+            $state.go('kontrak');
+
         };
 
         vm.back =  function(){
@@ -38,13 +72,19 @@
             if($scope.pegawaikesatu.length == 18)
                 vm.item.pegawaiKesatu = EkinerjaService.findPegawaiByNip($scope.pegawaikesatu,vm.list_pegawai);
             debugger
-        })
+        });
 
         $scope.$watch('pegawaikedua', function(){
             if($scope.pegawaikedua.length == 18)
                 vm.item.pegawaiKedua = EkinerjaService.findPegawaiByNip($scope.pegawaikedua,vm.list_pegawai);
             debugger
-        })
+        });
+
+        $scope.$watch('pegawaimengetahui', function(){
+            if($scope.pegawaimengetahui.length == 18)
+                vm.item.pegawaiMengetahui = EkinerjaService.findPegawaiByNip($scope.pegawaimengetahui,vm.list_pegawai);
+            debugger
+        });
 
         function template(){
             vm.docDefinition = {
@@ -215,7 +255,7 @@
                         margin:[0,0,0,15],
                         alignment:'justify',
                         text:[
-                            {text:'' + vm.item.penutup}
+                            {text:'' + vm.item.dasarberitaacara}
                         ]
                     },
 
@@ -228,17 +268,18 @@
                                     alignment:'center',
                                     text:[
                                         {text:'Dibuat di '},
-                                        {text:'' + vm.item.tempat}
+                                        {text:'' + vm.item.tempat.toUpperCase()}
                                     ]
                                 }],
                                 [{text: 'PIHAK KEDUA,', bold: true, alignment: 'center'},{},{text: 'PIHAK KESATU,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
                                 [{text: ''+ vm.item.pegawaiKedua.nama, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.nama, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiKedua.nipPegawai, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.nipPegawai, alignment: 'center'}],
                                 [{text: 'Mengetahui/Mengesahkan', alignment: 'center', colSpan: 3, margin:[0,5,0,5]}],
                                 [{
                                     alignment: 'center', colSpan: 3, margin:[0,5,0,5],
                                     text:[
-                                        {text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase() + ',', bold:true}, {text: '\n\n\n\n\n\n\n'}, {text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai}
+                                        {text: '' + vm.item.pegawaiMengetahui.jabatan.toUpperCase() + ',', bold:true}, {text: '\n\n\n\n\n\n\n'}, {text: '' + vm.item.pegawaiMengetahui.nama}, {text: '\n'},{text: '' + vm.item.pegawaiMengetahui.nipPegawai}
                                     ]
                                 }]
                             ]
@@ -288,7 +329,7 @@
             };
 
             for(var i = 0; i < vm.isiBeritaAcara.length; i++)
-            vm.docDefinition.content[6].ol.push(vm.isiBeritaAcara[i].deskripsi);
+                vm.docDefinition.content[6].ol.push(vm.isiBeritaAcara[i].deskripsi);
         }
 
         $scope.openPdf = function() {

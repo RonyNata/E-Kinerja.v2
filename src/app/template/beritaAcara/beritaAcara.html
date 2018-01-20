@@ -121,7 +121,7 @@
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
                                             <div ng-repeat="isisepakat in beritaacara.isiBeritaAcara" style="margin-bottom:5px">
-                                                <textarea class="form-control" ng-model="isisepakat.deskripsi" required></textarea>
+                                                <textarea class="form-control" ng-model="isisepakat.deskripsiisiberitaacara" required></textarea>
                                             </div>
                                         </div>
                                         <button class="btn btn-primary waves-effect" type="button" ng-click="beritaacara.addIsiBeritaAcara()" style="margin-left: 15px">+ Tambah</button>
@@ -134,7 +134,38 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="beritaacara.item.penutup" required style="height: 100px" placeholder="Demikian berita acara ini dibuat dengan sesungguhnya berdasarkan ..."></textarea>
+                                            <textarea class="form-control" ng-model="beritaacara.item.dasarberitaacara" required style="height: 100px" placeholder="Demikian berita acara ini dibuat dengan sesungguhnya berdasarkan ..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Pegawai Yang Mengetahui</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawaimengetahui" name="pegawaimengetahui" ng-model="pegawaimengetahui" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawaimengetahui">
+                                                    <option ng-repeat="pgw in beritaacara.list_pegawai"
+                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="beritaacara.item.pegawaiMengetahui" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{beritaacara.item.pegawaiMengetahui.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{beritaacara.item.pegawaiMengetahui.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -146,6 +177,21 @@
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
                                             <input class="form-control" ng-model="beritaacara.item.tempat" required></input>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Waktu Pembuatan</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-4" style="margin-left: -15px;">
+                                                <input class="form-control" ng-model="beritaacara.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
+                                            </div>
+                                            <div class="col-md-4" style="padding-top: 8px;">
+                                                <span><b>Menit</b></span>
+                                            </div>
                                         </div>
                                     </div>
 
