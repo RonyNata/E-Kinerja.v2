@@ -23,16 +23,16 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorSurat" required>
+                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorUrusan" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorSurat1" required>
+                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorUrut" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorSurat2" required>
+                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorPasanganUrut" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorSurat3" required>
+                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorUnit" required>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="number" class="form-control" ng-model="suratundangan.item.tahun" disabled required>
@@ -191,12 +191,75 @@
                                             <p><b>Tembusan</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-6">
-                                            <div ng-repeat="tembusan in suratundangan.tembusanSurat" style="margin-bottom: 10px">
-                                                <input class="form-control" ng-model="tembusan.deskripsi" required>
+                                        <div class="col-md-6" >
+                                            <div ng-repeat="tembusan in suratundangan.tembusanSurat">
+                                                <form method="get">
+                                                    <input class="form-control" list="jabatan" name="jabatan" ng-model="tembusan.jabat" placeholder="Pilih Jabatan" ng-change="suratundangan.findJabatan($index)">
+                                                    <datalist id="jabatan">
+                                                        <option ng-repeat="jbtn in suratundangan.list_jabatan"
+                                                                value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
+                                                    </datalist>
+                                                </form>
+                                                <div ng-show="tembusan.jabatan">Jabatan: {{tembusan.jabatan.jabatan}}</div>
                                             </div>
                                         </div>
                                         <button class="btn btn-primary waves-effect" type="button" ng-click="suratundangan.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Penandatangan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawaipenandatangan" name="pegawaipenandatangan" ng-model="pegawaipenandatangan" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawaipenandatangan">
+                                                    <option ng-repeat="pgw in suratundangan.list_pegawai"
+                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="suratundangan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratundangan.item.pegawaiPenandatangan.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratundangan.item.pegawaiPenandatangan.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tanggal penandatanganan</b></p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input class="form-control" type="date" ng-model="suratundangan.item.tanggal1" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Waktu Pembuatan</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-4" style="margin-left: -15px;">
+                                                <input class="form-control" ng-model="suratundangan.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
+                                            </div>
+                                            <div class="col-md-4" style="padding-top: 8px;">
+                                                <span><b>Menit</b></span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-12" style="margin-bottom:10px">

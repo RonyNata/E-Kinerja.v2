@@ -143,13 +143,13 @@
                         alignment:'justify',
                         text:[
                             {text: 'Pada hari ini,'},
-                            {text: '' + EkinerjaService.IndonesianDay(new Date()), bold:true},
+                            {text: '' + EkinerjaService.IndonesianDay(vm.item.tanggal1), bold:true},
                             {text: ' tanggal '},
-                            {text: '' + EkinerjaService.IndonesianDate(new Date()), bold:true},
+                            {text: '' + EkinerjaService.IndonesianDate(vm.item.tanggal1), bold:true},
                             {text: ' bulan'},
-                            {text: '' + EkinerjaService.IndonesianMonth(new Date()), bold:true},
+                            {text: '' + EkinerjaService.IndonesianMonth(vm.item.tanggal1), bold:true},
                             {text: ' tahun'},
-                            {text: '' + EkinerjaService.IndonesianYear(new Date()) + ',', bold:true},
+                            {text: '' + EkinerjaService.IndonesianYear(vm.item.tanggal1) + ',', bold:true},
                             {text: ' kami yang bertanda tangan dibawah ini:'}
                         ]
                     },
