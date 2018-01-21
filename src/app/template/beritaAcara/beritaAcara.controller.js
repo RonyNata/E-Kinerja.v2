@@ -329,7 +329,7 @@
             };
 
             for(var i = 0; i < vm.isiBeritaAcara.length; i++)
-                vm.docDefinition.content[6].ol.push(vm.isiBeritaAcara[i].deskripsi);
+                vm.docDefinition.content[6].ol.push(vm.isiBeritaAcara[i].deskripsiisiberitaacara);
         }
 
         $scope.openPdf = function() {

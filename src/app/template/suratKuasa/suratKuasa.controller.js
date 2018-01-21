@@ -25,17 +25,50 @@
                 }, function(errResponse){
 
                 })
-        }
+        };
 
-        $scope.$watch('pegawai', function(){
-            if($scope.pegawai.length == 18)
-                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        $scope.$watch('pegawaipenerima', function(){
+            if($scope.pegawaipenerima.length == 18)
+                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawaipenerima,vm.list_pegawai);
             debugger
-        })
+        });
+
+        $scope.$watch('pegawaipemberi', function(){
+            if($scope.pegawaipemberi.length == 18)
+                vm.item.pegawaiPemberi = EkinerjaService.findPegawaiByNip($scope.pegawaipemberi,vm.list_pegawai);
+            debugger
+        });
+
+        vm.save = function(){
+            var data = {
+                "kdSuratKuasa": "",
+                "nomorUrusan": vm.item.nomorUrusan,
+                "nomorPasanganUrut": vm.item.nomorPasanganUrut,
+                "nomorUnit": vm.item.nomorUnit,
+                "nipPemberiKuasa": vm.item.pegawaiPemberi.nipPegawai,
+                "nipPenerimaKuasa": vm.item.pegawaiPenerima.nipPegawai,
+                "isiKuasa" : vm.item.isikuasa,
+                "kotaPembuatanSurat": vm.item.tempat,
+                "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
+                "tanggalSuratKuasaMilis": vm.item.tanggal1.getTime()
+            };
+
+            console.log(data);
+            SuratKuasaService.save(data).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                }, function(errResponse){
+
+                });
+            $state.go('kontrak');
+
+        };
 
         vm.back =  function(){
           $state.go('kontrak');
-        }
+        };
 
         function template(){
             vm.docDefinition = {
@@ -86,7 +119,7 @@
                     },
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + vm.item.nomorSurat3 + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut+ '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -110,7 +143,7 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
+                                        text: '' + vm.item.pegawaiPemberi.namaPegawai,
                                         fontSize: 10
                                     }
                                 ],
@@ -127,7 +160,7 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                                        text: '' + vm.item.pegawaiPemberi.nipPegawai,
                                         fontSize: 10
                                     }
                                 ],
@@ -144,7 +177,7 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan,
+                                        text: '' + vm.item.pegawaiPemberi.jabatan,
                                         fontSize: 10
                                     }
                                 ],
@@ -296,7 +329,7 @@
                     },
                     {
                         margin: [300, 10, 0, 0],
-                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
+                        text: '' + vm.item.pegawaiPemberi.namaPegawai,
                         fontSize: 10
                     }
                 ],
