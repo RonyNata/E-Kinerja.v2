@@ -52,7 +52,7 @@
                 data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
 
             console.log(data);
-            BeritaAcaraService.save(data).then(
+            SuratUndanganService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
                 }, function(errResponse){
