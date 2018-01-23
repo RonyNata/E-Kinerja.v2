@@ -13,6 +13,32 @@
             $state.go('kontrak');
         };
 
+        vm.save = function(){
+            var data = {
+                "namaInstansi1": vm.item.namainstansi1,
+                "namainstansi2": vm.item.namainstansi2,
+                "tentang": vm.item.tentang,
+                "nomorSurat1": vm.item.nomorSurat1,
+                "nomorSurat2": vm.item.nomorSurat2,
+                "tempat": vm.item.tempat,
+                "namaPihakKeSatu": vm.item.namapihakkesatu,
+                "nipPihakKeSatu": vm.item.nippihakkesatu,
+                "golPihakKeSatu": vm.item.golonganpihakkesatu,
+                "jabatanPihakKeSatu": vm.item.jabatanpihakkesatu,
+                "namaPihakKeDua": vm.item.namapihakkedua,
+                "nipPihakKeDua": vm.item.nippihakkedua,
+                "golPihakKeDua": vm.item.golonganpihakkedua,
+                "jabatanPihakKeDua": vm.item.jabatanpihakkedua,
+                "tujuan": vm.item.tujuan,
+                "ruangLingkup": vm.item.ruanglingkup,
+                "pelaksanaanKegiatan": vm.item.pelaksanaankegiatan,
+                "pembiayaan": vm.item.pembiayaan,
+                "penyelesaianPerselisihan": vm.item.penyelesaianperselisihan,
+                "lainlain": vm.item.lainlain,
+                "penutup": vm.item.penutup
+            }
+        }
+
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
         function template(){
