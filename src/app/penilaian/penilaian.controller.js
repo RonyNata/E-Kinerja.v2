@@ -4,7 +4,7 @@
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
 	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document, DashboardService, $window){
+    $scope, $state, $uibModal, $document, DashboardService, $window, API){
 		var vm = this;
     	vm.loading = true;
 
@@ -52,8 +52,8 @@
       function getLaporanLain(laporan){
         DashboardService.GetLaporanLain(laporan.namaFileTemplateLain, laporan.extensiFile, laporan.kdSurat).then(
           function(response){
-            laporan.loading = false;
-            var landingUrl = 'http://10.2.1.32:8080/api/get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile + '/' + laporan.kdSurat;
+            laporan.loading = false;debugger
+            var landingUrl = API + 'get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile + '/' + laporan.kdSurat;
             $window.location.href = landingUrl;
             getLaporanBawahan();
 

@@ -36,6 +36,13 @@ angular.
             )
         }
 
+        vm.getUrtug = function(){
+          if(vm.item.kdUrtug.length == 8){debugger
+            vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.used_urtug, vm.item.kdUrtug);
+            vm.item.kdUrtug = vm.urtug.kdUrtug;
+          }
+        }
+
         function getUrtugJabatan(){
           PengumpulanDataBebanKerjaService.GetUrtugForStatus(items.kdJabatan).then(
             function(response){
@@ -64,7 +71,7 @@ angular.
         });
 
         vm.save = function setUrtugAndJabatan(){
-            vm.item.kdUrtug = PengumpulanDataBebanKerjaService.GetUrtugId(used_urtug, vm.item.kdUrtug);
+            // vm.item.kdUrtug = PengumpulanDataBebanKerjaService.GetUrtugId(used_urtug, vm.item.kdUrtug);
             vm.item.kuantitas = vm.target.kuantitas;
             vm.item.satuanKuantitas = vm.target.satuanKuantitas;
             vm.item.kualitas = vm.target.kualitas;

@@ -105,24 +105,24 @@ angular.
             debugger
         });
 
-        vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.target.length; i++)
-            vm.item.tembusanSurat.push(vm.target[i].pegawaiTarget.nipPegawai);
-          console.log(vm.item);
-          for(var i = 0; i < vm.notadinas.length; i++)
-            data.targetPegawaiList.push(vm.target[i].pegawaiPembuat.nipPegawai);
-          NotaDinasService.save(vm.item).then(
-            function(response){
-              EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-            }, function(errResponse){
+        // vm.save = function(){
+        //   vm.item.tembusanSurat = [];
+        //   vm.item.tanggal = vm.item.tanggal.getTime();
+        //   vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+        //   vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
+        //   vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
+        //   for(var i = 0; i < vm.target.length; i++)
+        //     vm.item.tembusanSurat.push(vm.target[i].pegawaiTarget.nipPegawai);
+        //   console.log(vm.item);
+        //   for(var i = 0; i < vm.notadinas.length; i++)
+        //     data.targetPegawaiList.push(vm.target[i].pegawaiPembuat.nipPegawai);
+        //   NotaDinasService.save(vm.item).then(
+        //     function(response){
+        //       EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+        //     }, function(errResponse){
 
-            })
-        };
+        //     })
+        // };
 
         vm.back =  function(){
           $state.go('kontrak');
@@ -289,7 +289,7 @@ angular.
           };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                tembusanSurat.ol.push(vm.tembusanSurat[i].deskripsi);
+                tembusanSurat.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
             vm.docDefinition.content.push(tembusanSurat);
         }
 

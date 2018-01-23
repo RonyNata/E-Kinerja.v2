@@ -4,7 +4,7 @@
 	angular.module('eKinerja').controller('DashboardController', DashboardController);
 
 	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService, $state, PenilaianService,
-    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal, $window){
+    TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal, $window, API){
 		var vm = this;
     vm.loading = true;
 
@@ -195,7 +195,7 @@
       DashboardService.GetLaporanLain(laporan.namaFileTemplateLain, laporan.extensiFile, laporan.kdSurat).then(
         function(response){
           laporan.loading = false;
-          var landingUrl = 'http://10.2.1.32:8080/api/get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile+ '/' + laporan.kdSurat;
+          var landingUrl = API + 'get-template-lain-file-revisi/' + laporan.namaFileTemplateLain + '/' + laporan.extensiFile+ '/' + laporan.kdSurat;
           $window.location.href = landingUrl;
 
         }, function(errResponse){

@@ -53,15 +53,13 @@
                   body: [
                     [{text: 'Menimbang', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
                       { border: [false, false, false, false],
-                        ol: [ 
-                        ]
+                        ol: data.menimbangList
                       }
                     ],
                     [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
                     [{text: 'Dasar', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
                         {   border: [false, false, false, false],
-                            ol: [ 
-                        ]
+                            ol: data.dasarList
                         }
                     ]
                   ]
@@ -85,7 +83,7 @@
                     [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
                     [{text: 'Untuk', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
                         {   border: [false, false, false, false],
-                            ol : []
+                            ol : data.untukList
                         }
                     ]
                   ]
@@ -164,24 +162,24 @@
           }
 
           var tembusan = {
-            ol:[]
+            ol: data.daftarTembusan
           }
 
-          for(var i = 0; i < data.daftarTembusan.length; i++)
-            tembusan.ol.push(data.daftarTembusan[i].jabatan);
+          // for(var i = 0; i < data.daftarTembusan.length; i++)
+          //   tembusan.ol.push(data.daftarTembusan[i].jabatan);
           docDefinition.content.push(tembusan);
 
-          for(var i = 0; i < data.menimbangList.length; i++){
-            docDefinition.content[6].table.body[0][2].ol.push(data.menimbangList[i]);
-          }
+          // for(var i = 0; i < data.menimbangList.length; i++){
+          //   docDefinition.content[6].table.body[0][2].ol.push(data.menimbangList[i]);
+          // }
           
-          for(var i = 0; i < data.dasarList.length; i++){
-            docDefinition.content[6].table.body[2][2].ol.push(data.dasarList[i]);
-          }
+          // for(var i = 0; i < data.dasarList.length; i++){
+          //   docDefinition.content[6].table.body[2][2].ol.push(data.dasarList[i]);
+          // }
             
-          for(var i = 0; i < data.untukList.length; i++){
-            docDefinition.content[8].table.body[2][2].ol.push(data.untukList[i]);
-          }
+          // for(var i = 0; i < data.untukList.length; i++){
+          //   docDefinition.content[8].table.body[2][2].ol.push(data.untukList[i]);
+          // }
 
           if($state.current.name == "suratperintahnonpejabat" || !data.suratPejabat){
             docDefinition.content[2] = {
@@ -282,6 +280,7 @@
             });
           }
           else docDefinition.content[1].text += data.jabatanPenandatangan.toUpperCase();
+          debugger
           return docDefinition;
         }
  

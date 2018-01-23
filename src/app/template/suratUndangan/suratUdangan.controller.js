@@ -45,7 +45,8 @@
                 "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
-                "kdTembusanList": []
+                "kdTembusanList": [],
+                "suratPejabat": true
             };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
@@ -132,57 +133,57 @@
                                 [
                                     {
                                         text: 'Nomor',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900),
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ],
                                 [
                                     {
                                         text: 'Sifat',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: '' + vm.item.sifat,
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ],
                                 [
                                     {
                                         text: 'Hal',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: '' + vm.item.hal,
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ],
                                 [
                                     {
                                         text: 'Lampiran',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 9
+                                        fontSize: 12
                                     },
                                     {
                                         text: '' + vm.item.lampiran + ' Halaman',
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ]
                             ]
@@ -193,7 +194,7 @@
                         margin: [0, -60, 0 , 0],
                         alignment: 'right',
                         text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(new Date()),
-                        fontSize: 9
+                        fontSize: 12
                     },
                     {
                         margin: [0, 70, 0, 0],
@@ -205,7 +206,7 @@
                                         border: [false, false, false, false],
                                         rowSpan: 3,
                                         text: 'Yth. '+''+ vm.item.pegawaiPenerima.nama,
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -228,7 +229,7 @@
                                     {
                                         border: [false, false, false, false],
                                         text: ''+ vm.item.isisuratundangan,
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -242,68 +243,68 @@
                                                     {
                                                         border: [false, false, false, false],
                                                         text: 'tanggal',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ':',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ''+ EkinerjaService.IndonesianDay(vm.item.tanggalpelaksanaan) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalpelaksanaan),
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     }
                                                 ],
                                                 [
                                                     {
                                                         border: [false, false, false, false],
                                                         text: 'waktu',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ':',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ''+ vm.item.waktupelaksanaan,
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     }
                                                 ],
                                                 [
                                                     {
                                                         border: [false, false, false, false],
                                                         text: 'tempat',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ':',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ''+ vm.item.tempatpelaksanaan,
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     }
                                                 ],
                                                 [
                                                     {
                                                         border: [false, false, false, false],
                                                         text: 'acara',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ':',
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     },
                                                     {
                                                         border: [false, false, false, false],
                                                         text: ''+ vm.item.acara,
-                                                        fontSize: 9
+                                                        fontSize: 12
                                                     }
                                                 ]
                                             ]
@@ -314,7 +315,7 @@
                                     {
                                         border: [false, false, false, false],
                                         text: ''+ vm.item.penutupsuratundangan,
-                                        fontSize: 9
+                                        fontSize: 12
                                     }
                                 ]
                             ]
@@ -323,20 +324,20 @@
                     {
                         margin: [350, 20, 0, 0],
                         text: '' + vm.item.pegawaiPenandatangan.jabatan + ',',
-                        fontSize: 9
+                        fontSize: 12
                     },
                     {
                         margin: [350, 20, 0, 0],
                         text: 'Tanda Tangan dan Cap Instansi',
-                        fontSize: 9
+                        fontSize: 12
                     },
                     {
                         margin: [350, 20, 0, 0],
                         text: '' + vm.item.pegawaiPenandatangan.nama,
-                        fontSize: 9
+                        fontSize: 12
                     },
 
-                    {fontSize: 9, text: 'Tembusan :'}
+                    {fontSize: 12, text: 'Tembusan :'}
                 ],
                 styles: {
                     header: {
@@ -369,7 +370,7 @@
             };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                tembusan.ol.push(vm.tembusanSurat[i].deskripsi);
+                tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
             vm.docDefinition.content.push(tembusan);
 
             if($state.current.name == "suratundangannonpejabat"){
@@ -398,17 +399,17 @@
                                 {
                                     border: [false, false, false, false],
                                     text: 'Telp. (021) 89970696',
-                                    fontSize: 9,
+                                    fontSize: 12,
                                     alignment: 'right'
                                 },{
                                 border: [false, false, false, false],
                                 text: 'Fax. (021) 89970064',
-                                fontSize: 9,
+                                fontSize: 12,
                                 alignment: 'center'
                             },{
                                 border: [false, false, false, false],
                                 text: 'email : diskominfo@bekasikab.go.id',
-                                fontSize: 9,
+                                fontSize: 12,
                                 alignment: 'left'
                             }
                             ]
