@@ -4,10 +4,59 @@
     module('eKinerja')
         .controller('LaporanController', LaporanController);
 
-    function LaporanController(EkinerjaService, LaporanService, $scope, $state) {
+    function LaporanController(EkinerjaService, LaporanService, HakAksesService, $scope, $state) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
+
+        getAllPegawai();
+
+        function getAllPegawai(){
+            HakAksesService.GetAllPegawai().then(
+                function(response){
+                    vm.list_pegawai = response;
+                    vm.loading = false;
+                }, function(errResponse){
+
+                })
+        }
+
+        $scope.$watch('pegawaipenandatangan', function(){
+            if($scope.pegawaipenandatangan.length == 18)
+                vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaipenandatangan,vm.list_pegawai);
+            debugger
+        });
+
+        vm.save = function(){
+            var data = {
+                "kdLaporan": "",
+                "tentang": vm.item.tentang,
+                "umum": vm.item.isiumum,
+                "maksudDanTujuan": vm.item.isimaksuddantujuan,
+                "ruangLingkup": vm.item.isiruanglingkup,
+                "dasar": vm.item.isidasar,
+                "kegiatanYangDilakukan" : vm.item.isikegiatan,
+                "hasilYangDicapai": vm.item.isihasil,
+                "simpulanDanSaran": vm.item.isisimpulandansaran,
+                "penutup": vm.item.isipenutup,
+                "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+                "kotaPembuatanSurat": vm.item.tempat,
+                "tanggalTelaahanStafMilis": vm.item.tanggal.getTime(),
+                "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+                "durasiPengerjaan": vm.item.durasiPengerjaan
+            };
+
+            console.log(data);
+            SuratKuasaService.save(data).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                }, function(errResponse){
+
+                });
+            $state.go('kontrak');
+
+        };
 
         vm.back =  function(){
             $state.go('kontrak');
@@ -89,11 +138,12 @@
                         table: {
                             widths: [200],
                             body: [
-                                [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
-                                [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
+                                [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat.toUpperCase(), bold:true}], alignment : 'left'}],
+                                [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), bold:true}], alignment : 'left'}],
+                                [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
                                 [{text: ' ',margin: [0,20]}],
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai, alignment : 'left'}]
+                                [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}],
+                                [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
                             ]
                         },
                         layout: 'noBorders'

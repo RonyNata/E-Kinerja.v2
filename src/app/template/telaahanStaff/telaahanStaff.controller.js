@@ -4,7 +4,7 @@
     module('eKinerja')
         .controller('TelaahanStaffController', TelaahanStaffController);
 
-    function TelaahanStaffController(EkinerjaService, TelaahanStaffService,HakAksesService, $scope, $state) {
+    function TelaahanStaffController(EkinerjaService, TelaahanStaffService, HakAksesService, $scope, $state) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
