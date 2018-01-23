@@ -83,6 +83,62 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Pegawai Penandatangan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawaipenandatangan" name="pegawaipenandatangan" ng-model="pegawaipenandatangan" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawaipenandatangan">
+                                                    <option ng-repeat="pgw in telaahanstaff.list_pegawai"
+                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="telaahanstaff.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{telaahanstaff.item.pegawaiPenandatangan.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{telaahanstaff.item.pegawaiPenandatangan.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tanggal penandatanganan</b></p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input class="form-control" type="date" ng-model="telaahanstaff.item.tanggal" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Waktu Pembuatan</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-4" style="margin-left: -15px;">
+                                                <input class="form-control" ng-model="telaahanstaff.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
+                                            </div>
+                                            <div class="col-md-4" style="padding-top: 8px;">
+                                                <span><b>Menit</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
