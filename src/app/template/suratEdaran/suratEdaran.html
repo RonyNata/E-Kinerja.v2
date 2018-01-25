@@ -90,7 +90,7 @@
                                             <textarea class="form-control" ng-model="subab.isi" required style="height: 100px"></textarea>
                                         </div>
                                         <button class="btn btn-primary waves-effect" type="button" ng-click="suratedaran.addSubab()" style="margin-left: 15px" ng-show="$last">+ Tambahkan</button>
-                                        <button class="btn btn-primary waves-effect" type="button" ng-click="suratedaran.removeSubab()" style="margin-left: 15px" ng-show="$last">- Tambahkan</button>
+                                        <button class="btn btn-primary waves-effect" type="button" ng-click="suratedaran.removeSubab($index)" style="margin-left: 15px" ng-hide="$last">- Hapus Subbab</button>
                                     </div>
                                 </div>
                                 </div>

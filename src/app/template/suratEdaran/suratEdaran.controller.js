@@ -74,14 +74,22 @@ angular.
         vm.save = function(){
           var data = {
             "kdSuratEdaran": "",
+            "nomorTahun": ((new Date()).getYear() + 1900),
             "nomorSurat": vm.item.nomorSurat,
             "tentang": vm.item.ttgSuratEdaran,
             "tempat": vm.item.tempat,
             "tanggalPenetapan": vm.item.tanggalPenetapan.getTime(),
             "nipPenandatangan": vm.item.pegawaiPembuat.nipPegawai,
-            "isi": vm.subab,
+            "latarBelakang": vm.subab[0].isi,
+            "maksudDanTujuan": vm.subab[1].isi,
+            "ruangLingkup": vm.subab[2].isi,
+            "dasar": vm.subab[3].isi,
+            "subLain": [],
             "suratPejabat": true
-          }
+          };
+
+          for(var i = 4; i < vm.subab.length;i++)
+            data.subLain.push({"nama": vm.subab[i].judul, "isi": vm.subab[i].isi});
 
           if($state.current.name == "suratedarannonpejabat")
             data.suratPejabat = false;
@@ -91,6 +99,11 @@ angular.
           $state.go('kontrak');
         }
 
+        vm.removeSubab = function(idx){
+          vm.subab.splice(idx,1);
+          for(var i = 0; i < vm.subab.length;i++)
+            vm.subab[i].nomor = String.fromCharCode(65 + i);
+        }
 
         // docDefinition.content[0].text = 'baka aweu';
 

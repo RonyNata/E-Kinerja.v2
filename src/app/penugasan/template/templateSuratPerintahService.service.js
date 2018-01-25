@@ -132,6 +132,10 @@
                   fontSize: 10,
                   alignment: 'center'
               },
+              header3: {
+                  fontSize: 9,
+                  alignment: 'center'
+              },
               demoTable: {
                 color: '#000',
                 fontSize: 10
@@ -182,102 +186,50 @@
           // }
 
           if($state.current.name == "suratperintahnonpejabat" || !data.suratPejabat){
-            docDefinition.content[2] = {
-                margin: [0, 10, 0, 15],
-                table: {
-                    widths: ['*'],
+            docDefinition.content[0] = {
+                margin:[0,0,0,15],
+                table:{
+                    widths: [100,'*'],
                     body: [
                         [
                             {
-                            }
-                        ]
+                                image: logo_bekasi,
+                                width: 90,
+                                height: 90,
+                                alignment: 'center'
+                            },
+                            [
+                                {
+                                    text:[
+                                        {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header1'},
+                                        {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header1'},
+                                        {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
+                                    ]
+                                },
+                                {
+                                    margin: [15,0,0,0],
+                                    table: {
+                                        body: [
+                                            [
+                                                {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
+                                            ]
+                                        ]
+                                    }, layout: 'noBorders'
+                                }
+                            ]
+                        ],
+                        [{text:'', colSpan: 2}],
+                        [{text:'', fillColor: 'black', colSpan: 2}]
                     ]
                 },
-                layout: {
-                    fillColor: 'Black'
-                }
+                layout: 'noBorders'
             };
 
-            docDefinition.content[1] = {
-                margin: [115, -5, 0, 0],
-                table: {
-                    widths: [90, 90, 150],
-                    body: [
-                        [
-                            {
-                                border: [false, false, false, false],
-                                text: 'Telp. (021) 89970696',
-                                fontSize: 9,
-                                alignment: 'right'
-                            },{
-                            border: [false, false, false, false],
-                            text: 'Fax. (021) 89970064',
-                            fontSize: 9,
-                            alignment: 'center'
-                        },{
-                            border: [false, false, false, false],
-                            text: 'email : diskominfo@bekasikab.go.id',
-                            fontSize: 9,
-                            alignment: 'left'
-                        }
-                        ]
-                    ]
-                }
-            };
+            docDefinition.content[1] = {};
 
-            docDefinition.content[0] = {
-                margin: [175, -5, 0, 0],
-                table: {
-                    widths: [230],
-                    body: [
-                        [
-                            {
-                                border: [false, false, false, false],
-                                text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
-                                style: 'header2'
-                            }
-                        ]
-                    ]
-                }
-            };
-            
-            docDefinition.content.unshift({
-                margin: [90, -5, 0, 0],
-                table: {
-                    widths: [400],
-                    body: [
-                        [
-                            {
-                                border: [false, false, false, false],
-                                text: '' + data.unitKerjaPenandatangan.toUpperCase(),
-                                style: 'header1'
-                            }
-                        ]
-                    ]
-                }
-            });
-
-            docDefinition.content.unshift({
-                margin: [90, -96, 0, 0],
-                table: {
-                    widths: [400],
-                    body: [
-                        [
-                            {
-                                border: [false, false, false, false],
-                                text: 'PEMERINTAHAN KABUPATEN BEKASI',
-                                style: 'header1'
-                            }
-                        ]
-                    ]
-                }
-            });
-
-            docDefinition.content.unshift({
-                image: logo_bekasi,
-                width: 90,
-                height: 90
-            });
+            docDefinition.content[2] = {};
           }
           else docDefinition.content[1].text += data.jabatanPenandatangan.toUpperCase();
           debugger

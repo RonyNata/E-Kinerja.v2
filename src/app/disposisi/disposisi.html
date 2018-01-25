@@ -114,15 +114,9 @@
 	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
 	                                <div class="col-md-6">
 	                                    <!-- <input type="text" class="form-control" ng-model="perpindahan.item.dariSuratDisposisi" ng-required="true"> -->
-	                                    <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="perpindahan.item.nipDari"  ng-change="perpindahan.getPegawaiDari()" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawai">
-                                                        <option ng-repeat="pgw in perpindahan.list_pegawai"
-                                                 value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
-                                            <div ng-show="perpindahan.item.dariSuratDisposisi">Nama: {{perpindahan.item.dariSuratDisposisi.nama}}</div>
-                                            <div ng-show="perpindahan.item.dariSuratDisposisi">Jabatan: {{perpindahan.item.dariSuratDisposisi.jabatan}}</div>
+	                                    <button class="btn btn-primary waves-effect" ng-click="perpindahan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        <div ng-show="perpindahan.item.dariSuratDisposisi">Nama: {{perpindahan.item.dariSuratDisposisi.nama}}</div>
+                                        <div ng-show="perpindahan.item.dariSuratDisposisi">Jabatan: {{perpindahan.item.dariSuratDisposisi.jabatan}}</div>
 	                                </div>
 	                            </div>
 	                            <div class="col-md-12" style="margin-bottom:10px">
@@ -158,30 +152,21 @@
                                         <p><b>Memberi Instruksi Kepada :</b></p>
                                     </div>
                                 </div>
-                                <div class="col-md-12" ng-repeat="target in perpindahan.target">
+                                <div class="col-md-12">
                                     <hr>
                                     <div class="col-md-12" style="margin-bottom:10px"> 
                                         <div class="col-md-1"></div> 
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b>Diteruskan Kepada</b></p>
                                         </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="target.pegawai" placeholder="Pilih Pegawai" ng-change="perpindahan.getPegawai($index)">
-                                                <datalist id="pegawai">
-                                                        <option ng-repeat="pgw in perpindahan.list_pegawai"
-                                                 value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
-                                            <div ng-show="target.pegawai">Nama: {{target.pegawaiTarget.nama}}</div>
-                                            <div ng-show="target.pegawai">Jabatan: {{target.pegawaiTarget.jabatan}}</div>
+                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPilihan()" type="button" style="margin-left: 5px">{{perpindahan.target.length}} Pegawai Telah Dipilih</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-7"></div>
-                                    <button class="btn btn-primary waves-effect" ng-click="perpindahan.addTarget()" style="margin-left: 5px">+ Diteruskan Kepada</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px">
                                     <div class="col-md-1"></div> 

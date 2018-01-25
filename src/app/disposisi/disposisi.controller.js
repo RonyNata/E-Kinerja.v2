@@ -3,13 +3,13 @@
 
 angular.module('eKinerja').controller('DisposisiController', DisposisiController);
 
-function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiService, DisposisiService, $scope, $state) {
+function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiService, DisposisiService, $scope, $state, $uibModal, $document) {
 	var vm = this;
 	vm.loading = true;
 	vm.item = {};
 
 	vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
-    vm.target = [{"id": new Date().getTime()}];
+    vm.target = [];
 
     vm.addMaksud = function(){
           var data = {"id": new Date().getTime(), "deskripsi": ''};
@@ -27,7 +27,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
       HakAksesService.GetAllPegawai().then(
         function(response){
           vm.list_pegawai = response;
-          vm.loading = false;
+          vm.loading = false;	
         }, function(errResponse){
 
         })
@@ -59,7 +59,8 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
     if($state.params.kdSurat != undefined){
     	getDisposisi();
     	vm.penerusan = true;
-    }else vm.penerusan = false;
+    }else {vm.penerusan = false;
+          }
 
     vm.getPegawai = function(idx){
       if(vm.target[idx].pegawai.length == 18)
@@ -71,6 +72,104 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         vm.item.dariSuratDisposisi = EkinerjaService.findPegawaiByNip(vm.item.nipDari,vm.list_pegawai);
     	console.log(vm.item.dariSuratDisposisi);
     } 
+
+    vm.openPegawai = function (parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+        controller: 'DataPegawaiController',
+        controllerAs: 'datapegawai',
+        // windowClass: 'app-modal-window',
+        size: 'lg',
+        appendTo: parentElem,
+        resolve: {
+        	pegawai: function(){
+        		return vm.list_pegawai;
+        	},
+        	pegawaiPilihan: function(){
+        		return vm.target;
+        	},
+        	isPilihan: function(){
+        		return 0;
+        	}
+        }
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+
+        });
+      };
+
+      vm.openPilihan = function (parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+        controller: 'DataPegawaiController',
+        controllerAs: 'datapegawai',
+        // windowClass: 'app-modal-window',
+        size: 'lg',
+        appendTo: parentElem,
+        resolve: {
+        	pegawai: function(){
+        		return vm.target;
+        	},
+        	pegawaiPilihan: function(){
+        		return vm.target;
+        	},
+        	isPilihan: function(){
+        		return 1;
+        	}
+        }
+        });
+
+        modalInstance.result.then(function () {
+        }, function () {
+
+        });
+      };
+
+      vm.openDari = function (parentSelector) {
+        var parentElem = parentSelector ? 
+        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+        animation: true,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+        controller: 'DataPegawaiController',
+        controllerAs: 'datapegawai',
+        // windowClass: 'app-modal-window',
+        size: 'lg',
+        appendTo: parentElem,
+        resolve: {
+        	pegawai: function(){
+        		return vm.list_pegawai;
+        	},
+        	pegawaiPilihan: function(){
+        		return vm.item.dariSuratDisposisi;
+        	},
+        	isPilihan: function(){
+        		return 2;
+        	}
+        }
+        });
+
+        modalInstance.result.then(function (data) {
+        	vm.item.dariSuratDisposisi = data;
+        }, function () {
+
+        });
+      };
+
     vm.save = function(){
       var data = {
         "tktKeamanan": vm.item.tktKeamanan,
@@ -100,7 +199,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
     }
 
     for(var i = 0; i < vm.target.length; i++)
-      data.daftarTargetLembarDisposisi.push(vm.target[i].pegawaiTarget.nipPegawai);
+      data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
       console.log(data);
       DisposisiService.save(data).then(
         function(response){
@@ -137,7 +236,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		              [
 		                {
 		                  border: [true, false, true, false],
-		                  text: '' + vm.target[0].pegawaiTarget.unitKerja,
+		                  text: '' + vm.target[0].unitKerja,
 		                  style: 'header',
 		                  colSpan: 4
 		                },{},{},{}
@@ -423,7 +522,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 		      }
 		  }
 	    	for(var i = 0; i < vm.target.length; i++){
-	            vm.docDefinition.content[0].table.body[9][2].ol.push(vm.target[i].pegawaiTarget.nama);
+	            vm.docDefinition.content[0].table.body[9][2].ol.push(vm.target[i].nama);
 	        }
     	};
 
