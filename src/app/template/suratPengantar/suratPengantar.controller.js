@@ -6,7 +6,8 @@ angular.
 	.controller('SuratPengantarController', SuratPengantarController);
 
     
-    function SuratPengantarController(EkinerjaService, SuratPengantarService, HakAksesService, $scope, $state, logo_bekasi) {
+    function SuratPengantarController(EkinerjaService, SuratPengantarService, HakAksesService, 
+      $scope, $state, logo_bekasi, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -28,6 +29,41 @@ angular.
 
             })
         }
+
+        vm.openDari = function (pegawai, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return pegawai;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            if(pegawai == 1)
+                vm.item.pegawaiPenerima = data;
+            else vm.item.pegawaiPembuat = data;
+          }, function () {
+
+          });
+        };
 
         $scope.$watch('pegawai', function(){
           if($scope.pegawai.length == 18)

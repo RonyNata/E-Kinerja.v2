@@ -4,7 +4,8 @@
     module('eKinerja')
         .controller('PengumumanController', PengumumanController);
 
-    function PengumumanController(EkinerjaService, HakAksesService, PengumumanService, $scope, $state, logo_bekasi) {
+    function PengumumanController(EkinerjaService, HakAksesService, PengumumanService, $scope, 
+        $state, logo_bekasi, $uibModal, $document) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -34,6 +35,39 @@
             })
         }
 
+        vm.openDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenandatangan;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenandatangan = data;
+          }, function () {
+
+          });
+        };
+
         vm.getPegawaiPenandatangan = function(){
           if(vm.item.pegawaiPenandatanganSurat.length == 18){
             vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenandatanganSurat,vm.list_pegawai);
@@ -60,7 +94,7 @@
                                         {
                                             text:[
                                                 {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                                {text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                                {text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() + '\n', alignment: 'center', style:'header'},
                                                 {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                             ]
                                         },
@@ -109,9 +143,9 @@
                             body: [
                                 [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
                                 [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
-                                [{text: '' + vm.item.pegawaiPembuat.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
+                                [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
                                 [{text: ' ',margin: [0,20]}],
-                                [{text: '' + vm.item.pegawaiPembuat.nama, alignment : 'left'}]
+                                [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
                             ]
                         },
                         layout: 'noBorders'

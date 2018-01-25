@@ -23,10 +23,33 @@
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nama Pembuat Keputusan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <button class="btn btn-primary waves-effect" ng-click="suratkeputusan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        <div ng-show="suratkeputusan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratkeputusan.item.pegawaiPenandatangan.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratkeputusan.item.pegawaiPenandatangan.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
                                     <div class="col-sm-2" >
                                         <p><b>Jabatan Pembuat Keputusan</b></p>
                                     </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <input class="form-control" ng-model="suratkeputusan.item.jabatan" required>
                                     </div>
@@ -36,11 +59,10 @@
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Unit Kerja Pembuat Keputusan</b></p>
                                     </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <input class="form-control" ng-model="suratkeputusan.item.unit" required>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
@@ -108,16 +130,6 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <input class="form-control" ng-model="suratkeputusan.item.tempat" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nama Penandatangan</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <input class="form-control" ng-model="suratkeputusan.item.nama" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px">

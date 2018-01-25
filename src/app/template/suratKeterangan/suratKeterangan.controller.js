@@ -4,7 +4,8 @@
     module('eKinerja')
         .controller('SuratKeteranganController', SuratKeteranganController);
 
-    function SuratKeteranganController(EkinerjaService, SuratKeteranganService, HakAksesService, $scope, $state, logo_bekasi) {
+    function SuratKeteranganController(EkinerjaService, SuratKeteranganService, HakAksesService, 
+        $scope, $state, logo_bekasi, $uibModal, $document) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -26,6 +27,39 @@
 
                 })
         }
+
+        vm.openDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenerima;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenerima = data;
+          }, function () {
+
+          });
+        };
 
         $scope.$watch('pegawai', function(){
             if($scope.pegawai.length == 18)

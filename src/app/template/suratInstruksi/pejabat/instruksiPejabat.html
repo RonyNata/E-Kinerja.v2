@@ -57,7 +57,7 @@
                                         <p><b>Memberi Instruksi Kepada :</b></p>
                                     </div>
                                 </div>
-                                <div class="col-md-12" ng-repeat="target in instruksipejabat.target">
+                                <div class="col-md-12" >
                                     <hr>
                                     <div class="col-md-12" style="margin-bottom:10px"> 
                                         <div class="col-md-1"></div> 
@@ -66,21 +66,13 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="target.pegawai" placeholder="Pilih Pegawai" ng-change="instruksipejabat.getPegawai($index)">
-                                                <datalist id="pegawai">
-                                                        <option ng-repeat="pgw in instruksipejabat.list_pegawai"
-                                                 value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
-                                            <div ng-show="target.pegawaiPembuat">Nama: {{target.pegawaiPembuat.nama}}</div>
-                                            <div ng-show="target.pegawaiPembuat">Jabatan: {{target.pegawaiPembuat.jabatan}}</div>
+                                            <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openPegawai()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openPilihan()" type="button" style="margin-left: 5px">{{instruksipejabat.target.length}} Pegawai Telah Dipilih</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="col-md-7"></div>
-                                    <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.addTarget()" style="margin-left: 5px">+ Tambah Penerima</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
@@ -112,13 +104,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <form method="get">
-                                            <input class="form-control" list="pegawai" name="pegawai" ng-model="instruksipejabat.item.pegawai" placeholder="Pilih Pegawai" ng-change="instruksipejabat.getPegawaiPd()">
-                                            <datalist id="pegawai">
-                                                    <option ng-repeat="pgw in instruksipejabat.list_pegawai"
-                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                            </datalist>
-                                        </form>
+                                        <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                         <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Nama: {{instruksipejabat.item.pegawaiPenandatangan.nama}}</div>
                                         <div ng-show="instruksipejabat.item.pegawaiPenandatangan">Jabatan: {{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</div>
                                     </div>

@@ -6,7 +6,8 @@ angular.
 	.controller('SuratDinasController', SuratDinasController);
 
     
-    function SuratDinasController(EkinerjaService,  HakAksesService, NotaDinasService, $scope, $state, logo_bekasi, logo_garuda) {
+    function SuratDinasController(EkinerjaService,  PengumpulanDataBebanKerjaService, HakAksesService, NotaDinasService, 
+        $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -14,6 +15,53 @@ angular.
         vm.back =  function(){
             $state.go('kontrak');
         };
+
+        vm.openDari = function (pegawai, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return pegawai;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            if(pegawai == 1)
+                vm.item.pegawaiPenerima = data;
+            else vm.item.pegawaiPenandatangan = data;
+          }, function () {
+
+          });
+        };
+
+        PengumpulanDataBebanKerjaService.GetAllJabatan().then(
+          function(response){
+            vm.list_jabatan = response;
+          }, function(errResponse){
+
+          })
+
+        vm.findJabatan = function(idx){
+          if(vm.tembusanSurat[idx].jabat.length == 7 || vm.tembusanSurat[idx].jabat.length == 8)
+            vm.tembusanSurat[idx].jabatan = EkinerjaService.findJabatanByKdJabatan(vm.tembusanSurat[idx].jabat, vm.list_jabatan);
+        }
 
         if($state.current.name == "suratdinasnonpejabat")
           vm.judul = 'Non-Pejabat';
@@ -98,7 +146,7 @@ angular.
                     },
 
                     {
-                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase(), style: 'nama_judul'
+                        text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase(), style: 'nama_judul'
                     },
 
                     {
@@ -123,7 +171,7 @@ angular.
                     table: {
                         widths: [150],
                         body: [
-                            [{text: 'Yth. ' + vm.item.penerima, border: [false, false, false, false]}]
+                            [{text: 'Yth. ' + vm.item.pegawaiPenerima.nama, border: [false, false, false, false]}]
                         ]
                     }
                 },
@@ -143,9 +191,9 @@ angular.
                     table: {
                         widths: [200],
                         body: [
-                            [{text: '(Nama Jabatan),', alignment : 'left', bold: true, border: [false, false, false, false]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
                             [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                            [{text: '' + vm.item.nmLengkap, alignment : 'left', border: [false, false, false, false]}]
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', border: [false, false, false, false]}]
                         ]
                     }
                 },
@@ -263,7 +311,7 @@ angular.
                         [
                             {
                                 border: [false, false, false, false],
-                                text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase(),
+                                text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
                                 style: 'header1'
                             }
                         ]
@@ -298,7 +346,7 @@ angular.
           }
 
           for(var i = 0; i < vm.tembusanSurat.length; i++)
-            tembusan.ol.push(vm.tembusanSurat[i].deskripsi);
+            tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
           vm.docDefinition.content.push(tembusan);
         }
 

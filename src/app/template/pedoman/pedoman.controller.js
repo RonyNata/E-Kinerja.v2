@@ -6,13 +6,47 @@ angular.
 	.controller('PedomanController', PedomanController);
 
     
-    function PedomanController(EkinerjaService, PedomanService, HakAksesService, $scope, $state, logo_bekasi, logo_garuda) {
+    function PedomanController(EkinerjaService, PedomanService, HakAksesService, $scope, 
+      $state, logo_bekasi, logo_garuda, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
 
         vm.back =  function(){
             $state.go('kontrak');
+        };
+
+        vm.openDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPembuat;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPembuat = data;
+          }, function () {
+
+          });
         };
 
         if($state.current.name == 'pedomannonpejabat')

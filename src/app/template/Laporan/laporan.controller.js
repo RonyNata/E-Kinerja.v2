@@ -4,7 +4,7 @@
     module('eKinerja')
         .controller('LaporanController', LaporanController);
 
-    function LaporanController(EkinerjaService, LaporanService, $scope, $state, logo_bekasi) {
+    function LaporanController(EkinerjaService, LaporanService, $scope, $state, logo_bekasi, $uibModal, $document, HakAksesService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -26,6 +26,39 @@
                 vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaipenandatangan,vm.list_pegawai);
             debugger
         });
+
+        vm.openDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenandatangan;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenandatangan = data;
+          }, function () {
+
+          });
+        };
 
         vm.save = function(){
             var data = {

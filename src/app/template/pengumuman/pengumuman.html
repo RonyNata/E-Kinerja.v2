@@ -67,13 +67,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="pengumuman.item.pegawaiPenandatanganSurat" placeholder="Pilih Pegawai" ng-change="pengumuman.getPegawaiPenandatangan()">
-                                                <datalist id="pegawai">
-                                                        <option ng-repeat="pgw in pengumuman.list_pegawai"
-                                                 value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="pengumuman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="pengumuman.item.pegawaiPenandatangan">Nama: {{pengumuman.item.pegawaiPenandatangan.nama}}</div>
                                             <div ng-show="pengumuman.item.pegawaiPenandatangan">Jabatan: {{pengumuman.item.pegawaiPenandatangan.jabatan}}</div>
                                         </div>
@@ -100,3 +94,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="pengumuman.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="pengumuman.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

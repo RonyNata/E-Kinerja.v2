@@ -6,7 +6,7 @@ angular.
 	.controller('SuratKeputusanController', SuratKeputusanController);
 
     
-    function SuratKeputusanController(EkinerjaService, SuratKeputusanService, $scope, $state, logo_bekasi) {
+    function SuratKeputusanController(EkinerjaService,HakAksesService, SuratKeputusanService, $scope, $state, logo_bekasi, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -31,6 +31,51 @@ angular.
           var data = {"id": new Date().getTime()};
           vm.target.push(data);
         }
+
+        getAllPegawai();
+
+        function getAllPegawai(){
+            HakAksesService.GetAllPegawai().then(
+                function(response){
+                    vm.list_pegawai = response;
+                    vm.loading = false;
+                }, function(errResponse){
+
+                })
+        }
+
+        vm.openDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenandatangan;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenandatangan = data;
+          }, function () {
+
+          });
+        };
 
         vm.save = function(){
           
@@ -74,7 +119,7 @@ angular.
                             [
                                 {
                                     border: [false, false, false, false],
-                                    text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                    text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
                                     style: 'header'
                                 }
                             ]
@@ -139,7 +184,7 @@ angular.
                 },
 
                 {
-                    text: 'KEPUTUSAN ' + vm.item.jabatan.toUpperCase() + '\n' + vm.item.unit.toUpperCase()
+                    text: 'KEPUTUSAN ' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + '\n' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase()
                     +'\n' +
                     'Selaku\n' + vm.item.selaku.toUpperCase() + '\n', style: 'nama_judul'
                 },
@@ -155,7 +200,7 @@ angular.
                 },
 
                 {
-                    text: '' + vm.item.jabatan.toUpperCase(), style: 'judul_nomor', margin:[0,0,0,15]
+                    text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase(), style: 'judul_nomor', margin:[0,0,0,15]
                 },
 
                 {
@@ -191,7 +236,7 @@ angular.
                     table: {
                         widths: [80, 5, '*'],
                         body: [
-                            [{text: 'Menetapkan', style: 'header3', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]}, {text:['KEPUTUSAN ','' + vm.item.jabatan + ' ' + vm.item.unit.toUpperCase(), ' TENTANG ', '' + vm.item.tentang.toUpperCase()], border: [false, false, false, false]}
+                            [{text: 'Menetapkan', style: 'header3', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]}, {text:['KEPUTUSAN ','' + vm.item.pegawaiPenandatangan.jabatan + ' ' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(), ' TENTANG ', '' + vm.item.tentang.toUpperCase()], border: [false, false, false, false]}
                             ]
                         ]
                     }
@@ -204,9 +249,9 @@ angular.
                         body: [
                             [{text: ['Ditetapkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left', border: [false, false, false, false]}],
                             [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left', border: [false, false, false, false]}],
-                            [{text: '' + vm.item.jabatan.toUpperCase() + ', ', alignment : 'left', bold: true, border: [false, false, false, false]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ', ', alignment : 'left', bold: true, border: [false, false, false, false]}],
                             [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                            [{text: '' + vm.item.nama.toUpperCase(), alignment : 'left', border: [false, false, false, false]}]
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama.toUpperCase(), alignment : 'left', border: [false, false, false, false]}]
                         ]
                     }
                 }

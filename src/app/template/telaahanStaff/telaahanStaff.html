@@ -90,13 +90,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawaipenandatangan" name="pegawaipenandatangan" ng-model="pegawaipenandatangan" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawaipenandatangan">
-                                                    <option ng-repeat="pgw in telaahanstaff.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="telaahanstaff.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="telaahanstaff.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
                                                 <table>
                                                     <tr>

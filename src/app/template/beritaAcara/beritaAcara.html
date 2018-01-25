@@ -38,13 +38,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawaikesatu" name="pegawaikesatu" ng-model="pegawaikesatu" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawaikesatu">
-                                                    <option ng-repeat="pgw in beritaacara.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="beritaacara.item.pegawaiKesatu" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
                                                 <table>
                                                     <tr>
@@ -79,13 +73,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawaikedua" name="pegawaikedua" ng-model="pegawaikedua" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawaikedua">
-                                                    <option ng-repeat="pgw in beritaacara.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="beritaacara.item.pegawaiKedua" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
                                                 <table>
                                                     <tr>
@@ -145,13 +133,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawaimengetahui" name="pegawaimengetahui" ng-model="pegawaimengetahui" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawaimengetahui">
-                                                    <option ng-repeat="pgw in beritaacara.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(3)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="beritaacara.item.pegawaiMengetahui" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
                                                 <table>
                                                     <tr>
@@ -227,3 +209,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="beritaacara.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="beritaacara.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

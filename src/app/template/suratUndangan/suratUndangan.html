@@ -78,13 +78,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="pegawai" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawai">
-                                                    <option ng-repeat="pgw in suratundangan.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="suratundangan.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
                                                 <table>
                                                     <tr>
@@ -213,13 +207,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <form method="get">
-                                                <input class="form-control" list="pegawaipenandatangan" name="pegawaipenandatangan" ng-model="pegawaipenandatangan" placeholder="Pilih Pegawai" >
-                                                <datalist id="pegawaipenandatangan">
-                                                    <option ng-repeat="pgw in suratundangan.list_pegawai"
-                                                            value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
-                                                </datalist>
-                                            </form>
+                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="suratundangan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
                                                 <table>
                                                     <tr>
@@ -284,3 +272,14 @@
         </div>
     </div>
 </section>
+<div class="bg_load animate-show-hide" ng-show="suratundangan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="suratundangan.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

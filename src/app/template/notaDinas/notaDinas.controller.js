@@ -6,7 +6,8 @@ angular.
 	.controller('NotaDinasController', NotaDinasController);
 
     
-    function NotaDinasController(EkinerjaService, HakAksesService, NotaDinasService, PengumpulanDataBebanKerjaService, $scope, $state, logo_bekasi) {
+    function NotaDinasController(EkinerjaService, HakAksesService, NotaDinasService, PengumpulanDataBebanKerjaService, 
+      $scope, $state, logo_bekasi, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -20,6 +21,43 @@ angular.
         vm.addTembusan = function(){
             var data = {"id": new Date().getTime(), "deskripsi": ''};
             vm.tembusanSurat.push(data);
+        };
+
+        vm.openDari = function (pegawai, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return pegawai;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            switch(pegawai){
+                case 1: vm.item.pegawaiPenerima = data; break;
+                case 2: vm.item.pegawaiPemberi = data; break;
+                case 3: vm.item.pegawaiPenandatangan = data; break;
+            }
+          }, function () {
+
+          });
         };
 
         vm.save = function(){
