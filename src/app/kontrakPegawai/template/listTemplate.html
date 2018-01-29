@@ -7,8 +7,32 @@
             <div class="row clearfix">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="body">
-                        <div class="col-md-12">
-                            <div class="col-md-1" style="margin-top: 6px;">
+                        <div class="col-md-12" ng-hide="temp.isDPA">
+                            <div class="col-md-3" style="margin-top: 6px;">
+                                <label >Urtug Yang Dikerjakan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12" ng-show="temp.isDPA">
+                            <div class="col-md-3" style="margin-top: 6px;">
+                                <label >Urtug Yang Dikerjakan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.deskripsiUrtug" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12" ng-show="temp.isDPA">
+                            <div class="col-md-3" style="margin-top: 6px;">
+                                <label >Nama Kegiatan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.ketKeg" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 10px">
+                            <div class="col-md-3" style="margin-top: 6px;">
                                 <label >Cari</label>
                             </div>
                             <div class="col-md-6">

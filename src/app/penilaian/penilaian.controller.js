@@ -98,9 +98,25 @@
                         response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
                     }
                     vm.perintahHistory = response;
+                    getUndanganHistory();
                 },function(errResponse){
 
                 })
+        }
+
+        function getUndanganHistory(){
+          PenilaianService.GetUndanganHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            function(response){debugger
+              for(var i = 0; i < response.length;i++){
+                  var date = new Date(response[i].tanggalDibuatMilis);
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+                  response[i].suratPejabat = response.isSuratPejabat;
+                  response[i].jenisSurat = "surat undangan";
+                  vm.perintahHistory.push(response[i]);
+              }
+              vm.perintahHistory = vm.perintahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+            })
         }
 
       function openTeruskanTemplate(laporan, parentSelector) {

@@ -6,10 +6,12 @@ angular.
 	.controller('TemplateController', TemplateController);
 
     
-    function TemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $uibModal, $document, $state, urtug, isDPA) {
+    function TemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, 
+      $uibModal, $document, $state, urtug, isDPA, kdSurat, jenisNaskahPenugasan) {
       	var vm = this;
 
         vm.isDPA = isDPA;
+        vm.urtug = urtug;
 
         vm.searchName = "";
 
@@ -32,7 +34,12 @@ angular.
         vm.gotoTemplate = function(url){
           $uibModalInstance.close();
           console.log(url);
-          $state.go(url);
+          $state.go(url, {
+            "kdSurat": kdSurat,
+            "jenisNaskah": jenisNaskahPenugasan,
+            "tahun": urtug.tahunUrtug,
+            "kdUrtug": urtug.kdUrtug
+          });
         }
 
       	vm.cancel = function () {

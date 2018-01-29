@@ -44,6 +44,19 @@
             return deferred.promise;
         };
 
+        service.GetUndanganHistory = function (nip) {
+            var deferred = $q.defer();
+            $http.get(API + '/get-daftar-surat-undangan-history/' + nip ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 
