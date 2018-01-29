@@ -41,8 +41,10 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-8">
-                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="notadinas.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="notadinas.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -66,8 +68,10 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-8">
-                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="notadinas.item.pegawaiPemberi" class="col-md-12" style="margin-top:5px">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="notadinas.item.pegawaiPemberi" class="col-md-6" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -124,8 +128,10 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-8">
-                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(3)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="notadinas.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(3)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="notadinas.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -157,7 +163,7 @@
                                                             value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
                                                 </datalist>
                                             </form>
-                                            <div ng-show="tembusan.jabatan">Jabatan: {{tembusan.jabatan.jabatan}}</div>
+                                            <div ng-show="tembusan.jabatan" style="padding-top: 10px">Jabatan : {{tembusan.jabatan.jabatan}}</div>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary waves-effect" type="button" ng-click="notadinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>

@@ -11,6 +11,7 @@
                         <form ng-submit="suratkuasa.save()" class="form-horizontal">
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
@@ -18,16 +19,16 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUrusan" required>
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUrusan" placeholder="nomor urusan" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUrut" required>
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUrut" placeholder="nomor urut" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorPasanganUrut" required>
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUnit" required>
+                                            <input type="number" class="form-control" ng-model="suratkuasa.item.nomorUnit" placeholder="nomor unit" required>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="number" class="form-control" ng-model="suratkuasa.item.tahun" disabled required>
@@ -37,12 +38,14 @@
                                     <div class="col-md-12" style="margin-bottom:5px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Pemberi kuasa</b></p>
+                                            <p><b>Pemberi Kuasa</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="suratkuasa.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="suratkuasa.item.pegawaiPemberi" class="col-md-12" style="margin-top:5px">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="suratkuasa.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="suratkuasa.item.pegawaiPemberi" class="col-md-6" style="margin-bottom: 0px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -66,8 +69,10 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="suratkuasa.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="suratkuasa.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="suratkuasa.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="suratkuasa.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -83,6 +88,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">

@@ -11,46 +11,84 @@
                         <form ng-submit="suratpengantar.save()" class="form-horizontal">
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
                                 <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div> 
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nomor</b></p>
-                                    </div>  
+                                    </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorSurat" required>
+                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorUrusan" placeholder="nomor urusan" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorSurat1" required>
+                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorUrut" placeholder="nomor urut" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorSurat2" required>
+                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratpengantar.item.nomorUnit" placeholder="nomor unit" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratpengantar.item.tahun" disabled required>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Penerima</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="suratpengantar.item.pegawaiPenerima">Nama: {{suratpengantar.item.pegawaiPenerima.nama}}</div>
-                                        <div ng-show="suratpengantar.item.pegawaiPenerima">Jabatan: {{suratpengantar.item.pegawaiPenerima.jabatan}}</div>
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="suratpengantar.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratpengantar.item.pegawaiPenerima.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratpengantar.item.pegawaiPenerima.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Pengirim</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="suratpengantar.item.pegawaiPembuat">Nama: {{suratpengantar.item.pegawaiPembuat.nama}}</div>
-                                        <div ng-show="suratpengantar.item.pegawaiPembuat">Jabatan: {{suratpengantar.item.pegawaiPembuat.jabatan}}</div>
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="suratpengantar.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratpengantar.item.pegawaiPembuat.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratpengantar.item.pegawaiPembuat.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">

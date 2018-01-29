@@ -12,6 +12,8 @@ angular.
         vm.loading = true;
         vm.item = {};
 
+        vm.item.tahun = ((new Date()).getYear() + 1900);
+
         vm.back =  function(){
             $state.go('kontrak');
         };

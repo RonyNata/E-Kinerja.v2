@@ -120,7 +120,7 @@
                     },
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + vm.item.nomorSurat3 + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -133,57 +133,49 @@
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Nama',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
                                         fontSize: 10
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'NIP',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                                         fontSize: 10
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Jabatan',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan,
                                         fontSize: 10
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -196,90 +188,78 @@
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Nama',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.nama,
                                         fontSize: 10
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'NIP',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.nipPegawai,
                                         fontSize: 10
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Pangkat/Golongan',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.golongan,
                                         fontSize: 10
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Jabatan',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 10
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.jabatan,
                                         fontSize: 10
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [-5, 20, 0 ,0],
                         table: {
                             widths: [500],
-                            border: [false, false, false, false],
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: '' + vm.item.isiketerangan,
                                         fontSize: 10
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [330,30,0,0],
@@ -289,18 +269,15 @@
                                 [
                                     {
                                         alignment: 'left',
-                                        border: [false, false, false, false],
                                         text: '' + vm.item.tempat+', '
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         alignment: 'left',
                                         text: '' + EkinerjaService.IndonesianDateFormat(new Date())
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: 'Pemberi Keterangan'
@@ -308,7 +285,6 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: 'tanda tangan\n\n'
@@ -316,14 +292,14 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     }
                 ],
                 styles: {

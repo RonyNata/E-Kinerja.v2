@@ -15,6 +15,8 @@ angular.
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';
 
+        vm.item.tahun = ((new Date()).getYear() + 1900);
+
         vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
         vm.target = [];
 
@@ -262,16 +264,17 @@ angular.
                     table: {
                         widths: [80, 5, '*'],
                         body: [
-                            [{text: 'Kepada', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
+                            [{text: 'Kepada', style: 'header'},{text: ':'},
 
-                                {   border: [false, false, false, false], bold:true,
+                                {   bold:true,
                                     ol: []
                                 }],
-                            [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
-                            [{text: 'Untuk', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]}, {text: '', border: [false, false, false, false]}
+                            [{text: '',margin: [0,0,0,3], colSpan: 3}],
+                            [{text: 'Untuk', style: 'header'},{text: ':'}, {text: ''}
                             ]
                         ]
-                    }
+                    },
+                    layout: 'noBorders'
                 },
 
                 {
@@ -279,13 +282,14 @@ angular.
                     table: {
                         widths: [200],
                         body: [
-                            [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left', border: [false, false, false, false]}],
-                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left', border: [false, false, false, false]}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
-                            [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', border: [false, false, false, false]}]
+                            [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
+                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                            [{text: ' ',margin: [0,20]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
                         ]
-                    }
+                    },
+                    layout: 'noBorders'
                 }
 
             ],
@@ -351,13 +355,14 @@ angular.
                 widths: ['*', '*', '*'],
                 table: {
                     body: [
-                        [{text: 'Nama', bold: true , border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].nama, border: [false, false, false, false]}],
-                        [{text: 'NIP', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].nipPegawai, border: [false, false, false, false]}],
-                        [{text: 'Pangkat/Gol. Ruang', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].golongan, border: [false, false, false, false]}],
-                        [{text: 'Jabatan', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].jabatan, border: [false, false, false, false]}]
+                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].nama}],
+                        [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + vm.target[i].nipPegawai}],
+                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].golongan}],
+                        [{text: 'Jabatan', bold: true}, {text: ':'}, {text: '' + vm.target[i].jabatan}]
                     ]
-                }
-            }
+                },
+                layout: 'noBorders'
+            };
             vm.docDefinition.content[7].table.body[0][2].ol.push(data);
           }
 
