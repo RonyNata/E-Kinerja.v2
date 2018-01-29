@@ -12,6 +12,8 @@ angular.
         vm.loading = true;
         vm.item = {};
 
+        vm.item.tahun = ((new Date()).getYear() + 1900);
+
         vm.back =  function(){
             $state.go('kontrak');
         };
@@ -121,13 +123,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'PEMERINTAHAN KABUPATEN BEKASI',
                         style: 'header'
                       }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
               {
                 margin: [90, -5, 0, 0],
@@ -136,13 +138,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
                         style: 'header'
                       }
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [175, -5, 0, 0],
@@ -151,13 +153,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
                         style: 'header2'
                       }
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [115, -5, 0, 0],
@@ -166,17 +168,14 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'Telp. (021) 89970696',
                         fontSize: 9,
                         alignment: 'right'
                       },{
-                        border: [false, false, false, false],
                         text: 'Fax. (021) 89970064',
                         fontSize: 9,
                         alignment: 'center'
                       },{
-                        border: [false, false, false, false],
                         text: 'email : diskominfo@bekasikab.go.id',
                         fontSize: 9,
                         alignment: 'left'
@@ -184,6 +183,7 @@ angular.
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [0, 10, 0, 0],
@@ -213,7 +213,6 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         rowSpan: 3,
                         text: 'Yth. ' + vm.item.pegawaiPenerima.nama,
                         fontSize: 10
@@ -228,7 +227,8 @@ angular.
                       }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
               {
                 margin: [0,30,0,0],
@@ -237,7 +237,7 @@ angular.
               },
               {
                 margin: [0,0,0,0],
-                text: 'NOMOR : '+ vm.item.nomorSurat +'/' + vm.item.nomorSurat1 + '/'+ vm.item.nomorSurat2 +'/' + ((new Date()).getYear() + 1900),
+                text: 'NOMOR : '+ vm.item.nomorUrusan +'/' + vm.item.nomorUrut + '/'+ vm.item.nomorPasanganUrut + '/'+ vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900),
                 fontSize: 10,
                 alignment: 'center'
               },
