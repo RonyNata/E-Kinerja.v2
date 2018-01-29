@@ -10,7 +10,7 @@
       var vm = this;
 
       $scope.searchName = '';
-      $scope.entries = 25;
+      $scope.entries = 5;
       $scope.currentPage = 0;
       vm.isPilihan = isPilihan;
 
