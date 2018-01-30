@@ -116,6 +116,12 @@ angular.
                 },
                 isDPA: function () {
                     return isDPA;
+                },
+                kdSurat: function(){
+                    return null;
+                },
+                jenisNaskahPenugasan: function(){
+                    return 5;
                 }
             }
         });

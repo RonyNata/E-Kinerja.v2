@@ -54,6 +54,70 @@
                 vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
         })
 
+        vm.openPilihan = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.target;
+            },
+            pegawaiPilihan: function(){
+              return vm.target;
+            },
+            isPilihan: function(){
+              return 1;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        }; 
+
+        vm.openPegawai = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.target;
+            },
+            isPilihan: function(){
+              return 0;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        };
+
         vm.openDari = function (parentSelector) {
           var parentElem = parentSelector ? 
           angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
