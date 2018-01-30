@@ -12,15 +12,16 @@
                                 <label >Urtug Yang Dikerjakan</label>
                             </div>
                             <div class="col-md-8">
-                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12" ng-hide="temp.isDPA">
-                            <div class="col-md-3" style="margin-top: 6px;">
-                                <label >Urtug Yang Dikerjakan</label>
-                            </div>
-                            <div class="col-md-8">
-                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
+                                <div ng-show="temp.urtug == null">
+                                    <form method="get">
+                                        <input class="form-control" list="urtug" name="urtug" ng-model="urtug" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas">
+                                        <datalist id="urtug" style="height: 100px">
+                                                <option ng-repeat="urtug in temp.list_urtug"
+                                         value="{{urtug.kdUrtug}}" ng-selected="selected">{{urtug.urtug}}</option>
+                                        </datalist>
+                                    </form>
+                                </div>
+                                <textarea ng-hide="temp.urtug == null" style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
                             </div>
                         </div>
                         <div class="col-md-12" ng-show="temp.isDPA">

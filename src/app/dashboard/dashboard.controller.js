@@ -233,8 +233,12 @@
           })
       }
 
-    vm.tanggapi = function(){
-      $state.go('penilaian');
+    vm.tanggapi = function(id){
+      switch(id){
+        case 1: $state.go('ambilperpindahan');break;
+        case 2: $state.go('penugasan');break;
+        case 3: $state.go('penilaian');break;
+      }
     }
 
     function template(item){

@@ -97,41 +97,6 @@ angular.
             });
         }
 
-        vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
-        var parentElem = parentSelector ? 
-        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-        var modalInstance = $uibModal.open({
-        animation: true,
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
-        controller: 'TemplateController',
-        controllerAs: 'temp',
-        // windowClass: 'app-modal-window',
-        // size: 'lg',
-        appendTo: parentElem,
-            resolve: {
-                urtug: function () {
-                    return uraianTugas;
-                },
-                isDPA: function () {
-                    return isDPA;
-                },
-                kdSurat: function(){
-                    return null;
-                },
-                jenisNaskahPenugasan: function(){
-                    return 5;
-                }
-            }
-        });
-
-        modalInstance.result.then(function () {
-        }, function () {
-
-        });
-      };
-
         vm.getDocument = function(naskah, idx, isHistory){
           if(!isHistory)
             $scope.filteredDataPenugasan[idx].loading = true;
@@ -259,25 +224,42 @@ angular.
             });
           };
 
-        vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
-            var parentElem = parentSelector ?
-                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        vm.openTemplate = function (uraianTugas, naskah, isDPA, parentSelector) {
+            debugger
+            var parentElem = parentSelector ? 
+                  angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
-                controller: 'TemplateController',
-                controllerAs: 'temp',
-                // windowClass: 'app-modal-window',
-                // size: 'lg',
-                appendTo: parentElem,
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
+            controller: 'TemplateController',
+            controllerAs: 'temp',
+            // windowClass: 'app-modal-window',
+            // size: 'lg',
+            appendTo: parentElem,
                 resolve: {
                     urtug: function () {
                         return uraianTugas;
                     },
                     isDPA: function () {
                         return isDPA;
+                    },
+                    kdSurat: function(){
+                      var i;
+                        switch(naskah.jenis){
+                          case 0 : i = naskah.kdInstruksi; break;
+                          case 1 : i = naskah.kdSurat; break;
+                        }
+                        return i;
+                    },
+                    jenisNaskahPenugasan: function(){
+                      var i;
+                      switch(naskah.jenis){
+                        case 0 : i = 3; break;
+                        case 1 : i = 2; break;
+                      }
+                      return i;
                     }
                 }
             });
