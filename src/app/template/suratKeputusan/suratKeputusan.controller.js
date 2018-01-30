@@ -78,7 +78,39 @@ angular.
         };
 
         vm.save = function(){
-          
+          var data = {
+            "kdSuratKeputusan":"",
+            "nomorUrut":vm.item.nomorSurat,
+            "nomorTahun":((new Date()).getYear() + 1900),
+            "nipPenandatangan":vm.item.pegawaiPenandatangan.nipPegawai,
+            "selaku":vm.item.selaku,
+            "tentang":vm.item.tentang,
+            "menimbang":[vm.item.menimbang],
+            "mengingat":[vm.item.mengingat],
+            "menetapkan":[],
+            "tanggalSuratKeputusanMilis":(new Date()).getTime(),
+            "kotaPembuatanSurat":vm.item.tempat,
+            "nipPembuatSurat":$.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "kdUnitKerja":vm.item.pegawaiPenandatangan.kdUnitKerja,
+            "durasiPengerjaan":10,
+            "kdSuratKeputusanBawahan":null,
+            "kdNaskahPenugasan":$state.params.kdSurat,
+            "jenisNaskahPenugasan":$state.params.jenisNaskahPenugasan,
+            "statusPenilaian":0,
+            "alasanPenolakan":""
+          }
+
+          for(var i = 0; i < vm.keputusan.length;i++)
+            data.menetapkan.push(vm.keputusan[i].deskripsi);
+
+          console.log(data);
+          SuratKeputusanService.save(data).then(
+            function(response){
+                EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
+                $state.go('kontrak');
+            }, function(errResponse){
+
+            })
         }
 
         vm.back =  function(){

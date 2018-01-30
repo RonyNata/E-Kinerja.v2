@@ -85,17 +85,35 @@ angular.
         }
 
         vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
-          console.log(vm.item);
-          SuratPengantarService.save(vm.item).then(
+          var data = {
+            "nomorUrusan":vm.item.nomorUrusan,
+            "nomorPasanganUrut":vm.item.nomorPasanganUrut,
+            "nomorUnit":vm.item.nomorUnit,
+            "tanggalPembuatanMilis":(new Date()).getTime(),
+            "tanggalDiterimaSuratPengantar":(new Date()).getTime(),
+            "kdJabatanPenerimaSuratPengantar":vm.item.pegawaiPenerima.kdJabatan,
+            "nipPemberiSuratPengantar":vm.item.pegawaiPembuat.nipPegawai,
+            "nomorTeleponPemberi":vm.item.telepon,
+            "nipPembuatSurat":$.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "kdUnitKerja":vm.item.pegawaiPembuat.kdUnitKerja,
+            "kdNaskahPenugasan":$state.params.kdSurat,
+            "jenisNaskahPenugasan":$state.params.jenisNaskahPenugasan,
+            "durasiPengerjaan":10,
+            "kdSuratPengantarBawahan":null,
+            "suratPengantarIsiList":[]
+          }
+
+          for(var i=0; i < vm.isi.length; i++)
+            data.suratPengantarIsiList.push({
+              "naskahDinasYangDikirim":vm.isi[i].naskah,
+              "banyakNaskah":vm.isi[i].qty,
+              "keterangan":vm.isi[i].keterangan
+            });
+
+          SuratPengantarService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+              $state.go('kontrak');
             }, function(errResponse){
 
             })
@@ -278,7 +296,7 @@ angular.
               },
               {
                 margin: [92, -11.5, 0 ,0],
-                text: '',
+                text: '' + EkinerjaService.IndonesianDateFormat(new Date()),
                 fontSize: 10
               },
               {
