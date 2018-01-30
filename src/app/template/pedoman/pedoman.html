@@ -18,7 +18,7 @@
                                     </div>  
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" ng-model="pedoman.item.namaMenteri" required>
+                                        <input type="text" class="form-control" ng-model="pedoman.item.namaMenteri" placeholder="kementrian" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -28,7 +28,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input class="form-control" type="number" ng-model="pedoman.item.nomorSurat" required>
+                                        <input class="form-control" type="number" ng-model="pedoman.item.nomorSurat" placeholder="nomor surat" required> 
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -41,17 +41,31 @@
                                         <input class="form-control" ng-model="pedoman.item.ttgPedoman" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+                                <div class="col-md-12" style="margin-bottom:5px"> 
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Penandatangan</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="pedoman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        </form>
-                                        <div ng-show="pedoman.item.pegawaiPembuat">Nama: {{pedoman.item.pegawaiPembuat.nama}}</div>
-                                        <div ng-show="pedoman.item.pegawaiPembuat">Jabatan: {{pedoman.item.pegawaiPembuat.jabatan}}</div>
+                                    <div class="col-md-8"> 
+                                        <div class="col-md-3" style="padding: 0px"> 
+                                            <button class="btn btn-primary waves-effect" ng-click="pedoman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                        </div> 
+                                        <div ng-show="pedoman.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px"> 
+                                            <table> 
+                                                <tr> 
+                                                    <td>Nama</td> 
+                                                    <td style="padding: 3px">:</td> 
+                                                    <td>{{pedoman.item.pegawaiPembuat.nama}}</td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>Jabatan</td> 
+                                                    <td style="padding: 3px">:</td> 
+                                                    <td>{{pedoman.item.pegawaiPembuat.jabatan}}</td> 
+                                                </tr> 
++
+                                            </table> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" ng-repeat="bab in pedoman.isiPedoman">

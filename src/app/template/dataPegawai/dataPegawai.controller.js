@@ -37,6 +37,10 @@
         $uibModalInstance.close(data);
       }
 
+      vm.cancel = function () { 
+        $uibModalInstance.dismiss('cancel'); 
+      };
+
       vm.openPilihan = function (parentSelector) {
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

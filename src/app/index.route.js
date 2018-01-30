@@ -426,13 +426,13 @@
             controllerAs: 'suratketerangan'
         })
         .state('suratundanganpejabat', {
-            url: '/surat-undangan-pejabat',
+            url: '/surat-undangan-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
         })
         .state('suratundangannonpejabat', {
-            url: '/surat-undangan-nonpejabat',
+            url: '/surat-undangan-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'

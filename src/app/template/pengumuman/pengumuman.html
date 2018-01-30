@@ -18,13 +18,16 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorSurat" required>
+                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorUrusan" placeholder="nomor urusan" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorSurat1" required>
+                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorUrut" placeholder="nomor urut" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorSurat2" required>
+                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorPasanganUrut" placeholder="nomor jabatan" required> 
+                                        </div> 
+                                        <div class="col-md-2"> 
+                                            <input type="number" class="form-control" ng-model="pengumuman.item.nomorUnit" placeholder="nomor unit" required>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="number" class="form-control" ng-model="pengumuman.item.tahun" disabled required>
@@ -60,16 +63,30 @@
                                             <input class="form-control" ng-model="pengumuman.item.tempat" required></input>
                                         </div>
                                     </div>
-                                    <div class="col-md-12" style="margin-bottom:10px"> 
-                                        <div class="col-md-1"></div> 
+                                    <div class="col-md-12" style="margin-bottom:5px"> 
+                                        <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b>Nama Penandatangan</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="pengumuman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="pengumuman.item.pegawaiPenandatangan">Nama: {{pengumuman.item.pegawaiPenandatangan.nama}}</div>
-                                            <div ng-show="pengumuman.item.pegawaiPenandatangan">Jabatan: {{pengumuman.item.pegawaiPenandatangan.jabatan}}</div>
+                                            <div class="col-md-3" style="padding: 0px"> 
+                                                <button class="btn btn-primary waves-effect" ng-click="pengumuman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                            </div> 
+                                            <div ng-show="pengumuman.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px"> 
+                                                <table> 
+                                                    <tr> 
+                                                        <td>Nama</td> 
+                                                        <td style="padding: 3px">:</td> 
+                                                        <td>{{pengumuman.item.pegawaiPenandatangan.nama}}</td> 
+                                                    </tr> 
+                                                    <tr> 
+                                                        <td>Jabatan</td> 
+                                                        <td style="padding: 3px">:</td> 
+                                                        <td>{{pengumuman.item.pegawaiPenandatangan.jabatan}}</td> 
+                                                    </tr> 
+                                                </table> 
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px">

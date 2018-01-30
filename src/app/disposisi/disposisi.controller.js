@@ -27,6 +27,11 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
       HakAksesService.GetAllPegawai().then(
         function(response){
           vm.list_pegawai = response;
+		    if($state.params.kdSurat != undefined){
+		    	getDisposisi();
+		    	vm.penerusan = true;
+		    }else {vm.penerusan = false;
+		          }
           vm.loading = false;	
         }, function(errResponse){
 
@@ -51,16 +56,12 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	          vm.item.isiDisposisi = response.isiDisposisi;
 	          vm.item.tanggalSuratDisposisiMilis = new Date(response.tanggalSuratDisposisiMilis);
 	          vm.item.nipDari = response.dari;
+	          vm.getPegawaiDari(); 
 	        }, function(errResponse){
 
 	        })
     }
 
-    if($state.params.kdSurat != undefined){
-    	getDisposisi();
-    	vm.penerusan = true;
-    }else {vm.penerusan = false;
-          }
 
     vm.getPegawai = function(idx){
       if(vm.target[idx].pegawai.length == 18)
@@ -178,7 +179,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "noSuratDisposisi": vm.item.noSuratDisposisi,
         "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
         "lampiran": vm.item.lampiran,
-        "dariSuratDisposisi": vm.item.nipDari,
+        "dariSuratDisposisi": vm.item.dariSuratDisposisi.nipPegawai,
         "ringkasanIsiSuratDisposisi": vm.item.ringkasanIsiSuratDisposisi,
         "tanggalSuratDisposisiMilis": (new Date()).getTime(),
         "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
