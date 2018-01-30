@@ -11,8 +11,6 @@ angular.
         vm.loading = true;
         vm.item = {};
 
-        vm.item.tahun = ((new Date()).getYear() + 1900);
-
         vm.back =  function(){
             $state.go('kontrak');
         };
@@ -105,13 +103,13 @@ angular.
                         body: [
                             [
                                 {
+                                    border: [false, false, false, false],
                                     text: 'PEMERINTAHAN KABUPATEN BEKASI',
                                     style: 'header'
                                 }
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
                 {
                     margin: [90, -5, 0, 0],
@@ -120,13 +118,13 @@ angular.
                         body: [
                             [
                                 {
+                                    border: [false, false, false, false],
                                     text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
                                     style: 'header'
                                 }
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
                 {
                     margin: [175, -5, 0, 0],
@@ -135,13 +133,13 @@ angular.
                         body: [
                             [
                                 {
+                                    border: [false, false, false, false],
                                     text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
                                     style: 'header2'
                                 }
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
                 {
                     margin: [115, -5, 0, 0],
@@ -150,22 +148,24 @@ angular.
                         body: [
                             [
                                 {
+                                    border: [false, false, false, false],
                                     text: 'Telp. (021) 89970696',
                                     fontSize: 9,
                                     alignment: 'right'
                                 },{
+                                border: [false, false, false, false],
                                 text: 'Fax. (021) 89970064',
                                 fontSize: 9,
                                 alignment: 'center'
                             },{
+                                border: [false, false, false, false],
                                 text: 'email : diskominfo@bekasikab.go.id',
                                 fontSize: 9,
                                 alignment: 'left'
                             }
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
                 {
                     margin: [0, 10, 0, 15],
@@ -208,24 +208,23 @@ angular.
                     table: {
                         widths: [80, 5, '*'],
                         body: [
-                            [{text: 'Menimbang', style: 'header3'},{text: ':'},
-                                { type: 'lower-alpha',
+                            [{text: 'Menimbang', style: 'header3', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
+                                { border: [false, false, false, false], type: 'lower-alpha',
                                     ol: [
                                         
                                     ]
                                 }
                             ],
-                            [{text: '',margin: [0,0,0,3], colSpan: 3}],
-                            [{text: 'Mengingat', style: 'header3'},{text: ':'},
-                                {
+                            [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
+                            [{text: 'Mengingat', style: 'header3', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
+                                {   border: [false, false, false, false],
                                     ol: [
-
+                                        
                                     ]
                                 }
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
 
                 {
@@ -237,11 +236,10 @@ angular.
                     table: {
                         widths: [80, 5, '*'],
                         body: [
-                            [{text: 'Menetapkan', style: 'header3'},{text: ':'}, {text:['KEPUTUSAN ','' + vm.item.pegawaiPenandatangan.jabatan + ' ' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(), ' TENTANG ', '' + vm.item.tentang.toUpperCase()]}
+                            [{text: 'Menetapkan', style: 'header3', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]}, {text:['KEPUTUSAN ','' + vm.item.pegawaiPenandatangan.jabatan + ' ' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(), ' TENTANG ', '' + vm.item.tentang.toUpperCase()], border: [false, false, false, false]}
                             ]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 },
 
                 {
@@ -249,14 +247,13 @@ angular.
                     table: {
                         widths: [200],
                         body: [
-                            [{text: ['Ditetapkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
-                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ', ', alignment : 'left', bold: true}],
-                            [{text: ' ',margin: [0,20]}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.nama.toUpperCase(), alignment : 'left'}]
+                            [{text: ['Ditetapkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left', border: [false, false, false, false]}],
+                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left', border: [false, false, false, false]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ', ', alignment : 'left', bold: true, border: [false, false, false, false]}],
+                            [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama.toUpperCase(), alignment : 'left', border: [false, false, false, false]}]
                         ]
-                    },
-                    layout: 'noBorders'
+                    }
                 }
             ],
             styles: {

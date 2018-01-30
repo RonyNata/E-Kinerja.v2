@@ -2,13 +2,13 @@
 'use strict';
  
 angular.
-	module('eKinerja')
-	.controller('SuratPerintahController', SuratPerintahController);
+  module('eKinerja')
+  .controller('SuratPerintahController', SuratPerintahController);
 
     
     function SuratPerintahController(EkinerjaService, SuratPerintahService, $scope, $state, HakAksesService, 
       PengumpulanDataBebanKerjaService, PenugasanService, logo_bekasi, logo_garuda, $document, $uibModal) {
-      	var vm = this;
+        var vm = this;
         vm.loading = true;
         vm.item = {};
         if($state.current.name == 'suratperintahnonpejabat' || $state.current.name == 'perintahnonpejabatterusan')
@@ -657,5 +657,5 @@ debugger
         $scope.downloadPdf = function() {
           pdfMake.createPdf(vm.docDefinition).download();
         };
-   	} 
+    } 
 })();

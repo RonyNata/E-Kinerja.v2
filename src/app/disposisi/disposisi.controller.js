@@ -56,7 +56,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	          vm.item.isiDisposisi = response.isiDisposisi;
 	          vm.item.tanggalSuratDisposisiMilis = new Date(response.tanggalSuratDisposisiMilis);
 	          vm.item.nipDari = response.dari;
-	          vm.getPegawaiDari();
+	          vm.getPegawaiDari(); 
 	        }, function(errResponse){
 
 	        })

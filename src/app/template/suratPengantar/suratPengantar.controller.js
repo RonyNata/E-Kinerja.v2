@@ -2,13 +2,13 @@
 'use strict';
  
 angular.
-	module('eKinerja')
-	.controller('SuratPengantarController', SuratPengantarController);
+  module('eKinerja')
+  .controller('SuratPengantarController', SuratPengantarController);
 
     
     function SuratPengantarController(EkinerjaService, SuratPengantarService, HakAksesService, 
       $scope, $state, logo_bekasi, $uibModal, $document) {
-      	var vm = this;
+        var vm = this;
         vm.loading = true;
         vm.item = {};
 
@@ -381,5 +381,5 @@ angular.
         $scope.downloadPdf = function() {
           pdfMake.createPdf(vm.docDefinition).download();
         };
-   	} 
+    } 
 })();

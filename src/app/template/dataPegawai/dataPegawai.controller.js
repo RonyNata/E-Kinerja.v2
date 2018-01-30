@@ -37,8 +37,8 @@
         $uibModalInstance.close(data);
       }
 
-      vm.cancel = function () {
-        $uibModalInstance.dismiss('cancel');
+      vm.cancel = function () { 
+        $uibModalInstance.dismiss('cancel'); 
       };
 
       vm.openPilihan = function (parentSelector) {

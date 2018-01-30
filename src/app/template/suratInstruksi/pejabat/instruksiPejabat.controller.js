@@ -14,7 +14,7 @@ angular.
         if($state.current.name == 'instruksinonpejabat')
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';
-
+        
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
         vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
@@ -269,11 +269,11 @@ angular.
                                 {   bold:true,
                                     ol: []
                                 }],
-                            [{text: '',margin: [0,0,0,3], colSpan: 3}],
+                            [{text: '',margin: [0,0,0,3], colSpan: 3}], 
                             [{text: 'Untuk', style: 'header'},{text: ':'}, {text: ''}
                             ]
                         ]
-                    },
+                    }, 
                     layout: 'noBorders'
                 },
 
@@ -282,13 +282,13 @@ angular.
                     table: {
                         widths: [200],
                         body: [
-                            [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
-                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
-                            [{text: ' ',margin: [0,20]}],
+                            [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}], 
+                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}], 
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}], 
+                            [{text: ' ',margin: [0,20]}], 
                             [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
                         ]
-                    },
+                    }, 
                     layout: 'noBorders'
                 }
 
@@ -355,13 +355,13 @@ angular.
                 widths: ['*', '*', '*'],
                 table: {
                     body: [
-                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].nama}],
-                        [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + vm.target[i].nipPegawai}],
-                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].golongan}],
+                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].nama}], 
+                        [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + vm.target[i].nipPegawai}], 
+                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].golongan}], 
                         [{text: 'Jabatan', bold: true}, {text: ':'}, {text: '' + vm.target[i].jabatan}]
                     ]
-                },
-                layout: 'noBorders'
+                }, 
+                layout: 'noBorders' 
             };
             vm.docDefinition.content[7].table.body[0][2].ol.push(data);
           }

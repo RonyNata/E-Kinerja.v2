@@ -18,9 +18,9 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input class="form-control" type="number" ng-model="suratedaran.item.nomorSurat" placeholder="nomor surat" required>
-                                    </div>
-                                    <div class="col-md-2">
+                                        <input class="form-control" type="number" ng-model="suratedaran.item.nomorSurat" placeholder="nomor surat" required> 
+                                    </div> 
+                                    <div class="col-md-2"> 
                                         <input type="number" class="form-control" ng-model="suratedaran.item.tahun" disabled required>
                                     </div>
                                 </div>
@@ -54,34 +54,32 @@
                                         <input class="form-control" type="date" ng-model="suratedaran.item.tanggal" required>
                                     </div>
                                 </div>
-
-                                <div class="col-md-12" style="margin-bottom:5px">
+                                <div class="col-md-12" style="margin-bottom:5px"> 
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Penandatangan</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-8">
-                                        <div class="col-md-3" style="padding: 0px">
-                                            <button class="btn btn-primary waves-effect" ng-click="suratedaran.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        </div>
-                                        <div ng-show="suratedaran.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px">
-                                            <table>
-                                                <tr>
-                                                    <td>Nama</td>
-                                                    <td style="padding: 3px">:</td>
-                                                    <td>{{suratedaran.item.pegawaiPembuat.nama}}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jabatan</td>
-                                                    <td style="padding: 3px">:</td>
-                                                    <td>{{suratedaran.item.pegawaiPembuat.jabatan}}</td>
-                                                </tr>
-                                            </table>
+                                    <div class="col-md-8"> 
+                                        <div class="col-md-3" style="padding: 0px"> 
+                                            <button class="btn btn-primary waves-effect" ng-click="suratedaran.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                        </div> 
+                                        <div ng-show="suratedaran.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px"> 
+                                            <table> 
+                                                <tr> 
+                                                    <td>Nama</td> 
+                                                    <td style="padding: 3px">:</td> 
+                                                    <td>{{suratedaran.item.pegawaiPembuat.nama}}</td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>Jabatan</td> 
+                                                    <td style="padding: 3px">:</td> 
+                                                    <td>{{suratedaran.item.pegawaiPembuat.jabatan}}</td> 
+                                                </tr> 
+                                            </table> 
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12" ng-repeat="subab in suratedaran.subab">
                                     <div class="col-md-12" style="margin-bottom:10px"> 
                                         <div class="col-md-1"></div> 
