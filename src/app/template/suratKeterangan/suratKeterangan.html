@@ -21,24 +21,49 @@
                                             <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat1" required>
+                                            <input type="text" class="form-control" ng-model="suratketerangan.item.nomorSurat1" required>
                                         </div>
                                         <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat2" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratketerangan.item.nomorSurat3" required>
+                                            <input type="text" class="form-control" ng-model="suratketerangan.item.nomorSurat2" required>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="number" class="form-control" ng-model="suratketerangan.item.tahun" disabled required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-12" style="margin-bottom:10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nama Penandatangan</b></p>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawaiP" name="pegawaiP" ng-model="pegawaiP" placeholder="Pilih Pegawai" >
+                                                <datalist id="pegawaiP">
+                                                    <option ng-repeat="pegw in suratketerangan.list_pegawai"
+                                                            value="{{pegw.nipPegawai}}" ng-selected="selected" >{{pegw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="suratketerangan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratketerangan.item.pegawaiPenandatangan.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{suratketerangan.item.pegawaiPenandatangan.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12" style="margin-bottom:5px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b>Memberi keterangan kepada</b></p>
                                         </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
                                             <button class="btn btn-primary waves-effect" ng-click="suratketerangan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                             <div ng-show="suratketerangan.item.pegawaiPenerima" class="col-md-12" style="margin-top:5px">
@@ -56,7 +81,56 @@
                                                 </table>
                                             </div>
                                         </div>
+                                    </div> -->
+                                    <div class="col-md-12" ng-repeat="target in suratketerangan.target" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Memberi keterangan kepada</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <form method="get">
+                                                <input class="form-control" list="pegawai" name="pegawai" ng-model="target.pegawai" placeholder="Pilih Pegawai" ng-change="suratketerangan.getPegawai($index)">
+                                                <datalist id="pegawai">
+                                                    <option ng-repeat="pgw in suratketerangan.list_pegawai"
+                                             value="{{pgw.nipPegawai}}" ng-selected="selected" >{{pgw.nama}}</option>
+                                            </datalist>
+                                            </form>
+                                            <div ng-show="target.pegawai" class="col-md-12" style="margin-top:5px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{target.pegawaiTarget.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{target.pegawaiTarget.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3" style="margin-bottom: 30px">
+                                            <button class="btn btn-primary waves-effect" type="button" ng-click="suratketerangan.addTarget()" style="margin-left: 5px">+ Tambah Penerima</button>
+                                        </div>
                                     </div>
+
+                                    <!-- <div class="col-md-12" ng-repeat="target in suratperintah.target" style="margin-bottom: 0px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-md-9" style="margin-bottom: 0px">
+                                            <form method="get" class="col-md-8">
+                                                <input class="form-control" list="pegawaii" name="pegawaii" ng-model="target.pgw" placeholder="Pilih Pegawai" ng-change="suratperintah.findPegawai($index)">
+                                                <datalist id="pegawaii">
+                                                        <option ng-repeat="pegw in suratperintah.list_pegawai"
+                                                 value="{{pegw.nipPegawai}}" ng-selected="selected" >{{pegw.nama}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="target.pegawai">Nama: {{target.pegawai.nama}}</div>
+                                            <div ng-show="target.pegawai">Jabatan: {{target.pegawai.jabatan}}</div>
+                                        </div>
+                                    </div> -->
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
@@ -75,6 +149,30 @@
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
                                             <input class="form-control" ng-model="suratketerangan.item.tempat" required></input>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Tanggal dikeluarkan surat </b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-3">
+                                            <input class="form-control" type="date" ng-model="suratketerangan.item.tanggal1" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Waktu Pembuatan</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-4" style="margin-left: -15px;">
+                                                <input class="form-control" ng-model="suratketerangan.item.waktuPembuatan" type="number" name="quantity" min="1" max="5" required></input>
+                                            </div>
+                                            <div class="col-md-4" style="padding-top: 8px;">
+                                                <span><b>Menit</b></span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px">
@@ -99,6 +197,7 @@
         </div>
     </div>
 </section>
+
 <div class="bg_load animate-show-hide" ng-show="suratketerangan.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="suratketerangan.loading">
     <div class="inner" style="padding-top: 180px">
