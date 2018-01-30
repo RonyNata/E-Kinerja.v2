@@ -63,17 +63,17 @@
           });
         };
 
-        $scope.$watch('pegawaipenerima', function(){
-            if($scope.pegawaipenerima.length == 18)
-                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawaipenerima,vm.list_pegawai);
-            debugger
-        });
+        // $scope.$watch('pegawaipenerima', function(){
+        //     if($scope.pegawaipenerima.length == 18)
+        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawaipenerima,vm.list_pegawai);
+        //     debugger
+        // });
 
-        $scope.$watch('pegawaipemberi', function(){
-            if($scope.pegawaipemberi.length == 18)
-                vm.item.pegawaiPemberi = EkinerjaService.findPegawaiByNip($scope.pegawaipemberi,vm.list_pegawai);
-            debugger
-        });
+        // $scope.$watch('pegawaipemberi', function(){
+        //     if($scope.pegawaipemberi.length == 18)
+        //         vm.item.pegawaiPemberi = EkinerjaService.findPegawaiByNip($scope.pegawaipemberi,vm.list_pegawai);
+        //     debugger
+        // });
 
         vm.save = function(){
             var data = {
@@ -88,17 +88,21 @@
                 "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
-                "tanggalSuratKuasaMilis": vm.item.tanggal1.getTime() //pengambilan tanggal
-            };
+                "tanggalSuratKuasaMilis": vm.item.tanggal1.getTime(), //pengambilan tanggal
+                "kdSuratKuasaBawahan": null,
+                "kdNaskahPenugasan": "",
+                "jenisNaskahPenugasan": ""
+            }
 
             console.log(data);
             SuratKuasaService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                    return $state.go('kontrak');
                 }, function(errResponse){
-
+                    EkinerjaService.showToastrError('Data Tidak Berhasil Disimpan');
                 });
-            $state.go('kontrak');
+            
 
         };
 
@@ -184,7 +188,7 @@
                                 [
                                     {text: 'Alamat', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: 'Kota Deltamas', fontSize: 10}
+                                    {text: '' + vm.item.pegawaiPemberi.alamat, fontSize: 10}
                                 ]
                             ]
                         },
@@ -217,7 +221,7 @@
                                 [
                                     {text: 'Alamat', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: 'Indonesia', fontSize: 10}
+                                    {text: '' + vm.item.pegawaiPenerima.alamat, fontSize: 10}
                                 ]
                             ]
                         },
@@ -249,7 +253,8 @@
                                 }],
                                 [{text: 'Penerima Kuasa,', bold: true, alignment: 'center'},{},{text: 'Pemberi Kuasa,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
-                                [{text: ''+ vm.item.pegawaiPenerima.nama, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.nama, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPenerima.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPemberi.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiPenerima.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.pangkat, alignment: 'center'}],
                                 [{text: ''+ vm.item.pegawaiPenerima.nipPegawai, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.nipPegawai, alignment: 'center'}]
                             ]
                         },

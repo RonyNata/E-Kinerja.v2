@@ -9,6 +9,13 @@
         var vm = this;
         vm.loading = true;
         vm.item = {};
+        
+        vm.target = [{"id": new Date().getTime()}];
+
+        vm.addTarget = function(){
+          var data = {"id": new Date().getTime()};
+          vm.target.push(data);
+        }
 
         vm.back =  function(){
             $state.go('kontrak');
@@ -27,6 +34,25 @@
 
                 })
         }
+
+        // $scope.$watch('pegawai', function(){
+        //     if($scope.pegawai.length == 18)
+        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        //     debugger
+        // })
+        // vm.findPegawai = function(idx){
+        //   if(vm.target[idx].pgw.length == 18)
+        //     vm.target[idx].pegawai = EkinerjaService.findPegawaiByNip(vm.target[idx].pgw,vm.list_pegawai);
+        // }
+        vm.getPegawai = function(idx){
+          if(vm.target[idx].pegawai.length == 18)
+            vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        } 
+
+        $scope.$watch('pegawaiP', function(){
+            if($scope.pegawaiP.length == 18)
+                vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
+        })
 
         vm.openDari = function (parentSelector) {
           var parentElem = parentSelector ? 
@@ -67,9 +93,48 @@
             debugger
         })
 
+        vm.save = function(){
+          var data = {
+            "kdSuratKeterangan": "",
+            "nomorUrusan": vm.item.nomorSurat,
+            "nomorPasanganUrut": vm.item.nomorSurat1,
+            "nomorUnit": vm.item.nomorSurat2,
+            "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+            "nipPegawaiKeterangan": [],
+            "isiSuratKeterangan": vm.item.isiketerangan,
+            "kotaPembuatanSurat": vm.item.tempat,
+            "tanggalSuratKeteranganMilis": vm.item.tanggal1.getTime(),
+            "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            "durasiPengerjaan": vm.item.waktuPembuatan,
+            "kdSuratKeteranganBawahan": null,
+            "kdNaskahPenugasan": "",
+            "jenisNaskahPenugasan": "",
+            "statusPenilaian": "",
+            "alasanPenolakan": "",
+            "targetSuratKeteranganList": []
+            // "alasan": "",
+            // "targetPegawaiList": [],
+            // "targetJabatanList": [],
+            // "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
+          }
+          for(var i = 0; i < vm.target.length; i++)
+                data.nipPegawaiKeterangan.push(vm.target[i].pegawaiTarget.nipPegawai);
+          debugger
+          console.log(data);
+          SuratKeteranganService.save(data).then(
+            function(response){
+              EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+              return $state.go('kontrak');
+            }, function(errResponse){
+                EkinerjaService.showToastrError('Data Tidak Berhasil Disimpan');
+            })
+            
+        };
+
         vm.back =  function(){
           $state.go('kontrak');
-        }
+        };
 
         function template(){
             vm.docDefinition = {
@@ -134,27 +199,29 @@
                                 [
                                     {
                                         text: 'Nama',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
-                                        fontSize: 10
+                                        border: [false, false, false, false],
+                                        text: '' + vm.item.pegawaiPenandatangan.nama,
+                                        fontSize: 12
                                     }
                                 ],
                                 [
                                     {
                                         text: 'NIP',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                                         fontSize: 10
                                     }
@@ -162,13 +229,14 @@
                                 [
                                     {
                                         text: 'Jabatan',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan,
                                         fontSize: 10
                                     }
@@ -189,13 +257,14 @@
                                 [
                                     {
                                         text: 'Nama',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.nama,
                                         fontSize: 10
                                     }
@@ -203,13 +272,14 @@
                                 [
                                     {
                                         text: 'NIP',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.nipPegawai,
                                         fontSize: 10
                                     }
@@ -217,13 +287,14 @@
                                 [
                                     {
                                         text: 'Pangkat/Golongan',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.golongan,
                                         fontSize: 10
                                     }
@@ -231,13 +302,14 @@
                                 [
                                     {
                                         text: 'Jabatan',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
                                         text: ':',
-                                        fontSize: 10
+                                        fontSize: 12
                                     },
                                     {
+                                        border: [false, false, false, false],
                                         text: ''+ vm.item.pegawaiPenerima.jabatan,
                                         fontSize: 10
                                     }
@@ -254,7 +326,7 @@
                                 [
                                     {
                                         text: '' + vm.item.isiketerangan,
-                                        fontSize: 10
+                                        fontSize: 12
                                     }
                                 ]
                             ]
@@ -280,7 +352,7 @@
                                     {
                                         colSpan: 2,
                                         alignment: 'left',
-                                        text: 'Pemberi Keterangan'
+                                        text: '' + vm.item.pegawaiPenandatangan.jabatan
                                     }
                                 ],
                                 [
@@ -294,7 +366,23 @@
                                     {
                                         colSpan: 2,
                                         alignment: 'left',
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai
+                                        text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang,
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: '' + vm.item.pegawaiPenandatangan.pangkat,
+                                    }
+                                ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: 'NIP. ' + vm.item.pegawaiPenandatangan.nipPegawai,
                                     }
                                 ]
                             ]
@@ -322,9 +410,24 @@
                 images:{
                     logo: logo_bekasi
                 }
-            };
-        }
+                }
+            }
 
+            // for(var i = 0; i < vm.target.length; i++){
+            //     var data = {
+            //         widths: [107, 2, 330],
+            //         table: {
+            //             body: [
+            //                 [{text: 'Nama', bold: true , border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawai.nama, border: [false, false, false, false]}],
+            //                 [{text: 'NIP', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawai.nipPegawai, border: [false, false, false, false]}],
+            //                 [{text: 'Pangkat/Gol. Ruang', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawai.golongan, border: [false, false, false, false]}],
+            //                 [{text: 'Jabatan', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + vm.target[i].pegawai.jabatan, border: [false, false, false, false]}]
+            //             ]
+            //         }
+            //     }
+            //     vm.docDefinition.content[8].table.body[0][2].ol.push(data);
+            //   }
+        
         $scope.openPdf = function() {
             var blb;
             // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
@@ -341,4 +444,5 @@
             pdfMake.createPdf(vm.docDefinition).download();
         };
     }
+
 })();

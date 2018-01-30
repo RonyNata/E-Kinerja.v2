@@ -5,7 +5,7 @@
         .controller('MemorandumController', MemorandumController);
 
     function MemorandumController(EkinerjaService, MemorandumService, HakAksesService, $scope, 
-        $state, logo_bekasi, logo_garuda, $uibModal, $document) {
+        $state, logo_bekasi, logo_garuda, $uibModal, $document, PengumpulanDataBebanKerjaService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -22,6 +22,13 @@
             vm.tembusanSurat.push(data);
         }
 
+        PengumpulanDataBebanKerjaService.GetAllJabatan().then(
+          function(response){
+            vm.list_jabatan = response;
+          }, function(errResponse){
+
+          })
+
         getAllPegawai();
 
         function getAllPegawai(){
@@ -33,6 +40,50 @@
 
                 })
         }
+
+        vm.findJabatan = function(idx){
+          if(vm.tembusanSurat[idx].jabat.length == 7 || vm.tembusanSurat[idx].jabat.length == 8)
+            vm.tembusanSurat[idx].jabatan = EkinerjaService.findJabatanByKdJabatan(vm.tembusanSurat[idx].jabat, vm.list_jabatan);
+        }
+
+        // $scope.$watch('pegawaiP', function(){
+        //     if($scope.pegawaiP.length == 18)
+        //         vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
+        //     debugger
+        // })
+
+        vm.openPenandatangan = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenandatangan;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenandatangan = data;
+          }, function () {
+
+          });
+        };
 
         vm.openDari = function (parentSelector) {
           var parentElem = parentSelector ? 
@@ -67,11 +118,88 @@
           });
         };
 
-        $scope.$watch('pegawai', function(){
-            if($scope.pegawai.length == 18)
-                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-            debugger
-        });
+        vm.openPegawaiDari = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiDari;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiDari = data;
+          }, function () {
+
+          });
+        };
+
+        // $scope.$watch('pegawai', function(){
+        //     if($scope.pegawai.length == 18)
+        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        //     debugger
+        // });
+
+        // $scope.$watch('pegawaidari', function(){
+        //     if($scope.pegawaidari.length == 18)
+        //         vm.item.pegawaiDari = EkinerjaService.findPegawaiByNip($scope.pegawaidari,vm.list_pegawai);
+        //     debugger
+        // });
+
+        vm.save = function(){
+          var data = {
+            "nomorUrusan": vm.item.nomorSurat,
+            "nomorPasanganUrut": vm.item.nomorSurat1,
+            "nomorUnit": vm.item.nomorSurat2,
+            "nipPenerimaMemorandum": vm.item.pegawaiPenerima.nipPegawai,
+            "nipPemberiMemorandum": vm.item.pegawaiDari.nipPegawai,
+            "hal": vm.item.hal,
+            "isiMemorandum": vm.item.isimemorandum,
+            "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+            "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja,
+            "kdNaskahPenugasan": "",
+            "jenisNaskahPenugasan": "",
+            "durasiPengerjaan": vm.item.waktuPembuatan,
+            "statusPenilaian": "",
+            "alasanPenolakan": "",
+            "kdMemorandumBawahan": null,
+            "kdJabatanTembusanList": [],
+            "suratPejabat": true
+            // "tanggalDibuat": (new Date()).getTime(),
+          }
+
+          if($state.current.name == "memorandumnonpejabat")
+            data.suratPejabat = false;
+
+          debugger
+          console.log(data);
+          MemorandumService.save(data).then(
+            function(response){
+              EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+              return $state.go('kontrak');
+            }, function(errResponse){
+              EkinerjaService.showToastrError('Data Tidak Berhasil Disimpan');
+            })
+            
+        };
 
         vm.back =  function(){
             $state.go('kontrak');
@@ -97,7 +225,7 @@
                         text: 'REPUBLIK INDONESIA', style: 'header', margin: [0,0,0,15]
                     },
                     {
-                        text: 'MEMORANDUM', style: 'nama_judul'
+                        text: 'MEMORANDUM', style: 'nama_judul', size: 16
                     },
 
                     {
@@ -117,7 +245,7 @@
                                 [
                                     {text: 'Dari', bold: true},
                                     {text: ':'},
-                                    {text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai}
+                                    {text: '' + vm.item.pegawaiDari.nama}
                                 ],
                                 [
                                     {text: 'Hal', bold: true},
@@ -142,12 +270,15 @@
 
                     {
                         style: 'tandaTangan',
+                        margin:[300,30,0,0],
                         table: {
                             widths: [200],
                             body: [
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase()+',', alignment : 'left', bold: true}],
+                                [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase()+',', alignment : 'left', bold: true}],
                                 [{text: ' ',margin: [0,20]}],
-                                [{text: '' + $.parseJSON(sessionStorage.getItem('credential')).namaPegawai, alignment : 'left'}]
+                                [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left'}],
+                                [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left'}],
+                                [{text: 'NIP, ' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
                             ]
                         },
                         layout: 'noBorders'
@@ -168,12 +299,11 @@
                     nama_judul: {
                         alignment : 'center',
                         bold: true,
-                        fontSize: 12
+                        fontSize: 16
                     },
                     judul_nomor: {
                         alignment : 'center',
-                        bold: true,
-                        fontSize: 11
+                        fontSize: 12
                     },
                     header3: {
                         bold: true,
@@ -182,7 +312,7 @@
                     },
                     tandaTangan: {
                         color: '#000',
-                        fontSize: 10,
+                        fontSize: 12,
                         alignment:'right'
                     },
                     header1: {
@@ -321,4 +451,5 @@
             pdfMake.createPdf(vm.docDefinition).download();
         };
     }
+    
 })();
