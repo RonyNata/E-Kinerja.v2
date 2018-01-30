@@ -4,12 +4,12 @@
     angular.module('eKinerja')
         .service('LaporanService', LaporanService);
 
-    function LaporanService(API_REPORT, $http, $q){
+    function LaporanService(API, $http, $q){
         var service = {};
 
         service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-laporan/', data).then(
+            $http.post(API + 'create-laporan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -18,7 +18,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
         return service;
     }

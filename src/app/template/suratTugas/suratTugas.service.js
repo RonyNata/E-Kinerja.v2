@@ -4,12 +4,12 @@
 	angular.module('eKinerja')
 		.service('SuratTugasService', SuratTugasService);
 
-	function SuratTugasService(API_REPORT, $http, $q){
+	function SuratTugasService(API, $http, $q){
 		var service = {};
 
 		service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-nodin-report/', data).then(
+            $http.post(API + 'create-surat-tugas/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -18,7 +18,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
 		return service;
 	}

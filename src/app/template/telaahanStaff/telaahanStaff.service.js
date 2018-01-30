@@ -4,12 +4,12 @@
     angular.module('eKinerja')
         .service('TelaahanStaffService', TelaahanStaffService);
 
-    function TelaahanStaffService(API_REPORT, $http, $q){
+    function TelaahanStaffService(API, $http, $q){
         var service = {};
 
         service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-telaahan-staff/', data).then(
+            $http.post(API + 'create-telaahan-staf/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
