@@ -34,64 +34,59 @@
 
                 })
         }
-
-        // $scope.$watch('pegawai', function(){
-        //     if($scope.pegawai.length == 18)
-        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-        //     debugger
-        // })
-        // vm.findPegawai = function(idx){
-        //   if(vm.target[idx].pgw.length == 18)
-        //     vm.target[idx].pegawai = EkinerjaService.findPegawaiByNip(vm.target[idx].pgw,vm.list_pegawai);
-        // }
         vm.getPegawai = function(idx){
           if(vm.target[idx].pegawai.length == 18)
             vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
-        } 
+        }
+
+        // $scope.$watch('pegawai', function(){
+        //    if(vm.target[idx].pegawai.length == 18)
+        //     vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        // }) 
 
         $scope.$watch('pegawaiP', function(){
             if($scope.pegawaiP.length == 18)
                 vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
         })
 
-        vm.openDari = function (parentSelector) {
-          var parentElem = parentSelector ? 
-          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-          var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
-          controller: 'DataPegawaiController',
-          controllerAs: 'datapegawai',
-          // windowClass: 'app-modal-window',
-          size: 'lg',
-          appendTo: parentElem,
-          resolve: {
-            pegawai: function(){
-              return vm.list_pegawai;
-            },
-            pegawaiPilihan: function(){
-              return vm.item.pegawaiPenerima;
-            },
-            isPilihan: function(){
-              return 2;
-            }
-          }
-          });
+        // vm.openDari = function (parentSelector) {
+        //   var parentElem = parentSelector ? 
+        //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        //   var modalInstance = $uibModal.open({
+        //   animation: true,
+        //   ariaLabelledBy: 'modal-title',
+        //   ariaDescribedBy: 'modal-body',
+        //   templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+        //   controller: 'DataPegawaiController',
+        //   controllerAs: 'datapegawai',
+        //   // windowClass: 'app-modal-window',
+        //   size: 'lg',
+        //   appendTo: parentElem,
+        //   resolve: {
+        //     pegawai: function(){
+        //       return vm.list_pegawai;
+        //     },
+        //     pegawaiPilihan: function(){
+        //       return vm.item.pegawaiPenerima;
+        //     },
+        //     isPilihan: function(){
+        //       return 2;
+        //     }
+        //   }
+        //   });
 
-          modalInstance.result.then(function (data) {
-            vm.item.pegawaiPenerima = data;
-          }, function () {
+        //   modalInstance.result.then(function (data) {
+        //     vm.item.pegawaiPenerima = data;
+        //   }, function () {
 
-          });
-        };
+        //   });
+        // };
 
-        $scope.$watch('pegawai', function(){
-            if($scope.pegawai.length == 18)
-                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-            debugger
-        })
+        // $scope.$watch('pegawai', function(){
+        //     if($scope.pegawai.length == 18)
+        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        //     debugger
+        // })
 
         vm.save = function(){
           var data = {
@@ -185,7 +180,7 @@
                     },
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + vm.item.nomorSurat3 + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -198,12 +193,10 @@
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Nama',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -215,12 +208,10 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'NIP',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -232,12 +223,10 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Jabatan',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -248,7 +237,8 @@
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -261,12 +251,10 @@
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Nama',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -278,12 +266,10 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'NIP',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -295,12 +281,10 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Pangkat/Golongan',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -312,12 +296,10 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: 'Jabatan',
                                         fontSize: 12
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         text: ':',
                                         fontSize: 12
                                     },
@@ -328,23 +310,23 @@
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [-5, 20, 0 ,0],
                         table: {
                             widths: [500],
-                            border: [false, false, false, false],
                             body: [
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         text: '' + vm.item.isiketerangan,
                                         fontSize: 12
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [330,30,0,0],
@@ -354,18 +336,15 @@
                                 [
                                     {
                                         alignment: 'left',
-                                        border: [false, false, false, false],
                                         text: '' + vm.item.tempat+', '
                                     },
                                     {
-                                        border: [false, false, false, false],
                                         alignment: 'left',
                                         text: '' + EkinerjaService.IndonesianDateFormat(new Date())
                                     }
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: '' + vm.item.pegawaiPenandatangan.jabatan
@@ -373,7 +352,6 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: 'tanda tangan\n\n'
@@ -381,7 +359,6 @@
                                 ],
                                 [
                                     {
-                                        border: [false, false, false, false],
                                         colSpan: 2,
                                         alignment: 'left',
                                         text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang,
@@ -404,7 +381,8 @@
                                     }
                                 ]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     }
                 ],
                 styles: {
