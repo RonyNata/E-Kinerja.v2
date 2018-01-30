@@ -10,7 +10,7 @@
         vm.loading = true;
         vm.item = {};
         
-        vm.target = [{"id": new Date().getTime()}];
+        vm.target = [];
 
         vm.addTarget = function(){
           var data = {"id": new Date().getTime()};
@@ -34,20 +34,15 @@
 
                 })
         }
-
-        // $scope.$watch('pegawai', function(){
-        //     if($scope.pegawai.length == 18)
-        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-        //     debugger
-        // })
-        // vm.findPegawai = function(idx){
-        //   if(vm.target[idx].pgw.length == 18)
-        //     vm.target[idx].pegawai = EkinerjaService.findPegawaiByNip(vm.target[idx].pgw,vm.list_pegawai);
-        // }
         vm.getPegawai = function(idx){
           if(vm.target[idx].pegawai.length == 18)
             vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
-        } 
+        }
+
+        // $scope.$watch('pegawai', function(){
+        //    if(vm.target[idx].pegawai.length == 18)
+        //     vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
+        // }) 
 
         $scope.$watch('pegawaiP', function(){
             if($scope.pegawaiP.length == 18)
@@ -143,19 +138,19 @@
             }
           }
           });
-
-          modalInstance.result.then(function (data) {
-            vm.item.pegawaiPenerima = data;
-          }, function () {
-
-          });
         };
+        //   modalInstance.result.then(function (data) {
+        //     vm.item.pegawaiPenerima = data;
+        //   }, function () {
 
-        $scope.$watch('pegawai', function(){
-            if($scope.pegawai.length == 18)
-                vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
-            debugger
-        })
+        //   });
+        // };
+
+        // $scope.$watch('pegawai', function(){
+        //     if($scope.pegawai.length == 18)
+        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawai,vm.list_pegawai);
+        //     debugger
+        // })
 
         vm.save = function(){
           var data = {
@@ -183,7 +178,7 @@
             // "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
           }
           for(var i = 0; i < vm.target.length; i++)
-                data.nipPegawaiKeterangan.push(vm.target[i].pegawaiTarget.nipPegawai);
+                data.nipPegawaiKeterangan.push(vm.target[i].nipPegawai);
           debugger
           console.log(data);
           SuratKeteranganService.save(data).then(
@@ -286,8 +281,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-                                        fontSize: 10
+                                        text: '' + vm.item.pegawaiPenandatangan.nipPegawai,
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -301,8 +296,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan,
-                                        fontSize: 10
+                                        text: '' + vm.item.pegawaiPenandatangan.jabatan,
+                                        fontSize: 12
                                     }
                                 ]
                             ]
@@ -329,8 +324,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: ''+ vm.item.pegawaiPenerima.nama,
-                                        fontSize: 10
+                                        text: ''+ vm.target[0].nama,
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -344,8 +339,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: ''+ vm.item.pegawaiPenerima.nipPegawai,
-                                        fontSize: 10
+                                        text: ''+ vm.target[0].nipPegawai,
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -359,8 +354,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: ''+ vm.item.pegawaiPenerima.golongan,
-                                        fontSize: 10
+                                        text: '' + vm.target[0].pangkat,
+                                        fontSize: 12
                                     }
                                 ],
                                 [
@@ -374,8 +369,8 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: ''+ vm.item.pegawaiPenerima.jabatan,
-                                        fontSize: 10
+                                        text: ''+ vm.target[0].jabatan,
+                                        fontSize: 12
                                     }
                                 ]
                             ]
