@@ -2,14 +2,14 @@
 	'use strict';
 
 	angular.module('eKinerja')
-		.service('NotaDinasService', NotaDinasService);
+		.service('SuratDinasService', SuratDinasService);
 
-	function NotaDinasService(API_REPORT, $http, $q){
+	function SuratDinasService(API, $http, $q){
 		var service = {};
 
 		service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-nodin-report/', data).then(
+            $http.post(API + 'create-surat-dinas/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -18,7 +18,7 @@
                 }
             );
             return deferred.promise;
-        }
+        };
 
 		return service;
 	}

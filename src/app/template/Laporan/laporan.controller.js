@@ -62,7 +62,7 @@
 
         vm.save = function(){
             var data = {
-                "kdLaporan": "",
+                "kdLaporan": null,
                 "tentang": vm.item.tentang,
                 "umum": vm.item.isiumum,
                 "maksudDanTujuan": vm.item.isimaksuddantujuan,
@@ -77,17 +77,23 @@
                 "tanggalTelaahanStafMilis": vm.item.tanggal.getTime(),
                 "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-                "durasiPengerjaan": vm.item.durasiPengerjaan
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
+
+                "kdLaporanBawahan": null,
+                "kdNaskahPenugasan": null,
+                "jenisNaskahPenugasan": 1,
+                "statusPenilaian": 0,
+                "alasanPenolakan": null
             };
 
             console.log(data);
-            SuratKuasaService.save(data).then(
+            LaporanService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                    $state.go('kontrak');
                 }, function(errResponse){
-
+                    EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
                 });
-            $state.go('kontrak');
 
         };
 

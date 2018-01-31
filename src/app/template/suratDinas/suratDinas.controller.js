@@ -6,11 +6,13 @@ angular.
 	.controller('SuratDinasController', SuratDinasController);
 
     
-    function SuratDinasController(EkinerjaService,  PengumpulanDataBebanKerjaService, HakAksesService, NotaDinasService, 
+    function SuratDinasController(EkinerjaService,  PengumpulanDataBebanKerjaService, HakAksesService, SuratDinasService,
         $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
+
+        vm.item.tahun = ((new Date()).getYear() + 1900);
 
         vm.back =  function(){
             $state.go('kontrak');
@@ -95,41 +97,68 @@ angular.
         vm.getPegawai = function(idx){
           if(vm.target[idx].pegawai.length == 18)
             vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
-        } 
+        };
         vm.getPegawaiPenerima = function(){
           if(vm.item.pegawaiPenerimaSurat.length == 18){
             vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenerimaSurat,vm.list_pegawai);
             console.log(vm.item.pegawaiPenerima);
           }
-        }
+        };
 
         vm.getPegawaiPenandatangan = function(){
           if(vm.item.pegawaiPenandatanganSurat.length == 18){
             vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawaiPenandatanganSurat,vm.list_pegawai);
             console.log(vm.item.pegawaiPenandatangan);
           }
-        }
+        };
 
         vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal1.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
-          console.log(vm.item);
-          NotaDinasService.save(vm.item).then(
-            function(response){
-              EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-            }, function(errResponse){
+            var data = {
+                "kdSuratDinas": null,
+                "nomorUrusan": vm.item.nomorUrusan,
+                "nomorPasanganUrut": vm.item.nomorPasanganUrut,
+                "nomorUnit": vm.item.nomorUnit,
+                "sifat": vm.item.sifat,
+                "lampiran": vm.item.lampiran,
+                "hal": vm.item.hal,
+                "kdJabatanPenerimaSuratDinas": vm.item.pegawaiPenerima.kdJabatan,
+                "tanggalSuratDinasMilis": vm.item.tanggal1.getTime(),
+                "kotaPembuatanSuratDinas": vm.item.tempat,
+                "isiSuratDinas": vm.item.alineaIsi,
+                "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+                "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
 
-            })
-        }
+                "kdSuratDinasBawahan": null,
+                "kdNaskahPenugasan": null,
+                "jenisNaskahPenugasan": 5,
+                "statusPenilaian": 0,
+                "alasanPenolakan": null,
+                "suratPejabat": true,
+                "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
+                "kdTembusanList": []
+            };
+
+            for(var i = 0; i < vm.tembusanSurat.length; i++)
+                data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+
+            if($state.current.name == "suratdinasnonpejabat")
+                data.suratPejabat = false;
+
+            console.log(data);
+            SuratDinasService.save(data).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                    $state.go('kontrak');
+                }, function(errResponse){
+                    EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
+                })
+        };
 
         vm.back =  function(){
           $state.go('kontrak');
-        }
+        };
 
 
         // docDefinition.content[0].text = 'baka aweu';
@@ -158,12 +187,13 @@ angular.
                     table: {
                         widths: [50, 5, '*', '*'],
                         body: [
-                            [{text: 'Nomor', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: ''+ vm.item.nomorSurat + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + (new Date().getYear()+1900), border: [false, false, false, false]}, {text: '' + vm.item.tempat + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), border: [false, false, false, false], alignment:'right'}],
-                            [{text: 'Sifat', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + vm.item.sifat, border: [false, false, false, false]}, {text: '', border: [false, false, false, false]}],
-                            [{text: 'Lampiran', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + vm.item.lampiran, border: [false, false, false, false]}, {text: '', border: [false, false, false, false]}],
-                            [{text: 'Hal', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + vm.item.hal, border: [false, false, false, false]}, {text: '', border: [false, false, false, false]}]
+                            [{text: 'Nomor', bold: true},{text: ':'},{text: ''+ vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + (new Date().getYear()+1900)}, {text: '' + vm.item.tempat + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment:'right'}],
+                            [{text: 'Sifat', bold: true},{text: ':'},{text: '' + vm.item.sifat}, {text: ''}],
+                            [{text: 'Lampiran', bold: true},{text: ':'},{text: '' + vm.item.lampiran}, {text: ''}],
+                            [{text: 'Hal', bold: true},{text: ':'},{text: '' + vm.item.hal}, {text: ''}]
                         ]
-                    }
+                    },
+                    layout: 'noBorders'
                 },
 
                 {
@@ -171,19 +201,14 @@ angular.
                     table: {
                         widths: [150],
                         body: [
-                            [{text: 'Yth. ' + vm.item.pegawaiPenerima.nama, border: [false, false, false, false]}]
+                            [{text: 'Yth. ' + vm.item.pegawaiPenerima.nama}]
                         ]
-                    }
+                    },
+                    layout: 'noBorders'
                 },
 
                 {
-                    text: '' + vm.item.alineaPembuka,  margin: [0,0,0,10], alignment:'justifly'
-                },
-                {
                     text: '' + vm.item.alineaIsi,  margin: [0,0,0,10], alignment:'justifly'
-                },
-                {
-                    text: '' + vm.item.alineaPenutup,  margin: [0,0,0,15], alignment:'justifly'
                 },
 
                 {
@@ -191,11 +216,12 @@ angular.
                     table: {
                         widths: [200],
                         body: [
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
-                            [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', border: [false, false, false, false]}]
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                            [{text: ' ',margin: [0,20]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
                         ]
-                    }
+                    },
+                    layout: 'noBorders'
                 },
 
                 {text: 'Tembusan :'}
@@ -267,24 +293,22 @@ angular.
                     body: [
                         [
                             {
-                                border: [false, false, false, false],
                                 text: 'Telp. (021) 89970696',
                                 fontSize: 9,
                                 alignment: 'right'
                             },{
-                            border: [false, false, false, false],
                             text: 'Fax. (021) 89970064',
                             fontSize: 9,
                             alignment: 'center'
                         },{
-                            border: [false, false, false, false],
                             text: 'email : diskominfo@bekasikab.go.id',
                             fontSize: 9,
                             alignment: 'left'
                         }
                         ]
                     ]
-                }
+                },
+                layout: 'noBorders'
             };
 
             vm.docDefinition.content[0] = {
@@ -294,13 +318,13 @@ angular.
                     body: [
                         [
                             {
-                                border: [false, false, false, false],
                                 text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
                                 style: 'header2'
                             }
                         ]
                     ]
-                }
+                },
+                layout: 'noBorders'
             };
             
             vm.docDefinition.content.unshift({
@@ -310,13 +334,13 @@ angular.
                     body: [
                         [
                             {
-                                border: [false, false, false, false],
                                 text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
                                 style: 'header1'
                             }
                         ]
                     ]
-                }
+                },
+                layout: 'noBorders'
             });
 
             vm.docDefinition.content.unshift({
@@ -326,13 +350,13 @@ angular.
                     body: [
                         [
                             {
-                                border: [false, false, false, false],
                                 text: 'PEMERINTAHAN KABUPATEN BEKASI',
                                 style: 'header1'
                             }
                         ]
                     ]
-                }
+                },
+                layout: 'noBorders'
             });
 
             vm.docDefinition.content.unshift({
@@ -343,7 +367,7 @@ angular.
           }
           var tembusan = {
             ol:[]
-          }
+          };
 
           for(var i = 0; i < vm.tembusanSurat.length; i++)
             tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
