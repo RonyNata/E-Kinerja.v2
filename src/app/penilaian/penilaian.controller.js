@@ -4,7 +4,7 @@
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
 	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document, DashboardService, $window, API){
+    $scope, $state, $uibModal, $document, DashboardService, $window, API, TemplateSuratKeputusanService){
 		var vm = this;
     	vm.loading = true;
 
@@ -41,9 +41,25 @@
         }
       }
 
+      function getDocumentKeputusan(laporan){
+        // laporan.loading = true;
+        PenilaianService.GetDataKeputusan(laporan.kdSurat).then(
+          function(response){
+            vm.data = response;debugger
+            var doc = TemplateSuratKeputusanService.template(vm.data);
+            laporan.loading = false;
+            pdfMake.createPdf(doc).open();
+            // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+            //   openSurat(laporan.kdSurat);
+          }, function(errResponse){
+
+          })
+      };
+
       vm.getDocument = function(laporan){
         laporan.loading = true;
         switch(laporan.kdJenisSurat){
+          case 7: getDocumentKeputusan(laporan); break;
           case 15: getLaporanLain(laporan); break;
           default: vm.getDocumentPerintah(laporan); break;
         }
@@ -78,6 +94,7 @@
 
             })
         };
+
 
       function openSurat(kdSurat){
         PenilaianService.OpenSurat(kdSurat).then(
@@ -205,8 +222,8 @@
                   response[i].jenisSurat = "laporan"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-            }) 
               getBeritaAcaraHistory();
+            }) 
         }
 
         function getNotaDinasHistory(){ 
@@ -250,15 +267,15 @@
                   response[i].jenisSurat = "surat keterangan"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-            }) 
               getSuratDinasHistory();
+            }) 
         }
 
         function getKuasaHistory(){ 
           PenilaianService.GetKuasaHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
             function(response){ 
               for(var i = 0; i < response.length;i++){ debugger
-                  var date = new Date(response[i].createdDate); 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
                   response[i].tanggalDibuatMilis = response[i].createdDate;
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 

@@ -213,6 +213,19 @@
             return deferred.promise; 
         };
 
+        service.GetDataKeputusan = function (kdSurat) { 
+            var deferred = $q.defer(); 
+            $http.get(API + 'get-surat-keputusan-by-kd-surat-keputusan/' + kdSurat ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
         return service;
 	}
 
