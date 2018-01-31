@@ -3,8 +3,8 @@
     angular
         .module('eKinerja')
         .factory('TemplateSuratDinasService',
-            ['SuratDinasService', 'logo_bekasi', 'logo_garuda',
-                function (SuratDinasService, logo_bekasi, logo_garuda) {
+            ['SuratDinasService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+                function (SuratDinasService, EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
                     service.template = function (data){
@@ -31,7 +31,7 @@
                                     table: {
                                         widths: [50, 5, '*', '*'],
                                         body: [
-                                            [{text: 'Nomor', bold: true},{text: ':'},{text: ''+ data.nomorUrusan + '/' + data.nomorUrut + '/' + data.nomorPasanganUrut + '/' + data.nomorUnit + '/' + data.nomorTahun}, {text: '' + data.kotaPembuatanSurat + ', ' + EkinerjaService.IndonesianDateFormat(data.tanggalPembuatanMilis), alignment:'right'}],
+                                            [{text: 'Nomor', bold: true},{text: ':'},{text: ''+ data.nomorUrusan + '/' + data.nomorUrut + '/' + data.nomorPasanganUrut + '/' + data.nomorUnit + '/' + data.nomorTahun}, {text: '' + data.kotaPembuatanSurat + ', ' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)), alignment:'right'}],
                                             [{text: 'Sifat', bold: true},{text: ':'},{text: '' + data.sifat}, {text: ''}],
                                             [{text: 'Lampiran', bold: true},{text: ':'},{text: '' + data.lampiran}, {text: ''}],
                                             [{text: 'Hal', bold: true},{text: ':'},{text: '' + data.hal}, {text: ''}]
@@ -114,7 +114,7 @@
                             }
                         };
 
-                        if($state.current.name == "suratdinasnonpejabat"){
+                        if(!data.isSuratPejabat){
                             docDefinition.content[2] = {
                                 margin: [0, 10, 0, 15],
                                 table: {
@@ -217,10 +217,10 @@
                         for(var i = 0; i < data.tembusanSuratDinasWrapper.length; i++)
                             tembusan.ol.push(data.tembusanSuratDinasWrapper[i].jabatan);
                         docDefinition.content.push(tembusan);
+
+                        return docDefinition;
                     };
 
                     return service;
                 }])
-    /* jshint ignore:end */
-
 })();

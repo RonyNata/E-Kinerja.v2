@@ -265,6 +265,58 @@
             return deferred.promise; 
         };
 
+        service.GetDataSuratDinas = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-dinas-by-kd-surat-dinas/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataLaporan = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-laporan-by-kd-laporan/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataSuratTugas = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-tugas-by-kd-surat/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataTelaahanStaff = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-telaahan-staff-by-kd-telaahan-staff/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 

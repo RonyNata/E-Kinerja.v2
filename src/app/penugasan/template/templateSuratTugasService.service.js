@@ -3,8 +3,8 @@
     angular
         .module('eKinerja')
         .factory('TemplateSuratTugasService',
-            ['SuratTugasService', 'logo_bekasi', 'logo_garuda',
-                function (SuratTugasService, logo_bekasi, logo_garuda) {
+            ['SuratTugasService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+                function (SuratTugasService, EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
                     service.template = function (data){
@@ -178,7 +178,7 @@
                                     table: {
                                         widths: [250],
                                         body: [
-                                            [{text: '' + data.tempat + ', ' + EkinerjaService.IndonesianDateFormat(data.tanggalTugasMilis), alignment : 'left'}],
+                                            [{text: '' + data.tempat + ', ' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalTugasMilis)), alignment : 'left'}],
                                             [{text: ''+ data.nipPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                             [{text: ' ',margin: [0,20]}],
                                             [{text: '' + data.nipPenandatangan.nama, alignment : 'left'}]
@@ -252,6 +252,8 @@
                         for(var i = 0; i < data.tembusanSuratTugasSet.length; i++)
                             tembusan.ol.push(data.tembusanSuratTugasSet[i].jabatan);
                         docDefinition.content.push(tembusan);
+
+                        return docDefinition;
                     };
 
                     return service;
