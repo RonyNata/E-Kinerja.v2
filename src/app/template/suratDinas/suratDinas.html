@@ -90,9 +90,14 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="suratdinas.item.pegawaiPenerima">Nama: {{suratdinas.item.pegawaiPenerima.nama}}</div>
-                                        <div ng-show="suratdinas.item.pegawaiPenerima">Jabatan: {{suratdinas.item.pegawaiPenerima.jabatan}}</div>
+                                        <form method="get">
+                                            <input class="form-control" list="jabatantarget" name="jabatantarget" ng-model="suratdinas.jabatan" placeholder="Pilih Jabatan" ng-change="suratdinas.findJabatanTarget()">
+                                            <datalist id="jabatantarget">
+                                                <option ng-repeat="jbtn in suratdinas.list_jabatan"
+                                                        value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
+                                            </datalist>
+                                        </form>
+                                        <div ng-show="suratdinas.jabatanPenerima">Jabatan : {{suratdinas.jabatanPenerima.jabatan}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
