@@ -133,7 +133,7 @@
                                         body: [
                                             [{text: 'Menimbang', style: 'header'},{text: ':'},
                                                 {
-                                                    ol: [
+                                                    ol: [data.menimbangList
                                                     ]
                                                 }
                                             ],
@@ -229,8 +229,8 @@
                             }
                         };
 
-                        for(var i = 0; i < vm.target.length; i++){
-                            var data = {
+                        for(var i = 0; i < data.targetSuratTugasPegawaiSet.length; i++){
+                            var dat = {
                                 widths: ['*', '*', '*'],
                                 table: {
                                     body: [
@@ -242,7 +242,7 @@
                                 },
                                 layout: 'noBorders'
                             };
-                            docDefinition.content[8].table.body[0][2].ol.push(data);
+                            docDefinition.content[11].table.body[0][2].ol.push(dat);
                         }
 
                         var tembusan = {

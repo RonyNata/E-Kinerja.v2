@@ -7,7 +7,8 @@ angular.
 
     
     function PenugasanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
-     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state) {
+     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state, PenilaianService,
+     TemplateSuratTugasService) {
         var vm = this;
         vm.loading = true;
 
@@ -121,8 +122,24 @@ angular.
           switch(naskah.jenis){
             case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
+            case 2 : getDocumentSuratTugas(naskah.kdSurat, idx, isHistory); break;
           }
         }
+
+        function getDocumentSuratTugas(kdHistory, idx, isHistory){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratTugas(kdHistory).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratTugasService.template(vm.data);
+                    if(!isHistory)
+                      $scope.filteredDataPenugasan[idx].loading = false;
+                    else $scope.filteredData[idx].loading = false;
+                    pdfMake.createPdf(doc).open();
+                }, function(errResponse){
+
+                })
+        };
 
         function getDocumentInstruksi(kdHistory, idx, isHistory){
           KontrakPegawaiService.GetDataInstruksi(kdHistory).then(

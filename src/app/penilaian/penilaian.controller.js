@@ -3,9 +3,6 @@
 
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
-	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document, DashboardService, $window, API, TemplateSuratKeputusanService,
-    TemplateSuratEdaranService, TemplateSuratPengantarService, TemplateSuratUndanganService){
 	function PenilaianController(EkinerjaService,
                                  PenilaianService,
                                  PenugasanService,
@@ -20,8 +17,10 @@
                                  TemplateSuratKeputusanService,
                                  TemplateSuratDinasService,
                                  TemplateLaporanService,
-                                 TemplateSuratTugasService,
-                                 TemplateTelaahanStaffService){
+                                 TemplateTelaahanStaffService,
+                                 TemplateSuratUndanganService,
+                                 TemplateSuratPengantarService,
+                                 TemplateSuratEdaranService){
 		var vm = this;
     	vm.loading = true;
 
@@ -139,21 +138,6 @@
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateLaporanService.template(vm.data);
-                    laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
-                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
-                    //   openSurat(laporan.kdSurat);
-                }, function(errResponse){
-
-                })
-        };
-
-        function getDocumentSuratTugas(laporan){
-            // laporan.loading = true;
-            PenilaianService.GetDataSuratTugas(laporan.kdSurat).then(
-                function(response){
-                    vm.data = response;debugger
-                    var doc = TemplateSuratTugasService.template(vm.data);
                     laporan.loading = false;
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
