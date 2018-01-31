@@ -72,7 +72,12 @@
                 "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 "tanggalBeritaAcaraMilis": vm.item.tanggal1.getTime(),
-                "durasiPengerjaan": vm.item.durasiPengerjaan
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
+                "kdBeritaAcaraBawahan": null,
+                "kdNaskahPenugasan": "",
+                "jenisNaskahPenugasan": "0",
+                "statusPenilaian": "",
+                "alasanPenolakan": ""
             };
 
             for(var i = 0; i < vm.isiBeritaAcara.length; i++)
