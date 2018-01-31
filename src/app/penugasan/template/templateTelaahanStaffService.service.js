@@ -3,8 +3,8 @@
     angular
         .module('eKinerja')
         .factory('TemplateTelaahanStaffService',
-            ['TelaahanStaffService', 'logo_bekasi', 'logo_garuda',
-                function (TelaahanStaffService, logo_bekasi, logo_garuda) {
+            ['TelaahanStaffService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+                function (TelaahanStaffService, EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
                     service.template = function (data){
@@ -73,6 +73,8 @@
                                 }
                             }
                         };
+
+                        return docDefinition;
                     };
 
                     return service;

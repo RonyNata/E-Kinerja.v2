@@ -3,8 +3,22 @@
 
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
-	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document, DashboardService, $window, API, TemplateSuratKeputusanService){
+	function PenilaianController(EkinerjaService,
+                                 PenilaianService,
+                                 PenugasanService,
+                                 TemplateSuratPerintahService,
+                                 $scope,
+                                 $state,
+                                 $uibModal,
+                                 $document,
+                                 DashboardService,
+                                 $window,
+                                 API,
+                                 TemplateSuratKeputusanService,
+                                 TemplateSuratDinasService,
+                                 TemplateLaporanService,
+                                 TemplateSuratTugasService,
+                                 TemplateTelaahanStaffService){
 		var vm = this;
     	vm.loading = true;
 
@@ -56,10 +70,74 @@
           })
       };
 
+        function getDocumentSuratDinas(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratDinas(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratDinasService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentLaporan(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataLaporan(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateLaporanService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentSuratTugas(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratTugas(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratTugasService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentTelaahanStaff(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataTelaahanStaff(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateTelaahanStaffService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
       vm.getDocument = function(laporan){
         laporan.loading = true;
         switch(laporan.kdJenisSurat){
+          case 1: getDocumentLaporan(laporan); break;
+          case 5: getDocumentSuratDinas(laporan); break;
           case 7: getDocumentKeputusan(laporan); break;
+          case 12: getDocumentSuratTugas(laporan); break;
+          case 14: getDocumentTelaahanStaff(laporan); break;
           case 15: getLaporanLain(laporan); break;
           default: vm.getDocumentPerintah(laporan); break;
         }

@@ -3,8 +3,8 @@
     angular
         .module('eKinerja')
         .factory('TemplateLaporanService',
-            ['LaporanService', 'logo_bekasi', 'logo_garuda',
-                function (LaporanService, logo_bekasi, logo_garuda) {
+            ['LaporanService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+                function (LaporanService, EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
                     service.template = function (data){
@@ -84,7 +84,7 @@
                                         widths: [200],
                                         body: [
                                             [{text: ['Dikeluarkan di ', {text:'' + data.kotaPembuatanSurat.toUpperCase(), bold:true}], alignment : 'left'}],
-                                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(data.tanggalPembuatanMilis), bold:true}], alignment : 'left'}],
+                                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)), bold:true}], alignment : 'left'}],
                                             [{text: '' + data.jabatanPenandatangan.toUpperCase() + ',', alignment : 'left', bold: true}],
                                             [{text: ' ',margin: [0,20]}],
                                             [{text: '' + data.namaPenandatangan, alignment : 'left'}],
@@ -129,6 +129,8 @@
                                 logo: logo_bekasi
                             }
                         };
+
+                        return docDefinition;
                     };
 
                     return service;
