@@ -46,7 +46,7 @@
 
         service.GetUndanganHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-undangan-history/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-undangan-history/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -59,7 +59,7 @@
 
         service.GetPengumumanHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-pengumuman-history-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-pengumuman-history-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -72,7 +72,7 @@
 
         service.GetEdaranHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-edaran-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-edaran-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -85,7 +85,7 @@
 
         service.GetKeputusanHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-keputusan-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-keputusan-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -98,7 +98,7 @@
 
         service.GetPengantarHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-pengantar-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-pengantar-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -111,7 +111,7 @@
 
         service.GetBeritaAcaraHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-berita-acara-history-by-pegawai/' + nip ).then( 
+            $http.get(API + 'get-daftar-berita-acara-history-by-pegawai/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -124,7 +124,7 @@
 
         service.GetLaporanHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-laporan-history-by-pegawai/' + nip ).then( 
+            $http.get(API + 'get-daftar-laporan-history-by-pegawai/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -137,7 +137,7 @@
 
         service.GetNotaDinasHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-report-nodin-history-by-nip/' + nip ).then( 
+            $http.get(API + 'get-report-nodin-history-by-nip/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -150,7 +150,7 @@
 
         service.GetSuratDinasHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-dinas-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-dinas-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -163,7 +163,7 @@
 
         service.GetKeteranganHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-keterangan-by-pembuat/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-keterangan-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -176,7 +176,7 @@
         
         service.GetKuasaHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-surat-kuasa-history-by-pegawai/' + nip ).then( 
+            $http.get(API + 'get-daftar-surat-kuasa-history-by-pegawai/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -189,7 +189,7 @@
 
         service.GetTelaahStaffHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-telaahan-staff-history-by-pegawai/' + nip ).then( 
+            $http.get(API + 'get-daftar-telaahan-staff-history-by-pegawai/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -202,7 +202,7 @@
 
         service.GetMemorandumHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + '/get-daftar-memorandum-history/' + nip ).then( 
+            $http.get(API + 'get-daftar-memorandum-history/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 

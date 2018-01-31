@@ -9,7 +9,7 @@
     	vm.loading = true;
 
       getLaporanBawahan();
-      getMemorandumHistory();
+      getPerintahHistory();
 
       function getLaporanBawahan(){
         PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
@@ -91,14 +91,14 @@
         function getPerintahHistory(){
             PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
                 function(response){debugger
-                    response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+                    // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
                     for(var i = 0; i < response.length;i++){
                         var date = new Date(response[i].tanggalDibuatMilis);
                         response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
                     }
                     vm.perintahHistory = response;
-                    getUndanganHistory();
+                    getMemorandumHistory();
                 },function(errResponse){
 
                 })
@@ -130,7 +130,7 @@
                   response[i].jenisSurat = "surat pengumuman"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-              getPerintahHistory();
+              getUndanganHistory();
             }) 
         }
 
@@ -142,7 +142,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat edaran"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getPengumumanHistory();
@@ -157,7 +157,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat keputusan"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getEdaranHistory();
@@ -172,7 +172,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat pengantar"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getKeputusanHistory();
@@ -187,11 +187,11 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "berita acara"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-              getPengantarHistory();
             }) 
+              getPengantarHistory();
         }
 
         function getLaporanHistory(){ 
@@ -202,11 +202,11 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "laporan"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-              getBeritaAcaraHistory();
             }) 
+              getBeritaAcaraHistory();
         }
 
         function getNotaDinasHistory(){ 
@@ -217,11 +217,11 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "nota dinas"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-              getLaporanHistory();
             }) 
+              getLaporanHistory();
         }
 
         function getSuratDinasHistory(){ 
@@ -232,7 +232,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat dinas"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getNotaDinasHistory();
@@ -247,22 +247,23 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat keterangan"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-              getSuratDinasHistory();
             }) 
+              getSuratDinasHistory();
         }
 
         function getKuasaHistory(){ 
           PenilaianService.GetKuasaHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
-            function(response){debugger 
-              for(var i = 0; i < response.length;i++){ 
-                  var date = new Date(response[i].tanggalDibuatMilis); 
+            function(response){ 
+              for(var i = 0; i < response.length;i++){ debugger
+                  var date = new Date(response[i].createdDate); 
+                  response[i].tanggalDibuatMilis = response[i].createdDate;
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "surat kuasa"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getKeteranganHistory();
@@ -277,14 +278,14 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "telaahan staff"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getKuasaHistory();
             }) 
         }
 
-        function getMemorandumHistory(){ 
+        function getMemorandumHistory(){ debugger
           PenilaianService.GetMemorandumHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
             function(response){debugger 
               for(var i = 0; i < response.length;i++){ 
@@ -292,7 +293,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat undangan"; 
+                  response[i].jenisSurat = "memorandum"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getTelaahStaffHistory();
