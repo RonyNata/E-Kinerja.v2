@@ -72,7 +72,7 @@
 
           var isi = {
             type: 'upper-alpha', bold: true, margin:[0,0,0,15],
-            ol: [{text:['Latar Belakang\n', {text:'' + data.latarNelakang, bold:false}],margin:[0,0,0,10]},
+            ol: [{text:['Latar Belakang\n', {text:'' + data.latarBelakang, bold:false}],margin:[0,0,0,10]},
                   {text:['Maksud dan Tujuan\n', {text:'' + data.maksudDanTujuan, bold:false}],margin:[0,0,0,10]},
                   {text:['Ruang Lingkup\n', {text:'' + data.ruangLingkup, bold:false}],margin:[0,0,0,10]},
                   {text:['Dasar\n', {text:'' + data.dasar, bold:false}],margin:[0,0,0,10]}]
@@ -92,7 +92,7 @@
                   ]
               }
           });
-          if($state.current.name == "suratedarannonpejabat"){
+          if(!data.isSuratPejabat){
             docDefinition.content[2] = {
                 margin: [0, 10, 0, 15],
                 table: {
@@ -190,6 +190,7 @@
                 height: 90
             });
           }
+          return docDefinition;
         }
  
         return service;

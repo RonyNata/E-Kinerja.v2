@@ -226,6 +226,45 @@
             return deferred.promise; 
         };
 
+        service.GetDataEdaran = function (kdSurat) { 
+            var deferred = $q.defer(); 
+            $http.get(API + 'get-surat-edaran-by-kd-surat-edaran/' + kdSurat ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetDataUndangan = function (kdSurat) { 
+            var deferred = $q.defer(); 
+            $http.get(API + 'get-surat-undangan-by-kd-surat/' + kdSurat ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetDataPengantar = function (kdSurat) { 
+            var deferred = $q.defer(); 
+            $http.get(API + 'get-surat-pengantar-by-kd-surat/' + kdSurat ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
         return service;
 	}
 

@@ -4,7 +4,8 @@
 	angular.module('eKinerja').controller('PenilaianController', PenilaianController);
 
 	function PenilaianController(EkinerjaService, PenilaianService, PenugasanService, TemplateSuratPerintahService, 
-    $scope, $state, $uibModal, $document, DashboardService, $window, API, TemplateSuratKeputusanService){
+    $scope, $state, $uibModal, $document, DashboardService, $window, API, TemplateSuratKeputusanService,
+    TemplateSuratEdaranService, TemplateSuratPengantarService, TemplateSuratUndanganService){
 		var vm = this;
     	vm.loading = true;
 
@@ -56,10 +57,58 @@
           })
       };
 
+      function getDocumentEdaran(laporan){
+        // laporan.loading = true;
+        PenilaianService.GetDataEdaran(laporan.kdSurat).then(
+          function(response){
+            vm.data = response;debugger
+            var doc = TemplateSuratEdaranService.template(vm.data);
+            laporan.loading = false;
+            pdfMake.createPdf(doc).open();
+            // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+            //   openSurat(laporan.kdSurat);
+          }, function(errResponse){
+
+          })
+      };
+
+      function getDocumentUndangan(laporan){
+        // laporan.loading = true;
+        PenilaianService.GetDataUndangan(laporan.kdSurat).then(
+          function(response){
+            vm.data = response;debugger
+            var doc = TemplateSuratUndanganService.template(vm.data);
+            laporan.loading = false;
+            pdfMake.createPdf(doc).open();
+            // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+            //   openSurat(laporan.kdSurat);
+          }, function(errResponse){
+
+          })
+      };
+
+      function getDocumentPengantar(laporan){
+        // laporan.loading = true;
+        PenilaianService.GetDataPengantar(laporan.kdSurat).then(
+          function(response){
+            vm.data = response;debugger
+            var doc = TemplateSuratPengantarService.template(vm.data);
+            laporan.loading = false;
+            pdfMake.createPdf(doc).open();
+            // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+            //   openSurat(laporan.kdSurat);
+          }, function(errResponse){
+
+          })
+      };
+
       vm.getDocument = function(laporan){
         laporan.loading = true;
         switch(laporan.kdJenisSurat){
+          case 6: getDocumentEdaran(laporan); break;
           case 7: getDocumentKeputusan(laporan); break;
+          case 10: getDocumentPengantar(laporan); break;
+          case 13: getDocumentUndangan(laporan); break;
           case 15: getLaporanLain(laporan); break;
           default: vm.getDocumentPerintah(laporan); break;
         }

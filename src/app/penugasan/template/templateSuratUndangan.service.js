@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .factory('TemplateSuratUndanganService',
-    ['$state', 'logo_bekasi', 'logo_garuda',
-    function ($state, logo_bekasi, logo_garuda) {
+    ['$state', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function ($state, EkinerjaService, logo_bekasi, logo_garuda) {
         var service = {}; 
 
         service.template = function(data){
@@ -105,7 +105,7 @@
                                     {
                                         border: [false, false, false, false],
                                         rowSpan: 3,
-                                        text: 'Yth. '+''+ data.pegawaiPenerima.nama,
+                                        text: 'Yth. '+''+ data.namaPenerimaSuratUndangan,
                                         fontSize: 12
                                     }
                                 ],
@@ -152,7 +152,7 @@
                                                     },
                                                     {
                                                         border: [false, false, false, false],
-                                                        text: ''+ data.bagianIsiHariSuratUndangan + ', ' + EkinerjaService.IndonesianDateFormat(new date(data.bagianIsiTanggalSuratUndangan)),
+                                                        text: ''+ data.bagianIsiHariSuratUndangan + ', ' + EkinerjaService.IndonesianDateFormat(new Date(data.bagianIsiTanggalSuratUndangan)),
                                                         fontSize: 12
                                                     }
                                                 ],
@@ -223,7 +223,7 @@
                     },
                     {
                         margin: [350, 20, 0, 0],
-                        text: '' + data.pegawaiPenandatangan.jabatan + ',',
+                        text: '' + data.jabatanPenandatangan + ',',
                         fontSize: 12
                     },
                     {
@@ -233,7 +233,7 @@
                     },
                     {
                         margin: [350, 20, 0, 0],
-                        text: '' + data.pegawaiPenandatangan.nama,
+                        text: '' + data.namaPenandatangan,
                         fontSize: 12
                     },
 
@@ -265,15 +265,15 @@
                 }
             };
 
-            // var tembusan = {
-            //     ol:[]
-            // };
+            var tembusan = {
+                ol:[]
+            };
 
-            // for(var i = 0; i < vm.tembusanSurat.length; i++)
-            //     tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
-            // docDefinition.content.push(tembusan);
+            for(var i = 0; i < data.tembusanSuratUndanganList.length; i++)
+                tembusan.ol.push(data.tembusanSuratUndanganList[i].jabatan);
+            docDefinition.content.push(tembusan);
 
-            if($state.current.name == "suratundangannonpejabat"){
+            if(!data.isSuratPejabat){
                 docDefinition.content[2] = {
                     margin: [0, 10, 0, 15],
                     table: {
@@ -371,6 +371,7 @@
                     height: 90
                 });
             }
+            return docDefinition;
         }
  
         return service;

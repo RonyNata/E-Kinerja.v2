@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .factory('TemplateSuratPengantarService',
-    ['SuratPengantarService', 'logo_bekasi', 'logo_garuda',
-    function (SuratPengantarService, logo_bekasi, logo_garuda) {
+    ['SuratPengantarService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function (SuratPengantarService, EkinerjaService, logo_bekasi, logo_garuda) {
         var service = {}; 
 
         service.template = function(data){
@@ -241,7 +241,7 @@
               }
             }
           };
-          for(var i = 0; i < vm.isi.length; i++)
+          for(var i = 0; i < vm.suratPengantarIsiWrapperList.length; i++)
             docDefinition.content[10].table.body.push([
                       {
                         text: '' + (i+1),
@@ -249,20 +249,20 @@
                         alignment: 'center'
                       },
                       {
-                        text: '' + vm.isi[i].naskah,
+                        text: '' + vm.suratPengantarIsiWrapperList[i].naskahDinasYangDikirim,
                         fontSize: 10
                       },
                       {
-                        text: '' + vm.isi[i].qty,
+                        text: '' + vm.suratPengantarIsiWrapperList[i].banyakNaskah,
                         fontSize: 10
                       },
                       {
-                        text: '' + vm.isi[i].keterangan,
+                        text: '' + vm.suratPengantarIsiWrapperList[i].keterangan,
                         fontSize: 10
                       }
                     ]);
           console.log(docDefinition.content[10]);
-
+          return docDefinition;
         }
  
         return service;
