@@ -498,7 +498,7 @@
 
             for(var i = 0; i < vm.untuk.length; i++)
                 vm.docDefinition.content[8].table.body[2][2].ol.push(vm.untuk[i].deskripsiuntuk);
-        }
+        };
 
         $scope.openPdf = function() {
             var blb;

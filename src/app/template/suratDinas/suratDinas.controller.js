@@ -58,12 +58,16 @@ angular.
             vm.list_jabatan = response;
           }, function(errResponse){
 
-          })
+          });
 
         vm.findJabatan = function(idx){
           if(vm.tembusanSurat[idx].jabat.length == 7 || vm.tembusanSurat[idx].jabat.length == 8)
             vm.tembusanSurat[idx].jabatan = EkinerjaService.findJabatanByKdJabatan(vm.tembusanSurat[idx].jabat, vm.list_jabatan);
-        }
+        };
+
+        vm.findJabatanTarget = function(){
+            vm.item.jabatanPenerima = EkinerjaService.findJabatanByKdJabatan(vm.jabatantarget, vm.list_jabatan);
+        };
 
         if($state.current.name == "suratdinasnonpejabat")
           vm.judul = 'Non-Pejabat';
@@ -121,7 +125,7 @@ angular.
                 "sifat": vm.item.sifat,
                 "lampiran": vm.item.lampiran,
                 "hal": vm.item.hal,
-                "kdJabatanPenerimaSuratDinas": vm.item.pegawaiPenerima.kdJabatan,
+                "kdJabatanPenerimaSuratDinas": vm.item.jabatanPenerima.kdJabatan,
                 "tanggalSuratDinasMilis": vm.item.tanggal1.getTime(),
                 "kotaPembuatanSuratDinas": vm.item.tempat,
                 "isiSuratDinas": vm.item.alineaIsi,
@@ -201,7 +205,7 @@ angular.
                     table: {
                         widths: [150],
                         body: [
-                            [{text: 'Yth. ' + vm.item.pegawaiPenerima.nama}]
+                            [{text: 'Yth. ' + vm.item.jabatanPenerima.kdJabatan}]
                         ]
                     },
                     layout: 'noBorders'
