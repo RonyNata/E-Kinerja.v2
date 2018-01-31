@@ -9,12 +9,12 @@
     	vm.loading = true;
 
       getLaporanBawahan();
-      getPerintahHistory();
+      getMemorandumHistory();
 
       function getLaporanBawahan(){
         PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
           function(response){debugger
-            response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+            // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
             for(var i = 0; i < response.length;i++){
               var date = new Date(response[i].tanggalDibuatMilis);
               response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
@@ -118,6 +118,186 @@
               vm.perintahHistory = vm.perintahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } ); 
             }) 
         } 
+
+        function getPengumumanHistory(){ 
+          PenilaianService.GetPengumumanHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat pengumuman"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getPerintahHistory();
+            }) 
+        }
+
+        function getEdaranHistory(){ 
+          PenilaianService.GetEdaranHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getPengumumanHistory();
+            }) 
+        }
+
+        function getKeputusanHistory(){ 
+          PenilaianService.GetKeputusanHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getEdaranHistory();
+            }) 
+        }
+
+        function getPengantarHistory(){ 
+          PenilaianService.GetPengantarHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getKeputusanHistory();
+            }) 
+        }
+
+        function getBeritaAcaraHistory(){ 
+          PenilaianService.GetBeritaAcaraHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getPengantarHistory();
+            }) 
+        }
+
+        function getLaporanHistory(){ 
+          PenilaianService.GetLaporanHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getBeritaAcaraHistory();
+            }) 
+        }
+
+        function getNotaDinasHistory(){ 
+          PenilaianService.GetNotaDinasHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getLaporanHistory();
+            }) 
+        }
+
+        function getSuratDinasHistory(){ 
+          PenilaianService.GetSuratDinasHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getNotaDinasHistory();
+            }) 
+        }
+
+        function getKeteranganHistory(){ 
+          PenilaianService.GetKeteranganHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getSuratDinasHistory();
+            }) 
+        }
+
+        function getKuasaHistory(){ 
+          PenilaianService.GetKuasaHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getKeteranganHistory();
+            }) 
+        }
+
+        function getTelaahStaffHistory(){ 
+          PenilaianService.GetTelaahStaffHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getKuasaHistory();
+            }) 
+        }
+
+        function getMemorandumHistory(){ 
+          PenilaianService.GetMemorandumHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then( 
+            function(response){debugger 
+              for(var i = 0; i < response.length;i++){ 
+                  var date = new Date(response[i].tanggalDibuatMilis); 
+                  response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
+                  response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
+                  response[i].suratPejabat = response.isSuratPejabat; 
+                  response[i].jenisSurat = "surat undangan"; 
+                  vm.perintahHistory.push(response[i]); 
+              } 
+              getTelaahStaffHistory();
+            }) 
+        }
 
       function openTeruskanTemplate(laporan, parentSelector) {
           var parentElem = parentSelector ?
