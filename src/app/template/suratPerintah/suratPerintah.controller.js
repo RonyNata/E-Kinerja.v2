@@ -2,18 +2,20 @@
 'use strict';
  
 angular.
-	module('eKinerja')
-	.controller('SuratPerintahController', SuratPerintahController);
+  module('eKinerja')
+  .controller('SuratPerintahController', SuratPerintahController);
 
     
     function SuratPerintahController(EkinerjaService, SuratPerintahService, $scope, $state, HakAksesService, 
       PengumpulanDataBebanKerjaService, PenugasanService, logo_bekasi, logo_garuda, $document, $uibModal) {
-      	var vm = this;
+        var vm = this;
         vm.loading = true;
         vm.item = {};
         if($state.current.name == 'suratperintahnonpejabat' || $state.current.name == 'perintahnonpejabatterusan')
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';
+
+        vm.item.tahun = ((new Date()).getYear() + 1900);
 
         vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
         vm.untuk = [{"id": new Date().getTime(), "deskripsiuntuk": ''}];
@@ -262,8 +264,8 @@ debugger
             "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja,
             "nomorSurat1": vm.item.nomorSurat,
-            "nomorSurat2": vm.item.nomorSurat1,
-            "nomorSurat3": vm.item.nomorSurat2,
+            "nomorSurat2": vm.item.urusan,
+            "nomorSurat3": vm.item.unit,
             "nomorTahun": ((new Date()).getYear() + 1900),
             "menimbangList": [], 
             "dasarList": [], 
@@ -371,7 +373,7 @@ debugger
               },
 
               {
-                text: 'NOMOR ' + vm.item.nomorSurat1 + '/....-' + vm.item.nomorSurat2 + '/'+ ((new Date()).getYear() + 1900), style: 'judul_nomor'
+                text: 'NOMOR ' + vm.item.urusan + '/....-' + vm.item.unit + '/'+ ((new Date()).getYear() + 1900), style: 'judul_nomor'
               },
 
               {
@@ -655,5 +657,5 @@ debugger
         $scope.downloadPdf = function() {
           pdfMake.createPdf(vm.docDefinition).download();
         };
-   	} 
+    } 
 })();

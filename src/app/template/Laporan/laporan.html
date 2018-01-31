@@ -5,7 +5,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Pembuatan Laporan</h2>
+                        <h2><b>Pembuatan Laporan</b></h2>
                     </div>
                     <div class="body">
                         <form ng-submit="laporan.save()" class="form-horizontal">
@@ -120,8 +120,10 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="laporan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="laporan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                            <div class="col-md-3" style="padding: 0px"> 
+                                                <button class="btn btn-primary waves-effect" ng-click="laporan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                            </div> 
+                                            <div ng-show="laporan.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>

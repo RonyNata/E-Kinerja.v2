@@ -12,19 +12,25 @@
                         <div class="row clearfix">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div> 
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nomor</b></p>
-                                    </div>  
+                                    </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrusan" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat1" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrut" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="suratdinas.item.nomorSurat2" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorPasanganUrut" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUnit" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="suratdinas.item.tahun" disabled required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -44,7 +50,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <input class="form-control" ng-model="suratdinas.item.lampiran" required>
+                                        <input type="number" class="form-control" ng-model="suratdinas.item.lampiran" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
@@ -92,32 +98,12 @@
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Alinea Pembuka</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="suratdinas.item.alineaPembuka" required style="height: 100px"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Alinea Isi</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <textarea class="form-control" ng-model="suratdinas.item.alineaIsi" required style="height: 100px"></textarea>
-                                    </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Alinea Penutup</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="suratdinas.item.alineaPenutup" required style="height: 100px"></textarea>
-                                    </div>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
@@ -131,8 +117,9 @@
                                         <div ng-show="suratdinas.item.pegawaiPenandatangan">Jabatan: {{suratdinas.item.pegawaiPenandatangan.jabatan}}</div>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px" ng-repeat="target in suratdinas.target"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Tembusan</b></p>
                                     </div>
@@ -142,14 +129,14 @@
                                             <form method="get">
                                                 <input class="form-control" list="jabatan" name="jabatan" ng-model="tembusan.jabat" placeholder="Pilih Jabatan" ng-change="suratdinas.findJabatan($index)">
                                                 <datalist id="jabatan">
-                                                        <option ng-repeat="jbtn in suratdinas.list_jabatan"
-                                                 value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
+                                                    <option ng-repeat="jbtn in suratdinas.list_jabatan"
+                                                            value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
                                                 </datalist>
                                             </form>
                                             <div ng-show="tembusan.jabatan">Jabatan: {{tembusan.jabatan.jabatan}}</div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary waves-effect" ng-click="suratdinas.addTarget()" style="margin-left: 15px">+ Tambah Tembusan</button>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratdinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
                                 </div>
                                 <div class="col-md-12" style="margin-bottom:10px">
                                     <div class="col-md-1"></div>

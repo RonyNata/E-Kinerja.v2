@@ -44,6 +44,175 @@
             return deferred.promise;
         };
 
+        service.GetUndanganHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-undangan-history/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetPengumumanHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-pengumuman-history-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetEdaranHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-edaran-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        }; 
+
+        service.GetKeputusanHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-keputusan-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetPengantarHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-pengantar-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetBeritaAcaraHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-berita-acara-history-by-pegawai/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetLaporanHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-laporan-history-by-pegawai/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetNotaDinasHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-report-nodin-history-by-nip/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetSuratDinasHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-dinas-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetKeteranganHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-keterangan-by-pembuat/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+        
+        service.GetKuasaHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-surat-kuasa-history-by-pegawai/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetTelaahStaffHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-telaahan-staff-history-by-pegawai/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
+        service.GetMemorandumHistory = function (nip) { 
+            var deferred = $q.defer(); 
+            $http.get(API + '/get-daftar-memorandum-history/' + nip ).then( 
+                function (response){ 
+                    deferred.resolve(response.data); 
+                }, 
+                function(errResponse){ 
+                    deferred.reject(errResponse); 
+                } 
+            ); 
+            return deferred.promise; 
+        };
+
         return service;
 	}
 

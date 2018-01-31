@@ -59,11 +59,11 @@
 
         vm.save = function(){
             var data = {
-                "kdSuratUndangan": "",
+                "kdSuratUndangan": null,
                 "nomorUrusan": vm.item.nomorUrusan,
                 "nomorPasanganUrut": vm.item.nomorPasanganUrut,
                 "nomorUnit": vm.item.nomorUnit,
-                "kdJabatanPenerimaSuratPengumuman": vm.item.pegawaiPenerima.kdJabatan,
+                "kdJabatanPenerimaSuratUndangan": vm.item.pegawaiPenerima.kdJabatan,
                 "tanggalSuratUndanganMilis": vm.item.tanggal1.getTime(),
                 "kotaPembuatanSurat": vm.item.tempat,
                 "sifat": vm.item.sifat,
@@ -72,7 +72,7 @@
                 "nipPenerimaSuratUndangan": vm.item.pegawaiPenerima.nipPegawai,
                 "bagianPembukaSuratUndangan": vm.item.isisuratundangan,
                 "bagianIsiHariSuratUndangan": EkinerjaService.IndonesianDay(vm.item.tanggalpelaksanaan),
-                "bagianIsiTanggalSuratUndangan": EkinerjaService.IndonesianDateFormat(vm.item.tanggalpelaksanaan),
+                "bagianIsiTanggalSuratUndangan": vm.item.tanggalpelaksanaan.getTime(),
                 "bagianIsiWaktuSuratUndangan": vm.item.waktupelaksanaan,
                 "bagianIsiTempatSuratUndangan": vm.item.tempatpelaksanaan,
                 "bagianIsiAcaraSuratUndangan": vm.item.acara,
@@ -82,8 +82,18 @@
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
                 "kdTembusanList": [],
-                "suratPejabat": true
+                "suratPejabat": true,
+                "kdNaskahPenugasan": $state.params.kdSurat,
+                "jenisNaskahPenugasan": $state.params.jenisNaskah,
+                "kdUrtug": $state.params.kdUrtug,
+                "tahunUrtug": $state.params.tahun
             };
+
+            if($state.current.name == "suratundangannonpejabat")
+                data.suratPejabat = false;
+
+            if($state.params.kdSurat == "")
+                data.kdNaskahPenugasan = null;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
                 data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
@@ -92,10 +102,10 @@
             SuratUndanganService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                    $state.go('kontrak');
                 }, function(errResponse){
 
                 });
-            $state.go('kontrak');
 
         };
 

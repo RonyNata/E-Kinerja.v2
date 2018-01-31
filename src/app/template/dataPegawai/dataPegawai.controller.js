@@ -10,7 +10,7 @@
       var vm = this;
 
       $scope.searchName = '';
-      $scope.entries = 25;
+      $scope.entries = 5;
       $scope.currentPage = 0;
       vm.isPilihan = isPilihan;
 
@@ -36,6 +36,10 @@
       vm.pilihPegawai = function(data){
         $uibModalInstance.close(data);
       }
+
+      vm.cancel = function () { 
+        $uibModalInstance.dismiss('cancel'); 
+      };
 
       vm.openPilihan = function (parentSelector) {
         var parentElem = parentSelector ? 

@@ -70,7 +70,7 @@
       //   paging();
       // });
 
-        vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
+        vm.openTemplate = function (uraianTugas, isDPA, surat, parentSelector) {
         var parentElem = parentSelector ?
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
@@ -89,6 +89,12 @@
                 },
                 isDPA: function () {
                     return isDPA;
+                },
+                kdSurat: function(){
+                    return surat.kdLembarDisposisi;
+                },
+                jenisNaskahPenugasan: function(){
+                    return 1;
                 }
             }
         });

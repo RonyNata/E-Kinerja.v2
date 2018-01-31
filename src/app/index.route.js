@@ -384,13 +384,13 @@
         controllerAs: 'petunjuk'
       })
       .state('suratedaran', {
-        url: '/surat-edaran',
+        url: '/surat-edaran/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
         templateUrl: 'app/template/suratEdaran/suratEdaran.html',
         controller: 'SuratEdaranController',
         controllerAs: 'suratedaran'
       })
       .state('suratedarannonpejabat', {
-        url: '/surat-edaran-nonpejabat',
+        url: '/surat-edaran-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
         templateUrl: 'app/template/suratEdaran/suratEdaran.html',
         controller: 'SuratEdaranController',
         controllerAs: 'suratedaran'
@@ -402,7 +402,7 @@
         controllerAs: 'suratpengantar'
       })
         .state('pengumuman', {
-        url: '/pengumuman',
+        url: '/pengumuman/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
         templateUrl: 'app/template/pengumuman/pengumuman.html',
         controller: 'PengumumanController',
         controllerAs: 'pengumuman'
@@ -426,13 +426,13 @@
             controllerAs: 'suratketerangan'
         })
         .state('suratundanganpejabat', {
-            url: '/surat-undangan-pejabat',
+            url: '/surat-undangan-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
         })
         .state('suratundangannonpejabat', {
-            url: '/surat-undangan-nonpejabat',
+            url: '/surat-undangan-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'

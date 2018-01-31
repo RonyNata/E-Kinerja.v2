@@ -2,15 +2,17 @@
 'use strict';
  
 angular.
-	module('eKinerja')
-	.controller('SuratPengantarController', SuratPengantarController);
+  module('eKinerja')
+  .controller('SuratPengantarController', SuratPengantarController);
 
     
     function SuratPengantarController(EkinerjaService, SuratPengantarService, HakAksesService, 
       $scope, $state, logo_bekasi, $uibModal, $document) {
-      	var vm = this;
+        var vm = this;
         vm.loading = true;
         vm.item = {};
+
+        vm.item.tahun = ((new Date()).getYear() + 1900);
 
         vm.back =  function(){
             $state.go('kontrak');
@@ -83,17 +85,35 @@ angular.
         }
 
         vm.save = function(){
-          vm.item.tembusanSurat = [];
-          vm.item.tanggal = vm.item.tanggal.getTime();
-          vm.item.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-          vm.item.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.item.nmInstansi = $.parseJSON(sessionStorage.getItem('credential')).unit;
-          for(var i = 0; i < vm.tembusanSurat.length; i++)
-            vm.item.tembusanSurat.push((i+1) + '. ' + vm.tembusanSurat[i].deskripsi);
-          console.log(vm.item);
-          SuratPengantarService.save(vm.item).then(
+          var data = {
+            "nomorUrusan":vm.item.nomorUrusan,
+            "nomorPasanganUrut":vm.item.nomorPasanganUrut,
+            "nomorUnit":vm.item.nomorUnit,
+            "tanggalPembuatanMilis":(new Date()).getTime(),
+            "tanggalDiterimaSuratPengantar":(new Date()).getTime(),
+            "kdJabatanPenerimaSuratPengantar":vm.item.pegawaiPenerima.kdJabatan,
+            "nipPemberiSuratPengantar":vm.item.pegawaiPembuat.nipPegawai,
+            "nomorTeleponPemberi":vm.item.telepon,
+            "nipPembuatSurat":$.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "kdUnitKerja":vm.item.pegawaiPembuat.kdUnitKerja,
+            "kdNaskahPenugasan":$state.params.kdSurat,
+            "jenisNaskahPenugasan":$state.params.jenisNaskahPenugasan,
+            "durasiPengerjaan":10,
+            "kdSuratPengantarBawahan":null,
+            "suratPengantarIsiList":[]
+          }
+
+          for(var i=0; i < vm.isi.length; i++)
+            data.suratPengantarIsiList.push({
+              "naskahDinasYangDikirim":vm.isi[i].naskah,
+              "banyakNaskah":vm.isi[i].qty,
+              "keterangan":vm.isi[i].keterangan
+            });
+
+          SuratPengantarService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+              $state.go('kontrak');
             }, function(errResponse){
 
             })
@@ -121,13 +141,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'PEMERINTAHAN KABUPATEN BEKASI',
                         style: 'header'
                       }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
               {
                 margin: [90, -5, 0, 0],
@@ -136,13 +156,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
                         style: 'header'
                       }
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [175, -5, 0, 0],
@@ -151,13 +171,13 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
                         style: 'header2'
                       }
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [115, -5, 0, 0],
@@ -166,17 +186,14 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         text: 'Telp. (021) 89970696',
                         fontSize: 9,
                         alignment: 'right'
                       },{
-                        border: [false, false, false, false],
                         text: 'Fax. (021) 89970064',
                         fontSize: 9,
                         alignment: 'center'
                       },{
-                        border: [false, false, false, false],
                         text: 'email : diskominfo@bekasikab.go.id',
                         fontSize: 9,
                         alignment: 'left'
@@ -184,6 +201,7 @@ angular.
                     ]
                   ]
                 },
+                  layout: 'noBorders'
               },
               {
                 margin: [0, 10, 0, 0],
@@ -213,7 +231,6 @@ angular.
                   body: [
                     [
                       {
-                        border: [false, false, false, false],
                         rowSpan: 3,
                         text: 'Yth. ' + vm.item.pegawaiPenerima.nama,
                         fontSize: 10
@@ -228,7 +245,8 @@ angular.
                       }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
               {
                 margin: [0,30,0,0],
@@ -237,7 +255,7 @@ angular.
               },
               {
                 margin: [0,0,0,0],
-                text: 'NOMOR : '+ vm.item.nomorSurat +'/' + vm.item.nomorSurat1 + '/'+ vm.item.nomorSurat2 +'/' + ((new Date()).getYear() + 1900),
+                text: 'NOMOR : '+ vm.item.nomorUrusan +'/' + vm.item.nomorUrut + '/'+ vm.item.nomorPasanganUrut + '/'+ vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900),
                 fontSize: 10,
                 alignment: 'center'
               },
@@ -278,7 +296,7 @@ angular.
               },
               {
                 margin: [92, -11.5, 0 ,0],
-                text: '',
+                text: '' + EkinerjaService.IndonesianDateFormat(new Date()),
                 fontSize: 10
               },
               {
@@ -381,5 +399,5 @@ angular.
         $scope.downloadPdf = function() {
           pdfMake.createPdf(vm.docDefinition).download();
         };
-   	} 
+    } 
 })();
