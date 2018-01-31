@@ -114,21 +114,39 @@ angular.
             "nomorSurat": vm.item.nomorSurat,
             "tentang": vm.item.ttgSuratEdaran,
             "tempat": vm.item.tempat,
-            "tanggalPenetapan": vm.item.tanggalPenetapan.getTime(),
+            "tanggalSuratEdaranMilis": (new Date()).getTime(),
+            "tanggalPenetapan": vm.item.tanggal.getTime(),
             "nipPenandatangan": vm.item.pegawaiPembuat.nipPegawai,
             "latarBelakang": vm.subab[0].isi,
             "maksudDanTujuan": vm.subab[1].isi,
             "ruangLingkup": vm.subab[2].isi,
             "dasar": vm.subab[3].isi,
             "subLain": [],
-            "suratPejabat": true
+            "suratPejabat": true,
+            "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "kdUnitKerja": vm.item.pegawaiPembuat.kdUnitKerja,
+            "durasiPengerjaan": 10,
+            "kdSuratEdaranBawahan": null,
+            "kdNaskahPenugasan": $state.params.kdSurat,
+            "jenisNaskahPenugasan": $state.params.jenisNaskahPenugasan,
+            "statusPenilaian": 0,
+            "alasanPenolakan": "",
+            "kdJabatanSuratPejabat": vm.item.pegawaiPembuat.kdJabatan
           };
 
           for(var i = 4; i < vm.subab.length;i++)
-            data.subLain.push({"nama": vm.subab[i].judul, "isi": vm.subab[i].isi});
+            data.subLain.push({"namaSub": vm.subab[i].judul, "isiSub": vm.subab[i].isi});
 
           if($state.current.name == "suratedarannonpejabat")
             data.suratPejabat = false;
+
+          SuratEdaranService.save(data).then(
+            function(response){
+              EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
+              $state.go('kontrak');
+            },function(errResponse){
+
+            })
         }
 
         vm.back =  function(){

@@ -14,6 +14,40 @@
             $state.go('kontrak');
         };
 
+        vm.save = function(){
+            var data = {
+                "kdPengumuman":null,
+                "nomorUrusan":vm.item.nomorUrusan,
+                "nomorPasanganUrut":vm.item.nomorPasanganUrut,
+                "nomorUnit":vm.item.nomorUnit,
+                "tentang":vm.item.tentang,
+                "isiPengumuman":vm.item.isipengumuman,
+                "nipPenandatangan":vm.item.pegawaiPenandatangan.nipPegawai,
+                "kotaPembuatanPengumuman":vm.item.tempat,
+                "tanggalPengumumanMilis":(new Date()).getTime(),
+                "nipPembuatSurat":$.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "kdUnitKerja":vm.item.pegawaiPenandatangan.kdUnitKerja,
+                "durasiPengerjaan":vm.item.durasi,
+                "kdSuratEdaranBawahan":null,
+
+                "kdNaskahPenugasan":$state.params.kdSurat,
+                "jenisNaskahPenugasan":$state.params.jenisNaskahPenugasan,
+                "statusPenilaian":0,
+                "alasanPenolakan":"",
+
+                "kotaPembuatanSurat":vm.item.tempat,
+                "kdPengumumanBawahan":null
+            }
+
+            PengumumanService.save(data).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
+                    $state.go('kontrak');
+                },function(errResponse){
+
+                })
+        }
+
         vm.item.tahun = ((new Date()).getYear() + 1900);
         
         // vm.target = [{"id": new Date().getTime()}];
