@@ -7,7 +7,8 @@ angular.
 
     
     function PenugasanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
-     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state) {
+     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state, PenilaianService,
+     TemplateSuratTugasService) {
         var vm = this;
         vm.loading = true;
 
@@ -38,8 +39,24 @@ angular.
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Perintah";
                 response[i].jenis = 1;
-                response[i].tanggalDibuat = response[i].createdDate;
-                response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
+                // response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                vm.naskahHistory.push(response[i]);
+              }
+              getNaskahPenugasanTugas();
+            }, function(errResponse){
+
+            })
+        }
+
+        function getNaskahPenugasanTugas(){
+          PenugasanService.GetNaskahPenugasanTugas($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            function(response){debugger
+              for(var i = 0; i < response.length;i++){
+                response[i].nama = "Tugas";
+                response[i].jenis = 2;
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
+                // response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskahHistory.push(response[i]);
               }
               getNaskahPenugasanInstruksi();
@@ -55,6 +72,7 @@ angular.
                 response[i].nama = "Instruksi";
                 response[i].jenis = 0;
                 response[i].judulNaskah = response[i].judulInstruksi;
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 vm.naskahHistory.push(response[i]);
               }
               vm.naskahHistory = vm.naskahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
@@ -104,8 +122,24 @@ angular.
           switch(naskah.jenis){
             case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
+            case 2 : getDocumentSuratTugas(naskah.kdSurat, idx, isHistory); break;
           }
         }
+
+        function getDocumentSuratTugas(kdHistory, idx, isHistory){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratTugas(kdHistory).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratTugasService.template(vm.data);
+                    if(!isHistory)
+                      $scope.filteredDataPenugasan[idx].loading = false;
+                    else $scope.filteredData[idx].loading = false;
+                    pdfMake.createPdf(doc).open();
+                }, function(errResponse){
+
+                })
+        };
 
         function getDocumentInstruksi(kdHistory, idx, isHistory){
           KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
