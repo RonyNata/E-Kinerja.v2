@@ -25,7 +25,7 @@
                                     ol: [
                                         {text:['Persoalan\n', {text:'' + data.persoalan, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
                                         {text:['Praanggapan\n', {text:'' + data.praanggapan, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
-                                        {text:['Fakta yang Mempegaruhi\n', {text:'' + data.faktaYangMempengaruhi, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
+                                        {text:['Fakta yang Mempegaruhi\n', {text:'' + data.faktaYangMemppengaruhi, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
                                         {text:['Analisis\n', {text:'' + data.analisis, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
                                         {text:['Simpulan\n', {text:'' + data.simpulan, bold:false, alignment:'justify'}],margin:[0,0,0,10]},
                                         {text:['Saran\n', {text:'' + data.saran, bold:false, alignment:'justify'}],margin:[0,0,0,5]}
@@ -33,26 +33,38 @@
                                 },
 
                                 {
-                                    style: 'tandaTangan',
-                                    table: {
-                                        widths: [200],
-                                        body: [
-                                            [{text: '' + data.nipPenandatangan.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
-                                            [{text: ' ',margin: [0,20]}],
-                                            [{text: '' + data.nipPenandatangan.nama, alignment : 'left', bold: true}],
-                                            [{text: '' + data.nipPenandatangan.nip, alignment : 'left'}]
-                                        ]
-                                    },
-                                    layout: 'noBorders'
+                                    columns: [
+                                        {
+                                            width: '63%',
+                                            text: ''
+                                        },
+                                        {
+                                            style: 'tandaTangan',
+                                            table: {
+                                                widths: [200],
+                                                body: [
+                                                    [{text: '' + data.nipPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                                    [{text: ' ',margin: [0,20]}],
+                                                    [{text: '' + data.nipPenandatangan.nama, alignment : 'left', bold: true}],
+                                                    [{text: '' + data.nipPenandatangan.nip, alignment : 'left'}]
+                                                ]
+                                            },
+                                            layout: 'noBorders'
+                                        }
+                                    ]
                                 }
                             ],
                             styles: {
                                 header: {
                                     bold: true,
-                                    fontSize: 15,
+                                    fontSize: 14,
                                     alignment: 'center'
                                 },
                                 header2: {
+                                    fontSize: 12,
+                                    alignment: 'center'
+                                },
+                                header3: {
                                     fontSize: 10,
                                     alignment: 'center'
                                 },
@@ -64,11 +76,15 @@
                                 judul_nomor: {
                                     alignment : 'center',
                                     bold: true,
-                                    fontSize: 11
+                                    fontSize: 12
+                                },
+                                demoTable: {
+                                    color: '#000',
+                                    fontSize: 12
                                 },
                                 tandaTangan: {
                                     color: '#000',
-                                    fontSize: 10,
+                                    fontSize: 12,
                                     alignment:'right'
                                 }
                             }
