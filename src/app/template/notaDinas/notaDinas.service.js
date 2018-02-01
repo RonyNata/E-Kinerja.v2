@@ -4,12 +4,12 @@
 	angular.module('eKinerja')
 		.service('NotaDinasService', NotaDinasService);
 
-	function NotaDinasService(API_REPORT, $http, $q){
+	function NotaDinasService(API, $http, $q){
 		var service = {};
 
 		service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-nodin-report/', data).then(
+            $http.post(API + '/create-nota-dinas', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
