@@ -57,16 +57,22 @@
         //   vm.target.push(data);
         // } 
         
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            vm.loading = false; 
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
-          HakAksesService.GetAllPegawai().then(
-            function(response){
-              vm.list_pegawai = response;
-              vm.loading = false;
-            }, function(errResponse){
+            HakAksesService.GetAllPegawai().then(
+                function(response){
+                    vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    vm.loading = false;
+                }, function(errResponse){
 
-            })
+                })
         }
 
         vm.openDari = function (parentSelector) {

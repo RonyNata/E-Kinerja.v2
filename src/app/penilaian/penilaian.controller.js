@@ -20,7 +20,8 @@
                                  TemplateTelaahanStaffService,
                                  TemplateSuratUndanganService,
                                  TemplateSuratPengantarService,
-                                 TemplateSuratEdaranService){
+                                 TemplateSuratEdaranService,
+                                 TemplatePengumumanService){
 		var vm = this;
     	vm.loading = true;
 
@@ -162,10 +163,26 @@
                 })
         };
 
+        function getDocumentPengumuman(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataPengumuman(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplatePengumumanService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
       vm.getDocument = function(laporan){
         laporan.loading = true;
         switch(laporan.kdJenisSurat){
           case 1: getDocumentLaporan(laporan); break;
+          case 4: getDocumentPengumuman(laporan); break;
           case 5: getDocumentSuratDinas(laporan); break;
           case 6: getDocumentEdaran(laporan); break;
           case 7: getDocumentKeputusan(laporan); break;
@@ -257,7 +274,7 @@
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
-                  response[i].jenisSurat = "surat pengumuman"; 
+                  response[i].jenisSurat = "pengumuman"; 
                   vm.perintahHistory.push(response[i]); 
               } 
               getUndanganHistory();

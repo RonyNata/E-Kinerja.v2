@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .factory('TemplatePengumumanService',
-    ['PengumumanService', 'logo_bekasi', 'logo_garuda',
-    function (PengumumanService, logo_bekasi, logo_garuda) {
+    ['PengumumanService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function (PengumumanService, EkinerjaService, logo_bekasi, logo_garuda) {
         var service = {}; 
 
         service.template = function(data){
@@ -26,7 +26,7 @@
                                         {
                                             text:[
                                                 {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                                {text: '' + unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                                {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header'},
                                                 {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                             ]
                                         },
@@ -65,7 +65,7 @@
                     },
 
                     {
-                        text: '' + data.isipengumuman,  margin: [0,0,0,20]
+                        text: '' + data.isiPengumuman,  margin: [0,0,0,20]
                     },
 
                     {
@@ -123,6 +123,7 @@
                     logo: logo_bekasi
                 }
             };
+            return docDefinition;
         }
  
         return service;

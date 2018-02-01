@@ -7,7 +7,7 @@
 		var vm = this;
       	vm.loading = true;
 
-      	getAllDisposisi();
+      	// getAllDisposisi();
         getHistoryDisposisi();
 
         function getAllDisposisi(){
@@ -20,7 +20,7 @@
               }
 
               vm.dataHistory = response;debugger
-              // vm.loading = false;
+              vm.loading = false;
               vm.dataLookDisposisi = angular.copy(vm.dataHistory);
               pagingDisposisi();
             }, function(errResponse){
@@ -52,10 +52,18 @@
 
             })
         }
+
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+          vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+          getAllDisposisi();
+        }
+        else
         HakAksesService.GetAllPegawai().then(
         function(response){
           vm.list_pegawai = response;
-          vm.loading = false;
+          sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+          getAllDisposisi();
+          // vm.loading = false;
         }, function(errResponse){
 
         })

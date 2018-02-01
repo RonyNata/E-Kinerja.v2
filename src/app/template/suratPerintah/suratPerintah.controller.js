@@ -55,22 +55,26 @@ angular.
         PengumpulanDataBebanKerjaService.GetAllJabatan().then(
           function(response){
             vm.list_jabatan = response;
+            vm.loading = false;
           }, function(errResponse){
 
           })
 
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
-          HakAksesService.GetAllPegawai().then(
-            function(response){
-              vm.list_pegawai = response;
-              if($state.current.name == 'perintahnonpejabatterusan' || $state.current.name == 'perintahpejabatterusan')
-                getDocumentPerintah();
-              vm.loading = false;
-            }, function(errResponse){
+            HakAksesService.GetAllPegawai().then(
+                function(response){
+                    vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    vm.loading = false;
+                }, function(errResponse){
 
-            })
+                })
         }
 
         vm.findJabatan = function(idx){
