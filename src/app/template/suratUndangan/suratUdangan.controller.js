@@ -180,213 +180,110 @@
                     },
                     {
                         table: {
-                            widths: [40, 3, 200],
+                            widths: [60, 3, 200, '*'],
                             body: [
                                 [
-                                    {
-                                        text: 'Nomor',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: ':',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900),
-                                        fontSize: 12
-                                    }
+                                    {text: 'Nomor', fontSize: 12},
+                                    {text: ':', fontSize: 12},
+                                    {text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900), fontSize: 12},
+                                    {text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment: 'right',fontSize: 12}
                                 ],
                                 [
-                                    {
-                                        text: 'Sifat',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: ':',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: '' + vm.item.sifat,
-                                        fontSize: 12
-                                    }
+                                    {text: 'Sifat', fontSize: 12},
+                                    {text: ':', fontSize: 12},
+                                    {text: '' + vm.item.sifat, fontSize: 12},
+                                    {text: ''}
                                 ],
                                 [
-                                    {
-                                        text: 'Hal',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: ':',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: '' + vm.item.hal,
-                                        fontSize: 12
-                                    }
+                                    {text: 'Hal', fontSize: 12},
+                                    {text: ':', fontSize: 12},
+                                    {text: '' + vm.item.hal, fontSize: 12},
+                                    {text: ''}
                                 ],
                                 [
-                                    {
-                                        text: 'Lampiran',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: ':',
-                                        fontSize: 12
-                                    },
-                                    {
-                                        text: '' + vm.item.lampiran + ' Halaman',
-                                        fontSize: 12
-                                    }
+                                    {text: 'Lampiran', fontSize: 12},
+                                    {text: ':', fontSize: 12},
+                                    {text: '' + vm.item.lampiran + ' Halaman', fontSize: 12},
+                                    {text: ''}
                                 ]
                             ]
                         },
                         layout: 'noBorders'
                     },
                     {
-                        margin: [0, -60, 0 , 0],
-                        alignment: 'right',
-                        text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(new Date()),
-                        fontSize: 12
-                    },
-                    {
-                        margin: [0, 70, 0, 0],
+                        margin: [0, 30, 0, 0],
                         table: {
                             widths: [150],
                             body: [
-                                [
-                                    {
-                                        border: [false, false, false, false],
-                                        rowSpan: 3,
-                                        text: 'Yth. '+''+ vm.item.pegawaiPenerima.nama,
-                                        fontSize: 12
-                                    }
-                                ],
-                                [
-                                    {
-                                    }
-                                ],
-                                [
-                                    {
-                                    }
-                                ]
+                                {text: 'Yth. '+''+ vm.item.pegawaiPenerima.nama,rowSpan: 3, fontSize: 12}
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
                     {
                         margin: [0, 20, 0, 0],
                         table: {
                             width: [400],
                             body: [
-                                [
-                                    {
-                                        border: [false, false, false, false],
-                                        text: ''+ vm.item.isisuratundangan,
-                                        fontSize: 12
-                                    }
-                                ],
+                                [{text: ''+ vm.item.isisuratundangan, fontSize: 12}],
                                 [
                                     {
                                         margin: [50, 0, 0 ,0],
-                                        border: [false, false, false, false],
                                         table: {
                                             widths: [107, 2, 300],
                                             body: [
                                                 [
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: 'tanggal',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ':',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ''+ EkinerjaService.IndonesianDay(vm.item.tanggalpelaksanaan) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalpelaksanaan),
-                                                        fontSize: 12
-                                                    }
+                                                    {text: 'tanggal', fontSize: 12},
+                                                    {text: ':', fontSize: 12},
+                                                    {text: ''+ EkinerjaService.IndonesianDay(vm.item.tanggalpelaksanaan) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalpelaksanaan), fontSize: 12}
                                                 ],
                                                 [
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: 'waktu',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ':',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ''+ vm.item.waktupelaksanaan,
-                                                        fontSize: 12
-                                                    }
+                                                    {text: 'waktu', fontSize: 12},
+                                                    {text: ':', fontSize: 12},
+                                                    {text: ''+ vm.item.waktupelaksanaan, fontSize: 12}
                                                 ],
                                                 [
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: 'tempat',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ':',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ''+ vm.item.tempatpelaksanaan,
-                                                        fontSize: 12
-                                                    }
+                                                    {text: 'tempat', fontSize: 12},
+                                                    {text: ':', fontSize: 12},
+                                                    {text: ''+ vm.item.tempatpelaksanaan, fontSize: 12}
                                                 ],
                                                 [
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: 'acara',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ':',
-                                                        fontSize: 12
-                                                    },
-                                                    {
-                                                        border: [false, false, false, false],
-                                                        text: ''+ vm.item.acara,
-                                                        fontSize: 12
-                                                    }
+                                                    {text: 'acara', fontSize: 12},
+                                                    {text: ':', fontSize: 12},
+                                                    {text: ''+ vm.item.acara, fontSize: 12}
                                                 ]
                                             ]
-                                        }
+                                        },
+                                        layout: 'noBorders'
                                     }
                                 ],
-                                [
-                                    {
-                                        border: [false, false, false, false],
-                                        text: ''+ vm.item.penutupsuratundangan,
-                                        fontSize: 12
-                                    }
-                                ]
+                                [{text: ''+ vm.item.penutupsuratundangan, fontSize: 12}]
                             ]
-                        }
+                        },
+                        layout: 'noBorders'
                     },
+
                     {
-                        margin: [350, 20, 0, 0],
-                        text: '' + vm.item.pegawaiPenandatangan.jabatan + ',',
-                        fontSize: 12
-                    },
-                    {
-                        margin: [350, 20, 0, 0],
-                        text: 'Tanda Tangan dan Cap Instansi',
-                        fontSize: 12
-                    },
-                    {
-                        margin: [350, 20, 0, 0],
-                        text: '' + vm.item.pegawaiPenandatangan.nama,
-                        fontSize: 12
+                        margin: [0, 20, 0, 0],
+                        columns: [
+                            {
+                                width: '63%',
+                                text: ''
+                            },
+                            {
+                                style: 'tandaTangan',
+                                table: {
+                                    widths: [200],
+                                    body: [
+                                        [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                        [{text: ' ',margin: [0,20]}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold:true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                    ]
+                                },
+                                layout: 'noBorders'
+                            }
+                        ]
                     },
 
                     {fontSize: 12, text: 'Tembusan :'}
@@ -397,18 +294,32 @@
                         fontSize: 14,
                         alignment: 'center'
                     },
+                    header2: {
+                        fontSize: 12,
+                        alignment: 'center'
+                    },
                     header3: {
                         fontSize: 10,
                         alignment: 'center'
                     },
-                    header1: {
+                    nama_judul: {
+                        alignment : 'center',
                         bold: true,
-                        fontSize: 15,
-                        alignment: 'center'
+                        fontSize: 12
                     },
-                    header2: {
-                        fontSize: 10,
-                        alignment: 'center'
+                    judul_nomor: {
+                        alignment : 'center',
+                        bold: true,
+                        fontSize: 12
+                    },
+                    demoTable: {
+                        color: '#000',
+                        fontSize: 12
+                    },
+                    tandaTangan: {
+                        color: '#000',
+                        fontSize: 12,
+                        alignment:'right'
                     }
                 },
 
@@ -426,102 +337,50 @@
             vm.docDefinition.content.push(tembusan);
 
             if($state.current.name == "suratundangannonpejabat"){
-                vm.docDefinition.content[2] = {
-                    margin: [0, 10, 0, 15],
-                    table: {
-                        widths: ['*'],
-                        body: [
-                            [
-                                {
-                                }
+                vm.docDefinition.content[0] =
+                    {
+                        margin:[0,0,0,15],
+                        table:{
+                            widths: [100,'*'],
+                            body: [
+                                [
+                                    {
+                                        image: logo_bekasi,
+                                        width: 90,
+                                        height: 90,
+                                        alignment: 'center'
+                                    },
+                                    [
+                                        {
+                                            text:[
+                                                {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                                {text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                                {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
+                                            ]
+                                        },
+                                        {
+                                            margin: [15,0,0,0],
+                                            table: {
+                                                body: [
+                                                    [
+                                                        {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                        {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                        {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
+                                                    ]
+                                                ]
+                                            }, layout: 'noBorders'
+                                        }
+                                    ]
+                                ],
+                                [{text:'', colSpan: 2}],
+                                [{text:'', fillColor: 'black', colSpan: 2}]
                             ]
-                        ]
-                    },
-                    layout: {
-                        fillColor: 'Black'
-                    }
-                };
+                        },
+                        layout: 'noBorders'
+                    };
 
-                vm.docDefinition.content[1] = {
-                    margin: [115, -5, 0, 0],
-                    table: {
-                        widths: [90, 90, 150],
-                        body: [
-                            [
-                                {
-                                    border: [false, false, false, false],
-                                    text: 'Telp. (021) 89970696',
-                                    fontSize: 12,
-                                    alignment: 'right'
-                                },{
-                                border: [false, false, false, false],
-                                text: 'Fax. (021) 89970064',
-                                fontSize: 12,
-                                alignment: 'center'
-                            },{
-                                border: [false, false, false, false],
-                                text: 'email : diskominfo@bekasikab.go.id',
-                                fontSize: 12,
-                                alignment: 'left'
-                            }
-                            ]
-                        ]
-                    }
-                };
-
-                vm.docDefinition.content[0] = {
-                    margin: [175, -5, 0, 0],
-                    table: {
-                        widths: [230],
-                        body: [
-                            [
-                                {
-                                    border: [false, false, false, false],
-                                    text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
-                                    style: 'header2'
-                                }
-                            ]
-                        ]
-                    }
-                };
-
-                vm.docDefinition.content.unshift({
-                    margin: [90, -5, 0, 0],
-                    table: {
-                        widths: [400],
-                        body: [
-                            [
-                                {
-                                    border: [false, false, false, false],
-                                    text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
-                                    style: 'header1'
-                                }
-                            ]
-                        ]
-                    }
-                });
-
-                vm.docDefinition.content.unshift({
-                    margin: [90, -96, 0, 0],
-                    table: {
-                        widths: [400],
-                        body: [
-                            [
-                                {
-                                    border: [false, false, false, false],
-                                    text: 'PEMERINTAHAN KABUPATEN BEKASI',
-                                    style: 'header1'
-                                }
-                            ]
-                        ]
-                    }
-                });
-
-                vm.docDefinition.content.unshift({
-                    image: logo_bekasi,
-                    width: 90,
-                    height: 90
-                });
+                vm.docDefinition.content[1] = {};
+                vm.docDefinition.content[2] = {};
             }
         }
 

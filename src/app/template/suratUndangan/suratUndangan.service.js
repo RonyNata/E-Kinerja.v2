@@ -4,12 +4,12 @@
     angular.module('eKinerja')
         .service('SuratUndanganService', SuratUndanganService);
 
-    function SuratUndanganService(API_REPORT, $http, $q){
+    function SuratUndanganService(API, $http, $q){
         var service = {};
 
         service.save = function(data){
             var deferred = $q.defer();
-            $http.post(API_REPORT + 'create-surat-undangan/', data).then(
+            $http.post(API + 'create-surat-undangan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

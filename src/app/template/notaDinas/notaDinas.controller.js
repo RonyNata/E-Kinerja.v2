@@ -66,8 +66,8 @@ angular.
                 "nomorUrusan": vm.item.nomorUrusan,
                 "nomorPasanganUrut": vm.item.nomorPasanganUrut,
                 "nomorUnit": vm.item.nomorUnit,
-                "nipPenerimaNotadinas": vm.item.pegawaiPenerima.nipPegawai,
-                "nipPemberiNotadinas": vm.item.pegawaiPemberi.nipPegawai,
+                "kdJabatanPenerimaNotaDinas": vm.item.pegawaiPenerima.kdJabatan,
+                "nipPemberiNotaDinas": vm.item.pegawaiPemberi.nipPegawai,
                 "hal": vm.item.hal,
                 "tanggalNotaDinasMilis": vm.item.tanggal.getTime(),
                 "isiNotaDinas": vm.item.isiNotaDinas,
@@ -75,7 +75,12 @@ angular.
                 "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
                 "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
-                "kdTembusanList": []
+                "kdTembusanList": [],
+                "kdNotaDinasBawahan": null,
+                "kdNaskahPenugasan": "",
+                "jenisNaskahPenugasan": "3",
+                "statusPenilaian": "",
+                "alasanPenolakan": ""
             };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
@@ -85,10 +90,10 @@ angular.
             NotaDinasService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+                    return $state.go('kontrak');
                 }, function(errResponse){
-
+                    EkinerjaService.showToastrError('Data Tidak Berhasil Disimpan');
                 });
-            $state.go('kontrak');
 
         };
 
@@ -229,8 +234,8 @@ angular.
                 table: {
                   widths: [50, 5, 150],
                   body: [
-                    [{text: 'Yth', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPenerima.nama}],
-                    [{text: 'Dari', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPemberi.nama}],
+                    [{text: 'Yth', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPenerima.jabatan}],
+                    [{text: 'Dari', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPemberi.jabatan}],
                     [{text: 'Hal', bold: true},{text:':'}, {text: '' + vm.item.hal}],
                     [{text: 'Tanggal', bold: true},{text:':'}, {text: ''+ EkinerjaService.IndonesianDay(vm.item.tanggal) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal)}]
                   ]
