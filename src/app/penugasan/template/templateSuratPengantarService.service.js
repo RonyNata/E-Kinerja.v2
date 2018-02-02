@@ -10,260 +10,233 @@
         service.template = function(data){
           var docDefinition = {
             content: [
-              {
-                image: logo_bekasi,
-                width: 90,
-                height: 90
-              },
-              {
-                margin: [90, -96, 0, 0],
-                table: {
-                  widths: [400],
-                  body: [
-                    [
-                      {
-                        text: 'PEMERINTAHAN KABUPATEN BEKASI',
-                        style: 'header'
-                      }
-                    ]
-                  ]
+                {
+                    margin:[0,0,0,15],
+                    table:{
+                        widths: [100,'*'],
+                        body: [
+                            [
+                                {
+                                    image: logo_bekasi,
+                                    width: 90,
+                                    height: 90,
+                                    alignment: 'center'
+                                },
+                                [
+                                    {
+                                        text:[
+                                            {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                            {text: '' + data.unitKerjaPemberiSuratPengantar.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                            {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
+                                        ]
+                                    },
+                                    {
+                                        margin: [15,0,0,0],
+                                        table: {
+                                            body: [
+                                                [
+                                                    {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                    {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                    {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
+                                                ]
+                                            ]
+                                        }, layout: 'noBorders'
+                                    }
+                                ]
+                            ],
+                            [{text:'', colSpan: 2}],
+                            [{text:'', fillColor: 'black', colSpan: 2}]
+                        ]
+                    },
+                    layout: 'noBorders'
                 },
-                  layout: 'noBorders'
-              },
-              {
-                margin: [90, -5, 0, 0],
-                table: {
-                  widths: [400],
-                  body: [
-                    [
-                      {
-                        text: '' + data.jabatanPemberiSuratPengantar.toUpperCase(),
-                        style: 'header'
-                      }
-                    ]
-                  ]
+                {
+                    margin: [0,15,0,0],
+                    text: '' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)),
+                    alignment: 'right',
+                    fontSize: 12
                 },
-                  layout: 'noBorders'
-              },
-              {
-                margin: [175, -5, 0, 0],
-                table: {
-                  widths: [230],
-                  body: [
-                    [
-                      {
-                        text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
-                        style: 'header2'
-                      }
-                    ]
-                  ]
+                {
+                    margin: [0, 10, 0, 0],
+                    table: {
+                        widths: [150],
+                        body: [
+                            [{text:[{text: 'Yth. ', fontSize: 12}, {text: '' + data.penerimaSuratPengantar.jabatan.toUpperCase(), fontSize: 12, bold:true}]}]
+                        ]
+                    },
+                    layout: 'noBorders'
                 },
-                  layout: 'noBorders'
-              },
-              {
-                margin: [115, -5, 0, 0],
-                table: {
-                  widths: [90, 90, 150],
-                  body: [
-                    [
-                      {
-                        text: 'Telp. (021) 89970696',
-                        fontSize: 9,
-                        alignment: 'right'
-                      },{
-                        text: 'Fax. (021) 89970064',
-                        fontSize: 9,
-                        alignment: 'center'
-                      },{
-                        text: 'email : diskominfo@bekasikab.go.id',
-                        fontSize: 9,
-                        alignment: 'left'
-                      }
-                    ]
-                  ]
+                {
+                    margin: [0,30,0,0],
+                    text: 'SURAT PENGANTAR',
+                    fontSize: 12,
+                    alignment: 'center',
+                    bold: true
                 },
-                  layout: 'noBorders'
-              },
-              {
-                margin: [0, 10, 0, 0],
-                table: {
-                  widths: ['*'],
-                  body: [
-                    [
-                      {
-                      }
-                    ]
-                  ]
+                {
+                    margin: [0,0,0,0],
+                    text: 'NOMOR : '+ data.nomorUrusan +'/' + data.nomorUrut + '/'+ data.nomorPasanganUrut + '/'+ data.nomorUnit + '/' + data.nomorTahun,
+                    fontSize: 12,
+                    alignment: 'center',
+                    bold: true
                 },
-                layout: {
-                  fillColor: 'Black'
+                {
+                    margin: [0, 20, 0, 0],
+                    table:{
+                        widths: ['auto', 205, 130, 130],
+                        body: [
+                            [
+                                {
+                                    text: 'No.',
+                                    fontSize: 12,
+                                    alignment: 'center'
+                                },
+                                {
+                                    text: 'Naskah Dinas yang Dikirimkan',
+                                    fontSize: 12,
+                                    alignment: 'center'
+                                },
+                                {
+                                    text: 'Banyaknya',
+                                    fontSize: 12,
+                                    alignment: 'center'
+                                },
+                                {
+                                    text: 'Keterangan',
+                                    fontSize: 12,
+                                    alignment: 'center'
+                                }
+                            ]
+                        ]
+                    }
+                },
+
+
+                {
+                    margin: [0, 40, 0, 10],
+                    table:{
+                        widths: [100, 5, '*'],
+                        body: [
+                            [
+                                {text: 'Di Terima Tanggal', fontSize: 12},
+                                {text: ':', fontSize: 12},
+                                {text: '' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalDiterimaSuratPengantar)), fontSize: 12}
+                            ]
+                        ]
+                    },
+                    layout: 'noBorders'
+                },
+
+
+                {
+                    margin: [0, 30, 0, 0],
+                    columns: [
+                        {
+                            style: 'tandaTangan',
+                            table: {
+                                widths: ['*'],
+                                body: [
+                                    [{text: ['Penerima,'], alignment : 'left'}],
+                                    [{text: '' + data.penerimaSuratPengantar.jabatan + ',', alignment : 'left', bold: true}],
+                                    [{text: ' ',margin: [0,20]}],
+                                    [{text: '' + data.penerimaSuratPengantar.nama, alignment : 'left', bold: true}],
+                                    [{text: '' + data.penerimaSuratPengantar.nip, alignment : 'left'}]
+                                ]
+                            },
+                            layout: 'noBorders'
+                        },
+                        {
+                            style: 'tandaTangan',
+                            table: {
+                                widths: ['*'],
+                                body: [
+                                    [{text: ['Pengirim,'], alignment : 'left'}],
+                                    [{text: '' + data.jabatanPemberiSuratPengantar + ',', alignment : 'left', bold: true}],
+                                    [{text: ' ',margin: [0,20]}],
+                                    [{text: '' + data.namaPemberiSuratPengantar, alignment : 'left', bold: true}],
+                                    [{text: '' + data.nipPemberiSuratPengantar, alignment : 'left'}]
+                                ]
+                            },
+                            layout: 'noBorders'
+                        }
+                    ]
+                },
+
+                {
+                    margin: [0, 30, 0, 0],
+                    table:{
+                        widths: [100, 5, '*'],
+                        body: [
+                            [
+                                {text: 'No. Telephone', fontSize: 12},
+                                {text: ':', fontSize: 12},
+                                {text: '' + data.nomorTeleponPemberi, fontSize: 12}
+                            ]
+                        ]
+                    },
+                    layout: 'noBorders'
                 }
-              },
-              {
-                text: '' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)),
-                margin: [0,20,0,0],
-                alignment: 'right',
-                fontSize: 10
-              },
-              {
-                margin: [0, 10, 0, 0],
-                table: {
-                  widths: [100],
-                  body: [
-                    [
-                      {
-                        rowSpan: 3,
-                        text: 'Yth. ' + data.pegawaiPenerima.nama,
-                        fontSize: 10
-                      }
-                    ],
-                    [
-                      {
-                      }
-                    ],
-                    [
-                      {
-                      }
-                    ]
-                  ]
-                },
-                  layout: 'noBorders'
-              },
-              {
-                margin: [0,30,0,0],
-                text: 'SURAT PENGANTAR',
-                style: 'header'
-              },
-              {
-                margin: [0,0,0,0],
-                text: 'NOMOR : '+ data.nomorUrusan +'/' + data.nomorUrut + '/'+ data.nomorPasanganUrut + '/'+ data.nomorUnit + '/' + data.nomorTahun,
-                fontSize: 10,
-                alignment: 'center'
-              },
-              {
-                margin: [0, 20, 0, 0],
-                table:{
-                  widths: ['auto', 205, 130, 130],
-                  body: [
-                    [
-                      {
-                        text: 'No.',
-                        fontSize: 10,
-                        alignment: 'center'
-                      },
-                      {
-                        text: 'Naskah Dinas yang Dikirimkan',
-                        fontSize: 10,
-                        alignment: 'center'
-                      },
-                      {
-                        text: 'Banyaknya',
-                        fontSize: 10,
-                        alignment: 'center'
-                      },
-                      {
-                        text: 'Keterangan',
-                        fontSize: 10,
-                        alignment: 'center'
-                      }
-                    ]
-                  ]
-                }
-              },
-              {
-                margin: [0, 40, 0, 0],
-                text: 'Di Terima Tanggal  :',
-                fontSize: 10
-              },
-              {
-                margin: [92, -11.5, 0 ,0],
-                text: '' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalDiterimaSuratPengantar)),
-                fontSize: 10
-              },
-              {
-                margin: [0, 30, 0 , 0],
-                text: 'Penerima',
-                fontSize: 10
-              },
-              {
-                text: '' + data.pegawaiPenerima.jabatan,
-                fontSize: 10
-              },
-              {
-                margin: [0, 50, 0, 0],
-                text: '' + data.pegawaiPenerima.nama,
-                fontSize: 10
-              },
-              {
-                text: '' + data.pegawaiPenerima.nipPegawai,
-                fontSize: 10
-              },
-              {
-                margin: [300, -94, 0 , 0],
-                text: 'Pengirim',
-                fontSize: 10
-              },
-              {
-                margin: [300, 0, 0, 0],
-                text: '' + data.pegawaiPembuat.jabatan,
-                fontSize: 10
-              },
-              {
-                margin: [300, 54, 0, 0],
-                text: '' + data.pegawaiPembuat.nama,
-                fontSize: 10
-              },
-              {
-                margin: [300, 0, 0, 0],
-                text: ''+ data.pegawaiPembuat.nipPegawai,
-                fontSize: 10
-              },
-              {
-                margin: [0, 40, 0, 0],
-                text: 'No. Telephone  :',
-                fontSize: 10
-              },
-              {
-                margin: [78, -11.5, 0 ,0],
-                text: '' + data.nomorTeleponPemberi,
-                fontSize: 10
-              }
             ],
             styles: {
-              header: {
-                bold: true,
-                fontSize: 15,
-                alignment: 'center'
-              },
-              header2: {
-                fontSize: 10,
-                alignment: 'center'
-              }
+                header: {
+                    bold: true,
+                    fontSize: 14,
+                    alignment: 'center'
+                },
+                header2: {
+                    fontSize: 12,
+                    alignment: 'center'
+                },
+                header3: {
+                    fontSize: 10,
+                    alignment: 'center'
+                },
+                nama_judul: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                judul_nomor: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                demoTable: {
+                    color: '#000',
+                    fontSize: 12
+                },
+                tandaTangan: {
+                    color: '#000',
+                    fontSize: 12,
+                    alignment:'right'
+                }
             }
           };
-          for(var i = 0; i < vm.suratPengantarIsiWrapperList.length; i++)
-            docDefinition.content[10].table.body.push([
+          for(var i = 0; i < data.suratPengantarIsiWrapperList.length; i++)
+            docDefinition.content[5].table.body.push([
                       {
-                        text: '' + (i+1),
-                        fontSize: 10,
-                        alignment: 'center'
+                          text: '' + (i+1),
+                          fontSize: 12,
+                          alignment: 'center'
                       },
                       {
-                        text: '' + vm.suratPengantarIsiWrapperList[i].naskahDinasYangDikirim,
-                        fontSize: 10
+                          text: '' + data.suratPengantarIsiWrapperList[i].naskahDinasYangDikirim,
+                          fontSize: 12
                       },
                       {
-                        text: '' + vm.suratPengantarIsiWrapperList[i].banyakNaskah,
-                        fontSize: 10
+                          text: '' + data.suratPengantarIsiWrapperList[i].banyakNaskah,
+                          fontSize: 12,
+                          alignment: 'center'
                       },
                       {
-                        text: '' + vm.suratPengantarIsiWrapperList[i].keterangan,
-                        fontSize: 10
+                          text: '' + data.suratPengantarIsiWrapperList[i].keterangan,
+                          fontSize: 12,
+                          alignment: 'center'
                       }
                     ]);
-          console.log(docDefinition.content[10]);
+          console.log(docDefinition.content[5]);
           return docDefinition;
-        }
+        };
  
         return service;
     }])
