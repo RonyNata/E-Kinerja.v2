@@ -45,9 +45,9 @@
             return deferred.promise;
         };
 
-        service.ChangeRead = function (kdLembar, nip) {
+        service.ChangeRead = function (url, kdLembar, nip) {
             var deferred = $q.defer();
-            $http.put(API + 'open-lembar-disposisi/' + kdLembar + "/" + nip).then(
+            $http.put(API + url + kdLembar + "/" + nip).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

@@ -45,7 +45,7 @@
                                         <div class="col-md-3" style="padding: 0px">
                                             <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                         </div>
-                                        <div ng-show="suratpengantar.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
+                                        <div ng-show="suratpengantar.item.pegawaiPenerima" class="col-md-9" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -72,7 +72,7 @@
                                         <div class="col-md-3" style="padding: 0px">
                                             <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                         </div>
-                                        <div ng-show="suratpengantar.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px">
+                                        <div ng-show="suratpengantar.item.pegawaiPembuat" class="col-md-9" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -92,7 +92,7 @@
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>No. Telephone</b></p>
+                                        <p><b>No. Telephone Pengirim</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
@@ -107,6 +107,20 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-3">
                                         <input class="form-control" type="date" ng-model="suratpengantar.item.tanggal" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Waktu Pembuatan Surat</b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-4" style="margin-left: -15px;">
+                                            <input class="form-control" ng-model="suratpengantar.item.durasiPengerjaan" type="number" name="quantity" required></input>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top: 8px;">
+                                            <span><b>Menit</b></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12" style="text-align: center">
@@ -133,7 +147,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <input class="form-control" ng-model="isi.qty" required>
+                                            <input type="number" class="form-control" ng-model="isi.qty" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12" style="margin-bottom:10px"> 

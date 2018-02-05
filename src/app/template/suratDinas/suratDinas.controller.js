@@ -56,6 +56,7 @@ angular.
         PengumpulanDataBebanKerjaService.GetAllJabatan().then(
           function(response){
             vm.list_jabatan = response;
+            vm.loading = false;
           }, function(errResponse){
 
           });
@@ -86,16 +87,21 @@ angular.
           var data = {"id": new Date().getTime()};
           vm.target.push(data);
         }
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
-          HakAksesService.GetAllPegawai().then(
-            function(response){
-              vm.list_pegawai = response;
-              vm.loading = false;
-            }, function(errResponse){
+            HakAksesService.GetAllPegawai().then(
+                function(response){
+                    vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    vm.loading = false;
+                }, function(errResponse){
 
-            })
+                })
         }
 
         vm.getPegawai = function(idx){
@@ -186,58 +192,70 @@ angular.
                         text: 'REPUBLIK INDONESIA', style: 'nama_judul', margin: [0,0,0,20]
                     },
 
-                {
-                    style: 'demoTable', margin: [0,0,0,15],
-                    table: {
-                        widths: [50, 5, '*', '*'],
-                        body: [
-                            [{text: 'Nomor', bold: true},{text: ':'},{text: ''+ vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + (new Date().getYear()+1900)}, {text: '' + vm.item.tempat + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment:'right'}],
-                            [{text: 'Sifat', bold: true},{text: ':'},{text: '' + vm.item.sifat}, {text: ''}],
-                            [{text: 'Lampiran', bold: true},{text: ':'},{text: '' + vm.item.lampiran}, {text: ''}],
-                            [{text: 'Hal', bold: true},{text: ':'},{text: '' + vm.item.hal}, {text: ''}]
+                    {
+                        style: 'demoTable', margin: [0,0,0,15],
+                        table: {
+                            widths: [60, 5, '*', '*'],
+                            body: [
+                                [{text: 'Nomor', bold: true},{text: ':'},{text: ''+ vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + (new Date().getYear()+1900)}, {text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment:'right'}],
+                                [{text: 'Sifat', bold: true},{text: ':'},{text: '' + vm.item.sifat}, {text: ''}],
+                                [{text: 'Lampiran', bold: true},{text: ':'},{text: '' + vm.item.lampiran}, {text: ''}],
+                                [{text: 'Hal', bold: true},{text: ':'},{text: '' + vm.item.hal}, {text: ''}]
+                            ]
+                        },
+                        layout: 'noBorders'
+                    },
+
+                    {
+                        margin: [0,0,0,15], alignment:'justify',
+                        table: {
+                            widths: [200],
+                            body: [
+                                [{text: 'Yth. ' + vm.item.jabatanPenerima.kdJabatan}]
+                            ]
+                        },
+                        layout: 'noBorders'
+                    },
+
+                    {
+                        text: '' + vm.item.alineaIsi,  margin: [0,0,0,10], alignment:'justify'
+                    },
+
+                    {
+                        columns: [
+                            {
+                                width: '63%',
+                                text: ''
+                            },
+                            {
+                                style: 'tandaTangan',
+                                table: {
+                                    widths: [200],
+                                    body: [
+                                        [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                        [{text: ' ',margin: [0,20]}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                    ]
+                                },
+                                layout: 'noBorders'
+                            }
                         ]
                     },
-                    layout: 'noBorders'
-                },
-
-                {
-                    margin: [0,0,0,15], alignment:'justifly',
-                    table: {
-                        widths: [150],
-                        body: [
-                            [{text: 'Yth. ' + vm.item.jabatanPenerima.kdJabatan}]
-                        ]
-                    },
-                    layout: 'noBorders'
-                },
-
-                {
-                    text: '' + vm.item.alineaIsi,  margin: [0,0,0,10], alignment:'justifly'
-                },
-
-                {
-                    style: 'tandaTangan',
-                    table: {
-                        widths: [200],
-                        body: [
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
-                            [{text: ' ',margin: [0,20]}],
-                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
-                        ]
-                    },
-                    layout: 'noBorders'
-                },
-
-                {text: 'Tembusan :'}
+                    {text: 'Tembusan :'}
             ],
 
             styles: {
                 header: {
                     bold: true,
-                    fontSize: 15,
+                    fontSize: 14,
                     alignment: 'center'
                 },
                 header2: {
+                    fontSize: 12,
+                    alignment: 'center'
+                },
+                header3: {
                     fontSize: 10,
                     alignment: 'center'
                 },
@@ -246,129 +264,69 @@ angular.
                     bold: true,
                     fontSize: 12
                 },
-                header1: {
-                    bold: true,
-                    fontSize: 15,
-                    alignment: 'center'
-                },
                 judul_nomor: {
                     alignment : 'center',
                     bold: true,
-                    fontSize: 11
-                },
-                header3: {
-                    bold: true,
-                    color: '#000',
-                    fontSize: 10
+                    fontSize: 12
                 },
                 demoTable: {
                     color: '#000',
-                    fontSize: 10
+                    fontSize: 12
                 },
                 tandaTangan: {
                     color: '#000',
-                    fontSize: 10,
+                    fontSize: 12,
                     alignment:'right'
                 }
             }
         };
 
         if($state.current.name == "suratdinasnonpejabat"){
-            vm.docDefinition.content[2] = {
-                margin: [0, 10, 0, 15],
-                table: {
-                    widths: ['*'],
-                    body: [
-                        [
-                            {
-                            }
+            vm.docDefinition.content[0] =
+                {
+                    margin:[0,0,0,15],
+                    table:{
+                        widths: [100,'*'],
+                        body: [
+                            [
+                                {
+                                    image: logo_bekasi,
+                                    width: 90,
+                                    height: 90,
+                                    alignment: 'center'
+                                },
+                                [
+                                    {
+                                        text:[
+                                            {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                            {text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                            {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
+                                        ]
+                                    },
+                                    {
+                                        margin: [15,0,0,0],
+                                        table: {
+                                            body: [
+                                                [
+                                                    {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                    {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                    {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
+                                                ]
+                                            ]
+                                        }, layout: 'noBorders'
+                                    }
+                                ]
+                            ],
+                            [{text:'', colSpan: 2}],
+                            [{text:'', fillColor: 'black', colSpan: 2}]
                         ]
-                    ]
-                },
-                layout: {
-                    fillColor: 'Black'
-                }
-            };
+                    },
+                    layout: 'noBorders'
+                };
 
-            vm.docDefinition.content[1] = {
-                margin: [115, -5, 0, 0],
-                table: {
-                    widths: [90, 90, 150],
-                    body: [
-                        [
-                            {
-                                text: 'Telp. (021) 89970696',
-                                fontSize: 9,
-                                alignment: 'right'
-                            },{
-                            text: 'Fax. (021) 89970064',
-                            fontSize: 9,
-                            alignment: 'center'
-                        },{
-                            text: 'email : diskominfo@bekasikab.go.id',
-                            fontSize: 9,
-                            alignment: 'left'
-                        }
-                        ]
-                    ]
-                },
-                layout: 'noBorders'
-            };
-
-            vm.docDefinition.content[0] = {
-                margin: [175, -5, 0, 0],
-                table: {
-                    widths: [230],
-                    body: [
-                        [
-                            {
-                                text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
-                                style: 'header2'
-                            }
-                        ]
-                    ]
-                },
-                layout: 'noBorders'
-            };
-            
-            vm.docDefinition.content.unshift({
-                margin: [90, -5, 0, 0],
-                table: {
-                    widths: [400],
-                    body: [
-                        [
-                            {
-                                text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase(),
-                                style: 'header1'
-                            }
-                        ]
-                    ]
-                },
-                layout: 'noBorders'
-            });
-
-            vm.docDefinition.content.unshift({
-                margin: [90, -96, 0, 0],
-                table: {
-                    widths: [400],
-                    body: [
-                        [
-                            {
-                                text: 'PEMERINTAHAN KABUPATEN BEKASI',
-                                style: 'header1'
-                            }
-                        ]
-                    ]
-                },
-                layout: 'noBorders'
-            });
-
-            vm.docDefinition.content.unshift({
-                image: logo_bekasi,
-                width: 90,
-                height: 90
-            });
-          }
+            vm.docDefinition.content[1] = {};
+            vm.docDefinition.content[2] = {};
+        }
           var tembusan = {
             ol:[]
           };

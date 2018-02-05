@@ -4,28 +4,53 @@
     module('eKinerja')
         .controller('LaporanController', LaporanController);
 
-    function LaporanController(EkinerjaService, LaporanService, $scope, $state, logo_bekasi, $uibModal, $document, HakAksesService) {
+    function LaporanController(EkinerjaService, LaporanService, $scope, $state, 
+        logo_bekasi, $uibModal, $document, HakAksesService, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
 
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            getDocumentLaporan();
+            vm.loading = false; 
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
             HakAksesService.GetAllPegawai().then(
                 function(response){
                     vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    getDocumentLaporan();
                     vm.loading = false;
                 }, function(errResponse){
 
                 })
         }
 
-        $scope.$watch('pegawaipenandatangan', function(){
-            if($scope.pegawaipenandatangan.length == 18)
-                vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaipenandatangan,vm.list_pegawai);
-            debugger
-        });
+        function getDocumentLaporan(){
+            PenilaianService.GetDataLaporan($state.params.kdSuratBawahan).then(
+                function(response){
+                    vm.item = {
+                        "tentang": response.tentang,
+                        "isiumum": response.umum,
+                        "isimaksuddantujuan": response.maksudDanTujuan,
+                        "isiruanglingkup": response.ruangLingkup,
+                        "isidasar": response.dasar,
+                        "isikegiatan": response.kegiatanYangDilaksanakan,
+                        "isihasil": response.hasilYangDicapai,
+                        "isisimpulandansaran": response.simpulanDanSaran,
+                        "isipenutup": response.penutup,
+                        "tempat": response.kotaPembuatanSurat,
+                        "tanggal": new Date(response.tanggalPembuatanMilis),
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai)
+                    }
+                }, function(errResponse){
+
+                })
+        }
 
         vm.openDari = function (parentSelector) {
           var parentElem = parentSelector ? 
@@ -80,11 +105,14 @@
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
 
                 "kdLaporanBawahan": null,
-                "kdNaskahPenugasan": null,
+                "kdNaskahPenugasan": $state.params.kdSurat,
                 "jenisNaskahPenugasan": 1,
                 "statusPenilaian": 0,
                 "alasanPenolakan": null
             };
+
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdLaporanBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
             LaporanService.save(data).then(
@@ -129,9 +157,9 @@
                                             table: {
                                                 body: [
                                                     [
-                                                        {text: 'Telp. (021) 89970696', style: 'header2'},
-                                                        {text: 'Fax. (021) 89970064', style: 'header2'},
-                                                        {text: 'email : diskominfo@bekasikab.go.id', style: 'header2'}
+                                                        {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                        {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                        {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
                                                     ]
                                                 ]
                                             }, layout: 'noBorders'
@@ -172,22 +200,32 @@
                             {text:['Penutup\n', {text:'' + vm.item.isipenutup, bold:false}],margin:[0,0,0,10]}
                         ]
                     },
+
                     {
-                        style: 'tandaTangan',
-                        table: {
-                            widths: [200],
-                            body: [
-                                [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat.toUpperCase(), bold:true}], alignment : 'left'}],
-                                [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), bold:true}], alignment : 'left'}],
-                                [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
-                                [{text: ' ',margin: [0,20]}],
-                                [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}],
-                                [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
-                            ]
-                        },
-                        layout: 'noBorders'
+                        columns: [
+                            {
+                                width: '63%',
+                                text: ''
+                            },
+                            {
+                                style: 'tandaTangan',
+                                table: {
+                                    widths: [200],
+                                    body: [
+                                        [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat.toUpperCase(), bold:true}], alignment : 'left'}],
+                                        [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), bold:true}], alignment : 'left'}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                        [{text: ' ',margin: [0,20]}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                    ]
+                                },
+                                layout: 'noBorders'
+                            }
+                        ]
                     }
                 ],
+
                 styles: {
                     header: {
                         bold: true,
@@ -195,6 +233,10 @@
                         alignment: 'center'
                     },
                     header2: {
+                        fontSize: 12,
+                        alignment: 'center'
+                    },
+                    header3: {
                         fontSize: 10,
                         alignment: 'center'
                     },
@@ -206,15 +248,15 @@
                     judul_nomor: {
                         alignment : 'center',
                         bold: true,
-                        fontSize: 11
+                        fontSize: 12
                     },
                     demoTable: {
                         color: '#000',
-                        fontSize: 10
+                        fontSize: 12
                     },
                     tandaTangan: {
                         color: '#000',
-                        fontSize: 10,
+                        fontSize: 12,
                         alignment:'right'
                     }
                 },

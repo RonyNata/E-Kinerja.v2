@@ -70,6 +70,21 @@
         // $state.go('setting');
       }
 
+      vm.testConnection = function() {
+          Offline.options = {
+                    checkOnLoad: false,
+                    interceptRequests: true,
+                    reconnect: {
+                      initialDelay: 0
+                    },
+                    requests: true,
+                    game: false,
+                    checks: {xhr: {url: 'http://192.168.200.1'}}
+                  };
+          // Offline.check();
+          console.log(Offline.check());
+      }
+
       getNotif();
 
       // $interval(function(){

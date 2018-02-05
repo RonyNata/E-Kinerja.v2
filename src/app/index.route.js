@@ -282,7 +282,7 @@
         controllerAs: 'perpindahan'
       })
       .state('notadinas', {
-        url: '/nota-dinas/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/nota-dinas/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/notaDinas/notaDinas.html',
         controller: 'NotaDinasController',
         controllerAs: 'notadinas'
@@ -336,139 +336,139 @@
         controllerAs: 'instruksipejabat'
       })
       .state('surattugas', {
-        url: '/surat-tugas/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-tugas/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratTugas/suratTugas.html',
         controller: 'SuratTugasController',
         controllerAs: 'surattugas'
       })
       .state('suratdinaspejabat', {
-        url: '/surat-dinas-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-dinas-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratDinas/suratDinas.html',
         controller: 'SuratDinasController',
         controllerAs: 'suratdinas'
       })
       .state('suratdinasnonpejabat', {
-        url: '/surat-dinas-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-dinas-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratDinas/suratDinas.html',
         controller: 'SuratDinasController',
         controllerAs: 'suratdinas'
       })
       .state('suratkeputusan', {
-        url: '/surat-keputusan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-keputusan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratKeputusan/suratKeputusan.html',
         controller: 'SuratKeputusanController',
         controllerAs: 'suratkeputusan'
       })
       .state('naskahpedoman', {
-        url: '/naskah-pedoman/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/naskah-pedoman/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/pedoman/pedoman.html',
         controller: 'PedomanController',
         controllerAs: 'pedoman'
       })
       .state('pedomannonpejabat', {
-        url: '/naskah-pedoman-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/naskah-pedoman-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/pedoman/pedoman.html',
         controller: 'PedomanController',
         controllerAs: 'pedoman'
       })
       .state('naskahpetunjuk', {
-        url: '/naskah-petunjuk/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/naskah-petunjuk/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/petunjuk/petunjuk.html',
         controller: 'PetunjukController',
         controllerAs: 'petunjuk'
       })
       .state('petunjuknonpejabat', {
-        url: '/naskah-petunjuk-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/naskah-petunjuk-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/petunjuk/petunjuk.html',
         controller: 'PetunjukController',
         controllerAs: 'petunjuk'
       })
       .state('suratedaran', {
-        url: '/surat-edaran/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-edaran/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratEdaran/suratEdaran.html',
         controller: 'SuratEdaranController',
         controllerAs: 'suratedaran'
       })
       .state('suratedarannonpejabat', {
-        url: '/surat-edaran-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-edaran-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratEdaran/suratEdaran.html',
         controller: 'SuratEdaranController',
         controllerAs: 'suratedaran'
       })
       .state('suratpengantar', {
-        url: '/surat-pengantar/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/surat-pengantar/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/suratPengantar/suratPengantar.html',
         controller: 'SuratPengantarController',
         controllerAs: 'suratpengantar'
       })
         .state('pengumuman', {
-        url: '/pengumuman/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+        url: '/pengumuman/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
         templateUrl: 'app/template/pengumuman/pengumuman.html',
         controller: 'PengumumanController',
         controllerAs: 'pengumuman'
       })
         .state('laporan', {
-            url: '/laporan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/laporan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/laporan/laporan.html',
             controller: 'LaporanController',
             controllerAs: 'laporan'
         })
         .state('suratkuasa', {
-            url: '/surat-kuasa/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-kuasa/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratKuasa/suratKuasa.html',
             controller: 'SuratKuasaController',
             controllerAs: 'suratkuasa'
         })
         .state('suratketerangan', {
-            url: '/surat-keterangan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-keterangan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratKeterangan/suratKeterangan.html',
             controller: 'SuratKeteranganController',
             controllerAs: 'suratketerangan'
         })
         .state('suratundanganpejabat', {
-            url: '/surat-undangan-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-undangan-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
         })
         .state('suratundangannonpejabat', {
-            url: '/surat-undangan-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-undangan-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratUndangan/suratUndangan.html',
             controller: 'SuratUndanganController',
             controllerAs: 'suratundangan'
         })
         .state('beritaacara', {
-            url: '/berita-acara/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/berita-acara/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/beritaAcara/beritaAcara.html',
             controller: 'BeritaAcaraController',
             controllerAs: 'beritaacara'
         })
         .state('telaahanstaff', {
-            url: '/telaahan-staff/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/telaahan-staff/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/telaahanStaff/telaahanStaff.html',
             controller: 'TelaahanStaffController',
             controllerAs: 'telaahanstaff'
         })
         .state('memorandumpejabat', {
-            url: '/memorandum-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/memorandum-pejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/memorandum/memorandum.html',
             controller: 'MemorandumController',
             controllerAs: 'memorandum'
         })
         .state('memorandumnonpejabat', {
-            url: '/memorandum-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/memorandum-nonpejabat/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/memorandum/memorandum.html',
             controller: 'MemorandumController',
             controllerAs: 'memorandum'
         })
         .state('suratperjanjianantarinstansidalamnegeri', {
-            url: '/surat-perjanjian-antar-instansi-dalam-negeri/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-perjanjian-antar-instansi-dalam-negeri/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratPerjanjian/antarInstansiDalamNegeri/suratPerjanjianAntarInstansiDalamNegeri.html',
             controller: 'SuratPerjanjianAntarInstansiDalamNegeriController',
             controllerAs: 'suratperjanjianantarinstansidalamnegeri'
         })
         .state('suratperjanjiankerjasamapemerintahlingkupnasional', {
-            url: '/surat-perjanjian-kerja-sama-pemerintah-lingkup-nasional/:kdSurat/:jenisNaskah/:tahun/:kdUrtug',
+            url: '/surat-perjanjian-kerja-sama-pemerintah-lingkup-nasional/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
             templateUrl: 'app/template/suratPerjanjian/pemerintahLingkupNasional/suratPerjanjianKerjaSamaPemerintahLingkupNasional.html',
             controller: 'SuratPerjanjianKerjaSamaPemerintahLingkupNasionalController',
             controllerAs: 'suratperjanjiankerjasamapemerintahlingkupnasional'

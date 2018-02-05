@@ -23,12 +23,18 @@
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            vm.loading = false; 
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
             HakAksesService.GetAllPegawai().then(
                 function(response){
                     vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
                     vm.loading = false;
                 }, function(errResponse){
 

@@ -10,12 +10,18 @@
         vm.loading = true;
         vm.item = {};
 
+        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+            vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            vm.loading = false; 
+        }
+        else
         getAllPegawai();
 
         function getAllPegawai(){
             HakAksesService.GetAllPegawai().then(
                 function(response){
                     vm.list_pegawai = response;
+                    sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -126,26 +132,38 @@
                     },
 
                     {
-                        style: 'tandaTangan',
-                        table: {
-                            widths: [200],
-                            body: [
-                                [{text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase() + ',', alignment : 'left', bold: true}],
-                                [{text: ' ',margin: [0,20]}],
-                                [{text: '' +vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
-                                [{text: '' +vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
-                            ]
-                        },
-                        layout: 'noBorders'
+                        columns: [
+                            {
+                                width: '63%',
+                                text: ''
+                            },
+                            {
+                                style: 'tandaTangan',
+                                table: {
+                                    widths: [200],
+                                    body: [
+                                        [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                        [{text: ' ',margin: [0,20]}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                    ]
+                                },
+                                layout: 'noBorders'
+                            }
+                        ]
                     }
                 ],
                 styles: {
                     header: {
                         bold: true,
-                        fontSize: 15,
+                        fontSize: 14,
                         alignment: 'center'
                     },
                     header2: {
+                        fontSize: 12,
+                        alignment: 'center'
+                    },
+                    header3: {
                         fontSize: 10,
                         alignment: 'center'
                     },
@@ -157,11 +175,15 @@
                     judul_nomor: {
                         alignment : 'center',
                         bold: true,
-                        fontSize: 11
+                        fontSize: 12
+                    },
+                    demoTable: {
+                        color: '#000',
+                        fontSize: 12
                     },
                     tandaTangan: {
                         color: '#000',
-                        fontSize: 10,
+                        fontSize: 12,
                         alignment:'right'
                     }
                 }

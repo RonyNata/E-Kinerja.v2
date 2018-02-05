@@ -166,11 +166,11 @@
           }
 
           var tembusan = {
-            ol: data.daftarTembusan
+            ol: []
           }
 
-          // for(var i = 0; i < data.daftarTembusan.length; i++)
-          //   tembusan.ol.push(data.daftarTembusan[i].jabatan);
+          for(var i = 0; i < data.daftarTembusan.length; i++)
+            tembusan.ol.push(data.daftarTembusan[i].jabatan);
           docDefinition.content.push(tembusan);
 
           // for(var i = 0; i < data.menimbangList.length; i++){
