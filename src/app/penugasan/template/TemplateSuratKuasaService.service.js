@@ -1,117 +1,14 @@
-(function () {
+ (function(){
     'use strict';
-    angular.
-    module('eKinerja')
-        .controller('SuratKuasaController', SuratKuasaController);
+    angular
+    .module('eKinerja')
+    .factory('TemplateSuratKuasaService',
+    ['SuratKuasaService','EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function (SuratKuasaService, EkinerjaService,logo_bekasi, logo_garuda) {
+        var service = {}; 
 
-    function SuratKuasaController(EkinerjaService, SuratKuasaService, HakAksesService, 
-        $scope, $state, logo_bekasi, $uibModal, $document) {
-        var vm = this;
-        vm.loading = true;
-        vm.item = {};
-
-        vm.back =  function(){
-            $state.go('kontrak');
-        };
-
-        vm.item.tahun = ((new Date()).getYear() + 1900);
-
-        getAllPegawai();
-
-        function getAllPegawai(){
-            HakAksesService.GetAllPegawai().then(
-                function(response){
-                    vm.list_pegawai = response;
-                    vm.loading = false;
-                }, function(errResponse){
-
-                })
-        };
-
-        vm.openDari = function (pegawai, parentSelector) {
-          var parentElem = parentSelector ? 
-          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-          var modalInstance = $uibModal.open({
-          animation: true,
-          ariaLabelledBy: 'modal-title',
-          ariaDescribedBy: 'modal-body',
-          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
-          controller: 'DataPegawaiController',
-          controllerAs: 'datapegawai',
-          // windowClass: 'app-modal-window',
-          size: 'lg',
-          appendTo: parentElem,
-          resolve: {
-            pegawai: function(){
-              return vm.list_pegawai;
-            },
-            pegawaiPilihan: function(){
-              return pegawai;
-            },
-            isPilihan: function(){
-              return 2;
-            }
-          }
-          });
-
-          modalInstance.result.then(function (data) {
-            if(pegawai == 0)
-                vm.item.pegawaiPenerima = data;
-            else vm.item.pegawaiPemberi = data;
-          }, function () {
-
-          });
-        };
-
-        // $scope.$watch('pegawaipenerima', function(){
-        //     if($scope.pegawaipenerima.length == 18)
-        //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawaipenerima,vm.list_pegawai);
-        //     debugger
-        // });
-
-        // $scope.$watch('pegawaipemberi', function(){
-        //     if($scope.pegawaipemberi.length == 18)
-        //         vm.item.pegawaiPemberi = EkinerjaService.findPegawaiByNip($scope.pegawaipemberi,vm.list_pegawai);
-        //     debugger
-        // });
-
-        vm.save = function(){
-            var data = {
-                "kdSuratKuasa": "",
-                "nomorUrusan": vm.item.nomorUrusan,
-                "nomorPasanganUrut": vm.item.nomorPasanganUrut,
-                "nomorUnit": vm.item.nomorUnit,
-                "nipPemberiKuasa": vm.item.pegawaiPemberi.nipPegawai,
-                "nipPenerimaKuasa": vm.item.pegawaiPenerima.nipPegawai,
-                "isiKuasa" : vm.item.isikuasa,
-                "kotaPembuatanSurat": vm.item.tempat,
-                "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-                "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-                "durasiPengerjaan": vm.item.durasiPengerjaan,
-                "tanggalSuratKuasaMilis": vm.item.tanggal1.getTime(), //pengambilan tanggal
-                "kdSuratKuasaBawahan": null,
-                "kdNaskahPenugasan": "",
-                "jenisNaskahPenugasan": ""
-            }
-
-            console.log(data);
-            SuratKuasaService.save(data).then(
-                function(response){
-                    EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-                    return $state.go('kontrak');
-                }, function(errResponse){
-                    EkinerjaService.showToastrError('Data Tidak Berhasil Disimpan');
-                });
-            
-
-        };
-
-        vm.back =  function(){
-          $state.go('kontrak');
-        };
-
-        function template(){
-            vm.docDefinition = {
+        service.template = function(data){
+            var docDefinition = {
                 content: [
                     {
                         margin:[0,0,0,15],
@@ -129,7 +26,7 @@
                                         {
                                             text:[
                                                 {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                                {text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                                {text: '' + data.unitKerjaPemberiKuasa.toUpperCase() + '\n', alignment: 'center', style:'header'},
                                                 {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                             ]
                                         },
@@ -159,7 +56,7 @@
                     },
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut+ '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + data.nomorUrusan + '/' + data.nomorUrut + '/' + data.nomorPasanganUrut+ '/' + data.nomorUnit + '/' + data.nomorTahun]
                     },
                     {
                         margin: [0, 30, 0, 0],
@@ -173,22 +70,23 @@
                                 [
                                     {text: 'Nama', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + vm.item.pegawaiPemberi.nama, fontSize: 10}
+                                    {text: '' + data.namaPemberiKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'NIP', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + vm.item.pegawaiPemberi.nipPegawai, fontSize: 10}
+                                    {text: '' + data.nipPemberiKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'Jabatan', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + vm.item.pegawaiPemberi.jabatan, fontSize: 10}
+                                    {text: '' + data.jabatanPemberiKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'Alamat', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + vm.item.pegawaiPemberi.alamat, fontSize: 10}
+                                    // {text: '' + data.alamatPemberiKuasa, fontSize: 10}
+                                    {text: '' + data.alamatRumahPemberiKuasa, fontSize: 10}
                                 ]
                             ]
                         },
@@ -206,22 +104,23 @@
                                 [
                                     {text: 'Nama', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: ''+ vm.item.pegawaiPenerima.nama, fontSize: 10}
+                                    {text: ''+ data.namaPenerimaKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'NIP', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: ''+ vm.item.pegawaiPenerima.nipPegawai, fontSize: 10}
+                                    {text: ''+ data.nipPenerimaKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'Jabatan', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: ''+ vm.item.pegawaiPenerima.jabatan, fontSize: 10}
+                                    {text: ''+ data.jabatanPenerimaKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'Alamat', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + vm.item.pegawaiPenerima.alamat, fontSize: 10}
+                                    // {text: '' + data.alamatPenerimaKuasa, fontSize: 10}
+                                    {text: '' + data.alamatRumahPenerimaKuasa, fontSize: 10}
                                 ]
                             ]
                         },
@@ -233,7 +132,7 @@
                             widths: [500],
                             body: [
                                 [
-                                    {text: '' + vm.item.isikuasa, fontSize: 10}
+                                    {text: '' + data.isiKuasa, fontSize: 10}
                                 ]
                             ]
                         },
@@ -248,14 +147,14 @@
                                 [{},{},{
                                     alignment:'center',
                                     text:[
-                                        {text:'' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1)}
+                                        {text:'' + data.kotaPembuatanSurat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis))}
                                     ]
                                 }],
                                 [{text: 'Penerima Kuasa,', bold: true, alignment: 'center'},{},{text: 'Pemberi Kuasa,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
-                                [{text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPenerima.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.gelarDepan + vm.item.pegawaiPemberi.nama + vm.item.pegawaiPemberi.gelarBelakang, alignment: 'center'}],
-                                [{text: ''+ vm.item.pegawaiPenerima.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.pangkat, alignment: 'center'}],
-                                [{text: ''+ vm.item.pegawaiPenerima.nipPegawai, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.nipPegawai, alignment: 'center'}]
+                                [{text: ''+ data.gelarDepanPenerimaKuasa + data.namaPenerimaKuasa + data.gelarBelakangPenerimaKuasa, alignment: 'center'}, {}, {text: ''+ data.gelarDepanPemberiKuasa + data.namaPemberiKuasa + data.gelarBelakangPemberiKuasa, alignment: 'center'}],
+                                // [{text: ''+ vm.item.pegawaiPenerima.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.pangkat, alignment: 'center'}],
+                                [{text: ''+ data.nipPenerimaKuasa, alignment: 'center'}, {}, {text: ''+ data.nipPemberiKuasa, alignment: 'center'}]
                             ]
                         },
                         layout: 'noBorders'
@@ -288,22 +187,10 @@
                     logo: logo_bekasi
                 }
             };
+            return docDefinition;
         }
+        return service;
+    }])
+    /* jshint ignore:end */
 
-        $scope.openPdf = function() {
-            var blb;
-            // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
-            //     // turn buffer into blob
-            //     blb = buffer;
-            // });
-            // blb = new Blob(blb);
-            console.log(vm.item.pembukaSurat);
-            template();
-            pdfMake.createPdf(vm.docDefinition).open();
-        };
-
-        $scope.downloadPdf = function() {
-            pdfMake.createPdf(vm.docDefinition).download();
-        };
-    }
 })();

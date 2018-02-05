@@ -257,7 +257,7 @@ angular.
                       body: [
                           [{text: 'Tanda Tangan,', alignment : 'center', bold: true}],
                           [{text: ' ',margin: [0,20]}],
-                          [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'center'}],
+                          [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'center'}],
                           [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'center'}]
                       ]
                   },

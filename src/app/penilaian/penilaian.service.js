@@ -1,4 +1,4 @@
-(function(){
+ (function(){
 	'use strict';
 
 	angular.module('eKinerja').service('PenilaianService', PenilaianService);
@@ -317,6 +317,70 @@
             return deferred.promise;
         };
 
+        service.GetDataSuratKuasa = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-kuasa-by-kd-surat-kuasa/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataMemorandum = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-memorandum-by-kd-memorandum/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataSuratKeterangan = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-keterangan-by-kd-surat-keterangan/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataBeritaAcara = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-berita-acara-by-kd-berita-acara/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataNotaDinas = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-nota-dinas-by-kd-nota-dinas/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
         return service;
 	}
 
