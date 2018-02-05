@@ -55,6 +55,8 @@ angular.
         PengumpulanDataBebanKerjaService.GetAllJabatan().then(
           function(response){
             vm.list_jabatan = response;
+            if($state.params.kdSurat != undefined)
+              getDocumentPerintah();
             vm.loading = false;
           }, function(errResponse){
 
@@ -71,6 +73,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSurat != undefined)
+                      getDocumentPerintah();
                     vm.loading = false;
                 }, function(errResponse){
 

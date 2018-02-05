@@ -4,13 +4,15 @@
     module('eKinerja')
         .controller('LaporanController', LaporanController);
 
-    function LaporanController(EkinerjaService, LaporanService, $scope, $state, logo_bekasi, $uibModal, $document, HakAksesService) {
+    function LaporanController(EkinerjaService, LaporanService, $scope, $state, 
+        logo_bekasi, $uibModal, $document, HakAksesService, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            getDocumentLaporan();
             vm.loading = false; 
         }
         else
@@ -21,17 +23,34 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    getDocumentLaporan();
                     vm.loading = false;
                 }, function(errResponse){
 
                 })
         }
 
-        $scope.$watch('pegawaipenandatangan', function(){
-            if($scope.pegawaipenandatangan.length == 18)
-                vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaipenandatangan,vm.list_pegawai);
-            debugger
-        });
+        function getDocumentLaporan(){
+            PenilaianService.GetDataLaporan($state.params.kdSuratBawahan).then(
+                function(response){
+                    vm.item = {
+                        "tentang": response.tentang,
+                        "isiumum": response.umum,
+                        "isimaksuddantujuan": response.maksudDanTujuan,
+                        "isiruanglingkup": response.ruangLingkup,
+                        "isidasar": response.dasar,
+                        "isikegiatan": response.kegiatanYangDilaksanakan,
+                        "isihasil": response.hasilYangDicapai,
+                        "isisimpulandansaran": response.simpulanDanSaran,
+                        "isipenutup": response.penutup,
+                        "tempat": response.kotaPembuatanSurat,
+                        "tanggal": new Date(response.tanggalPembuatanMilis),
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai)
+                    }
+                }, function(errResponse){
+
+                })
+        }
 
         vm.openDari = function (parentSelector) {
           var parentElem = parentSelector ? 
@@ -86,11 +105,14 @@
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
 
                 "kdLaporanBawahan": null,
-                "kdNaskahPenugasan": null,
+                "kdNaskahPenugasan": $state.params.kdSurat,
                 "jenisNaskahPenugasan": 1,
                 "statusPenilaian": 0,
                 "alasanPenolakan": null
             };
+
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdLaporanBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
             LaporanService.save(data).then(

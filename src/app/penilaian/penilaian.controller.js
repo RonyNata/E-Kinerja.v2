@@ -44,18 +44,28 @@
       }
 
       vm.terima = function(laporan, kdSurat, isPejabat){debugger
-        if(laporan.kdJenisSurat == 15)
-          openTeruskanTemplate(laporan);
-        else{
-          if(isPejabat == 1)
-              $state.go('perintahpejabatterusan', {
-                "kdSurat": kdSurat
-              });
-            else if(isPejabat == 2)
-              $state.go('perintahnonpejabatterusan', {
-                "kdSurat": kdSurat
-              });
-        }
+          switch(laporan.kdJenisSurat){
+            case 1: $state.go('laporan', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
+            case 4: getDocumentPengumuman(laporan); break;
+            case 5: getDocumentSuratDinas(laporan); break;
+            case 6: getDocumentEdaran(laporan); break;
+            case 7: getDocumentKeputusan(laporan); break;
+            case 10: getDocumentPengantar(laporan); break;
+            case 13: getDocumentUndangan(laporan); break;
+            case 12: getDocumentSuratTugas(laporan); break;
+            case 14: getDocumentTelaahanStaff(laporan); break;
+            case 15: getLaporanLain(laporan); break;
+            default: if(isPejabat == 1)
+                        $state.go('perintahpejabatterusan', {
+                          "kdSurat": kdSurat
+                        });
+                      else if(isPejabat == 2)
+                        $state.go('perintahnonpejabatterusan', {
+                          "kdSurat": kdSurat
+                        });break;
+          }
       }
 
       function getDocumentKeputusan(laporan){
