@@ -11,13 +11,13 @@
             var docDefinition = {
                 content: [
                     {
-                        margin: [0, 0, 0, 15],
+                        margin:[0,0,0,15],
                         table:{
                             widths: [100,'*'],
                             body: [
                                 [
                                     {
-                                        image: 'logo',
+                                        image: logo_bekasi,
                                         width: 90,
                                         height: 90,
                                         alignment: 'center'
@@ -35,9 +35,9 @@
                                             table: {
                                                 body: [
                                                     [
-                                                        {text: 'Telp. (021) 89970696', style: 'header2'},
-                                                        {text: 'Fax. (021) 89970064', style: 'header2'},
-                                                        {text: 'email : diskominfo@bekasikab.go.id', style: 'header2'}
+                                                        {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                        {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                        {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
                                                     ]
                                                 ]
                                             }, layout: 'noBorders'
@@ -65,22 +65,31 @@
                     },
 
                     {
-                        text: '' + data.isiPengumuman,  margin: [0,0,0,20]
+                        text: '' + data.isiPengumuman,  margin: [0,20,0,30], fontSize: 12, alignment: 'justify'
                     },
 
                     {
-                        style: 'tandaTangan',
-                        table: {
-                            widths: [200],
-                            body: [
-                                [{text: ['Dikeluarkan di ', {text:'' + data.kotaPembuatanSurat, bold:true}], alignment : 'left'}],
-                                [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)), bold:true}], alignment : 'left'}],
-                                [{text: '' + data.jabatanPenandatangan.toUpperCase() + ',', alignment : 'left', bold: true}],
-                                [{text: ' ',margin: [0,20]}],
-                                [{text: '' + data.namaPenandatangan, alignment : 'left'}]
-                            ]
-                        },
-                        layout: 'noBorders'
+                        columns: [
+                            {
+                                width: '63%',
+                                text: ''
+                            },
+                            {
+                                style: 'tandaTangan',
+                                table: {
+                                    widths: [200],
+                                    body: [
+                                        [{text: ['Dikeluarkan di ', {text:'' + data.kotaPembuatanSurat.toUpperCase(), bold:true}], alignment : 'left'}],
+                                        [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)), bold:true}], alignment : 'left'}],
+                                        [{text: '' + data.jabatanPenandatangan + ',', alignment : 'left', bold: true}],
+                                        [{text: ' ',margin: [0,20]}],
+                                        [{text: '' + data.namaPenandatangan, alignment : 'left', bold: true}],
+                                        [{text: '' + data.nipPenandatangan, alignment : 'left'}]
+                                    ]
+                                },
+                                layout: 'noBorders'
+                            }
+                        ]
                     }
                 ],
                 styles: {
@@ -90,6 +99,10 @@
                         alignment: 'center'
                     },
                     header2: {
+                        fontSize: 12,
+                        alignment: 'center'
+                    },
+                    header3: {
                         fontSize: 10,
                         alignment: 'center'
                     },
@@ -101,20 +114,15 @@
                     judul_nomor: {
                         alignment : 'center',
                         bold: true,
-                        fontSize: 11
-                    },
-                    header3: {
-                        bold: true,
-                        color: '#000',
-                        fontSize: 10
+                        fontSize: 12
                     },
                     demoTable: {
                         color: '#000',
-                        fontSize: 10
+                        fontSize: 12
                     },
                     tandaTangan: {
                         color: '#000',
-                        fontSize: 10,
+                        fontSize: 12,
                         alignment:'right'
                     }
                 },
