@@ -215,21 +215,6 @@
                 })
         };
 
-        function getDocumentNotaDinas(laporan){
-            // laporan.loading = true;
-            PenilaianService.GetDataNotaDinas(laporan.kdSurat).then(
-                function(response){
-                    vm.data = response;debugger
-                    var doc = TemplateNotaDinasService.template(vm.data);
-                    laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
-                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
-                    //   openSurat(laporan.kdSurat);
-                }, function(errResponse){
-
-                })
-        };
-
         function getDocumentSuratKeterangan(laporan){
             // laporan.loading = true;
             PenilaianService.GetDataSuratKeterangan(laporan.kdSurat).then(
@@ -282,7 +267,7 @@
           case 0: getDocumentBeritaAcara(laporan); break;
           case 1: getDocumentLaporan(laporan); break;
           case 2: getDocumentMemorandum(laporan); break;
-          case 3: getDocumentNotaDinas(laporan); break;
+          case 3: getDocumentNodin(laporan); break;
           case 4: getDocumentPengumuman(laporan); break;
           case 5: getDocumentSuratDinas(laporan); break;
           case 6: getDocumentEdaran(laporan); break;
@@ -290,8 +275,8 @@
           case 8: getDocumentSuratKeterangan(laporan); break;
           case 9: getDocumentSuratKuasa(laporan); break;
           case 10: getDocumentPengantar(laporan); break;
-          case 13: getDocumentUndangan(laporan); break;
           case 12: getDocumentSuratTugas(laporan); break;
+          case 13: getDocumentUndangan(laporan); break;
           case 14: getDocumentTelaahanStaff(laporan); break;
           case 15: getLaporanLain(laporan); break;
           default: vm.getDocumentPerintah(laporan); break;

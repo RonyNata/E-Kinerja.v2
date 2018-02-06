@@ -369,18 +369,6 @@
             return deferred.promise;
         };
 
-        service.GetDataNotaDinas = function (kdSurat) {
-            var deferred = $q.defer();
-            $http.get(API + 'get-nota-dinas-by-kd-nota-dinas/' + kdSurat ).then(
-                function (response){
-                    deferred.resolve(response.data);
-                },
-                function(errResponse){
-                    deferred.reject(errResponse);
-                }
-            );
-            return deferred.promise;
-        };
         service.GetDataPengumuman = function (kdSurat) {
             var deferred = $q.defer();
             $http.get(API + 'get-pengumuman-by-kd-pengumuman/' + kdSurat ).then(
