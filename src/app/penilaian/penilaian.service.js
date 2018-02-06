@@ -137,7 +137,7 @@
 
         service.GetNotaDinasHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + 'get-report-nodin-history-by-nip/' + nip ).then( 
+            $http.get(API + 'get-nota-dinas-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -330,9 +330,9 @@
             return deferred.promise;
         };
 
-        service.GetDataMemorandum = function (kdSurat) {
+        service.GetDataMemorandum = function (kdMemorandum) {
             var deferred = $q.defer();
-            $http.get(API + 'get-memorandum-by-kd-memorandum/' + kdSurat ).then(
+            $http.get(API + 'get-memorandum-by-kd-memorandum/' + kdMemorandum ).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

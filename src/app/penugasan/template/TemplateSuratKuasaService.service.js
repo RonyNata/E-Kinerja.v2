@@ -9,6 +9,7 @@
 
         service.template = function(data){
             var docDefinition = {
+                pageSize: 'A4',
                 content: [
                     {
                         margin:[0,0,0,15],
@@ -70,7 +71,7 @@
                                 [
                                     {text: 'Nama', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: '' + data.namaPemberiKuasa, fontSize: 10}
+                                    {text: '' + data.gelarDepanPemberiKuasa + data.namaPemberiKuasa + data.gelarBelakangPemberiKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'NIP', fontSize: 10},
@@ -104,7 +105,7 @@
                                 [
                                     {text: 'Nama', fontSize: 10},
                                     {text: ':', fontSize: 10},
-                                    {text: ''+ data.namaPenerimaKuasa, fontSize: 10}
+                                    {text: ''+ data.gelarDepanPenerimaKuasa + data.namaPenerimaKuasa + data.gelarBelakangPenerimaKuasa, fontSize: 10}
                                 ],
                                 [
                                     {text: 'NIP', fontSize: 10},
@@ -153,7 +154,7 @@
                                 [{text: 'Penerima Kuasa,', bold: true, alignment: 'center'},{},{text: 'Pemberi Kuasa,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
                                 [{text: ''+ data.gelarDepanPenerimaKuasa + data.namaPenerimaKuasa + data.gelarBelakangPenerimaKuasa, alignment: 'center'}, {}, {text: ''+ data.gelarDepanPemberiKuasa + data.namaPemberiKuasa + data.gelarBelakangPemberiKuasa, alignment: 'center'}],
-                                // [{text: ''+ vm.item.pegawaiPenerima.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.pangkat, alignment: 'center'}],
+                                [{text: ''+ data.pangkatPenerimaKuasa, alignment: 'center'}, {}, {text: ''+ data.pangkatPemberiKuasa, alignment: 'center'}],
                                 [{text: ''+ data.nipPenerimaKuasa, alignment: 'center'}, {}, {text: ''+ data.nipPemberiKuasa, alignment: 'center'}]
                             ]
                         },

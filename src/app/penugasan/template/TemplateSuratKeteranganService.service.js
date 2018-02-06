@@ -9,6 +9,7 @@
 
         service.template = function(data){
             var docDefinition = {
+                pageSize: 'A4',
                 content: [
                     {
                         margin:[0,0,0,15],
@@ -78,7 +79,7 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: '' + data.namaPenandatangan,
+                                        text: '' + data.gelarDepanPenandatangan + data.namaPenandatangan + data.gelarBelakangPenandatangan,
                                         fontSize: 12
                                     }
                                 ],
@@ -136,7 +137,7 @@
                                     },
                                     {
                                         border: [false, false, false, false],
-                                        text: ''+ data.nipPegawaiKeteranganList[0].nama,
+                                        text: ''+ data.nipPegawaiKeteranganList[0].glrDpn + data.nipPegawaiKeteranganList[0].nama + data.nipPegawaiKeteranganList[0].glrBlk,
                                         fontSize: 12
                                     }
                                 ],
@@ -240,14 +241,14 @@
                                         text: '' + data.gelarDepanPenandatangan + data.namaPenandatangan + data.gelarBelakangPenandatangan,
                                     }
                                 ],
-                                // [
-                                //     {
-                                //         border: [false, false, false, false],
-                                //         colSpan: 2,
-                                //         alignment: 'left',
-                                //         text: '' + vm.item.pegawaiPenandatangan.pangkat,
-                                //     }
-                                // ],
+                                [
+                                    {
+                                        border: [false, false, false, false],
+                                        colSpan: 2,
+                                        alignment: 'left',
+                                        text: '' + data.pangkatPenandatangan,
+                                    }
+                                ],
                                 [
                                     {
                                         border: [false, false, false, false],

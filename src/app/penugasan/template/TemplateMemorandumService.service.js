@@ -3,12 +3,13 @@
     angular
     .module('eKinerja')
     .factory('TemplateMemorandumService',
-    ['MemorandumService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
-    function (MemorandumService, EkinerjaService, logo_bekasi, logo_garuda) {
+    ['$state','MemorandumService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function ($state,MemorandumService, EkinerjaService, logo_bekasi, logo_garuda) {
         var service = {}; 
 
         service.template = function(data){
             var docDefinition = {
+                pageSize: 'A4',
                 content: [
                     {
                         image: 'pejabat',
@@ -42,12 +43,12 @@
                                 [
                                     {text: 'Yth.', bold: true},
                                     {text: ':'},
-                                    {text: ''+ data.namaPenerimaMemorandum}
+                                    {text: ''+ data.gelarDepanPenerimaMemorandum + data.namaPenerimaMemorandum + data.gelarBelakangPenerimaMemorandum}
                                 ],
                                 [
                                     {text: 'Dari', bold: true},
                                     {text: ':'},
-                                    {text: '' + data.namaPemberiMemorandum}
+                                    {text: ''+ data.gelarDepanPemberiMemorandum + data.namaPemberiMemorandum + data.gelarBelakangPemberiMemorandum}
                                 ],
                                 [
                                     {text: 'Hal', bold: true},
@@ -133,11 +134,11 @@
                 ol:[]
             }
 
-            for(var i = 0; i < data.tembusanSurat.length; i++)
-                tembusan.ol.push(data.tembusanSurat[i].deskripsi);
+            for(var i = 0; i < data.tembusanMemorandumList.length; i++)
+                tembusan.ol.push(data.tembusanMemorandumList[i].jabatan);
             docDefinition.content.push(tembusan);
 
-            if($state.current.name == "memorandumnonpejabat"){
+            if(!data.isSuratPejabat){
                 docDefinition.content[2] = {
                     margin: [0, 10, 0, 15],
                     table: {

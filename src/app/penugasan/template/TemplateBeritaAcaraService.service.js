@@ -9,6 +9,7 @@
 
         service.template = function(data){
             var docDefinition = {
+                pageSize: 'A4',
                 content: [
                     {
                         margin:[0,0,0,15],
@@ -26,7 +27,7 @@
                                         {
                                             text:[
                                                 {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                                {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                                {text: '' + data.unitKerjaPenandatangan + '\n', alignment: 'center', style:'header'},
                                                 {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                             ]
                                         },
@@ -86,7 +87,7 @@
                                         [
                                             {text: 'Nama'},
                                             {text: ':'},
-                                            {text: ''+ data.namaPihakKesatu, bold: false}
+                                            {text: ''+ data.gelarDepanPihakKesatu + data.namaPihakKesatu + data.gelarBelakangPihakKesatu, bold: false}
                                         ],
                                         [
                                             {text: 'NIP'},
@@ -126,7 +127,7 @@
                                         [
                                             {text: 'Nama'},
                                             {text: ':'},
-                                            {text: ''+ data.namaPihakKedua, bold: false}
+                                            {text: ''+ data.gelarDepanPihakKedua + data.namaPihakKedua + data.gelarBelakangPihakKedua, bold: false}
                                         ],
                                         [
                                             {text: 'NIP'},
@@ -194,8 +195,8 @@
                                 }],
                                 [{text: 'PIHAK KEDUA,', bold: true, alignment: 'center'},{},{text: 'PIHAK KESATU,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
-                                [{text: ''+ data.namaPihakKedua, alignment: 'center'}, {}, {text: ''+ data.namaPihakKesatu, alignment: 'center'}],
-                                [{text: ''+ data.GolonganPihakKedua, alignment: 'center'}, {}, {text: ''+ data.GolonganPihakKesatu, alignment: 'center'}],
+                                [{text: ''+ data.gelarDepanPihakKedua + data.namaPihakKedua + data.gelarBelakangPihakKedua, alignment: 'center'}, {}, {text: ''+ data.gelarDepanPihakKesatu + data.namaPihakKesatu + data.gelarBelakangPihakKesatu, alignment: 'center'}],
+                                [{text: ''+ data.pangkatPihakKedua, alignment: 'center'}, {}, {text: ''+ data.pangkatPihakKesatu, alignment: 'center'}],
                                 [{text: ''+ data.nipPihakKedua, alignment: 'center'}, {}, {text: ''+ data.nipPihakKesatu, alignment: 'center'}],
                                 [{text: 'Mengetahui/Mengesahkan', alignment: 'center', colSpan: 3, margin:[0,5,0,5]}],
                                 [{

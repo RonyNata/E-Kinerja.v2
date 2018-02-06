@@ -3,53 +3,54 @@
     angular
     .module('eKinerja')
     .factory('TemplateNotaDinasService',
-    ['NotaDinasService', 'logo_bekasi', 'logo_garuda',
-    function (NotaDinasService, logo_bekasi, logo_garuda) {
+    ['NotaDinasService', 'EkinerjaService', 'logo_bekasi', 'logo_garuda',
+    function (NotaDinasService, EkinerjaService,logo_bekasi, logo_garuda) {
         var service = {}; 
-
-        service.template = function(data){
+ 
+        service.template = function (data){
           var docDefinition = {
+            pageSize: 'A4',
             content: [
-                {
-                    margin:[0,0,0,15],
-                    table:{
-                        widths: [100,'*'],
-                        body: [
-                            [
-                                {
-                                    image: 'logo',
-                                    width: 90,
-                                    height: 90,
-                                    alignment: 'center'
-                                },
-                                [
-                                    {
-                                        text:[
-                                            {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                            {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header'},
-                                            {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
-                                        ]
-                                    },
-                                    {
-                                        margin: [15,0,0,0],
-                                        table: {
-                                            body: [
-                                                [
-                                                    {text: 'Telp. (021) 89970696', style: 'header2'},
-                                                    {text: 'Fax. (021) 89970064', style: 'header2'},
-                                                    {text: 'email : diskominfo@bekasikab.go.id', style: 'header2'}
-                                                ]
-                                            ]
-                                        }, layout: 'noBorders'
-                                    }
-                                ]
-                            ],
-                            [{text:'', colSpan: 2}],
-                            [{text:'', fillColor: 'black', colSpan: 2}]
-                        ]
-                    },
-                    layout: 'noBorders'
-                },
+              {
+                  margin:[0,0,0,15],
+                  table:{
+                      widths: [100,'*'],
+                      body: [
+                          [
+                              {
+                                  image: 'logo',
+                                  width: 90,
+                                  height: 90,
+                                  alignment: 'center'
+                              },
+                              [
+                                  {
+                                      text:[
+                                          {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                          {text: '' + data.unitKerjaPenandatangan + '\n', alignment: 'center', style:'header'},
+                                          {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
+                                      ]
+                                  },
+                                  {
+                                      margin: [15,0,0,0],
+                                      table: {
+                                          body: [
+                                              [
+                                                  {text: 'Telp. (021) 89970696', style: 'header2'},
+                                                  {text: 'Fax. (021) 89970064', style: 'header2'},
+                                                  {text: 'email : diskominfo@bekasikab.go.id', style: 'header2'}
+                                              ]
+                                          ]
+                                      }, layout: 'noBorders'
+                                  }
+                              ]
+                          ],
+                          [{text:'', colSpan: 2}],
+                          [{text:'', fillColor: 'black', colSpan: 2}]
+                      ]
+                  },
+                  layout: 'noBorders'
+              },
 
               {
                 text: 'NOTA DINAS', style: 'nota_dinas'
@@ -100,7 +101,7 @@
                   layout: 'noBorders'
               },
 
-              {text: 'Tembusan :', style: 'tembusan'}
+              {text: 'Tembusan :'}
 
             ],
 
@@ -128,24 +129,24 @@
                 alignment : 'justify',
                 margin: [0,20,0,30]
               },
-                header: {
-                    bold: true,
-                    fontSize: 14,
-                    alignment: 'center'
-                },
-                header3: {
-                    fontSize: 10,
-                    alignment: 'center'
-                },
-                header1: {
-                    bold: true,
-                    fontSize: 15,
-                    alignment: 'center'
-                },
-                header2: {
-                    fontSize: 10,
-                    alignment: 'center'
-                },
+              header: {
+                  bold: true,
+                  fontSize: 14,
+                  alignment: 'center'
+              },
+              header3: {
+                  fontSize: 10,
+                  alignment: 'center'
+              },
+              header1: {
+                  bold: true,
+                  fontSize: 15,
+                  alignment: 'center'
+              },
+              header2: {
+                  fontSize: 10,
+                  alignment: 'center'
+              },
               demoTable: {
                 color: '#000',
                 fontSize: 10,
@@ -157,20 +158,23 @@
                 margin: [300,0,0,20]
               }
             },
-
-              images:{
-                  logo: logo_bekasi
-              }
+            images:{
+                logo: logo_bekasi
+            }
           };
 
-          var tembusanSurat = {
-            ol:[]
+          var tembusan = {
+              ol:[]
           };
 
-            for(var i = 0; i < data.tembusanSurat.length; i++)
-                tembusanSurat.ol.push(data.tembusanSurat[i].jabatan.jabatan);
-            docDefinition.content.push(tembusanSurat);
+
+          for(var i = 0; i < data.tembusanNotaDinasList.length; i++)
+              tembusan.ol.push(data.tembusanNotaDinasList[i].jabatan);
+          docDefinition.content.push(tembusan);
+
+          return docDefinition;
         }
+        ;
         return service;
     }])
     /* jshint ignore:end */
