@@ -252,7 +252,7 @@
             };
 
             for(var i = 0; i < data.isiBeritaAcara.length; i++)
-                docDefinition.content[6].ol.push(data.isiBeritaAcara[i].deskripsiisiberitaacara);
+                docDefinition.content[6].ol.push(data.isiBeritaAcara[i]);
             return docDefinition;
         }
         return service;

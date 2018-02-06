@@ -187,7 +187,7 @@
 
         function getDocumentBeritaAcara(laporan){
             // laporan.loading = true;
-            PenilaianService.GetDataBeritaAcara(laporan.kdBeritaAcara).then(
+            PenilaianService.GetDataBeritaAcara(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateBeritaAcaraService.template(vm.data);
@@ -260,6 +260,21 @@
                 })
         };
 
+        function getDocumentPengumuman(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataPengumuman(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplatePengumumanService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
       vm.getDocument = function(laporan){debugger
         laporan.loading = true;
         debugger
@@ -305,12 +320,11 @@
             getLaporanBawahan();
         };
 
-        function getDocumentBeritaAcara(laporan){ 
-            // laporan.loading = true; 
-            DashboardService.ChangeRead('open-berita-acara-penilai/', 
-                      laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
-            getLaporanBawahan();
-        };
+        // function getDocumentBeritaAcara(laporan){ 
+        //     DashboardService.ChangeRead('open-berita-acara-penilai/', 
+        //               laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+        //     getLaporanBawahan();
+        // };
 
       vm.getDocumentPerintah = function(laporan){
           // laporan.loading = true;
