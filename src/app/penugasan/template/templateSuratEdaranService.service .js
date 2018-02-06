@@ -102,11 +102,12 @@
                               widths: [200],
                               body: [
                                   [{text: ['Ditetapkan di ', {text:'' + data.kotaPembuatanSurat.toUpperCase(), bold:true}], alignment : 'left'}],
-                                  [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalSuratEdaranMilis)), bold:true}], alignment : 'left'}],
+                                  [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis)), bold:true}], alignment : 'left'}],
                                   [{text: '' + data.jabatanPenandatangan + ',', alignment : 'left', bold: true}],
                                   [{text: ' ',margin: [0,20]}],
-                                  [{text: '' + data.namaPenandatangan, alignment : 'left', bold:true}],
-                                  [{text: '' + data.nipPenandatangan, alignment : 'left'}]
+                                  [{text: '' + data.gelarDepanPenandatangan + data.namaPenandatangan + data.gelarBelakangPenandatangan, alignment : 'left', bold:true}],
+                                  [{text: '' + data.pangkatPenandatangan, alignment : 'left', bold:true}],
+                                  [{text: 'NIP. ' + data.nipPenandatangan, alignment : 'left'}]
                               ]
                           },
                           layout: 'noBorders'

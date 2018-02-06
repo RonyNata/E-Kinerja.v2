@@ -144,7 +144,8 @@
                                     body: [
                                         [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                         [{text: ' ',margin: [0,20]}],
-                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left', bold: true}],
                                         [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
                                     ]
                                 },

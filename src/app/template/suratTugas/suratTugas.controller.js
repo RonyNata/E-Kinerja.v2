@@ -307,7 +307,7 @@
                         table: {
                             widths: [50, 5, '*'],
                             body: [
-                                [{text: 'Nama', bold: true},{text: ':'},{text: '' + vm.item.pegawaiPenandatangan.nama}],
+                                [{text: 'Nama', bold: true},{text: ':'},{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang}],
                                 [{text: 'Jabatan', bold: true},{text: ':'},{text: '' + vm.item.pegawaiPenandatangan.jabatan}]
                             ]
                         },
@@ -319,13 +319,13 @@
                         table: {
                             widths: [80, 5, '*'],
                             body: [
-                                [{text: 'Menimbang', style: 'header'},{text: ':'},
+                                [{text: 'Menimbang', fontSize: 12, bold:true},{text: ':'},
                                     {
                                         ol: []
                                     }
                                 ],
                                 [{text: '',margin: [0,0,0,3], colSpan: 3}],
-                                [{text: 'Dasar', style: 'header'},{text: ':'},
+                                [{text: 'Dasar', fontSize: 12, bold:true},{text: ':'},
                                     {
                                         ol: []
                                     }
@@ -336,7 +336,7 @@
                     },
 
                     {
-                        text: 'Memberi Tugas', alignment: 'center', fontSize: 11
+                        text: 'Memberi Tugas', alignment: 'center', fontSize: 12
                     },
 
                     {
@@ -344,13 +344,13 @@
                         table: {
                             widths: [80, 5, '*'],
                             body: [
-                                [{text: 'Kepada', style: 'header'},{text: ':'},
+                                [{text: 'Kepada', fontSize: 12, bold:true},{text: ':'},
 
                                     {
                                         ol: []
                                     }],
                                 [{text: '',margin: [0,0,0,3], colSpan: 3}],
-                                [{text: 'Untuk', style: 'header'},{text: ':'},
+                                [{text: 'Untuk', fontSize: 12, bold:true},{text: ':'},
                                     {
                                         ol : []
                                     }
@@ -374,8 +374,9 @@
                                         [{text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment : 'left'}],
                                         [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                         [{text: ' ',margin: [0,20]}],
-                                        [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left', bold: true}],
-                                        [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                        [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold: true}],
+                                        [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left', bold: true}],
+                                        [{text: 'NIP. ' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
                                     ]
                                 },
                                 layout: 'noBorders'
@@ -428,9 +429,9 @@
                     widths: ['*', '*', '*'],
                     table: {
                         body: [
-                            [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].nama}],
+                            [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].gelarDepan + vm.target[i].nama + vm.target[i].gelarBelakang}],
                             [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + vm.target[i].nipPegawai}],
-                            [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].golongan}],
+                            [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].pangkat + ' - ' + vm.target[i].golongan}],
                             [{text: 'Jabatan', bold: true}, {text: ':'}, {text: '' + vm.target[i].jabatan}]
                         ]
                     },

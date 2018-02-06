@@ -139,8 +139,9 @@
                                     [{text: ['Penerima,'], alignment : 'left'}],
                                     [{text: '' + data.penerimaSuratPengantar.jabatan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
-                                    [{text: '' + data.penerimaSuratPengantar.nama, alignment : 'left', bold: true}],
-                                    [{text: '' + data.penerimaSuratPengantar.nip, alignment : 'left'}]
+                                    [{text: '' + data.penerimaSuratPengantar.glrDpn + data.penerimaSuratPengantar.nama + data.penerimaSuratPengantar.glrBlk, alignment : 'left', bold: true}],
+                                    [{text: '' + data.penerimaSuratPengantar.pangkat, alignment : 'left', bold: true}],
+                                    [{text: 'NIP. ' + data.penerimaSuratPengantar.nip, alignment : 'left'}]
                                 ]
                             },
                             layout: 'noBorders'
@@ -153,8 +154,9 @@
                                     [{text: ['Pengirim,'], alignment : 'left'}],
                                     [{text: '' + data.jabatanPemberiSuratPengantar + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
-                                    [{text: '' + data.namaPemberiSuratPengantar, alignment : 'left', bold: true}],
-                                    [{text: '' + data.nipPemberiSuratPengantar, alignment : 'left'}]
+                                    [{text: '' + data.gelarDepanPemberiSuratPengantar + data.namaPemberiSuratPengantar + data.gelarBelakangPemberiSuratPengantar, alignment : 'left', bold: true}],
+                                    [{text: '' + data.pangkatPemberiSuratPengantar, alignment : 'left', bold: true}],
+                                    [{text: 'NIP. ' + data.nipPemberiSuratPengantar, alignment : 'left'}]
                                 ]
                             },
                             layout: 'noBorders'
