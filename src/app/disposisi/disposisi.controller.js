@@ -23,6 +23,11 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 
     if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
         vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+        if($state.params.kdSurat != undefined){
+		    	getDisposisi();
+		    	vm.penerusan = true;
+		    }else {vm.penerusan = false;
+		          }
         vm.loading = false;	
     	// getAllPegawai();
     }

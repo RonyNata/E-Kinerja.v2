@@ -5,7 +5,7 @@
         .controller('SuratKuasaController', SuratKuasaController);
 
     function SuratKuasaController(EkinerjaService, SuratKuasaService, HakAksesService, 
-        $scope, $state, logo_bekasi, $uibModal, $document) {
+        $scope, $state, logo_bekasi, $uibModal, $document,PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -18,6 +18,8 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentKuasa();
             vm.loading = false; 
         }
         else
@@ -28,6 +30,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentKuasa();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -69,6 +73,26 @@
           });
         };
 
+        function getDocumentKuasa(){
+            PenilaianService.GetDataKuasa($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "tahun": response.nomorTahun,
+                        "isikuasa": response.isiKuasa,
+                        "tempat": response.kotaPembuatanSurat,
+                        "pegawaiPemberi": EkinerjaService.findPegawaiByNip(response.nipPemberiKuasa,vm.list_pegawai),
+                        "pegawaiPenerima": EkinerjaService.findPegawaiByNip(response.nipPenerimaKuasa,vm.list_pegawai),
+                        "tanggal1": new Date(response.tanggalPembuatanMilis)
+                    };
+
+
+                }
+                );
+        }
+
         // $scope.$watch('pegawaipenerima', function(){
         //     if($scope.pegawaipenerima.length == 18)
         //         vm.item.pegawaiPenerima = EkinerjaService.findPegawaiByNip($scope.pegawaipenerima,vm.list_pegawai);
@@ -99,6 +123,9 @@
                 "kdNaskahPenugasan": "",
                 "jenisNaskahPenugasan": ""
             }
+
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratKuasaBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
             SuratKuasaService.save(data).then(

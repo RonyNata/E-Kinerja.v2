@@ -137,7 +137,7 @@
 
         service.GetNotaDinasHistory = function (nip) { 
             var deferred = $q.defer(); 
-            $http.get(API + 'get-report-nodin-history-by-nip/' + nip ).then( 
+            $http.get(API + 'get-nota-dinas-by-pembuat/' + nip ).then( 
                 function (response){ 
                     deferred.resolve(response.data); 
                 }, 
@@ -320,6 +320,45 @@
         service.GetDataPengumuman = function (kdSurat) {
             var deferred = $q.defer();
             $http.get(API + 'get-pengumuman-by-kd-pengumuman/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataKuasa = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-kuasa-by-kd-surat-kuasa/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataBeritaAcara = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-berita-acara-by-kd-berita-acara/' + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetDataNodin = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-nota-dinas-by-kd-nota-dinas/' + kdSurat ).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

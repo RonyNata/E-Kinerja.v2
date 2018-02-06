@@ -4,7 +4,8 @@
     module('eKinerja')
         .controller('BeritaAcaraController', BeritaAcaraController);
 
-    function BeritaAcaraController(EkinerjaService, BeritaAcaraService, HakAksesService, $scope, $state, logo_bekasi, $uibModal, $document) {
+    function BeritaAcaraController(EkinerjaService, BeritaAcaraService, HakAksesService, $scope, $state, logo_bekasi,
+     $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -55,6 +56,16 @@
           });
         };
 
+        function getDocumentBerita(){
+            PenilaianService.GetDataBeritaAcara($state.params.kdSuratBawahan).then(
+                function(response){
+                    vm.item = response;
+                },function(errResponse){
+
+                }
+                )
+        }
+
         vm.save = function(){
             var data = {
                 "kdBeritaAcara": "",
@@ -83,6 +94,9 @@
             for(var i = 0; i < vm.isiBeritaAcara.length; i++)
                 data.isiBeritaAcara.push(vm.isiBeritaAcara[i].deskripsiisiberitaacara);
 
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdBeritaAcaraBawahan = $state.params.kdSuratBawahan;
+
             console.log(data);
             BeritaAcaraService.save(data).then(
                 function(response){
@@ -100,6 +114,8 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentBerita();
             vm.loading = false; 
         }
         else
@@ -110,11 +126,14 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentBerita();
                     vm.loading = false;
                 }, function(errResponse){
 
                 })
         }
+
 
         $scope.$watch('pegawaikesatu', function(){
             if($scope.pegawaikesatu.length == 18)

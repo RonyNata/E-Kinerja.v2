@@ -302,7 +302,7 @@
         };
 
     vm.getDokumenLaporan = function(laporan, kdHistory, idx){
-      laporan.loading = true;
+      laporan.loading = true;debugger
       switch(laporan.kdJenisSurat){
         case 1: getDocumentLaporan(laporan); break;
         case 5: getDocumentSuratDinas(laporan); break;
@@ -359,6 +359,33 @@
         case 2: $state.go('penugasan');break;
         case 3: $state.go('penilaian');break;
       }
+    }
+
+    getSurat();
+
+    function getSurat(){
+      vm.suratMasuk = [];
+      getSuratMasuk('get-nota-dinas-by-target-unread/');
+      getSuratMasuk('get-daftar-memorandum-unread/');
+      getSuratMasuk('get-daftar-surat-keterangan-by-target-unread/');
+      getSuratMasuk('get-surat-kuasa-by-penerima-kuasa-unread/');
+      getSuratMasuk('get-daftar-surat-pengantar-by-target-unread/');
+      // getSuratMasuk('');
+      // getSuratMasuk('');
+    }
+
+    function getSuratMasuk(url){debugger
+      DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+        function(response){
+          for(var i = 0; i < response.length;i++){
+            var date = new Date(response[i].createdDateMilis);
+            response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+            response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+            vm.suratMasuk.push(response[i]);
+          }
+        }, function(errResponse){
+
+        })
     }
 
     function template(item){

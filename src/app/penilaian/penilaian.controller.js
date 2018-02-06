@@ -21,7 +21,8 @@
                                  TemplateSuratUndanganService,
                                  TemplateSuratPengantarService,
                                  TemplateSuratEdaranService,
-                                 TemplatePengumumanService){
+                                 TemplatePengumumanService,
+                                 TemplateNotaDinasService){
 		var vm = this;
     	vm.loading = true;
 
@@ -45,6 +46,9 @@
 
       vm.terima = function(laporan, kdSurat, isPejabat){debugger
           switch(laporan.kdJenisSurat){
+            case 0: $state.go('beritaacara', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 1: $state.go('laporan', {
                           "kdSuratBawahan": kdSurat
                         }); break;
@@ -52,7 +56,9 @@
             case 5: getDocumentSuratDinas(laporan); break;
             case 6: getDocumentEdaran(laporan); break;
             case 7: getDocumentKeputusan(laporan); break;
-            case 10: getDocumentPengantar(laporan); break;
+            case 9: $state.go('suratkuasa', {
+                          "kdSuratBawahan": kdSurat
+                        });(laporan); break;
             case 13: getDocumentUndangan(laporan); break;
             case 12: getDocumentSuratTugas(laporan); break;
             case 14: getDocumentTelaahanStaff(laporan); break;
@@ -188,14 +194,32 @@
                 })
         };
 
-      vm.getDocument = function(laporan){
+        function getDocumentNodin(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataNodin(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateNotaDinasService.template(vm.data);
+                    laporan.loading = false;
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+      vm.getDocument = function(laporan){debugger
         laporan.loading = true;
         switch(laporan.kdJenisSurat){
+          case 0: getDocumentBeritaAcara(laporan); break;
           case 1: getDocumentLaporan(laporan); break;
+          case 3: getDocumentNodin(laporan); break;
           case 4: getDocumentPengumuman(laporan); break;
           case 5: getDocumentSuratDinas(laporan); break;
           case 6: getDocumentEdaran(laporan); break;
           case 7: getDocumentKeputusan(laporan); break;
+          case 9: getDocumentSuratKuasa(laporan); break;
           case 10: getDocumentPengantar(laporan); break;
           case 13: getDocumentUndangan(laporan); break;
           case 12: getDocumentSuratTugas(laporan); break;
@@ -219,6 +243,20 @@
             // EkinerjaService.showToastrError("Gagal Mengambil Data");
           })
       }
+
+      function getDocumentSuratKuasa(laporan){ 
+            // laporan.loading = true; 
+            DashboardService.ChangeRead('open-surat-kuasa-penilai/', 
+                      laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+            getLaporanBawahan();
+        };
+
+        function getDocumentBeritaAcara(laporan){ 
+            // laporan.loading = true; 
+            DashboardService.ChangeRead('open-berita-acara-penilai/', 
+                      laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+            getLaporanBawahan();
+        };
 
       vm.getDocumentPerintah = function(laporan){
           // laporan.loading = true;

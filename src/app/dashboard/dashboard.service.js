@@ -97,6 +97,19 @@
             return deferred.promise;
         };
 
+        service.GetSuratMasuk = function (url, nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API + url + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 })();
