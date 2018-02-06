@@ -286,7 +286,7 @@
                                 }],
                                 [{text: 'Penerima Kuasa,', bold: true, alignment: 'center'},{},{text: 'Pemberi Kuasa,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
-                                [{text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPenerima.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPemberi.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiPenerima.gelarDepan + vm.item.pegawaiPenerima.nama + vm.item.pegawaiPenerima.gelarBelakang, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.gelarDepan + vm.item.pegawaiPemberi.nama + vm.item.pegawaiPemberi.gelarBelakang, alignment: 'center'}],
                                 [{text: ''+ vm.item.pegawaiPenerima.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.pangkat, alignment: 'center'}],
                                 [{text: ''+ vm.item.pegawaiPenerima.nipPegawai, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiPemberi.nipPegawai, alignment: 'center'}]
                             ]
