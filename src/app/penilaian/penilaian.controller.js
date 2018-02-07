@@ -65,9 +65,20 @@
                     $state.go('memorandumnonpejabat', {
                           "kdSuratBawahan": kdSurat
                         }); break;
-            case 3: getDocumentNotaDinas(laporan); break;
-            case 4: getDocumentPengumuman(laporan); break;
-            case 5: getDocumentSuratDinas(laporan); break;
+            case 3: $state.go('notadinas', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
+            case 4: $state.go('pengumuman', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
+            case 5: if(laporan.suratPejabat == 1)
+                    $state.go('suratdinaspejabat', {
+                          "kdSuratBawahan": kdSurat
+                        });
+                    else 
+                    $state.go('suratdinasnonpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 6: if(laporan.suratPejabat == 1)
                     $state.go('suratedaran', {
                           "kdSuratBawahan": kdSurat
@@ -475,8 +486,8 @@
                   response[i].jenisSurat = "berita acara"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-            }) 
               getPengantarHistory();
+            }) 
         }
 
         function getLaporanHistory(){ 
@@ -505,8 +516,8 @@
                   response[i].jenisSurat = "nota dinas"; 
                   vm.perintahHistory.push(response[i]); 
               } 
-            }) 
               getLaporanHistory();
+            }) 
         }
 
         function getSuratDinasHistory(){ 
@@ -544,7 +555,7 @@
             function(response){ 
               for(var i = 0; i < response.length;i++){ debugger
                   var date = new Date(response[i].tanggalDibuatMilis); 
-                  response[i].tanggalDibuatMilis = response[i].createdDate;
+                  // response[i].tanggalDibuatMilis = response[i].createdDate;
                   response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date); 
                   response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes(); 
                   response[i].suratPejabat = response.isSuratPejabat; 
