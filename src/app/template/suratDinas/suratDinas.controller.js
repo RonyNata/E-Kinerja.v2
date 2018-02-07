@@ -66,10 +66,6 @@ angular.
             vm.tembusanSurat[idx].jabatan = EkinerjaService.findJabatanByKdJabatan(vm.tembusanSurat[idx].jabat, vm.list_jabatan);
         };
 
-        vm.findJabatanTarget = function(){
-            vm.item.jabatanPenerima = EkinerjaService.findJabatanByKdJabatan(vm.jabatantarget, vm.list_jabatan);
-        };
-
         if($state.current.name == "suratdinasnonpejabat")
           vm.judul = 'Non-Pejabat';
         else vm.judul = 'Pejabat';
@@ -131,7 +127,7 @@ angular.
                 "sifat": vm.item.sifat,
                 "lampiran": vm.item.lampiran,
                 "hal": vm.item.hal,
-                "kdJabatanPenerimaSuratDinas": vm.item.jabatanPenerima.kdJabatan,
+                "kdJabatanPenerimaSuratDinas": vm.item.pegawaiPenerima.kdJabatan,
                 "tanggalSuratDinasMilis": vm.item.tanggal1.getTime(),
                 "kotaPembuatanSuratDinas": vm.item.tempat,
                 "isiSuratDinas": vm.item.alineaIsi,
@@ -207,11 +203,11 @@ angular.
                     },
 
                     {
-                        margin: [0,0,0,15], alignment:'justify',
+                        margin: [0,0,0,15],
                         table: {
                             widths: [200],
                             body: [
-                                [{text: 'Yth. ' + vm.item.jabatanPenerima.kdJabatan}]
+                                [{text: 'Yth. ' + vm.item.pegawaiPenerima.jabatan}]
                             ]
                         },
                         layout: 'noBorders'

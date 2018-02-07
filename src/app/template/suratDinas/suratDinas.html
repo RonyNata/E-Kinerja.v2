@@ -18,16 +18,16 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrusan" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrusan" placeholder="nomor urusan" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrut" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrut" placeholder="nomor urut" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorPasanganUrut" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorPasanganUrut" placeholder="nomor pasangan urut" required>
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUnit" required>
+                                        <input type="text" class="form-control" ng-model="suratdinas.item.nomorUnit" placeholder="nomor unit" required>
                                     </div>
                                     <div class="col-md-2">
                                         <input type="number" class="form-control" ng-model="suratdinas.item.tahun" disabled required>
@@ -66,7 +66,7 @@
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tempat</b></p>
+                                        <p><b>Tempat Pembuatan Surat</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
@@ -76,30 +76,41 @@
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tanggal</b></p>
+                                        <p><b>Tanggal Pembuatan Surat</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-3">
                                         <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Penerima</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <form method="get">
-                                            <input class="form-control" list="jabatantarget" name="jabatantarget" ng-model="suratdinas.jabatan" placeholder="Pilih Jabatan" ng-change="suratdinas.findJabatanTarget()">
-                                            <datalist id="jabatantarget">
-                                                <option ng-repeat="jbtn in suratdinas.list_jabatan"
-                                                        value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
-                                            </datalist>
-                                        </form>
-                                        <div ng-show="suratdinas.jabatanPenerima">Jabatan : {{suratdinas.jabatanPenerima.jabatan}}</div>
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="suratdinas.item.pegawaiPenerima" class="col-md-9" style="margin-bottom: 0px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratdinas.item.pegawaiPenerima.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratdinas.item.pegawaiPenerima.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" style="margin-top:5px">
@@ -110,16 +121,31 @@
                                         <textarea class="form-control" ng-model="suratdinas.item.alineaIsi" required style="height: 100px"></textarea>
                                 </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Penandatangan</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="suratdinas.item.pegawaiPenandatangan">Nama: {{suratdinas.item.pegawaiPenandatangan.nama}}</div>
-                                        <div ng-show="suratdinas.item.pegawaiPenandatangan">Jabatan: {{suratdinas.item.pegawaiPenandatangan.jabatan}}</div>
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="suratdinas.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratdinas.item.pegawaiPenandatangan.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{suratdinas.item.pegawaiPenandatangan.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -153,7 +179,7 @@
                                                             value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
                                                 </datalist>
                                             </form>
-                                            <div ng-show="tembusan.jabatan">Jabatan: {{tembusan.jabatan.jabatan}}</div>
+                                            <div ng-show="tembusan.jabatan">Jabatan : {{tembusan.jabatan.jabatan}}</div>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary waves-effect" type="button" ng-click="suratdinas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>

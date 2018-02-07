@@ -200,7 +200,7 @@
 
         function getDocumentTugas(){
             PenilaianService.GetDataSuratTugas($state.params.kdSuratBawahan).then(
-                function(response){
+                function(response){debugger
                     vm.item = {
                         "nomorUrusan": response.nomorUrusan,
                         "nomorUnit": response.nomorUnit,
@@ -232,7 +232,7 @@
 
                     vm.tembusanSurat = [];
                     for(var i = 0; i < response.tembusanSuratTugasSet.length; i++)
-                        vm.untuk.push(
+                        vm.tembusanSurat.push(
                             {"id": (new Date()).getTime(), 
                              "jabat": response.tembusanSuratTugasSet[i].kdJabatan,
                              "jabatan": response.tembusanSuratTugasSet[i]});
@@ -268,7 +268,7 @@
                 "tanggalSuratTugasMilis": vm.item.tanggal1.getTime()
             };
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdSuratTugasBawahan = $state.params.kdSuratBawahan;
 
 

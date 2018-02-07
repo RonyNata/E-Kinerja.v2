@@ -24,15 +24,18 @@
                                         <input type="number" class="form-control" ng-model="suratkeputusan.item.tahun" disabled required>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
                                         <p><b>Nama Pembuat Keputusan</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="suratkeputusan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="suratkeputusan.item.pegawaiPenandatangan" class="col-md-12" style="margin-top:5px">
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px">
+                                            <button class="btn btn-primary waves-effect" ng-click="suratkeputusan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                        </div>
+                                        <div ng-show="suratkeputusan.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>
@@ -48,6 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <!-- <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-2" >
@@ -93,7 +97,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <div ng-repeat="data1 in suratkeputusan.menimbang">
+                                        <div ng-repeat="data1 in suratkeputusan.menimbang" style="margin-bottom: 5px">
                                             <textarea class="form-control" style="height: 100px" ng-model="data1.deskripsimenimbang"></textarea>
                                         </div>
                                     </div>
@@ -106,7 +110,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <div ng-repeat="data2 in suratkeputusan.mengingat">
+                                        <div ng-repeat="data2 in suratkeputusan.mengingat" style="margin-bottom: 5px">
                                             <textarea class="form-control" style="height: 100px" ng-model="data2.deskripsimengingat"></textarea>
                                         </div>
                                     </div>
@@ -119,7 +123,7 @@
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
-                                        <div ng-repeat="keputusan in suratkeputusan.keputusan">
+                                        <div ng-repeat="keputusan in suratkeputusan.keputusan" style="margin-bottom: 5px">
                                             <textarea class="form-control" ng-model="keputusan.deskripsi" required style="height: 100px"> </textarea>
                                         </div>
                                     </div>
@@ -138,7 +142,7 @@
                                 <div class="col-md-12" style="margin-bottom:10px">
                                     <div class="col-md-1"></div>
                                     <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tanggal</b></p>
+                                        <p><b>Tanggal Pembuatan Surat</b></p>
                                     </div>
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-3">
@@ -152,7 +156,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="col-md-4" style="margin-left: -15px;">
-                                            <input class="form-control" ng-model="suratkeputusan.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
+                                            <input class="form-control" ng-model="suratkeputusan.item.durasiPengerjaan" type="number" name="quantity" min="0" required></input>
                                         </div>
                                         <div class="col-md-4" style="padding-top: 8px;">
                                             <span><b>Menit</b></span>
