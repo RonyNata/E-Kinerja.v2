@@ -110,6 +110,19 @@
             return deferred.promise;
         };
 
+        service.GetSuratTugas = function (nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-surat-tugas-by-target-unread/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 })();

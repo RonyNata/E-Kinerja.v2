@@ -60,6 +60,16 @@
             PenilaianService.GetDataBeritaAcara($state.params.kdSuratBawahan).then(
                 function(response){
                     vm.item = response;
+                    vm.item.tahun = response.nomorTahun;
+                    vm.item.pegawaiKesatu = EkinerjaService.findPegawaiByNip(response.nipPihakKesatu, vm.list_pegawai);
+                    vm.item.pegawaiKedua = EkinerjaService.findPegawaiByNip(response.nipPihakKedua, vm.list_pegawai);
+                    vm.isiBeritaAcara = [];
+                    for(var i = 0; i < response.isiBeritaAcara.length; i++)
+                        vm.isiBeritaAcara.push({"id": new Date().getTime(), "deskripsiisiberitaacara": response.isiBeritaAcara[i]});
+                    vm.item.dasarberitaacara = response.dasarBeritaAcara;
+                    vm.item.pegawaiMengetahui = EkinerjaService.findPegawaiByNip(response.nipMengetahui, vm.list_pegawai);
+                    vm.item.tanggal1 = new Date(response.tanggalPembuatanMilis);
+                    vm.item.tempat = response.kotaPembuatanSurat;
                 },function(errResponse){
 
                 }

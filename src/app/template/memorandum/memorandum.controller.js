@@ -5,7 +5,7 @@
         .controller('MemorandumController', MemorandumController);
 
     function MemorandumController(EkinerjaService, MemorandumService, HakAksesService, $scope, 
-        $state, logo_bekasi, logo_garuda, $uibModal, $document, PengumpulanDataBebanKerjaService) {
+        $state, logo_bekasi, logo_garuda, $uibModal, $document, PengumpulanDataBebanKerjaService, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -32,6 +32,8 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentMemorandum();
         }
         else
         getAllPegawai();
@@ -41,6 +43,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentMemorandum();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -169,6 +173,33 @@
         //     debugger
         // });
 
+        function getDocumentMemorandum(){
+            PenilaianService.GetDataMemorandum($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorSurat": response.nomorUrusan,
+                        "nomorSurat1": response.nomorPasanganUrut,
+                        "nomorSurat2": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+
+                        "pegawaiDari": EkinerjaService.findPegawaiByNip(response.nipPemberiMemorandum,vm.list_pegawai),
+                        "pegawaiPenerima": EkinerjaService.findPegawaiByNip(response.nipPenerimaMemorandum,vm.list_pegawai),
+                        "hal": response.hal,
+                        "isimemorandum": response.isiMemorandum,
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan, vm.list_pegawai)
+                    };
+
+                    vm.tembusanSurat = [];
+                    for(var i = 0; i < response.tembusanMemorandumList.length; i++)
+                        vm.tembusanSurat.push(
+                            {"id": (new Date()).getTime(), 
+                             "jabat": response.tembusanMemorandumList[i].kdJabatan,
+                             "jabatan": response.tembusanSurat[i]});
+                }
+                );
+        }
+
         vm.save = function(){
           var data = {
             "nomorUrusan": vm.item.nomorSurat,
@@ -191,6 +222,9 @@
             "suratPejabat": true
             // "tanggalDibuat": (new Date()).getTime(),
           }
+
+          if($state.params.kdSuratBawahan != undefined)
+                data.kdMemorandumBawahan = $state.params.kdSuratBawahan;
 
           if($state.current.name == "memorandumnonpejabat")
             data.suratPejabat = false;

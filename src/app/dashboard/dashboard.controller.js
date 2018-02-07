@@ -6,7 +6,9 @@
 	function DashboardController(AmbilDisposisiService, PenugasanService, KontrakPegawaiService, $state, PenilaianService,
     TemplateSuratInstruksiService, TemplateSuratPerintahService, DashboardService, EkinerjaService, $uibModal, $window, API,
     TemplateTelaahanStaffService,TemplateLaporanService, TemplateSuratDinasService, TemplateSuratPengantarService,
-    TemplateSuratUndanganService, TemplateSuratEdaranService, TemplateSuratKeputusanService){
+    TemplateSuratUndanganService, TemplateSuratEdaranService, TemplateSuratKeputusanService, 
+    TemplatePengumumanService, TemplateMemorandumService, TemplateSuratKuasaService,
+    TemplateSuratKeteranganService, TemplateNotaDinasService, TemplateBeritaAcaraService, TemplateSuratTugasService){
 		var vm = this;
     vm.loading = true;
 
@@ -57,7 +59,7 @@
             response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
           }
           vm.perintahHistory = response;
-          getNaskahPenugasanInstruksiTarget();
+          getNaskahPenugasanTugasTarget();
         },function(errResponse){
 
         })
@@ -92,6 +94,24 @@
             vm.naskah.push(response[i]);
           }
           getNaskahPenugasanPerintahTarget();
+        }, function(errResponse){
+
+        })
+    }
+
+    function getNaskahPenugasanTugasTarget(){
+      DashboardService.GetSuratTugas($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+        function(response){debugger
+          // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+          for(var i = 0; i < response.length;i++){
+            var waktu = new Date(response[i].tanggalDibuatMilis);
+            response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
+            response[i].nama = "Instruksi";
+            response[i].jenis = 0;
+            response[i].judulNaskah = response[i].judulInstruksi;
+            vm.naskah.push(response[i]);
+          }
+          getNaskahPenugasanInstruksiTarget();
         }, function(errResponse){
 
         })
@@ -162,6 +182,7 @@
       switch(naskah.jenis){
         case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx); break;
         case 1 : getDocumentPerintah(naskah.kdSurat, idx); break;
+        case 12: getDocumentSuratTugas(laporan, 0); break;
       }
 
     };
@@ -194,13 +215,16 @@
         })
     }
 
-    function getDocumentKeputusan(laporan){
+    function getDocumentKeputusan(laporan, isLaporan){
         // laporan.loading = true;
         PenilaianService.GetDataKeputusan(laporan.kdSurat).then(
           function(response){
             vm.data = response;debugger
             var doc = TemplateSuratKeputusanService.template(vm.data);
             laporan.loading = false;
+            if(isLaporan)
+              openSuratMasuk('open-surat-keputusan-penilai/', laporan.kdSurat, '');
+            else openSuratMasuk('open-surat-keputusan/', laporan.kdSurat, '');
             pdfMake.createPdf(doc).open();
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
@@ -209,13 +233,16 @@
           })
       };
 
-      function getDocumentEdaran(laporan){
+      function getDocumentEdaran(laporan, isLaporan){
         // laporan.loading = true;
         PenilaianService.GetDataEdaran(laporan.kdSurat).then(
           function(response){
             vm.data = response;debugger
             var doc = TemplateSuratEdaranService.template(vm.data);
             laporan.loading = false;
+            if(isLaporan)
+              openSuratMasuk('open-surat-edaran-penilai/', laporan.kdSurat, '');
+            else openSuratMasuk('open-surat-edaran/', laporan.kdSurat, '');
             pdfMake.createPdf(doc).open();
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
@@ -224,13 +251,16 @@
           })
       };
 
-      function getDocumentUndangan(laporan){
+      function getDocumentUndangan(laporan, isLaporan){
         // laporan.loading = true;
         PenilaianService.GetDataUndangan(laporan.kdSurat).then(
           function(response){
             vm.data = response;debugger
             var doc = TemplateSuratUndanganService.template(vm.data);
             laporan.loading = false;
+            if(isLaporan)
+              openSuratMasuk('open-surat-undangan-penilai/', laporan.kdSurat, '');
+            else openSuratMasuk('open-surat-undangan/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
             pdfMake.createPdf(doc).open();
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
@@ -239,13 +269,16 @@
           })
       };
 
-      function getDocumentPengantar(laporan){
+      function getDocumentPengantar(laporan, isLaporan){
         // laporan.loading = true;
         PenilaianService.GetDataPengantar(laporan.kdSurat).then(
           function(response){
             vm.data = response;debugger
             var doc = TemplateSuratPengantarService.template(vm.data);
             laporan.loading = false;
+            if(isLaporan)
+              openSuratMasuk('open-surat-pengantar-penilai/', laporan.kdSurat, '');
+            else openSuratMasuk('open-surat-pengantar/', laporan.kdSurat, '');
             pdfMake.createPdf(doc).open();
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
@@ -254,13 +287,16 @@
           })
       };
 
-        function getDocumentSuratDinas(laporan){
+        function getDocumentSuratDinas(laporan, isLaporan){
             // laporan.loading = true;
             PenilaianService.GetDataSuratDinas(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateSuratDinasService.template(vm.data);
                     laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-surat-dinas-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-surat-dinas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
@@ -301,19 +337,134 @@
                 })
         };
 
-    vm.getDokumenLaporan = function(laporan, kdHistory, idx){
+        function getDocumentSuratKeterangan(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratKeterangan(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratKeteranganService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-surat-keterangan-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-surat-keterangan/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentSuratKuasa(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratKuasa(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratKuasaService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-surat-kuasa-penilai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    else openSuratMasuk('open-surat-kuasa/', laporan.kdSurat, '');
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentMemorandum(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateMemorandumService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-memorandum-by-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-memorandum-by-target/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentNodin(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataNodin(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateNotaDinasService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-nota-dinas-by-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-nota-dinas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentBeritaAcara(laporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataBeritaAcara(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;
+                    var doc = TemplateBeritaAcaraService.template(vm.data);
+                    laporan.loading = false;debugger
+                    openSuratMasuk('open-berita-acara-penilai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentSuratTugas(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratTugas(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplateSuratTugasService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-surat-tugas-by-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-surat-tugas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    pdfMake.createPdf(doc).open();
+                }, function(errResponse){
+
+                })
+        };
+
+        function openSuratMasuk(url, kdSurat, nip){console.log(url, 
+                    kdSurat, nip);
+          DashboardService.ChangeRead(url, kdSurat, nip);
+        }
+
+    vm.getDokumenLaporan = function(laporan, isLaporan, idx){
       laporan.loading = true;debugger
       switch(laporan.kdJenisSurat){
-        case 1: getDocumentLaporan(laporan); break;
-        case 5: getDocumentSuratDinas(laporan); break;
-        case 6: getDocumentEdaran(laporan); break;
-        case 7: getDocumentKeputusan(laporan); break;
-        case 10: getDocumentPengantar(laporan); break;
-        case 13: getDocumentUndangan(laporan); break;
-        case 12: getDocumentSuratTugas(laporan); break;
-        case 14: getDocumentTelaahanStaff(laporan); break;
-        case 15: getLaporanLain(laporan); break;
-        default: vm.getDocumentPerintahLaporan(laporan, kdHistory); break;
+        case 0: getDocumentBeritaAcara(laporan); break;
+          case 1: getDocumentLaporan(laporan); break;
+          case 2: getDocumentMemorandum(laporan, isLaporan); break;
+          case 3: getDocumentNodin(laporan, isLaporan); break;
+          case 4: getDocumentPengumuman(laporan, isLaporan); break;
+          case 5: getDocumentSuratDinas(laporan, isLaporan); break;
+          case 6: getDocumentEdaran(laporan, isLaporan); break;
+          case 7: getDocumentKeputusan(laporan, isLaporan); break;
+          case 8: getDocumentSuratKeterangan(laporan, isLaporan); break;
+          case 9: getDocumentSuratKuasa(laporan, isLaporan); break;
+          case 10: getDocumentPengantar(laporan, isLaporan); break;
+          case 12: getDocumentSuratTugas(laporan, 1); break;
+          case 13: getDocumentUndangan(laporan, isLaporan); break;
+          case 14: getDocumentTelaahanStaff(laporan, isLaporan); break;
+          case 15: getLaporanLain(laporan, isLaporan); break;
+        default: vm.getDocumentPerintahLaporan(laporan, isLaporan); break;
       }
     }
 
@@ -330,15 +481,15 @@
         })
     }
 
-    vm.getDocumentPerintahLaporan = function(laporan, kdHistory){
-      PenugasanService.GetDataPerintah(kdHistory).then(
+    vm.getDocumentPerintahLaporan = function(laporan){
+      PenugasanService.GetDataPerintah(laporan.kdSurat).then(
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          DashboardService.ChangeReadPerintah(kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+          DashboardService.ChangeReadPerintah(laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
           laporan.loading = false;
-          openSurat()
+          openSurat(laporan.kdSurat)
         }, function(errResponse){
 
         })
@@ -347,7 +498,7 @@
     function openSurat(kdSurat){
         PenilaianService.OpenSurat(kdSurat).then(
           function(response){debugger
-            getLaporanBawahan();
+            // getLaporanBawahan();
           }, function(errResponse){
 
           })

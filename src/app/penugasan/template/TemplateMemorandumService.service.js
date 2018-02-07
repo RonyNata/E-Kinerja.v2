@@ -32,7 +32,7 @@
                     },
 
                     {
-                        text: 'NOMOR '+ '' + data.nomorUrasan+ '/' + data.nomorUrut + '/' + data.nomorPasanganUrut + '/' + data.nomorUnit + '/' + data.nomorTahun, style: 'judul_nomor'
+                        text: 'NOMOR '+ '' + data.nomorUrusan+ '/' + data.nomorUrut + '/' + data.nomorPasanganUrut + '/' + data.nomorUnit + '/' + data.nomorTahun, style: 'judul_nomor'
                     },
 
                     {

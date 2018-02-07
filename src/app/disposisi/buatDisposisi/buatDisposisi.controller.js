@@ -55,6 +55,7 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
           vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+          debugger
           getAllDisposisi();
         }
         else

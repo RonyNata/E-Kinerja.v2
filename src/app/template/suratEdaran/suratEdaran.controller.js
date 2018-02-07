@@ -7,7 +7,7 @@ angular.
 
     
     function SuratEdaranController(EkinerjaService, SuratEdaranService, HakAksesService, 
-      $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
+      $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document, PenilaianService) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -80,6 +80,8 @@ angular.
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentEdaran();
             vm.loading = false; 
         }
         else
@@ -90,6 +92,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                      getDocumentEdaran();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -111,6 +115,50 @@ angular.
             "isi": ""
           }
           vm.subab.push(data);
+        }
+
+        function getDocumentEdaran(){
+            PenilaianService.GetDataEdaran($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+                        "ttgSuratEdaran": response.tentang,
+                        "tempat": response.kotaPembuatanSurat,
+                        "pegawaiPembuat": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai),
+                        "tanggal": new Date(response.tanggalPembuatanMilis),
+                    };
+                    vm.subab = [
+                            {
+                              "nomor": "A",
+                              "judul": "Latar Belakang",
+                              "isi": response.latarBelakang
+                            },
+                            {
+                              "nomor": "B",
+                              "judul": "Maksud dan Tujuan",
+                              "isi": response.maksudDanTujuan
+                            },
+                            {
+                              "nomor": "C",
+                              "judul": "Ruang Lingkup",
+                              "isi": response.ruangLingkup
+                            },
+                            {
+                              "nomor": "D",
+                              "judul": "Dasar",
+                              "isi": response.dasar
+                            }
+                        ]
+
+                    for(var i = 0; i < response.subLain.length; i++)
+                      vm.subab.push({
+                        "nomor": String.fromCharCode(65 + vm.subab.length),
+                        "judul": response.subLain[i].namaSub,
+                        "isi": response.subLain[i].isiSub
+                      });
+                }
+                );
         }
 
         vm.save = function(){
@@ -139,6 +187,9 @@ angular.
             "alasanPenolakan": "",
             "kdJabatanSuratPejabat": vm.item.pegawaiPembuat.kdJabatan
           };
+
+          if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratEdaranBawahan = $state.params.kdSuratBawahan;
 
           for(var i = 4; i < vm.subab.length;i++)
             data.subLain.push({"namaSub": vm.subab[i].judul, "isiSub": vm.subab[i].isi});

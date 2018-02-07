@@ -7,7 +7,7 @@ angular.
 
     
     function SuratPengantarController(EkinerjaService, SuratPengantarService, HakAksesService, 
-      $scope, $state, logo_bekasi, $uibModal, $document) {
+      $scope, $state, logo_bekasi, $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -22,6 +22,8 @@ angular.
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentPengantar();
             vm.loading = false; 
         }
         else
@@ -32,6 +34,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                      getDocumentPengantar();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -90,6 +94,30 @@ angular.
           vm.isi.push(data);
         }
 
+        function getDocumentPengantar(){
+            PenilaianService.GetDataPengantar($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+                        "pegawaiPembuat": EkinerjaService.findPegawaiByNip(response.nipPemberiSuratPengantar,vm.list_pegawai),
+                        "pegawaiPenerima": EkinerjaService.findPegawaiByNip(response.penerimaSuratPengantar.nip,vm.list_pegawai),
+                        "tanggal": new Date(response.tanggalPembuatanMilis),
+                        "telepon": response.nomorTeleponPemberi
+                    };
+
+                    vm.isi = [];
+                    for(var i = 0; i < response.suratPengantarIsiWrapperList.length; i++){
+                        vm.isi.push({"id": new Date().getTime(), "naskah": response.suratPengantarIsiWrapperList[i].naskahDinasYangDikirim,
+                                        "qty": response.suratPengantarIsiWrapperList[i].banyakNaskah, "keterangan": response.suratPengantarIsiWrapperList[i].keterangan});
+                    }
+                }
+                );
+        }
+
         vm.save = function(){
           var data = {
             "nomorUrusan":vm.item.nomorUrusan,
@@ -109,6 +137,9 @@ angular.
             "kdSuratPengantarBawahan":null,
             "suratPengantarIsiList":[]
           }
+
+          if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratPengantarBawahan = $state.params.kdSuratBawahan;
 
           for(var i=0; i < vm.isi.length; i++)
             data.suratPengantarIsiList.push({

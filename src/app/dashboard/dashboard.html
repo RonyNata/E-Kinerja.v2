@@ -90,7 +90,7 @@
                                                             <tr>
                                                                 <td style="padding-right:10px; width:30%" rowspan="3"><h4 class="list-group-item-heading"><b>{{tugass.jenisSurat}}</b></h4></td>
                                                                 <td style="padding-right:10px"><p class="list-group-item-text">{{tugass.tglMasuk}}</p></td>
-                                                                <td><button ng-click="dashboard.getDokumenLaporan (tugass, tugass.kdSurat, $index)" type="button" class="btn btn-primary btn-block">Buka</button></td>
+                                                                <td><button ng-click="dashboard.getDokumenLaporan (tugass, 1, $index)" type="button" class="btn btn-primary btn-block">Buka</button></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding-right:10px"><p class="list-group-item-text">{{tugass.jenisSurat}}</p></td>
@@ -121,7 +121,7 @@
                                                             <tr>
                                                                 <td style="padding-right:10px; width:30%" rowspan="3"><h4 class="list-group-item-heading"><b>{{history.jenisSurat}}</b></h4></td>
                                                                 <td style="padding-right:10px"><p class="list-group-item-text">{{history.tanggalDibuat}}</p></td>
-                                                                <td><button ng-click="dashboard.getDokumenLaporan(history, history.kdSurat, $index)" type="button" class="btn btn-primary btn-block">Buka</button></td>
+                                                                <td><button ng-click="dashboard.getDokumenLaporan(history, 0, $index)" type="button" class="btn btn-primary btn-block">Buka</button></td>
                                                             </tr> 
                                                             <tr>
                                                                 <td style="padding-right:10px"><p class="list-group-item-text">{{history.jenisSurat}}</p></td>

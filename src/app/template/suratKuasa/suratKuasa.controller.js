@@ -80,6 +80,7 @@
                         "nomorUrusan": response.nomorUrusan,
                         "nomorPasanganUrut": response.nomorPasanganUrut,
                         "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
                         "tahun": response.nomorTahun,
                         "isikuasa": response.isiKuasa,
                         "tempat": response.kotaPembuatanSurat,

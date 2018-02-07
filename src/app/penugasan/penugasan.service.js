@@ -46,6 +46,19 @@
             return deferred.promise;
         }
 
+        service.GetNaskahPenugasanTugasTarget = function(nipPegawai){
+            var deferred = $q.defer();debugger
+            $http.get(API + 'get-surat-tugas-by-target/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
         service.GetNaskahPenugasanInstruksi = function(nipPegawai){
             var deferred = $q.defer();debugger
             $http.get(API + 'get-surat-instruksi-by-pembuat/' + nipPegawai).then(

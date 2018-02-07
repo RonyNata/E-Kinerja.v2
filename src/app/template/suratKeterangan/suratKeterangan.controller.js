@@ -5,7 +5,7 @@
         .controller('SuratKeteranganController', SuratKeteranganController);
 
     function SuratKeteranganController(EkinerjaService, SuratKeteranganService, HakAksesService, 
-        $scope, $state, logo_bekasi, $uibModal, $document) {
+        $scope, $state, logo_bekasi, $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -25,6 +25,8 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentKeterangan();
             vm.loading = false; 
         }
         else
@@ -35,6 +37,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentKeterangan();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -158,6 +162,35 @@
         //     debugger
         // })
 
+        function getDocumentKeterangan(){
+            PenilaianService.GetDataSuratKeterangan($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorSurat": response.nomorUrusan,
+                        "nomorSurat1": response.nomorPasanganUrut,
+                        "nomorSurat2": response.nomorUnit,
+                        "nomorSura": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+                        "isiketerangan": response.isiSuratKeterangan,
+                        "tempat": response.kotaPembuatanSurat,
+                        "pegawaiPemberi": EkinerjaService.findPegawaiByNip(response.nipPemberiKuasa,vm.list_pegawai),
+                        "pegawaiPenerima": EkinerjaService.findPegawaiByNip(response.nipPenerimaKuasa,vm.list_pegawai),
+                        "tanggal1": new Date(response.tanggalPembuatanSuratMilis)
+                    };
+
+                    vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(response.nipPenandatangan, vm.list_pegawai);
+                    $scope.pegawaiP = response.nipPenandatangan;
+
+                    vm.target = [];
+                    for(var i = 0; i < response.nipPegawaiKeteranganList.length; i++){
+                        var pgw = EkinerjaService.findPegawaiByNip(response.nipPegawaiKeteranganList[i].nip, vm.list_pegawai);
+                        pgw.checked = true;
+                        vm.target.push(pgw);
+                    }
+                }
+                );
+        }
+
         vm.save = function(){
           var data = {
             "kdSuratKeterangan": "",
@@ -185,6 +218,8 @@
           }
           for(var i = 0; i < vm.target.length; i++)
                 data.nipPegawaiKeterangan.push(vm.target[i].nipPegawai);
+          if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratKeteranganBawahan = $state.params.kdSuratBawahan;
           debugger
           console.log(data);
           SuratKeteranganService.save(data).then(

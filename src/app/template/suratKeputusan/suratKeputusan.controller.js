@@ -6,7 +6,8 @@ angular.
 	.controller('SuratKeputusanController', SuratKeputusanController);
 
     
-    function SuratKeputusanController(EkinerjaService,HakAksesService, SuratKeputusanService, $scope, $state, logo_bekasi, $uibModal, $document) {
+    function SuratKeputusanController(EkinerjaService,HakAksesService, SuratKeputusanService, $scope, $state, 
+      logo_bekasi, $uibModal, $document, PenilaianService) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -48,6 +49,8 @@ angular.
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentKeputusan();
             vm.loading = false; 
         }
         else
@@ -58,6 +61,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                      getDocumentKeputusan();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -97,6 +102,35 @@ angular.
           });
         };
 
+        function getDocumentKeputusan(){
+            PenilaianService.GetDataKeputusan($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai),
+                        "selaku": response.selaku,
+                        "tentang": response.tentang,
+                        "tempat": response.kotaPembuatanSurat,
+                        "ttgSuratEdaran": response.tentang,
+                        "tanggal1": new Date(response.tanggalPembuatanMilis),
+                    };
+
+                    vm.keputusan = [];
+                    for(var i = 0; i < response.menetapkan.length; i++)
+                      vm.keputusan.push({"id": new Date().getTime(), "deskripsi": response.menetapkan[i]});
+
+                    vm.menimbang = [];
+                    for(var i = 0; i < response.menimbang.length; i++)
+                      vm.menimbang.push({"id": new Date().getTime(), "deskripsimenimbang": response.menimbang[i]});
+
+                    vm.mengingat = [];
+                    for(var i = 0; i < response.mengingat.length; i++)
+                      vm.mengingat.push({"id": new Date().getTime(), "deskripsimengingat": response.mengingat[i]});
+                }
+                );
+        }
+
         vm.save = function(){
           var data = {
             "kdSuratKeputusan":"",
@@ -119,6 +153,9 @@ angular.
             "statusPenilaian":0,
             "alasanPenolakan":""
           };
+
+          if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratKeputusanBawahan = $state.params.kdSuratBawahan;
 
           for(var i = 0; i < vm.keputusan.length;i++)
             data.menetapkan.push(vm.keputusan[i].deskripsi);

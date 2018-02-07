@@ -92,6 +92,26 @@ angular.
                 response[i].nama = "Instruksi";
                 response[i].jenis = 0;
                 response[i].judulNaskah = response[i].judulInstruksi;
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
+                response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                vm.naskah.push(response[i]);
+              }
+              getNaskahPenugasanTugasTarget();
+              
+            }, function(errResponse){
+
+            })
+        }
+
+        function getNaskahPenugasanTugasTarget(){
+          PenugasanService.GetNaskahPenugasanTugasTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            function(response){debugger
+              for(var i = 0; i < response.length;i++){
+                response[i].nama = "Surat Tugas";
+                response[i].jenis = 2;
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
+                response[i].judulNaskah = response[i].judulInstruksi;
+                response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
               }
               vm.loading = false;

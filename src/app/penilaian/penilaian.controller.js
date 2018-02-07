@@ -43,6 +43,7 @@
               response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
             }
             vm.laporanbawahan = response;
+            vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } ); 
           }, function(errResponse){
 
           })
@@ -56,17 +57,41 @@
             case 1: $state.go('laporan', {
                           "kdSuratBawahan": kdSurat
                         }); break;
-            case 2: getDocumentMemorandum(laporan); break;
+            case 2: if(laporan.suratPejabat == 1)
+                    $state.go('memorandumpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        });
+                    else 
+                    $state.go('memorandumnonpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 3: getDocumentNotaDinas(laporan); break;
             case 4: getDocumentPengumuman(laporan); break;
             case 5: getDocumentSuratDinas(laporan); break;
-            case 6: getDocumentEdaran(laporan); break;
-            case 7: getDocumentKeputusan(laporan); break;
+            case 6: if(laporan.suratPejabat == 1)
+                    $state.go('suratedaran', {
+                          "kdSuratBawahan": kdSurat
+                        });
+                    else 
+                    $state.go('suratedarannonpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
+            case 7: $state.go('suratkeputusan', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
+            case 8: $state.go('suratketerangan', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 9: $state.go('suratkuasa', {
                           "kdSuratBawahan": kdSurat
-                        });(laporan); break;
+                        }); break;
+            case 10: $state.go('suratpengantar', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 13: getDocumentUndangan(laporan); break;
-            case 12: getDocumentSuratTugas(laporan); break;
+            case 12: $state.go('surattugas', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 14: getDocumentTelaahanStaff(laporan); break;
             case 15: getLaporanLain(laporan); break;
             default: if(isPejabat == 1)
@@ -187,11 +212,11 @@
 
         function getDocumentBeritaAcara(laporan){
             // laporan.loading = true;
-            PenilaianService.GetDataBeritaAcara(laporan.kdBeritaAcara).then(
+            PenilaianService.GetDataBeritaAcara(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateBeritaAcaraService.template(vm.data);
-                    laporan.loading = false;
+                    laporan.loading = false;debugger
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
@@ -237,6 +262,9 @@
                     vm.data = response;debugger
                     var doc = TemplateSuratKuasaService.template(vm.data);
                     laporan.loading = false;
+                    DashboardService.ChangeRead('open-surat-kuasa-penilai/', 
+                              laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                    getLaporanBawahan();
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
@@ -298,19 +326,12 @@
           })
       }
 
-      function getDocumentSuratKuasa(laporan){ 
-            // laporan.loading = true; 
-            DashboardService.ChangeRead('open-surat-kuasa-penilai/', 
-                      laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
-            getLaporanBawahan();
-        };
-
-        function getDocumentBeritaAcara(laporan){ 
-            // laporan.loading = true; 
-            DashboardService.ChangeRead('open-berita-acara-penilai/', 
-                      laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
-            getLaporanBawahan();
-        };
+        // function getDocumentBeritaAcara(laporan){ 
+        //     // laporan.loading = true; 
+        //     DashboardService.ChangeRead('open-berita-acara-penilai/', 
+        //               laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+        //     getLaporanBawahan();
+        // };
 
       vm.getDocumentPerintah = function(laporan){
           // laporan.loading = true;
