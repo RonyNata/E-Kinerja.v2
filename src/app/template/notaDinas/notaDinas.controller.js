@@ -7,7 +7,7 @@ angular.
 
     
     function NotaDinasController(EkinerjaService, HakAksesService, NotaDinasService, PengumpulanDataBebanKerjaService, 
-      $scope, $state, logo_bekasi, $uibModal, $document) {
+      $scope, $state, logo_bekasi, $uibModal, $document, PenilaianService) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -60,6 +60,35 @@ angular.
           });
         };
 
+        function getDocumentNodin(){
+            PenilaianService.GetDataNodin($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+
+                        "isiNotaDinas": response.isiNotaDinas,
+                        "hal": response.hal,
+                        "pegawaiPemberi": EkinerjaService.findPegawaiByNip(response.pemberiNotaDinas.nip,vm.list_pegawai),
+                        "pegawaiPenerima": EkinerjaService.findJabatanByKdJabatan(response.kdJabatanPenerimaNotaDinas, vm.list_pegawai),
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.penandatangan.nip,vm.list_pegawai),
+                        "tanggal": new Date(response.tanggalPembuatanMilis)
+                    };
+
+                    vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(response.nipPenandatangan, vm.list_pegawai);
+                    $scope.pegawaiP = response.nipPenandatangan;
+
+                    vm.tembusanSurat = [];
+                    for(var i = 0; i < response.tembusanNotaDinasList.length; i++)
+                      vm.tembusanSurat.push({"id": new Date().getTime(), "jabat": response.tembusanNotaDinasList[i].kdJabatan,
+                                                "jabatan": response.tembusanNotaDinasList[i]});
+                }
+                );
+        }
+
         vm.save = function(){
             var data = {
                 "kdNotaDinas": "",
@@ -82,6 +111,9 @@ angular.
                 "statusPenilaian": "",
                 "alasanPenolakan": ""
             };
+
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdNotaDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
                 data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
@@ -108,6 +140,8 @@ angular.
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentNodin();
         }
         else
         getAllPegawai();
@@ -117,6 +151,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                      getDocumentNodin();
                     vm.loading = false;
                 }, function(errResponse){
 

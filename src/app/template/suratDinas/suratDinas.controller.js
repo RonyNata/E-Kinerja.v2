@@ -7,7 +7,7 @@ angular.
 
     
     function SuratDinasController(EkinerjaService,  PengumpulanDataBebanKerjaService, HakAksesService, SuratDinasService,
-        $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
+        $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document, PenilaianService) {
       	var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -56,6 +56,8 @@ angular.
         PengumpulanDataBebanKerjaService.GetAllJabatan().then(
           function(response){
             vm.list_jabatan = response;
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentSuratDinas();
             vm.loading = false;
           }, function(errResponse){
 
@@ -64,6 +66,10 @@ angular.
         vm.findJabatan = function(idx){
           if(vm.tembusanSurat[idx].jabat.length == 7 || vm.tembusanSurat[idx].jabat.length == 8)
             vm.tembusanSurat[idx].jabatan = EkinerjaService.findJabatanByKdJabatan(vm.tembusanSurat[idx].jabat, vm.list_jabatan);
+        };
+
+        vm.findJabatanTarget = function(){debugger
+            vm.item.jabatanPenerima = EkinerjaService.findJabatanByKdJabatan(vm.jabatan, vm.list_jabatan);
         };
 
         if($state.current.name == "suratdinasnonpejabat")
@@ -94,6 +100,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentSuratDinas();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -117,6 +125,36 @@ angular.
             console.log(vm.item.pegawaiPenandatangan);
           }
         };
+
+        function getDocumentSuratDinas(){
+            PenilaianService.GetDataSuratDinas($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+
+                        "sifat": response.sifat,
+                        "hal": response.hal,
+                        "lampiran": response.lampiran,
+                        "tempat": response.kotaPembuatanSurat,
+                        "alineaIsi": response.isiSuratDinas,
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai),
+                        "tanggal1": new Date(response.tanggalPembuatanMilis)
+                    };
+
+                    vm.jabatan = response.kdJabatanPenerimaSuratDinas;
+                    vm.findJabatanTarget();
+
+                    vm.tembusanSurat = [];
+                    for(var i = 0; i < response.tembusanSuratDinasWrapper.length; i++)
+                      vm.tembusanSurat.push({"id": new Date().getTime(), "jabat": response.tembusanSuratDinasWrapper[i].kdJabatan,
+                                                "jabatan": response.tembusanSuratDinasWrapper[i]});
+                }
+                );
+        }
 
         vm.save = function(){
             var data = {
@@ -145,6 +183,9 @@ angular.
                 "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan,
                 "kdTembusanList": []
             };
+
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdSuratDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
                 data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);

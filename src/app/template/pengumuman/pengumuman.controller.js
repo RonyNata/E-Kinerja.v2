@@ -5,7 +5,7 @@
         .controller('PengumumanController', PengumumanController);
 
     function PengumumanController(EkinerjaService, HakAksesService, PengumumanService, $scope, 
-        $state, logo_bekasi, $uibModal, $document) {
+        $state, logo_bekasi, $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -13,6 +13,26 @@
         vm.back =  function(){
             $state.go('kontrak');
         };
+
+        function getDocumentPengumuman(){
+            PenilaianService.GetDataPengumuman($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+
+                        "tentang": response.tentang,
+                        "isipengumuman": response.isiPengumuman,
+                        "tempat": response.kotaPembuatanSurat,
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai),
+                        "tanggal": new Date(response.tanggalPembuatanMilis)
+                    };
+                }
+                );
+        }
 
         vm.save = function(){
             var data = {
@@ -39,6 +59,9 @@
                 "kdPengumumanBawahan":null
             }
 
+            if($state.params.kdSuratBawahan != undefined)
+                data.kdPengumumanBawahan = $state.params.kdSuratBawahan;
+
             PengumumanService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
@@ -59,6 +82,8 @@
         
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentPengumuman();
             vm.loading = false; 
         }
         else
@@ -69,6 +94,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != undefined)
+                        getDocumentPengumuman();
                     vm.loading = false;
                 }, function(errResponse){
 

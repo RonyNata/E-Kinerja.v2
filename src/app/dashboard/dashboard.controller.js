@@ -441,6 +441,24 @@
                 })
         };
 
+        function getDocumentPengumuman(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataPengumuman(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplatePengumumanService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-pengumuman-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-pengumuman/', laporan.kdSurat, '');
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
         function openSuratMasuk(url, kdSurat, nip){console.log(url, 
                     kdSurat, nip);
           DashboardService.ChangeRead(url, kdSurat, nip);
