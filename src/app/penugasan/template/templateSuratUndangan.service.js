@@ -125,7 +125,8 @@
                                     body: [
                                         [{text: '' + data.jabatanPenandatangan + ',', alignment : 'left', bold: true}],
                                         [{text: ' ',margin: [0,20]}],
-                                        [{text: '' + data.namaPenandatangan, alignment : 'left', bold:true}],
+                                        [{text: '' + data.gelarDepanPenandatangan + data.namaPenandatangan + data.gelarBelakangPenandatangan, alignment : 'left', bold:true}],
+                                        [{text: '' + data.pangkatPenandatangan, alignment : 'left', bold:true}],
                                         [{text: '' + data.nipPenandatangan, alignment : 'left'}]
                                     ]
                                 },

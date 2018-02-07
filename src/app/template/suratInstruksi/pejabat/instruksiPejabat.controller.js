@@ -260,7 +260,7 @@ angular.
                 },
 
                 {
-                    text: ['Dalam rangka ', vm.item.alasan, ' dengan ini memberi instruksi']
+                    text: ['Dalam rangka ', {text: '' + vm.item.alasan, bold: true, fontSize: 12}, ' dengan ini memberi instruksi']
                 },
 
                 {
@@ -268,17 +268,42 @@ angular.
                     table: {
                         widths: [80, 5, '*'],
                         body: [
-                            [{text: 'Kepada', style: 'header'},{text: ':'},
+                            [{text: 'Kepada', bold: true, fontSize: 12},{text: ':', fontSize: 12},
 
                                 {   bold:true,
                                     ol: []
                                 }],
                             [{text: '',margin: [0,0,0,3], colSpan: 3}], 
-                            [{text: 'Untuk', style: 'header'},{text: ':'}, {text: ''}
+                            [{text: 'Untuk', bold: true, fontSize: 12},{text: ':', fontSize: 12}, {text: ''}
                             ]
                         ]
                     }, 
                     layout: 'noBorders'
+                },
+
+                {
+                    columns: [
+                        {
+                            width: '63%',
+                            text: ''
+                        },
+                        {
+                            style: 'tandaTangan',
+                            table: {
+                                widths: [200],
+                                body: [
+                                    [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
+                                    [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
+                                    [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
+                                    [{text: ' ',margin: [0,20]}],
+                                    [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold:true}],
+                                    [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left', bold:true}],
+                                    [{text: 'NIP. ' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                                ]
+                            },
+                            layout: 'noBorders'
+                        }
+                    ]
                 },
 
                 {
@@ -299,6 +324,19 @@ angular.
             ],
 
             styles: {
+                header: {
+                    bold: true,
+                    fontSize: 14,
+                    alignment: 'center'
+                },
+                header2: {
+                    fontSize: 12,
+                    alignment: 'center'
+                },
+                header3: {
+                    fontSize: 10,
+                    alignment: 'center'
+                },
                 nama_judul: {
                     alignment : 'center',
                     bold: true,
@@ -307,49 +345,41 @@ angular.
                 judul_nomor: {
                     alignment : 'center',
                     bold: true,
-                    fontSize: 11
-                },
-                header: {
-                    bold: true,
-                    color: '#000',
-                    fontSize: 10
-                },
-                header1: {
-                    bold: true,
-                    fontSize: 15,
-                    alignment: 'center'
-                },
-                header2: {
-                    fontSize: 10,
-                    alignment: 'center'
+                    fontSize: 12
                 },
                 demoTable: {
                     color: '#000',
-                    fontSize: 10
+                    fontSize: 12
                 },
                 tandaTangan: {
                     color: '#000',
-                    fontSize: 10,
+                    fontSize: 12,
                     alignment:'right'
+                },
+                header4: {
+                    bold: true,
+                    fontSize: 12
+                },
+                header5: {
+                    fontSize: 12
                 }
             }
           };
 
 
           for(var i = 0; i < vm.maksud.length; i++){
-            var style = [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}];
-            var body = [{text: '' + InstruksiPejabatService.FindUrutan(i), 
-                        style: 'header', border: [false, false, false, false]},
-                        {text: ':', border: [false, false, false, false]}, 
-                        {text: '' + vm.maksud[i].deskripsi, border: [false, false, false, false]}];
+            var style = [{text: '',margin: [0,0,0,3], colSpan: 3}];
+            var body = [{text: '' + InstruksiPejabatService.FindUrutan(i), bold: true, fontSize: 12},
+                        {text: ':', fontSize: 12},
+                        {text: '' + vm.maksud[i].deskripsi, fontSize: 12}];
             vm.docDefinition.content[7].table.body.push(style);
             vm.docDefinition.content[7].table.body.push(body);
           }
 
-          var style = [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}];
-          var body = [{text: '' + InstruksiPejabatService.FindUrutan(vm.maksud.length), style: 'header', border: [false, false, false, false]},
-                      {text: ':', border: [false, false, false, false]}, 
-                      {text: 'Melaksanakan instruksi ini dengan penuh tanggung jawab. Instruksi '+ vm.item.judulInstruksi +' ini mulai berlaku pada tanggal dikeluarkan.', border: [false, false, false, false]}
+          var style = [{text: '',margin: [0,0,0,3], colSpan: 3}];
+          var body = [{text: '' + InstruksiPejabatService.FindUrutan(vm.maksud.length), bold: true, fontSize: 12},
+                      {text: ':', fontSize: 12},
+                      {text: 'Melaksanakan instruksi ini dengan penuh tanggung jawab. Instruksi '+ vm.item.judulInstruksi +' ini mulai berlaku pada tanggal dikeluarkan.', fontSize: 12}
                         ];
           vm.docDefinition.content[7].table.body.push(style);
           vm.docDefinition.content[7].table.body.push(body);
@@ -357,11 +387,12 @@ angular.
           for(var i = 0; i < vm.target.length; i++){
             var data = {
                 widths: ['*', '*', '*'],
+                style: 'header5',
                 table: {
                     body: [
-                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].nama}], 
+                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + vm.target[i].gelarDepan + vm.target[i].nama + vm.target[i].gelarBelakang}],
                         [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + vm.target[i].nipPegawai}], 
-                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].golongan}], 
+                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + vm.target[i].pangkat + ' - ' + vm.target[i].golongan}],
                         [{text: 'Jabatan', bold: true}, {text: ':'}, {text: '' + vm.target[i].jabatan}]
                     ]
                 }, 

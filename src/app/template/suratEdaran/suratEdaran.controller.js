@@ -313,8 +313,9 @@ angular.
                                   [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), bold:true}], alignment : 'left'}],
                                   [{text: '' + vm.item.pegawaiPembuat.jabatan + ',', alignment : 'left', bold: true}],
                                   [{text: ' ',margin: [0,20]}],
-                                  [{text: '' + vm.item.pegawaiPembuat.nama, alignment : 'left', bold:true}],
-                                  [{text: '' + vm.item.pegawaiPembuat.nipPegawai, alignment : 'left'}]
+                                  [{text: '' + vm.item.pegawaiPembuat.gelarDepan + vm.item.pegawaiPembuat.nama + vm.item.pegawaiPembuat.gelarBelakang, alignment : 'left', bold:true}],
+                                  [{text: '' + vm.item.pegawaiPembuat.pangkat, alignment : 'left', bold:true}],
+                                  [{text: 'NIP. ' + vm.item.pegawaiPembuat.nipPegawai, alignment : 'left'}]
                               ]
                           },
                           layout: 'noBorders'

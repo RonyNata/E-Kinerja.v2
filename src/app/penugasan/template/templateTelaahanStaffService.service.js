@@ -45,7 +45,8 @@
                                                 body: [
                                                     [{text: '' + data.nipPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                                     [{text: ' ',margin: [0,20]}],
-                                                    [{text: '' + data.nipPenandatangan.nama, alignment : 'left', bold: true}],
+                                                    [{text: '' + data.nipPenandatangan.glrDpn + data.nipPenandatangan.nama + data.nipPenandatangan.glrBlk, alignment : 'left', bold: true}],
+                                                    [{text: '' + data.nipPenandatangan.pangkat, alignment : 'left', bold: true}],
                                                     [{text: '' + data.nipPenandatangan.nip, alignment : 'left'}]
                                                 ]
                                             },

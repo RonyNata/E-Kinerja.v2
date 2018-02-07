@@ -40,10 +40,11 @@
                 table: {
                   widths: [50, 5, '*'],
                   body: [
-                    [{text: 'Nama', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + data.nmPenandatangan, border: [false, false, false, false]}],
-                    [{text: 'Jabatan', bold: true, border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},{text: '' + data.nmJabatanPenandatangan, border: [false, false, false, false]}]
+                    [{text: 'Nama', bold: true},{text: ':'},{text: '' + data.gelarDepanPenandatangan + data.nmPenandatangan + data.gelarBelakangPenandantangan}],
+                    [{text: 'Jabatan', bold: true},{text: ':'},{text: '' + data.nmJabatanPenandatangan}]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
 
               {
@@ -51,23 +52,24 @@
                 table: {
                   widths: [80, 5, '*'],
                   body: [
-                    [{text: 'Menimbang', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
-                      { border: [false, false, false, false],
-                        ol: data.menimbangList
+                    [{text: 'Menimbang', style:'header4'},{text: ':', style:'header5'},
+                      {
+                          ol: []
                       }
                     ],
-                    [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
-                    [{text: 'Dasar', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
-                        {   border: [false, false, false, false],
-                            ol: data.dasarList
+                    [{text: '',margin: [0,0,0,3], colSpan: 3}],
+                    [{text: 'Dasar', style:'header4'},{text: ':', style:'header5'},
+                        {
+                            ol: []
                         }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
 
               {
-                text: 'Memberi Perintah', alignment: 'center', fontSize: 11
+                text: 'Memberi Perintah', alignment: 'center', fontSize: 12
               },
 
               {
@@ -75,78 +77,90 @@
                 table: {
                   widths: [80, 5, '*'],
                   body: [
-                    [{text: 'Kepada', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
+                    [{text: 'Kepada', style:'header4'},{text: ':', style:'header5'},
 
-                    {   border: [false, false, false, false],
+                    {
                         ol: []
                     }],
-                    [{text: '',margin: [0,0,0,3], colSpan: 3, border: [false, false, false, false]}],
-                    [{text: 'Untuk', style: 'header', border: [false, false, false, false]},{text: ':', border: [false, false, false, false]},
-                        {   border: [false, false, false, false],
-                            ol : data.untukList
+                    [{text: '',margin: [0,0,0,3], colSpan: 3}],
+                    [{text: 'Untuk', style:'header4'},{text: ':', style:'header5'},
+                        {
+                            ol : []
                         }
                     ]
                   ]
-                }
+                },
+                  layout: 'noBorders'
               },
 
-              {
-                  style: 'tandaTangan',
-                  table: {
-                      widths: [250], 
-                      body: [
-                          [{text: '' + data.tempat + ', ' + data.tanggalDibuat, alignment : 'left', border: [false, false, false, false]}],
-                          [{text: ''+ data.nmJabatanPenandatangan + ',', alignment : 'left', bold: true, border: [false, false, false, false]}],
-                          [{text: ' ',margin: [0,20], border: [false, false, false, false]}],
-                          [{text: '' + data.nmPenandatangan, alignment : 'left', border: [false, false, false, false]}]
-                      ]
-                  }
-              },
+                {
+                    columns: [
+                        {
+                            width: '63%',
+                            text: ''
+                        },
+                        {
+                            style: 'tandaTangan',
+                            table: {
+                                widths: [200],
+                                body: [
+                                    [{text: '' + data.tempat + ', ' + data.tanggalDibuat, alignment : 'left'}],
+                                    [{text: '' + data.nmJabatanPenandatangan + ',', alignment : 'left', bold: true}],
+                                    [{text: ' ',margin: [0,20]}],
+                                    [{text: '' + data.gelarDepanPenandatangan + data.nmPenandatangan + data.gelarBelakangPenandantangan, alignment : 'left', bold:true}],
+                                    [{text: '' + data.pangkatPenandatangan, alignment : 'left', bold:true}],
+                                    [{text: 'NIP. ' + data.nipPenandatangan, alignment : 'left'}]
+                                ]
+                            },
+                            layout: 'noBorders'
+                        }
+                    ]
+                },
 
               {text: 'Tembusan :'}
 
             ],
 
             styles: {
-              nama_judul: {
-                alignment : 'center',
-                bold: true,
-                fontSize: 12
-              },
-              judul_nomor: {
-                  alignment : 'center',
-                  bold: true,
-                  fontSize: 11
-              },
-              header: {
-                bold: true,
-                color: '#000',
-                fontSize: 10
-              },
-              header1: {
-                  bold: true,
-                  fontSize: 15,
-                  alignment: 'center'
-              },
-              header2: {
-                  fontSize: 10,
-                  alignment: 'center'
-              },
-              header3: {
-                  fontSize: 9,
-                  alignment: 'center'
-              },
-              demoTable: {
-                color: '#000',
-                fontSize: 10
-              },
-              tandaTangan: {
-                color: '#000',
-                fontSize: 10,
-                alignment : 'right',
-                margin: [300,0,0,20],
-                border: [false, false, false, false]
-              }
+                header: {
+                    bold: true,
+                    fontSize: 14,
+                    alignment: 'center'
+                },
+                header2: {
+                    fontSize: 12,
+                    alignment: 'center'
+                },
+                header3: {
+                    fontSize: 10,
+                    alignment: 'center'
+                },
+                nama_judul: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                judul_nomor: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                demoTable: {
+                    color: '#000',
+                    fontSize: 12
+                },
+                tandaTangan: {
+                    color: '#000',
+                    fontSize: 12,
+                    alignment:'right'
+                },
+                header4: {
+                    bold: true,
+                    fontSize: 12
+                },
+                header5: {
+                    fontSize: 12
+                }
             }
           };
 
@@ -155,35 +169,36 @@
                 widths: ['*', '*', '*'],
                 table: {
                     body: [
-                        [{text: 'Nama', bold: true , border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + data.daftarTargetPegawai[i].nama, border: [false, false, false, false]}],
-                        [{text: 'NIP', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + data.daftarTargetPegawai[i].nip, border: [false, false, false, false]}],
-                        [{text: 'Pangkat/Gol. Ruang', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + data.daftarTargetPegawai[i].gol, border: [false, false, false, false]}],
-                        [{text: 'Jabatan', bold: true, border: [false, false, false, false]}, {text: ':', border: [false, false, false, false]}, {text: '' + data.daftarTargetPegawai[i].jabatan, border: [false, false, false, false]}]
+                        [{text: 'Nama', bold: true}, {text: ':'}, {text: '' + data.daftarTargetPegawai[i].glrDpn + data.daftarTargetPegawai[i].nama + data.daftarTargetPegawai[i].glrBlk}],
+                        [{text: 'NIP', bold: true}, {text: ':'}, {text: '' + data.daftarTargetPegawai[i].nip}],
+                        [{text: 'Pangkat/Gol. Ruang', bold: true}, {text: ':'}, {text: '' + data.daftarTargetPegawai[i].pangkat + ' - ' + data.daftarTargetPegawai[i].gol}],
+                        [{text: 'Jabatan', bold: true}, {text: ':'}, {text: '' + data.daftarTargetPegawai[i].jabatan}]
                     ]
-                }
-            }
+                },
+                layout: 'noBorders'
+            };
             docDefinition.content[8].table.body[0][2].ol.push(dat);
           }
 
           var tembusan = {
             ol: []
-          }
+          };
 
           for(var i = 0; i < data.daftarTembusan.length; i++)
             tembusan.ol.push(data.daftarTembusan[i].jabatan);
           docDefinition.content.push(tembusan);
 
-          // for(var i = 0; i < data.menimbangList.length; i++){
-          //   docDefinition.content[6].table.body[0][2].ol.push(data.menimbangList[i]);
-          // }
+          for(var i = 0; i < data.menimbangList.length; i++){
+            docDefinition.content[6].table.body[0][2].ol.push(data.menimbangList[i]);
+          }
           
-          // for(var i = 0; i < data.dasarList.length; i++){
-          //   docDefinition.content[6].table.body[2][2].ol.push(data.dasarList[i]);
-          // }
+          for(var i = 0; i < data.dasarList.length; i++){
+            docDefinition.content[6].table.body[2][2].ol.push(data.dasarList[i]);
+          }
             
-          // for(var i = 0; i < data.untukList.length; i++){
-          //   docDefinition.content[8].table.body[2][2].ol.push(data.untukList[i]);
-          // }
+          for(var i = 0; i < data.untukList.length; i++){
+            docDefinition.content[8].table.body[2][2].ol.push(data.untukList[i]);
+          }
 
           if($state.current.name == "suratperintahnonpejabat" || !data.suratPejabat){
             docDefinition.content[0] = {
@@ -201,8 +216,8 @@
                             [
                                 {
                                     text:[
-                                        {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header1'},
-                                        {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header1'},
+                                        {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                        {text: '' + data.unitKerjaPenandatangan.toUpperCase() + '\n', alignment: 'center', style:'header'},
                                         {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                     ]
                                 },
