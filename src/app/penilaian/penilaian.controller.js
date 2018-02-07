@@ -43,7 +43,8 @@
               response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
             }
             vm.laporanbawahan = response;
-            vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } ); 
+            vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+            vm.sortLaporan = angular.copy(vm.laporanbawahan); 
           }, function(errResponse){
 
           })
@@ -256,9 +257,9 @@
                 })
         };
 
-        function getDocumentMemorandum(laporan){
+        function getDocumentMemorandum(laporan, isLaporan){
             // laporan.loading = true;
-            PenilaianService.GetDataMemorandum(laporan.kdMemorandum).then(
+            PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateMemorandumService.template(vm.data);
@@ -391,6 +392,35 @@
         }
       }
 
+      getSurat();
+
+      function getSurat(){
+        vm.suratMasuk = [];
+        getSuratMasuk('get-nota-dinas-by-target/');
+        getSuratMasuk('get-daftar-memorandum-target/');
+        getSuratMasuk('get-daftar-surat-keterangan-by-target/');
+        getSuratMasuk('get-surat-kuasa-by-penerima-kuasa/');
+        getSuratMasuk('get-daftar-surat-pengantar-by-target/');
+        getSuratMasuk('get-daftar-surat-undangan-target/');
+        // getSuratMasuk('');
+      }
+
+      function getSuratMasuk(url, count){debugger
+        DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            for(var i = 0; i < response.length;i++){
+              var date = new Date(response[i].createdDateMilis);
+              response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+              response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+              vm.suratMasuk.push(response[i]);
+            }
+            vm.suratMasuk = vm.suratMasuk.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } ); 
+            vm.sortSuratMasuk = angular.copy(vm.suratMasuk);
+          }, function(errResponse){
+
+          })
+      }
+
       function getLaporanLain(laporan){
         DashboardService.GetLaporanLain(laporan.namaFileTemplateLain, laporan.extensiFile, laporan.kdSurat).then(
           function(response){
@@ -466,6 +496,7 @@
                   vm.perintahHistory.push(response[i]); 
               } 
               vm.perintahHistory = vm.perintahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } ); 
+              vm.sortHistory = angular.copy(vm.perintahHistory);
             }) 
         } 
 
@@ -706,6 +737,95 @@
           // $log.info('Modal dismissed at: ' + new Date());
         });
       }
-      	
-  } 	 
+
+      vm.sorting = function(){debugger
+      	switch(vm.lihat){
+          case "0": vm.sortLaporan = angular.copy(vm.laporanbawahan);
+                  vm.sortSuratMasuk = angular.copy(vm.suratMasuk);
+                  vm.sortHistory = angular.copy(vm.perintahHistory); break;
+          case "3": vm.sortLaporan = [];
+                  vm.sortSuratMasuk = [];
+                  vm.sortHistory = [];
+                  findStatusBaca(0); break;
+          case "4": vm.sortLaporan = [];
+                  vm.sortSuratMasuk = [];
+                  vm.sortHistory = [];
+                  findStatusBaca(1); break;
+          case "5": vm.sortLaporan = [];
+                  vm.sortSuratMasuk = [];
+                  vm.sortHistory = [];
+                  findStatusBaca(3); break;
+          case "6": vm.sortLaporan = [];
+                  vm.sortSuratMasuk = [];
+                  vm.sortHistory = [];
+                  findStatusBaca(2); break;
+        }
+      }
+
+      vm.sortDate = function(){
+        vm.sortLaporan = [];
+        vm.sortSuratMasuk = [];
+        vm.sortHistory = [];
+
+        for(var i = 0; i < vm.laporanbawahan.length; i++){
+          if(vm.tanggal.getDate() == new Date(vm.laporanbawahan[i].tanggalDibuatMilis).getDate() &&
+             vm.tanggal.getMonth() == new Date(vm.laporanbawahan[i].tanggalDibuatMilis).getMonth() &&
+             vm.tanggal.getYear() == new Date(vm.laporanbawahan[i].tanggalDibuatMilis).getYear())
+            vm.sortLaporan.push(vm.laporanbawahan[i]);
+        }
+
+        for(var i = 0; i < vm.suratMasuk.length; i++){
+          if(vm.tanggal.getDate() == new Date(vm.suratMasuk[i].createdDateMilis).getDate() &&
+             vm.tanggal.getMonth() == new Date(vm.suratMasuk[i].createdDateMilis).getMonth() &&
+             vm.tanggal.getYear() == new Date(vm.suratMasuk[i].createdDateMilis).getYear())
+            vm.sortSuratMasuk.push(vm.suratMasuk[i]);
+        }
+
+        for(var i = 0; i < vm.perintahHistory.length; i++){
+          if(vm.tanggal.getDate() == new Date(vm.perintahHistory[i].tanggalDibuatMilis).getDate() &&
+             vm.tanggal.getMonth() == new Date(vm.perintahHistory[i].tanggalDibuatMilis).getMonth() &&
+             vm.tanggal.getYear() == new Date(vm.perintahHistory[i].tanggalDibuatMilis).getYear())
+            vm.sortHistory.push(vm.perintahHistory[i]);
+        }
+      } 	
+
+      vm.sortJenis = function(){
+        vm.sortLaporan = [];
+        vm.sortSuratMasuk = [];
+        vm.sortHistory = [];
+
+        for(var i = 0; i < vm.laporanbawahan.length; i++){
+          if(vm.jenis == vm.laporanbawahan[i].kdJenisSurat)
+            vm.sortLaporan.push(vm.laporanbawahan[i]);
+        }
+
+        for(var i = 0; i < vm.suratMasuk.length; i++){
+          if(vm.jenis == vm.suratMasuk[i].kdJenisSurat)
+            vm.sortLaporan.push(vm.suratMasuk[i]);
+        }
+
+        for(var i = 0; i < vm.perintahHistory.length; i++){
+          if(vm.jenis == vm.vm.perintahHistory[i].kdJenisSurat)
+            vm.sortLaporan.push(vm.vm.perintahHistory[i]);
+        }
+
+      } 
+
+      function findStatusBaca(value){debugger
+        for(var i = 0; i < vm.laporanbawahan.length; i++){debugger
+          if(vm.laporanbawahan[i].statusPenilaian == value)
+            vm.sortLaporan.push(vm.laporanbawahan[i]);
+        }
+
+        for(var i = 0; i < vm.suratMasuk.length; i++){debugger
+          if(vm.suratMasuk[i].statusBaca == value)
+            vm.suratMasuk.push(vm.suratMasuk[i]);
+        }
+
+        for(var i = 0; i < vm.perintahHistory.length; i++){
+          if(vm.perintahHistory[i].statusPenilaian == value)
+            vm.perintahHistory.push(vm.perintahHistory[i]);
+        }
+      }
+    }
 })();

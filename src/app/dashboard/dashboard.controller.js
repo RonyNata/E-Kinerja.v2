@@ -167,6 +167,7 @@
             console.log(waktu.getHours());
             response[i].nama = "Perintah";
             response[i].jenis = 1;
+            response[i].kdJenisSurat = 11;
             response[i].judulNaskah = "Surat Perintah";
             response[i].namaPengirim = response[i].namaPemberi;
             response[i].tanggalDibuatMilis = response[i].createdDateMilis
@@ -503,15 +504,16 @@
         })
     }
 
-    vm.getDocumentPerintahLaporan = function(laporan){
+    vm.getDocumentPerintahLaporan = function(laporan, isLaporan){
       PenugasanService.GetDataPerintah(laporan.kdSurat).then(
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          DashboardService.ChangeReadPerintah(laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
+          if(isLaporan)
+            openSuratMasuk('open-surat-perintah-penilai/', laporan.kdSurat, '');
+          else openSuratMasuk('open-surat-perintah-pegawai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           laporan.loading = false;
-          openSurat(laporan.kdSurat)
         }, function(errResponse){
 
         })
@@ -556,6 +558,7 @@
             response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
             vm.suratMasuk.push(response[i]);
           }
+          vm.suratMasuk = vm.suratMasuk.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } ); 
         }, function(errResponse){
 
         })
