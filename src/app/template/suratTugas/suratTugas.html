@@ -33,18 +33,34 @@
                                             <input type="number" class="form-control" ng-model="surattugas.item.tahun" disabled required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
+
+                                    <div class="col-md-12" style="margin-bottom:5px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b>Nama Penandatangan</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-6">
-                                            <button class="btn btn-primary waves-effect" ng-click="surattugas.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="surattugas.item.pegawaiPenandatangan">Nama: {{surattugas.item.pegawaiPenandatangan.nama}}</div>
-                                            <div ng-show="surattugas.item.pegawaiPenandatangan">Jabatan: {{surattugas.item.pegawaiPenandatangan.jabatan}}</div>
+                                        <div class="col-md-8">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="surattugas.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="surattugas.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{surattugas.item.pegawaiPenandatangan.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jabatan</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{surattugas.item.pegawaiPenandatangan.jabatan}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
@@ -52,7 +68,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <div ng-repeat="data1 in surattugas.menimbang">
+                                            <div ng-repeat="data1 in surattugas.menimbang" style="margin-bottom: 5px">
                                                 <textarea class="form-control" style="height: 100px" ng-model="data1.deskripsimenimbang"></textarea>
                                             </div>
                                         </div>
@@ -65,7 +81,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <div ng-repeat="data2 in surattugas.dasar">
+                                            <div ng-repeat="data2 in surattugas.dasar" style="margin-bottom: 5px">
                                                 <textarea class="form-control" ng-model="data2.deskripsidasar" style="height: 100px"></textarea>
                                             </div>
                                         </div>
@@ -95,7 +111,7 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <div ng-repeat="data3 in surattugas.untuk">
+                                            <div ng-repeat="data3 in surattugas.untuk" style="margin-bottom: 5px">
                                                 <textarea style="height: 100px" class="form-control" ng-model="data3.deskripsiuntuk"></textarea>
                                             </div>
                                         </div>
@@ -104,7 +120,7 @@
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Nama Tempat</b></p>
+                                            <p><b>Tempat Pembuatan Surat</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
@@ -114,7 +130,7 @@
                                     <div class="col-md-12" style="margin-bottom:10px">
                                         <div class="col-md-1"></div>
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tanggal</b></p>
+                                            <p><b>Tanggal Pembuatan Surat</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-3">
@@ -136,7 +152,7 @@
                                                                 value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
                                                     </datalist>
                                                 </form>
-                                                <div ng-show="tembusan.jabatan">Jabatan: {{tembusan.jabatan.jabatan}}</div>
+                                                <div ng-show="tembusan.jabatan" style="padding-top: 5px">Jabatan : {{tembusan.jabatan.jabatan}}</div>
                                             </div>
                                         </div>
                                         <button class="btn btn-primary waves-effect" type="button" ng-click="surattugas.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>

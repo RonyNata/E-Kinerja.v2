@@ -188,7 +188,7 @@ angular.
             "kdJabatanSuratPejabat": vm.item.pegawaiPembuat.kdJabatan
           };
 
-          if($state.params.kdSuratBawahan != undefined)
+          if($state.params.kdSuratBawahan != "")
                 data.kdSuratEdaranBawahan = $state.params.kdSuratBawahan;
 
           for(var i = 4; i < vm.subab.length;i++)

@@ -165,7 +165,7 @@ angular.
                 "sifat": vm.item.sifat,
                 "lampiran": vm.item.lampiran,
                 "hal": vm.item.hal,
-                "kdJabatanPenerimaSuratDinas": vm.item.jabatanPenerima.kdJabatan,
+                "kdJabatanPenerimaSuratDinas": vm.item.pegawaiPenerima.kdJabatan,
                 "tanggalSuratDinasMilis": vm.item.tanggal1.getTime(),
                 "kotaPembuatanSuratDinas": vm.item.tempat,
                 "isiSuratDinas": vm.item.alineaIsi,
@@ -244,11 +244,11 @@ angular.
                     },
 
                     {
-                        margin: [0,0,0,15], alignment:'justify',
+                        margin: [0,0,0,15],
                         table: {
                             widths: [200],
                             body: [
-                                [{text: 'Yth. ' + vm.item.jabatanPenerima.kdJabatan}]
+                                [{text: 'Yth. ' + vm.item.pegawaiPenerima.jabatan}]
                             ]
                         },
                         layout: 'noBorders'

@@ -138,7 +138,7 @@ angular.
             "suratPengantarIsiList":[]
           }
 
-          if($state.params.kdSuratBawahan != undefined)
+          if($state.params.kdSuratBawahan != "")
                 data.kdSuratPengantarBawahan = $state.params.kdSuratBawahan;
 
           for(var i=0; i < vm.isi.length; i++)
@@ -153,7 +153,7 @@ angular.
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
               $state.go('kontrak');
             }, function(errResponse){
-
+                  EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
             })
         }
 

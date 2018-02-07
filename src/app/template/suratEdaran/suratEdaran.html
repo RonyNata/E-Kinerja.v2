@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="col-md-4" style="margin-left: -15px;">
-                                            <input class="form-control" ng-model="suratedaran.item.durasiPengerjaan" type="number" name="quantity" required></input>
+                                            <input class="form-control" ng-model="suratedaran.item.durasiPengerjaan" type="number" min="0" name="quantity" required></input>
                                         </div>
                                         <div class="col-md-4" style="padding-top: 8px;">
                                             <span><b>Menit</b></span>
@@ -78,7 +78,7 @@
                                         <div class="col-md-3" style="padding: 0px"> 
                                             <button class="btn btn-primary waves-effect" ng-click="suratedaran.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
                                         </div> 
-                                        <div ng-show="suratedaran.item.pegawaiPembuat" class="col-md-6" style="margin-bottom: 0px"> 
+                                        <div ng-show="suratedaran.item.pegawaiPembuat" class="col-md-9" style="margin-bottom: 0px">
                                             <table> 
                                                 <tr> 
                                                     <td>Nama</td> 
