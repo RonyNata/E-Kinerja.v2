@@ -72,7 +72,7 @@
                                     <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                     <div class="col-md-6">
                                         <div ng-repeat="tujuan in instruksipejabat.maksud" style="padding-top: 5px">
-                                            <input class="form-control" ng-model="tujuan.deskripsi" required>
+                                            <textarea class="form-control" ng-model="tujuan.deskripsi" style="height: 100px" required></textarea>
                                         </div>
                                     </div>
                                     <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.addMaksud()" style="margin-left: 15px; padding-top: 5px">+ Tambah Maksud</button>
@@ -98,7 +98,7 @@
                                         <div class="col-md-3" style="padding: 0px">
                                             <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                         </div>
-                                        <div ng-show="instruksipejabat.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px">
+                                        <div ng-show="instruksipejabat.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
                                             <table>
                                                 <tr>
                                                     <td>Nama</td>

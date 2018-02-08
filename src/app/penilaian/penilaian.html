@@ -16,7 +16,7 @@
                                 </div>
                                 <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                 <div class="col-md-6">
-                                    <select class="form-control" ng-model="penilaian.lihat" id="sel1" ng-change="penilaian.sorting()">
+                                    <select class="form-control" ng-model="penilaian.lihat" ng-change="penilaian.sorting()">
                                         <option value="0" selected>Semua</option>
                                         <option value="1">Waktu</option>
                                         <option value="2">Jenis Surat</option>
@@ -46,7 +46,7 @@
                                 </div>
                                 <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                 <div class="col-md-6">
-                                    <select class="form-control" ng-model="penilaian.jenis" ng-change="penilaian.sortJenis()" id="sel1">
+                                    <select class="form-control" ng-model="penilaian.jenis" ng-change="penilaian.sortJenis()">
                                         <option value="0">Berita Acara</option>
                                         <option value="1">Laporan</option>
                                         <option value="2">Memorandum</option>

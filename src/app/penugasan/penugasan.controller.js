@@ -140,7 +140,7 @@ angular.
             $scope.filteredDataPenugasan[idx].loading = true;
           else $scope.filteredData[idx].loading = true;
           switch(naskah.jenis){
-            case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
+            case 0 : getDocumentInstruksi(naskah.kdSurat, idx, isHistory); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
             case 2 : getDocumentSuratTugas(naskah.kdSurat, idx, isHistory); break;
           }

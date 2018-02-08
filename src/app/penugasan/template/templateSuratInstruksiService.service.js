@@ -22,11 +22,11 @@
                     text: '', style: 'nama_judul'
                 },
                 {
-                    text: 'REPUBLIK INDONESIA', style: 'nama_judul', margin: [0,0,0,15]
+                    text: 'REPUBLIK INDONESIA', style: 'nama_judul'
                 },
 
                 {
-                    text: 'INSTRUKSI', style: 'nama_judul'
+                    text: 'INSTRUKSI', style: 'nama_judul', margin: [0,15,0,0]
                 },
                 {
                     text: '' + data.judulInstruksi.toUpperCase(), style: 'nama_judul', margin: [0,0,0,15]
@@ -70,7 +70,7 @@
                             table: {
                                 widths: [200],
                                 body: [
-                                    [{text: ['Dikeluarkan di ', {text:'' + data.dikeluarkanDi, bold:true}], alignment : 'left'}],
+                                    [{text: ['Dikeluarkan di ', {text:'' + data.dikeluarkanDi.toUpperCase(), bold:true}], alignment : 'left'}],
                                     [{text: ['pada tanggal ', {text:'' + data.tanggalDibuat, bold:true}], alignment : 'left'}],
                                     [{text: '' + data.jabatanPenandatangan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
