@@ -104,7 +104,7 @@
                             table: {
                                 widths: [200],
                                 body: [
-                                    [{text: '' + data.tempat + ', ' + data.tanggalDibuat, alignment : 'left'}],
+                                    [{text: '' + data.tempat.toUpperCase() + ', ' + data.tanggalDibuat, alignment : 'left'}],
                                     [{text: '' + data.nmJabatanPenandatangan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
                                     [{text: '' + data.gelarDepanPenandatangan + data.nmPenandatangan + data.gelarBelakangPenandantangan, alignment : 'left', bold:true}],

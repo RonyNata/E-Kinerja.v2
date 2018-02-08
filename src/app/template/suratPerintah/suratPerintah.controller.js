@@ -102,8 +102,8 @@ debugger
           PenugasanService.GetDataPerintah($state.params.kdSurat).then(
             function(response){
               // vm.item.nomorSurat = response.nomorSurat;
-              vm.item.nomorSurat1 = response.nomorSurat1;
-              vm.item.nomorSurat2 = response.nomorSurat2;
+              vm.item.urusan = response.nomorSurat1;
+              vm.item.unit = response.nomorSurat2;
               vm.item.tempat = response.tempat;
               $scope.pegawai = response.nipPenandatangan;
               vm.getPegawai();
@@ -381,7 +381,7 @@ debugger
                 },
 
                 {
-                    text: 'NOMOR ' + vm.item.urusan + '/....-' + vm.item.unit + '/'+ ((new Date()).getYear() + 1900) , style: 'judul_nomor'
+                    text: 'NOMOR ' + vm.item.urusan + '-....-' + vm.item.unit + '-'+ ((new Date()).getYear() + 1900) , style: 'judul_nomor'
                 },
 
                 {
@@ -453,7 +453,7 @@ debugger
                             table: {
                                 widths: [200],
                                 body: [
-                                    [{text: '' + vm.item.tempat + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment : 'left'}],
+                                    [{text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment : 'left'}],
                                     [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
                                     [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold:true}],
@@ -526,7 +526,7 @@ debugger
                     },
                     layout: 'noBorders'
                 };
-                docDefinition.content[8].table.body[0][2].ol.push(dat);
+                vm.docDefinition.content[8].table.body[0][2].ol.push(dat);
             }
 
           var tembusan = {
@@ -568,7 +568,7 @@ debugger
             vm.docDefinition.content[8].table.body[2][2].ol.push(vm.untuk[i].deskripsiuntuk);
 
           if($state.current.name == "suratperintahnonpejabat"){
-              docDefinition.content[0] = {
+              vm.docDefinition.content[0] = {
                   margin:[0,0,0,15],
                   table:{
                       widths: [100,'*'],
