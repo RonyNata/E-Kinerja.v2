@@ -41,7 +41,7 @@
                                 },
 
                                 {
-                                    margin: [0,0,0,15], alignment:'justify',
+                                    margin: [0,0,0,15],
                                     table: {
                                         widths: [200],
                                         body: [

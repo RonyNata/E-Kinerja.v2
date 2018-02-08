@@ -87,6 +87,7 @@
           response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             var waktu = new Date(response[i].tanggalDibuatMilis);
+            response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(waktu);
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
             response[i].nama = "Instruksi";
             response[i].jenis = 0;
@@ -104,11 +105,14 @@
         function(response){debugger
           // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
+            response[i].tanggalDibuatMilis = response[i].createdDateMilis;
             var waktu = new Date(response[i].tanggalDibuatMilis);
+            response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(waktu);
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
-            response[i].nama = "Instruksi";
-            response[i].jenis = 0;
-            response[i].judulNaskah = response[i].judulInstruksi;
+            response[i].nama = "Surat Tugas";
+            response[i].jenis = 12;
+            response[i].namaPengirim = response[i].namaPemberi;
+            response[i].judulNaskah = response[i].jenisSurat;
             vm.naskah.push(response[i]);
           }
           getNaskahPenugasanInstruksiTarget();
@@ -163,6 +167,7 @@
             console.log(waktu.getHours());
             response[i].nama = "Perintah";
             response[i].jenis = 1;
+            response[i].kdJenisSurat = 11;
             response[i].judulNaskah = "Surat Perintah";
             response[i].namaPengirim = response[i].namaPemberi;
             response[i].tanggalDibuatMilis = response[i].createdDateMilis
@@ -182,7 +187,7 @@
       switch(naskah.jenis){
         case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx); break;
         case 1 : getDocumentPerintah(naskah.kdSurat, idx); break;
-        case 12: getDocumentSuratTugas(laporan, 0); break;
+        case 12: getDocumentSuratTugas(naskah, 0); break;
       }
 
     };
@@ -441,6 +446,24 @@
                 })
         };
 
+        function getDocumentPengumuman(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataPengumuman(laporan.kdSurat).then(
+                function(response){
+                    vm.data = response;debugger
+                    var doc = TemplatePengumumanService.template(vm.data);
+                    laporan.loading = false;
+                    if(isLaporan)
+                      openSuratMasuk('open-pengumuman-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-pengumuman/', laporan.kdSurat, '');
+                    pdfMake.createPdf(doc).open();
+                    // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
+                    //   openSurat(laporan.kdSurat);
+                }, function(errResponse){
+
+                })
+        };
+
         function openSuratMasuk(url, kdSurat, nip){console.log(url, 
                     kdSurat, nip);
           DashboardService.ChangeRead(url, kdSurat, nip);
@@ -481,15 +504,16 @@
         })
     }
 
-    vm.getDocumentPerintahLaporan = function(laporan){
+    vm.getDocumentPerintahLaporan = function(laporan, isLaporan){
       PenugasanService.GetDataPerintah(laporan.kdSurat).then(
         function(response){
           vm.data = response;debugger
           var doc = TemplateSuratPerintahService.template(vm.data);
-          DashboardService.ChangeReadPerintah(laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
+          if(isLaporan)
+            openSuratMasuk('open-surat-perintah-penilai/', laporan.kdSurat, '');
+          else openSuratMasuk('open-surat-perintah-pegawai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           laporan.loading = false;
-          openSurat(laporan.kdSurat)
         }, function(errResponse){
 
         })
@@ -521,7 +545,7 @@
       getSuratMasuk('get-daftar-surat-keterangan-by-target-unread/');
       getSuratMasuk('get-surat-kuasa-by-penerima-kuasa-unread/');
       getSuratMasuk('get-daftar-surat-pengantar-by-target-unread/');
-      // getSuratMasuk('');
+      getSuratMasuk('get-daftar-surat-undangan-target-unread/');
       // getSuratMasuk('');
     }
 
@@ -534,6 +558,7 @@
             response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
             vm.suratMasuk.push(response[i]);
           }
+          vm.suratMasuk = vm.suratMasuk.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } ); 
         }, function(errResponse){
 
         })

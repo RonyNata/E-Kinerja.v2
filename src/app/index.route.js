@@ -540,6 +540,17 @@
             templateUrl: 'app/reportPegawai/reportPegawai.html',
             controller: 'ReportPegawaiController',
             controllerAs: 'reportPegawai'
+        })
+        .state('suratmasuk', {
+          url: '/suratmasuk',
+          templateUrl: 'app/penilaian/penilaian.html',
+          controller: 'PenilaianController',
+          controllerAs: 'penilaian',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
         });
 
     $urlRouterProvider.otherwise('/');

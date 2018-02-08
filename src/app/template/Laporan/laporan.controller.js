@@ -113,7 +113,7 @@
                 "alasanPenolakan": null
             };
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdLaporanBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
