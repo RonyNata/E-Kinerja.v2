@@ -112,7 +112,7 @@ angular.
                 "alasanPenolakan": ""
             };
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdNotaDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
