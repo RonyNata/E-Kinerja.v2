@@ -223,7 +223,7 @@
             // "tanggalDibuat": (new Date()).getTime(),
           }
 
-          if($state.params.kdSuratBawahan != undefined)
+          if($state.params.kdSuratBawahan != "")
                 data.kdMemorandumBawahan = $state.params.kdSuratBawahan;
 
           if($state.current.name == "memorandumnonpejabat")
