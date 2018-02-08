@@ -104,7 +104,7 @@
             for(var i = 0; i < vm.isiBeritaAcara.length; i++)
                 data.isiBeritaAcara.push(vm.isiBeritaAcara[i].deskripsiisiberitaacara);
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdBeritaAcaraBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
@@ -220,13 +220,13 @@
                         alignment:'justify',
                         text:[
                             {text: 'Pada hari ini,'},
-                            {text: '' + EkinerjaService.IndonesianDay(vm.item.tanggal1), bold:true},
+                            {text: '' + EkinerjaService.IndonesianDay(new Date(vm.item.tanggal1)), bold:true},
                             {text: ' tanggal '},
-                            {text: '' + EkinerjaService.IndonesianDate(vm.item.tanggal1), bold:true},
+                            {text: '' + EkinerjaService.IndonesianDate(new Date(vm.item.tanggal1)), bold:true},
                             {text: ' bulan'},
-                            {text: '' + EkinerjaService.IndonesianMonth(vm.item.tanggal1), bold:true},
+                            {text: '' + EkinerjaService.IndonesianMonth(new Date(vm.item.tanggal1)), bold:true},
                             {text: ' tahun'},
-                            {text: '' + EkinerjaService.IndonesianYear(vm.item.tanggal1) + ',', bold:true},
+                            {text: '' + EkinerjaService.IndonesianYear(new Date(vm.item.tanggal1)) + ',', bold:true},
                             {text: ' kami yang bertanda tangan dibawah ini:'}
                         ]
                     },

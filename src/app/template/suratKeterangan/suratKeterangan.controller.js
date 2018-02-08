@@ -54,10 +54,10 @@
         //     vm.target[idx].pegawaiTarget = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
         // }) 
 
-        $scope.$watch('pegawaiP', function(){
-            if($scope.pegawaiP.length == 18)
-                vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
-        })
+        // $scope.$watch('pegawaiP', function(){
+        //     if($scope.pegawaiP.length == 18)
+        //         vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($scope.pegawaiP,vm.list_pegawai);
+        // })
 
         vm.openPilihan = function (parentSelector) {
           var parentElem = parentSelector ? 
@@ -118,6 +118,39 @@
           });
 
           modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        };
+
+        vm.openPegawaiPenandatangan = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataPegawai/dataPegawai.html',
+          controller: 'DataPegawaiController',
+          controllerAs: 'datapegawai',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            pegawaiPilihan: function(){
+              return vm.item.pegawaiPenandatangan;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.pegawaiPenandatangan = data;
           }, function () {
 
           });
@@ -218,7 +251,7 @@
           }
           for(var i = 0; i < vm.target.length; i++)
                 data.nipPegawaiKeterangan.push(vm.target[i].nipPegawai);
-          if($state.params.kdSuratBawahan != undefined)
+          if($state.params.kdSuratBawahan != "")
                 data.kdSuratKeteranganBawahan = $state.params.kdSuratBawahan;
           debugger
           console.log(data);
@@ -285,7 +318,7 @@
                     },
                     {
                         margin:[0,0,0,15],
-                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
+                        text: [{text : 'NOMOR : ', style: 'judul_nomor'}, '' + vm.item.nomorSurat + '/' + vm.item.nomorUrut + '/' + vm.item.nomorSurat1 + '/' + vm.item.nomorSurat2 + '/' + ((new Date()).getYear() + 1900)]
                     },
                     {
                         margin: [0, 30, 0, 0],

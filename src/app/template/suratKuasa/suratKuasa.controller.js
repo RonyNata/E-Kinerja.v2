@@ -125,7 +125,7 @@
                 "jenisNaskahPenugasan": ""
             }
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdSuratKuasaBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);

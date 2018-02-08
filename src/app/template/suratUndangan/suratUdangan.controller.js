@@ -186,7 +186,7 @@
                                     {text: 'Nomor', fontSize: 12},
                                     {text: ':', fontSize: 12},
                                     {text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900), fontSize: 12},
-                                    {text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal1), alignment: 'right',fontSize: 12}
+                                    {text: '' + vm.item.tempat.toUpperCase() + ', ' + EkinerjaService.IndonesianDateFormat(new Date(vm.item.tanggal1)), alignment: 'right',fontSize: 12}
                                 ],
                                 [
                                     {text: 'Sifat', fontSize: 12},
