@@ -8,6 +8,8 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	vm.loading = true;
 	vm.item = {};
 
+	vm.paraf="Sudah Ditandatangan";
+
 	vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
     vm.target = [];
 
@@ -189,7 +191,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "noSuratDisposisi": vm.item.noSuratDisposisi,
         "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
         "lampiran": vm.item.lampiran,
-        "dariSuratDisposisi": vm.item.dariSuratDisposisi.nipPegawai,
+        "dariSuratDisposisi": vm.item.dariSuratDisposisi,
         "ringkasanIsiSuratDisposisi": vm.item.ringkasanIsiSuratDisposisi,
         "tanggalSuratDisposisiMilis": (new Date()).getTime(),
         "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
@@ -197,7 +199,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
         "isiDisposisi": vm.item.isiDisposisi,
         "durasiPengerjaan": vm.item.durasiPengerjaan
-    }
+    };
 
     
     if($state.current.name != undefined)
@@ -215,10 +217,10 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
       DisposisiService.save(data).then(
         function(response){
           EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+            $state.go('ambilperpindahan');
         }, function(errResponse){
-
-        })
-        return $state.go('ambilperpindahan');
+              EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
+        });
     }
     
     // vm.save = function(){
@@ -232,308 +234,198 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
     	vm.docDefinition = {
     		pageSize: 'A4',
     		content: [
-    			{
-		          table: {
-		            widths: [120, 120, 120, 120],
-		            body: [
-		              [
-		                {
-		                  border: [true, true, true, false],
-		                  text: 'PEMERINTAH KABUPATEN BEKASI',
-		                  style: 'header',
-		                  colSpan: 4
-		                },{},{},{}
-		              ],
-		              [
-		                {
-		                  border: [true, false, true, false],
-		                  text: '' + vm.target[0].unitKerja,
-		                  style: 'header',
-		                  colSpan: 4
-		                },{},{},{}
-		              ],
-		              [
-		                {
-		                  colSpan:4,
-		                  margin: [130,-5,0,0],
-		                  border: [true, false, true, false],
-		                  table: {
-		                    widths: [240],
-		                    body:[
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',
-		                          style: 'header2'
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                }
-		              ],
-		              [
-		                {
-		                  colSpan:4,
-		                  margin: [70,-5,0,0],
-		                  border: [true, false, true, true],
-		                  table: {
-		                    widths: [90, 90, 180],
-		                    body:[
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Telp. (021) 89970696',
-		                          fontSize: 9,
-		                          alignment: 'right'
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Fax. (021) 89970064',
-		                          fontSize: 9,
-		                          alignment: 'center'
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'email : diskominfo@bekasikab.go.id',
-		                          fontSize: 9,
-		                          alignment: 'left'
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                }
-		              ],
-		              [
-		                {
-		                  colSpan: 4,
-		                  text: 'LEMBAR DISPOSISI',
-		                  fontSize: 15,
-		                  alignment: 'center'
-		                },{},{},{}
-		              ],
-		              [
-		                {
-		                  colSpan: 2,
-		                  table: {
-		                    widths: [110, 110],
-		                    body: [
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Nomor Agenda/Registrasi :',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: '',
-		                          fontSize: 9
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                },{},
-		                {
-		                  colSpan: 2,
-		                  table: {
-		                    widths: [65, 110],
-		                    body: [
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Tkt.Keamanan :',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.tktKeamanan],
-		                          fontSize: 9
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                },{}
-		              ],
-		              [
-		                {
-		                  colSpan: 2,
-		                  table: {
-		                    widths: [90, 110],
-		                    body: [
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Tanggal Penerimaan :',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalPenerimaanMilis)],
-		                          fontSize: 9
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                },{},
-		                {
-		                  colSpan: 2,
-		                  table: {
-		                    widths: [95, 110],
-		                    body: [
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Tanggal Penyelesaian :',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tglPenyelesaianMilis)],
-		                          fontSize: 9
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                },{}
-		              ],
-		              [
-		                {
-		                  colSpan: 4,
-		                  table: {
-		                    widths: [107, 2, 370],
-		                    body: [
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Tanggal dan Nomor Surat',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ':',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalSuratDisposisiMilis) + ' dan ' + vm.item.noSuratDisposisi],
-		                          fontSize: 9
-		                        }
-		                      ],
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Dari',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ':',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.dariSuratDisposisi.nama],
-		                          fontSize: 9
-		                        }
-		                      ],
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Ringkasan Isi',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ':',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.ringkasanIsiSuratDisposisi],
-		                          fontSize: 9
-		                        }
-		                      ],
-		                      [
-		                        {
-		                          border: [false, false, false, false],
-		                          text: 'Lampiran',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ':',
-		                          fontSize: 9
-		                        },
-		                        {
-		                          border: [false, false, false, false],
-		                          text: ['' + vm.item.lampiran],
-		                          fontSize: 9
-		                        }
-		                      ]
-		                    ]
-		                  }
-		                }
-		              ],
-		              [
-		                {
-		                  fontSize: 12,
-		                  colSpan: 2,
-		                  text: 'Disposisi',
-		                  alignment: 'center'
-		                },
-		                {
-		                  
-		                },
-		                {
-		                  fontSize: 12,
-		                  text: 'Diteruskan Kepada',
-		                  alignment: 'center'
-		                },
-		                {
-		                  fontSize: 12,
-		                  text: 'Paraf',
-		                  alignment: 'center'
-		                }
-		              ],
-		              [
-		                {
-		                  fontSize:9,
-		                  colSpan: 2,
-		                  text: '' + vm.item.isiDisposisi
-		                },
-		                {
-		                  
-		                },
-		                {
-		                  fontSize: 9,
-		                  ol: []
-		                },
-		                {
-		                  fontSize: 9,
-		                  ul: [
-		                    'Sudah Ditandatangan',
-		                    'Sudah Ditandatangan',
-		                    'Sudah Ditandatangan'
-		                  ]
-		                }
-		              ]
-		            ]
-		          }
-		        }
+                {
+                    table:{
+                        widths: ['50%', '*', '20%'],
+                        body:[
+                            [
+                                {
+                                    border: [true, true, true, false],
+                                    text: [
+                                        {text: 'PEMERINTAH KABUPATEN BEKASI\n',style: 'header'},
+                                        {text: '' + vm.target[0].unitKerja,style: 'header'}
+                                    ],
+                                    colSpan: 3
+                                }, {}, {}
+                            ],
+                            [
+                                {
+                                    border: [true, false, true, false],
+                                    stack:[
+                                        {text: 'Komplek Perkantoran Pemerintah Kabupaten Bekasi Desa Sukamahi Kecamatan Cikarang Pusat',style: 'header3'}
+                                    ],
+                                    margin: [130, 0, 130, 0],
+                                    colSpan: 3
+                                },{},{}
+                            ],
+                            [
+                                {
+                                    border: [true, false, true, false],
+                                    stack:[
+                                        {
+                                            columns: [
+                                                {width: '25%', text: 'Telp. (021) 89970696',style:'header3'},
+                                                {width: '25%',text: 'Fax. (021) 89970064',style:'header3'},
+                                                {width: '40%',text: 'email : diskominfo@bekasikab.go.id',style:'header3'}
+                                            ]
+                                        }
+                                    ],
+                                    margin: [70, 0, 10, 0],
+                                    colSpan: 3
+                                },{},{}
+                            ],
+                            [
+                                {
+                                    text: [
+                                        {text: 'LEMBAR DISPOSISI',style: 'header'}
+                                    ],
+                                    colSpan: 3
+                                }, {}, {}
+                            ],
+                            [
+                                {
+                                    text: [
+                                        {text: 'Nomor Agenda/Registrasi : ', fontSize: 10},
+                                        {text: '200/213/123/432/2018', fontSize: 10,bold: true}
+                                    ]
+                                },
+                                {
+                                    text: [
+                                        {text: 'Tkt.Keamanan : ', fontSize: 10},
+                                        {text: [''], fontSize: 10, bold: true}
+                                    ]
+                                    ,colSpan: 2
+                                },{}
+                            ],
+                            [
+                                {
+                                    text: [
+                                        {text: 'Tanggal Penerimaan : ', fontSize: 10},
+                                        {text: '' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalPenerimaanMilis), fontSize: 10, bold: true}
+                                    ]
+                                },
+                                {
+                                    text: [
+                                        {text: 'Tanggal Penyelesaian : ', fontSize: 10},
+                                        {text: '' + EkinerjaService.IndonesianDateFormat(vm.item.tglPenyelesaianMilis), fontSize: 10, bold: true}
+                                    ]
+                                    ,colSpan: 2
+                                },{}
+                            ],
+                            [
+                                {
+                                    fontSize: 10,
+                                    table: {
+                                        widths: [120, 5, '*'],
+                                        body: [
+                                            ['Tanggal dan Nomor Surat', ':',
+                                                {
+                                                    text: [
+                                                        {text: '' + EkinerjaService.IndonesianDateFormat(vm.item.tanggalSuratDisposisiMilis), bold: true},
+                                                        {text: ' dan '},
+                                                        {text: '' + vm.item.noSuratDisposisi, bold: true}
+                                                    ]
+                                                }
+                                            ],
+                                            ['Dari', ':', {text: '' + vm.item.dariSuratDisposisi, bold: true}],
+                                            ['Ringkasan Isi', ':', {text: '' + vm.item.ringkasanIsiSuratDisposisi, bold: true}],
+                                            ['Lampiran', ':', {text: '' + vm.item.lampiran, bold: true}]
+                                        ]
+                                    },colSpan: 3, layout: 'noBorders'
+                                },{},{}
+                            ],
+                            [
+                                {
+                                    text: 'DISPOSISI',
+                                    style: 'header4',
+                                    alignment: 'center'
+                                },
+                                {
+                                    text: 'DITERUSKAN KEPADA',
+                                    style: 'header4',
+                                    alignment: 'center'
+                                },
+                                {
+                                    text: 'PARAF',
+                                    style: 'header4',
+                                    alignment: 'center'
+                                }
+                            ],
+                            [
+                                {
+                                    style: 'header5',
+                                    alignment: 'justify',
+                                    text: '' + vm.item.isiDisposisi
+                                },
+                                {
+                                    style: 'header5',
+                                    ol: []
+                                },
+                                {
+                                    style: 'header5',
+                                    ul: []
+                                }
+                            ]
+                        ]
+                    }
+                }
     		],
     		styles: {
-		        header: {
-		          bold: true,
-		          fontSize: 15,
-		          alignment: 'center'
-		        },
-		        header2: {
-		          fontSize: 10,
-		          alignment: 'center'
-		        }
+                header: {
+                    bold: true,
+                    fontSize: 14,
+                    alignment: 'center'
+                },
+                header2: {
+                    fontSize: 12,
+                    alignment: 'center'
+                },
+                header3: {
+                    fontSize: 10,
+                    alignment: 'center'
+                },
+                nama_judul: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                judul_nomor: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 12
+                },
+                demoTable: {
+                    color: '#000',
+                    fontSize: 12
+                },
+                tandaTangan: {
+                    color: '#000',
+                    fontSize: 12,
+                    alignment:'right'
+                },
+                header4: {
+                    bold: true,
+                    fontSize: 12
+                },
+                header5: {
+                    fontSize: 12
+                }
 		      }
-		  }
+		  };
+
+			if (vm.item.tktKeamanan == 1) {
+				vm.docDefinition.content[0].table.body[4][1].text[1].text[0] += "Sangat Rahasia";
+			}
+			else if (vm.item.tktKeamanan == 2) {
+				vm.docDefinition.content[0].table.body[4][1].text[1].text[0] += "Rahasia";
+			}
+			else if (vm.item.tktKeamanan == 3) {
+				vm.docDefinition.content[0].table.body[4][1].text[1].text[0] += "Biasa";
+			}
+
 	    	for(var i = 0; i < vm.target.length; i++){
-	            vm.docDefinition.content[0].table.body[9][2].ol.push(vm.target[i].nama);
+	            vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].nama);
+	            vm.docDefinition.content[0].table.body[8][2].ul.push(vm.paraf);
 	        }
     	};
 
