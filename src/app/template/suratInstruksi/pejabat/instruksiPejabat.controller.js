@@ -211,14 +211,14 @@ angular.
             data.daftarIsiInstruksi.push(vm.maksud[i].deskripsi);
           for(var i = 0; i < vm.target.length; i++)
             data.targetPegawaiList.push(vm.target[i].nipPegawai);
-          console.log(data);
-          InstruksiPejabatService.save(data).then(
+            console.log(data);
+            InstruksiPejabatService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+              $state.go('kontrak');
             }, function(errResponse){
-
+                    EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
             })
-            return $state.go('kontrak');
         };
 
         vm.back =  function(){
@@ -244,11 +244,11 @@ angular.
                     text: '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase(), style: 'nama_judul'
                 },
                 {
-                    text: 'REPUBLIK INDONESIA', style: 'nama_judul', margin: [0,0,0,15]
+                    text: 'REPUBLIK INDONESIA', style: 'nama_judul'
                 },
 
                 {
-                    text: 'INSTRUKSI', style: 'nama_judul'
+                    text: 'INSTRUKSI', style: 'nama_judul', margin: [0,15,0,0]
                 },
                 {
                     text: '' + vm.item.judulInstruksi.toUpperCase(), style: 'nama_judul', margin: [0,0,0,15]
@@ -292,7 +292,7 @@ angular.
                             table: {
                                 widths: [200],
                                 body: [
-                                    [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}],
+                                    [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat.toUpperCase(), bold:true}], alignment : 'left'}],
                                     [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}],
                                     [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
@@ -304,21 +304,6 @@ angular.
                             layout: 'noBorders'
                         }
                     ]
-                },
-
-                {
-                    style: 'tandaTangan',
-                    table: {
-                        widths: [200],
-                        body: [
-                            [{text: ['Dikeluarkan di ', {text:'' + vm.item.tempat, bold:true}], alignment : 'left'}], 
-                            [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(new Date()), bold:true}], alignment : 'left'}], 
-                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}], 
-                            [{text: ' ',margin: [0,20]}], 
-                            [{text: '' + vm.item.pegawaiPenandatangan.nama, alignment : 'left'}]
-                        ]
-                    }, 
-                    layout: 'noBorders'
                 }
 
             ],
@@ -416,8 +401,8 @@ angular.
                             [
                                 {
                                     text:[
-                                        {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header1'},
-                                        {text: ''+ vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() +'\n', alignment: 'center', style:'header1'},
+                                        {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
+                                        {text: ''+ vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() +'\n', alignment: 'center', style:'header'},
                                         {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                         ]
                                 },
@@ -426,9 +411,9 @@ angular.
                                     table: {
                                         body: [
                                             [
-                                                {text: 'Telp. (021) 89970696', style: 'header2'},
-                                                {text: 'Fax. (021) 89970064', style: 'header2'},
-                                                {text: 'email : diskominfo@bekasikab.go.id', style: 'header2'}
+                                                {text: 'Telp. (021) 89970696', style: 'header3'},
+                                                {text: 'Fax. (021) 89970064', style: 'header3'},
+                                                {text: 'email : diskominfo@bekasikab.go.id', style: 'header3'}
                                             ]
                                         ]
                                     }, layout: 'noBorders'
