@@ -84,13 +84,15 @@
     function getNaskahPenugasanInstruksiTarget(){
       DashboardService.GetInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){debugger
-          response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+          response = response.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } );
           for(var i = 0; i < response.length;i++){
-            var waktu = new Date(response[i].tanggalDibuatMilis);
+            var waktu = new Date(response[i].createdDateMilis);
             response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(waktu);
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
             response[i].nama = "Instruksi";
+            response[i].namaPengirim = response[i].namaPemberi;
             response[i].jenis = 0;
+            response[i].kdJenisSurat = 16;
             response[i].judulNaskah = response[i].judulInstruksi;
             vm.naskah.push(response[i]);
           }
@@ -110,7 +112,7 @@
             response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(waktu);
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
             response[i].nama = "Surat Tugas";
-            response[i].jenis = 12;
+            response[i].kdJenisSurat = 12;
             response[i].namaPengirim = response[i].namaPemberi;
             response[i].judulNaskah = response[i].jenisSurat;
             vm.naskah.push(response[i]);
@@ -192,14 +194,14 @@
 
     };
 
-    function getDocumentInstruksi(kdHistory, idx){
-      KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
+    function getDocumentInstruksi(laporan, idx){
+      KontrakPegawaiService.GetDataInstruksi(laporan.kdSurat).then(
         function(response){
           vm.data = response;
           var doc = TemplateSuratInstruksiService.template(vm.data);
-          vm.naskah[idx].loading = false;
+          laporan.loading = false;
           DashboardService.ChangeRead('open-surat-instruksi-pegawai/', 
-            kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+            laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
           pdfMake.createPdf(doc).open();
         }, function(errResponse){
 
@@ -485,10 +487,11 @@
           case 8: getDocumentSuratKeterangan(laporan, isLaporan); break;
           case 9: getDocumentSuratKuasa(laporan, isLaporan); break;
           case 10: getDocumentPengantar(laporan, isLaporan); break;
-          case 12: getDocumentSuratTugas(laporan, 1); break;
+          case 12: getDocumentSuratTugas(laporan, isLaporan); break;
           case 13: getDocumentUndangan(laporan, isLaporan); break;
           case 14: getDocumentTelaahanStaff(laporan, isLaporan); break;
           case 15: getLaporanLain(laporan, isLaporan); break;
+          case 16 : getDocumentInstruksi(laporan); break;
         default: vm.getDocumentPerintahLaporan(laporan, isLaporan); break;
       }
     }

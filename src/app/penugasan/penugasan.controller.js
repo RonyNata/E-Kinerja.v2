@@ -301,18 +301,20 @@ angular.
                     },
                     kdSurat: function(){
                       var i;
+                      if(naskah != undefined)
                         switch(naskah.jenis){
                           case 0 : i = naskah.kdInstruksi; break;
                           case 1 : i = naskah.kdSurat; break;
                         }
-                        return i;
+                      return i;
                     },
                     jenisNaskahPenugasan: function(){
                       var i;
-                      switch(naskah.jenis){
-                        case 0 : i = 3; break;
-                        case 1 : i = 2; break;
-                      }
+                      if(naskah != undefined)
+                        switch(naskah.jenis){
+                          case 0 : i = 3; break;
+                          case 1 : i = 2; break;
+                        }
                       return i;
                     }
                 }
