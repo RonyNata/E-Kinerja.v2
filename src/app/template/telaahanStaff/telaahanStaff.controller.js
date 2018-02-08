@@ -5,13 +5,15 @@
         .controller('TelaahanStaffController', TelaahanStaffController);
 
     function TelaahanStaffController(EkinerjaService, TelaahanStaffService, HakAksesService, 
-        $scope, $state, $uibModal, $document) {
+        $scope, $state, $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != "")
+                getDocumentTelaahanStaff();
             vm.loading = false; 
         }
         else
@@ -22,6 +24,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != "")
+                        getDocumentTelaahanStaff();
                     vm.loading = false;
                 }, function(errResponse){
 
@@ -67,6 +71,24 @@
             debugger
         });
 
+        function getDocumentTelaahanStaff(){
+            PenilaianService.GetDataTelaahanStaff($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "tentang": response.tentang,
+                        "persoalan": response.persoalan,
+                        "praanggapan": response.praanggapan,
+                        "faktayangmempengaruhi": response.faktaYangMemppengaruhi,
+                        "analisis": response.analisis,
+                        "simpulan": response.simpulan,
+                        "saran": response.saran,
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan.nip, vm.list_pegawai),
+                        "tanggal": new Date(response.tanggalPembuatanMilis)
+                    };
+                }
+                );
+        }
+
         vm.save = function(){
             var data = {
                 "kdTelaahanStaf": null,
@@ -89,6 +111,9 @@
                 "statusPenilaian": 0,
                 "alasanPenolakan": null
             };
+
+            if($state.params.kdSuratBawahan != "")
+                data.kdTelaahanStafBawahan = $state.params.kdSuratBawahan;
 
             console.log(data);
             TelaahanStaffService.save(data).then(

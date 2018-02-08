@@ -184,7 +184,7 @@ angular.
                 "kdTembusanList": []
             };
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdSuratDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)

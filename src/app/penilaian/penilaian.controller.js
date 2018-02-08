@@ -100,11 +100,20 @@
             case 10: $state.go('suratpengantar', {
                           "kdSuratBawahan": kdSurat
                         }); break;
-            case 13: getDocumentUndangan(laporan); break;
+            case 13: if(laporan.suratPejabat == 1)
+                    $state.go('suratundanganpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        });
+                    else 
+                    $state.go('suratundangannonpejabat', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 12: $state.go('surattugas', {
                           "kdSuratBawahan": kdSurat
                         }); break;
-            case 14: getDocumentTelaahanStaff(laporan); break;
+            case 14: $state.go('telaahanstaff', {
+                          "kdSuratBawahan": kdSurat
+                        }); break;
             case 15: getLaporanLain(laporan); break;
             default: if(isPejabat == 1)
                         $state.go('perintahpejabatterusan', {
@@ -225,12 +234,14 @@
                 })
         };
 
-        function getDocumentTelaahanStaff(laporan){
+        function getDocumentTelaahanStaff(laporan, isLaporan){
             // laporan.loading = true;
             PenilaianService.GetDataTelaahanStaff(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateTelaahanStaffService.template(vm.data);
+                    if(isLaporan && laporan.statusPenilaian == 0)
+                      openSuratMasuk('open-telaahan-staff-by-penilai/', laporan.kdSurat, '');
                     laporan.loading = false;
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
@@ -815,16 +826,19 @@
         for(var i = 0; i < vm.laporanbawahan.length; i++){debugger
           if(vm.laporanbawahan[i].statusPenilaian == value)
             vm.sortLaporan.push(vm.laporanbawahan[i]);
+          debugger
         }
 
-        for(var i = 0; i < vm.suratMasuk.length; i++){debugger
-          if(vm.suratMasuk[i].statusBaca == value)
-            vm.suratMasuk.push(vm.suratMasuk[i]);
+        for(var j = 0; j < vm.suratMasuk.length; j++){debugger
+          if(vm.suratMasuk[j].statusBaca == value)
+            vm.sortSuratMasuk.push(vm.suratMasuk[j]);
+          debugger
         }
 
-        for(var i = 0; i < vm.perintahHistory.length; i++){
-          if(vm.perintahHistory[i].statusPenilaian == value)
-            vm.perintahHistory.push(vm.perintahHistory[i]);
+        for(var k = 0; k < vm.perintahHistory.length; k++){
+          if(vm.perintahHistory[k].statusPenilaian == value)
+            vm.sortHistory.push(vm.perintahHistory[k]);
+            debugger
         }
       }
     }

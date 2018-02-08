@@ -327,12 +327,14 @@
                 })
         };
 
-        function getDocumentTelaahanStaff(laporan){
+        function getDocumentTelaahanStaff(laporan, isLaporan){
             // laporan.loading = true;
             PenilaianService.GetDataTelaahanStaff(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateTelaahanStaffService.template(vm.data);
+                    if(isLaporan)
+                      openSuratMasuk('open-telaahan-staff-by-penilai/', laporan.kdSurat, '');
                     laporan.loading = false;
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
