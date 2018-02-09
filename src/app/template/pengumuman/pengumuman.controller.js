@@ -59,7 +59,7 @@
                 "kdPengumumanBawahan":null
             }
 
-            if($state.params.kdSuratBawahan != undefined)
+            if($state.params.kdSuratBawahan != "")
                 data.kdPengumumanBawahan = $state.params.kdSuratBawahan;
 
             PengumumanService.save(data).then(

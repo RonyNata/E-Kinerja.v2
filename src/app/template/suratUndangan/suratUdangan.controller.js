@@ -5,7 +5,7 @@
         .controller('SuratUndanganController', SuratUndanganController);
 
     function SuratUndanganController(EkinerjaService, SuratUndanganService, PengumpulanDataBebanKerjaService,  
-        HakAksesService, $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
+        HakAksesService, $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document, PenilaianService) {
         var vm = this;
         vm.loading = true;
         vm.item = {};
@@ -57,6 +57,44 @@
           });
         };
 
+        function getDocumentUndangan(){
+            PenilaianService.GetDataUndangan($state.params.kdSuratBawahan).then(
+                function(response){debugger
+                    vm.item = {
+                        "nomorUrusan": response.nomorUrusan,
+                        "nomorPasanganUrut": response.nomorPasanganUrut,
+                        "nomorUnit": response.nomorUnit,
+                        "nomorUrut": response.nomorUrut,
+                        "tahun": response.nomorTahun,
+
+                        "hal": response.hal,
+                        "sifat": response.sifat,
+                        "lampiran": response.lampiran,
+                        "tempat": response.kotaPembuatanSurat,
+                        "pegawaiPenerima": EkinerjaService.findPegawaiByNip(response.nipPenerimaSuratUndangan,vm.list_pegawai),
+                        "pegawaiPenandatangan": EkinerjaService.findPegawaiByNip(response.nipPenandatangan,vm.list_pegawai),
+                        "tanggal1": new Date(response.tanggalPembuatanSurat),
+
+                        "isisuratundangan": response.bagianPembukaSuratUndangan,
+                        "tanggalpelaksanaan": new Date(response.bagianIsiTanggalSuratUndangan),
+                        "waktupelaksanaan": response.bagianIsiWaktuSuratUndangan,
+                        "tempatpelaksanaan": response.bagianIsiTempatSuratUndangan,
+                        "acara": response.bagianIsiAcaraSuratUndangan,
+                        "penutupsuratundangan": response.bagianPenutupSuratUndangan
+                    };
+
+                    vm.tembusanSurat = [];
+                    for(var i = 0; i < response.tembusanSuratUndanganList.length; i++){
+                        vm.tembusanSurat.push({
+                          "id": new Date().getTime(), 
+                          "jabat": response.tembusanSuratUndanganList[i].kdJabatan,
+                          "jabatan": response.tembusanSuratUndanganList[i]
+                        });
+                    }
+                }
+                );
+        }
+
         vm.save = function(){
             var data = {
                 "kdSuratUndangan": null,
@@ -89,6 +127,9 @@
                 "tahunUrtug": $state.params.tahun
             };
 
+            if($state.params.kdSuratBawahan != "")
+                data.kdSuratUndanganBawahan = $state.params.kdSuratBawahan;
+
             if($state.current.name == "suratundangannonpejabat")
                 data.suratPejabat = false;
 
@@ -115,6 +156,8 @@
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.params.kdSuratBawahan != "")
+                getDocumentUndangan();
         }
         else
         getAllPegawai();
@@ -124,6 +167,8 @@
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.params.kdSuratBawahan != "")
+                        getDocumentUndangan();
                     vm.loading = false;
                 }, function(errResponse){
 

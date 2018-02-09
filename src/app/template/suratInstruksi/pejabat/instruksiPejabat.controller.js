@@ -32,6 +32,8 @@ angular.
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
             vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+            if($state.current.name != 'instruksinonpejabatterusan' || $state.current.name != 'instruksipejabatterusan')
+              getDocumentInstruksi();
             vm.loading = false; 
         }
         else
@@ -42,6 +44,8 @@ angular.
                 function(response){
                     vm.list_pegawai = response;
                     sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+                    if($state.current.name != 'instruksinonpejabatterusan' || $state.current.name != 'instruksipejabatterusan')
+                      getDocumentInstruksi();
                     vm.loading = false;
                 }, function(errResponse){
 

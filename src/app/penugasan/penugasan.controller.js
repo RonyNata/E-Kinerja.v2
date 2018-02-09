@@ -140,7 +140,7 @@ angular.
             $scope.filteredDataPenugasan[idx].loading = true;
           else $scope.filteredData[idx].loading = true;
           switch(naskah.jenis){
-            case 0 : getDocumentInstruksi(naskah.kdInstruksi, idx, isHistory); break;
+            case 0 : getDocumentInstruksi(naskah.kdSurat, idx, isHistory); break;
             case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
             case 2 : getDocumentSuratTugas(naskah.kdSurat, idx, isHistory); break;
           }
@@ -301,18 +301,20 @@ angular.
                     },
                     kdSurat: function(){
                       var i;
+                      if(naskah != undefined)
                         switch(naskah.jenis){
                           case 0 : i = naskah.kdInstruksi; break;
                           case 1 : i = naskah.kdSurat; break;
                         }
-                        return i;
+                      return i;
                     },
                     jenisNaskahPenugasan: function(){
                       var i;
-                      switch(naskah.jenis){
-                        case 0 : i = 3; break;
-                        case 1 : i = 2; break;
-                      }
+                      if(naskah != undefined)
+                        switch(naskah.jenis){
+                          case 0 : i = 3; break;
+                          case 1 : i = 2; break;
+                        }
                       return i;
                     }
                 }
