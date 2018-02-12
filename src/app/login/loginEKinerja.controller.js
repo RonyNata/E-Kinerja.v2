@@ -6,7 +6,7 @@ angular
     .controller('LoginEKinerjaController', LoginEKinerjaController);
 
     function LoginEKinerjaController($scope, $rootScope, $location, LoginEKinerjaService, $cookieStore, $state,
-        EkinerjaService, TemplateSuratPerintahService){
+        EkinerjaService, TemplateSuratPerintahService, $uibModal){
         // reset login status
         // LoginEKinerjaService.ClearCredentials();
         // var ses = {
@@ -49,6 +49,30 @@ angular
             if(sessionStorage.getItem('credential') != undefined)
                 $state.go('master-urtug');
         }
+
+        vm.pengumuman = function (parentSelector) {
+          // var tugas = PengumpulanDataBebanKerjaService.GetUrtugStatus(vm.list_jenis_urtug, $scope.choosen_urtug);
+          // var item = {
+          //    "kdJabatan": $scope.jabatan,
+          //    "kdUrtug": tugas.kdUrtug,
+          //    "kdJenisUrtug": tugas.kdJenisUrtug,
+          //    "tahunUrtug": tugas.tahunUrtug
+          // };
+          // console.log(item);
+          var parentElem = parentSelector ? 
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/login/Pengumuman/pengumuman.html',
+            controller: 'LoginEKinerjaController',
+            controllerAs: 'pengumumanlist',
+            // windowClass: 'app-modal-window',
+            size: 'lg',
+            appendTo: parentElem
+          });
+        };
     }
 })();
 
