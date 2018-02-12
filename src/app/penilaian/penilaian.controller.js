@@ -45,6 +45,7 @@
             vm.laporanbawahan = response;
             vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
             vm.sortLaporan = angular.copy(vm.laporanbawahan); 
+            vm.loading = false;
           }, function(errResponse){
 
           })

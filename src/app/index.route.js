@@ -551,6 +551,12 @@
               $state.go($state.current.name);
             }
           }
+        })
+        .state('masterkegiatan', {
+          url: '/master-kegiatan',
+          templateUrl: 'app/masterKegiatan/masterKegiatan.html',
+          controller: 'MasterKegiatanController',
+          controllerAs: 'master'
         });
 
     $urlRouterProvider.otherwise('/');

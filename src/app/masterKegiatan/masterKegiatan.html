@@ -1,0 +1,71 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="padding-top: 90px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <i class="material-icons" style="float: left;">assignment</i>
+                        <h2 style="padding-left: 30px;padding-top: 3px;"><b> HALAMAN PERSETUJUAN KONTRAK KERJA PEGAWAI</b></h2>
+                    </div>
+                    <div class="body" style="font-size: 17px">
+                        <div class="col-md-12" style="padding-left: 0px;margin-bottom: 10px">
+                            <div class="col-md-2" style="padding-left: 0px;margin-bottom: 10px">
+                                <button type="button" ng-hide="master.kegiatan" ng-click="master.kembali()" class="btn btn-info btn-block btn-xs waves-effect" style="height: 40px; font-size: 20px"> <b>Kembali</b></button>
+                            </div>
+                        </div>
+                        <div class="animate-show-hide" ng-show="master.kegiatan">
+                            <table class="table table-bordered table-striped table-hover" cellspacing="0">
+                                <thead>
+                                    <tr style="background:#D32F2F; color:#ffff">
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th style="text-align: center" >Rincian Uraian Tugas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="kegiatan in master.list_kegiatan" ng-click="master.gotoPj(kegiatan)" style="text-align: center">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left">{{kegiatan.ketKegiatan}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="animate-show-hide" ng-show="master.pj">
+                            <table class="table table-bordered table-striped table-hover" cellspacing="0">
+                                <thead>
+                                    <tr style="background:#D32F2F; color:#ffff">
+                                        <th style="width: 5%; text-align: center">No</th>
+                                        <th >Nip</th>
+                                        <th >Nama Pegawai</th>
+                                        <th style="width: 5%;">Jabatan</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pj in master.kegiatanPj" style="text-align: center;">
+                                        <td>{{$index + 1}}</td>
+                                        <td style="text-align: left;">{{pj.nipPegawai}}</td>
+                                        <td style="text-align: left;">{{pj.namaPegawai}}</td>
+                                        <td>{{pj.statusPenanggungJawab}}</td>
+                                        <td><button ng-show="{{pj.statusApproval == 2}}" type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="bg_load animate-show-hide" ng-show="master.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="master.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>
