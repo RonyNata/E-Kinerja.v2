@@ -286,7 +286,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
                                 {
                                     text: [
                                         {text: 'Nomor Agenda/Registrasi : ', fontSize: 10},
-                                        {text: '200/213/123/432/2018', fontSize: 10,bold: true}
+                                        {text: ' ', fontSize: 10,bold: true}
                                     ]
                                 },
                                 {
