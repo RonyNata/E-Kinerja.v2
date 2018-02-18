@@ -260,6 +260,9 @@
                             ]
                         },
                         layout: 'noBorders'
+                    },
+                    {
+                        text:'' + data.barcodeImage[0]
                     }
                 ],
                 styles: {
