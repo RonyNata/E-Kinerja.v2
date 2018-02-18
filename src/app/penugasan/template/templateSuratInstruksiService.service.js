@@ -34,7 +34,7 @@
 
                 {
                     style: 'judul_nomor', margin: [0,0,0,15],
-                    text: ['NOMOR ' + data.nomor + ' TAHUN ' + data.tahun + '\n\n', 'TENTANG\n', data.tentang.toUpperCase() +'\n\n', '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase()]
+                    text: ['NOMOR ' + data.nomor + ' TAHUN ' + data.tahun + '\n\n', 'TENTANG\n', data.tentang.toUpperCase() +'\n\n', '' + data.jabatanPenandaTangan.toUpperCase()]
                 },
 
                 {
@@ -72,7 +72,7 @@
                                 body: [
                                     [{text: ['Dikeluarkan di ', {text:'' + data.dikeluarkanDi.toUpperCase(), bold:true}], alignment : 'left'}],
                                     [{text: ['pada tanggal ', {text:'' + data.tanggalDibuat, bold:true}], alignment : 'left'}],
-                                    [{text: '' + data.jabatanPenandatangan + ',', alignment : 'left', bold: true}],
+                                    [{text: '' + data.jabatanPenandaTangan + ',', alignment : 'left', bold: true}],
                                     [{text: ' ',margin: [0,20]}],
                                     [{text: '' + data.gelarDepanPenandatangan + data.namaPenandatangan + data.gelarBelakangPenandantangan, alignment : 'left', bold:true}],
                                     [{text: '' + data.pangkatPenandatangan, alignment : 'left', bold:true}],

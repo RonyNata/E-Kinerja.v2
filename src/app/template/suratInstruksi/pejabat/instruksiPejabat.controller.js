@@ -260,7 +260,7 @@ angular.
 
                 {
                     style: 'judul_nomor', margin: [0,0,0,15],
-                    text: ['NOMOR ' + vm.item.nomorSurat + ' TAHUN ' + ((new Date()).getYear() + 1900) + '\n\n', 'TENTANG\n', vm.item.tentang.toUpperCase() +'\n\n', '' + $.parseJSON(sessionStorage.getItem('credential')).jabatan.toUpperCase()]
+                    text: ['NOMOR ' + vm.item.nomorSurat + ' TAHUN ' + ((new Date()).getYear() + 1900) + '\n\n', 'TENTANG\n', vm.item.tentang.toUpperCase() +'\n\n', '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase()]
                 },
 
                 {

@@ -27,7 +27,7 @@
                                         {
                                             text:[
                                                 {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                                {text: '' + data.unitKerjaPenandatangan + '\n', alignment: 'center', style:'header'},
+                                                {text: '' + data.unitKerjaPihakKesatu + '\n', alignment: 'center', style:'header'},
                                                 {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                             ]
                                         },
