@@ -271,13 +271,13 @@
 
         function getDocumentMemorandum(laporan, isLaporan){
             // laporan.loading = true;
-            PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
+            PenilaianService.GetDataMemorandum(laporan.kdMemorandum).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateMemorandumService.template(vm.data);
                     if(isLaporan && laporan.statusPenilaian == 0)
-                      openSuratMasuk('open-memorandum-by-penilai/', laporan.kdSurat, '');
-                    else openSuratMasuk('open-memorandum-by-target/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                      openSuratMasuk('open-memorandum-by-penilai/', laporan.kdMemorandum, '');
+                    else openSuratMasuk('open-memorandum-by-target/', laporan.kdMemorandum, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
                     pdfMake.createPdf(doc).open();
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
@@ -375,9 +375,9 @@
                 })
         };
 
-        function openSuratMasuk(url, kdSurat, nip){console.log(url, 
-                    kdSurat, nip);
-          DashboardService.ChangeRead(url, kdSurat, nip);
+        function openSuratMasuk(url, kdSurat,kdMemorandum, nip){console.log(url,
+                    kdSurat, kdMemorandum, nip);
+          DashboardService.ChangeRead(url, kdSurat,kdMemorandum, nip);
             getLaporanBawahan();
         }
 
