@@ -65,9 +65,9 @@
             PengumumanService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
-                    $state.go('kontrak');
+                    return $state.go('kontrak');
                 },function(errResponse){
-
+                    EkinerjaService.showToastrError("Data Tidak Berhasil Disimpan");
                 })
         }
 

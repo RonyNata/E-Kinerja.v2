@@ -36,7 +36,7 @@ angular.
               return vm.list_pegawai;
             },
             pegawaiPilihan: function(){
-              return vm.item.pegawaiPembuat;
+              return vm.item.pegawaiPenandatangan;
             },
             isPilihan: function(){
               return 2;
@@ -45,7 +45,7 @@ angular.
           });
 
           modalInstance.result.then(function (data) {
-            vm.item.pegawaiPembuat = data;
+            vm.item.pegawaiPenandatangan = data;
           }, function () {
 
           });
@@ -170,7 +170,7 @@ angular.
             "tempat": vm.item.tempat,
             "tanggalSuratEdaranMilis": vm.item.tanggal.getTime(),
             "tanggalPenetapan": vm.item.tanggal.getTime(),
-            "nipPenandatangan": vm.item.pegawaiPembuat.nipPegawai,
+            "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
             "latarBelakang": vm.subab[0].isi,
             "maksudDanTujuan": vm.subab[1].isi,
             "ruangLingkup": vm.subab[2].isi,
@@ -178,14 +178,14 @@ angular.
             "subLain": [],
             "suratPejabat": true,
             "nipPembuatSurat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-            "kdUnitKerja": vm.item.pegawaiPembuat.kdUnitKerja,
+            "kdUnitKerja": vm.item.pegawaiPenandatangan.kdUnitKerja,
             "durasiPengerjaan": vm.item.durasiPengerjaan,
             "kdSuratEdaranBawahan": null,
             "kdNaskahPenugasan": $state.params.kdSurat,
             "jenisNaskahPenugasan": $state.params.jenisNaskahPenugasan,
             "statusPenilaian": 0,
             "alasanPenolakan": "",
-            "kdJabatanSuratPejabat": vm.item.pegawaiPembuat.kdJabatan
+            "kdJabatanSuratPejabat": vm.item.pegawaiPenandatangan.kdJabatan
           };
 
           if($state.params.kdSuratBawahan != "")
@@ -202,7 +202,7 @@ angular.
               EkinerjaService.showToastrSuccess("Data Berhasil Disimpan");
               $state.go('kontrak');
             },function(errResponse){
-
+              EkinerjaService.showToastrError("Data Tidak Berhasil Disimpan");
             })
         };
 
