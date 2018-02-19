@@ -38,8 +38,10 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="beritaacara.item.pegawaiKesatu" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="beritaacara.item.pegawaiKesatu" class="col-md-6" style="margin-bottom:0px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -73,8 +75,10 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="beritaacara.item.pegawaiKedua" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="beritaacara.item.pegawaiKedua" class="col-md-6" style="margin-bottom:0px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -133,8 +137,10 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
-                                            <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(3)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <div ng-show="beritaacara.item.pegawaiMengetahui" class="col-md-12" style="margin-top:5px; margin-bottom:-20px">
+                                            <div class="col-md-3" style="padding: 0px">
+                                                <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(3)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                            </div>
+                                            <div ng-show="beritaacara.item.pegawaiMengetahui" class="col-md-6" style="margin-top:5px; margin-bottom:-20px">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -179,7 +185,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="col-md-4" style="margin-left: -15px;">
-                                                <input class="form-control" ng-model="beritaacara.item.durasiPengerjaan" type="number" name="quantity" min="1" required></input>
+                                                <input class="form-control" ng-model="beritaacara.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                             </div>
                                             <div class="col-md-4" style="padding-top: 8px;">
                                                 <span><b>Menit</b></span>

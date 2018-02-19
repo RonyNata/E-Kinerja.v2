@@ -345,18 +345,19 @@
                                     alignment:'center',
                                     text:[
                                         {text:'Dibuat di '},
-                                        {text:'' + vm.item.tempat.toUpperCase()}
+                                        {text:'' + data.kotaPembuatanSurat.toUpperCase()}
                                     ]
                                 }],
                                 [{text: 'PIHAK KEDUA,', bold: true, alignment: 'center'},{},{text: 'PIHAK KESATU,', bold: true, alignment: 'center'}],
                                 [{text: ' ',margin: [0,15]},{},{text: ' ',margin: [0,15]}],
-                                [{text: ''+ vm.item.pegawaiKedua.nama, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.nama, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiKedua.gelarDepan + vm.item.pegawaiKedua.nama + vm.item.pegawaiKedua.gelarBelakang, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.gelarDepan + vm.item.pegawaiKesatu.nama + vm.item.pegawaiKesatu.gelarBelakang, alignment: 'center'}],
+                                [{text: ''+ vm.item.pegawaiKedua.pangkat, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.pangkat, alignment: 'center'}],
                                 [{text: ''+ vm.item.pegawaiKedua.nipPegawai, alignment: 'center'}, {}, {text: ''+ vm.item.pegawaiKesatu.nipPegawai, alignment: 'center'}],
                                 [{text: 'Mengetahui/Mengesahkan', alignment: 'center', colSpan: 3, margin:[0,5,0,5]}],
                                 [{
                                     alignment: 'center', colSpan: 3, margin:[0,5,0,5],
                                     text:[
-                                        {text: '' + vm.item.pegawaiMengetahui.jabatan.toUpperCase() + ',', bold:true}, {text: '\n\n\n\n\n\n\n'}, {text: '' + vm.item.pegawaiMengetahui.nama}, {text: '\n'},{text: '' + vm.item.pegawaiMengetahui.nipPegawai}
+                                        {text: '' + vm.item.pegawaiMengetahui.jabatan.toUpperCase() + ',', bold:true}, {text: '\n\n\n\n\n\n\n'}, {text: '' + vm.item.pegawaiMengetahui.nama}, {text: '\n'}, {text: '' + vm.item.pegawaiMengetahui.pangkat}, {text: '\n'}, {text: '' + vm.item.pegawaiMengetahui.nipPegawai}
                                     ]
                                 }]
                             ]
