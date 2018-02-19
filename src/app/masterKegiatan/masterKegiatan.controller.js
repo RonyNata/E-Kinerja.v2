@@ -23,6 +23,13 @@ angular.
               }
             )
 
+        PengumpulanDataBebanKerjaService.GetAllPegawaiByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          function(response){
+            vm.list_pegawai = response;
+          }, function(errResponse){
+
+          })
+
         getUrtugDpa();
 
         function getUrtugDpa(){
@@ -78,7 +85,7 @@ angular.
 
         vm.gotoPj = function(kegiatan){
           // vm.kegiatanPj = kegiatan.statusPenanggungJawabList;debugger
-          dataKegiatan = kegiatan;
+          dataKegiatan = kegiatan;debugger
           vm.kegiatan = false;
           $timeout(function() { vm.pj = true;}, 499);
         }
@@ -124,6 +131,50 @@ angular.
 
           modalInstance.result.then(function () {
 
+          }, function () {
+            // showToastrFailed('menambahkan data');
+          // $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
+
+        vm.addPJ = function (parentSelector) {
+          var item = {
+            "kdUrusan": dataKegiatan.kdUrusan,
+            "kdBidang": dataKegiatan.kdBIdang,
+            "kdUnit": dataKegiatan.kdUnit,
+            "kdSub": dataKegiatan.kdSub,
+            "tahun": dataKegiatan.tahun,
+            "kdProg": dataKegiatan.kdProg,
+            "idProg": dataKegiatan.idProg,
+            "kdKeg": dataKegiatan.kdKegiatan
+          }
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/pengadaanBarangJasa/formPenanggungJawab.html',
+          controller: 'FormPenanggungJawabController',
+          controllerAs: 'skform',
+          // windowClass: 'app-modal-window',
+          // size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            items: function () {
+              return item;
+            },
+            pegawai: function(){
+              return vm.list_pegawai;
+            },
+            isEselon4: function(){
+              return null;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
+            // getPJ();
           }, function () {
             // showToastrFailed('menambahkan data');
           // $log.info('Modal dismissed at: ' + new Date());
