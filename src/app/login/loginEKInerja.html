@@ -13,28 +13,32 @@
                         <span class="input-group-addon" >
                              <i class="material-icons">person</i>
                         </span>
-                        <div class="form-line">
+                        <div class="form-line" style="width: 270px;">
                             <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP" ng-model="nip" required autofocus />
                         </div>
+                        <span style="padding-left: 7px;position: fixed;padding-top: 10px;"> 
+                            <a  href="#" id="remove" data-val="1"><span class="glyphicon glyphicon-remove"></span></a>
+                        </span>
                         <span ng-show="form.nip.$dirty && form.nip.$error.required" class="help-block">NIP harus diisi</span>
                     </div>
                     <div class="input-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" ng-model="password" required />
+                        <div class="form-line" style="width: 270px;">
+                            <input type="password" class="form-control" width="20" name="password" id="pwd" placeholder="Password" ng-model="password" required />
                         </div>
+                        <span style="padding-left: 7px;position: fixed;padding-top: 10px;"> 
+                            <a  href="#" id="showhide" data-val='1'><span id='eye' class="glyphicon glyphicon-eye-open"></span></a>
+                        </span>
                         <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password harus diisi</span>
                     </div>
-
                     <div class="row"  style="padding-left: 15px;padding-right: 15px; text-align: center;">
                         <button class="btn btn-block btn-block bg-primary waves-effect" ng-disabled="form.$invalid" type="submit" ng-hide="dataLoading">Masuk</button>
                         <div ng-show="dataLoading">
                         <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ></span> Loading...
                         </div>
                     </div>
-
                 </form>
                 <div class="row" style="padding: 10px;padding-left: 15px;padding-right: 15px;"> 
                     <button type="button" ng-click="login.pengumuman()" class="btn btn-block btn-info waves-effect active"><span>Pengumuman</span>
@@ -49,3 +53,33 @@
 </div>
 <!-- <script src="../assets/plugins/node-waves/waves.js"></script>
 <script src="../assets/js/admin.js"></script> -->
+<script type="text/javascript">
+    $(document).ready(function() 
+      {
+         $("#showhide").click(function() 
+         {
+            if ($(this).data('val') == "1") 
+            {
+               $("#pwd").prop('type','text');
+               $("#eye").attr("class","glyphicon glyphicon-eye-close");
+               $(this).data('val','0');
+            }
+            else
+            {
+               $("#pwd").prop('type', 'password');
+               $("#eye").attr("class","glyphicon glyphicon-eye-open");
+               $(this).data('val','1');
+            }
+         });
+      });
+
+    $(document).ready(function()
+
+      {
+         $("#remove").click(function()
+         {
+           $("#nip").val('');
+         });
+         
+      });
+</script>
