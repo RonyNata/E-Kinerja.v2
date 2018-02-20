@@ -112,6 +112,9 @@ angular.
             },
             isEselon4: function(){
               return isEselon4;
+            },
+            isMaster: function(){
+              return false;
             }
           }
           });

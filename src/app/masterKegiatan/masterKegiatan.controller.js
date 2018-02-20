@@ -7,7 +7,7 @@ angular.
 
     
     function MasterKegiatanController(EkinerjaService, KontrakUrtugDpaService, $scope, $timeout, $uibModal, 
-      $document, PengadaanBarangJasaService, PengumpulanDataBebanKerjaService) {
+      $document, MasterKegiatanService, PengumpulanDataBebanKerjaService) {
       	var vm = this;
         vm.loading = true;
         vm.kegiatan = true;
@@ -85,9 +85,22 @@ angular.
 
         vm.gotoPj = function(kegiatan){
           // vm.kegiatanPj = kegiatan.statusPenanggungJawabList;debugger
+          getAllStatusPJ(kegiatan);
           dataKegiatan = kegiatan;debugger
           vm.kegiatan = false;
           $timeout(function() { vm.pj = true;}, 499);
+        }
+
+        function getAllStatusPJ(items){
+          items.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
+          items.kdBidang = items.kdBIdang;
+          console.log(JSON.stringify(items));
+          MasterKegiatanService.GetPJ(items).then(
+            function(response){
+              vm.kegiatanPj = response; debugger
+            }, function(errResponse){
+
+            })
         }
 
         vm.editPJ = function (pj, parentSelector) {
@@ -169,6 +182,9 @@ angular.
             },
             isEselon4: function(){
               return null;
+            },
+            isMaster: function(){
+              return true;
             }
           }
           });

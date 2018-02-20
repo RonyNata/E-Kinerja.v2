@@ -9,7 +9,7 @@ angular.
       var vm = this;
       vm.loading = true;
       vm.loadUrtug = true;
-      // console.log(JSON.stringify($.parseJSON(sessionStorage.getItem('credential'))));
+      console.log(JSON.stringify($.parseJSON(sessionStorage.getItem('credential'))));
 
       // EkinerjaService.checkCredential();
       // EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);

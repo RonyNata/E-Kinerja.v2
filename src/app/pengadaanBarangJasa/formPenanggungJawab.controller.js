@@ -6,7 +6,7 @@ angular.
 	.controller('FormPenanggungJawabController', FormPenanggungJawabController);
 
     
-    function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, PengadaanBarangJasaService, 
+    function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, isMaster, PengadaanBarangJasaService, 
       $uibModalInstance, MasterKegiatanService) {
       	var vm = this;
         vm.pj = {};
@@ -26,13 +26,31 @@ angular.
           items.nipPegawai = vm.pj.nipPegawai;
           items.kdStatusPenanggungJawab = vm.pj.jabatan;
           console.log(items);
-          MasterKegiatanService.CreatePJ(items).then(
-            function(response){
-              EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
-              $uibModalInstance.close();
-            }, function(errResponse){
-              EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
-            })
+          if(isMaster)
+            MasterKegiatanService.CreatePJ(items).then(
+              function(response){
+                EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
+                $uibModalInstance.close();
+              }, function(errResponse){
+                EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+              })
+          else
+            if(isEselon4)
+              PengadaanBarangJasaService.AddPJ(items).then(
+                function(response){
+                  EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
+                  $uibModalInstance.close();
+                }, function(errResponse){
+                  EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+                })
+            else 
+              PengadaanBarangJasaService.AddPJProgram(items).then(
+              function(response){
+                EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
+                $uibModalInstance.close();
+              }, function(errResponse){
+                EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+              })
       	}
 
       	vm.cancel = function () {
