@@ -1,92 +1,101 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Pilih Uraian Tugas</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">
+        <strong>PILIH URAIAN TUGAS</strong>
+    </h3>
 </div>
+
 <form ng-submit="pilihurtug.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body" style="font-size: 17px">
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                            <li role="presentation" class="active">
-                                <a href="#nondpa" data-toggle="tab">Uraian Tugas Non-DPA</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#dpa" data-toggle="tab">Uraian Tugas DPA</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
-                                <div class="checkbox">
-                                  <label><input type="checkbox" ng-model="urtugnon">Pilih Semua</label>
-                                </div>  
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-                                    <thead>
-                                        <tr style="background:#D32F2F; color:#ffff">
-                                            <th style="width: 5%; text-align: center">No</th>
-                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
-                                            <th style="width: 5%; text-align: center">Mutu</th> 
-                                            <th style="width: 5%; text-align: center">Waktu</th> 
-                                            <th style="width: 5%; text-align: center">Biaya</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" style="text-align: center">
-                                            <td><input type="checkbox" ng-model="urtug.checked"></td>
-                                            <td style="text-align: left;">{{urtug.urtug}}</td>
-                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                            <td>{{urtug.kualitas}}</td>
-                                            <td>{{urtug.waktu}}</td>
-                                            <td>{{urtug.biayaRp}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade in" id="dpa">
-                                <div class="checkbox">
-                                  <label><input type="checkbox" ng-model="dpaurtug">Pilih Semua</label>
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#nondpa" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#dpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkbox space-after">
+                                        <label><input type="checkbox" ng-model="urtugnon">Pilih Semua</label>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
+                                                <tr>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Pilih</th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Kuant/ Output</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Mutu</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Biaya</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" class="text-center">
+                                                    <td><input type="checkbox" ng-model="urtug.checked"></td>
+                                                    <td class="text-left">{{urtug.urtug}}</td>
+                                                    <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                    <td>{{urtug.kualitas + '%'}}</td>
+                                                    <td>{{urtug.waktu + ' Bulan'}}</td>
+                                                    <td>{{'Rp. '+urtug.biayaRp}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-                                    <thead>
-                                        <tr style="background:#D32F2F; color:#ffff">
-                                            <th style="width: 5%; text-align: center"><label>Pilih</label></th>
-                                            <th style="text-align: center">Rincian Tugas dan Kegiatan</th> 
-                                            <th style="width: 10%; text-align: center">Kuant/ Output</th>
-                                            <th style="width: 5%; text-align: center">Mutu</th> 
-                                            <th style="width: 5%; text-align: center">Waktu</th> 
-                                            <th style="width: 5%; text-align: center">Biaya</th>
-                                            <th style="width: 5%; text-align: center">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr ng-repeat="dpa in pilihurtug.urtugDpa" style="text-align: center">
-                                            <!-- ng-click="" -->
-                                            <td><input type="checkbox" ng-model="dpa.checked"></td>
-                                            <td style="text-align: left;">{{dpa.urtug}}</td>
-                                            <!-- <td style="text-align: left;" ng-hide="pilihurtug.isEselon4">{{dpa.deskripsiUrtug}}</td> -->
-                                            <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
-                                            <td>100</td>
-                                            <td>{{dpa.waktu}}</td>
-                                            <td>{{dpa.biayaRp}}</td>
-                                            <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success btn waves waves-effect"><i class="material-icons">visibility</i><span>Detail</span></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-                    </div>                              
+                        <div role="tabpanel" class="tab-pane fade in" id="dpa">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkbox space-after">
+                                        <label><input type="checkbox" ng-model="dpaurtug">Pilih Semua</label>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
+                                                <tr>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle"><label>Pilih</label></th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Kuant/ Output</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
+                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Action</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr ng-repeat="dpa in pilihurtug.urtugDpa" class="text-center">
+                                                    <td><input type="checkbox" ng-model="dpa.checked"></td>
+                                                    <td class="text-left">{{dpa.urtug}}</td>
+                                                    <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
+                                                    <td>{{dpa.kualitas + '%'}}</td>
+                                                    <td>{{dpa.waktu + ' Bulan'}}</td>
+                                                    <td>{{'Rp. '+dpa.biayaRp}}</td>
+                                                    <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success"><i class="material-icons">visibility</i><span>Detail</span></button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-        </div>
     </div>
-</div>
     <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary waves-effect" style="font-size: 18px">Ajukan Sebagai Kontrak</button>
-        <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger waves-effect" style="font-size: 18px" data-dismiss="modal">Batal</button>
-
-    </div> 
-        </form>
+        <button type="submit"  class="btn btn-primary"><strong>Ajukan Sebagai Kontrak</strong></button>
+        <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Batal</strong></button>
+    </div>
+</form>
