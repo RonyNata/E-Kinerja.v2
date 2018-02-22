@@ -48,8 +48,8 @@
                                 <tbody>
                                     <tr ng-repeat="pj in master.kegiatanPj" style="text-align: center;">
                                         <td>{{$index + 1}}</td>
-                                        <td style="text-align: left;">{{pj.nipPegawai}}</td>
-                                        <td style="text-align: left;">{{pj.namaPegawai}}</td>
+                                        <td style="text-align: left;">{{pj.penanggungJawab.nip}}</td>
+                                        <td style="text-align: left;">{{pj.penanggungJawab.nama}}</td>
                                         <td>{{pj.statusPenanggungJawab}}</td>
                                         <td><button ng-show="{{pj.statusApproval == 2}}" type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button></td>
                                     </tr>

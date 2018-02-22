@@ -3,7 +3,8 @@
 
 	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
-	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService, KontrakPegawaiService, $scope, $state, $uibModal, $document){
+	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService, 
+    KontrakPegawaiService, $scope, $state, $uibModal, $document, $window){
 		var vm = this;
       	vm.loading = true;
 
@@ -52,6 +53,10 @@
 
             })
         }
+
+        // $window.localStorage['key'] = 'keuy';
+
+        console.log($window.localStorage['key']);
 
         if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
           vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));

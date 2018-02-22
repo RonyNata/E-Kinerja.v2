@@ -94,6 +94,7 @@ angular.
         function getAllStatusPJ(items){
           items.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
           items.kdBidang = items.kdBIdang;
+          items.kdKeg = items.kdKegiatan;
           console.log(JSON.stringify(items));
           MasterKegiatanService.GetPJ(items).then(
             function(response){
@@ -191,6 +192,7 @@ angular.
 
           modalInstance.result.then(function () {
             // getPJ();
+            getAllStatusPJ(dataKegiatan);
           }, function () {
             // showToastrFailed('menambahkan data');
           // $log.info('Modal dismissed at: ' + new Date());
