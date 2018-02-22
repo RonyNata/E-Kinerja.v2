@@ -180,7 +180,7 @@ can be found in the LICENSE file at http://angular.io/license
   margin-left: 5px; }
 
 .app-modal-window .modal-dialog {
-  width: 640px;
+  width: 1200px;
 }
 
 .app-modal-windows .modal-dialog {
@@ -8145,4 +8145,28 @@ html.ie11 .bs-searchbox .form-control {
   text-align: center;
   background: #D32F2F;
   color: #ffff;
+}
+
+
+/* css baru */
+.page{
+  padding : 20px;
+}
+
+.header-size2 {
+  font-size: 30px;
+}
+
+.hr-space{
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.space-after{
+  padding-bottom: 16px;
+}
+
+.bg-table{
+  background:#D32F2F;
+  color:#ffff;
 }

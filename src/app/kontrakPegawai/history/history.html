@@ -1,44 +1,61 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">History</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>HISTORY</strong></h3>
 </div>
+
 <div class="modal-body" id="modal-body">
     <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-                            <thead>
-                                <tr style="background:#D32F2F; color:#ffff">
-                                    <th style="width: 5%; text-align: center">No</th>
-                                    <th style="text-align: center">Nama File</th>
-                                    <th style="text-align: center">Tanggal Pembuatan</th>
-                                    <!-- <th style="text-align: center; width: 15%; ">historylate</th> -->
-                                    <th style="width: 10%; text-align: center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="data in history.dataHistory">
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{data.nama}}</td>
-                                    <td>
-                                        {{data.tanggalDibuat}}
-                                    </td>
-                                    <td><button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary waves-effect" ng-hide="data.loading">Lihat Dokumen</button>
-                                    <button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary waves-effect" ng-show="data.loading" disabled>Mohon Tunggu</button></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>                              
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-table">
+                            <tr>
+                                <th style="width: 5%; text-align: center">No</th>
+                                <th style="text-align: center">Nama File</th>
+                                <th style="text-align: center">Tanggal Pembuatan</th>
+                                <th style="width: 10%; text-align: center">Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="data in history.dataHistory">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td>{{data.nama}}</td>
+                                <td>{{data.tanggalDibuat}}</td>
+                                <td><button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary" ng-hide="data.loading"><strong>Lihat Dokumen</strong></button>
+                                    <button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary" ng-show="data.loading" disabled><strong>Mohon Tunggu</strong></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="align-center">
+                            <ul style="padding-left: 0px;">
+                                <li style="display: inline-block;">
+                                    <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                        &lt; PREV
+                                    </button>
+                                </li>
+                                <li style="display: inline-block;">
+                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                </li>
+                                <li style="display: inline-block;">
+                                    <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                        NEXT &gt;
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-        </div>
     </div>
 </div>
-    <div class="modal-footer">
-        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-        <button type="button" ng-click="history.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
 
-    </div> 
+<div class="modal-footer">
+    <button type="button" ng-click="history.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
+</div>
