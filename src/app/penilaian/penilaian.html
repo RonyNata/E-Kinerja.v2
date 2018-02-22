@@ -105,8 +105,9 @@
                                                 <td style="text-align: left;">{{ambil.tglPengiriman}}</td>
                                                 <td style="text-align: left;">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">edit</i><span>Teruskan</span></button>
-                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="material-icons">edit</i><span>Lihat Dokumen</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="material-icons">edit</i><span>Teruskan</span></button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="material-icons">edit</i><span>Tandatangan</span></button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="material-icons">edit</i><span>PDF</span></button>
                                                     <button type="button" class="btn btn-secondary waves-effect" ng-show="ambil.loading" disabled>Mohon Tunggu</button>
                                                     <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">delete</i>Tolak</button>
                                                 </td> 
@@ -153,7 +154,7 @@
                                                 <td style="text-align: left;">{{surat.tanggalDibuat}}</td>
                                                 <td style="text-align: left;">{{surat.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">edit</i><span>Lihat Dokumen</span></button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">edit</i><span>PDF</span></button>
                                                     <button type="button" class="btn btn-secondary waves-effect" ng-show="surat.loading" disabled>Mohon Tunggu</button>
                                                 </td> 
                                             </tr>
@@ -183,7 +184,7 @@
                                                 <td style="text-align: left;">{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                 <td>
                                                     <!--<button type="button" class="btn btn-success waves-effect" ng-disabled="history.statusPenilaian !=1"><i class="material-icons">edit</i><span>Edit</span></button>-->
-                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">remove_red_eye</i><span>Lihat Dokumen</span></button>
+                                                    <button type="button" class="btn btn-primary waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">remove_red_eye</i><span>PDF</span></button>
                                                     <button type="button" class="btn btn-secondary waves-effect" ng-show="history.loading" disabled>Mohon Tunggu</button>
                                                 </td>
                                             </tr>

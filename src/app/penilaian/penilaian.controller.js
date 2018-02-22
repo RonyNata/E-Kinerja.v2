@@ -46,6 +46,7 @@
             vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
             vm.sortLaporan = angular.copy(vm.laporanbawahan); 
             vm.loading = false;
+            vm.sorting();
           }, function(errResponse){
 
           })
@@ -271,7 +272,7 @@
 
         function getDocumentMemorandum(laporan, isLaporan){
             // laporan.loading = true;
-            PenilaianService.GetDataMemorandum(laporan.kdMemorandum).then(
+            PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateMemorandumService.template(vm.data);
@@ -377,8 +378,12 @@
 
         function openSuratMasuk(url, kdSurat,kdMemorandum, nip){console.log(url,
                     kdSurat, kdMemorandum, nip);
-          DashboardService.ChangeRead(url, kdSurat,kdMemorandum, nip);
-            getLaporanBawahan();
+          DashboardService.ChangeRead(url, kdSurat,kdMemorandum, nip).then(
+            function(response){
+              getLaporanBawahan();
+            }, function(errResponse){
+              
+            })
         }
 
       vm.getDocument = function(laporan, isLaporan){debugger
@@ -402,6 +407,37 @@
           case 15: getLaporanLain(laporan, isLaporan); break;
           default: vm.getDocumentPerintah(laporan, isLaporan); break;
         }
+      }
+
+      vm.tandatangan = function(laporan){debugger
+        laporan.loading = true;
+        debugger
+        switch(laporan.kdJenisSurat){
+          case 0: approveDocument(laporan, "approve-berita-acara/"); break;//done
+          case 2: approveDocument(laporan, "approve-memorandum/"); break;//done
+          case 3: approveDocument(laporan, "approve-nota-dinas/"); break;//error get
+          case 4: approveDocument(laporan, "approve-pengumuman/"); break;//done
+          case 5: approveDocument(laporan, "approve-surat-dinas/"); break;//done
+          case 6: approveDocument(laporan, "approve-surat-edaran/"); break;//done
+          case 7: approveDocument(laporan, "approve-surat-keputusan/"); break;//done
+          case 8: approveDocument(laporan, "approve-surat-keterangan/"); break;//done
+          case 9: approveDocument(laporan, "approve-surat-kuasa/"); break;//done
+          case 10: approveDocument(laporan, "approve-surat-pengantar/"); break;//done
+          case 12: approveDocument(laporan, "approve-surat-tugas/"); break;//done
+          case 13: approveDocument(laporan, "approve-surat-undangan/"); break;//error get
+          default: approveDocument(laporan, "approve-surat-perintah/"); break;//done
+        }
+      }
+
+      function approveDocument(laporan, url){
+        PenilaianService.Approve(url, laporan.kdSurat).then(
+          function(response){
+            EkinerjaService.showToastrSuccess("Dokumen Berhasil Ditandatangani");
+            getLaporanBawahan();
+          }, function(errResponse){
+            EkinerjaService.showToastrError(errResponse);
+            laporan.loading = false;
+          })
       }
 
       getSurat();
@@ -755,6 +791,8 @@
           case "0": vm.sortLaporan = angular.copy(vm.laporanbawahan);
                   vm.sortSuratMasuk = angular.copy(vm.suratMasuk);
                   vm.sortHistory = angular.copy(vm.perintahHistory); break;
+          case "1": if(vm.tanggal != undefined) vm.sortDate(); break;
+          case "2": if(vm.jenis != undefined) vm.sortJenis(); break;
           case "3": vm.sortLaporan = [];
                   vm.sortSuratMasuk = [];
                   vm.sortHistory = [];
