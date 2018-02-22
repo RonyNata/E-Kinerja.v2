@@ -30,10 +30,10 @@
 
         function getDokumenDisposisi(kdLembarDisposisi){
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
-            function(response){debugger
+            function(response){
               template(response);
             }, function(errResponse){
-
+                  EkinerjaService.showToastrError('Terjadi Kesalahan');
             })
         }
 
@@ -198,7 +198,7 @@
                                     border: [true, true, true, false],
                                     text: [
                                         {text: 'PEMERINTAH KABUPATEN BEKASI\n',style: 'header'},
-                                        {text: '' + item.targetPegawaiLembarDisposisi[0].unitKerja,style: 'header'}
+                                        {text: '' + item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase(),style: 'header'}
                                     ],
                                     colSpan: 3
                                 }, {}, {}

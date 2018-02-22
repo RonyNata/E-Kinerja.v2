@@ -3,80 +3,74 @@
 </div>
 <div class="modal-body" id="modal-body">
     <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                        <div class="col-md-12" ng-hide="temp.isDPA">
-                            <div class="col-md-3" style="margin-top: 6px;">
-                                <label >Urtug Yang Dikerjakan</label>
-                            </div>
-                            <div class="col-md-8">
-                                <div ng-show="temp.urtug == null">
-                                    <form method="get">
-                                        <input class="form-control" list="urtug" name="urtug" ng-model="urtug" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas">
-                                        <datalist id="urtug" style="height: 100px">
-                                                <option ng-repeat="urtug in temp.list_urtug"
-                                         value="{{urtug.kdUrtug}}" ng-selected="selected">{{urtug.urtug}}</option>
-                                        </datalist>
-                                    </form>
-                                </div>
-                                <textarea ng-hide="temp.urtug == null" style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12" ng-show="temp.isDPA">
-                            <div class="col-md-3" style="margin-top: 6px;">
-                                <label >Urtug Yang Dikerjakan</label>
-                            </div>
-                            <div class="col-md-8">
-                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.deskripsiUrtug" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12" ng-show="temp.isDPA">
-                            <div class="col-md-3" style="margin-top: 6px;">
-                                <label >Nama Kegiatan</label>
-                            </div>
-                            <div class="col-md-8">
-                                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.ketKeg" readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12" style="margin-top: 10px">
-                            <div class="col-md-3" style="margin-top: 6px;">
-                                <label >Cari</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" ng-model="temp.searchName" ng-required="true" placeholder="Nama Template" ng-change="temp.search()">
-                            </div>
-                        </div>
-                        <div class="col-md-12">&nbsp</div>
-                        <table class="table table-fixed" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th class="col-xs-2">No</th>
-                                <th class="col-xs-8" style="text-align: left;">Deskripsi</th>
-                                <th class="col-xs-2">Template</th>
-                                <!-- <th style="width: 10%; text-align: center">Action</th> -->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="data in temp.result">
-                                <td class="col-xs-2" style="text-align: center;">{{$index + 1}}</td>
-                                <td class="col-xs-8">{{data.nmTemplate}} </td>
-                                <td class="col-xs-2"><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary waves-effect">Template</button></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+        <div class="row space-after" ng-hide="temp.isDPA">
+            <div class="col-md-3">
+                <label >Urtug Yang Dikerjakan</label>
+            </div>
+            <div class="col-md-9">
+                <div ng-show="temp.urtug == null">
+                    <form method="get">
+                        <input class="form-control" list="urtug" name="urtug" ng-model="urtug" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas">
+                        <datalist id="urtug" style="height: 100px">
+                            <option ng-repeat="urtug in temp.list_urtug"
+                                    value="{{urtug.kdUrtug}}" ng-selected="selected">{{urtug.urtug}}</option>
+                        </datalist>
+                    </form>
                 </div>
+                <textarea ng-hide="temp.urtug == null" style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.urtug" readonly></textarea>
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="row space-after" ng-show="temp.isDPA">
+            <div class="col-md-3">
+                <label >Urtug Yang Dikerjakan</label>
+            </div>
+            <div class="col-md-9">
+                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.deskripsiUrtug" readonly></textarea>
+            </div>
+        </div>
+        <div class="row space-after" ng-show="temp.isDPA">
+            <div class="col-md-3">
+                <label >Nama Kegiatan</label>
+            </div>
+            <div class="col-md-9">
+                <textarea style="text-align: justify; height: 100px; margin-top: 5px" class="form-control" ng-model="temp.urtug.ketKeg" readonly></textarea>
+            </div>
+        </div>
+        <div class="row space-after">
+            <div class="col-md-3">
+                <label >Cari</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="temp.searchName" ng-required="true" placeholder="Nama Template" ng-change="temp.search()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table points_table">
+                        <thead class="bg-table">
+                        <tr>
+                            <th class="col-xs-1">No</th>
+                            <th class="col-xs-8">Deskripsi</th>
+                            <th class="col-xs-3">Template</th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="points_table_scrollbar">
+                        <tr ng-repeat="data in temp.result" style="padding-bottom: 3px">
+                            <td class="col-xs-1 text-center">{{$index + 1}}</td>
+                            <td class="col-xs-8">{{data.nmTemplate}} </td>
+                            <td class="col-xs-3 text-center"><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary">Template</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-    <button type="button" ng-hide="temp.isDPA == 2" ng-click="temp.openUploadTemplate()" class="btn btn-primary waves-effect" data-dismiss="modal">Template Lain</button>
-    <button type="button" ng-click="temp.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
+    <button type="button" ng-hide="temp.isDPA == 2" ng-click="temp.openUploadTemplate()" class="btn btn-primary" data-dismiss="modal"><strong>Template Lain</strong></button>
+    <button type="button" ng-click="temp.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
 
 </div>

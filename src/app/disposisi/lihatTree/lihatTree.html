@@ -1,55 +1,43 @@
-<div class="modal-header" style="background-color:#1fcfe0;">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Riwayat Surat Disposisi</h3>
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>RIWAYAT SURAT DISPOSISI</strong></h3>
 </div>
 <form ng-submit="tree.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-md-12" style="margin-bottom:10px"> 
-                                <div>
-                                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;margin-left: 0px;">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 5%; text-align: center">No</th>
-                                                <th style="text-align: center">Kode Lembar Disposisi</th>
-                                                <th style="text-align: center;width: 15%;">Tingkat Keamanan</th> 
-                                                <th style="text-align: center;width: 15%;">Action</th> 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="path in tree.path" style="text-align: center">
-                                                <td>{{$index + 1}}</td>
-                                                <td style="text-align: left;">{{path.path}}</td>
-                                                <td style="text-align: left;">{{path.tktKeamanan == 1 ? 'SR' : ''}}
-                                                {{path.tktKeamanan == 2 ? 'R' : ''}}
-                                                {{path.tktKeamanan == 3 ? 'B' : ''}}
-                                                </td> 
-                                                <td>
-                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="tree.openPdf(path.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
-                                                </td> 
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-table">
+                                <tr>
+                                    <th style="width: 5%; text-align: center; vertical-align: middle">No</th>
+                                    <th style="text-align: center; vertical-align: middle">Kode Lembar Disposisi</th>
+                                    <th style="text-align: center;width: 15%;vertical-align: middle">Tingkat Keamanan</th>
+                                    <th style="text-align: center;width: 10%;vertical-align: middle">Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="path in tree.path">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td>{{path.path}}</td>
+                                <td class="text-center">{{path.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
+                                    {{path.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
+                                    {{path.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn bg-purple waves-effect" ng-click="tree.openPdf(path.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span>PDF FILE</span></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    </div>                              
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-        </div>
     </div>
-</div>
-    <div class="modal-footer">
-        <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-        <button type="button" ng-click="tree.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
 
-    </div> 
-        </form>
+    <div class="modal-footer">
+        <button type="button" ng-click="tree.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
