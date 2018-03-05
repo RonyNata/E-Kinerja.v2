@@ -10,6 +10,7 @@
                                    KontrakPegawaiService, ReportPegawaiService, $uibModalInstance, $uibModal) {
         var vm = this;
         vm.nama = pegawai.namaPegawai;
+        vm.tahun = ((new Date()).getYear() + 1900);
 
         vm.report = function(){
             ReportPegawaiService.GetReport(pegawai.nipPegawai, vm.bulan, vm.tahun).then(
@@ -34,7 +35,7 @@
                 templateUrl: 'app/reportPegawai/detailReportPegawaiKegiatan/detailReportPegawaiKegiatan.html',
                 controller: 'DetailReportPegawaiKegiatanController',
                 controllerAs: 'detailReportPegawaiKegiatan',
-                windowClass: 'app-modal-windows',
+                size: 'lg',
                 appendTo: parentElem,
                 resolve: {
                     list: function () {

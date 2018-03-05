@@ -1,50 +1,38 @@
-<div class="modal-header" style="background-color:#F44236; color:#ffff;">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"> Detail Kegiatan Pada Tanggal {{detailReportPegawaiKegiatan.tanggal}}</h3>
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Detail Kegiatan Pada Tanggal {{detailReportPegawaiKegiatan.tanggal}}</strong></h3>
 </div>
 <form ng-submit="ajuan.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
-        <input type="hidden" value=""/>
         <div class="form-body">
-            <div class="body">
-                <div class="row clearfix">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade in active" id="ajuan">
-                                            <div class="body table-responsive">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-table">
+                            <tr>
+                                <th class="text-center" style="width: 5%">No</th>
+                                <th class="text-center">Kode Surat</th>
+                                <th class="text-center">Jenis Surat</th>
+                                <th class="text-center">Durasi Pengerjaan</th>
+                            </tr>
+                            </thead>
 
-                                                <table class="table table-bordered table-striped" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
-                                                    <thead>
-                                                    <tr style="background:#D32F2F; color:#ffff">
-                                                        <th style="width: 5%; text-align: center">No</th>
-                                                        <th style="text-align: center">Kode Surat</th>
-                                                        <th style="text-align: center">Jenis Surat</th>
-                                                        <th style="text-align: center">Durasi Pengerjaan</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr style="text-align: center" ng-repeat="pekerjaan in detailReportPegawaiKegiatan.list">
-                                                        <th style="text-align: center">{{$index + 1}}</th>
-                                                        <th style="text-align: center">{{pekerjaan.kdSurat}}</th>
-                                                        <th style="text-align: center">{{pekerjaan.jenisSurat}}</th>
-                                                        <th style="text-align: center">{{pekerjaan.durasiPengerjaan}} Menit</th>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <tbody>
+                            <tr ng-repeat="pekerjaan in detailReportPegawaiKegiatan.list" class="text-center">
+                                <td>{{$index + 1}}</td>
+                                <td class="text-left">{{pekerjaan.kdSurat}}</td>
+                                <td>{{pekerjaan.jenisSurat}}</td>
+                                <td>{{pekerjaan.durasiPengerjaan}} Menit</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" ng-click="detailReportPegawaiKegiatan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
-        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" ng-click="detailReportPegawaiKegiatan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
     </div>
 </form>
