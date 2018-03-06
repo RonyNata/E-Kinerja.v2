@@ -165,8 +165,6 @@
             var waktu = new Date(response[i].createdDateMilis);
             response[i].tanggalDibuat = response[i].createdDate;
             response[i].tanggalDibuat += " pukul " + waktu.getHours() + ":" + waktu.getMinutes();
-            console.log(response);
-            console.log(waktu.getHours());
             response[i].nama = "Perintah";
             response[i].jenis = 1;
             response[i].kdJenisSurat = 11;

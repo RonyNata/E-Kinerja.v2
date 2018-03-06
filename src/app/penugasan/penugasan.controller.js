@@ -67,10 +67,11 @@ angular.
 
         function getNaskahPenugasanInstruksi(){
           PenugasanService.GetNaskahPenugasanInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-            function(response){
+            function(response){debugger
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Instruksi";
                 response[i].jenis = 0;
+                response[i].kdSurat = response[i].kdInstruksi;
                 response[i].judulNaskah = response[i].judulInstruksi;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 vm.naskahHistory.push(response[i]);

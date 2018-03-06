@@ -1,0 +1,189 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Kerangka Acuan Kerja</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="kaa.save()" class="form-horizontal">
+                            <div class="row clearfix">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Latar Belakang</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.latarBelakang" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:20px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Maksud dan Tujuan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.maksud" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Sasaran</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.sasaran" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:5px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Nama dan Organisasi Pembuat Komitmen</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <div class="col-md-3" style="padding: 0px"> 
+                                                <button class="btn btn-primary waves-effect" ng-click="kaa.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                            </div> 
+                                            <div ng-show="kaa.item.pembuatKomitmen" class="col-md-6" style="margin-bottom: 0px"> 
+                                                <table>
+                                                    <tr>
+                                                        <td>Nama</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{kaa.item.pembuatKomitmen.nama}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Unit</td>
+                                                        <td style="padding: 3px">:</td>
+                                                        <td>{{kaa.item.pembuatKomitmen.unitKerja}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Referensi Hukum</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.referensiHukum" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Lingkup Pekerjaan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.lingkupPekerjaan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Peralatan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.peralatan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Pagu Anggaran</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.paguAnggaran" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Lingkup Kewenangan Penyedia Jasa</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.lingkupKewenangan" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Jangka waktu Penyelesaian Pekerjaan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.jangkaWaktu" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Jadwal Pelaksanaan Kegiatan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.jadawl" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Hasil Laporan</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8">
+                                            <textarea class="form-control" ng-model="kaa.item.hasil" required style="height: 100px"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Waktu Pembuatan</b></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-4" style="margin-left: -15px;">
+                                                <input class="form-control" ng-model="kaa.item.durasiPengerjaan" type="number" pattern="[0-9]{1,4}" name="quantity" min="1" required></input>
+                                            </div>
+                                            <div class="col-md-4" style="padding-top: 8px;">
+                                                <span><b>Menit</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-bottom:10px">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b></b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-8" style="text-align: right">
+                                            <div class="col-md-4"></div>
+                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                            <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                            <button class="btn btn-danger waves-effect" type="button" ng-click="kaa.back()" style="font-size: 20px">Kembali</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

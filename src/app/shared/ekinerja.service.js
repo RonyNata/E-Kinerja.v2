@@ -132,6 +132,14 @@
             }
         }
 
+        service.findProgram = function(kdProg, array){
+            for(var i = 0; i<array.length; i++){debugger
+                if (array[i].kdProg == parseInt(kdProg)){
+                    return array[i]; break;
+                } 
+            }
+        }
+
         service.findPegawaiByNip = function(nip, array){
             for(var i = 0; i<array.length; i++){
                 if (array[i].nipPegawai.search(nip) != -1){
