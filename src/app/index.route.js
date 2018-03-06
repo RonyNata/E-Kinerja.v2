@@ -203,7 +203,7 @@
         controllerAs: 'ajuankontrak'
       })
       .state('approvall', {
-        url: '/ajuan',
+        url: '/pengajuan',
         templateUrl: 'app/ajuanKontrak/ajuanKontrak.html',
         controller: 'AjuanKontrakController',
         controllerAs: 'ajuankontrak',
