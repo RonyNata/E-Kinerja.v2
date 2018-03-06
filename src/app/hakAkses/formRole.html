@@ -1,56 +1,43 @@
- <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title">Detail Hak Akses</h3>
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Detail Hak Akses</strong></h3>
 </div>
 <form ng-submit="form_role.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <input type="hidden" value=""/>
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-md-12" style="margin-bottom:10px">
-                                <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>NIP</b></p>
-                                </div>
-                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-md-7">
-                                <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_role.pegawai.nipPegawai" disabled="true">
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="margin-bottom:10px">
-                                <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>Nama</b></p>
-                                </div>
-                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-md-7">
-                                <input type="text" class="form-control" ng-model="form_role.pegawai.nama" ng-required="true" disabled="true">
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="margin-bottom:10px">
-                                <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>Role</b></p>
-                                </div>
-                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-sm-7">
-                                <select type="text" class="form-control" ng-model="form_role.pegawai.role.id" ng-required="true">
-                                        <option ng-repeat="role in form_role.dataRole" value="{{role.id}}">{{role.role}}</option>
-                                    
-                                </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>                              
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>NIP</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_role.pegawai.nipPegawai" disabled="true">
+                </div>
+            </div>
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Nama</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input type="text" class="form-control" ng-model="form_role.pegawai.nama" ng-required="true" disabled="true">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Role</b></p>
+                </div>
+                <div class="col-sm-7">
+                    <select type="text" class="form-control" ng-model="form_role.pegawai.role.id" ng-required="true">
+                        <option ng-repeat="role in form_role.dataRole" value="{{role.id}}">{{role.role}}</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
     <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
-        <button type="button" ng-click="form_role.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+        <button type="submit"  class="btn btn-primary">Simpan</button>
+        <button type="button" ng-click="form_role.cancel()" class="btn btn-danger" data-dismiss="modal">Cancel</button>
     </div>
 </form>
