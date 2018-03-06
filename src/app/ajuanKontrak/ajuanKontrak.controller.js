@@ -108,7 +108,6 @@ angular.
             templateUrl: 'app/ajuanKontrak/detailAjuan/detailAjuan.html',
             controller: 'DetailAjuanController',
             controllerAs: 'ajuan',
-            windowClass: 'app-modal-windows',
             size: 'lg',
             appendTo: parentElem,
             resolve: {
