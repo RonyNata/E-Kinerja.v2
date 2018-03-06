@@ -132,8 +132,7 @@ angular.
           templateUrl: 'app/kontrakUrtugDpa/formGantiPj/formGantiPj.html',
           controller: 'FormGantiPjController',
           controllerAs: 'formpj',
-          // windowClass: 'app-modal-window',
-          // size: 'lg',
+          size: 'lg',
           appendTo: parentElem,
           resolve: {
             items: function () {
@@ -171,8 +170,7 @@ angular.
           templateUrl: 'app/pengadaanBarangJasa/formPenanggungJawab.html',
           controller: 'FormPenanggungJawabController',
           controllerAs: 'skform',
-          // windowClass: 'app-modal-window',
-          // size: 'lg',
+          size: 'lg',
           appendTo: parentElem,
           resolve: {
             items: function () {

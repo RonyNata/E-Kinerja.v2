@@ -1,41 +1,27 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Ganti Pejabat Penilai</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Ganti Pejabat Penilai</strong></h3>
 </div>
 <form ng-submit="penilai.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-md-12" style="margin-bottom:10px"> 
-                                <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>Pejabat Penilai</b></p>
-                                </div>
-                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-md-6">
-                                    <input class="form-control" list="penilai" name="kegiiatan" ng-model="penilai.pejabatPenilai" placeholder="Pilih Penilai" autocomplete="off">
-                                        <datalist id="penilai" style="height: 100px">
-                                                <option ng-repeat="data in penilai.list_pegawai"
-                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
-                                        </datalist>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>                              
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Pejabat Penilai</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" list="penilai" name="kegiiatan" ng-model="penilai.pejabatPenilai" placeholder="Pilih Penilai" autocomplete="off">
+                    <datalist id="penilai" style="height: 100px">
+                        <option ng-repeat="data in penilai.list_pegawai"
+                                value="{{data.nipPegawai}}">{{data.nama}}</option>
+                    </datalist>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-        </div>
     </div>
-</div>
-    <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
-        <button type="button" ng-click="penilai.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
 
-    </div> 
-        </form>
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary">Simpan</button>
+        <button type="button" ng-click="penilai.cancel()" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+</form>

@@ -1,215 +1,213 @@
 <ekinerja-navbar></ekinerja-navbar>
 <section style="padding-top: 90px;">
     <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <!-- <div class="h2"> 
-                        <h2 class="col-md-8" style="margin-top: -15px">PENGUMPULAN DATA URAIAN TUGAS BERDASARKAN JABATAN UNIT {{urtug_jabatan.unit}}</h2> 
-                        <div class="col-md-4" style="margin-top: -25px"> 
-                            <form method="get">
-                                <input class="form-control elder-form elder-font" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan" ng-click="jabatan=''">
-                                <datalist id="jabatan">
-                                        <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
-                                 value="{{jabatan.kdJabatan}}" ng-selected="selected" >{{jabatan.jabatan}}</option>
-                                </datalist>
-                            </form>
-                        </div>   -->      
-                        <i class="material-icons" style="float: left;">assignment</i>
-                        <h2 style="padding-left: 30px;padding-top: 3px;"><b>PENGUMPULAN DATA URAIAN TUGAS BERDASARKAN JABATAN UNIT {{urtug_jabatan.unit}}</b></h2>
-                        <!-- <h2 class="col-md-8" style="margin-top: -15px"></h2>  -->    
+        <div class="card">
+            <div class="page">
+                <div class="header-size2">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    <strong>Pengumpulan Data Uraian Tugas Berdasarkan Jabatan Unit {{urtug_jabatan.unit}}</strong>
+                </div>
+                <hr class="hr-space">
+
+                <div class="row space-after">
+                    <div class="col-md-4">
+                        <form method="get">
+                            <input class="form-control" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas" ng-click="jabatan = ''">
+                            <datalist id="jabatan">
+                                <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
+                                        value="{{jabatan.kdJabatan}}" ng-selected="selected">{{jabatan.jabatan}}</option>
+                            </datalist>
+                        </form>
                     </div>
-                    
-                    <div class="body" style="margin-top: 0px;font-size: 16px;">
-                                <!-- {{urtug_jabatan.jabatan}} -->
-                        <div class="col-md-12" style="margin-bottom: -5px">
-                            <div class="col-md-4">
-                                <form method="get" style="margin-left: -30px;">
-                                    <input class="form-control" list="jabatan" name="jabatan" ng-model="jabatan" placeholder="Pilih Jabatan yang Akan di Pasangkan dengan Uraian Tugas" ng-click="jabatan = ''">
-                                    <datalist id="jabatan" style="height: 100px">
-                                            <option ng-repeat="jabatan in urtug_jabatan.list_jabatan"
-                                     value="{{jabatan.kdJabatan}}" ng-selected="selected">{{jabatan.jabatan}}</option>
-                                    </datalist>
-                                </form>
-                            </div>
-                        </div>
-                        <div ng-hide="jabatan" style="padding: 100px 100px 100px 300px">
+                </div>
+
+                <div ng-hide="jabatan" class="row">
+                    <div class="col-md-12">
+                        <div class="text-center" style="padding: 100px">
                             <h1>Pilih Jabatan Terlebih Dahulu</h1>
-                        </div>
-                        <div ng-show="jabatan">
-                            <div class="col-md-12" style="margin-bottom: 5px; padding-left: 0px">
-                                <div class="col-md-6" style="padding-left: 0px">
-                                    <table>
-                                        <tr>
-                                            <td>Nama Jabatan :</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding-top: 8px"><b>{{urtug_jabatan.jabatan.jabatan}}</b></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="col-md-1"></div>
-                                <div class="col-md-5">
-                                    <table>
-                                        <tr>
-                                            <td>Pejabat Penilai :</td>
-                                        </tr>
-                                        <tr>
-                                            <td ng-show="urtug_jabatan.jabatan" >
-                                                <b>{{urtug_jabatan.penilai.nama}} ({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
-                                            </td>
-                                            <td ng-show="urtug_jabatan.jabatan">
-                                                <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info waves-effect">
-                                                    <i class="material-icons">edit</i>
-                                                    <span>UBAH</span>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="col-md-12" style="margin-bottom: 30px; padding-left: 0px; padding-right: 0px">
-                                <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                                    <li role="presentation" class="active">
-                                        <a href="#urtugjab" data-toggle="tab"><b>Atur Uraian Tugas Jabatan</b></a>
-                                    </li>
-                                    <li role="presentation">
-                                        <a href="#statusurtug" data-toggle="tab"><b>Atur Status Uraian Tugas</b></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="urtugjab">
-                                     <div class="col-md-12" style="margin-top: -20px; margin-bottom: -40px; margin-left: -20px;">
-                                        <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                            <button type="button" ng-click="urtug_jabatan.open()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary waves-effect"><i class="material-icons">settings</i><span>ATUR URAIAN TUGAS</span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-6">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
-                                                    <label >Cari</label>
-                                                </div>
-                                                <div class="col-md-8" style="margin-right: -90px;float: right;">
-                                                   <input type="text" class="form-control" ng-model="searchNameUrtug" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="body table-responsive" style="padding-top: 0px;margin-left: -20px;margin-right: -20px;margin-bottom: -30px;">
-                                        <table class="table table-bordered table-striped table-hover" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
-                                            <thead>
-                                                <tr style="background:#D32F2F; color:#ffff">
-                                                    <th style="width: 5%; text-align: center">No</th>
-                                                    <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                                    <!--<th style="width: 10%; text-align: center">Kuant/ Output</th>-->
-                                                    <!--<th style="width: 5%; text-align: center">Mutu</th> -->
-                                                    <!--<th style="width: 5%; text-align: center">Waktu</th> -->
-                                                    <!--<th style="width: 5%; text-align: center">Biaya</th>-->
-                                                    <th style="text-align: center; width: 20%" >Action</th> 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="urtug in filteredData" style="text-align: center">
-                                                    <td>{{$index + 1 + (5 * currentPage )}}</td>
-                                                    <td style="text-align: left;">{{urtug.uraianTugas.deskripsi}}</td> 
-                                                    <!--<td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>-->
-                                                    <!--<td>{{urtug.kualitas}}</td> -->
-                                                    <!--<td>{{urtug.waktu + ' ' + urtug.satuanWaktu}}</td> -->
-                                                    <!--<td>{{urtug.biaya}}</td>-->
-                                                    <td>
-                                                        <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
-                                                    </td> 
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div style="padding-top: 3px;" class="pull-right">
-                                            <ul>
-                                                <li style="display: inline-block;">
-                                                    <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
-                                                      &lt; PREV                          
-                                                    </button>
-                                                </li>
-                                                <li style="display: inline-block;">
-                                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
-                                                </li>
-                                                <li style="display: inline-block;">
-                                                    <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
-                                                      NEXT &gt;                          
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="statusurtug">
-                                     <div class="col-md-12" style="margin-top: -20px; margin-bottom: -40px; margin-left: -20px;">
-                                        <div class="col-md-2" style="margin-left: -10px;float: left;">
-                                            <button type="button" ng-click="urtug_jabatan.status()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary waves-effect"><i class="material-icons">settings</i><span>ATUR STATUS URAIAN TUGAS</span>
-                                            </button>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <div class="col-md-6"></div>
-                                            <div class="col-md-6">
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-2" style="margin-top: 6px;padding-left:  150px;">
-                                                    <label >Cari</label>
-                                                </div>
-                                                <div class="col-md-8" style="margin-right: -90px;float: right;">
-                                                   <input type="text" class="form-control" ng-model="searchNameJenis" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="body table-responsive" style="padding-top: 0px;margin-left: -20px;margin-right: -20px;margin-bottom: -30px;">
-                                        <table class="table table-bordered table-striped table-hover" cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
-                                            <thead>
-                                                <tr style="background:#D32F2F; color:#ffff">
-                                                    <th style="width: 5%; text-align: center">No</th>
-                                                    <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                                    <th style="width: 5%; text-align: center">Jenis</th> 
-                                                    <th style="text-align: center;width: 30%">Action</th>  
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr ng-repeat="urtug in filteredDataJenis" style="text-align: center">
-                                                    <td>{{$index + 1 + (5 * currentPage )}}</td>
-                                                    <td style="text-align: left;">{{urtug.urtug}}</td> 
-                                                    <td>{{urtug.jenisUrtug}}</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-primary waves-effect" ng-click="urtug_jabatan.kegiatan(urtug)" ng-show="urtug.jenis"><i class="material-icons">edit</i><span>{{urtug_jabatan.jabatan.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
-                                                        <button type="button" class="btn btn-success waves-effect" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis"><i class="material-icons">visibility</i><span>DETAIL</span></button>
-                                                        <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
-                                                    </td> 
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div style="padding-top: 3px;" class="pull-right">
-                                            <ul>
-                                                <li style="display: inline-block;">
-                                                    <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
-                                                      &lt; PREV                          
-                                                    </button>
-                                                </li>
-                                                <li style="display: inline-block;">
-                                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
-                                                </li>
-                                                <li style="display: inline-block;">
-                                                    <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
-                                                      NEXT &gt;                          
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div ng-show="jabatan">
+                    <div class="row space-after">
+                        <div class="col-md-6">
+                            <div class="table-responsive">
+                                <table>
+                                    <tr>
+                                        <td>Nama Jabatan :</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{urtug_jabatan.jabatan.jabatan}}</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="table-responsive">
+                                <table>
+                                    <tr>
+                                        <td colspan="2">Pejabat Penilai :</td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-show="urtug_jabatan.jabatan" >
+                                            <b>{{urtug_jabatan.penilai.nama}} ({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
+                                        </td>
+                                        <td ng-show="urtug_jabatan.jabatan" style="width: 30%">
+                                            <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info">
+                                                <i class="material-icons">edit</i>
+                                                <span>UBAH</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#urtugjab" data-toggle="tab"><b>Atur Uraian Tugas Jabatan</b></a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#statusurtug" data-toggle="tab"><b>Atur Status Uraian Tugas</b></a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="urtugjab">
+                                    <div class="row">
+                                        <div class="col-md-2 space-after">
+                                            <button type="button" ng-click="urtug_jabatan.open()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary"><i class="material-icons">settings</i><span> ATUR URAIAN TUGAS</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-3 space-after">
+                                            <input type="text" class="form-control" ng-model="searchNameUrtug" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead class="bg-table">
+                                                    <tr>
+                                                        <th class="text-center" style="width: 5%">No</th>
+                                                        <th class="text-center">Rincian Tugas dan Kegiatan</th>
+                                                        <th class="text-center" style="width: 10%">Action</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr ng-repeat="urtug in filteredData">
+                                                        <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
+                                                        <td>{{urtug.uraianTugas.deskripsi}}</td>
+                                                        <td class="text-center">
+                                                            <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="align-center">
+                                                        <ul style="padding-left: 0px;">
+                                                            <li style="display: inline-block;">
+                                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                                    &lt; PREV
+                                                                </button>
+                                                            </li>
+                                                            <li style="display: inline-block;">
+                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                            </li>
+                                                            <li style="display: inline-block;">
+                                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                                    NEXT &gt;
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade" id="statusurtug">
+                                    <div class="row">
+                                        <div class="col-md-2 space-after">
+                                            <button type="button" ng-click="urtug_jabatan.status()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary"><i class="material-icons">settings</i><span> ATUR STATUS URAIAN TUGAS</span>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-3 space-after">
+                                            <input type="text" class="form-control" ng-model="searchNameJenis" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead class="bg-table">
+                                                    <tr>
+                                                        <th class="text-center" style="width: 5%">No</th>
+                                                        <th class="text-center">Rincian Tugas dan Kegiatan</th>
+                                                        <th class="text-center" style="width: 10%">Jenis</th>
+                                                        <th class="text-center" style="width: 25%">Action</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr ng-repeat="urtug in filteredDataJenis">
+                                                        <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
+                                                        <td>{{urtug.urtug}}</td>
+                                                        <td class="text-center">{{urtug.jenisUrtug}}</td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-primary" ng-click="urtug_jabatan.kegiatan(urtug)" ng-show="urtug.jenis"><i class="material-icons">edit</i><span> {{urtug_jabatan.jabatan.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
+                                                            <button type="button" class="btn btn-success" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis"><i class="material-icons">visibility</i><span> DETAIL</span></button>
+                                                            <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="align-center">
+                                                        <ul style="padding-left: 0px;">
+                                                            <li style="display: inline-block;">
+                                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                                    &lt; PREV
+                                                                </button>
+                                                            </li>
+                                                            <li style="display: inline-block;">
+                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                            </li>
+                                                            <li style="display: inline-block;">
+                                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                                    NEXT &gt;
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
