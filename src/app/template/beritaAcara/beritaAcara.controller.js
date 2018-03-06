@@ -345,7 +345,7 @@
                                     alignment:'center',
                                     text:[
                                         {text:'Dibuat di '},
-                                        {text:'' + data.kotaPembuatanSurat.toUpperCase()}
+                                        {text:'' + vm.item.tempat.toUpperCase()}
                                     ]
                                 }],
                                 [{text: 'PIHAK KEDUA,', bold: true, alignment: 'center'},{},{text: 'PIHAK KESATU,', bold: true, alignment: 'center'}],
