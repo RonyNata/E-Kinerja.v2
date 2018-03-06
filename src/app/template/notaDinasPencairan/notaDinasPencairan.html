@@ -1,0 +1,190 @@
+<ekinerja-navbar></ekinerja-navbar>
+<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Nota Dinas Pencairan</h2>
+                    </div>
+                    <div class="body">
+                        <form ng-submit="pencairan.save()" class="form-horizontal">
+                        <div class="row clearfix">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Nomor</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="pencairan.item.nomorUrusan" placeholder="nomor urusan" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="pencairan.item.nomorUrut" placeholder="nomor urut" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="pencairan.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" ng-model="pencairan.item.nomorUnit" placeholder="kode unit" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="number" class="form-control" ng-model="pencairan.item.tahun" disabled required>
+                                    </div>
+                                </div>  
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Pejabat Pembuat Komitmen</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px"> 
+                                            <button class="btn btn-primary waves-effect" ng-click="pencairan.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                        </div> 
+                                        <div ng-show="pencairan.item.pembuatKomitmen" class="col-md-6" style="margin-bottom: 0px"> 
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{pencairan.item.pembuatKomitmen.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{pencairan.item.pembuatKomitmen.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:5px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Pejabat Pelaksana Teknis</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-8">
+                                        <div class="col-md-3" style="padding: 0px"> 
+                                            <button class="btn btn-primary waves-effect" ng-click="pencairan.openDari(2)" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
+                                        </div> 
+                                        <div ng-show="pencairan.item.pegawaiPelaksana" class="col-md-6" style="margin-bottom: 0px">
+                                            <table>
+                                                <tr>
+                                                    <td>Nama</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{pencairan.item.pegawaiPelaksana.nama}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jabatan</td>
+                                                    <td style="padding: 3px">:</td>
+                                                    <td>{{pencairan.item.pegawaiPelaksana.jabatan}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Program</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6" >
+                                        <div>
+                                            <form method="get">
+                                                <input class="form-control" list="program" name="program" ng-model="pencairan.item.kdprogram" placeholder="Pilih Program" ng-change="pencairan.findProgram(pencairan.item.kdprogram)">
+                                                <datalist id="program">
+                                                    <option ng-repeat="prog in pencairan.list_program"
+                                                            value="{{prog.kdProg}}" ng-selected="selected" >{{prog.ketProgram}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="pencairan.item.program" style="padding-top: 10px">Program : {{pencairan.item.program.ketProgram}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Kegiatan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6" >
+                                        <div>
+                                            <form method="get">
+                                                <input class="form-control" list="kegiatan" name="kegiatan" ng-model="pencairan.item.kdkeg" placeholder="Pilih Kegiatan" ng-change="pencairan.findKegiatan(pencairan.item.kdkeg)" ng-disabled="!pencairan.item.program">
+                                                <datalist id="kegiatan">
+                                                    <option ng-repeat="keg in pencairan.list_kegiatan"
+                                                            value="{{keg.kdKegiatan}}" ng-selected="selected" >{{keg.ketKegiatan}}</option>
+                                                </datalist>
+                                            </form>
+                                            <div ng-show="pencairan.item.kegiatan" style="padding-top: 10px">Program : {{pencairan.item.kegiatan.ketKegiatan}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tempat Penandatanganan</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <input class="form-control" ng-model="pencairan.item.tempat" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Waktu Pembuatan</b></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-4" style="margin-left: -15px;">
+                                            <input class="form-control" ng-model="pencairan.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" title="inputkan angka" required></input>
+                                        </div>
+                                        <div class="col-md-4" style="padding-top: 8px;">
+                                            <span><b>Menit</b></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" style="margin-bottom:10px">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b></b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6" style="text-align: right">
+                                        <div class="col-md-4"></div>
+                                        <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                        <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                        <button class="btn btn-danger waves-effect" type="button" ng-click="pencairan.back()" style="font-size: 20px">Kembali</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="bg_load animate-show-hide" ng-show="pencairan.loading"></div>
+<div class="wrapper animate-show-hide" ng-show="pencairan.loading">
+    <div class="inner" style="padding-top: 180px">
+        <span>Sedang</span>
+        <span>Mengambil</span>
+        <span>Data</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+    </div>
+</div>

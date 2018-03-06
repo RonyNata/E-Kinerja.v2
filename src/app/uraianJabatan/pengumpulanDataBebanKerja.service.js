@@ -484,6 +484,15 @@
             }
         }
 
+        service.GetKegiatanById = function(array, data){
+            for(var i = 0; i < array.length; i++){debugger
+                if(array[i].kdKegiatan == parseInt(data)){
+                    return array[i];
+                    break;
+                }
+            }
+        }
+
         service.GetDataProgram = function(array, data){
             for(var i = 0; i < array.length; i++){
                 if(array[i].ketProgram == data){

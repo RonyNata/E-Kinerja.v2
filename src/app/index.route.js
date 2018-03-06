@@ -557,6 +557,18 @@
           templateUrl: 'app/masterKegiatan/masterKegiatan.html',
           controller: 'MasterKegiatanController',
           controllerAs: 'master'
+        })
+        .state('notadinaspencairan', {
+          url: '/nota-dinas-pencairan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
+          templateUrl: 'app/template/notaDinasPencairan/notaDinasPencairan.html',
+          controller: 'NotaDinasPencairanController',
+          controllerAs: 'pencairan'
+        })
+        .state('kaa', {
+          url: '/kerangka-acuan-kerja/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
+          templateUrl: 'app/template/kerangkaAcuanKerja/kaa.html',
+          controller: 'KAAController',
+          controllerAs: 'kaa'
         });
 
     $urlRouterProvider.otherwise('/');
