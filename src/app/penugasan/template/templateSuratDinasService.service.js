@@ -171,6 +171,17 @@
                             tembusan.ol.push(data.tembusanSuratDinasWrapper[i].jabatan);
                         docDefinition.content.push(tembusan);
 
+                        if(data.barcodeImage != null)
+                            docDefinition.footer = {
+                                margin: 10,
+                                columns: [{},
+                                    {
+                                        image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                                        width: 200
+                                    }
+                                ]
+                            };
+
                         return docDefinition;
                     };
 

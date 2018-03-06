@@ -248,9 +248,20 @@
 
                 images:{
                     logo: logo_bekasi
-                }
+                },
             };
 
+            if(data.barcodeImage != null)
+                docDefinition.footer = {
+                    margin: 10,
+                    columns: [{},
+                        {
+                            image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                            width: 200
+                        }
+                    ]
+                };
+            //data:image/jpeg;base64,
             for(var i = 0; i < data.isiBeritaAcara.length; i++)
                 docDefinition.content[6].ol.push(data.isiBeritaAcara[i]);
             return docDefinition;
