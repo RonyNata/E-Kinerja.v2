@@ -1,74 +1,49 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar Pejabat Dalam {{pj.isEselon4 ? 'Kegiatan' : ''}} {{pj.isEselon4 ? pj.kegiatan.ketKeg : pj.kegiatan.ketProgram}}</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Daftar Pejabat Dalam {{pj.isEselon4 ? 'Kegiatan' : ''}} {{pj.isEselon4 ? pj.kegiatan.ketKeg : pj.kegiatan.ketProgram}}</strong></h3>
 </div>
 <form ng-submit="kegiatanlist.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
-                            <div class="col-md-12" style="padding-right: 0px">
-                                <div class="col-md-8"></div>
-                                <div class="col-md-4" style="padding-right: 0px; text-align: right">
-                                    <button style="margin-bottom: 10px" class="btn btn-primary waves-effect" ng-click="pj.addPJ()"><i class="material-icons">add</i><span>TAMBAH PENANGGUNGJAWAB</span></button>
-                                </div>
-                            </div>
-                        <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0">
-                            <thead>
-                                <tr style="background:#D32F2F; color:#ffff">
-                                    <th style="width: 5%; text-align: center">No</th>
-                                    <th style="width: 25%; text-align: center">NIP Pegawai</th>
-                                    <th style="text-align: center">Nama Pegawai</th>
-                                    <th style="text-align: center">Jabatan</th>
-                                    <th style="width: 10%; text-align: center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="pjj in pj.jabatanDpa">
-                                    <td>{{$index + 1}}</td>
-                                    <td>
-                                        <!-- <input class="form-control" list="pegawai" name="kegiiatan" ng-model="pj.nipPegawai" placeholder="Pilih Pegawai" ng-change="pj.findPegawai(pj)">
-                                        <datalist id="pegawai" style="height: 100px">
-                                                <option ng-repeat="data in pj.pegawai"
-                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
-                                        </datalist> -->
-                                        {{pjj.nipPegawai}}
-                                    </td>
-                                    <td>{{pjj.namaPegawai}}</td>
-                                    <td>{{pjj.statusPenanggungJawab}}</td>
-                                    <td>
-                                        <!-- <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="pj.addSop(data)"><i class="material-icons">edit</i></button> -->
-                                        <button type="button" ng-click="pj.remove(pjj)" class="btn btn-danger waves-effect"><i class="material-icons">delete</i><span>HAPUS</span></button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                    </div>                              
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row space-after">
+                <div class="col-md-4">
+                    <button class="btn btn-primary" ng-click="pj.addPJ()"><i class="material-icons">add</i><span> TAMBAH PENANGGUNGJAWAB</span></button>
                 </div>
             </div>
-        </div>
-        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-table">
+                            <tr>
+                                <th class="text-center" style="width: 5%">No</th>
+                                <th class="text-center">NIP Pegawai</th>
+                                <th class="text-center">Nama Pegawai</th>
+                                <th class="text-center">Jabatan</th>
+                                <th class="text-center" style="width: 10%">Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="pjj in pj.jabatanDpa">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td>{{pjj.nipPegawai}}</td>
+                                <td>{{pjj.namaPegawai}}</td>
+                                <td>{{pjj.statusPenanggungJawab}}</td>
+                                <td class="text-center">
+                                    <button type="button" ng-click="pj.remove(pjj)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+
     <div class="modal-footer">
-        <button type="button" ng-click="pj.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Kembali</button>
-
-    </div> 
-        </form>
-
-<div class="wrapper animate-show-hide" ng-show="pj.loadUrtug">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
+        <button type="button" ng-click="pj.cancel()" class="btn btn-danger" data-dismiss="modal">Kembali</button>
     </div>
-</div> 
+</form>
