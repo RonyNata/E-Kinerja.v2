@@ -387,7 +387,7 @@
                   docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].nama);
                   docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
             }
-            pdfMake.createPdf(docDefinition).open();
+            EkinerjaService.lihatPdf(docDefinition, 'Disposisi');
           };
 
 

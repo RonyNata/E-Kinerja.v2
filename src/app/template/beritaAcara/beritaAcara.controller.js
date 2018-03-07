@@ -345,7 +345,7 @@
                                     alignment:'center',
                                     text:[
                                         {text:'Dibuat di '},
-                                        {text:'' + data.kotaPembuatanSurat.toUpperCase()}
+                                        {text:'' + vm.item.tempat.toUpperCase()}
                                     ]
                                 }],
                                 [{text: 'PIHAK KEDUA,', bold: true, alignment: 'center'},{},{text: 'PIHAK KESATU,', bold: true, alignment: 'center'}],
@@ -419,7 +419,7 @@
             // blb = new Blob(blb);
             console.log(vm.item.pembukaSurat);
             template();
-            pdfMake.createPdf(vm.docDefinition).open();
+            EkinerjaService.lihatPdf(vm.docDefinition, 'Berita Acara');
         };
 
         $scope.downloadPdf = function() {
