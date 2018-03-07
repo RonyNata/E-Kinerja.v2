@@ -249,18 +249,20 @@
                 images:{
                     logo: logo_bekasi
                 },
-            };
-
-            if(data.barcodeImage != null)
-                docDefinition.footer = {
-                    margin: 10,
-                    columns: [{},
-                        {
+                footer: function(currentPage, pageCount) { var foot =  
+                    {
+                        margin: 10,
+                        columns: [{text: currentPage.toString() + ' of ' + pageCount}]
+                    }
+                    if(data.barcodeImage != null)
+                        foot.columns.push({
                             image: 'data:image/jpeg;base64,' + data.barcodeImage,
                             width: 200
-                        }
-                    ]
-                };
+                        })
+                    return foot;
+                }
+            };
+
             //data:image/jpeg;base64,
             for(var i = 0; i < data.isiBeritaAcara.length; i++)
                 docDefinition.content[6].ol.push(data.isiBeritaAcara[i]);

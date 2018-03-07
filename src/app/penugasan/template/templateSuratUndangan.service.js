@@ -174,6 +174,18 @@
 
                 images:{
                     pejabat: logo_garuda
+                },
+                footer: function(currentPage, pageCount) { var foot =  
+                    {
+                        margin: 10,
+                        columns: [{text: currentPage.toString() + ' of ' + pageCount}]
+                    }
+                    if(data.barcodeImage != null)
+                        foot.columns.push({
+                            image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                            width: 200
+                        })
+                    return foot;
                 }
             };
 
@@ -231,17 +243,6 @@
                 docDefinition.content[1] = {};
                 docDefinition.content[2] = {};
             }
-
-            if(data.barcodeImage != null)
-                docDefinition.footer = {
-                    margin: 10,
-                    columns: [{},
-                        {
-                            image: 'data:image/jpeg;base64,' + data.barcodeImage,
-                            width: 200
-                        }
-                    ]
-                };
             return docDefinition;
         };
  

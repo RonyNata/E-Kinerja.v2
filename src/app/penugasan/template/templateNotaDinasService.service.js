@@ -159,9 +159,21 @@
                               }
                             },
 
-                              images:{
-                                  logo: logo_bekasi
+                            images:{
+                                logo: logo_bekasi
+                            },
+                            footer: function(currentPage, pageCount) { 
+                              var foot =  {
+                                  margin: 10,
+                                  columns: [{text: currentPage.toString() + ' of ' + pageCount}]
                               }
+                              if(data.barcodeImage != null)
+                                  foot.columns.push({
+                                      image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                                      width: 200
+                                  })
+                              return foot;
+                            }
                           };
 
                           var tembusanSurat = {
@@ -171,17 +183,6 @@
                             for(var i = 0; i < data.tembusanNotaDinasList.length; i++)
                                 tembusanSurat.ol.push(data.tembusanNotaDinasList[i].jabatan);
                             docDefinition.content.push(tembusanSurat);
-
-                        if(data.barcodeImage != null)
-                          docDefinition.footer = {
-                              margin: 10,
-                              columns: [{},
-                                  {
-                                      image: 'data:image/jpeg;base64,' + data.barcodeImage,
-                                      width: 200
-                                  }
-                              ]
-                          };
 
                         return docDefinition;
                     };
