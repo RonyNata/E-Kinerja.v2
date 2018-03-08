@@ -112,8 +112,7 @@ angular.
 	        templateUrl: 'app/formMaster/urtug/formMasterUrtug.html',
 	        controller: 'FormMasterUrtugController',
 	        controllerAs: 'form_urtug',
-	        windowClass: 'app-modal-window',
-	        // size: size,
+	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
 	          items: function () {
@@ -178,8 +177,7 @@ angular.
 	        templateUrl: 'app/formMaster/sop/formSop.html',
 	        controller: 'FormMasterSopController',
 	        controllerAs: 'form_sop',
-	        windowClass: 'app-modal-window',
-	        // size: size,
+	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
 	          items: function () {
@@ -210,8 +208,7 @@ angular.
 	        templateUrl: 'app/formMaster/penanggungjawab/penanggungjawab.html',
 	        controller: 'PenanggungJawabController',
 	        controllerAs: 'form_pj',
-	        windowClass: 'app-modal-window',
-	        // size: size,
+	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
 	          items: function () {

@@ -381,8 +381,7 @@ angular.
 	        templateUrl: 'app/uraianJabatan/pilihPenilai/pilihPenilai.html',
 	        controller: 'PilihPenilaiController',
 	        controllerAs: 'penilai',
-	        // windowClass: 'app-modal-window',
-	        // size: 'lg',
+	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
 	          items: function () {
@@ -413,6 +412,8 @@ angular.
                 templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
                 controller: 'DetailUrtugController',
                 controllerAs: 'detailUrtug',
+                size: 'lg',
+                appendTo: parentElem,
                 resolve: {
                 	urtug: function(){
                 		return urtug;
@@ -438,8 +439,7 @@ angular.
 	        templateUrl: 'app/uraianJabatan/tambahSOP/formSop.html',
 	        controller: 'FormSOPController',
 	        controllerAs: 'sop',
-	        // windowClass: 'app-modal-window',
-	        // size: 'lg',
+	        size: 'lg',
 	        appendTo: parentElem,
 	        resolve: {
 	          kdUrtug: function () {

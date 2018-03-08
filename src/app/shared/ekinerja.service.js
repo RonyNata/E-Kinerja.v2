@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .service('EkinerjaService',
-    ['$state', 'toastr', '$q', 'API', '$http',
-    function ($state, toastr, $q, API, $http) {
+    ['$state', 'toastr', '$q', 'API', '$http', '$document', '$uibModal',
+    function ($state, toastr, $q, API, $http, $document, $uibModal) {
         var service = {}; 
         
         service.checkCredential = function(){
@@ -132,6 +132,14 @@
             }
         }
 
+        service.findProgram = function(kdProg, array){
+            for(var i = 0; i<array.length; i++){debugger
+                if (array[i].kdProg == parseInt(kdProg)){
+                    return array[i]; break;
+                } 
+            }
+        }
+
         service.findPegawaiByNip = function(nip, array){
             for(var i = 0; i<array.length; i++){
                 if (array[i].nipPegawai.search(nip) != -1){
@@ -217,6 +225,37 @@
                 }
             );
             return deferred.promise;
+        };
+
+        service.lihatPdf = function (docs, judul, parentSelector) {
+            var parentElem = parentSelector ? 
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/shared/lihatPdf/lihatPdf.html',
+              controller: 'LihatPDFController',
+              controllerAs: 'pdf',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                doc: function () {
+                  return docs;
+                },
+                dokumen: function(){
+                    return judul;
+                }
+              }
+            });
+
+            modalInstance.result.then(function () {
+              
+            }, function () {
+              // showToastrFailed('menambahkan data');
+              // $log.info('Modal dismissed at: ' + new Date());
+            });
         };
  
         return service;

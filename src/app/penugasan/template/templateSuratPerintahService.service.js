@@ -10,6 +10,18 @@
         service.template = function(data){
             var docDefinition = {
             pageSize: 'A4',
+            footer: function(currentPage, pageCount) { var foot =  
+              {
+                  margin: 10,
+                  columns: [{text: currentPage.toString() + ' of ' + pageCount}]
+              }
+              if(data.barcodeImage != null)
+                  foot.columns.push({
+                      image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                      width: 200
+                  })
+              return foot;
+            },
             content: [
               {
                 image: logo_garuda,
@@ -248,6 +260,7 @@
           }
           else docDefinition.content[1].text += data.jabatanPenandatangan.toUpperCase();
           debugger
+
           return docDefinition;
         }
  

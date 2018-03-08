@@ -33,7 +33,7 @@
                 templateUrl: 'app/reportPegawai/detailReportPegawai/detailReportPegawai.html',
                 controller: 'DetailReportPegawaiController',
                 controllerAs: 'detailReportPegawai',
-                windowClass: 'app-modal-windows',
+                size: 'lg',
                 appendTo: parentElem,
                 resolve: {
                     pegawai: function () {
@@ -52,6 +52,10 @@
                 // showToastrFailed('menambahkan data');
                 // $log.info('Modal dismissed at: ' + new Date());
             });
+        };
+
+        vm.cancel = function () {
+            $uibModalInstance.dismiss('cancel');
         };
     }
 })();

@@ -101,8 +101,7 @@ angular.
           templateUrl: 'app/kontrakUrtugDpa/formGantiPj/formGantiPj.html',
           controller: 'FormGantiPjController',
           controllerAs: 'formpj',
-          // windowClass: 'app-modal-window',
-          // size: 'lg',
+          size: 'lg',
           appendTo: parentElem,
           resolve: {
             items: function () {

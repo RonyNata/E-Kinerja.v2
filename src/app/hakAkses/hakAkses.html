@@ -1,72 +1,90 @@
 <ekinerja-navbar></ekinerja-navbar>
 <section style="padding-top: 90px;">
 	<div class="container-fluid">
-		<div class="row clearfix">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="card">
-					<div class="header">
-						<i class="material-icons" style="float: left;">person</i>
-						<h2 style="padding-left: 30px;padding-top: 3px;"><b>DAFTAR DATA PEGAWAI</b></h2>
-					</div>
-					<div class="akses.loading">
-						<div class="body table-responsive" style="padding-top: 0px;padding-bottom: 0px;">
-							<table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
-								<thead>
-									<tr style="background:#D32F2F; color:#ffff">
-										<th style="width: 6%; text-align: center">
-											<select type="text" class="form-control" ng-model="entries" ng-required="true" placeholder="Entries">
-		                                    	<option value="5">5</option>
-		                                    	<option value="10">10</option>
-		                                    	<option value="25">25</option>
-		                                    	<option value="50">50</option>
-		                                    	<option value="100">100</option>
-		                                    </select>
-		                                </th>
-		                                <th style="width: 20%;">
-		                                	<input type="text" class="form-control" ng-model="searchNip" ng-required="true" placeholder="NIP Pegawai">
-		                                </th>
-		                                <th style="width: 30%; text-align: center">
-		                                	<input type="text" class="form-control" ng-model="searchName" ng-required="true" placeholder="Nama Pegawai">
-		                                </th>
-		                                <th style="text-align: center;">
-		                                	<input type="text" class="form-control" ng-model="searchJabatan" ng-required="true" placeholder="Jabatan Pegawai">
-		                                </th>
-		                                <th style="text-align: center;">
-		                                	<input type="text" class="form-control" ng-model="searchUnitKerja" ng-required="true" placeholder="Unit Kerja Pegawai">
-		                                </th>
-		                                <th style="text-align: center;">
-		                                	<input type="text" class="form-control" ng-model="searchStatus" ng-required="true" placeholder="Status Pegawai">
-		                                </th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="data in filteredData" ng-click="akses.open(data)">
-		                                <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
-		                                <td>{{data.nipPegawai}}</td>
-		                                <td>{{data.nama}}</td>
-		                                <td>{{data.jabatan}}</td>
-		                                <td>{{data.unitKerja}}</td>
-		                                <td>{{data.role}}</td>
-		                            </tr>
-								</tbody>
+		<div class="card">
+			<div class="page">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive" style="margin: 0px">
+							<table>
+								<tr>
+									<td><i class="material-icons inline-icon">people</i></td>
+									<td class="header-size2" style="vertical-align: middle">&nbsp<strong>Daftar Data Pegawai</strong></td>
+								</tr>
 							</table>
-							<div style="padding-top: 3px;" class="pull-right">
-		                        <ul>
-		                            <li style="display: inline-block;">
-		                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
-		                                  &lt; PREV                          
-		                                </button>
-		                            </li>
-		                            <li style="display: inline-block;">
-		                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
-		                            </li>
-		                            <li style="display: inline-block;">
-		                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
-		                                  NEXT &gt;                          
-		                                </button>
-		                            </li>
-		                        </ul>
-		                    </div>
+						</div>
+					</div>
+				</div>
+				<hr class="hr-space">
+
+				<div class="akses.loading">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-bordered table-striped table-hover js-basic-example">
+									<thead class="bg-table">
+									<tr>
+										<th style="width: 5%; text-align: center">
+											<select type="text" class="form-control" ng-model="entries" ng-required="true" placeholder="Entries">
+												<option value="5">5</option>
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select>
+										</th>
+										<th style="width: 20%;">
+											<input type="text" class="form-control" ng-model="searchNip" ng-required="true" placeholder="NIP Pegawai">
+										</th>
+										<th style="width: 30%; text-align: center">
+											<input type="text" class="form-control" ng-model="searchName" ng-required="true" placeholder="Nama Pegawai">
+										</th>
+										<th style="text-align: center;">
+											<input type="text" class="form-control" ng-model="searchJabatan" ng-required="true" placeholder="Jabatan Pegawai">
+										</th>
+										<th style="text-align: center;">
+											<input type="text" class="form-control" ng-model="searchUnitKerja" ng-required="true" placeholder="Unit Kerja Pegawai">
+										</th>
+										<th style="text-align: center;">
+											<input type="text" class="form-control" ng-model="searchStatus" ng-required="true" placeholder="Status Pegawai">
+										</th>
+									</tr>
+									</thead>
+
+									<tbody>
+									<tr ng-repeat="data in filteredData" ng-click="akses.open(data)" class="text-center">
+										<td style="vertical-align: middle">{{$index + 1 + (numPerPage*currentPage)}}</td>
+										<td style="vertical-align: middle">{{data.nipPegawai}}</td>
+										<td class="text-left" style="vertical-align: middle">{{data.nama}}</td>
+										<td style="vertical-align: middle">{{data.jabatan}}</td>
+										<td style="vertical-align: middle">{{data.unitKerja}}</td>
+										<td style="vertical-align: middle">{{data.role}}</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="align-center">
+										<ul style="padding-left: 0px">
+											<li style="display: inline-block;">
+												<button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+													&lt; PREV
+												</button>
+											</li>
+											<li style="display: inline-block;">
+											<span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}<span>
+											</li>
+											<li style="display: inline-block;">
+												<button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+													NEXT &gt;
+												</button>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

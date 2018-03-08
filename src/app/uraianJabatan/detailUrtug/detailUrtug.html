@@ -1,88 +1,83 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Detail Uraian Tugas Non-DPA</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Detail Uraian Tugas Non-DPA</strong></h3>
 </div>
 <form ng-submit="detailUrtug.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
         <div class="form-body">
-            <div class="body">
-                <div class="row clearfix">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="col-md-12" style="margin-bottom:10px" ng-hide="detailUrtug.isEselon4">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Aktivitas</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.urtug" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px" ng-hide="detailUrtug.isEselon4">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Jenis</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.jenisUrtug" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Kuantitas</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.kuantitas" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Satuan Kuantitas</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.satuanKuantitas" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Kualitas</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.kualitas" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Waktu</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.waktuDisplay" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-sm-3" style="margin-top:5px">
-                                            <p><b>Biaya</b></p>
-                                        </div>
-                                        <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" ng-model="detailUrtug.urtug.biayaDisplay" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="row space-after" ng-hide="detailUrtug.isEselon4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Aktivitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.urtug" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after" ng-hide="detailUrtug.isEselon4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Jenis</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.jenisUrtug" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kuantitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.kuantitas" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Satuan Kuantitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.satuanKuantitas" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kualitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.kualitas" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Waktu</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.waktuDisplay" readonly>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Biaya</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailUrtug.urtug.biayaDisplay" readonly>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect" ng-click="detailUrtug.cancel()" data-dismiss="modal">Kembali</button>
 
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="detailUrtug.cancel()" data-dismiss="modal">Kembali</button>
     </div>
 </form>

@@ -333,7 +333,7 @@
             // blb = new Blob(blb);
             console.log(vm.item.pembukaSurat);
             template();
-            pdfMake.createPdf(vm.docDefinition).open();
+            EkinerjaService.lihatPdf(vm.docDefinition, 'Surat Kuasa');
         };
 
         $scope.downloadPdf = function() {

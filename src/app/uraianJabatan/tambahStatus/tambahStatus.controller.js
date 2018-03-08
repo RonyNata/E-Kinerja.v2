@@ -12,14 +12,15 @@ angular.
         debugger
         vm.item = angular.copy(items);
         vm.target = {
-          "kuantitas": 0,
+          "kuantitas": 1,
           "satuanKuantitas": "",
           "kualitas": 100,
+          "kualitasDisplay": "100%",
           "waktu": 12,
           "waktuDisplay": "12 Bulan",
           "biaya": 0,
           "biayaDisplay": "Rp. 0"
-        }
+        };
         $scope.statusUrtug = "";
         getJenisUrtug();
         getUrtugJabatan();
@@ -59,9 +60,10 @@ angular.
           else {
             vm.isDpa = false
             vm.target = {
-              "kuantitas": 0,
+              "kuantitas": 1,
               "satuanKuantitas": "",
               "kualitas": 100,
+              "kualitasDisplay": "100%",
               "waktu": 12,
               "waktuDisplay": "12 Bulan",
               "biaya": 0,

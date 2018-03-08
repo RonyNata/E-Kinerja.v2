@@ -26,7 +26,8 @@
                                  TemplateSuratKuasaService,
                                  TemplateSuratKeteranganService,
                                  TemplateNotaDinasService,
-                                 TemplateBeritaAcaraService){
+                                 TemplateBeritaAcaraService,
+                                 TemplateSuratTugasService){
 		var vm = this;
     	vm.loading = true;
 
@@ -138,7 +139,8 @@
               openSuratMasuk('open-surat-keputusan-penilai/', laporan.kdSurat, '');
             else openSuratMasuk('open-surat-keputusan/', laporan.kdSurat, '');
             laporan.loading = false;
-            pdfMake.createPdf(doc).open();
+            EkinerjaService.lihatPdf(doc, 'Surat Keputusan');
+            // pdfMake.createPdf(doc).open();
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
           }, function(errResponse){
@@ -156,7 +158,7 @@
               openSuratMasuk('open-surat-edaran-penilai/', laporan.kdSurat, '');
             else openSuratMasuk('open-surat-edaran/', laporan.kdSurat, '');
             laporan.loading = false;
-            pdfMake.createPdf(doc).open();
+            EkinerjaService.lihatPdf(doc, 'Surat Edaran');
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
           }, function(errResponse){
@@ -174,7 +176,7 @@
               openSuratMasuk('open-surat-undangan-penilai/', laporan.kdSurat, '');
             else openSuratMasuk('open-surat-undangan/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
             laporan.loading = false;
-            pdfMake.createPdf(doc).open();
+            EkinerjaService.lihatPdf(doc, 'Surat Undangan');
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
           }, function(errResponse){
@@ -192,7 +194,7 @@
               openSuratMasuk('open-surat-pengantar-penilai/', laporan.kdSurat, '');
             else openSuratMasuk('open-surat-pengantar/', laporan.kdSurat, '');
             laporan.loading = false;
-            pdfMake.createPdf(doc).open();
+            EkinerjaService.lihatPdf(doc, 'Surat Pengantar');
             // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
             //   openSurat(laporan.kdSurat);
           }, function(errResponse){
@@ -210,7 +212,7 @@
                       openSuratMasuk('open-surat-dinas-penilai/', laporan.kdSurat, '');
                     else openSuratMasuk('open-surat-dinas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Surat Dinas');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -228,7 +230,7 @@
                       DashboardService.ChangeRead('open-laporan-penilai/', 
                       laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Laporan');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -245,7 +247,7 @@
                     if(isLaporan && laporan.statusPenilaian == 0)
                       openSuratMasuk('open-telaahan-staff-by-penilai/', laporan.kdSurat, '');
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Telaahan Staff');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -262,7 +264,7 @@
                     if(isLaporan && laporan.statusPenilaian == 0)
                       openSuratMasuk('open-berita-acara-penilai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;debugger
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Berita Acara');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -280,7 +282,7 @@
                       openSuratMasuk('open-memorandum-by-penilai/', laporan.kdMemorandum, '');
                     else openSuratMasuk('open-memorandum-by-target/', laporan.kdMemorandum, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Memorandum');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -298,7 +300,7 @@
                       openSuratMasuk('open-surat-keterangan-penilai/', laporan.kdSurat, '');
                     else openSuratMasuk('open-surat-keterangan/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Surat Keterangan');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -317,7 +319,7 @@
                       openSuratMasuk('open-surat-kuasa-penilai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     else openSuratMasuk('open-surat-kuasa/', laporan.kdSurat, '');
                     getLaporanBawahan();
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Surat Kuasa');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -335,7 +337,7 @@
                       openSuratMasuk('open-nota-dinas-by-penilai/', laporan.kdSurat, '');
                     else openSuratMasuk('open-nota-dinas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Nota Dinas');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -353,7 +355,9 @@
                       openSuratMasuk('open-pengumuman-penilai/', laporan.kdSurat, '');
                     else openSuratMasuk('open-pengumuman/', laporan.kdSurat, '');
                     laporan.loading = false;
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Pengumuman');
+                    // pdfMake.createPdf(doc).open();
+                    // pdfMake.createPdf(doc).open({}, window);
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                     //   openSurat(laporan.kdSurat);
                 }, function(errResponse){
@@ -370,7 +374,7 @@
                     laporan.loading = false;
                     if(isLaporan && laporan.statusPenilaian == 0)
                       openSuratMasuk('open-surat-tugas-by-penilai/', laporan.kdSurat, '');
-                    pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Surat Tugas');
                 }, function(errResponse){
 
                 })
@@ -498,7 +502,7 @@
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
               laporan.loading = false;
-              pdfMake.createPdf(doc).open();
+              EkinerjaService.lihatPdf(doc, 'Surat Perintah');
               if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
                 openSurat(laporan.kdSurat);
             }, function(errResponse){

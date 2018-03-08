@@ -100,8 +100,7 @@ angular.
           templateUrl: 'app/pengadaanBarangJasa/formPenanggungJawab.html',
           controller: 'FormPenanggungJawabController',
           controllerAs: 'skform',
-          // windowClass: 'app-modal-window',
-          // size: 'lg',
+          size: 'lg',
           appendTo: parentElem,
           resolve: {
             items: function () {

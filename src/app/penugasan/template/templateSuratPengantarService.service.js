@@ -212,6 +212,18 @@
                     fontSize: 12,
                     alignment:'right'
                 }
+            },
+            footer: function(currentPage, pageCount) { var foot =  
+                {
+                    margin: 10,
+                    columns: [{text: currentPage.toString() + ' of ' + pageCount}]
+                }
+                if(data.barcodeImage != null)
+                    foot.columns.push({
+                        image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                        width: 200
+                    })
+                return foot;
             }
           };
           for(var i = 0; i < data.suratPengantarIsiWrapperList.length; i++)
@@ -236,8 +248,8 @@
                           alignment: 'center'
                       }
                     ]);
-          console.log(docDefinition.content[5]);
-          return docDefinition;
+
+            return docDefinition;
         };
  
         return service;

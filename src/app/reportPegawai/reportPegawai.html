@@ -1,31 +1,42 @@
 <ekinerja-navbar></ekinerja-navbar>
 <section style="padding-top: 90px;">
     <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card" style="margin-bottom: 20px; padding-bottom: 10px;">
-                    <div class="header">
-                        <i class="material-icons" style="float: left;">assignment</i>
-                        <h2 style="padding-left: 30px;padding-top: 3px;"><b> HALAMAN REPORT PEGAWAI</b></h2>
+        <div class="card">
+            <div class="page">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive" style="margin: 0px">
+                            <table>
+                                <tr>
+                                    <td><i class="material-icons inline-icon">assignment_ind</i></td>
+                                    <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Report Pegawai</strong></td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="body" style="font-size: 17px">
-                        <div class="body table-responsive" style="padding-bottom: 0px">
-                            <table class="table table-bordered table-striped " cellspacing="0" style="text-align: center;table-layout: fixed;font-size: 16px;">
-                                <thead>
-                                    <tr style="background:#D32F2F; color:#ffff">
-                                        <th style="width: 5%; text-align: center">No</th>
-                                        <th style="text-align: center">Nama Pegawai</th>
-                                        <th style="text-align: center; width: 15%">Action</th>
-                                    </tr>
+                </div>
+                <hr class="hr-space">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-table">
+                                <tr>
+                                    <th class="text-center" style="width: 5%">No</th>
+                                    <th class="text-center">Nama Pegawai</th>
+                                    <th class="text-center" style="width: 10%">Action</th>
+                                </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr ng-repeat="pgw in reportPegawai.list_pegawai" style="text-align: center">
-                                        <td>{{$index + 1}}</td>
-                                        <td style="text-align: left">{{pgw.namaPegawai}}</td>
-                                        <td>
-                                            <button type="button" ng-click="reportPegawai.open(pgw)" class="btn btn-success btn waves waves-effect">Lihat Report</button>
-                                        </td>
-                                    </tr>
+                                <tr ng-repeat="pgw in reportPegawai.list_pegawai" class="text-center">
+                                    <td>{{$index + 1}}</td>
+                                    <td class="text-left">{{pgw.namaPegawai}}</td>
+                                    <td>
+                                        <button type="button" ng-click="reportPegawai.open(pgw)" class="btn btn-success">Lihat Report</button>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>

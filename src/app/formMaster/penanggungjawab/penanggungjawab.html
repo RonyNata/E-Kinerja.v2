@@ -1,28 +1,22 @@
-
+<div class="modal-header" style="background-color:#F44236; color:#ffff">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>TAMBAH DATA ORGANISASI PENGADAAN BARANG DAN JASA</strong></h3>
+</div>
 <form ng-submit="form_pj.ok()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <input type="hidden" value=""/>
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <label>Deskripsi Penanggungjawab</label>
-                                <textarea type="text" class="form-control" ng-model="form_pj.data_pj.status" ng-required="true" rows="6" cols="20" ></textarea>
-                        </div>
-                    </div>
-                    </div>                              
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+
+            <div class="row space-after">
+                <div class="col-md-12">
+                    <label>Deskripsi Organisasi Pengadaan Barang dan Jasa</label>
+                    <textarea type="text" class="form-control" ng-model="form_pj.data_pj.status" ng-required="true" rows="6" cols="20" ></textarea>
                 </div>
             </div>
         </div>
     </div>
-</div>
-    <div class="modal-footer" style="margin-right: 10px;">
-        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
-        <button type="reset" class="btn btn-danger waves-effect" >Reset</button>
-        <button type="button" ng-click="form_pj.cancel()" class="btn btn-default waves-effect" data-dismiss="modal">Cancel</button>
+
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-success">Simpan</button>
+        <button type="reset" class="btn btn-primary" >Reset</button>
+        <button type="button" ng-click="form_pj.cancel()" class="btn btn-danger" data-dismiss="modal">Cancel</button>
     </div>
 </form>
-

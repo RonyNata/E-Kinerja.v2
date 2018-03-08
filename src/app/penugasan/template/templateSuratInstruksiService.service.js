@@ -126,6 +126,18 @@
                 header5: {
                     fontSize: 12
                 }
+            },
+            footer: function(currentPage, pageCount) { var foot =  
+              {
+                  margin: 10,
+                  columns: [{text: currentPage.toString() + ' of ' + pageCount}]
+              }
+              if(data.barcodeImage != null)
+                  foot.columns.push({
+                      image: 'data:image/jpeg;base64,' + data.barcodeImage,
+                      width: 200
+                  })
+              return foot;
             }
           };
 
@@ -211,6 +223,7 @@
               docDefinition.content[2] = {};
           }
           else docDefinition.content[1].text += data.jabatanPenandaTangan.toUpperCase();
+
           return docDefinition;
         }
  

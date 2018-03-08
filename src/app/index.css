@@ -8171,6 +8171,11 @@ html.ie11 .bs-searchbox .form-control {
   color:#ffff;
 }
 
+.inline-icon {
+  vertical-align: middle;
+  font-size: 40px !important;
+}
+
 /* table scroll responsive */
 .points_table thead {
   width: 100%;
@@ -8226,4 +8231,95 @@ html.ie11 .bs-searchbox .form-control {
   border-radius: 2px;
   background-color: #D32F2F;
   background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
+}
+
+/* box dashboard 2 */
+
+.hr-panel{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* panel-blue */
+.huge{
+  font-size: 40px
+}
+
+.panel-blue {
+  border-color: darkblue;
+}
+.panel-blue > .panel-heading {
+  color: #fff;
+  background-color: darkblue;
+  border-color: darkblue;
+}
+.panel-blue > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: darkblue;
+}
+.panel-blue > .panel-heading .badge {
+  color: darkblue;
+  background-color: #fff;
+}
+.panel-blue > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: darkblue;
+}
+
+/* panel-green */
+.panel-green {
+  border-color: darkgreen;
+}
+.panel-green > .panel-heading {
+  color: #fff;
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+.panel-green > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: darkgreen;
+}
+.panel-green > .panel-heading .badge {
+  color: darkgreen;
+  background-color: #fff;
+}
+.panel-green > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: darkgreen;
+}
+
+/* panel-red */
+.panel-red {
+  border-color: darkred;
+}
+.panel-red > .panel-heading {
+  color: #fff;
+  background-color: darkred;
+  border-color: darkred;
+}
+.panel-red > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: darkred;
+}
+.panel-red > .panel-heading .badge {
+  color: darkred;
+  background-color: #fff;
+}
+.panel-red > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: darkred;
+}
+
+/* panel-orange */
+.panel-cyan {
+  border-color: darkcyan;
+}
+.panel-cyan > .panel-heading {
+  color: #fff;
+  background-color: darkcyan;
+  border-color: darkcyan;
+}
+.panel-cyan > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: darkcyan;
+}
+.panel-cyan > .panel-heading .badge {
+  color: darkcyan;
+  background-color: #fff;
+}
+.panel-cyan > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: darkcyan;
 }

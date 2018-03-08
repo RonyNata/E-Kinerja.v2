@@ -1,95 +1,86 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Tambah {{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Tambah {{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</strong></h3>
 </div>
 <form ng-submit="kegiatan.save()" class="form-horizontal">
-<div class="modal-body" id="modal-body">
-    <div class="form-body">
-        <div class="body">
-            <div class="row clearfix">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-md-12" style="margin-bottom:10px"> 
-                                <div class="col-sm-3" style="margin-top:5px">
-                                    <p><b>{{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</b></p>
-                                </div>
-                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                <div class="col-md-6" ng-show="kegiatan.isEselon4">
-                                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off">
-                                        <datalist id="kegiatan" style="height: 100px">
-                                                <option ng-repeat="data in kegiatan.list_kegiatan"
-                                         value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
-                                        </datalist>
-                                </div>
-                                <div class="col-md-6" ng-hide="kegiatan.isEselon4">
-                                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off">
-                                        <datalist id="kegiaatan" style="height: 100px">
-                                                <option ng-repeat="data in kegiatan.list_program"
-                                         value="{{data.ketProgram}}">{{data.ketProgram}}</option>
-                                        </datalist>
-                                </div>
-                            </div>
-                            <div ng-show="kegiatan.isEselon4">
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Kuantitas</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-3">
-                                    <input class="form-control" ng-model="kegiatan.target.kuantitas" type="number">
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Satuan Kuantitas</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-3">
-                                    <input class="form-control" ng-model="kegiatan.target.satuanKuantitas" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Kualitas</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-3">
-                                    <input class="form-control" ng-model="kegiatan.target.kualitas" type="number" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Waktu</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-3">
-                                    <input class="form-control" ng-model="kegiatan.target.waktuDisplay" type="text" disabled>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Biaya</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-3">
-                                    <input class="form-control" ng-model="kegiatan.target.biayaDisplay" type="text" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>{{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</b></p>
+                </div>
+                <div class="col-md-7" ng-show="kegiatan.isEselon4">
+                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off">
+                    <datalist id="kegiatan" style="height: 100px">
+                        <option ng-repeat="data in kegiatan.list_kegiatan"
+                                value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
+                    </datalist>
+                </div>
+                <div class="col-md-7" ng-hide="kegiatan.isEselon4">
+                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off">
+                    <datalist id="kegiaatan" style="height: 100px">
+                        <option ng-repeat="data in kegiatan.list_program"
+                                value="{{data.ketProgram}}">{{data.ketProgram}}</option>
+                    </datalist>
+                </div>
+            </div>
+
+            <div ng-show="kegiatan.isEselon4">
+                <div class="row space-after">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <p><b>Kuantitas</b></p>
                     </div>
-                    </div>                              
+                    <div class="col-md-7">
+                        <input class="form-control" ng-model="kegiatan.target.kuantitas" type="number" min="1">
+                    </div>
+                </div>
+
+                <div class="row space-after">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <p><b>Satuan Kuantitas</b></p>
+                    </div>
+                    <div class="col-md-7">
+                        <input class="form-control" ng-model="kegiatan.target.satuanKuantitas" type="text">
+                    </div>
+                </div>
+
+                <div class="row space-after">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <p><b>Kualitas</b></p>
+                    </div>
+                    <div class="col-md-7">
+                        <input class="form-control" ng-model="kegiatan.target.kualitasDisplay" type="text" disabled>
+                    </div>
+                </div>
+
+                <div class="row space-after">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <p><b>Waktu</b></p>
+                    </div>
+                    <div class="col-md-7">
+                        <input class="form-control" ng-model="kegiatan.target.waktuDisplay" type="text" disabled>
+                    </div>
+                </div>
+
+                <div class="row space-after">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <p><b>Biaya</b></p>
+                    </div>
+                    <div class="col-md-7">
+                        <input class="form-control" ng-model="kegiatan.target.biayaDisplay" type="text" disabled>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-        </div>
     </div>
-</div>
-    <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary waves-effect">Save</button>
-        <button type="button" ng-click="kegiatan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
 
-    </div> 
-        </form>
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-primary">Simpan</button>
+        <button type="button" ng-click="kegiatan.cancel()" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
