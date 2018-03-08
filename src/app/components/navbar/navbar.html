@@ -70,31 +70,31 @@
                 </li>
                 <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}">
                     <a href="#/ambil-disposisi">
-                        <i class="material-icons">layers</i>
+                        <i class="material-icons">assignment</i>
                         <span>Disposisi</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}">
                     <a href="#/penugasan">
-                        <i class="material-icons">layers</i>
+                        <i class="material-icons">format_list_bulleted</i>
                         <span>Penugasan</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('approval') ? 'active' : ''}}">
                     <a href="#/approval">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">playlist_add_check</i>
                         <span>Persetujuan Kontrak Kerja</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}">
                     <a href="#/penilaian">
-                        <i class="material-icons">text_fields</i>
-                        <span>Persuratan</span>
+                        <i class="material-icons">email</i>
+                        <span>Tata Naskah</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}">
                     <a href="#/reportPegawai">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">assignment_ind</i>
                         <span>Report Pegawai</span>
                     </a>
                 </li>
@@ -113,25 +113,25 @@
                 </li>
                 <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
                     <a href="#/urtug/jabatan">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">perm_data_setting</i>
                         <span>Atur Uraian Tugas Jabatan</span>
                     </a>
                 </li>
                 <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
                     <a href="#/master-kegiatan">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">library_books</i>
                         <span>Master Kegiatan</span>
                     </a>
                 </li>
                 <li class="{{(vm.checkLocation('kontrakdpa') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
                     <a href="#/kontrakdpa">
-                        <i class="material-icons">text_fields</i>
+                        <i class="material-icons">dvr</i>
                         <span>Penanggung Jawab Uraian Tugas DPA</span>
                     </a>
                 </li>
                 <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
                     <a href="#/hak-akses">
-                        <i class="material-icons">layers</i>
+                        <i class="material-icons">people</i>
                         <span>Atur Hak Akses Pegawai</span>
                     </a>
                 </li>
