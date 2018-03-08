@@ -231,7 +231,7 @@ angular.
                 },
 
                 {
-                    text: '' + vm.item.pegawaiPembuat.jabatan.toUpperCase(), style: 'nama_judul'
+                    text: '' + vm.item.pegawaiPenandatangan.jabatan.toUpperCase(), style: 'nama_judul'
                 },
                 {
                     text: 'REPUBLIK INDONESIA', style: 'nama_judul', margin: [0,0,0,15]
@@ -311,11 +311,11 @@ angular.
                               body: [
                                   [{text: ['Ditetapkan di ', {text:'' + vm.item.tempat.toUpperCase(), bold:true}], alignment : 'left'}],
                                   [{text: ['pada tanggal ', {text:'' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal), bold:true}], alignment : 'left'}],
-                                  [{text: '' + vm.item.pegawaiPembuat.jabatan + ',', alignment : 'left', bold: true}],
+                                  [{text: '' + vm.item.pegawaiPenandatangan.jabatan + ',', alignment : 'left', bold: true}],
                                   [{text: ' ',margin: [0,20]}],
-                                  [{text: '' + vm.item.pegawaiPembuat.gelarDepan + vm.item.pegawaiPembuat.nama + vm.item.pegawaiPembuat.gelarBelakang, alignment : 'left', bold:true}],
-                                  [{text: '' + vm.item.pegawaiPembuat.pangkat, alignment : 'left', bold:true}],
-                                  [{text: 'NIP. ' + vm.item.pegawaiPembuat.nipPegawai, alignment : 'left'}]
+                                  [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold:true}],
+                                  [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left', bold:true}],
+                                  [{text: 'NIP. ' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
                               ]
                           },
                           layout: 'noBorders'
@@ -341,7 +341,7 @@ angular.
                                       {
                                           text:[
                                               {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                              {text: '' + vm.item.pegawaiPembuat.unitKerja.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                              {text: '' + vm.item.pegawaiPenandatangan.unitKerja.toUpperCase() + '\n', alignment: 'center', style:'header'},
                                               {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                           ]
                                       },
