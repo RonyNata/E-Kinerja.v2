@@ -123,33 +123,32 @@
         })
     }
     
-     vm.openTemplate = function (uraianTugas, isDPA, parentSelector) {
+     vm.openDetail = function (jenis, parentSelector) {
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
         animation: true,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'app/kontrakPegawai/template/listTemplate.html',
-        controller: 'TemplateController',
-        controllerAs: 'temp',
+        templateUrl: 'app/dashboard/lihatSurat/lihatSurat.html',
+        controller: 'LihatSuratController',
+        controllerAs: 'surat',
         // windowClass: 'app-modal-window',
         // size: 'lg',
         appendTo: parentElem,
-            resolve: {
-                urtug: function () {
-                    return uraianTugas;
-                },
-                isDPA: function () {
-                    return isDPA;
-                }, 
-                kdSurat: function(){ 
-                    return null; 
-                }, 
-                jenisNaskahPenugasan: function(){ 
-                    return 5; 
-                } 
-            }
+        resolve: {
+            naskah: function () {
+              switch(jenis){
+                case 1: return vm.naskahDisposisi; break;
+                case 2: return vm.naskah; break;
+                case 3: return vm.laporan; break;
+                case 4: return vm.suratMasuk; break;
+              }
+            },
+            jenis: function () {
+                return jenis;
+            } 
+        }
         });
 
         modalInstance.result.then(function () {
