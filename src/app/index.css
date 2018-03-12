@@ -5033,8 +5033,7 @@ section.content {
 
 /* Input Group ================================= */
 .input-group {
-  width: 100%;
-  margin-bottom: 20px; }
+  width: 100%; }
   .input-group .form-line {
     display: inline-block;
     width: 100%;
@@ -5096,7 +5095,7 @@ section.content {
       color: #555; }
   .input-group input[type="text"],
   .input-group .form-control {
-    border: none;
+    border: solid;
     box-shadow: none;
     padding-left: 0; }
   .input-group .form-control:focus {
@@ -8401,4 +8400,19 @@ html.ie11 .bs-searchbox .form-control {
 {
   display: block;
   margin-top: 10px;
+}
+
+.coverBg{
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  -webkit-filter: grayscale(100%); 
+}
+
+.coverWrapper{
+  width: auto;
+  margin: auto;
+  position: relative;
 }
