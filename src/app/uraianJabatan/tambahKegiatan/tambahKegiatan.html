@@ -10,14 +10,14 @@
                     <p><b>{{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</b></p>
                 </div>
                 <div class="col-md-7" ng-show="kegiatan.isEselon4">
-                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off">
+                    <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off" required>
                     <datalist id="kegiatan" style="height: 100px">
                         <option ng-repeat="data in kegiatan.list_kegiatan"
                                 value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
                     </datalist>
                 </div>
                 <div class="col-md-7" ng-hide="kegiatan.isEselon4">
-                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off">
+                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off" required>
                     <datalist id="kegiaatan" style="height: 100px">
                         <option ng-repeat="data in kegiatan.list_program"
                                 value="{{data.ketProgram}}">{{data.ketProgram}}</option>
@@ -32,7 +32,7 @@
                         <p><b>Kuantitas</b></p>
                     </div>
                     <div class="col-md-7">
-                        <input class="form-control" ng-model="kegiatan.target.kuantitas" type="number" min="1">
+                        <input class="form-control" ng-model="kegiatan.target.kuantitas" type="number" min="1" required>
                     </div>
                 </div>
 
@@ -42,7 +42,7 @@
                         <p><b>Satuan Kuantitas</b></p>
                     </div>
                     <div class="col-md-7">
-                        <input class="form-control" ng-model="kegiatan.target.satuanKuantitas" type="text">
+                        <input class="form-control" ng-model="kegiatan.target.satuanKuantitas" type="text" required>
                     </div>
                 </div>
 

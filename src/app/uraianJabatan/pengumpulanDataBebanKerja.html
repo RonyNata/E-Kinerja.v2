@@ -58,10 +58,13 @@
                                         <td colspan="2">Pejabat Penilai :</td>
                                     </tr>
                                     <tr>
-                                        <td ng-show="urtug_jabatan.jabatan" >
+                                        <td ng-show="urtug_jabatan.penilai" >
                                             <b>{{urtug_jabatan.penilai.nama}} ({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
                                         </td>
-                                        <td ng-show="urtug_jabatan.jabatan" style="width: 30%">
+                                        <td ng-hide="urtug_jabatan.penilai" >
+                                            <b>(Belum Dipasangkan)</b>&nbsp&nbsp&nbsp
+                                        </td>
+                                        <td style="width: 30%">
                                             <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info">
                                                 <i class="material-icons">edit</i>
                                                 <span>UBAH</span>
