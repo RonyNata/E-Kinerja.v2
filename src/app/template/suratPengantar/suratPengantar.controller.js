@@ -136,7 +136,8 @@ angular.
             "durasiPengerjaan": vm.item.durasiPengerjaan,
             "kdSuratPengantarBawahan":null,
             "suratPengantarIsiList":[]
-          }
+          };
+          debugger
 
           if($state.params.kdSuratBawahan != "")
                 data.kdSuratPengantarBawahan = $state.params.kdSuratBawahan;
