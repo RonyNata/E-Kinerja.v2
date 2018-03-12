@@ -403,8 +403,10 @@ angular.
 	      });
 	    };
 
-        vm.openDetailUrtug = function (urtug) {
+        vm.openDetailUrtug = function (urtug, parentSelector) {
         	console.log(urtug);
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
                 animation: true,
                 ariaLabelledBy: 'modal-title',
