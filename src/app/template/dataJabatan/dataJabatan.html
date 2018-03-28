@@ -1,7 +1,7 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff;">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><b>DAFTAR PEGAWAI</b></h3>
 </div>
-<form ng-submit="datapegawai.save()" class="form-horizontal">
+<form ng-submit="datajabatan.save()" class="form-horizontal">
 <div class="modal-body" id="modal-body">
     <div class="form-body">
         <div class="body">
@@ -12,21 +12,15 @@
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div class="col-md-12" style="margin-bottom:10px"> 
                                 <div class="body table-responsive" style="padding-top: 0px;padding-bottom: 0px;">
-                                    <button class="btn btn-primary waves-effect" ng-click="datapegawai.openPilihan()" type="button" style="margin-left: 5px" ng-hide="datapegawai.isPilihan == 1">{{datapegawai.pegawaiPilihan.length}} Pegawai Telah Dipilih</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="datajabatan.openPilihan()" type="button" style="margin-left: 5px" ng-hide="datajabatan.isPilihan == 1">{{datajabatan.jabatanPilihan.length}} Jabatan Telah Dipilih</button>
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
                                         <thead>
                                             <tr style="background:#D32F2F; color:#ffff">
                                                 <th style="width: 6%; text-align: center">
-                                                    {{datapegawai.isPilihan == 1 || datapegawai.isPilihan == 2 ? 'No' : ''}}
+                                                    {{datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2 ? 'No' : ''}}
                                                 </th>
-                                                <th style="width: 20%;">
-                                                    NIP Pegawai
-                                                </th>
-                                                <th style="width: 30%; text-align: center">
-                                                    <input type="text" class="form-control" ng-model="searchName" placeholder="Nama Pegawai">
-                                                </th>
-                                                <th style="text-align: center;text-align: center">
-                                                    <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Jabatan Pegawai">
+                                                <th style="text-align: center">
+                                                    <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Nama Jabatan">
                                                 </th>
                                                 <th style="text-align: center;text-align: center">
                                                     Unit Kerja
@@ -34,19 +28,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="data in filteredData" ng-show="datapegawai.isPilihan != 2">
-                                                <td><input type="checkbox" ng-model="data.checked" ng-change="datapegawai.check(data)" ng-hide="datapegawai.isPilihan == 1 || datapegawai.isPilihan == 2">
-                                                <p ng-show="datapegawai.isPilihan == 1 || datapegawai.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
-                                                <td>{{data.nipPegawai}}</td>
-                                                <td>{{data.nama}}</td>
+                                            <tr ng-repeat="data in filteredData" ng-show="datajabatan.isPilihan != 2">
+                                                <td><input type="checkbox" ng-model="data.checked" ng-change="datajabatan.check(data)" ng-hide="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">
+                                                <p ng-show="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
                                                 <td>{{data.jabatan}}</td>
                                                 <td>{{data.unitKerja}}</td>
                                             </tr>
-                                            <tr ng-repeat="data in filteredData" ng-hide="datapegawai.isPilihan != 2" ng-click="datapegawai.pilihPegawai(data)">
-                                                <td><input type="checkbox" ng-model="data.checked" ng-change="datapegawai.check(data)" ng-hide="datapegawai.isPilihan == 1 || datapegawai.isPilihan == 2">
-                                                <p ng-show="datapegawai.isPilihan == 1 || datapegawai.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
-                                                <td>{{data.nipPegawai}}</td>
-                                                <td>{{data.nama}}</td>
+                                            <tr ng-repeat="data in filteredData" ng-hide="datajabatan.isPilihan != 2" ng-click="datajabatan.pilihPegawai(data)">
+                                                <td><input type="checkbox" ng-model="data.checked" ng-change="datajabatan.check(data)" ng-hide="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">
+                                                <p ng-show="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
                                                 <td>{{data.jabatan}}</td>
                                                 <td>{{data.unitKerja}}</td>
                                             </tr>
@@ -83,7 +73,7 @@
 </div>
     <div class="modal-footer">
         <!-- <button type="submit"  class="btn btn-primary waves-effect">Save</button> -->
-        <button type="button" ng-click="datapegawai.cancel()" class="btn btn-success waves-effect" data-dismiss="modal">Selesai</button>
+        <button type="button" ng-click="datajabatan.cancel()" class="btn btn-success waves-effect" data-dismiss="modal">Selesai</button>
 
     </div> 
         </form>

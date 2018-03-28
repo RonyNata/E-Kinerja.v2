@@ -16,12 +16,7 @@ angular.
 
         vm.item.tahun = ((new Date()).getYear() + 1900);
 
-        vm.tembusanSurat = [{"id": new Date().getTime(), "deskripsi": ''}];
-
-        vm.addTembusan = function(){
-            var data = {"id": new Date().getTime(), "deskripsi": ''};
-            vm.tembusanSurat.push(data);
-        };
+        vm.tembusanSurat = [];
 
         vm.openDari = function (pegawai, parentSelector) {
           var parentElem = parentSelector ? 
@@ -58,6 +53,70 @@ angular.
           }, function () {
 
           });
+        };
+
+        vm.openTembusan = function (jabatan, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataJabatan/dataJabatan.html',
+          controller: 'DataJabatanController',
+          controllerAs: 'datajabatan',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            jabatan: function(){
+              return vm.list_jabatan;
+            },
+            jabatanPilihan: function(){
+              return vm.tembusanSurat;
+            },
+            isPilihan: function(){
+              return 0;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        };
+
+        vm.openPilihan = function (parentSelector) {
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/template/dataJabatan/dataJabatan.html',
+                controller: 'DataPegawaiController',
+                controllerAs: 'datajabatan',
+                // windowClass: 'app-modal-window',
+                size: 'lg',
+                appendTo: parentElem,
+                resolve: {
+                    pegawai: function(){
+                        return vm.tembusanSurat;
+                    },
+                    pegawaiPilihan: function(){
+                        return vm.tembusanSurat;
+                    },
+                    isPilihan: function(){
+                        return 1;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
         };
 
         function getDocumentNodin(){

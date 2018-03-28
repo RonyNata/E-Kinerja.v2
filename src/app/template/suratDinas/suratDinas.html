@@ -106,17 +106,8 @@
                             <div class="row col-md-12" style="margin-top: -15px;">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tembusan</div>
                                 <div class="col-md-4">
-                                    <div ng-repeat="tembusan in suratdinas.tembusanSurat">
-                                        <form method="get">
-                                            <input class="form-control" list="jabatan" name="jabatan" ng-model="tembusan.jabat" placeholder="Pilih Jabatan" ng-change="suratdinas.findJabatan($index)">
-                                            <datalist id="jabatan">
-                                                <option ng-repeat="jbtn in suratdinas.list_jabatan"
-                                                        value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
-                                            </datalist>
-                                        </form>
-                                        <div ng-show="tembusan.jabatan">Jabatan : {{tembusan.jabatan.jabatan}}</div>
-                                    </div>
-                                    <button class="btn btn-primary waves-effect" type="button" ng-click="suratdinas.addTembusan()" style="margin-top: 10px">+ Tambah Tembusan</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.openTembusan()" type="button">Pilih Jabatan</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratdinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                 </div>
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
                                 <div class="col-md-1">

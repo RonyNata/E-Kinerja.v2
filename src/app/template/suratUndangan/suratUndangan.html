@@ -190,18 +190,9 @@
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6" >
-                                            <div ng-repeat="tembusan in suratundangan.tembusanSurat" style="padding-top: 5px">
-                                                <form method="get">
-                                                    <input class="form-control" list="jabatan" name="jabatan" ng-model="tembusan.jabat" placeholder="Pilih Jabatan" ng-change="suratundangan.findJabatan($index)">
-                                                    <datalist id="jabatan">
-                                                        <option ng-repeat="jbtn in suratundangan.list_jabatan"
-                                                                value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
-                                                    </datalist>
-                                                </form>
-                                                <div ng-show="tembusan.jabatan" style="padding-top: 10px; padding-bottom: 10px">Jabatan : {{tembusan.jabatan.jabatan}}</div>
-                                            </div>
+                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openTembusan()" type="button">Pilih Jabatan</button>
+                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratundangan.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                         </div>
-                                        <button class="btn btn-primary waves-effect" type="button" ng-click="suratundangan.addTembusan()" style="margin-left: 15px">+ Tambah Tembusan</button>
                                     </div>
 
                                     <div class="col-md-12" style="margin-bottom:5px">
