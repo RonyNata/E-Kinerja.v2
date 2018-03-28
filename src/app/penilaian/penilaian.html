@@ -96,23 +96,27 @@
                                                     <th class="text-center" style="vertical-align: middle">Nama Pelaport</th>
                                                     <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
                                                     <th class="text-center" style="vertical-align: middle">Status</th>
-                                                    <th class="text-center" style="vertical-align: middle; width: 35%">Action</th>
+                                                    <th class="text-center" style="vertical-align: middle; width: 35%" colspan="3">Action</th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody>
                                                 <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center">
-                                                    <td>{{$index + 1 }}</td>
-                                                    <td class="text-left">{{ambil.jenisSurat}}</td>
-                                                    <td class="text-left">{{ambil.namaBawahan}}</td>
-                                                    <td>{{ambil.tglPengiriman}}</td>
-                                                    <td>{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-success" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="material-icons">fast_forward</i> TERUSKAN</span></button>
-                                                        <button type="button" class="btn btn-success" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="material-icons">edit</i><span> TANDATANGAN</span></button>
-                                                        <button type="button" class="btn btn-primary" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                    <td style="vertical-align: middle">{{$index + 1 }}</td>
+                                                    <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
+                                                    <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
+                                                    <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
+                                                    <td style="vertical-align: middle">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                    <td style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-blue waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="material-icons">fast_forward</i> TERUSKAN</span></button>
+                                                        <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="material-icons">edit</i><span> TANDATANGAN</span></button>
+                                                    </td>
+                                                    <td style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
-                                                        <button type="button" class="btn btn-danger" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">clear</i> TOLAK</button>
+                                                    </td>
+                                                    <td style="vertical-align: middle">
+                                                        <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">clear</i> TOLAK</button>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -146,7 +150,7 @@
                                                     <td>{{surat.tanggalDibuat}}</td>
                                                     <td>{{surat.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
                                                     </td>
                                                 </tr>
@@ -181,7 +185,7 @@
                                                     <td>{{history.tanggalDibuat}}</td>
                                                     <td>{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
                                                     </td>
                                                 </tr>
