@@ -664,7 +664,7 @@
                                             }
                                         ],
                                         ['Dari', ':', {text: '' + item.dari, bold: true}],
-                                        ['Ringkasan Isi', ':', {text: '' + item.ringkasanIsi, bold: true}],
+                                        ['Perihal', ':', {text: '' + item.ringkasanIsi, bold: true}],
                                         ['Lampiran', ':', {text: '' + item.lampiran, bold: true}]
                                     ]
                                 },colSpan: 3, layout: 'noBorders'

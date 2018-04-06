@@ -48,6 +48,7 @@
                                                         <th class="text-center">Kode Lembar Disposisi</th>
                                                         <th class="text-center">Tingkat Keamanan</th>
                                                         <th class="text-center">Tanggal Dibuat</th>
+                                                        <th class="text-center">Status</th>
                                                         <th class="text-center" colspan="3">Action</th>
                                                     </tr>
                                                 </thead>
@@ -61,8 +62,9 @@
                                                             {{ambil.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                         </td>
                                                         <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
+                                                        <td style="vertical-align: middle">{{ambil.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
                                                         <td class="text-center" style="vertical-align: middle">
-                                                            <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)"><i class="material-icons">fast_forward</i> LANJUT</span></button>
+                                                            <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="!ambil.statusBaca"><i class="material-icons">fast_forward</i> LANJUT</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
                                                             <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
@@ -110,6 +112,7 @@
                                                     <th class="text-center">Kode Lembar Disposisi</th>
                                                     <th class="text-center">Tingkat Keamanan</th>
                                                     <th class="text-center">Tanggal Dibuat</th>
+                                                    <th class="text-center">Status</th>
                                                     <th class="text-center" colspan="2">Action</th>
                                                 </tr>
                                                 </thead>
@@ -124,6 +127,7 @@
                                                         {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                     </td>
                                                     <td style="vertical-align: middle">{{history.tglPengiriman}}</td>
+                                                    <td style="vertical-align: middle">{{ambil.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi)"><i class="material-icons">visibility</i> TREE</span></button>
                                                     </td>

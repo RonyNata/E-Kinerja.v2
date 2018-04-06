@@ -4,7 +4,7 @@
 	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
 	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService, 
-    KontrakPegawaiService, $scope, $state, $uibModal, $document, $window){
+    KontrakPegawaiService, $scope, $state, $uibModal, $document, $window, DashboardService, PengumpulanDataBebanKerjaService){
 		var vm = this;
       	vm.loading = true;
 
@@ -33,6 +33,9 @@
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
             function(response){
               template(response);
+              DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi, 
+                $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+              getAllDisposisi();
             }, function(errResponse){
                   EkinerjaService.showToastrError('Terjadi Kesalahan');
             })
@@ -58,18 +61,18 @@
 
         console.log($window.localStorage['key']);
 
-        if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
-          vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
-          debugger
-          getAllDisposisi();
-        }
-        else
-        HakAksesService.GetAllPegawai().then(
+        // if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+        //   vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+        //   debugger
+        //   getAllDisposisi();
+        // }
+        // else
+        PengumpulanDataBebanKerjaService.GetAllPegawaiByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
         function(response){
           vm.list_pegawai = response;
-          sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+          // sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
           getAllDisposisi();
-          // vm.loading = false;
+          vm.loading = false;
         }, function(errResponse){
 
         })
@@ -288,7 +291,7 @@
                                                 }
                                             ],
                                             ['Dari', ':', {text: '' + item.dari, bold: true}],
-                                            ['Ringkasan Isi', ':', {text: '' + item.ringkasanIsi, bold: true}],
+                                            ['Perihal', ':', {text: '' + item.ringkasanIsi, bold: true}],
                                             ['Lampiran', ':', {text: '' + item.lampiran, bold: true}]
                                         ]
                                     },colSpan: 3, layout: 'noBorders'
