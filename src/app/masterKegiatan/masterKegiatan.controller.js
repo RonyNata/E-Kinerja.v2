@@ -13,7 +13,7 @@ angular.
         vm.kegiatan = true;
         var dataUrtug, dataKegiatan;
 
-        PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+        MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
               function(response){
                 vm.list_kegiatan = response;debugger
                 
@@ -23,12 +23,6 @@ angular.
               }
             )
 
-        PengumpulanDataBebanKerjaService.GetAllPegawaiByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-          function(response){
-            vm.list_pegawai = response;
-          }, function(errResponse){
-
-          })
 
         getUrtugDpa();
 
@@ -159,7 +153,8 @@ angular.
             "tahun": dataKegiatan.tahun,
             "kdProg": dataKegiatan.kdProg,
             "idProg": dataKegiatan.idProg,
-            "kdKeg": dataKegiatan.kdKegiatan
+            "kdKeg": dataKegiatan.kdKegiatan,
+            "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
           }
           var parentElem = parentSelector ? 
           angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

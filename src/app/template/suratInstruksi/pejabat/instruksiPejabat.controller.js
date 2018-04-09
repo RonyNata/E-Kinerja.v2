@@ -2,13 +2,13 @@
 'use strict';
  
 angular.
-	module('eKinerja')
-	.controller('InstruksiPejabatController', InstruksiPejabatController);
+  module('eKinerja')
+  .controller('InstruksiPejabatController', InstruksiPejabatController);
 
     
     function InstruksiPejabatController(EkinerjaService, InstruksiPejabatService, KontrakPegawaiService, 
       HakAksesService, $scope, $state, logo_bekasi, logo_garuda, $uibModal, $document) {
-      	var vm = this;
+        var vm = this;
         vm.loading = true;
         vm.item = {};
         if($state.current.name == 'instruksinonpejabat')
@@ -55,25 +55,22 @@ angular.
         vm.getPegawai = function(idx){
           if(vm.target[idx].pegawai.length == 18)
             vm.target[idx].pegawaiPembuat = EkinerjaService.findPegawaiByNip(vm.target[idx].pegawai,vm.list_pegawai);
-        }        
+        }      
 
-        vm.getPegawaiPd = function(){
-          if(vm.item.pegawai.length == 18){
-            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip(vm.item.pegawai,vm.list_pegawai);
-            console.log(vm.item.pegawaiPenandatangan);
-          }
+        function getPegawaiPd(){
+          vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($.parseJSON(sessionStorage.getItem('credential')).nipPegawai,vm.list_pegawai);
         }  
-
+        getPegawaiPd();
 
         function getDocumentInstruksi(){
           KontrakPegawaiService.GetDataInstruksi($state.params.kdSurat).then(
-            function(response){
+            function(response){debugger
               vm.item.judulInstruksi = response.judulInstruksi;
               vm.item.nomorSurat = response.nomor;
               vm.item.tempat = response.dikeluarkanDi;
               vm.item.tentang = response.tentang;
               vm.item.pegawai = response.nipPenandatangan;
-              vm.getPegawaiPd();
+              getPegawaiPd();
               vm.maksud = [];
               for(var i = 0; i < response.daftarIsiInstruksi.length; i++)
                 vm.maksud.push({
@@ -198,7 +195,7 @@ angular.
             "dikeluarkanDi": vm.item.tempat,
             "tanggalDibuat": (new Date()).getTime(),
             "nipPembuat": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-            "nipPenandatangan": vm.item.pegawaiPenandatangan.nipPegawai,
+            "nipPenandatangan": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             "targetPegawaiList": [],
             "targetJabatanList": [],
             "suratPejabat": false,
@@ -207,7 +204,7 @@ angular.
             "durasiPengerjaan": vm.item.durasiPengerjaan,
           }
           debugger
-          if($state.current.name != 'instruksinonpejabat')
+          if($state.current.name == 'instruksipejabat' || $state.current.name == 'instruksipejabatterusan')
             data.suratPejabat = true;
           if($state.current.name != 'instruksinonpejabatterusan' || $state.current.name != 'instruksipejabatterusan')
             data.kdSuratInstruksiParent = $state.params.kdSurat;
@@ -219,14 +216,14 @@ angular.
             InstruksiPejabatService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-              $state.go('kontrak');
+              $state.go('penugasan');
             }, function(errResponse){
                     EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
             })
         };
 
         vm.back =  function(){
-          $state.go('kontrak');
+          $state.go('penugasan');
         };
 
 
@@ -264,7 +261,7 @@ angular.
                 },
 
                 {
-                    text: ['Dalam rangka ', {text: '' + vm.item.alasan, bold: true, fontSize: 12}, ' dengan ini memberi instruksi']
+                    text: ['Dalam rangka ', {text: '' + vm.item.tentang, bold: true, fontSize: 12}, ' dengan ini memberi instruksi']
                 },
 
                 {

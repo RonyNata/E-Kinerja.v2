@@ -88,6 +88,7 @@
         };
 
         vm.save = function(){
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($.parseJSON(sessionStorage.getItem('credential')).nipPegawai,vm.list_pegawai);
             var data = {
                 "kdLaporan": null,
                 "tentang": vm.item.tentang,
@@ -279,6 +280,7 @@
             // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
             //     // turn buffer into blob
             //     blb = buffer;
+            vm.item.pegawaiPenandatangan = EkinerjaService.findPegawaiByNip($.parseJSON(sessionStorage.getItem('credential')).nipPegawai,vm.list_pegawai);
             // });
             // blb = new Blob(blb);
             console.log(vm.item.pembukaSurat);

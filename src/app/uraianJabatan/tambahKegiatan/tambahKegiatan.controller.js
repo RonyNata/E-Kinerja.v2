@@ -23,9 +23,9 @@ angular.
           "biayaDisplay": "Rp. 0"
         }
         vm.pj = {}; 
-        if(isEselon4)
+        // if(isEselon4)
           getAllKegiatan();
-        else getProgram();
+        // else getProgram();
         getAllStatusPJ();
 
         function getAllKegiatan(){
@@ -54,7 +54,7 @@ angular.
         }
 
         vm.getKegiatan = function(){
-          if(isEselon4 && vm.kegiatan_pj.length >= 15){
+          if(vm.kegiatan_pj.length >= 15){
             var kegiatan = PengumpulanDataBebanKerjaService.GetKegiatan(vm.list_kegiatan, vm.kegiatan_pj);
             vm.target.biaya = kegiatan.paguAnggaran;debugger;
             vm.target.biayaDisplay = "Rp. " + EkinerjaService.FormatRupiah(kegiatan.paguAnggaran);
@@ -71,10 +71,10 @@ angular.
         }
 
         vm.save = function(){
-          if(isEselon4){
-            var kegiatan = PengumpulanDataBebanKerjaService.GetKegiatan(vm.list_kegiatan, vm.kegiatan_pj);
-            items.kdKeg = kegiatan.kdKegiatan;
-          }else var kegiatan = PengumpulanDataBebanKerjaService.GetDataProgram(vm.list_program, vm.kegiatan_pj);
+          // if(isEselon4){
+          var kegiatan = PengumpulanDataBebanKerjaService.GetKegiatan(vm.list_kegiatan, vm.kegiatan_pj);
+          items.kdKeg = kegiatan.kdKegiatan;
+          // }else var kegiatan = PengumpulanDataBebanKerjaService.GetDataProgram(vm.list_program, vm.kegiatan_pj);
           items.kdUrusan = kegiatan.kdUrusan;
           items.kdBidang = kegiatan.kdBIdang;
           items.kdUnit = kegiatan.kdUnit;
@@ -83,7 +83,7 @@ angular.
           items.kdProg = kegiatan.kdProg;
           items.idProg = kegiatan.idProg;
           console.log(items);
-          if(isEselon4){
+          // if(isEselon4){
             items.kuantitas = vm.target.kuantitas;
             items.satuanKuantitas = vm.target.satuanKuantitas;
             items.kualitas = vm.target.kualitas;
@@ -96,15 +96,15 @@ angular.
               }, function(errResponse){
 
               })
-          }
-          else 
-            PengumpulanDataBebanKerjaService.CreateUrtugProgram(items).then(
-              function(response){
-                $uibModalInstance.close();
-                // setPJ();
-              }, function(errResponse){
+          // }
+          // else 
+          //   PengumpulanDataBebanKerjaService.CreateUrtugProgram(items).then(
+          //     function(response){
+          //       $uibModalInstance.close();
+          //       // setPJ();
+          //     }, function(errResponse){
 
-              })
+          //     })
           // vm.item
           // console.log(JSON.stringify(vm.item));
           // PengumpulanDataBebanKerjaService.SetUrtugAndJabatan(vm.item).then(

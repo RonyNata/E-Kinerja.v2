@@ -24,7 +24,7 @@ angular.
         vm.target = [];
 
         vm.back =  function(){
-            $state.go('kontrak');
+            $state.go('penugasan');
         };
 
         vm.addTembusan = function(){
@@ -407,14 +407,14 @@ debugger
           SuratPerintahService.save(data).then(
             function(response){
               EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-              $state.go('kontrak');
+              $state.go('penugasan');
             }, function(errResponse){
 
             })
         };
 
         vm.back =  function(){
-          $state.go('kontrak');
+          $state.go('penugasan');
         }
 
 

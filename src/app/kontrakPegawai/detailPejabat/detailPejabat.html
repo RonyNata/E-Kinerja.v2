@@ -1,7 +1,7 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Uraian Tugas kegiatan</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Daftar Pejabat</h3>
 </div>
-<form ng-submit="urtugkegiatan.save()" class="form-horizontal">
+<form ng-submit="urtugpejabat.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row">
@@ -11,18 +11,16 @@
                             <thead class="bg-table">
                                 <tr>
                                     <th style="width: 5%; text-align: center">No</th>
-                                    <th style="text-align: center">Rincian Tugas dan Kegiatan</th>
-                                    <th style="width: 20%; text-align: center">Biaya</th>
-                                    <th style="text-align: center">Action</th>
+                                    <th style="text-align: center">Nama</th>
+                                    <th style="width: 20%; text-align: center">Jabatan</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <tr ng-repeat="kegiatan in urtugkegiatan.kegiatan" class="text-center">
+                                <tr ng-repeat="pejabat in urtugpejabat.pejabat" class="text-center">
                                     <td>{{$index + 1}}</td>
-                                    <td class="text-left">{{kegiatan.ketKeg}}</td>
-                                    <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
-                                    <td><button type="button" ng-click="urtugkegiatan.openPejabat(kegiatan)" class="btn btn-success"><i class="material-icons">visibility</i><span>Detail Pejabat</span></button></td>
+                                    <td class="text-left">{{pejabat.penanggungJawab.nama}}</td>
+                                    <td>{{pejabat.statusPenanggungJawab}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -54,6 +52,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" ng-click="urtugkegiatan.cancel()" class="btn btn-primary waves-effect" data-dismiss="modal">Kembali</button>
+        <button type="button" ng-click="urtugpejabat.cancel()" class="btn btn-primary waves-effect" data-dismiss="modal">Kembali</button>
     </div>
 </form>

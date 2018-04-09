@@ -17,21 +17,15 @@
                                 <div class="col-md-2">
                                     <input type="number" class="form-control" ng-model="instruksipejabat.item.tahun" disabled required>
                                 </div>
-                            </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Judul Instruksi</div>
-                                <div class="col-md-4">
-                                    <textarea class="form-control" ng-model="instruksipejabat.item.judulInstruksi" required style="height: 100px"></textarea>
-                                </div>
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tentang</div>
                                 <div class="col-md-4">
                                     <textarea class="form-control" ng-model="instruksipejabat.item.tentang" required style="height: 100px"></textarea>
                                 </div>
                             </div>
                             <div class="row col-md-12" style="margin-top: -15px;">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Maksud Instruksi</div>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Judul Instruksi</div>
                                 <div class="col-md-4">
-                                    <textarea class="form-control" ng-model="instruksipejabat.item.alasan" required style="height: 100px"></textarea>
+                                    <textarea class="form-control" ng-model="instruksipejabat.item.judulInstruksi" required style="height: 100px"></textarea>
                                 </div>
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Memberi Instruksi Kepada :</div>
                                 <div class="col-md-4">
@@ -53,33 +47,18 @@
                                 </div>
                             </div>
                             <div class="row col-md-12" style="margin-top: -15px;">
-                                <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
-                                        <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openDari()" type="button">Pilih Pegawai</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
-                                            <div ng-show="instruksipejabat.item.pegawaiPenandatangan"> 
-                                                <table>
-                                                    <tr>
-                                                        <td>Nama</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{instruksipejabat.item.pegawaiPenandatangan.nama}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jabatan</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div> 
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
                                 <div class="col-md-1">
                                     <input class="form-control" ng-model="instruksipejabat.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
                                 <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                            </div>
+                            <div class="row col-md-12" style="margin-top: -15px;">
+                                <div class="col-md-6">
+                                    
+                                </div>
+                                
                             </div>
                             <div class="row col-md-12" style="margin-top: -25px;">
                                 <div style="text-align: right;margin-bottom: 20px;">

@@ -9,8 +9,16 @@ angular.
     function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, isMaster, PengadaanBarangJasaService, 
       $uibModalInstance, MasterKegiatanService) {
       	var vm = this;
+        vm.loading = true;
         vm.pj = {};
-        vm.list_pegawai = pegawai;
+        MasterKegiatanService.GetPegawaiKegiatan(items).then(
+        function(response){
+          vm.list_pegawai = response;
+          vm.loading = false;
+        }, function(errResponse){
+
+        })
+        // vm.list_pegawai = pegawai;
         getAllStatusPJ();
 
         function getAllStatusPJ(){

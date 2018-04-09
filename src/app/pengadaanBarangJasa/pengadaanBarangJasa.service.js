@@ -91,7 +91,7 @@
         service.GetStatusPJ = function (data) {
             var deferred = $q.defer();
             // debugger
-            $http.post(API + 'get-status-penanggung-jawab-kegiatan/', data).then(
+            $http.post(API + 'get-status-penanggung-jawab-kegiatan-revisi/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -104,7 +104,7 @@
 
         service.AddPJ = function (data) {
             var deferred = $q.defer();
-            $http.post(API + 'create-urtug-kegiatan-pegawai/', data).then(
+            $http.post(API + 'create-penanggung-jawab-kegiatan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

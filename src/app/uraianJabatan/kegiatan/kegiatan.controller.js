@@ -22,7 +22,7 @@ angular.
             "tahunUrtug": urtug.tahunUrtug,
             "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
           };
-          if(isEselon4)
+          // if(isEselon4)
             PengumpulanDataBebanKerjaService.GetUrtugKegiatanByJabatan(data).then(
               function(response){
                 vm.kegiatan = response;debugger
@@ -30,14 +30,14 @@ angular.
               }, function(errResponse){
 
               })
-          else 
-            PengumpulanDataBebanKerjaService.GetUrtugProgramByJabatan(data).then(
-              function(response){
-                vm.kegiatan = response;debugger
-                vm.loadUrtug = false;
-              }, function(errResponse){
+          // else 
+          //   PengumpulanDataBebanKerjaService.GetUrtugProgramByJabatan(data).then(
+          //     function(response){
+          //       vm.kegiatan = response;debugger
+          //       vm.loadUrtug = false;
+          //     }, function(errResponse){
 
-              })
+          //     })
         }
 
         vm.kegiatanadd = function (parentSelector) {
@@ -81,6 +81,42 @@ angular.
           }, function () {
             // showToastrFailed('menambahkan data');
             // $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
+
+        vm.openKegiatan = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/uraianJabatan/dataKegiatan/dataKegiatan.html',
+          controller: 'DataKegiatanController',
+          controllerAs: 'datakegiatan',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            kegiatan: function(){
+              return [];
+            },
+            kegiatanPilihan: function(){
+              return [];
+            },
+            isPilihan: function(){
+              return 0;
+            },
+            urtug: function(){
+              urtug.kdJabatan = jabatan;
+              return urtug;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
           });
         };
 

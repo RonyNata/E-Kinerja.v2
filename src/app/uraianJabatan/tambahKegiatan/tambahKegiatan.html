@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Tambah {{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</strong></h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Tambah Kegiatan</strong></h3>
 </div>
 <form ng-submit="kegiatan.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
@@ -7,25 +7,18 @@
             <div class="row space-after">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3">
-                    <p><b>{{kegiatan.isEselon4 ? 'Kegiatan' : 'Program'}}</b></p>
+                    <p><b>Kegiatan</b></p>
                 </div>
-                <div class="col-md-7" ng-show="kegiatan.isEselon4">
+                <div class="col-md-7">
                     <input class="form-control" list="kegiatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Kegiatan" ng-change="kegiatan.getKegiatan()" autocomplete="off" required>
                     <datalist id="kegiatan" style="height: 100px">
                         <option ng-repeat="data in kegiatan.list_kegiatan"
                                 value="{{data.ketKegiatan}}">{{data.ketKegiatan}}</option>
                     </datalist>
                 </div>
-                <div class="col-md-7" ng-hide="kegiatan.isEselon4">
-                    <input class="form-control" list="kegiaatan" name="kegiiatan" ng-model="kegiatan.kegiatan_pj" placeholder="Pilih Program" autocomplete="off" required>
-                    <datalist id="kegiaatan" style="height: 100px">
-                        <option ng-repeat="data in kegiatan.list_program"
-                                value="{{data.ketProgram}}">{{data.ketProgram}}</option>
-                    </datalist>
-                </div>
             </div>
 
-            <div ng-show="kegiatan.isEselon4">
+            <div>
                 <div class="row space-after">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-3">

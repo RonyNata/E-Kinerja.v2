@@ -96,30 +96,30 @@ angular.
       }
 
       function getUrtugKegiatanApproval(){
-        if(vm.isEselon4)
+        // if(vm.isEselon4)
           KontrakPegawaiService.GetUrtugKegiatanApproval(
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
             function(response){
-              vm.kegiatan = response;
+              vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)
                 vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
                 pagingKegiatan();
             }, function(errResponse){
               // vm.penilai = "";
             })
-        else
-          KontrakPegawaiService.GetUrtugProgramApproval(
-          $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-          $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-          function(response){
-            vm.kegiatan = response;
-            for(var i = 0; i < response.length; i++)
-              vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
-              pagingKegiatan();
-          }, function(errResponse){
-            // vm.penilai = "";
-          })
+        // else
+        //   KontrakPegawaiService.GetUrtugProgramApproval(
+        //   $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+        //   $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+        //   function(response){
+        //     vm.kegiatan = response;
+        //     for(var i = 0; i < response.length; i++)
+        //       vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
+        //       pagingKegiatan();
+        //   }, function(errResponse){
+        //     // vm.penilai = "";
+        //   })
       }
 
       vm.openUrtug = function (parentSelector) {

@@ -156,7 +156,8 @@ angular.
                     if(!isHistory)
                       $scope.filteredDataPenugasan[idx].loading = false;
                     else $scope.filteredData[idx].loading = false;
-                    pdfMake.createPdf(doc).open();
+                    // pdfMake.createPdf(doc).open();
+                    EkinerjaService.lihatPdf(doc, 'Surat Tugas');
                 }, function(errResponse){
 
                 })
@@ -170,7 +171,8 @@ angular.
               if(!isHistory)
                 $scope.filteredDataPenugasan[idx].loading = false;
               else $scope.filteredData[idx].loading = false;
-              pdfMake.createPdf(doc).open();
+              // pdfMake.createPdf(doc).open();
+              EkinerjaService.lihatPdf(doc, 'Surat Instruksi');
             }, function(errResponse){
 
             })
@@ -184,7 +186,8 @@ angular.
               if(!isHistory)
                 $scope.filteredDataPenugasan[idx].loading = false;
               else $scope.filteredData[idx].loading = false;
-              pdfMake.createPdf(doc).open();
+              // pdfMake.createPdf(doc).open();
+              EkinerjaService.lihatPdf(doc, 'Surat Perintah');
             }, function(errResponse){
 
             })

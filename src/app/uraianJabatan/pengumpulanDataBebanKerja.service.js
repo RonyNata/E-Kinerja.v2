@@ -129,9 +129,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugKegiatanByJabatan = function (urjab) {
+        service.GetUrtugKegiatanByJabatan = function (urjab) {//get-urtug-kegiatan-by-jabatan
             var deferred = $q.defer();console.log(JSON.stringify(urjab));
-            $http.post(API + 'get-urtug-kegiatan-by-jabatan/', urjab).then(
+            $http.post(API + 'get-kegiatan-by-urtug/', urjab).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -261,7 +261,7 @@
 
         service.CreateUrtugKegiatan = function(kegiatan){
           var deferred = $q.defer();
-            $http.post(API + 'create-urtug-kegiatan', kegiatan).then(
+            $http.post(API + 'create-urtug-kegiatan-revisi', kegiatan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

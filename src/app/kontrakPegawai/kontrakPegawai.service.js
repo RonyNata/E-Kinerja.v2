@@ -73,7 +73,7 @@
 
         service.GetUrtugDPA = function (nipPegawai, kdUnitKerja) {
             var deferred = $q.defer();
-            $http.get(API + 'get-urtug-dpa-pegawai/' + nipPegawai + '/' + kdUnitKerja).then(
+            $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -151,7 +151,7 @@
 
         service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja) {
             var deferred = $q.defer();
-            $http.get(API + 'get-urtug-kegiatan-pegawai-approval/' + nip + '/' + kdUnitKerja).then(
+            $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -190,7 +190,7 @@
 
         service.ApproveKegiatan = function (data) {
             var deferred = $q.defer();
-            $http.put(API + 'change-status-urtug-kegiatan-pegawai-approval/', data).then(
+            $http.put(API + 'approve-urtug-kegiatan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

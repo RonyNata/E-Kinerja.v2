@@ -25,7 +25,7 @@
         vm.target = [];
 
         vm.back =  function(){
-            $state.go('kontrak');
+            $state.go('penugasan');
         };
 
         vm.addTembusan = function(){
@@ -355,14 +355,14 @@
             SuratTugasService.save(data).then(
                 function(response){
                     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-                    $state.go('kontrak');
+                    $state.go('penugasan');
                 }, function(errResponse){
                     EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
                 })
         };
 
         vm.back =  function(){
-            $state.go('kontrak');
+            $state.go('penugasan');
         };
 
 

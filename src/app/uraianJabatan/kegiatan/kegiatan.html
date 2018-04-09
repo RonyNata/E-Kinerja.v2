@@ -6,7 +6,7 @@
         <div class="form-body">
             <div class="row space-after">
                 <div class="col-md-6">
-                    <button class="btn btn-primary" ng-click="kegiatanlist.kegiatanadd()" ng-disabled="kegiatanlist.loadUrtug"><i class="material-icons">add</i><span> TAMBAH {{kegiatanlist.isEselon4 ? 'KEGIATAN' : 'PROGRAM'}}</span></button>
+                    <button class="btn btn-primary" ng-click="kegiatanlist.openKegiatan()" ng-disabled="kegiatanlist.loadUrtug"><i class="material-icons">add</i><span> TAMBAH KEGIATAN</span></button>
                 </div>
             </div>
 
@@ -25,10 +25,9 @@
                             <tbody>
                             <tr ng-repeat="pj in kegiatanlist.kegiatan">
                                 <td class="text-center">{{$index + 1 }}</td>
-                                <td ng-show="kegiatanlist.isEselon4">{{pj.ketKeg}}</td>
-                                <td ng-hide="kegiatanlist.isEselon4">{{pj.ketProgram}}</td>
+                                <td>{{pj.ketKeg}}</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary" ng-click="kegiatanlist.pj(pj)"><i class="material-icons">edit</i><span> PENANGGUNGJAWAB</span></button>
+                                    <!-- <button type="button" class="btn btn-primary" ng-click="kegiatanlist.pj(pj)"><i class="material-icons">edit</i><span> PENANGGUNGJAWAB</span></button> -->
                                     <button type="button" class="btn btn-success" ng-click="kegiatanlist.openDetailUrtug(pj)" ng-show="kegiatanlist.isEselon4"><i class="material-icons">visibility</i><span> DETAIL</span></button>
                                     <button type="button" ng-click="kegiatanlist.deleteKegiatanOrProgram(pj)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
                                 </td>

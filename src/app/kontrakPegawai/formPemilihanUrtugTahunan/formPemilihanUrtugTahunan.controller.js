@@ -47,7 +47,8 @@ angular.
           // if(isEselon4)
             KontrakPegawaiService.GetUrtugDPA(
               $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-              $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+              $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+              $.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
               function(response){
                 vm.urtugDpa = response; debugger
                 for(var i = 0; i < response.length; i++){ 
@@ -125,7 +126,7 @@ angular.
             dpa.push(vm.urtugDpa[i]);
           }
 
-          console.log(vm.urtugDpa);
+          console.log(JSON.stringify(vm.urtugDpa));
 
           KontrakPegawaiService.ApproveKegiatan(dpa).then(
             function(response){
