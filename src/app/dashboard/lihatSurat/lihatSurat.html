@@ -52,7 +52,8 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-right:10px"><p class="list-group-item-text">Oleh <b>{{tugas.namaPengirim}}</b></p></td>
-                                                    <td><!-- <button type="button" ng-click="surat.tanggapi(2)" class="btn btn-success btn-block">Tanggapi</button> --><div class="btn-group" role="group">
+                                                    <td><button type="button" ng-click="surat.tanggapi(2)" class="btn btn-success btn-block">Tanggapi</button>
+                                                        <!-- <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Tanggapi
     </button>
@@ -60,7 +61,7 @@
       <a class="dropdown-item" href="#">Dropdown link</a>
       <a class="dropdown-item" href="#">Dropdown link</a>
     </div>
-  </div></td>
+  </div> --></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -89,16 +90,17 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-right:10px"><p class="list-group-item-text">Oleh <b>{{tugass.namaBawahan}}</b></p></td>
-                                                    <td><!-- <button type="button" ng-click="surat.tanggapi(3)" class="btn btn-success btn-block">Tanggapi</button> -->
-                                                        <div class="btn-group" role="group">
+                                                    <td><button type="button" ng-click="surat.tanggapi(3)" class="btn btn-success btn-block">Tanggapi</button>
+                                                        <!-- <div class="btn-group" role="group">
     <button id="btnGroupDrop1" type="button" class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown">
       Tanggapi
     </button>
     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-      <a class="dropdown-item btn-success" href="#" style="font-size: 16px">Lanjutkan</a>
-      <a class="dropdown-item btn-danger" href="#" style="font-size: 16px">Tolak</a>
+      <a class="dropdown-item btn-success" href="" style="font-size: 16px" ng-hide="tugass.penandatangan">Lanjutkan</a>
+      <a class="dropdown-item btn-success" href="" style="font-size: 16px" ng-show="tugass.penandatangan">Tandatangan</a>
+      <a class="dropdown-item btn-danger" href="" ng-click="surat.tolak(tugass)" style="font-size: 16px">Tolak</a>
     </div>
-  </div>
+  </div> -->
                                                     </td>
                                                 </tr>
                                             </table>

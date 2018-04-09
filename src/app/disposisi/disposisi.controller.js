@@ -3,7 +3,8 @@
 
 angular.module('eKinerja').controller('DisposisiController', DisposisiController);
 
-function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiService, DisposisiService, $scope, $state, $uibModal, $document) {
+function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiService, DisposisiService, $scope, 
+    $state, $uibModal, $document, PengumpulanDataBebanKerjaService) {
 	var vm = this;
 	vm.loading = true;
 	vm.item = {};
@@ -23,22 +24,22 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
       vm.target.push(data);
     }
 
-    if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
-        vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
-        if($state.params.kdSurat != undefined){
-		    	getDisposisi();
-		    	vm.penerusan = true;
-		    }else {vm.penerusan = false;
-		          }
-        vm.loading = false;	
-    	// getAllPegawai();
-    }
+    // if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
+    //     vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
+    //     if($state.params.kdSurat != undefined){
+		  //   	getDisposisi();
+		  //   	vm.penerusan = true;
+		  //   }else {vm.penerusan = false;
+		  //         }
+    //     vm.loading = false;	
+    // }
 
+    getAllPegawai();
     function getAllPegawai(){
-      HakAksesService.GetAllPegawai().then(
+      PengumpulanDataBebanKerjaService.GetAllPegawaiByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
         function(response){
           vm.list_pegawai = response;
-          sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
+          // sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
 		    if($state.params.kdSurat != undefined){
 		    	getDisposisi();
 		    	vm.penerusan = true;
@@ -68,7 +69,8 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	          vm.item.isiDisposisi = response.isiDisposisi;
 	          vm.item.tanggalSuratDisposisiMilis = new Date(response.tanggalSuratDisposisiMilis);
 	          vm.item.nipDari = response.dari;
-	          vm.getPegawaiDari(); 
+              vm.item.dariSuratDisposisi = response.dari;
+	          // vm.getPegawaiDari(); 
 	        }, function(errResponse){
 
 	        })
@@ -328,7 +330,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
                                                 }
                                             ],
                                             ['Dari', ':', {text: '' + vm.item.dariSuratDisposisi, bold: true}],
-                                            ['Ringkasan Isi', ':', {text: '' + vm.item.ringkasanIsiSuratDisposisi, bold: true}],
+                                            ['Perihal', ':', {text: '' + vm.item.ringkasanIsiSuratDisposisi, bold: true}],
                                             ['Lampiran', ':', {text: '' + vm.item.lampiran, bold: true}]
                                         ]
                                     },colSpan: 3, layout: 'noBorders'

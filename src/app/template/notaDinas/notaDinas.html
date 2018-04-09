@@ -112,34 +112,13 @@
                                 </div>
                             </div>
                             <div class="row col-md-12">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="margin-left: 10px;"> 
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Tembusan</div>
-                                    <div class="col-md-8" style="margin-left: 10px;"> 
-                                        <div ng-repeat="tembusan in notadinas.tembusanSurat">
-                                            <form method="get">
-                                                <input class="form-control" list="jabatan" name="jabatan" ng-model="tembusan.jabat" placeholder="Pilih Jabatan" ng-change="notadinas.findJabatan($index)">
-                                                <datalist id="jabatan">
-                                                    <option ng-repeat="jbtn in notadinas.list_jabatan"
-                                                            value="{{jbtn.kdJabatan}}" ng-selected="selected" >{{jbtn.jabatan}}</option>
-                                                </datalist>
-                                            </form>
-                                            <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
-                                                <div ng-show="tembusan.jabatan">
-                                                    <table>
-                                                        <tr>
-                                                            <td>Jabatan</td>
-                                                            <td style="padding: 3px">:</td>
-                                                            <td>{{tembusan.jabatan.jabatan}}</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openTembusan()" type="button">Pilih Jabatan</button>
+                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openPilihan()" type="button" style="margin-top: 10px">{{notadinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                     </div>
                                     
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-primary waves-effect" type="button" ng-click="notadinas.addTembusan()">+ Tambah Tembusan</button>
                                 </div>
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;margin-right: -30px;">Waktu Pembuatan</div>
                                 <div class="col-md-1">

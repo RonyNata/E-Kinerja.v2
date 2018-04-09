@@ -19,7 +19,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary">
+                        <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary waves-effect">
                             <i class="material-icons">add</i><strong> BUAT DISPOSISI</strong>
                         </button>
                     </div>
@@ -48,23 +48,29 @@
                                                         <th class="text-center">Kode Lembar Disposisi</th>
                                                         <th class="text-center">Tingkat Keamanan</th>
                                                         <th class="text-center">Tanggal Dibuat</th>
-                                                        <th class="text-center">Action</th>
+                                                        <th class="text-center">Status</th>
+                                                        <th class="text-center" colspan="3">Action</th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
                                                     <tr ng-repeat="ambil in filteredDataDisposisi">
-                                                        <td class="text-center">{{$index + 1 + (numPerPageDisposisi*currentPageDisposisi)}}</td>
-                                                        <td>{{ambil.kdLembarDisposisi}}</td>
-                                                        <td>{{ambil.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
+                                                        <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageDisposisi*currentPageDisposisi)}}</td>
+                                                        <td style="vertical-align: middle">{{ambil.kdLembarDisposisi}}</td>
+                                                        <td style="vertical-align: middle">{{ambil.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
                                                             {{ambil.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
                                                             {{ambil.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                         </td>
-                                                        <td>{{ambil.tglPengiriman}}</td>
-                                                        <td class="text-center">
-                                                            <button type="button" class="btn bg-blue" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)"><i class="material-icons">fast_forward</i> LANJUT</span></button>
-                                                            <button type="button" class="btn bg-purple" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
-                                                            <button type="button" class="btn bg-green" ng-click="ambilperpindahan.openTemplate(null,0, ambil)"><i class="material-icons">create</i> KERJAKAN</button>
+                                                        <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
+                                                        <td style="vertical-align: middle">{{ambil.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
+                                                        <td class="text-center" style="vertical-align: middle">
+                                                            <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="!ambil.statusBaca"><i class="material-icons">fast_forward</i> LANJUT</span></button>
+                                                        </td>
+                                                        <td class="text-center" style="vertical-align: middle">
+                                                            <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                        </td>
+                                                        <td class="text-center" style="vertical-align: middle">
+                                                            <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.openTemplate(null,0, ambil)"><i class="material-icons">create</i> KERJAKAN</button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -76,7 +82,7 @@
                                                 <div class="align-center">
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="padDisposisi(-1)" ng-disabled="currentPageDisposisi==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary waves-effect" ng-click="padDisposisi(-1)" ng-disabled="currentPageDisposisi==0" aria-label="Use Android" style="cursor: pointer;">
                                                                 &lt; PREV
                                                             </button>
                                                         </li>
@@ -84,7 +90,7 @@
                                                             <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageDisposisi+1}} Of {{maxSizeDisposisi}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="padDisposisi(1)" ng-disabled="maxDisposisi()" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary waves-effect" ng-click="padDisposisi(1)" ng-disabled="maxDisposisi()" aria-label="Use Android" style="cursor: pointer;">
                                                                 NEXT &gt;
                                                             </button>
                                                         </li>
@@ -106,23 +112,27 @@
                                                     <th class="text-center">Kode Lembar Disposisi</th>
                                                     <th class="text-center">Tingkat Keamanan</th>
                                                     <th class="text-center">Tanggal Dibuat</th>
-                                                    <th class="text-center">Action</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center" colspan="2">Action</th>
                                                 </tr>
                                                 </thead>
 
                                                 <tbody>
                                                 <tr ng-repeat="history in filteredData">
-                                                    <td class="text-center">{{$index + 1 + (numPerPage*currentPage)}}</td>
-                                                    <td>{{history.kdLembarDisposisi}}</td>
-                                                    <td>
+                                                    <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                    <td style="vertical-align: middle">{{history.kdLembarDisposisi}}</td>
+                                                    <td style="vertical-align: middle">
                                                         {{history.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
                                                         {{history.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
                                                         {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                     </td>
-                                                    <td>{{history.tglPengiriman}}</td>
-                                                    <td class="text-center">
-                                                        <button type="button" class="btn bg-green" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi)"><i class="material-icons">visibility</i> TREE</span></button>
-                                                        <button type="button" class="btn bg-purple" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                    <td style="vertical-align: middle">{{history.tglPengiriman}}</td>
+                                                    <td style="vertical-align: middle">{{ambil.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
+                                                    <td class="text-center" style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi)"><i class="material-icons">visibility</i> TREE</span></button>
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -134,7 +144,7 @@
                                                 <div class="align-center">
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
                                                                 &lt; PREV
                                                             </button>
                                                         </li>
@@ -142,7 +152,7 @@
                                                             <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
                                                                 NEXT &gt;
                                                             </button>
                                                         </li>

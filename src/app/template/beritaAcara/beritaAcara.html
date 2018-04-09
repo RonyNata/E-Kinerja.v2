@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="card">
                 <div class="header">
-                    <h2>Pembuatan Nota Dinas</h2>
+                    <h2><strong>Berita Acara</strong></h2>
                 </div>
                 <div class="body">
                     <form ng-submit="beritaacara.save()" class="form-horizontal">
@@ -27,10 +27,10 @@
                             <div class="row col-md-12">
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">PIHAK KESATU</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(1)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
-                                            <div ng-show="beritaacara.item.pegawaiKesatu"> 
+                                            <div ng-show="beritaacara.item.pegawaiKesatu">
                                                 <table>
                                                     <tr>
                                                         <td>Nama</td>
@@ -44,12 +44,12 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
-                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">PIHAK KEDUA</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(2)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="beritaacara.item.pegawaiKedua" >
@@ -66,7 +66,7 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +95,8 @@
                             </div>
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">PIHAK KEDUA</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">PIHAK PENANDATANGAN</div>
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(3)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="beritaacara.item.pegawaiMengetahui" >
@@ -113,7 +113,7 @@
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal penandatanganan</div>

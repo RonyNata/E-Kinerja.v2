@@ -21,7 +21,7 @@ angular.
           PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               for(var i = 0; i < response.length;i++){
-                response[i].nama = "Perintah";
+                response[i].nama = "Surat Perintah";
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = response[i].createdDate;
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
@@ -37,7 +37,7 @@ angular.
           PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
               for(var i = 0; i < response.length;i++){
-                response[i].nama = "Perintah";
+                response[i].nama = "Surat Perintah";
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 // response[i].tanggalDibuatMilis = response[i].createdDateMilis;
@@ -53,7 +53,7 @@ angular.
           PenugasanService.GetNaskahPenugasanTugas($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               for(var i = 0; i < response.length;i++){
-                response[i].nama = "Tugas";
+                response[i].nama = "Surat Tugas";
                 response[i].jenis = 2;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 // response[i].tanggalDibuatMilis = response[i].createdDateMilis;

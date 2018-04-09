@@ -11,7 +11,8 @@ angular.
     TemplateTelaahanStaffService,TemplateLaporanService, TemplateSuratDinasService, TemplateSuratPengantarService,
     TemplateSuratUndanganService, TemplateSuratEdaranService, TemplateSuratKeputusanService, 
     TemplatePengumumanService, TemplateMemorandumService, TemplateSuratKuasaService,
-    TemplateSuratKeteranganService, TemplateNotaDinasService, TemplateBeritaAcaraService, TemplateSuratTugasService) {
+    TemplateSuratKeteranganService, TemplateNotaDinasService, TemplateBeritaAcaraService, TemplateSuratTugasService,
+    $uibModal, $document) {
       	var vm = this;
 
         vm.jenis = jenis;
@@ -21,6 +22,36 @@ angular.
           case 2: vm.judul = 'Penugasan Masuk'; break;
           case 3: vm.judul = 'Laporan Masuk'; break;
           case 4: vm.judul = 'Surat Masuk'; break;
+        }
+
+        vm.tolak = function(data, parentSelector){
+          var item = angular.copy(data);
+          var parentElem = parentSelector ? 
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/penilaian/alasan/alasan.html',
+            controller: 'AlasanController',
+            controllerAs: 'alasan',
+            // size: size,
+            appendTo: parentElem,
+            resolve: {
+              items: function () {
+                return item;
+              }
+            }
+          });
+
+          modalInstance.result.then(function () {
+            EkinerjaService.showToastrSuccess("Laporan Telah Ditolak");
+            getLaporanBawahan();
+             // vm.selected = selectedItem;
+          }, function () {
+            // showToastrFailed('menambahkan data');
+            // $log.info('Modal dismissed at: ' + new Date());
+          });
         }
 
         vm.getDokumenDisposisi = function(disposisi){
