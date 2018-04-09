@@ -55,7 +55,7 @@
                             <div class="row col-md-12" style="margin-top: -15px;">
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openDari()" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="instruksipejabat.item.pegawaiPenandatangan"> 
@@ -63,12 +63,12 @@
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{instruksipejabat.item.pegawaiPenandatangan.nama}}</td>
+                                                        <td class="text-justify">{{instruksipejabat.item.pegawaiPenandatangan.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</td>
+                                                        <td class="text-justify">{{instruksipejabat.item.pegawaiPenandatangan.jabatan}}</td>
                                                     </tr>
                                                 </table>
                                             </div> 

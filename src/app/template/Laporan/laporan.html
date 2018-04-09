@@ -118,7 +118,6 @@
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b>Pegawai Penandatangan</b></p>
                                         </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8">
                                             <div class="col-md-3" style="padding: 0px"> 
                                                 <button class="btn btn-primary waves-effect" ng-click="laporan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button> 
@@ -128,12 +127,12 @@
                                                     <tr>
                                                         <td>Nama</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{laporan.item.pegawaiPenandatangan.nama}}</td>
+                                                        <td class="text-justify">{{laporan.item.pegawaiPenandatangan.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{laporan.item.pegawaiPenandatangan.jabatan}}</td>
+                                                        <td class="text-justify">{{laporan.item.pegawaiPenandatangan.jabatan}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -170,7 +169,6 @@
                                         <div class="col-sm-2" style="margin-top:5px">
                                             <p><b></b></p>
                                         </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-8" style="text-align: right">
                                             <div class="col-md-4"></div>
                                             <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
