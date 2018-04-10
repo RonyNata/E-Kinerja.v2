@@ -70,7 +70,7 @@ angular.
       }
 
       function getUrtugKegiatanByJabatan(){
-      	vm.loadUrtug = true;
+      	vm.loadUrtug = false;
       	var tugas = PengumpulanDataBebanKerjaService.GetUrtugStatus(vm.list_jenis_urtug, $scope.choosen_urtug);
   		var data = {
   			"kdUrtug": $scope.choosen_urtug,
@@ -100,7 +100,7 @@ angular.
 
       function getAllJabatanByUnitKerja(){
       	console.log(sessionStorage.getItem('credential'));
-      	vm.loading = true;
+      	vm.loading = false;
       	PengumpulanDataBebanKerjaService.GetAllJabatanByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
       		function(response){
       			for(var i = 0; i < response.length; i++){
@@ -114,7 +114,7 @@ angular.
       			vm.loading = false;
       			vm.loadUrtug = false;
       		}, function(errResponse){
-      			vm.loading = true;
+      			vm.loading = false;
       		}
       	)
       }
@@ -145,7 +145,7 @@ angular.
       }
 
       function getUrtugByJabatan(){
-      	vm.loadUrtug = true;
+      	vm.loadUrtug = false;
       	PengumpulanDataBebanKerjaService.GetUrtugByJabatan($scope.jabatan).then(
       		function(response){
       			if(response.jabatanUraianTugasList == undefined)
