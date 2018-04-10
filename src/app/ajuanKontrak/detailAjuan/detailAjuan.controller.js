@@ -19,7 +19,7 @@ angular.
             getUrtugKegiatanApproval();
 
             function getUrtugKegiatanApproval(){
-              if(vm.isEselon4)
+              // if(vm.isEselon4)
                 KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit).then(
                   function(response){
                     vm.kegiatan = response;debugger
@@ -28,15 +28,15 @@ angular.
                   }, function(errResponse){
                     // vm.penilai = "";
                   })
-              else
-                KontrakPegawaiService.GetUrtugProgramApproval(nip,unit).then(
-                function(response){
-                  vm.kegiatan = response;debugger
-                  for(var i = 0; i < response.length; i++)
-                    vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
-                }, function(errResponse){
-                  // vm.penilai = "";
-                })
+              // else
+              //   KontrakPegawaiService.GetUrtugProgramApproval(nip,unit).then(
+              //   function(response){
+              //     vm.kegiatan = response;debugger
+              //     for(var i = 0; i < response.length; i++)
+              //       vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
+              //   }, function(errResponse){
+              //     // vm.penilai = "";
+              //   })
             }
 
             vm.gantiStatusUrtug = function(urtug, terima){

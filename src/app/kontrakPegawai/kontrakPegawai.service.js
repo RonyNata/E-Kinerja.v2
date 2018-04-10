@@ -71,9 +71,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugDPA = function (nipPegawai, kdUnitKerja) {
+        service.GetUrtugDPA = function (nipPegawai, kdUnitKerja, kdJabatan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja).then(
+            $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + kdJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
