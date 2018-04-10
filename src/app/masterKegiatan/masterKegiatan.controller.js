@@ -13,10 +13,10 @@ angular.
         vm.kegiatan = true;
         var dataUrtug, dataKegiatan;
 
-        MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+        PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
               function(response){
                 vm.list_kegiatan = response;debugger
-                
+                vm.loading = false;
               },
               function(errResponse){
 

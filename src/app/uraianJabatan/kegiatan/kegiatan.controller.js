@@ -115,6 +115,7 @@ angular.
           });
 
           modalInstance.result.then(function () {
+            getUrtugKegiatanByJabatan();
           }, function () {
 
           });

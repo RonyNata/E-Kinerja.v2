@@ -6,7 +6,7 @@
     controller('DataKegiatanController', DataKegiatanController);
 
     function DataKegiatanController(EkinerjaService, $scope, kegiatan, kegiatanPilihan, isPilihan, urtug, HakAksesService, 
-      $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService){
+      $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService, MasterKegiatanService){
       EkinerjaService.checkCredential();
       var vm = this;
 
@@ -18,7 +18,7 @@
       var data;
 
       function getAllKegiatan(){debugger
-          PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
               function(response){
                 // var data = response;
                 for(var i = 0; i < response.length; i++){
