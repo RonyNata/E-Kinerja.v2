@@ -79,7 +79,7 @@
         service.GetAllKegiatan = function (kdUnit) {
             var deferred = $q.defer();
             // debugger
-            $http.get(API + 'kegiatan-simda-unit-kerja/' + kdUnit).then(
+            $http.get(API + 'get-daftar-kegiatan-penanggung-jawab/' + kdUnit).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

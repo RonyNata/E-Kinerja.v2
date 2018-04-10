@@ -12,16 +12,19 @@ angular.
         vm.loading = true;
         vm.kegiatan = true;
         var dataUrtug, dataKegiatan;
+        getAllKegiatan()
 
-        PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-              function(response){
-                vm.list_kegiatan = response;debugger
-                vm.loading = false;
-              },
-              function(errResponse){
+        function getAllKegiatan(){
+          PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+                function(response){
+                  vm.list_kegiatan = response;debugger
+                  vm.loading = false;
+                },
+                function(errResponse){
 
-              }
-            )
+                }
+              )
+        }
 
 
         getUrtugDpa();
@@ -45,6 +48,7 @@ angular.
         }
 
         vm.kembali = function(){
+          getAllKegiatan()
           if(vm.kegiatan){
             vm.kegiatan = false;
             $timeout(function() { vm.urtug = true;}, 499);
@@ -131,6 +135,34 @@ angular.
           resolve: {
             items: function () {
               return item;
+            }
+
+          }
+          });
+
+          modalInstance.result.then(function () {
+
+          }, function () {
+            // showToastrFailed('menambahkan data');
+          // $log.info('Modal dismissed at: ' + new Date());
+          });
+        };
+
+        vm.salin = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/masterKegiatan/dataSalin/dataSalin.html',
+          controller: 'DataSalinController',
+          controllerAs: 'datasalin',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            pj: function () {
+              return vm.kegiatanPj;
             }
 
           }

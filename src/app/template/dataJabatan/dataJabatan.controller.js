@@ -91,10 +91,10 @@
         debugger
       })
 
-      vm.check = function(dat){
+      vm.check = function(dat){debugger
         if(dat.checked)
           vm.jabatanPilihan.push(dat);
-        else vm.jabatanPilihan.splice(findjabatanByNip(dat.nipjabatan, vm.jabatanPilihan),1);
+        else vm.jabatanPilihan.splice(EkinerjaService.findJabatanByKdJabatan(dat.kdJabatan, vm.jabatanPilihan),1);
       }
 
       function paging(){ 

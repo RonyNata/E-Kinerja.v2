@@ -340,7 +340,7 @@
                 data.targetSuratTugasPegawaiSet.push(vm.target[i].nipPegawai);
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                data.tembusanSuratTugasSet.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+                data.tembusanSuratTugasSet.push(vm.tembusanSurat[i].kdJabatan);
 
             for(var i = 0; i < vm.untuk.length; i++)
                 data.untuk.push(vm.untuk[i].deskripsiuntuk);
@@ -562,7 +562,7 @@
             };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
+                tembusan.ol.push(vm.tembusanSurat[i].jabatan);
             vm.docDefinition.content.push(tembusan);
 
             for(var i = 0; i < vm.menimbang.length; i++)

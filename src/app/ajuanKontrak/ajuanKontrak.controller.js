@@ -123,6 +123,9 @@ angular.
               nip: function(){
                 return pegawai.nipPegawai;
               },
+              jabatan: function(){
+                return pegawai.kdJabatan;
+              },
               isEselon4: function(){
                 return vm.isEselon4;
               },

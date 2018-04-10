@@ -252,7 +252,7 @@ angular.
                 data.kdSuratDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+                data.kdTembusanList.push(vm.tembusanSurat[i].kdJabatan);
 
             if($state.current.name == "suratdinasnonpejabat")
                 data.suratPejabat = false;
@@ -434,7 +434,7 @@ angular.
           };
 
           for(var i = 0; i < vm.tembusanSurat.length; i++)
-            tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
+            tembusan.ol.push(vm.tembusanSurat[i].jabatan);
           vm.docDefinition.content.push(tembusan);
         }
 

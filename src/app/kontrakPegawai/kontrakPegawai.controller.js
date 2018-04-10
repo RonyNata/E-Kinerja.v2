@@ -99,7 +99,8 @@ angular.
         // if(vm.isEselon4)
           KontrakPegawaiService.GetUrtugKegiatanApproval(
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-            $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+            $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            $.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
             function(response){
               vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)

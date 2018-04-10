@@ -287,7 +287,7 @@
             // "tanggalDibuat": (new Date()).getTime(),
           }
           for(var i = 0; i < vm.tembusanSurat.length; i++)
-                data.kdJabatanTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+                data.kdJabatanTembusanList.push(vm.tembusanSurat[i].kdJabatan);
 
           if($state.params.kdSuratBawahan != "")
                 data.kdMemorandumBawahan = $state.params.kdSuratBawahan;
@@ -438,7 +438,7 @@
             }
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                tembusan.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
+                tembusan.ol.push(vm.tembusanSurat[i].jabatan);
             vm.docDefinition.content.push(tembusan);
 
             if($state.current.name == "memorandumnonpejabat"){

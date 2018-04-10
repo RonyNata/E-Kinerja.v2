@@ -1,32 +1,11 @@
-<ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="page">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive" style="margin: 0px">
-                            <table>
-                                <tr>
-                                    <td><i class="material-icons inline-icon">library_books</i></td>
-                                    <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Master Kegiatan</strong></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <hr class="hr-space">
+<div class="modal-header" style="background-color:#F44236; color:#ffff;">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><b>DAFTAR KEGIATAN YANG BERSANGKUTAN</b></h3>
+</div>
+<form ng-submit="datasalin.save()" class="form-horizontal">
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
 
-                <div class="row space-after" ng-hide="master.kegiatan">
-                    <div class="col-md-4">
-                        <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
-                    </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 text-right">
-                        <button type="button" ng-click="master.addPJ()" class="btn btn-info"> <b>Tambah Penanggungjawab</b></button>
-                    </div>
-                </div>
-
+            <div class="row">
                 <div class="row animate-show-hide" ng-show="master.kegiatan">
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -72,51 +51,34 @@
                     </div>
                 </div>
 
-                <div class="row animate-show-hide" ng-show="master.pj">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover js-basic-example">
-                                <thead class="bg-table">
-                                <tr>
-                                    <th class="text-center" style="width: 5%">No</th>
-                                    <th class="text-center">NIP</th>
-                                    <th class="text-center">Nama Pegawai</th>
-                                    <th class="text-center">Jabatan</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr ng-repeat="pj in master.kegiatanPj" class="text-center">
-                                    <td>{{$index + 1}}</td>
-                                    <td>{{pj.penanggungJawab.nip}}</td>
-                                    <td class="text-left">{{pj.penanggungJawab.nama}}</td>
-                                    <td>{{pj.statusPenanggungJawab}}</td>
-                                    <td ng-show="{{pj.statusApproval == 2}}">
-                                        <button type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button>
-                                    </td>
-                                    <td ng-hide="{{pj.statusApproval == 2}}">
-                                        -
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="align-center">
+                                <ul style="padding-left: 0px;">
+                                    <li style="display: inline-block;">
+                                        <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                            &lt; PREV
+                                        </button>
+                                    </li>
+                                    <li style="display: inline-block;">
+                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                    </li>
+                                    <li style="display: inline-block;">
+                                        <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                            NEXT &gt;
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="master.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="master.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
+
+    <div class="modal-footer">
+        <button type="button" ng-click="datasalin.addKegiatan()" class="btn btn-success waves-effect" data-dismiss="modal" ng-hide="datasalin.isPilihan == 1 || datasalin.isPilihan == 2">Tambahkan</button>
+        <button type="button" ng-click="datasalin.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Batal</button>
     </div>
-</div>
+</form>

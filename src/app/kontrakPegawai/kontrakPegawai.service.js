@@ -149,9 +149,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja) {
+        service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja, kdJabatan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja).then(
+            $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja + '/' + kdJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

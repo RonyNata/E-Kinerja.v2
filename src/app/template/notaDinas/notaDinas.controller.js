@@ -175,7 +175,7 @@ angular.
                 data.kdNotaDinasBawahan = $state.params.kdSuratBawahan;
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                data.kdTembusanList.push(vm.tembusanSurat[i].jabatan.kdJabatan);
+                data.kdTembusanList.push(vm.tembusanSurat[i].kdJabatan);
 
             console.log(data);
             NotaDinasService.save(data).then(
@@ -433,7 +433,7 @@ angular.
           };
 
             for(var i = 0; i < vm.tembusanSurat.length; i++)
-                tembusanSurat.ol.push(vm.tembusanSurat[i].jabatan.jabatan);
+                tembusanSurat.ol.push(vm.tembusanSurat[i].jabatan);
             vm.docDefinition.content.push(tembusanSurat);
         }
 
@@ -444,8 +444,9 @@ angular.
             //     blb = buffer;
             // });
             // blb = new Blob(blb);
-            console.log(vm.item.pembukaSurat);
             template();
+            // console.log(vm.tembusanSurat);
+
             EkinerjaService.lihatPdf(vm.docDefinition, 'Nota Dinas');
         };
 

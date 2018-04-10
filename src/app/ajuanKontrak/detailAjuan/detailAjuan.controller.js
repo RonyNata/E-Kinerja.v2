@@ -6,7 +6,7 @@ angular.
 	.controller('DetailAjuanController', DetailAjuanController);
 
     
-    function DetailAjuanController(list_ajuan, list_tidakdiajukan, nama, nip, isEselon4, unit, EkinerjaService, 
+    function DetailAjuanController(list_ajuan, list_tidakdiajukan, nama, nip, jabatan, isEselon4, unit, EkinerjaService, 
       KontrakPegawaiService, AjuanKontrakService, $uibModalInstance) {
       	var vm = this;
 
@@ -20,7 +20,7 @@ angular.
 
             function getUrtugKegiatanApproval(){
               // if(vm.isEselon4)
-                KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit).then(
+                KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit, jabatan).then(
                   function(response){
                     vm.kegiatan = response;debugger
                     for(var i = 0; i < response.length; i++)
