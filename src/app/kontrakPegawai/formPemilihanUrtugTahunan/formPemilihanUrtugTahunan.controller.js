@@ -128,6 +128,7 @@ angular.
 
           console.log(JSON.stringify(vm.urtugDpa));
 
+          if(vm.urtugDpa.length != 0)
           KontrakPegawaiService.ApproveKegiatan(dpa).then(
             function(response){
               EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
@@ -136,6 +137,7 @@ angular.
             }, function(errResponse){
               EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
             })
+          else statDpa = true;
 
           KontrakPegawaiService.ChooseUrtug(data).then(
             function(response){

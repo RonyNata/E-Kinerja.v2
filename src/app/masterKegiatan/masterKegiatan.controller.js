@@ -84,6 +84,7 @@ angular.
         vm.gotoPj = function(kegiatan){
           // vm.kegiatanPj = kegiatan.statusPenanggungJawabList;debugger
           getAllStatusPJ(kegiatan);
+          vm.dpa = kegiatan;
           dataKegiatan = kegiatan;debugger
           vm.kegiatan = false;
           $timeout(function() { vm.pj = true;}, 499);
@@ -99,6 +100,19 @@ angular.
               vm.kegiatanPj = response; debugger
             }, function(errResponse){
 
+            })
+        }
+
+        vm.hapusPj = function(pj){
+          vm.dpa.nipPegawai = pj.penanggungJawab.nip;
+          vm.dpa.kdStatusPenanggungJawab = pj.kdStatusPenanggungJawab;
+          // console.log(vm.dpa);
+          MasterKegiatanService.DeletePj(vm.dpa).then(
+            function(response){
+              EkinerjaService.showToastrSuccess("Berhasil Dihapus");
+              getAllStatusPJ(vm.dpa);
+            }, function(errResponse){
+              EkinerjaService.showToastrError("Gagal Dihapus");
             })
         }
 
@@ -211,6 +225,9 @@ angular.
             },
             isMaster: function(){
               return true;
+            },
+            ket: function(){
+              return vm.dpa.ketKegiatan;
             }
           }
           });

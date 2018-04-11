@@ -51,19 +51,14 @@
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Penerima</div>
                                     <div class="col-md-6" style="margin-left: 10px;"> 
-                                        <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(1)" type="button">Pilih Pegawai</button>
+                                        <button class="btn btn-primary waves-effect" ng-click="suratdinas.openTarget()" type="button">Pilih Jabatan</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
-                                            <div ng-show="suratdinas.item.pegawaiPenerima" > 
+                                            <div ng-show="suratdinas.item.jabatanPenerima" > 
                                                 <table>
-                                                    <tr>
-                                                        <td>Nama</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{suratdinas.item.pegawaiPenerima.nama}}</td>
-                                                    </tr>
                                                     <tr>
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
-                                                        <td>{{suratdinas.item.pegawaiPenerima.jabatan}}</td>
+                                                        <td>{{suratdinas.item.jabatanPenerima.jabatan}}</td>
                                                     </tr>
                                                 </table>
                                             </div> 

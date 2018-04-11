@@ -115,12 +115,11 @@ debugger
               //     "deskripsi": response.daftarIsiInstruksi[i]
               //   });
               vm.tembusanSurat = [];
+              var tembus;
               for(var i = 0; i < response.daftarTembusan.length; i++){
-                vm.tembusanSurat.push({
-                  "id": new Date().getTime(), 
-                  "jabat": response.daftarTembusan[i].kdJabatan,
-                  "jabatan": response.daftarTembusan[i]
-                });
+                tembus = EkinerjaService.findJabatanByKdJabatan(response.daftarTembusan[i].kdJabatan, vm.list_jabatan);
+                tembus.checked = true;
+                vm.tembusanSurat.push(tembus);
               }
               vm.target = [];
               for(var i = 0; i < response.daftarTargetPegawai.length; i++){
@@ -400,7 +399,7 @@ debugger
           for(var i = 0; i < vm.menimbang.length; i++)
             data.menimbangList.push(vm.menimbang[i].deskripsimenimbang);
 
-          if($state.current.name == "suratperintahnonpejabat")
+          if($state.current.name == "suratperintahnonpejabat" || $state.current.name == "perintahnonpejabatterusan")
             data.suratPejabat = false;
 
           console.log(data);
@@ -631,7 +630,7 @@ debugger
           for(var i = 0; i < vm.untuk.length; i++)
             vm.docDefinition.content[8].table.body[2][2].ol.push(vm.untuk[i].deskripsiuntuk);
 
-          if($state.current.name == "suratperintahnonpejabat"){
+          if($state.current.name == "suratperintahnonpejabat" || $state.current.name == "perintahnonpejabatterusan"){
               vm.docDefinition.content[0] = {
                   margin:[0,0,0,15],
                   table:{

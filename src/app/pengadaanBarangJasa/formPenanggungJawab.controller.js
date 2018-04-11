@@ -6,11 +6,12 @@ angular.
 	.controller('FormPenanggungJawabController', FormPenanggungJawabController);
 
     
-    function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, isMaster, PengadaanBarangJasaService, 
+    function FormPenanggungJawabController(EkinerjaService, items, pegawai, isEselon4, isMaster, ket, PengadaanBarangJasaService, 
       $uibModalInstance, MasterKegiatanService) {
       	var vm = this;
         vm.loading = true;
         vm.pj = {};
+        vm.ket = ket;
         MasterKegiatanService.GetPegawaiKegiatan(items).then(
         function(response){
           vm.list_pegawai = response;

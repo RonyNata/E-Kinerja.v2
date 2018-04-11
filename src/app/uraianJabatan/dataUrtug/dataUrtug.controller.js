@@ -3,22 +3,27 @@
 
   angular.
     module('eKinerja').
-    controller('DataKegiatanController', DataKegiatanController);
+    controller('DataUrtugController', DataUrtugController);
 
-    function DataKegiatanController(EkinerjaService, $scope, kegiatan, kegiatanPilihan, isPilihan, urtug, jabatan, HakAksesService, 
-      $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService, MasterKegiatanService){
+    function DataUrtugController(EkinerjaService, $scope, items, available_urtug, jabatan, 
+      $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService){
       EkinerjaService.checkCredential();
       var vm = this;
 
+      vm.dataUrtug = angular.copy(available_urtug);
+      vm.item = angular.copy(items);
+      vm.dataLook = vm.dataUrtug;
+      paging();
+
       $scope.searchName = '';
-      $scope.searchJabatan = '';
+      vm.jabatan = jabatan;
       $scope.entries = 5;
       $scope.currentPage = 0;
-      vm.isPilihan = isPilihan;
+      // vm.isPilihan = isPilihan;
       var data;
 
-      function getAllKegiatan(){
-          MasterKegiatanService.GetKegiatanSimdaJabatan(jabatan).then(
+      function getAllKegiatan(){debugger
+          MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
               function(response){
                 // var data = response;
                 for(var i = 0; i < response.length; i++){
@@ -37,12 +42,12 @@
             )
         }
 
-      if(kegiatan.length != 0){
-        var data = kegiatan;
-        vm.dataLook = kegiatan;
-        paging();
-      } else getAllKegiatan();
-      vm.kegiatanPilihan = kegiatanPilihan;
+      // if(kegiatan.length != 0){
+      //   var data = kegiatan;
+      //   vm.dataLook = kegiatan;
+      //   paging();
+      // } else getAllKegiatan();
+      // vm.kegiatanPilihan = kegiatanPilihan;
 
       // getAllkegiatan();
 
@@ -58,6 +63,18 @@
 
       //     })
       // }
+
+      vm.pilihUrtug = function(data){
+        vm.item.kdUrtug = data.kdUrtug;
+        console.log(vm.item);
+        PengumpulanDataBebanKerjaService.SetUrtugAndJabatan(vm.item).then(
+              function(response){
+                $uibModalInstance.close();
+              },function(errResponse){
+                EkinerjaService.showToastrError('terjadi kesalahan');
+              }
+            )
+      }
 
       vm.addKegiatan = function(){
         var items = angular.copy(urtug);
@@ -90,7 +107,7 @@
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'app/uraianJabatan/dataKegiatan/dataKegiatan.html',
-        controller: 'DataKegiatanController',
+        controller: 'DataUrtugController',
         controllerAs: 'datakegiatan',
         // windowClass: 'app-modal-window',
         size: 'lg',
@@ -117,18 +134,20 @@
         });
       };
 
-      function findkegiatanByNip(nip, array){
+      function findUrtug(name, array){
+            var result = [];
             for(var i = 0; i<array.length; i++){
-                if (array[i].nipkegiatan.search(nip) != -1){
-                    return i; break;
+                if (array[i].deskripsi.toLowerCase().search(name.toLowerCase()) != -1){
+                    result.push(array[i]);
                 } 
             }
+            return result;
         }
 
       $scope.$watch('searchName', function(){
         if($scope.searchName != ''){
           $scope.currentPage = 0;debugger
-          vm.dataLook = EkinerjaService.searchByName($scope.searchName, data);
+          vm.dataLook = findUrtug($scope.searchName, available_urtug);
         }
         paging();
         debugger

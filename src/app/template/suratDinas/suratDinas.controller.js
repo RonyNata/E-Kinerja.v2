@@ -53,6 +53,39 @@ angular.
           });
         };
 
+        vm.openTarget = function (parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/template/dataJabatan/dataJabatan.html',
+          controller: 'DataJabatanController',
+          controllerAs: 'datajabatan',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+             jabatan: function(){
+              return vm.list_jabatan;
+            },
+            jabatanPilihan: function(){
+              return 0;
+            },
+            isPilihan: function(){
+              return 2;
+            }
+          }
+          });
+
+          modalInstance.result.then(function (data) {
+            vm.item.jabatanPenerima = data;
+          }, function () {
+
+          });
+        };
+
         PengumpulanDataBebanKerjaService.GetAllJabatan().then(
           function(response){
             vm.list_jabatan = response;
@@ -213,9 +246,12 @@ angular.
                     vm.findJabatanTarget();
 
                     vm.tembusanSurat = [];
-                    for(var i = 0; i < response.tembusanSuratDinasWrapper.length; i++)
-                      vm.tembusanSurat.push({"id": new Date().getTime(), "jabat": response.tembusanSuratDinasWrapper[i].kdJabatan,
-                                                "jabatan": response.tembusanSuratDinasWrapper[i]});
+                    var tembus;
+                    for(var i = 0; i < response.tembusanSuratDinasWrapper.length; i++){
+                      tembus = EkinerjaService.findJabatanByKdJabatan(response.tembusanSuratDinasWrapper[i].kdJabatan, vm.list_jabatan);
+                      tembus.checked = true;
+                      vm.tembusanSurat.push(tembus);
+                    }
                 }
                 );
         }
@@ -229,7 +265,7 @@ angular.
                 "sifat": vm.item.sifat,
                 "lampiran": vm.item.lampiran,
                 "hal": vm.item.hal,
-                "kdJabatanPenerimaSuratDinas": vm.item.pegawaiPenerima.kdJabatan,
+                "kdJabatanPenerimaSuratDinas": vm.item.jabatanPenerima.kdJabatan,
                 "tanggalSuratDinasMilis": vm.item.tanggal1.getTime(),
                 "kotaPembuatanSuratDinas": vm.item.tempat,
                 "isiSuratDinas": vm.item.alineaIsi,
@@ -312,7 +348,7 @@ angular.
                         table: {
                             widths: [200],
                             body: [
-                                [{text: 'Yth. ' + vm.item.pegawaiPenerima.jabatan}]
+                                [{text: 'Yth. ' + vm.item.jabatanPenerima.jabatan}]
                             ]
                         },
                         layout: 'noBorders'

@@ -16,7 +16,6 @@
                     </div>
                 </div>
                 <hr class="hr-space">
-
                 <div class="row space-after" ng-hide="master.kegiatan">
                     <div class="col-md-4">
                         <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
@@ -74,6 +73,7 @@
 
                 <div class="row animate-show-hide" ng-show="master.pj">
                     <div class="col-md-12">
+                        <h3>Kegiatan {{master.dpa.ketKegiatan}}</h3>
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover js-basic-example">
                                 <thead class="bg-table">
@@ -92,11 +92,9 @@
                                     <td>{{pj.penanggungJawab.nip}}</td>
                                     <td class="text-left">{{pj.penanggungJawab.nama}}</td>
                                     <td>{{pj.statusPenanggungJawab}}</td>
-                                    <td ng-show="{{pj.statusApproval == 2}}">
-                                        <button type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button>
-                                    </td>
-                                    <td ng-hide="{{pj.statusApproval == 2}}">
-                                        -
+                                    <td>
+                                        <!-- <button type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button> -->
+                                        <button type="button" ng-click="master.hapusPj(pj)" class="btn btn-danger btn waves waves-effect">Hapus</button>
                                     </td>
                                 </tr>
                                 </tbody>

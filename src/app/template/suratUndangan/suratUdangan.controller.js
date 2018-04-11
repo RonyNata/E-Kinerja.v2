@@ -148,12 +148,11 @@
                     };
 
                     vm.tembusanSurat = [];
+                    var tembus;
                     for(var i = 0; i < response.tembusanSuratUndanganList.length; i++){
-                        vm.tembusanSurat.push({
-                          "id": new Date().getTime(), 
-                          "jabat": response.tembusanSuratUndanganList[i].kdJabatan,
-                          "jabatan": response.tembusanSuratUndanganList[i]
-                        });
+                      tembus = EkinerjaService.findJabatanByKdJabatan(response.tembusanSuratUndanganList[i].kdJabatan, vm.list_jabatan);
+                      tembus.checked = true;
+                      vm.tembusanSurat.push(tembus);
                     }
                 }
                 );

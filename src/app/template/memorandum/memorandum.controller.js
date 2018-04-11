@@ -26,6 +26,8 @@
           function(response){
             vm.list_jabatan = response;
             vm.loading = false;
+            if($state.params.kdSuratBawahan != undefined)
+                getDocumentMemorandum();
           }, function(errResponse){
 
           })
@@ -255,11 +257,12 @@
                     };
 
                     vm.tembusanSurat = [];
-                    for(var i = 0; i < response.tembusanMemorandumList.length; i++)
-                        vm.tembusanSurat.push(
-                            {"id": (new Date()).getTime(), 
-                             "jabat": response.tembusanMemorandumList[i].kdJabatan,
-                             "jabatan": response.tembusanSurat[i]});
+                    var tembus;
+                    for(var i = 0; i < response.tembusanMemorandumList.length; i++){
+                      tembus = EkinerjaService.findJabatanByKdJabatan(response.tembusanMemorandumList[i].kdJabatan, vm.list_jabatan);
+                      tembus.checked = true;
+                      vm.tembusanSurat.push(tembus);
+                    }
                 }
                 );
         }

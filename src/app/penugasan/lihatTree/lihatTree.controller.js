@@ -6,7 +6,8 @@ angular.
 	.controller('LihatTreeInstruksiController', LihatTreeInstruksiController);
 
     
-    function LihatTreeInstruksiController(EkinerjaService, $scope, kdSurat, PenugasanService, $uibModalInstance) {
+    function LihatTreeInstruksiController(EkinerjaService, $scope, kdSurat, PenugasanService, $uibModalInstance, 
+      TemplateSuratInstruksiService, KontrakPegawaiService) {
       	var vm = this;
         PenugasanService.GetTree(kdSurat).then(
           function(response){
@@ -16,8 +17,19 @@ angular.
 
           })
 
+        function getDocumentInstruksi(kdHistory){
+          KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
+            function(response){
+              vm.data = response;
+              var doc = TemplateSuratInstruksiService.template(vm.data);
+              EkinerjaService.lihatPdf(doc, 'Surat Instruksi');
+            }, function(errResponse){
+
+            })
+        }
+
         vm.openPdf = function(kdSurat){
-          $uibModalInstance.close(kdSurat);
+          getDocumentInstruksi(kdSurat.kdInstruksi);
       	}
 
       	vm.cancel = function () {

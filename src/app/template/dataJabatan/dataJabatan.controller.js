@@ -34,7 +34,7 @@
       //     })
       // }
 
-      vm.pilihjabatan = function(data){
+      vm.pilihJabatan = function(data){
         $uibModalInstance.close(data);
       }
 

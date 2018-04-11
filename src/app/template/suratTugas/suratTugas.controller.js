@@ -295,11 +295,12 @@
                     }
 
                     vm.tembusanSurat = [];
-                    for(var i = 0; i < response.tembusanSuratTugasSet.length; i++)
-                        vm.tembusanSurat.push(
-                            {"id": (new Date()).getTime(), 
-                             "jabat": response.tembusanSuratTugasSet[i].kdJabatan,
-                             "jabatan": response.tembusanSuratTugasSet[i]});
+                    var tembus;
+                    for(var i = 0; i < response.tembusanSuratTugasSet.length; i++){
+                      tembus = EkinerjaService.findJabatanByKdJabatan(response.tembusanSuratTugasSet[i].kdJabatan, vm.list_jabatan);
+                      tembus.checked = true;
+                      vm.tembusanSurat.push(tembus);
+                    }
                 }, function(errResponse){
 
                 })

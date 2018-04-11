@@ -110,6 +110,9 @@ angular.
             urtug: function(){
               urtug.kdJabatan = jabatan;
               return urtug;
+            },
+            jabatan: function(){
+              return jabatan;
             }
           }
           });

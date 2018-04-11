@@ -279,8 +279,8 @@
                     vm.data = response;debugger
                     var doc = TemplateMemorandumService.template(vm.data);
                     if(isLaporan && laporan.statusPenilaian == 0)
-                      openSuratMasuk('open-memorandum-by-penilai/', laporan.kdMemorandum, '');
-                    else openSuratMasuk('open-memorandum-by-target/', laporan.kdMemorandum, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                      openSuratMasuk('open-memorandum-by-penilai/', laporan.kdSurat, '');
+                    else openSuratMasuk('open-memorandum-by-target/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     laporan.loading = false;
                     EkinerjaService.lihatPdf(doc, 'Memorandum');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)

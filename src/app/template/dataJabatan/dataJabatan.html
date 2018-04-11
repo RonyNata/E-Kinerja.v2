@@ -34,7 +34,7 @@
                                                 <td>{{data.jabatan}}</td>
                                                 <td>{{data.unitKerja}}</td>
                                             </tr>
-                                            <tr ng-repeat="data in filteredData" ng-hide="datajabatan.isPilihan != 2" ng-click="datajabatan.pilihPegawai(data)">
+                                            <tr ng-repeat="data in filteredData" ng-hide="datajabatan.isPilihan != 2" ng-click="datajabatan.pilihJabatan(data)">
                                                 <td><input type="checkbox" ng-model="data.checked" ng-change="datajabatan.check(data)" ng-hide="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">
                                                 <p ng-show="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
                                                 <td>{{data.jabatan}}</td>

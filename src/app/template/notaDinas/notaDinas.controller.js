@@ -141,9 +141,12 @@ angular.
                     $scope.pegawaiP = response.nipPenandatangan;
 
                     vm.tembusanSurat = [];
-                    for(var i = 0; i < response.tembusanNotaDinasList.length; i++)
-                      vm.tembusanSurat.push({"id": new Date().getTime(), "jabat": response.tembusanNotaDinasList[i].kdJabatan,
-                                                "jabatan": response.tembusanNotaDinasList[i]});
+                    var tembus;
+                    for(var i = 0; i < response.tembusanNotaDinasList.length; i++){
+                      tembus = EkinerjaService.findJabatanByKdJabatan(response.tembusanNotaDinasList[i].kdJabatan, vm.list_jabatan);
+                      tembus.checked = true;
+                      vm.tembusanSurat.push(tembus);
+                    }
                 }
                 );
         }
@@ -227,6 +230,8 @@ angular.
             function(response){
                 vm.list_jabatan = response;
                 vm.loading = false;
+                if($state.params.kdSuratBawahan != undefined)
+                  getDocumentNodin();
             }, function(errResponse){
 
             });
