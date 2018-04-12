@@ -5,7 +5,7 @@
     module('eKinerja').
     controller('DataSalinController', DataSalinController);
 
-    function DataSalinController(EkinerjaService, $scope, kegiatan, kegiatanPilihan, isPilihan, urtug, HakAksesService, 
+    function DataSalinController(EkinerjaService, $scope, pj, HakAksesService, $timeout,
       $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService, MasterKegiatanService){
       EkinerjaService.checkCredential();
       var vm = this;
@@ -14,65 +14,72 @@
       $scope.searchJabatan = '';
       $scope.entries = 5;
       $scope.currentPage = 0;
-      vm.isPilihan = isPilihan;
-      var data;
+      getData();
 
-      function getAllKegiatan(){debugger
-          MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-              function(response){
-                // var data = response;
-                for(var i = 0; i < response.length; i++){
-                  response[i].nama = response[i].ketKegiatan;
-                  response[i].waktu = 12;
-                  response[i].biaya = "Rp. " + EkinerjaService.FormatRupiah(response[i].paguAnggaran);
-                  response[i].kualitas = 100;
-                }
-                data = response;
-                vm.dataLook = response;
-                paging();
-              },
-              function(errResponse){
+      function getData(){
+        PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          function(response){
+            vm.list_kegiatan = response;debugger
+            vm.dataLook = response;
+            paging();
+            vm.loading = false;
+          },
+          function(errResponse){
 
-              }
-            )
-        }
-
-      if(kegiatan.length != 0){
-        var data = kegiatan;
-        vm.dataLook = kegiatan;
-        paging();
-      } else getAllKegiatan();
-      vm.kegiatanPilihan = kegiatanPilihan;
-
-      PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-        function(response){
-          vm.list_kegiatan = response;debugger
-          vm.loading = false;
-        },
-        function(errResponse){
-
-        }
-      )
-
-      // getAllkegiatan();
-
-      // function getAllkegiatan(){
-      //   vm.loading = true;
-      //   HakAksesService.GetAllkegiatan().then(
-      //     function(response){
-      //       // console.log(JSON.stringify(response));
-      //       data = response;
-      //       paging();
-      //       vm.loading = false;
-      //     }, function(errResponse){
-
-      //     })
-      // }
+          }
+        )
+      }
 
       vm.cancel = function () { 
         $uibModalInstance.dismiss('cancel'); 
       };
 
+      // vm.salin = function(dataKegiatan){
+      //   var item = {
+      //       "kdUrusan": dataKegiatan.kdUrusan,
+      //       "kdBidang": dataKegiatan.kdBIdang,
+      //       "kdUnit": dataKegiatan.kdUnit,
+      //       "kdSub": dataKegiatan.kdSub,
+      //       "tahun": dataKegiatan.tahun,
+      //       "kdProg": dataKegiatan.kdProg,
+      //       "idProg": dataKegiatan.idProg,
+      //       "kdKeg": dataKegiatan.kdKegiatan,
+      //       "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
+      //     }
+      //     var success = 0;
+      //     var i = 0;
+      //     var lock = false;
+      //   while(i != pj.length-1){debugger
+      //       if(!lock){
+      //         item.nipPegawai = pj[i].penanggungJawab.nip;
+      //         item.kdStatusPenanggungJawab = pj[i].kdStatusPenanggungJawab;
+      //         lock = true;
+      //         MasterKegiatanService.CreatePJ(item).then(
+      //           function(response){
+      //             success += 1;
+      //             i += 1;
+      //             lock = false;
+      //             // EkinerjaService.showToastrSuccess(" ");
+      //             if(i == (pj.length-1))
+      //               checkSuccess(success);
+      //           }, function(errResponse){
+      //             // EkinerjaService.showToastrDanger(" ");
+      //             lock = false;
+      //             if(i == (pj.length-1))
+      //               checkSuccess(success);
+      //           })
+      //       }
+      //   } 
+      // }
+
+      function checkSuccess(param){
+        if(param == (pj.length-1)){
+          EkinerjaService.showToastrSuccess("Struktur berhasil disalin");
+          getData();
+        }
+        else
+          EkinerjaService.showToastrDanger("Proses salin tidak sempurna");
+      }
 
       function paging(){ 
             $scope.filteredData = [];

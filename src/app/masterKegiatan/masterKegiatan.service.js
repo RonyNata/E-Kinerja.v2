@@ -20,6 +20,7 @@
         };
 
         service.CreatePJ = function (data) {
+          console.log(data);
             var deferred = $q.defer();
             $http.post(API + 'create-penanggung-jawab-kegiatan/', data).then(
                 function (response){

@@ -254,7 +254,7 @@
                                 },
                                 {
                                     text: [
-                                        {text: 'Tkt.Keamanan : ', fontSize: 10},
+                                        {text: 'Sifat Disposisi : ', fontSize: 10},
                                         {text: [''], fontSize: 10, bold: true}
                                     ]
                                     ,colSpan: 2
@@ -299,7 +299,7 @@
                             ],
                             [
                                 {
-                                    text: 'DISPOSISI',
+                                    text: 'ISI DISPOSISI',
                                     style: 'header4',
                                     alignment: 'center'
                                 },
@@ -309,7 +309,7 @@
                                     alignment: 'center'
                                 },
                                 {
-                                    text: 'PARAF',
+                                    text: '',
                                     style: 'header4',
                                     alignment: 'center'
                                 }
@@ -387,8 +387,8 @@
             }
 
             for(var i = 0; i < item.targetPegawaiLembarDisposisi.length; i++){
-                  docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].nama);
-                  docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
+                  docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].jabatan);
+                  // docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
             }
             EkinerjaService.lihatPdf(docDefinition, 'Disposisi');
           };

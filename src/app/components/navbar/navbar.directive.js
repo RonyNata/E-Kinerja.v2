@@ -23,6 +23,7 @@
     /** @ngInject */
     function NavbarController(EkinerjaService, $state, $interval) {
       var vm = this;
+      vm.jmlNotif = 0;
 
       // "vm.creationDate" is available by directive option "bindToController: true"
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
@@ -50,8 +51,18 @@
           function(response){
             vm.notif = response;
             if(response.length != 0)
-              vm.jmlNotif = response.length;
-            else vm.jmlNotif = undefined;
+              vm.jmlNotif += response.length;
+            // else vm.jmlNotif = undefined;
+          },function(errResponse){
+
+          })
+
+        EkinerjaService.GetNotifAjuan(vm.pegawai.kdUnitKerja, vm.pegawai.nipPegawai).then(
+          function(response){debugger
+            vm.ajuan = response;
+            if(response.length != 0)
+              vm.jmlNotif += response.length;
+            // else vm.jmlNotif = undefined;
           },function(errResponse){
 
           })

@@ -17,6 +17,16 @@
                         <li class="header">Pesan</li>
                         <li class="body">
                             <ul class="menu">
+                                <li ng-repeat="ajuan in vm.ajuan" style="padding-top: 10px; padding-bottom: 10px">
+                                    <a href="#approval">
+                                        <div class="menu-info" >
+                                            <h4> {{ajuan.namaPegawai}} Baru saja mengajukan kontrak kerja</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 4 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li ng-repeat="notif in vm.notif" style="padding-top: 10px; padding-bottom: 10px">
                                     <a href="#penilaian">
                                         <div class="menu-info" >

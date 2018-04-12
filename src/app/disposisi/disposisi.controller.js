@@ -293,7 +293,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
                                 },
                                 {
                                     text: [
-                                        {text: 'Tkt.Keamanan : ', fontSize: 10},
+                                        {text: 'Sifat Disposisi : ', fontSize: 10},
                                         {text: [''], fontSize: 10, bold: true}
                                     ]
                                     ,colSpan: 2
@@ -338,7 +338,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
                             ],
                             [
                                 {
-                                    text: 'DISPOSISI',
+                                    text: 'ISI DISPOSISI',
                                     style: 'header4',
                                     alignment: 'center'
                                 },
@@ -426,7 +426,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 			}
 
 	    	for(var i = 0; i < vm.target.length; i++){
-	            vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].nama);
+	            vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].jabatan);
 	            vm.docDefinition.content[0].table.body[8][2].ul.push(vm.paraf);
 	        }
     	};

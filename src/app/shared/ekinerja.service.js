@@ -121,7 +121,10 @@
 
         service.showToastrError = function(message) {
           toastr.error(message);
+        }
 
+        service.showToastrDanger = function(message) {
+          toastr.warning(message);
         }
 
         service.findJabatanByKdJabatan = function(kdJabatan, array){
@@ -204,6 +207,19 @@
         service.GetNotifLaporan = function (nipPegawai) {
             var deferred = $q.defer();
             $http.get(API + 'get-laporan-bawahan-notif/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetNotifAjuan = function (kdUnitKerja, nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-kontrak-ajuan-bawahan-notif/' + kdUnitKerja + '/' + nipPegawai).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
