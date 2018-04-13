@@ -296,7 +296,7 @@ angular.
                                     {
                                         text:[
                                             {text: 'PEMERINTAHAN KABUPATEN BEKASI\n', alignment: 'center', style:'header'},
-                                            {text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase() + '\n', alignment: 'center', style:'header'},
+                                            {text: '' + $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase() + '\n', style:'header'},
                                             {text: 'Komplek Perkantoran Pemerintah Kabupaten\nBekasi Desa Sukamahi Kecamatan Cikarang Pusat', style: 'header2'}
                                         ]
                                     },
@@ -321,83 +321,76 @@ angular.
                     layout: 'noBorders'
                 },
 
-              {
-                text: 'NOTA DINAS', style: 'nota_dinas'
-              },
-
-              {
-                text: [{text : 'NOMOR ', style: 'judul_nomor'}, '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)]
-              },
-
-              {
-                style: 'demoTable',
-                table: {
-                  widths: [50, 5, 150],
-                  body: [
-                    [{text: 'Yth', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPenerima.jabatan}],
-                    [{text: 'Dari', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPemberi.jabatan}],
-                    [{text: 'Hal', bold: true},{text:':'}, {text: '' + vm.item.hal}],
-                    [{text: 'Tanggal', bold: true},{text:':'}, {text: ''+ EkinerjaService.IndonesianDay(vm.item.tanggal) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal)}]
-                  ]
+                {
+                    text: 'NOTA DINAS', style: 'nota_dinas'
                 },
-                  layout: 'noBorders'
-              },
 
-              {
-                  style: 'garis',
-                  table: {
-                      widths: ["*"],
-                      body: [
-                          [{text: ''}]]
-                  }
-              },
+                {
+                    margin: [0,15,0,0],
+                    table: {
+                        widths: [50, 5, '*'],
+                        body: [
+                            [{text: 'Kepada', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPenerima.jabatan}],
+                            [{text: 'Dari', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPemberi.jabatan}],
+                            [{text: 'Nomor', bold: true},{text:':'}, {text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)}],
+                            [{text: 'Tanggal', bold: true},{text:':'}, {text: '' + EkinerjaService.IndonesianDay(vm.item.tanggal) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal)}],
+                            [{text: 'Perihal', bold: true},{text:':'}, {text: '' + vm.item.hal}],
+                            [{text:'', colSpan: 3}],
+                            [{text:'', fillColor: 'black', colSpan: 3}]
+                        ]
+                    },
+                    layout: 'noBorders'
+                },
 
-              {
-                text: '' + vm.item.isiNotaDinas, style : 'isi_paragraf'
-              },
+                {
+                    text: '' + vm.item.isiNotaDinas, style : 'isi_paragraf'
+                },
 
-              {
-                  style: 'tandaTangan',
-                  table: {
-                      widths: [200],
-                      body: [
-                          [{text: 'Tanda Tangan,', alignment : 'center', bold: true}],
-                          [{text: ' ',margin: [0,20]}],
-                          [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'center'}],
-                          [{text: '' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'center'}]
-                      ]
-                  },
-                  layout: 'noBorders'
-              },
+                {
+                    style: 'tandaTangan',
+                    table: {
+                        widths: [240],
+                        body: [
+                            [{text: 'Tanda Tangan,', alignment : 'left', bold: true}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.jabatan, alignment : 'left', bold: true}],
+                            [{text: ' ',margin: [0,15]}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.gelarDepan + vm.item.pegawaiPenandatangan.nama + vm.item.pegawaiPenandatangan.gelarBelakang, alignment : 'left', bold:true}],
+                            [{text: '' + vm.item.pegawaiPenandatangan.pangkat, alignment : 'left', bold:true}],
+                            [{text: 'NIP. ' + vm.item.pegawaiPenandatangan.nipPegawai, alignment : 'left'}]
+                        ]
+                    },
+                    layout: 'noBorders'
+                },
 
-              {text: 'Tembusan :', style: 'tembusan'}
+                {text: 'Tembusan :', bold:true}
 
             ],
 
             styles: {
-              nama_instansi: {
-                alignment : 'center',
-                bold: true,
-                fontSize: 14,
-                margin: [0,0,0,30]
-              },
-              nota_dinas : {
-                alignment : 'center',
-                bold: true,
-                fontSize: 14
-              },
-              judul_nomor: {
-                  alignment : 'center',
-                  bold: true,
-                  fontSize: 11
-              },
-              garis: {
-                  fillColor: 'black'
-              },
-              isi_paragraf: {
-                alignment : 'justify',
-                margin: [0,20,0,30]
-              },
+                nama_instansi: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 14,
+                    margin: [0,0,0,30]
+                },
+                nota_dinas : {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 14
+                },
+                judul_nomor: {
+                    alignment : 'center',
+                    bold: true,
+                    fontSize: 11
+                },
+                garis: {
+                    fillColor: 'black',
+                    height:5
+                },
+                isi_paragraf: {
+                    alignment : 'justify',
+                    margin: [0,20,0,30]
+                },
                 header: {
                     bold: true,
                     fontSize: 14,
@@ -416,16 +409,16 @@ angular.
                     fontSize: 10,
                     alignment: 'center'
                 },
-              demoTable: {
-                color: '#000',
-                fontSize: 10,
-                margin: [0,20,0,10]
-              },
-              tandaTangan: {
-                color: '#000',
-                alignment : 'right',
-                margin: [300,0,0,20]
-              }
+                demoTable: {
+                    color: '#000',
+                    fontSize: 10,
+                    margin: [0,20,0,10]
+                },
+                tandaTangan: {
+                    color: '#000',
+                    alignment : 'right',
+                    margin: [300,0,0,20]
+                }
             },
 
               images:{

@@ -4,7 +4,7 @@
         <div class="row clearfix">
             <div class="card">
                 <div class="header">
-                    <h2>Pembuatan Nota Dinas</h2>
+                    <h2><strong>Pembuatan Nota Dinas</strong></h2>
                 </div>
                 <div class="body">
                     <form ng-submit="notadinas.save()" class="form-horizontal">
@@ -29,8 +29,8 @@
                             </div>
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Diberikan Kepada</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Diberi Kepada</div>
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(1)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="notadinas.item.pegawaiPenerima"> 
@@ -52,7 +52,7 @@
                                     </div>
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Pemberi</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(2)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="notadinas.item.pegawaiPemberi">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="row col-md-12" style="margin-top: -45px;">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Hal</div>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Perihal</div>
                                 <div class="col-md-4">
                                     <input class="form-control" ng-model="notadinas.item.hal" required>
                                 </div>
@@ -84,13 +84,13 @@
                                 </div>
                             </div>
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Isi Disposisi</div>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Isi Nota Dinas</div>
                                 <div class="col-md-4">
                                     <textarea class="form-control" ng-model="notadinas.item.isiNotaDinas" required style="height: 100px"></textarea>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-8" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="notadinas.openDari(3)" type="button">Pilih Pegawai</button> 
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="notadinas.item.pegawaiPenandatangan"> 
@@ -112,22 +112,19 @@
                                 </div>
                             </div>
                             <div class="row col-md-12">
-                                <div class="col-md-6" style="margin-left: 10px;"> 
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Tembusan</div>
-                                    <div class="col-md-4">
-                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openTembusan()" type="button">Pilih Jabatan</button>
-                                        <button class="btn btn-primary waves-effect" ng-click="notadinas.openPilihan()" type="button" style="margin-top: 10px">{{notadinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
-                                    </div>
-                                    
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold">Tembusan</div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary waves-effect" ng-click="notadinas.openTembusan()" type="button">Pilih Jabatan</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="notadinas.openPilihan()" type="button">{{notadinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;margin-right: -30px;">Waktu Pembuatan</div>
-                                <div class="col-md-1">
-                                    <input class="form-control" ng-model="notadinas.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" title="inputkan angka" required>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;margin-right: -30px;">Waktu Pembuatan Surat</div>
+                                <div class="col-md-3">
+                                    <input class="form-control" ng-model="notadinas.item.durasiPengerjaan" type="number" min="1" title="masukkan angka" title="inputkan angka" required>
                                 </div>
                                 <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -45px;">
-                                <div style="text-align: right;margin-bottom: 20px;">
+                            <div class="row col-md-12">
+                                <div style="text-align: right;margin-bottom: 20px; margin-top: -15px">
                                     <div class="col-md-4"></div>
                                     <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
                                     <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
