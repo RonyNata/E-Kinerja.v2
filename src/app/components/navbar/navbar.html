@@ -133,22 +133,10 @@
                         <span>Master Kegiatan</span>
                     </a>
                 </li>
-                <li class="{{(vm.checkLocation('kontrakdpa') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
-                    <a href="#/kontrakdpa">
-                        <i class="material-icons">dvr</i>
-                        <span>Penanggung Jawab Uraian Tugas DPA</span>
-                    </a>
-                </li>
                 <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
                     <a href="#/hak-akses">
                         <i class="material-icons">people</i>
                         <span>Atur Hak Akses Pegawai</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('welcomeEkinerja') ? 'active' : ''}}">
-                    <a href="#/welcome">
-                        <i class="material-icons">layers</i>
-                        <span>Welcome</span>
                     </a>
                 </li>
             </ul>

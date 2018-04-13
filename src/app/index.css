@@ -8223,7 +8223,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .points_table_scrollbar::-webkit-scrollbar{
-  width: 1%;
+  width: 3%;
   min-width: 5px;
   background-color: #F5F5F5;
 }
