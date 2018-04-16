@@ -136,7 +136,7 @@
                                                     </thead>
 
                                                     <tbody>
-                                                        <tr ng-repeat="urtug in filteredDataTarget" class="text-center">
+                                                        <tr ng-repeat="urtug in filteredDataTarget" class="text-center" ng-hide="filteredDataTarget==0">
                                                             <td>{{$index + 1 + (numPerPageTarget*currentPageTarget)}}</td>
                                                             <td class="text-left">{{urtug.urtug}}</td>
                                                             <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
@@ -144,6 +144,9 @@
                                                             <td>{{urtug.waktu + ' Bulan'}}</td>
                                                             <td>{{'Rp. '+urtug.biayaRp}}</td>
                                                             <td><button type="button" ng-click="kontrak.openTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
+                                                        </tr>
+                                                        <tr ng-show="filteredDataTarget==0">
+                                                            <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -189,13 +192,16 @@
                                                     </thead>
 
                                                     <tbody>
-                                                        <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center">
+                                                        <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
                                                             <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                             <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
                                                             <td style="text-align: left">{{kegiatan.ketKeg}}</td>
                                                             <td>{{kegiatan.statusPenanggungJawab}}</td>
                                                             <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
                                                             <td><button type="button" ng-click="kontrak.openTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td>
+                                                        </tr>
+                                                        <tr ng-show="filteredDataKegiatan==0">
+                                                            <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

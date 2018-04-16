@@ -101,7 +101,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center">
+                                                <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
                                                     <td style="vertical-align: middle">{{$index + 1 }}</td>
                                                     <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
                                                     <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
@@ -118,6 +118,9 @@
                                                     <td style="vertical-align: middle">
                                                         <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">clear</i> TOLAK</button>
                                                     </td>
+                                                </tr>
+                                                <tr ng-show="penilaian.sortLaporan==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -143,7 +146,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <tr ng-repeat="surat in penilaian.sortSuratMasuk" class="text-center">
+                                                <tr ng-repeat="surat in penilaian.sortSuratMasuk" ng-hide="penilaian.sortSuratMasuk==0" class="text-center">
                                                     <td>{{$index + 1 }}</td>
                                                     <td class="text-left">{{surat.jenisSurat}}</td>
                                                     <td class="text-left">{{surat.jabatanPemberi}}</td>
@@ -153,6 +156,9 @@
                                                         <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
                                                     </td>
+                                                </tr>
+                                                <tr ng-show="penilaian.sortSuratMasuk==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -178,7 +184,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <tr ng-repeat="history in penilaian.sortHistory" class="text-center">
+                                                <tr ng-repeat="history in penilaian.sortHistory" ng-hide="penilaian.sortHistory==0" class="text-center">
                                                     <td>{{$index + 1 }}</td>
                                                     <td class="text-left">{{history.jenisSurat}}</td>
                                                     <td>{{history.suratPejabat == true ? 'Pejabat' : 'Non-Pejabat'}}</td>
@@ -188,6 +194,9 @@
                                                         <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
                                                     </td>
+                                                </tr>
+                                                <tr ng-show="penilaian.sortHistory==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>

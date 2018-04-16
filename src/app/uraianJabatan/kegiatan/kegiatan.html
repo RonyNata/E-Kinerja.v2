@@ -32,7 +32,7 @@
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="pj in kegiatanlist.kegiatan">
+                            <tr ng-repeat="pj in kegiatanlist.kegiatan" ng-hide="kegiatanlist.kegiatan==0">
                                 <td class="text-center" style="vertical-align: middle">{{$index + 1 }}</td>
                                 <td style="vertical-align: middle">{{pj.ketKeg}}</td>
                                 <td style="text-align: center; vertical-align: middle">-</td>
@@ -45,6 +45,9 @@
                                     <!-- <button type="button" class="btn btn-success" ng-click="kegiatanlist.openDetailUrtug(pj)" ng-show="kegiatanlist.isEselon4"><i class="material-icons">visibility</i><span> DETAIL</span></button> -->
                                     <button type="button" ng-click="kegiatanlist.deleteKegiatanOrProgram(pj)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
                                 </td>
+                            </tr>
+                            <tr ng-show="kegiatanlist.kegiatan==0">
+                                <td colspan="8" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                             </tr>
                             </tbody>
                         </table>
