@@ -55,7 +55,7 @@ angular
           // var item = {
           //    "kdJabatan": $scope.jabatan,
           //    "kdUrtug": tugas.kdUrtug,
-          //    "kdJenisUrtug": tugas.kdJenisUrtug,
+          //    "kdJenisUrtug": tugas.kdJenisUrtug,s
           //    "tahunUrtug": tugas.tahunUrtug
           // };
           // console.log(item);
@@ -73,6 +73,23 @@ angular
             appendTo: parentElem
           });
         };
+
+        vm.openStep = function (parentSelector) {
+          var parentElem = parentSelector ? 
+            angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'app/login/stepByStep/stepByStep.html',
+            controller: 'LoginEKinerjaController',
+            controllerAs: 'stepByStep',
+            // windowClass: 'app-modal-window',
+            size: 'lg',
+            appendTo: parentElem
+          });
+        };
+
     }
 })();
 
