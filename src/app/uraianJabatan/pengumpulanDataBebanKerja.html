@@ -107,18 +107,21 @@
                                                     <thead class="bg-table">
                                                     <tr>
                                                         <th class="text-center" style="width: 5%">No</th>
-                                                        <th class="text-center">Rincian Tugas dan Kegiatan</th>
+                                                        <th class="text-center">Rincian Tugas</th>
                                                         <th class="text-center" style="width: 10%">Action</th>
                                                     </tr>
                                                     </thead>
 
                                                     <tbody>
-                                                    <tr ng-repeat="urtug in filteredData">
+                                                    <tr ng-repeat="urtug in filteredData" ng-hide="filteredData==0">
                                                         <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
                                                         <td>{{urtug.uraianTugas.deskripsi}}</td>
                                                         <td class="text-center">
                                                             <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
                                                         </td>
+                                                    </tr>
+                                                    <tr ng-show="filteredData==0">
+                                                        <td colspan="3" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -168,14 +171,14 @@
                                                     <thead class="bg-table">
                                                     <tr>
                                                         <th class="text-center" style="width: 5%">No</th>
-                                                        <th class="text-center">Rincian Tugas dan Kegiatan</th>
+                                                        <th class="text-center">Rincian Tugas</th>
                                                         <th class="text-center" style="width: 10%">Jenis</th>
                                                         <th class="text-center" style="width: 25%">Action</th>
                                                     </tr>
                                                     </thead>
 
                                                     <tbody>
-                                                    <tr ng-repeat="urtug in filteredDataJenis">
+                                                    <tr ng-repeat="urtug in filteredDataJenis" ng-hide="filteredDataJenis==0">
                                                         <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
                                                         <td>{{urtug.urtug}}</td>
                                                         <td class="text-center">{{urtug.jenisUrtug}}</td>
@@ -184,6 +187,9 @@
                                                             <button type="button" class="btn btn-success" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis"><i class="material-icons">visibility</i><span> DETAIL</span></button>
                                                             <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
                                                         </td>
+                                                    </tr>
+                                                    <tr ng-show="filteredDataJenis==0">
+                                                        <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>

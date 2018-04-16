@@ -39,13 +39,16 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" class="text-center">
+                                                <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" ng-hide="pilihurtug.urtugNonDpa==0" class="text-center">
                                                     <td><input type="checkbox" ng-model="urtug.checked"></td>
                                                     <td class="text-left">{{urtug.urtug}}</td>
                                                     <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
                                                     <td>{{urtug.kualitas + '%'}}</td>
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
                                                     <td>{{'Rp. '+urtug.biayaRp}}</td>
+                                                </tr>
+                                                <tr ng-show="pilihurtug.urtugNonDpa==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -74,7 +77,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="dpa in pilihurtug.urtugDpa" class="text-center">
+                                                <tr ng-repeat="dpa in pilihurtug.urtugDpa" ng-hide="pilihurtug.urtugDpa==0" class="text-center">
                                                     <td><input type="checkbox" ng-model="dpa.checked"></td>
                                                     <td class="text-left">{{dpa.urtug}}</td>
                                                     <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
@@ -82,6 +85,9 @@
                                                     <td>{{dpa.waktu + ' Bulan'}}</td>
                                                     <td>{{'Rp. '+dpa.biayaRp}}</td>
                                                     <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success"><i class="material-icons">visibility</i><span>Detail</span></button></td>
+                                                </tr>
+                                                <tr ng-show="pilihurtug.urtugDpa==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

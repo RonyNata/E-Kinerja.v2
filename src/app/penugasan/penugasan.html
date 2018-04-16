@@ -52,7 +52,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <tr ng-repeat="naskah in filteredDataPenugasan">
+                                                <tr ng-repeat="naskah in filteredDataPenugasan" ng-hide="filteredDataPenugasan==0">
                                                     <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPagePenugasan*currentPagePenugasan)}}</td>
                                                     <td style="vertical-align: middle">{{naskah.nama}}</td>
                                                     <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
@@ -67,6 +67,9 @@
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="btn bg-green waves-effect" ng-click="penugasan.openTemplate(null,naskah,0)"><i class="material-icons">create</i> KERJAKAN</button>
                                                     </td>
+                                                </tr>
+                                                <tr ng-show="filteredDataPenugasan==0">
+                                                    <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -112,7 +115,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <tr ng-repeat="history in filteredData">
+                                                <tr ng-repeat="history in filteredData" ng-hide="filteredData==0">
                                                     <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                     <td style="vertical-align: middle">{{history.nama}}</td>
                                                     <td style="vertical-align: middle">{{history.tanggalDibuat}}</td>
@@ -124,6 +127,9 @@
                                                         <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn bg-purple waves-effect" ng-hide="history.loading"><i class="material-icons">picture_as_pdf</i> PDF FILE</button>
                                                         <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
                                                     </td>
+                                                </tr>
+                                                <tr ng-show="filteredData==0">
+                                                    <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                                 </tbody>
                                             </table>

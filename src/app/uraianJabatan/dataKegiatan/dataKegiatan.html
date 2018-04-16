@@ -61,6 +61,9 @@
                                 <td style="text-align: center; vertical-align: middle">{{data.waktu}} Bulan</td>
                                 <td style="text-align: center; vertical-align: middle">{{data.biaya}}</td>
                             </tr>
+                            <tr ng-show="filteredData==0">
+                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
