@@ -24,6 +24,13 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
       vm.target.push(data);
     }
 
+    $scope.uploadPic = function(files) {
+        console.log(files[0].name);
+        vm.extension = vm.data.namaFile.split('.');
+        vm.extension = vm.extension[vm.extension.length - 1];
+        vm.file = files[0];
+    }
+
     // if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
     //     vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
     //     if($state.params.kdSurat != undefined){

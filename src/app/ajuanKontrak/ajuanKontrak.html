@@ -25,6 +25,7 @@
                                 <tr>
                                     <th class="text-center" style="width: 5%">No</th>
                                     <th class="text-center">Nama Pegawai</th>
+                                    <th class="text-center" style="width: 20%">Status</th>
                                     <th class="text-center" style="width: 15%">Action</th>
                                 </tr>
                                 </thead>
@@ -33,8 +34,9 @@
                                 <tr ng-repeat="pgw in ajuankontrak.list_pegawai">
                                     <td class="text-center">{{$index + 1}}</td>
                                     <td>{{pgw.namaPegawai}}</td>
+                                    <td>{{pgw.statusPenangangan == 0 ? 'Belum Mengajukan' : pgw.statusPenangangan == 1 ? 'Belum Disetujui' : 'Sudah Disetujui'}}</td>
                                     <td class="text-center">
-                                        <button type="button" ng-click="ajuankontrak.open(pgw)" class="btn btn-success"><i class="material-icons">visibility</i> LIHAT AJUAN</button>
+                                        <button type="button" ng-click="ajuankontrak.open(pgw)" ng-show="{{pgw.statusPenangangan == 1 ? 'true' : 'false'}}" class="btn btn-success"><i class="material-icons">visibility</i> LIHAT AJUAN</button>
                                     </td>
                                 </tr>
                                 </tbody>
