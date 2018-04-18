@@ -390,7 +390,7 @@
                   docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].jabatan);
                   // docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
             }
-            EkinerjaService.lihatPdf(docDefinition, 'Disposisi');
+            vm.openDps(docDefinition, item.kdLembarDisposisi);
           };
 
 
@@ -404,6 +404,41 @@
               // });
               // blb = new Blob(blb);
               // console.log(vm.item.pembukaSurat);
+            };
+
+            vm.openDps = function (docs, kdSurat, parentSelector) {
+              var parentElem = parentSelector ? 
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/disposisi/lihatPdf/lihatPdfDisposisi.html',
+                controller: 'LihatPDFDisposisiController',
+                controllerAs: 'pdfDisposisi',
+                // windowClass: 'app-modal-window',
+                size: 'lg',
+                appendTo: parentElem,
+                resolve: {
+                  doc: function () {
+                    return docs;
+                  },
+                  dokumen: function () {
+                    return 'Disposisi';
+                  },
+                  surat: function () {
+                    return kdSurat;
+                  }
+                }
+              });
+
+              modalInstance.result.then(function (kdSurat) {
+                getDokumenDisposisi(kdSurat);
+                // vm.selected = selectedItem;
+              }, function () {
+                // showToastrFailed('menambahkan data');
+                // $log.info('Modal dismissed at: ' + new Date());
+              });
             };
 
             $scope.downloadPdf = function() {

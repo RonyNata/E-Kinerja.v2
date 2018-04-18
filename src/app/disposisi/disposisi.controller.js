@@ -9,6 +9,9 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	vm.loading = true;
 	vm.item = {};
 
+    if($state.params.kdJenis == "")
+      vm.isUpload = true;
+debugger
 	vm.paraf="Sudah Ditandatangan";
 
 	vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
@@ -26,10 +29,35 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 
     $scope.uploadPic = function(files) {
         console.log(files[0].name);
-        vm.extension = vm.data.namaFile.split('.');
+        vm.name = files[0].name;
+        vm.extension = files[0].name.split('.');
         vm.extension = vm.extension[vm.extension.length - 1];
         vm.file = files[0];
     }
+
+    function uploadTemplate(data) {debugger
+        DisposisiService.save(data).then(
+            function(response){
+                if($state.params.kdJenis == "" && $state.current.name == "perpindahan"){
+                    var namaFile = "1523953789728" + '.' + vm.extension; debugger;
+                    var formData = new FormData();
+                    formData.append('file', vm.file, namaFile);
+
+                    DisposisiService.UploadFile(formData).then(
+                        function(response){debugger
+                            EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
+                            $state.go('ambilperpindahan');
+                        }, function(errResponse){
+
+                        })
+                } else {
+                    EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
+                    $state.go('ambilperpindahan');
+                }
+            }, function(errResponse){
+
+            })
+    };
 
     // if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
     //     vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
@@ -47,7 +75,7 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         function(response){
           vm.list_pegawai = response;
           // sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));
-		    if($state.params.kdSurat != undefined){
+		    if($state.current.name == "perpindahandisposisi"){
 		    	getDisposisi();
 		    	vm.penerusan = true;
 		    }else {vm.penerusan = false;
@@ -210,26 +238,31 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
         "durasiPengerjaan": vm.item.durasiPengerjaan
     };
 
-    
-    if($state.current.name != undefined)
-    	vm.item.kdLembarDisposisiParent = $state.params.kdSurat;
-
-    if(vm.item.kdLembarDisposisiParent == undefined){
+    if($state.current.name == "perpindahan"){
     	data.kdLembarDisposisiParent = null;
+        if($state.params.kdJenis == "")
+            data.namaFileSuratLain = vm.name;
+        else {
+            data.jenisSuratPenugasan = $state.params.kdJenis;
+            data.kdSuratPenugasan = $state.params.kdSurat;
+        }
     }else{
-    	data.kdLembarDisposisiParent = vm.item.kdLembarDisposisiParent;
+        data.kdLembarDisposisiParent = $state.params.kdSurat;
     }
 
     for(var i = 0; i < vm.target.length; i++)
       data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
       console.log(data);
-      DisposisiService.save(data).then(
-        function(response){
-          EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
-            $state.go('ambilperpindahan');
-        }, function(errResponse){
-              EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
-        });
+
+    // console.log(data);
+      uploadTemplate(data);
+      // DisposisiService.save(data).then(
+      //   function(response){
+      //     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
+      //       $state.go('ambilperpindahan');
+      //   }, function(errResponse){
+      //         EkinerjaService.showToastrError('Data Tidak Dapat Disimpan');
+      //   });
     }
     
     // vm.save = function(){
