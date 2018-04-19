@@ -53,6 +53,13 @@
           })
       }
 
+      vm.disposisi = function(surat){
+        $state.go('perpindahan', {
+          kdSurat: surat.kdSurat,
+          kdJenis: surat.kdJenisSurat
+        })
+      }
+
       vm.terima = function(laporan, kdSurat, isPejabat){debugger
           switch(laporan.kdJenisSurat){
             case 0: $state.go('beritaacara', {

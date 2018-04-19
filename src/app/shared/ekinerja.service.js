@@ -243,6 +243,34 @@
             return deferred.promise;
         };
 
+        service.changeToastrOpt = function(){
+            toastr.warning('Anda Belum Mengajukan Kontrak Kerja.<br><b>Klik Untuk Melihat Tutorial</b>', {
+                timeOut: 0,
+                extendedTimeOut: 0,
+                tapToDismiss: false,
+                closeButton: true,
+                allowHtml: true,
+                onTap: function(){
+                  pop();
+                  function pop(parentSelector){
+                    var parentElem = parentSelector ? 
+                    angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+                  var modalInstance = $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'app/login/stepByStep/stepByStep.html',
+                    controller: 'LoginEKinerjaController',
+                    controllerAs: 'stepByStep',
+                    // windowClass: 'app-modal-window',
+                    size: 'lg',
+                    appendTo: parentElem
+                  });
+                  }
+                }
+              });
+        }
+
         service.lihatPdf = function (docs, judul, parentSelector) {
             var parentElem = parentSelector ? 
               angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;

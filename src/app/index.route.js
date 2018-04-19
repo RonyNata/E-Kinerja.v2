@@ -270,7 +270,7 @@
         }
       })
       .state('perpindahan', {
-        url: '/disposisi',
+        url: '/disposisi/:kdSurat/:kdJenis',
         templateUrl: 'app/disposisi/disposisi.html',
         controller: 'DisposisiController',
         controllerAs: 'perpindahan'
@@ -569,6 +569,14 @@
           templateUrl: 'app/template/kerangkaAcuanKerja/kaa.html',
           controller: 'KAAController',
           controllerAs: 'kaa'
+        })
+        .state('carousel', {
+          url: '/carousel-example-generic',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
         });
 
     $urlRouterProvider.otherwise('/');

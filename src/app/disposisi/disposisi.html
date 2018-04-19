@@ -155,6 +155,17 @@
 	                                    <input type="text" class="form-control" ng-model="perpindahan.item.lampiran" ng-required="true">
 	                                </div>
 	                            </div>
+                                <div class="col-md-12" style="margin-bottom:10px" ng-show="perpindahan.isUpload">
+                                    <div class="col-sm-5" style="margin-top:5px">
+                                        <p><b>File Disposisi</b></p>
+                                    </div>
+                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                    <div class="col-md-6">
+                                        <form enctype="multipart/form-data">
+                                            <input type="file" name="file" onchange="angular.element(this).scope().uploadPic(this.files)">
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                     <div class="col-md-1"></div> 
                                     <div class="col-sm-3" style="margin-top:5px">

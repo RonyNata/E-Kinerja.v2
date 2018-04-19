@@ -20,6 +20,22 @@
             return deferred.promise;
         }
 
+        service.UploadFile = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-surat-lain-file/', data, {
+                    headers : {
+                        'Content-Type' : undefined
+                    }}).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         // service.FindUrutan = function(index){
         //     var urutan = [
         //         "KESATU", "KEDUA", "KETIGA", "KEEMPAT", "KELIMA", "KEENAM", "KETUJUH", "KEDELAPAN", "KESEMBILAN", "KESEPULUH",

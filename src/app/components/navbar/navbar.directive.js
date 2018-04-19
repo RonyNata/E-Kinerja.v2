@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(EkinerjaService, $state, $interval) {
+    function NavbarController(EkinerjaService, $state, $interval, $document, $uibModal, $scope, toastr) {
       var vm = this;
       vm.jmlNotif = 0;
 
@@ -80,6 +80,24 @@
         // debugger
         // $state.go('setting');
       }
+
+      EkinerjaService.changeToastrOpt();
+      
+      $scope.openStep = function (parentSelector) {
+        var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+        var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/login/stepByStep/stepByStep.html',
+          controller: 'LoginEKinerjaController',
+          controllerAs: 'stepByStep',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem
+        });
+      };
 
       vm.testConnection = function() {
           Offline.options = {
