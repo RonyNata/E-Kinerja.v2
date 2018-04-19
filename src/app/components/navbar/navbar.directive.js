@@ -28,7 +28,7 @@
       // "vm.creationDate" is available by directive option "bindToController: true"
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
       vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
-      // console.log(vm.pegawai);
+      console.log(vm.pegawai);
       vm.logout = function(){
         EkinerjaService.logout();
       }
@@ -81,7 +81,10 @@
         // $state.go('setting');
       }
 
-      EkinerjaService.changeToastrOpt();
+      if(!vm.pegawai.sudahMembuatKontrak && !$.parseJSON(sessionStorage.getItem('kontrak'))){
+        sessionStorage.setItem('kontrak', 'true');
+        EkinerjaService.changeToastrOpt();
+      }
       
       $scope.openStep = function (parentSelector) {
         var parentElem = parentSelector ? 

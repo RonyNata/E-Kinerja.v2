@@ -267,6 +267,9 @@
                     appendTo: parentElem
                   });
                   }
+                },
+                onHidden: function(){   
+                    sessionStorage.setItem('kontrak', 'false');
                 }
               });
         }

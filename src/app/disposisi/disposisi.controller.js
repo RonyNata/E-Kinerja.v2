@@ -39,7 +39,7 @@ debugger
         DisposisiService.save(data).then(
             function(response){
                 if($state.params.kdJenis == "" && $state.current.name == "perpindahan"){
-                    var namaFile = "1523953789728" + '.' + vm.extension; debugger;
+                    var namaFile = response + '.' + vm.extension; debugger;
                     var formData = new FormData();
                     formData.append('file', vm.file, namaFile);
 

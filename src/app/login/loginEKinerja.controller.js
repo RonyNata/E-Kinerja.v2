@@ -30,6 +30,8 @@ angular
                     // LoginEKinerjaService.SetCredentials($scope.nip, $scope.password);
                     debugger;
                     sessionStorage.setItem('credential', JSON.stringify(response.data));
+                    if(!response.data.sudahMembuatKontrak)
+                        sessionStorage.setItem('kontrak', 'false');
                     // EkinerjaService.checkRole(response.data.role.id);
                     $state.go('dashboard');
                     $scope.dataLoading = false;
