@@ -18,8 +18,45 @@
                 <hr class="hr-space">
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-danger">
+                    <div class="col-md-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-md-6"><strong>PEJABAT ATASAN</strong></div>
+                                    <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-3">Nama</div>
+                                    <div class="col-sm-9">: {{kontrak.penilai.nama}}</div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-sm-3">NIP</div>
+                                    <div class="col-sm-9">: {{kontrak.penilai.nipPegawai}}</div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-sm-3">Pangkat/Gol</div>
+                                    <div class="col-sm-9" ng-show="kontrak.penilai.pangkat">: {{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
+                                    <div class="col-sm-9" ng-hide="kontrak.penilai.pangkat">: </div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-sm-3">Jabatan</div>
+                                    <div class="col-sm-9">: {{kontrak.penilai.jabatan}}</div>
+
+                                    <div class="w-100"></div>
+
+                                    <div class="col-sm-3">Unit Kerja</div>
+                                    <div class="col-sm-9">: {{kontrak.penilai.unitKerja}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-success">
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-md-6"><strong>PEJABAT PENILAI</strong></div>
@@ -55,7 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="panel panel-danger">
                             <div class="panel-heading"><strong>PEGAWAI NEGERI SIPIL DINILAI</strong></div>
                             <div class="panel-body">

@@ -38,8 +38,8 @@
                 </div>
 
                 <div ng-show="jabatan">
-                    <div class="row space-after">
-                        <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4 space-after">
                             <div class="table-responsive">
                                 <table>
                                     <tr>
@@ -51,7 +51,19 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4 space-after">
+                            <div class="table-responsive">
+                                <table>
+                                    <tr>
+                                        <td>Jabatan Atasan :</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</b></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-4 space-after">
                             <div class="table-responsive">
                                 <table>
                                     <tr>
@@ -59,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <td ng-show="urtug_jabatan.penilai" >
-                                            <b>{{urtug_jabatan.penilai.nama}} ({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
+                                            <b>{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
                                         </td>
                                         <td ng-hide="urtug_jabatan.penilai" >
                                             <b>(Belum Dipasangkan)</b>&nbsp&nbsp&nbsp
@@ -114,7 +126,7 @@
 
                                                     <tbody>
                                                     <tr ng-repeat="urtug in filteredData" ng-hide="filteredData==0">
-                                                        <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
+                                                        <td class="text-center">{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                         <td>{{urtug.uraianTugas.deskripsi}}</td>
                                                         <td class="text-center">
                                                             <button type="button" ng-click="urtug_jabatan.deleteUrtug(urtug.uraianTugas.kdUrtug)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
@@ -179,7 +191,7 @@
 
                                                     <tbody>
                                                     <tr ng-repeat="urtug in filteredDataJenis" ng-hide="filteredDataJenis==0">
-                                                        <td class="text-center">{{$index + 1 + (5 * currentPage )}}</td>
+                                                        <td class="text-center">{{$index + 1 + (numPerPage*currentPageJenis)}}</td>
                                                         <td>{{urtug.urtug}}</td>
                                                         <td class="text-center">{{urtug.jenisUrtug}}</td>
                                                         <td class="text-center">
@@ -200,15 +212,15 @@
                                                     <div class="align-center">
                                                         <ul style="padding-left: 0px;">
                                                             <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                                <button class="btn btn-primary" ng-click="padJenis(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
                                                                     &lt; PREV
                                                                 </button>
                                                             </li>
                                                             <li style="display: inline-block;">
-                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageJenis+1}} Of {{maxSizeJenis}}</span>
                                                             </li>
                                                             <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                                <button class="btn btn-primary" ng-click="padJenis(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
                                                                     NEXT &gt;
                                                                 </button>
                                                             </li>
