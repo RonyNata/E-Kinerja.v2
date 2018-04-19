@@ -478,7 +478,7 @@ angular.
 	    function paging(){ 
 	          $scope.filteredData = [];
 	          $scope.currentPage = 0;
-	          $scope.numPerPage = 25;
+	          $scope.numPerPage = 15;
 	          $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
 	          function page(){
 	            $scope.page = [];
@@ -508,7 +508,7 @@ angular.
 	    function pagingJenis(){ 
 	          $scope.filteredDataJenis = [];
 	          $scope.currentPageJenis = 0;
-	          $scope.numPerPage = 25;
+	          $scope.numPerPage = 15;
 	          $scope.maxSizeJenis = Math.ceil(vm.dataLookJenis.length/$scope.numPerPage);
 	          function page(){
 	            $scope.pageJenis = [];
@@ -538,7 +538,7 @@ angular.
 	    function pagingKegiatan(){ 
 	          $scope.filteredDataKegiatan = [];
 	          $scope.currentPageKegiatan = 0;
-	          $scope.numPerPage = 25;
+	          $scope.numPerPage = 15;
 	          $scope.maxSizeKegiatan = Math.ceil(vm.dataLookKegiatan.length/$scope.numPerPage);
 	          function page(){
 	            $scope.pageKegiatan = [];
