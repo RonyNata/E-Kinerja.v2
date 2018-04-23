@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(EkinerjaService, $state, $interval, $document, $uibModal, $scope, toastr) {
+    function NavbarController(EkinerjaService, $state, $interval, $document, $uibModal, $scope, toastr, DashboardService) {
       var vm = this;
       vm.jmlNotif = 0;
 
@@ -48,14 +48,21 @@
       // console.log(vm.pegawai);
       function getNotif(){
         EkinerjaService.GetNotifLaporan(vm.pegawai.nipPegawai).then(
-          function(response){
+          function(response){debugger
+            for(var i = 0; i < response.length; i++){
+              response[i].jenisNotif = 1;
+            }
             vm.notif = response;
             if(response.length != 0)
               vm.jmlNotif += response.length;
+            disposisiNotif();
             // else vm.jmlNotif = undefined;
           },function(errResponse){
 
           })
+
+        if(!vm.pegawai.sudahMembuatKontrak)
+          vm.jmlNotif += 1;
 
         EkinerjaService.GetNotifAjuan(vm.pegawai.kdUnitKerja, vm.pegawai.nipPegawai).then(
           function(response){debugger
@@ -64,6 +71,70 @@
               vm.jmlNotif += response.length;
             // else vm.jmlNotif = undefined;
           },function(errResponse){
+
+          })
+      }
+
+      function disposisiNotif(){
+        DashboardService.GetDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            if(response.length != 0)
+              vm.jmlNotif += response.length;
+            for(var i = 0; i < response.length; i++){
+              response[i].tanggalDibuatMilis = response[i].tglPengirimanMilis;
+              response[i].jenisNotif = 2;
+              vm.notif.push(response[i]);
+            }
+            instruksiNotif();
+          }, function(errResponse){
+
+          })
+      }
+
+      function instruksiNotif(){
+        DashboardService.GetInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            if(response.length != 0)
+              vm.jmlNotif += response.length;
+            for(var i = 0; i < response.length; i++){
+              response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+              response[i].jenisNotif = 3;
+              vm.notif.push(response[i]);
+            }
+            tugasNotif();
+          }, function(errResponse){
+
+          })
+      }
+
+      function tugasNotif(){
+        DashboardService.GetSuratTugas($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            if(response.length != 0)
+              vm.jmlNotif += response.length;
+            for(var i = 0; i < response.length; i++){
+              response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+              response[i].jenisNotif = 3;
+              vm.notif.push(response[i]);
+            }
+            perintahNotif();
+          },function(errResponse){
+
+          })
+      }
+
+      function perintahNotif(){
+        DashboardService.GetPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          function(response){
+            if(response.length != 0)
+              vm.jmlNotif += response.length;
+            for(var i = 0; i < response.length; i++){
+              response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+              response[i].jenisNotif = 3;
+              vm.notif.push(response[i]);
+            }
+            vm.notif.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
+          }, function(errResponse){
 
           })
       }

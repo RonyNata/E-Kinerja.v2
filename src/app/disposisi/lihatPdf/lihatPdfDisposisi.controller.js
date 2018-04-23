@@ -22,7 +22,7 @@ angular.
        TemplateBeritaAcaraService,
        TemplateSuratTugasService,
        TemplateSuratPerintahService,
-       AmbilDisposisiService) {
+       AmbilDisposisiService, API, $window) {
       	var vm = this;
         var kdSurat = surat;debugger
 
@@ -31,7 +31,10 @@ angular.
         vm.openSurat = function(){debugger
           AmbilDisposisiService.GetFile(kdSurat).then(
             function(response){
-              showPdf(response.jenisSurat, response.suratDisposisi);
+              if(response.jenisSurat == undefined){
+                var landingUrl = API + 'get-surat-disposisi/' + kdSurat;
+                $window.location.href = landingUrl;
+              } else showPdf(response.jenisSurat, response.suratDisposisi);
             }, function(errResponse){
 
             })

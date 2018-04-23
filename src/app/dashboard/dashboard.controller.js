@@ -30,7 +30,7 @@
             response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
           }
           getLaporan();
-          vm.naskahDisposisi = response;debugger
+          vm.naskahDisposisi = response;
         }, function(errResponse){
 
         })
@@ -39,7 +39,7 @@
     vm.getDokumenDisposisi = function(kdLembarDisposisi, idx){
       vm.naskahDisposisi[idx].loading = true;
       AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
-        function(response){debugger
+        function(response){
           template(response);
           vm.naskahDisposisi[idx].loading = false;
           DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi, 
@@ -51,7 +51,7 @@
 
     function getPerintahHistory(){
       PenugasanService.GetNaskahPenugasanPerintah($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-        function(response){debugger
+        function(response){
           response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             var date = new Date(response[i].tanggalDibuatMilis);
@@ -67,7 +67,7 @@
 
     function getLaporan(){
       EkinerjaService.GetNotifLaporan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-        function(response){debugger
+        function(response){
           response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             var date = new Date(response[i].tanggalDibuatMilis);
@@ -83,7 +83,7 @@
 
     function getNaskahPenugasanInstruksiTarget(){
       DashboardService.GetInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-        function(response){debugger
+        function(response){
           response = response.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } );
           for(var i = 0; i < response.length;i++){
             var waktu = new Date(response[i].createdDateMilis);
@@ -104,7 +104,7 @@
 
     function getNaskahPenugasanTugasTarget(){
       DashboardService.GetSuratTugas($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
-        function(response){debugger
+        function(response){
           // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
           for(var i = 0; i < response.length;i++){
             response[i].tanggalDibuatMilis = response[i].createdDateMilis;
@@ -208,7 +208,7 @@
     function getDocumentPerintah(kdHistory, idx){
       PenugasanService.GetDataPerintah(kdHistory).then(
         function(response){
-          vm.data = response;debugger
+          vm.data = response;
           var doc = TemplateSuratPerintahService.template(vm.data);
           vm.naskah[idx].loading = false;
           DashboardService.ChangeRead('open-surat-perintah-pegawai/', 
@@ -223,7 +223,7 @@
         // laporan.loading = true;
         PenilaianService.GetDataKeputusan(laporan.kdSurat).then(
           function(response){
-            vm.data = response;debugger
+            vm.data = response;
             var doc = TemplateSuratKeputusanService.template(vm.data);
             laporan.loading = false;
             if(isLaporan)
@@ -241,7 +241,7 @@
         // laporan.loading = true;
         PenilaianService.GetDataEdaran(laporan.kdSurat).then(
           function(response){
-            vm.data = response;debugger
+            vm.data = response;
             var doc = TemplateSuratEdaranService.template(vm.data);
             laporan.loading = false;
             if(isLaporan)
@@ -259,7 +259,7 @@
         // laporan.loading = true;
         PenilaianService.GetDataUndangan(laporan.kdSurat).then(
           function(response){
-            vm.data = response;debugger
+            vm.data = response;
             var doc = TemplateSuratUndanganService.template(vm.data);
             laporan.loading = false;
             if(isLaporan)
@@ -277,7 +277,7 @@
         // laporan.loading = true;
         PenilaianService.GetDataPengantar(laporan.kdSurat).then(
           function(response){
-            vm.data = response;debugger
+            vm.data = response;
             var doc = TemplateSuratPengantarService.template(vm.data);
             laporan.loading = false;
             if(isLaporan)
@@ -295,7 +295,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataSuratDinas(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateSuratDinasService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -313,7 +313,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataLaporan(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateLaporanService.template(vm.data);
                     laporan.loading = false;
                     EkinerjaService.lihatPdf(doc, 'Laporan');
@@ -330,7 +330,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataTelaahanStaff(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateTelaahanStaffService.template(vm.data);
                     if(isLaporan)
                       openSuratMasuk('open-telaahan-staff-by-penilai/', laporan.kdSurat, '');
@@ -347,7 +347,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataSuratKeterangan(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateSuratKeteranganService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -365,7 +365,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataSuratKuasa(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateSuratKuasaService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -383,7 +383,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateMemorandumService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -401,7 +401,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataNodin(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateNotaDinasService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -421,7 +421,7 @@
                 function(response){
                     vm.data = response;
                     var doc = TemplateBeritaAcaraService.template(vm.data);
-                    laporan.loading = false;debugger
+                    laporan.loading = false;
                     openSuratMasuk('open-berita-acara-penilai/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                     EkinerjaService.lihatPdf(doc, 'Berita Acara');
                     // if(laporan.statusPenilaian != 2 || laporan.statusPenilaian != 3)
@@ -435,7 +435,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataSuratTugas(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplateSuratTugasService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -451,7 +451,7 @@
             // laporan.loading = true;
             PenilaianService.GetDataPengumuman(laporan.kdSurat).then(
                 function(response){
-                    vm.data = response;debugger
+                    vm.data = response;
                     var doc = TemplatePengumumanService.template(vm.data);
                     laporan.loading = false;
                     if(isLaporan)
@@ -471,7 +471,7 @@
         }
 
     vm.getDokumenLaporan = function(laporan, isLaporan, idx){
-      laporan.loading = true;debugger
+      laporan.loading = true;
       switch(laporan.kdJenisSurat){
         case 0: getDocumentBeritaAcara(laporan); break;
           case 1: getDocumentLaporan(laporan); break;
@@ -509,7 +509,7 @@
     vm.getDocumentPerintahLaporan = function(laporan, isLaporan){
       PenugasanService.GetDataPerintah(laporan.kdSurat).then(
         function(response){
-          vm.data = response;debugger
+          vm.data = response;
           var doc = TemplateSuratPerintahService.template(vm.data);
           EkinerjaService.lihatPdf(doc, 'Surat Perintah');
           if(isLaporan)
@@ -523,7 +523,7 @@
 
     function openSurat(kdSurat){
         PenilaianService.OpenSurat(kdSurat).then(
-          function(response){debugger
+          function(response){
             // getLaporanBawahan();
           }, function(errResponse){
 
@@ -551,7 +551,7 @@
       // getSuratMasuk('');
     }
 
-    function getSuratMasuk(url){debugger
+    function getSuratMasuk(url){
       DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){
           for(var i = 0; i < response.length;i++){

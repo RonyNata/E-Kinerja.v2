@@ -11,12 +11,20 @@
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <i class="material-icons">notifications</i>
-                        <span class="label-count">{{vm.jmlNotif}}</span>
+                        <span class="label-count" ng-show="vm.jmlNotif">{{vm.jmlNotif}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">Pesan</li>
                         <li class="body">
                             <ul class="menu">
+                                <li style="padding-top: 10px; padding-bottom: 10px" ng-hide="vm.pegawai.sudahMembuatKontrak">
+                                    <div class="menu-info" >
+                                        <h4>Anda belum mengajukan kontrak kerja</h4>
+                                        <p>
+                                            <i class="material-icons">access_time</i> 4 hours ago
+                                        </p>
+                                    </div>
+                                </li>
                                 <li ng-repeat="ajuan in vm.ajuan" style="padding-top: 10px; padding-bottom: 10px">
                                     <a href="#approval">
                                         <div class="menu-info" >
@@ -28,9 +36,25 @@
                                     </a>
                                 </li>
                                 <li ng-repeat="notif in vm.notif" style="padding-top: 10px; padding-bottom: 10px">
-                                    <a href="#penilaian">
+                                    <a href="#penilaian" ng-show="notif.jenisNotif == 1">
                                         <div class="menu-info" >
                                             <h4>Laporan baru dari {{notif.namaBawahan}}</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 4 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="#ambil-disposisi" ng-show="notif.jenisNotif == 2">
+                                        <div class="menu-info" >
+                                            <h4>Disposisi masuk dari {{notif.namaPengirim}}</h4>
+                                            <p>
+                                                <i class="material-icons">access_time</i> 4 hours ago
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a href="#penugasan" ng-show="notif.jenisNotif == 3">
+                                        <div class="menu-info" >
+                                            <h4>{{notif.jenisSurat}} masuk dari {{notif.namaPemberi}}</h4>
                                             <p>
                                                 <i class="material-icons">access_time</i> 4 hours ago
                                             </p>
@@ -65,7 +89,7 @@
         <div class="menu">
             <ul class="list">
                 <li class="header">FITUR PEGAWAI</li>
-                <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
                     <a href="#/dashboard">
                         <i class="material-icons">home</i>
                         <span>Dashboard</span>
@@ -78,13 +102,13 @@
                         <span>Kontrak Kerja</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
                     <a href="#/ambil-disposisi">
                         <i class="material-icons">assignment</i>
                         <span>Disposisi</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
                     <a href="#/penugasan">
                         <i class="material-icons">format_list_bulleted</i>
                         <span>Penugasan</span>
@@ -96,13 +120,13 @@
                         <span>Persetujuan Kontrak Kerja</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
                     <a href="#/penilaian">
                         <i class="material-icons">email</i>
                         <span>Tata Naskah</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
                     <a href="#/reportPegawai">
                         <i class="material-icons">assignment_ind</i>
                         <span>Report Pegawai</span>
