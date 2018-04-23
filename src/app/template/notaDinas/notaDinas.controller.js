@@ -330,7 +330,7 @@ angular.
                     table: {
                         widths: [50, 5, '*'],
                         body: [
-                            [{text: 'Kepada', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPenerima.jabatan}],
+                            [{text: 'Kepada', bold: true},{text:':'}, {text: 'Yth. ' + vm.item.pegawaiPenerima.jabatan}],
                             [{text: 'Dari', bold: true},{text:':'}, {text: '' + vm.item.pegawaiPemberi.jabatan}],
                             [{text: 'Nomor', bold: true},{text:':'}, {text: '' + vm.item.nomorUrusan + '/' + vm.item.nomorUrut + '/' + vm.item.nomorPasanganUrut + '/' + vm.item.nomorUnit + '/' + ((new Date()).getYear() + 1900)}],
                             [{text: 'Tanggal', bold: true},{text:':'}, {text: '' + EkinerjaService.IndonesianDay(vm.item.tanggal) + ', ' + EkinerjaService.IndonesianDateFormat(vm.item.tanggal)}],

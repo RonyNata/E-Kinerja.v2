@@ -60,7 +60,7 @@
                                     table: {
                                         widths: [50, 5, '*'],
                                         body: [
-                                            [{text: 'Kepada', bold: true},{text:':'}, {text: '' + data.jabatanPenerimaNotaDinas}],
+                                            [{text: 'Kepada', bold: true},{text:':'}, {text: 'Yth. ' + data.jabatanPenerimaNotaDinas}],
                                             [{text: 'Dari', bold: true},{text:':'}, {text: '' + data.pemberiNotaDinas.jabatan}],
                                             [{text: 'Nomor', bold: true},{text:':'}, {text: '' + data.nomorUrusan + '/' + data.nomorUrut + '/' + data.nomorPasanganUrut + '/' + data.nomorUnit + '/' + data.nomorTahun}],
                                             [{text: 'Tanggal', bold: true},{text:':'}, {text: '' + EkinerjaService.IndonesianDay(new Date(data.tanggalPembuatanMilis)) + ', ' + EkinerjaService.IndonesianDateFormat(new Date(data.tanggalPembuatanMilis))}],

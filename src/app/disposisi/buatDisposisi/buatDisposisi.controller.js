@@ -125,7 +125,7 @@
         function pagingDisposisi(){ 
             $scope.filteredDataDisposisi = [];
             $scope.currentPageDisposisi = 0;
-            $scope.numPerPageDisposisi = 10;
+            $scope.numPerPageDisposisi = 5;
             $scope.maxSizeDisposisi = Math.ceil(vm.dataLookDisposisi.length/$scope.numPerPageDisposisi);
             function pageDisposisi(){
               $scope.pageDisposisi = [];
@@ -155,7 +155,7 @@
           function pagingHistori(){ 
             $scope.filteredData = [];
             $scope.currentPage = 0;
-            $scope.numPerPage = 10;
+            $scope.numPerPage = 5;
             $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
             function page(){
               $scope.page = [];
