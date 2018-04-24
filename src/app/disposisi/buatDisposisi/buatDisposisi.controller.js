@@ -1,14 +1,14 @@
 (function(){
-	'use strict';
+  'use strict';
 
-	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
+  angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
-	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService,
+  function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService,
     KontrakPegawaiService, $scope, $state, $uibModal, $document, $window, DashboardService, PengumpulanDataBebanKerjaService){
-		var vm = this;
-      	vm.loading = true;
+    var vm = this;
+        vm.loading = true;
 
-      	// getAllDisposisi();
+        // getAllDisposisi();
         getHistoryDisposisi();
 
         function getAllDisposisi(){
@@ -18,7 +18,7 @@
               for(var i = 0; i < response.length; i++){
                   var date = new Date(response[i].tglPengirimanMilis);
                   response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
-									response[i].ketBaca = statusBaca(response[i].statusBaca);
+                  response[i].ketBaca = statusBaca(response[i].statusBaca);
               }
 
               vm.dataHistory = response;debugger
@@ -463,9 +463,9 @@
                 kdSurat: function () {
                   return kdSurat;
                 },
-								jenisTree: function () {
-									return jenis;
-								}
+                jenisTree: function () {
+                  return jenis;
+                }
               }
             });
 
@@ -478,14 +478,14 @@
             });
           };
 
-					function statusBaca(status){
-						switch (status) {
-							case 0 : return 'Belum Dibaca'; break;
-							case 1 : return 'Sudah Dibaca'; break;
-							case 2 : return 'Sudah Dilanjutkan'; break;
-							case 3 : return 'Proses Laporan'; break;
-							case 4 : return 'Disposisi Selesai'; break;
-						}
-					}
+          function statusBaca(status){
+            switch (status) {
+              case 0 : return 'Belum Dibaca'; break;
+              case 1 : return 'Sudah Dibaca'; break;
+              case 2 : return 'Sudah Dilanjutkan'; break;
+              case 3 : return 'Proses Laporan'; break;
+              case 4 : return 'Disposisi Selesai'; break;
+            }
+          }
         }
 })();
