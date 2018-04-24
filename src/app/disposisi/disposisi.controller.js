@@ -71,7 +71,7 @@ debugger
 
     getAllPegawai();
     function getAllPegawai(){
-      PengumpulanDataBebanKerjaService.GetAllPegawaiByUnitKerja($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+      DisposisiService.GetPegawaiBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         function(response){
           vm.list_pegawai = response;
           // sessionStorage.setItem('pegawai', JSON.stringify(vm.list_pegawai));

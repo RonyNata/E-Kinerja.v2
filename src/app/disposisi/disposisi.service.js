@@ -36,10 +36,23 @@
             return deferred.promise;
         };
 
+        service.GetPegawaiBawahan = function (nipPegawai) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-pegawai-bawahan/' + nipPegawai).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         // service.FindUrutan = function(index){
         //     var urutan = [
         //         "KESATU", "KEDUA", "KETIGA", "KEEMPAT", "KELIMA", "KEENAM", "KETUJUH", "KEDELAPAN", "KESEMBILAN", "KESEPULUH",
-        //         "KESEBELAS", "KEDUABELAS", "KETIGABELAS", "KEEMPATBELAS", "KELIMABELAS", "KEENAMBELAS", "KETUJUHBELAS", "KEDELAPANBELAS", 
+        //         "KESEBELAS", "KEDUABELAS", "KETIGABELAS", "KEEMPATBELAS", "KELIMABELAS", "KEENAMBELAS", "KETUJUHBELAS", "KEDELAPANBELAS",
         //         "KESEMBILANBELAS", "KEDUAPULUH", "KEDUAPULUHSATU"
         //     ];
 

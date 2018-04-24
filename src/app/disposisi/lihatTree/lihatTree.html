@@ -11,7 +11,8 @@
                             <thead class="bg-table">
                                 <tr>
                                     <th style="width: 5%; text-align: center; vertical-align: middle">No</th>
-                                    <th style="text-align: center; vertical-align: middle">Kode Lembar Disposisi</th>
+                                    <th style="text-align: center; vertical-align: middle">Pegawai Yang Meneruskan</th>
+                                    <th style="text-align: center; vertical-align: middle">Waktu Meneruskan</th>
                                     <th style="text-align: center;width: 15%;vertical-align: middle">Tingkat Keamanan</th>
                                     <th style="text-align: center;width: 10%;vertical-align: middle">Action</th>
                                 </tr>
@@ -20,7 +21,8 @@
                             <tbody>
                             <tr ng-repeat="path in tree.path">
                                 <td class="text-center">{{$index + 1}}</td>
-                                <td>{{path.path}}</td>
+                                <td>{{path.namaPengirim}}</td>
+                                <td>{{path.tglPengiriman}}</td>
                                 <td class="text-center">{{path.tktKeamanan == 1 ? 'SR (Sangat Rahasia)' : ''}}
                                     {{path.tktKeamanan == 2 ? 'R (Rahasia)' : ''}}
                                     {{path.tktKeamanan == 3 ? 'B (Biasa)' : ''}}

@@ -3,7 +3,7 @@
 
 	angular.module('eKinerja').controller('AmbilDisposisiController', AmbilDisposisiController);
 
-	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService, 
+	function AmbilDisposisiController(HakAksesService, EkinerjaService, AmbilDisposisiService,
     KontrakPegawaiService, $scope, $state, $uibModal, $document, $window, DashboardService, PengumpulanDataBebanKerjaService){
 		var vm = this;
       	vm.loading = true;
@@ -18,6 +18,7 @@
               for(var i = 0; i < response.length; i++){
                   var date = new Date(response[i].tglPengirimanMilis);
                   response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+									response[i].ketBaca = statusBaca(response[i].statusBaca);
               }
 
               vm.dataHistory = response;debugger
@@ -33,7 +34,7 @@
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
             function(response){
               template(response);
-              DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi, 
+              DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi,
                 $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
               getAllDisposisi();
             }, function(errResponse){
@@ -122,7 +123,7 @@
         });
       };
 
-        function pagingDisposisi(){ 
+        function pagingDisposisi(){
             $scope.filteredDataDisposisi = [];
             $scope.currentPageDisposisi = 0;
             $scope.numPerPageDisposisi = 10;
@@ -152,7 +153,7 @@
             });
           }
 
-          function pagingHistori(){ 
+          function pagingHistori(){
             $scope.filteredData = [];
             $scope.currentPage = 0;
             $scope.numPerPage = 10;
@@ -407,7 +408,7 @@
             };
 
             vm.openDps = function (docs, kdSurat, parentSelector) {
-              var parentElem = parentSelector ? 
+              var parentElem = parentSelector ?
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
               var modalInstance = $uibModal.open({
                 animation: true,
@@ -445,8 +446,8 @@
               pdfMake.createPdf(vm.docDefinition).download();
             };
 
-            vm.tree = function (kdSurat, parentSelector) {
-            var parentElem = parentSelector ? 
+            vm.tree = function (kdSurat, jenis, parentSelector) {
+            var parentElem = parentSelector ?
               angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
               animation: true,
@@ -461,7 +462,10 @@
               resolve: {
                 kdSurat: function () {
                   return kdSurat;
-                }
+                },
+								jenisTree: function () {
+									return jenis;
+								}
               }
             });
 
@@ -473,5 +477,15 @@
               // $log.info('Modal dismissed at: ' + new Date());
             });
           };
-        } 	 
+
+					function statusBaca(status){
+						switch (status) {
+							case 0 : return 'Belum Dibaca'; break;
+							case 1 : return 'Sudah Dibaca'; break;
+							case 2 : return 'Sudah Dilanjutkan'; break;
+							case 3 : return 'Proses Laporan'; break;
+							case 4 : return 'Disposisi Selesai'; break;
+						}
+					}
+        }
 })();

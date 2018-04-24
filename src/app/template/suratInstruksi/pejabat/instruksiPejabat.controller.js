@@ -11,7 +11,7 @@ angular.
         var vm = this;
         vm.loading = true;
         vm.item = {};
-        if($state.current.name == 'instruksinonpejabat')
+        if($state.current.name == 'instruksinonpejabat' || $state.current.name == 'instruksinonpejabatterusan')
           vm.jenis = 'Non-Pejabat';
         else vm.jenis = 'Pejabat';
         

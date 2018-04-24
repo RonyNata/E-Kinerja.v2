@@ -70,6 +70,19 @@
             return deferred.promise;
         };
 
+        service.GetTreeAtasan = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-lembar-disposisi-tree-by-leave/' + kdSurat).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 
