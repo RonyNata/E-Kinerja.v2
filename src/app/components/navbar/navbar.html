@@ -114,7 +114,7 @@
                         <span>Penugasan</span>
                     </a>
                 </li>
-                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}">
+                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}" ng-hide="vm.eselon=='xs'">
                     <a href="#/approval">
                         <i class="material-icons">playlist_add_check</i>
                         <span>Persetujuan Kontrak Kerja</span>

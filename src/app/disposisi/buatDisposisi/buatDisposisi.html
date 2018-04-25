@@ -19,7 +19,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-disabled="perpindahan.loadDisposisi" class="btn btn-primary waves-effect">
+                        <button type="button" ng-click="ambilperpindahan.createDisposisi()" ng-hide="ambilperpindahan.eselon=='xs'" class="btn btn-primary waves-effect">
                             <i class="material-icons">add</i><strong> BUAT DISPOSISI</strong>
                         </button>
                     </div>
@@ -31,7 +31,7 @@
                             <li role="presentation" class="active">
                                 <a href="#disposisii" data-toggle="tab"><b>Surat Disposisi Masuk</b></a>
                             </li>
-                            <li role="presentation">
+                            <li role="presentation" ng-hide="ambilperpindahan.eselon=='xs'">
                                 <a href="#instruksi" data-toggle="tab"><b>Disposisi Yang Pernah Dibuat</b></a>
                             </li>
                         </ul>
@@ -49,7 +49,7 @@
                                                         <th class="text-center">Tingkat Keamanan</th>
                                                         <th class="text-center">Tanggal Dibuat</th>
                                                         <th class="text-center">Status</th>
-                                                        <th class="text-center" colspan="4">Action</th>
+                                                        <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 3 : 4}}" >Action</th>
                                                     </tr>
                                                 </thead>
 
@@ -63,7 +63,7 @@
                                                         </td>
                                                         <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                         <td style="vertical-align: middle">{{ambil.ketBaca}}</td>
-                                                        <td class="text-center" style="vertical-align: middle">
+                                                        <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
                                                             <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">fast_forward</i> LANJUT</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
