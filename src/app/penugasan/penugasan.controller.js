@@ -8,18 +8,18 @@ angular.
 
     function PenugasanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
      TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state, PenilaianService,
-     TemplateSuratTugasService) {
+     TemplateSuratTugasService, DashboardService) {
         var vm = this;
         vm.loading = true;
 
         vm.eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
 
-        vm.naskah = [];
         vm.naskahHistory = [];
 
         getNaskahPenugasanPerintahTarget();
 
         function getNaskahPenugasanPerintahTarget(){
+          vm.naskah = [];
           PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
               for(var i = 0; i < response.length;i++){
@@ -44,6 +44,7 @@ angular.
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 // response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
                 vm.naskahHistory.push(response[i]);
               }
               getNaskahPenugasanTugas();
@@ -60,6 +61,7 @@ angular.
                 response[i].jenis = 2;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
                 // response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
                 vm.naskahHistory.push(response[i]);
               }
               getNaskahPenugasanInstruksi();
@@ -77,6 +79,7 @@ angular.
                 response[i].kdSurat = response[i].kdInstruksi;
                 response[i].judulNaskah = response[i].judulInstruksi;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalDibuatMilis));
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
                 vm.naskahHistory.push(response[i]);
               }
               vm.naskahHistory = vm.naskahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
@@ -142,7 +145,7 @@ angular.
         }
 
         vm.getDocument = function(naskah, idx, isHistory){
-          if(!isHistory)
+          if(isHistory)
             $scope.filteredDataPenugasan[idx].loading = true;
           else $scope.filteredData[idx].loading = true;
           switch(naskah.jenis){
@@ -158,8 +161,11 @@ angular.
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateSuratTugasService.template(vm.data);
-                    if(!isHistory)
+                    if(isHistory){
                       $scope.filteredDataPenugasan[idx].loading = false;
+                      openSuratMasuk('open-surat-tugas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                      getNaskahPenugasanPerintahTarget();
+                    }
                     else $scope.filteredData[idx].loading = false;
                     // pdfMake.createPdf(doc).open();
                     EkinerjaService.lihatPdf(doc, 'Surat Tugas');
@@ -173,8 +179,12 @@ angular.
             function(response){
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
-              if(!isHistory)
+              if(isHistory){
                 $scope.filteredDataPenugasan[idx].loading = false;
+                DashboardService.ChangeRead('open-surat-instruksi-pegawai/',
+                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                getNaskahPenugasanPerintahTarget();
+              }
               else $scope.filteredData[idx].loading = false;
               // pdfMake.createPdf(doc).open();
               EkinerjaService.lihatPdf(doc, 'Surat Instruksi');
@@ -188,8 +198,12 @@ angular.
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              if(!isHistory)
+              if(isHistory){
                 $scope.filteredDataPenugasan[idx].loading = false;
+                DashboardService.ChangeRead('open-surat-perintah-pegawai/',
+                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                getNaskahPenugasanPerintahTarget();
+              }
               else $scope.filteredData[idx].loading = false;
               // pdfMake.createPdf(doc).open();
               EkinerjaService.lihatPdf(doc, 'Surat Perintah');
