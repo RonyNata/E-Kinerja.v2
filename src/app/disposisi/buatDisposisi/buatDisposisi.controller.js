@@ -30,12 +30,13 @@
             })
         }
 
-        function getDokumenDisposisi(kdLembarDisposisi){
+        function getDokumenDisposisi(kdLembarDisposisi, isOpenRead){
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
             function(response){
               template(response);
-              DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi,
-                $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+              if(isOpenRead)
+                DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi,
+                  $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
               getAllDisposisi();
             }, function(errResponse){
                   EkinerjaService.showToastrError('Terjadi Kesalahan');
@@ -398,7 +399,7 @@
 
             $scope.openPdf = function(kdLembarDisposisi) {
               var blb;
-              getDokumenDisposisi(kdLembarDisposisi);
+              getDokumenDisposisi(kdLembarDisposisi, 0);
               // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
               //     // turn buffer into blob
               //     blb = buffer;
@@ -434,7 +435,7 @@
               });
 
               modalInstance.result.then(function (kdSurat) {
-                getDokumenDisposisi(kdSurat);
+                getDokumenDisposisi(kdSurat, 0);
                 // vm.selected = selectedItem;
               }, function () {
                 // showToastrFailed('menambahkan data');
@@ -470,7 +471,7 @@
             });
 
             modalInstance.result.then(function (kdSurat) {
-              getDokumenDisposisi(kdSurat);
+              getDokumenDisposisi(kdSurat, 0);
               // vm.selected = selectedItem;
             }, function () {
               // showToastrFailed('menambahkan data');

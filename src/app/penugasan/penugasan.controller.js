@@ -1,11 +1,11 @@
 (function() {
 'use strict';
- 
+
 angular.
   module('eKinerja')
   .controller('PenugasanController', PenugasanController);
 
-    
+
     function PenugasanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
      TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state, PenilaianService,
      TemplateSuratTugasService) {
@@ -26,6 +26,7 @@ angular.
                 response[i].tanggalDibuat = response[i].createdDate;
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
               }
               getNaskahPenugasanPerintah();
             }, function(errResponse){
@@ -78,12 +79,12 @@ angular.
               }
               vm.naskahHistory = vm.naskahHistory.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
               vm.dataLook = angular.copy(vm.naskahHistory);
-              pagingHistori(); 
+              pagingHistori();
               getNaskahPenugasanInstruksiTarget();
             }, function(errResponse){
 
             })
-          
+
         }
 
         function getNaskahPenugasanInstruksiTarget(){
@@ -94,11 +95,12 @@ angular.
                 response[i].jenis = 0;
                 response[i].judulNaskah = response[i].judulInstruksi;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
               }
               getNaskahPenugasanTugasTarget();
-              
+
             }, function(errResponse){
 
             })
@@ -112,6 +114,7 @@ angular.
                 response[i].jenis = 2;
                 response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
                 response[i].judulNaskah = response[i].judulInstruksi;
+                response[i].ketBaca = statusBaca(response[i].statusBaca);
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
               }
@@ -119,7 +122,7 @@ angular.
               vm.naskah = vm.naskah.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
               vm.dataLookPenugasan = angular.copy(vm.naskah);
               pagingPenugasan();
-              
+
             }, function(errResponse){
 
             })
@@ -193,7 +196,7 @@ angular.
             })
         }
 
-        function pagingPenugasan(){ 
+        function pagingPenugasan(){
             $scope.filteredDataPenugasan = [];
             $scope.currentPagePenugasan = 0;
             $scope.numPerPagePenugasan = 10;
@@ -223,7 +226,7 @@ angular.
             });
           }
 
-          function pagingHistori(){ 
+          function pagingHistori(){
             $scope.filteredData = [];
             $scope.currentPage = 0;
             $scope.numPerPage = 10;
@@ -254,7 +257,7 @@ angular.
           }
 
         vm.tree = function (kdSurat, parentSelector) {
-            var parentElem = parentSelector ? 
+            var parentElem = parentSelector ?
               angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
               animation: true,
@@ -284,7 +287,7 @@ angular.
 
         vm.openTemplate = function (uraianTugas, naskah, isDPA, parentSelector) {
             debugger
-            var parentElem = parentSelector ? 
+            var parentElem = parentSelector ?
                   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
             animation: true,
@@ -329,5 +332,15 @@ angular.
 
             });
         };
-   	} 
+
+        function statusBaca(status){
+          switch (status) {
+            case 0 : return 'Belum Dibaca'; break;
+            case 1 : return 'Sudah Dibaca'; break;
+            case 2 : return 'Sudah Dilanjutkan'; break;
+            case 3 : return 'Proses Laporan'; break;
+            case 4 : return 'Disposisi Selesai'; break;
+          }
+        }
+   	}
 })();

@@ -59,9 +59,9 @@
                                                     <td style="vertical-align: middle">{{naskah.nama}}</td>
                                                     <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
                                                     <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
-                                                    <td style="vertical-align: middle">-</td>
+                                                    <td style="vertical-align: middle">{{naskah.ketBaca}}</td>
                                                     <td class="text-center" style="vertical-align: middle">
-                                                        <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="btn bg-blue waves-effect"><i class="material-icons">fast_forward</i> TERUSKAN</button>
+                                                        <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="btn bg-blue waves-effect"><i class="material-icons" ng-disabled="naskah.statusBaca == 1">fast_forward</i> TERUSKAN</button>
                                                         <p ng-show="naskah.jenis != 0"><strong>-</strong></p>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">

@@ -89,7 +89,7 @@
 
 			vm.open = function (pegawai, parentSelector) {
 		      // console.log(JSON.stringify(vm.pegawai));
-		      var parentElem = parentSelector ? 
+		      var parentElem = parentSelector ?
 		        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
 		      var modalInstance = $uibModal.open({
 		        animation: true,
@@ -121,7 +121,7 @@
 		      });
 		    };
 
-			function paging(){ 
+			function paging(){
 	          $scope.filteredData = [];
 	          // $scope.currentPage = 0;
 	          $scope.numPerPage = $scope.entries;

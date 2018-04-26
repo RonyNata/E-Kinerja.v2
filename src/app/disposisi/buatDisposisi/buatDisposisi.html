@@ -67,7 +67,7 @@
                                                             <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">fast_forward</i> LANJUT</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
-                                                            <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                            <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi, 1)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
                                                             <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(ambil.kdLembarDisposisi, 0)"><i class="material-icons">visibility</i> TREE</span></button>
@@ -139,7 +139,7 @@
                                                         <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi, 1)"><i class="material-icons">visibility</i> TREE</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi, 0)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                     </td>
                                                 </tr>
                                                 <tr ng-show="filteredData==0">
