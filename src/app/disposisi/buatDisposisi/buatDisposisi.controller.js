@@ -10,6 +10,15 @@
 
         vm.eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
 
+      vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
+      vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
+
+      vm.checkRole = function(role){
+          if(vm.pegawai.role.id == role)
+              return true;
+          else return false;
+      };
+
         // getAllDisposisi();
         getHistoryDisposisi();
 
