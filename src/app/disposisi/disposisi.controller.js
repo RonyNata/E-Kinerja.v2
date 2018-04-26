@@ -12,7 +12,6 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
     if($state.params.kdJenis == "")
       vm.isUpload = true;
 debugger
-	vm.paraf="Sudah Ditandatangan";
 
 	vm.maksud = [{"id": new Date().getTime(), "deskripsi": ''}];
     vm.target = [];
@@ -285,7 +284,7 @@ debugger
                                     border: [true, true, true, false],
                                     text: [
                                         {text: 'PEMERINTAH KABUPATEN BEKASI\n',style: 'header'},
-                                        {text: '' + vm.target[0].unitKerja,style: 'header'}
+                                        {text: '' + vm.target[0].unitKerja.toUpperCase(),style: 'header'}
                                     ],
                                     colSpan: 3
                                 }, {}, {}
@@ -385,12 +384,8 @@ debugger
                                 {
                                     text: 'DITERUSKAN KEPADA',
                                     style: 'header4',
-                                    alignment: 'center'
-                                },
-                                {
-                                    text: 'PARAF',
-                                    style: 'header4',
-                                    alignment: 'center'
+                                    alignment: 'center',
+                                    colSpan: 2
                                 }
                             ],
                             [
@@ -401,11 +396,8 @@ debugger
                                 },
                                 {
                                     style: 'header5',
-                                    ol: []
-                                },
-                                {
-                                    style: 'header5',
-                                    ul: []
+                                    ol: [],
+                                    colSpan: 2
                                 }
                             ]
                         ]
@@ -467,7 +459,6 @@ debugger
 
 	    	for(var i = 0; i < vm.target.length; i++){
 	            vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].jabatan);
-	            vm.docDefinition.content[0].table.body[8][2].ul.push(vm.paraf);
 	        }
     	};
 

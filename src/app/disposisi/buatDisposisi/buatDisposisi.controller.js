@@ -8,6 +8,8 @@
     var vm = this;
         vm.loading = true;
 
+        vm.eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
+
         // getAllDisposisi();
         getHistoryDisposisi();
 
@@ -308,12 +310,8 @@
                                 {
                                     text: 'DITERUSKAN KEPADA',
                                     style: 'header4',
-                                    alignment: 'center'
-                                },
-                                {
-                                    text: '',
-                                    style: 'header4',
-                                    alignment: 'center'
+                                    alignment: 'center',
+                                    colSpan: 2
                                 }
                             ],
                             [
@@ -324,11 +322,8 @@
                                 },
                                 {
                                     style: 'header5',
-                                    ol: []
-                                },
-                                {
-                                    style: 'header5',
-                                    ul: []
+                                    ol: [],
+                                    colSpan: 2
                                 }
                             ]
                         ]
@@ -390,7 +385,6 @@
 
             for(var i = 0; i < item.targetPegawaiLembarDisposisi.length; i++){
                   docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].jabatan);
-                  // docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
             }
             vm.openDps(docDefinition, item.kdLembarDisposisi);
           };

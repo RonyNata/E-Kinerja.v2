@@ -12,6 +12,8 @@ angular.
         var vm = this;
         vm.loading = true;
 
+        vm.eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
+
         vm.naskah = [];
         vm.naskahHistory = [];
 

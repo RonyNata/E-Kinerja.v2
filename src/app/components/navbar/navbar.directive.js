@@ -26,6 +26,9 @@
       vm.jmlNotif = 0;
 
       // "vm.creationDate" is available by directive option "bindToController: true"
+
+      vm.eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
+
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
       vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
       console.log(vm.pegawai);
