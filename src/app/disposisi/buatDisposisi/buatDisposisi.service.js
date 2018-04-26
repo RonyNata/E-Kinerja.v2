@@ -83,6 +83,19 @@
             return deferred.promise;
         };
 
+				service.Batal = function (kdSurat) {
+            var deferred = $q.defer();
+            $http.put(API + 'cancel-lembar-disposisi/' + kdSurat).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 

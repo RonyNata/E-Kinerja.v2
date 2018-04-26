@@ -41,14 +41,15 @@
             })
         }
 
-        function getDokumenDisposisi(kdLembarDisposisi, isOpenRead){
+        function getDokumenDisposisi(kdLembarDisposisi, isOpenRead, statBaca){
           AmbilDisposisiService.GetDokumenDisposisi(kdLembarDisposisi).then(
             function(response){
               template(response);
-              if(isOpenRead)
+              if(isOpenRead && statBaca == 0)
                 DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi,
                   $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
               getAllDisposisi();
+              getHistoryDisposisi();
             }, function(errResponse){
                   EkinerjaService.showToastrError('Terjadi Kesalahan');
             })
@@ -61,6 +62,7 @@
               for(var i = 0; i < response.length; i++){
                   var date = new Date(response[i].tglPengirimanMilis);
                   response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+                  response[i].ketBaca = statusBaca(response[i].statusBaca);
               }
               vm.history = response;
               vm.dataLook = angular.copy(vm.history);
@@ -400,9 +402,9 @@
 
 
 
-            $scope.openPdf = function(kdLembarDisposisi) {
+            $scope.openPdf = function(kdLembarDisposisi, isOpenRead, statBaca) {
               var blb;
-              getDokumenDisposisi(kdLembarDisposisi, 0);
+              getDokumenDisposisi(kdLembarDisposisi, isOpenRead, statBaca);
               // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
               //     // turn buffer into blob
               //     blb = buffer;
@@ -438,7 +440,7 @@
               });
 
               modalInstance.result.then(function (kdSurat) {
-                getDokumenDisposisi(kdSurat, 0);
+                getDokumenDisposisi(kdSurat, 0, 1);
                 // vm.selected = selectedItem;
               }, function () {
                 // showToastrFailed('menambahkan data');
@@ -474,7 +476,7 @@
             });
 
             modalInstance.result.then(function (kdSurat) {
-              getDokumenDisposisi(kdSurat, 0);
+              getDokumenDisposisi(kdSurat, 0, 1);
               // vm.selected = selectedItem;
             }, function () {
               // showToastrFailed('menambahkan data');
@@ -490,6 +492,18 @@
               case 3 : return 'Proses Laporan'; break;
               case 4 : return 'Disposisi Selesai'; break;
             }
+          }
+
+          vm.cancel = function(kdSurat){
+            AmbilDisposisiService.Batal(kdSurat).then(
+              function(response){
+                getAllDisposisi();
+                getHistoryDisposisi();
+                EkinerjaService.showToastrSuccess('Disposisi Berhasil Dibatalkan');
+              }, function(errResponse){
+                EkinerjaService.showToastrError('Disposisi Gagal Dibatalkan');
+              }
+            )
           }
         }
 })();

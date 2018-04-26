@@ -49,7 +49,7 @@
                                                         <th class="text-center">Tingkat Keamanan</th>
                                                         <th class="text-center">Tanggal Dibuat</th>
                                                         <th class="text-center">Status</th>
-                                                        <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 3 : 4}}" >Action</th>
+                                                        <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}" >Action</th>
                                                     </tr>
                                                 </thead>
 
@@ -67,7 +67,7 @@
                                                             <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">fast_forward</i> LANJUT</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
-                                                            <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi, 1)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                            <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi, 1, ambil.statusBaca)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
                                                             <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(ambil.kdLembarDisposisi, 0)"><i class="material-icons">visibility</i> TREE</span></button>
@@ -120,7 +120,7 @@
                                                     <th class="text-center">Tingkat Keamanan</th>
                                                     <th class="text-center">Tanggal Dibuat</th>
                                                     <th class="text-center">Status</th>
-                                                    <th class="text-center" colspan="2">Action</th>
+                                                    <th class="text-center" colspan="3">Action</th>
                                                 </tr>
                                                 </thead>
 
@@ -134,12 +134,16 @@
                                                         {{history.tktKeamanan == 3 ? 'B (Biasa)' : ''}}
                                                     </td>
                                                     <td style="vertical-align: middle">{{history.tglPengiriman}}</td>
-                                                    <td style="vertical-align: middle">{{history.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
+                                                    <td style="vertical-align: middle">{{history.ketBaca}}</td>
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(history.kdLembarDisposisi, 1)"><i class="material-icons">visibility</i> TREE</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi, 0)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(history.kdLembarDisposisi, 0, 1)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align: middle">
+                                                      <button type="button" class="btn bg-red waves-effect" ng-click="ambilperpindahan.cancel(history.kdLembarDisposisi)" ng-show="history.statusBaca < 3"><i class="material-icons">delete</i>Batalkan</span></button>
+                                                      <p ng-hide="history.statusBaca < 3"><strong>-</strong></p>
                                                     </td>
                                                 </tr>
                                                 <tr ng-show="filteredData==0">
