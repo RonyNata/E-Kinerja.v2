@@ -64,7 +64,7 @@
                                                         <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                         <td style="vertical-align: middle">{{ambil.ketBaca}}</td>
                                                         <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
-                                                            <button type="button" class="btn bg-blue waves-effect" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">fast_forward</i> LANJUT</span></button>
+                                                            <button type="button" class="{{ambil.statusBaca == 1 ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">fast_forward</i> LANJUT</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
                                                             <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi, 1, ambil.statusBaca)"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
@@ -73,7 +73,7 @@
                                                             <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.tree(ambil.kdLembarDisposisi, 0)"><i class="material-icons">visibility</i> TREE</span></button>
                                                         </td>
                                                         <td class="text-center" style="vertical-align: middle">
-                                                            <button type="button" class="btn bg-green waves-effect" ng-click="ambilperpindahan.openTemplate(null,0, ambil)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">create</i> KERJAKAN</button>
+                                                            <button type="button" class="{{ambil.statusBaca == 1 ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.openTemplate(null,0, ambil)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="material-icons">create</i> KERJAKAN</button>
                                                         </td>
                                                     </tr>
 
