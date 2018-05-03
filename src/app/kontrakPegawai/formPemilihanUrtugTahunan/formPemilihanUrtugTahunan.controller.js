@@ -39,6 +39,7 @@ angular.
                 vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
                 vm.urtugNonDpa[i].checked = false;
               }
+                pagingUrtugNonDpa();
             }, function(errResponse){
 
             }
@@ -55,6 +56,7 @@ angular.
                   vm.urtugDpa[i].checked = false;
                   vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
                 }
+                  pagingUrtugDpa();
               }, function(errResponse){
 
               }
@@ -161,6 +163,66 @@ angular.
 
         vm.reset = function(){
           vm.item = angular.copy(items);
+        }
+
+        function pagingUrtugNonDpa(){
+            $scope.filteredDataUrtugNonDpa = [];
+            $scope.currentPageUrtugNonDpa = 0;
+            $scope.numPerPageUrtugNonDpa = 5;
+            $scope.maxSizeUrtugNonDpa = Math.ceil(vm.urtugNonDpa.length/$scope.numPerPageUrtugNonDpa);
+            function pageUrtugNonDpa(){
+                $scope.pageUrtugNonDpa = [];
+                for(var i = 0; i < vm.urtugNonDpa.length/$scope.numPerPageUrtugNonDpa; i++){
+                    $scope.pageUrtugNonDpa.push(i+1);
+                }
+            }
+            pageUrtugNonDpa();
+            $scope.padUrtugNonDpa = function(i){
+                $scope.currentPageUrtugNonDpa += i;
+            }
+
+            $scope.maxUrtugNonDpa = function(){
+                if($scope.currentPageUrtugNonDpa >= $scope.maxSizeUrtugNonDpa - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageUrtugNonDpa + numPerPageUrtugNonDpa", function() {
+                var begin = (($scope.currentPageUrtugNonDpa) * $scope.numPerPageUrtugNonDpa)
+                    , end = begin + $scope.numPerPageUrtugNonDpa;
+
+                $scope.filteredDataUrtugNonDpa = vm.urtugNonDpa.slice(begin, end);
+            });
+        }
+
+        function pagingUrtugDpa(){
+            $scope.filteredDataUrtugDpa = [];
+            $scope.currentPageUrtugDpa = 0;
+            $scope.numPerPageUrtugDpa = 5;
+            $scope.maxSizeUrtugDpa = Math.ceil(vm.urtugDpa.length/$scope.numPerPageUrtugDpa);
+            function pageUrtugDpa(){
+                $scope.pageUrtugDpa = [];
+                for(var i = 0; i < vm.urtugDpa.length/$scope.numPerPageUrtugDpa; i++){
+                    $scope.pageUrtugDpa.push(i+1);
+                }
+            }
+            pageUrtugDpa();
+            $scope.padUrtugDpa = function(i){
+                $scope.currentPageUrtugDpa += i;
+            }
+
+            $scope.maxUrtugDpa = function(){
+                if($scope.currentPageUrtugDpa >= $scope.maxSizeUrtugDpa - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageUrtugDpa + numPerPageUrtugDpa", function() {
+                var begin = (($scope.currentPageUrtugDpa) * $scope.numPerPageUrtugDpa)
+                    , end = begin + $scope.numPerPageUrtugDpa;
+
+                $scope.filteredDataUrtugDpa = vm.urtugDpa.slice(begin, end);
+            });
         }
    	} 
 })();

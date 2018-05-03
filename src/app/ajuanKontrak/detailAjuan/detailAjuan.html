@@ -1,7 +1,7 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Ajuan Kontrak {{ajuan.nama}}</strong></h3>
 </div>
-<form ng-submit="ajuan.save()" class="form-horizontal">
+<!--<form ng-submit="ajuan.save()" class="form-horizontal">-->
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row">
@@ -37,8 +37,8 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in ajuan.list_ajuan" class="text-center">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="urtug in filteredDataListAjuan" class="text-center">
+                                                <td>{{$index + 1 + (numPerPageListAjuan*currentPageListAjuan)}}</td>
                                                 <td class="text-left">{{urtug.urtug}}</td>
                                                 <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
                                                 <td>{{urtug.kualitas + '%'}}</td>
@@ -54,6 +54,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <ul style="padding-left: 0px;">
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListAjuan(-1)" ng-disabled="currentPageListAjuan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                    &lt; PREV
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListAjuan+1}} Of {{maxSizeListAjuan}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListAjuan(1)" ng-disabled="maxListAjuan()" aria-label="Use Android" style="cursor: pointer;">
+                                                    NEXT &gt;
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div role="tabpanel" class="tab-pane fade" id="tidakdiajukan">
@@ -74,8 +97,8 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in ajuan.list_tidakdiajukan" class="text-center">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="urtug in filteredDataListTidakAjuan" class="text-center">
+                                                <td>{{$index + 1 + (numPerPageListTidakAjuan*currentPageListTidakAjuan)}}</td>
                                                 <td class="text-left">{{urtug.urtug}}</td>
                                                 <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
                                                 <td>{{urtug.kualitas + '%'}}</td>
@@ -90,6 +113,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <ul style="padding-left: 0px;">
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListTidakAjuan(-1)" ng-disabled="currentPageListTidakAjuan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                    &lt; PREV
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListTidakAjuan+1}} Of {{maxSizeListTidakAjuan}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListTidakAjuan(1)" ng-disabled="maxListTidakAjuan()" aria-label="Use Android" style="cursor: pointer;">
+                                                    NEXT &gt;
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div role="tabpanel" class="tab-pane fade" id="ajuanDpa">
@@ -108,8 +154,8 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="kegiatan in ajuan.kegiatan" class="text-center">
-                                                <td>{{$index + 1}}</td>
+                                            <tr ng-repeat="kegiatan in filteredDataListKegiatan" class="text-center">
+                                                <td>{{$index + 1 + (numPerPageListKegiatan*currentPageListKegiatan)}}</td>
                                                 <td class="text-left">{{kegiatan.deskripsiUrtug}}</td>
                                                 <td class="text-left">{{kegiatan.ketKeg}}</td>
                                                 <td>{{kegiatan.statusPenanggungJawab}}</td>
@@ -120,6 +166,29 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <ul style="padding-left: 0px;">
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                    &lt; PREV
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
+                                                    NEXT &gt;
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -131,4 +200,4 @@
         <button type="button" ng-click="ajuan.save()" class="btn btn-success waves-effect" data-dismiss="modal">Setujui</button>
         <button type="button" ng-click="ajuan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
     </div>
-</form>
+<!--</form>-->

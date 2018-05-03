@@ -4,12 +4,6 @@
 <form ng-submit="dataurtug.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
         <div class="form-body">
-            <div class="row space-after">
-                <div class="col-md-12">
-                    <button class="btn btn-primary waves-effect" ng-click="dataurtug.openPilihan()" type="button" ng-hide="dataurtug.isPilihan == 1">{{dataurtug.kegiatanPilihan.length}} Kegiatan Telah Dipilih</button>
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -62,7 +56,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" ng-click="dataurtug.addKegiatan()" class="btn btn-success waves-effect" data-dismiss="modal" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">Tambahkan</button>
+        <!--<button type="button" ng-click="dataurtug.addKegiatan()" class="btn btn-success waves-effect" data-dismiss="modal" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">Tambahkan</button>-->
         <button type="button" ng-click="dataurtug.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Batal</button>
     </div>
 </form>

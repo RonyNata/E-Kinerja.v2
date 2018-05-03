@@ -160,7 +160,7 @@
                                                     <thead class="bg-table">
                                                         <tr>
                                                             <th rowspan="2" class="text-center" style="vertical-align: middle">No</th>
-                                                            <th rowspan="2" class="text-center" style="vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                            <th rowspan="2" class="text-center" style="vertical-align: middle">Rincian Tugas</th>
                                                             <th colspan="5" class="text-center">TARGET</th>
                                                         </tr>
                                                         <tr class="text-center">
@@ -222,7 +222,7 @@
                                                             <th style="width: 5%; text-align: center">No</th>
                                                             <th style="text-align: center">Rincian Uraian Tugas</th>
                                                             <th style="text-align: center">Kegiatan</th>
-                                                            <th style="width: 5%;text-align: center">Jabatan</th>
+                                                            <th style="width: 5%;text-align: center">Pejabat</th>
                                                             <th style="width: 15%;text-align: center">Biaya</th>
                                                             <th style="width: 5%;text-align: center">Action</th>
                                                         </tr>
@@ -230,7 +230,7 @@
 
                                                     <tbody>
                                                         <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
-                                                            <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                            <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                                             <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
                                                             <td style="text-align: left">{{kegiatan.ketKeg}}</td>
                                                             <td>{{kegiatan.statusPenanggungJawab}}</td>

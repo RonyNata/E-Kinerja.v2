@@ -508,7 +508,7 @@ angular.
 	    function pagingJenis(){ 
 	          $scope.filteredDataJenis = [];
 	          $scope.currentPageJenis = 0;
-	          $scope.numPerPage = 15;
+	          $scope.numPerPage = 5;
 	          $scope.maxSizeJenis = Math.ceil(vm.dataLookJenis.length/$scope.numPerPage);
 	          function page(){
 	            $scope.pageJenis = [];

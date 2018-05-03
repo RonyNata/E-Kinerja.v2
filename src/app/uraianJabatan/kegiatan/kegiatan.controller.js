@@ -27,6 +27,8 @@ angular.
               function(response){
                 vm.kegiatan = response;debugger
                 vm.loadUrtug = false;
+
+                  pagingKegiatan();
               }, function(errResponse){
 
               })
@@ -224,6 +226,36 @@ angular.
 
         vm.reset = function(){
           vm.item = angular.copy(items);
+        }
+
+        function pagingKegiatan(){
+            $scope.filteredDataKegiatan = [];
+            $scope.currentPageKegiatan = 0;
+            $scope.numPerPageKegiatan = 5;
+            $scope.maxSizeKegiatan = Math.ceil(vm.kegiatan.length/$scope.numPerPageKegiatan);
+            function pageKegiatan(){
+                $scope.pageKegiatan = [];
+                for(var i = 0; i < vm.kegiatan.length/$scope.numPerPageKegiatan; i++){
+                    $scope.pageKegiatan.push(i+1);
+                }
+            }
+            pageKegiatan();
+            $scope.padKegiatan = function(i){
+                $scope.currentPageKegiatan += i;
+            }
+
+            $scope.maxKegiatan = function(){
+                if($scope.currentPageKegiatan >= $scope.maxSizeKegiatan - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageKegiatan + numPerPageKegiatan", function() {
+                var begin = (($scope.currentPageKegiatan) * $scope.numPerPageKegiatan)
+                    , end = begin + $scope.numPerPageKegiatan;
+
+                $scope.filteredDataKegiatan = vm.kegiatan.slice(begin, end);
+            });
         }
    	} 
 })();

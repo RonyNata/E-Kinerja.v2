@@ -6,12 +6,16 @@ angular.
 	.controller('DetailAjuanController', DetailAjuanController);
 
     
-    function DetailAjuanController(list_ajuan, list_tidakdiajukan, nama, nip, jabatan, isEselon4, unit, EkinerjaService, 
+    function DetailAjuanController(list_ajuan, list_tidakdiajukan, $scope, nama, nip, jabatan, isEselon4, unit, EkinerjaService,
       KontrakPegawaiService, AjuanKontrakService, $uibModalInstance) {
       	var vm = this;
 
             vm.list_ajuan = angular.copy(list_ajuan);
+            pagingListAjuan();
+
             vm.list_tidakdiajukan = angular.copy(list_tidakdiajukan);
+            pagingListTidakAjuan();
+
             vm.nama = nama;
 
             vm.isEselon4 = isEselon4;
@@ -25,6 +29,8 @@ angular.
                     vm.kegiatan = response;debugger
                     for(var i = 0; i < response.length; i++)
                       vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+
+                      pagingListKegiatan();
                   }, function(errResponse){
                     // vm.penilai = "";
                   })
@@ -93,5 +99,95 @@ angular.
             vm.cancel = function () {
                   $uibModalInstance.dismiss('cancel');
             };
+
+        function pagingListAjuan(){
+            $scope.filteredDataListAjuan = [];
+            $scope.currentPageListAjuan = 0;
+            $scope.numPerPageListAjuan = 5;
+            $scope.maxSizeListAjuan = Math.ceil(vm.list_ajuan.length/$scope.numPerPageListAjuan);
+            function pageListAjuan(){
+                $scope.pageListAjuan = [];
+                for(var i = 0; i < vm.list_ajuan.length/$scope.numPerPageListAjuan; i++){
+                    $scope.pageListAjuan.push(i+1);
+                }
+            }
+            pageListAjuan();
+            $scope.padListAjuan = function(i){
+                $scope.currentPageListAjuan += i;
+            }
+
+            $scope.maxListAjuan = function(){
+                if($scope.currentPageListAjuan >= $scope.maxSizeListAjuan - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListAjuan + numPerPageListAjuan", function() {
+                var begin = (($scope.currentPageListAjuan) * $scope.numPerPageListAjuan)
+                    , end = begin + $scope.numPerPageListAjuan;
+
+                $scope.filteredDataListAjuan = vm.list_ajuan.slice(begin, end);
+            });
+        }
+
+        function pagingListTidakAjuan(){
+            $scope.filteredDataListTidakAjuan = [];
+            $scope.currentPageListTidakAjuan = 0;
+            $scope.numPerPageListTidakAjuan = 5;
+            $scope.maxSizeListTidakAjuan = Math.ceil(vm.list_tidakdiajukan.length/$scope.numPerPageListTidakAjuan);
+            function pageListTidakAjuan(){
+                $scope.pageListTidakAjuan = [];
+                for(var i = 0; i < vm.list_tidakdiajukan.length/$scope.numPerPageListTidakAjuan; i++){
+                    $scope.pageListTidakAjuan.push(i+1);
+                }
+            }
+            pageListTidakAjuan();
+            $scope.padListTidakAjuan = function(i){
+                $scope.currentPageListTidakAjuan += i;
+            }
+
+            $scope.maxListTidakAjuan = function(){
+                if($scope.currentPageListTidakAjuan >= $scope.maxSizeListTidakAjuan - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListTidakAjuan + numPerPageListTidakAjuan", function() {
+                var begin = (($scope.currentPageListTidakAjuan) * $scope.numPerPageListTidakAjuan)
+                    , end = begin + $scope.numPerPageListTidakAjuan;
+
+                $scope.filteredDataListTidakAjuan = vm.list_tidakdiajukan.slice(begin, end);
+            });
+        }
+
+        function pagingListKegiatan(){
+            $scope.filteredDataListKegiatan = [];
+            $scope.currentPageListKegiatan = 0;
+            $scope.numPerPageListKegiatan = 5;
+            $scope.maxSizeListKegiatan = Math.ceil(vm.kegiatan.length/$scope.numPerPageListKegiatan);
+            function pageListKegiatan(){
+                $scope.pageListKegiatan = [];
+                for(var i = 0; i < vm.kegiatan.length/$scope.numPerPageListKegiatan; i++){
+                    $scope.pageListKegiatan.push(i+1);
+                }
+            }
+            pageListKegiatan();
+            $scope.padListKegiatan = function(i){
+                $scope.currentPageListKegiatan += i;
+            }
+
+            $scope.maxListKegiatan = function(){
+                if($scope.currentPageListKegiatan >= $scope.maxSizeListKegiatan - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListKegiatan + numPerPageListKegiatan", function() {
+                var begin = (($scope.currentPageListKegiatan) * $scope.numPerPageListKegiatan)
+                    , end = begin + $scope.numPerPageListKegiatan;
+
+                $scope.filteredDataListKegiatan = vm.kegiatan.slice(begin, end);
+            });
+        }
    	} 
 })();

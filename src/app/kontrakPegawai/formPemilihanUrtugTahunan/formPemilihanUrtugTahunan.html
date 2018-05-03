@@ -30,7 +30,7 @@
                                             <thead class="bg-table">
                                                 <tr>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Pilih</th>
-                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Kuant/ Output</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Mutu</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
@@ -39,7 +39,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="urtug in pilihurtug.urtugNonDpa" ng-hide="pilihurtug.urtugNonDpa==0" class="text-center">
+                                                <tr ng-repeat="urtug in filteredDataUrtugNonDpa" ng-hide="filteredDataUrtugNonDpa==0" class="text-center">
                                                     <td><input type="checkbox" ng-model="urtug.checked"></td>
                                                     <td class="text-left">{{urtug.urtug}}</td>
                                                     <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
@@ -47,11 +47,32 @@
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
                                                     <td>{{'Rp. '+urtug.biayaRp}}</td>
                                                 </tr>
-                                                <tr ng-show="pilihurtug.urtugNonDpa==0">
+                                                <tr ng-show="filteredDataUrtugNonDpa==0">
                                                     <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="align-center">
+                                                <ul style="padding-left: 0px;">
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(-1)" ng-disabled="currentPageUrtugNonDpa==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            &lt; PREV
+                                                        </button>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugNonDpa+1}} Of {{maxSizeUrtugNonDpa}}</span>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(1)" ng-disabled="maxUrtugNonDpa()" aria-label="Use Android" style="cursor: pointer;">
+                                                            NEXT &gt;
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +88,7 @@
                                             <thead class="bg-table">
                                                 <tr>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle"><label>Pilih</label></th>
-                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
                                                     <th style="width: 12%; text-align: center; vertical-align: middle">Kuant/ Output</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
                                                     <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th>
@@ -77,7 +98,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="dpa in pilihurtug.urtugDpa" ng-hide="pilihurtug.urtugDpa==0" class="text-center">
+                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
                                                     <td><input type="checkbox" ng-model="dpa.checked"></td>
                                                     <td class="text-left">{{dpa.urtug}}</td>
                                                     <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
@@ -86,11 +107,32 @@
                                                     <td>{{'Rp. '+dpa.biayaRp}}</td>
                                                     <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success"><i class="material-icons">visibility</i><span>Detail</span></button></td>
                                                 </tr>
-                                                <tr ng-show="pilihurtug.urtugDpa==0">
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                <tr ng-show="filteredDataUrtugDpa==0">
+                                                    <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="align-center">
+                                                <ul style="padding-left: 0px;">
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            &lt; PREV
+                                                        </button>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugDpa+1}} Of {{maxSizeUrtugDpa}}</span>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" style="cursor: pointer;">
+                                                            NEXT &gt;
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

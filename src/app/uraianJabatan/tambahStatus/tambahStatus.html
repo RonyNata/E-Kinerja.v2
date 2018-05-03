@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color:#F44236; color:#ffff">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Beri Status Urtug/Aktivitas</strong></h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Beri Status Uraian Tugas</strong></h3>
 </div>
 <form ng-submit="status.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
@@ -7,13 +7,12 @@
             <div class="row space-after">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3">
-                    <p><b>Aktivitas</b></p>
+                    <p><b>Uraian Tugas</b></p>
                 </div>
                 <div class="col-md-7">
-                    <input class="form-control" list="aktivitas" name="aktivitas" ng-model="status.item.kdUrtug" autocomplete="off" ng-change="status.getUrtug()">
-                    <datalist id="aktivitas" style="height: 100px">
-                        <option ng-repeat="aktivitas in status.used_urtug"
-                                value="{{aktivitas.kdUrtug}}" ng-selected="selected">{{aktivitas.urtug}}</option>
+                    <input class="form-control" list="aktivitass" name="aktivitas" ng-model="status.item.kdUrtug" autocomplete="off" ng-change="status.getUrtug()">
+                    <datalist id="aktivitass">
+                        <option ng-repeat="aktivitas in status.used_urtug" value="{{aktivitas.kdUrtug}}" ng-selected="selected">{{aktivitas.urtug}}</option>
                     </datalist>
                 </div>
             </div>

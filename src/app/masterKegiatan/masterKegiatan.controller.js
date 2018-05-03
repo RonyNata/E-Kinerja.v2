@@ -19,6 +19,7 @@ angular.
                 function(response){
                   vm.list_kegiatan = response;debugger
                   vm.loading = false;
+                    pagingListKegiatan();
                 },
                 function(errResponse){
 
@@ -98,6 +99,7 @@ angular.
           MasterKegiatanService.GetPJ(items).then(
             function(response){
               vm.kegiatanPj = response; debugger
+                pagingKegiatanPj();
             }, function(errResponse){
 
             })
@@ -240,5 +242,65 @@ angular.
           // $log.info('Modal dismissed at: ' + new Date());
           });
         };
+
+        function pagingListKegiatan(){
+            $scope.filteredDataListKegiatan = [];
+            $scope.currentPageListKegiatan = 0;
+            $scope.numPerPageListKegiatan = 25;
+            $scope.maxSizeListKegiatan = Math.ceil(vm.list_kegiatan.length/$scope.numPerPageListKegiatan);
+            function pageListKegiatan(){
+                $scope.pageListKegiatan = [];
+                for(var i = 0; i < vm.list_kegiatan.length/$scope.numPerPageListKegiatan; i++){
+                    $scope.pageListKegiatan.push(i+1);
+                }
+            }
+            pageListKegiatan();
+            $scope.padListKegiatan = function(i){
+                $scope.currentPageListKegiatan += i;
+            }
+
+            $scope.maxListKegiatan = function(){
+                if($scope.currentPageListKegiatan >= $scope.maxSizeListKegiatan - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListKegiatan + numPerPageListKegiatan", function() {
+                var begin = (($scope.currentPageListKegiatan) * $scope.numPerPageListKegiatan)
+                    , end = begin + $scope.numPerPageListKegiatan;
+
+                $scope.filteredDataListKegiatan = vm.list_kegiatan.slice(begin, end);
+            });
+        }
+
+        function pagingKegiatanPj(){
+            $scope.filteredDataKegiatanPj = [];
+            $scope.currentPageKegiatanPj = 0;
+            $scope.numPerPageKegiatanPj = 15;
+            $scope.maxSizeKegiatanPj = Math.ceil(vm.kegiatanPj.length/$scope.numPerPageKegiatanPj);
+            function pageKegiatanPj(){
+                $scope.pageKegiatanPj = [];
+                for(var i = 0; i < vm.kegiatanPj.length/$scope.numPerPageKegiatanPj; i++){
+                    $scope.pageKegiatanPj.push(i+1);
+                }
+            }
+            pageKegiatanPj();
+            $scope.padKegiatanPj = function(i){
+                $scope.currentPageKegiatanPj += i;
+            }
+
+            $scope.maxKegiatanPj = function(){
+                if($scope.currentPageKegiatanPj >= $scope.maxSizeKegiatanPj - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageKegiatanPj + numPerPageKegiatanPj", function() {
+                var begin = (($scope.currentPageKegiatanPj) * $scope.numPerPageKegiatanPj)
+                    , end = begin + $scope.numPerPageKegiatanPj;
+
+                $scope.filteredDataKegiatanPj = vm.kegiatanPj.slice(begin, end);
+            });
+        }
    	} 
 })();
