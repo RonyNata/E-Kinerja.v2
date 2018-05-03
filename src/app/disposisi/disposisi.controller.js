@@ -130,7 +130,7 @@ debugger
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'app/template/dataPegawai/dataPegawai.html',
-        controller: 'DataPegawaiController',
+        controller: 'DataJabatanController',
         controllerAs: 'datapegawai',
         // windowClass: 'app-modal-window',
         size: 'lg',

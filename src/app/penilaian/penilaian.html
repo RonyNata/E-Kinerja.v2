@@ -155,7 +155,7 @@
                                                     <td>
                                                         <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
                                                         <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.disposisi(surat)" ><i class="material-icons">picture_as_pdf</i><span> Disposisikan</span></button>
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.disposisi(surat)" ng-show="penilaian.isAdmin()"><i class="material-icons">picture_as_pdf</i><span> Disposisikan</span></button>
                                                     </td>
                                                 </tr>
                                                 <tr ng-show="penilaian.sortSuratMasuk==0">

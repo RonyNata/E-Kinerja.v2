@@ -1,11 +1,11 @@
 (function() {
 'use strict';
- 
+
 angular.
 	module('eKinerja')
 	.controller('LihatPDFDisposisiController', LihatPDFDisposisiController);
 
-    
+
     function LihatPDFDisposisiController(EkinerjaService, doc, surat, dokumen, $uibModalInstance,
        TemplateSuratKeputusanService,
        TemplateSuratDinasService,
@@ -25,20 +25,24 @@ angular.
        AmbilDisposisiService, API, $window) {
       	var vm = this;
         var kdSurat = surat;debugger
-
         vm.dokumen = dokumen;
 
         vm.openSurat = function(){debugger
           AmbilDisposisiService.GetFile(kdSurat).then(
             function(response){
               if(response.jenisSurat == undefined){
-                var landingUrl = API + 'get-surat-disposisi/' + kdSurat;
-                $window.location.href = landingUrl;
+                // var landingUrl = API + 'get-surat-disposisi/' + kdSurat;
+                document.getElementById('pdfVv').src = response; //json array of byte
+                // $window.location.href = landingUrl;
               } else showPdf(response.jenisSurat, response.suratDisposisi);
             }, function(errResponse){
 
             })
         }
+        vm.openSurat();
+        pdfMake.createPdf(doc).getDataUrl(function (outDoc) {
+          document.getElementById('pdfV').src = outDoc; //file hasil genereate library
+        });
 
         function showPdf(jenis, data){
           var docs;
@@ -60,12 +64,12 @@ angular.
             case 15: console.log("123"); break;
             default: docs = TemplateSuratPerintahService.template(data); break;
           }
-          EkinerjaService.lihatPdf(docs, "yang di disposisikan");
+          pdfMake.createPdf(docs).getDataUrl(function (outDoc) {
+            document.getElementById('pdfLampiran').src = outDoc; //file hasil genereate library
+          });
+          //EkinerjaService.lihatPdf(docs, "yang di disposisikan");
         }
 
-        pdfMake.createPdf(doc).getDataUrl(function (outDoc) {
-          document.getElementById('pdfV').src = outDoc;
-        });
 
         vm.download = function(kdSurat){
           pdfMake.createPdf(doc).download();
@@ -74,5 +78,5 @@ angular.
       	vm.cancel = function () {
   	      $uibModalInstance.dismiss('cancel');
   	    };
-   	} 
+   	}
 })();

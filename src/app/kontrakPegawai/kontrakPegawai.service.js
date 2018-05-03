@@ -5,7 +5,7 @@
     .factory('KontrakPegawaiService',
     ['$http', 'API', '$q', 'API_REPORT',
     function ($http, API, $q, API_REPORT) {
-        var service = {}; 
+        var service = {};
         service.GetUrtugByJabatan = function (kdJabatan) {
             var deferred = $q.defer();
             $http.get(API + 'get-all-urtug-by-jabatan/' + kdJabatan).then(
@@ -72,7 +72,7 @@
         };
 
         service.GetUrtugDPA = function (nipPegawai, kdUnitKerja, kdJabatan) {
-            var deferred = $q.defer();
+            var deferred = $q.defer();console.log(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + kdJabatan);
             $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + kdJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
@@ -267,7 +267,7 @@
             }
             return result;
         };
- 
+
         return service;
     }])
     /* jshint ignore:end */

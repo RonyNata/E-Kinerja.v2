@@ -577,6 +577,28 @@
               $state.go($state.current.name);
             }
           }
+        })
+        .state('lmbrDisp', {
+          url: '/lembarDisp',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
+        })
+        .state('lampiranDisp', {
+          url: '/lampiranDisp',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
+            }
+          }
+        })
+        .state('persuratan', {
+          url: '/persuratan',
+          templateUrl: 'app/persuratan/persuratan.html',
+          controller: 'PersuratanController',
+          controllerAs: 'persuratan'
         });
 
     $urlRouterProvider.otherwise('/');
