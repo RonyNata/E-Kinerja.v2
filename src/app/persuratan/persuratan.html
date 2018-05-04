@@ -8,7 +8,7 @@
                         <div class="table-responsive" style="margin: 0px">
                             <table>
                                 <tr>
-                                    <td><i class="material-icons inline-icon">format_list_bulleted</i></td>
+                                    <td><i class="material-icons inline-icon">email</i></td>
                                     <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Persuratan</strong></td>
                                 </tr>
                             </table>
@@ -45,8 +45,8 @@
                                                     <td style="vertical-align: middle">{{srt.waktu}}</td>
                                                     <td style="vertical-align: middle">{{srt.statusPenyebaran == 0 ? 'Belum Disebarkan' : 'Sudah Disebarkan'}}</td>
                                                     <td class="text-center" style="vertical-align: middle">
-                                                        <!-- <button type="button" ng-show="persuratan.jenis == 0" ng-click="penugasan.teruskan(persuratan.kdSurat, persuratan.suratPejabat)" class="{{persuratan.statusBaca != 1 ?'btn waves-effect' : 'btn bg-blue waves-effect'}}" ng-disabled="persuratan.statusBaca != 1"><i class="material-icons">fast_forward</i> TERUSKAN</button> -->
-                                                        <p><strong>-</strong></p>
+                                                         <button type="button" class="{{srt.statusPenyebaran == 1 ?'btn waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="persuratan.changeStatus(srt)" ng-disabled="srt.statusPenyebaran == 1"><i class="material-icons">fast_forward</i> KIRIM</button>
+                                                        <!--<p><strong>-</strong></p>-->
                                                     </td>
                                                 </tr>
                                                 <tr ng-show="filteredDataPenugasan==0">

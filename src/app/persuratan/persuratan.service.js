@@ -18,7 +18,20 @@
                 }
             );
             return deferred.promise;
-        }
+        };
+
+        service.ChangeStatusSurat = function (url, kdSurat) {
+            var deferred = $q.defer();
+            $http.put(API + url + kdSurat ).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
  
         return service;
     }])
