@@ -22,6 +22,8 @@ angular.
                 response[i].jenisSurat = 'Surat Perintah';
               }
               vm.surat = response;
+
+                pagingSurat();
             }, function(errResponse){
 
             })
@@ -45,7 +47,7 @@ angular.
                 case 13: sebarDocument(surat, "sebar-surat-undangan/"); break;//error get
                 default: sebarDocument(surat, "sebar-surat-perintah/"); break;//done
             }
-        }
+        };
 
         function sebarDocument(surat, url){
             PersuratanService.ChangeStatusSurat(url, surat.kdSurat).then(
@@ -56,6 +58,36 @@ angular.
                     EkinerjaService.showToastrError(errResponse);
                     laporan.loading = false;
                 })
+        }
+
+        function pagingSurat(){
+            $scope.filteredDataSurat = [];
+            $scope.currentPageSurat = 0;
+            $scope.numPerPageSurat = 10;
+            $scope.maxSizeSurat = Math.ceil(vm.surat.length/$scope.numPerPageSurat);
+            function pageSurat(){
+                $scope.pageSurat = [];
+                for(var i = 0; i < vm.surat.length/$scope.numPerPageSurat; i++){
+                    $scope.pageSurat.push(i+1);
+                }
+            }
+            pageSurat();
+            $scope.padSurat = function(i){
+                $scope.currentPageSurat += i;
+            }
+
+            $scope.maxSurat = function(){
+                if($scope.currentPageSurat >= $scope.maxSizeSurat - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageSurat + numPerPageSurat", function() {
+                var begin = (($scope.currentPageSurat) * $scope.numPerPageSurat)
+                    , end = begin + $scope.numPerPageSurat;
+
+                $scope.filteredDataSurat = vm.surat.slice(begin, end);
+            });
         }
    	}
 })();
