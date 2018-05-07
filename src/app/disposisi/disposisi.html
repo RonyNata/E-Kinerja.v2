@@ -180,8 +180,8 @@
                                             <p><b>Diteruskan Kepada</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPilihan()" type="button" style="margin-left: 5px">{{perpindahan.target.length}} Pegawai Telah Dipilih</button>
+                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih {{perpindahan.isEselon4 ? 'Pegawai' : 'Jabatan'}}</button>
+                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPilihan()" type="button" style="margin-left: 5px">{{perpindahan.target.length}} {{perpindahan.isEselon4 ? 'Pegawai' : 'Jabatan'}} Telah Dipilih</button>
                                         </div>
                                     </div>
                                 </div>

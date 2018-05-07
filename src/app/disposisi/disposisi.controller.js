@@ -9,6 +9,10 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	vm.loading = true;
 	vm.item = {};
 
+    if($.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase() == 'iv')
+        vm.isEselon4 = true;
+    else vm.isEselon4 = false;
+
     if($state.params.kdJenis == "")
       vm.isUpload = true;
 debugger
@@ -122,30 +126,37 @@ debugger
     	console.log(vm.item.dariSuratDisposisi);
     } 
 
-    vm.openPegawai = function (parentSelector) {
+    vm.openPegawai = function (parentSelector) {debugger
+        if(vm.isEselon4){
+            var template = 'app/template/dataPegawai/dataPegawai.html';
+            var ctrl = 'DataPegawaiController';
+            var ctrlAs = 'datapegawai';
+            var rlv = { pegawai: function(){ return vm.list_pegawai; },
+                        pegawaiPilihan: function(){ return vm.target; },
+                        isPilihan: function(){ return 0; }
+                      }
+        } else{
+            var template = 'app/template/dataJabatan/dataJabatan.html';
+            var ctrl = 'DataJabatanController';
+            var ctrlAs = 'datajabatan';
+            var rlv = { jabatan: function(){ return vm.list_pegawai; },
+                        jabatanPilihan: function(){ return vm.target; },
+                        isPilihan: function(){ return 0; }
+                      }
+        }
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
         animation: true,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'app/template/dataPegawai/dataPegawai.html',
-        controller: 'DataJabatanController',
-        controllerAs: 'datapegawai',
+        templateUrl: template,
+        controller: ctrl,
+        controllerAs: ctrlAs,
         // windowClass: 'app-modal-window',
         size: 'lg',
         appendTo: parentElem,
-        resolve: {
-        	pegawai: function(){
-        		return vm.list_pegawai;
-        	},
-        	pegawaiPilihan: function(){
-        		return vm.target;
-        	},
-        	isPilihan: function(){
-        		return 0;
-        	}
-        }
+        resolve: rlv
         });
 
         modalInstance.result.then(function () {
@@ -154,30 +165,37 @@ debugger
         });
       };
 
-      vm.openPilihan = function (parentSelector) {
+      vm.openPilihan = function (parentSelector) {  
+        if(vm.isEselon4){
+            var template = 'app/template/dataPegawai/dataPegawai.html';
+            var ctrl = 'DataPegawaiController';
+            var ctrlAs = 'datapegawai';
+            var rlv = { pegawai: function(){ return vm.target; },
+                        pegawaiPilihan: function(){ return vm.target; },
+                        isPilihan: function(){ return 1; }
+                      }
+        } else{
+            var template = 'app/template/dataJabatan/dataJabatan.html';
+            var ctrl = 'DataJabatanController';
+            var ctrlAs = 'datajabatan';
+            var rlv = { jabatan: function(){ return vm.target; },
+                        jabatanPilihan: function(){ return vm.target; },
+                        isPilihan: function(){ return 1; }
+                      }
+        }
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
         animation: true,
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
-        templateUrl: 'app/template/dataPegawai/dataPegawai.html',
-        controller: 'DataPegawaiController',
-        controllerAs: 'datapegawai',
+        templateUrl: template,
+        controller: ctrl,
+        controllerAs: ctrlAs,
         // windowClass: 'app-modal-window',
         size: 'lg',
         appendTo: parentElem,
-        resolve: {
-        	pegawai: function(){
-        		return vm.target;
-        	},
-        	pegawaiPilihan: function(){
-        		return vm.target;
-        	},
-        	isPilihan: function(){
-        		return 1;
-        	}
-        }
+        resolve: rlv
         });
 
         modalInstance.result.then(function () {
@@ -250,7 +268,14 @@ debugger
     }
 
     for(var i = 0; i < vm.target.length; i++)
-      data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
+      if(vm.isEselon4){
+        data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
+        data.isTargetJabatan = false;
+      }
+      else {
+        data.daftarTargetLembarDisposisi.push(vm.target[i].kdJabatan);
+        data.isTargetJabatan = true;
+      }
       console.log(data);
 
     // console.log(data);
@@ -458,7 +483,9 @@ debugger
 			}
 
 	    	for(var i = 0; i < vm.target.length; i++){
-	            vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].jabatan);
+                if(vm.isEselon4)
+	               vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].nama);
+                else vm.docDefinition.content[0].table.body[8][1].ol.push(vm.target[i].jabatan);
 	        }
     	};
 

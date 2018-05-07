@@ -430,6 +430,9 @@ angular.
   	    };
 
         function template(item){
+          if(item.targetjabatan)
+            var unitTarget = item.targeJabatanLembarDisposisiList[0].unitKerja.toUpperCase();
+          else var unitTarget = item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase();
           var docDefinition = {
             pageSize: 'A4',
             content: [
@@ -442,7 +445,7 @@ angular.
                                     border: [true, true, true, false],
                                     text: [
                                         {text: 'PEMERINTAH KABUPATEN BEKASI\n',style: 'header'},
-                                        {text: '' + item.targetPegawaiLembarDisposisi[0].unitKerja,style: 'header'}
+                                        {text: '' + unitTarget,style: 'header'}
                                     ],
                                     colSpan: 3
                                 }, {}, {}
@@ -621,10 +624,14 @@ angular.
                 docDefinition.content[0].table.body[4][1].text[1].text[0] += "Biasa";
             }
 
-            for(var i = 0; i < item.targetPegawaiLembarDisposisi.length; i++){
-                docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].jabatan);
-                // docDefinition.content[0].table.body[8][2].ul.push("Sudah Ditandatangan");
-            }
+            if(item.targetjabatan)
+              for(var i = 0; i < item.targeJabatanLembarDisposisiList.length; i++){
+                docDefinition.content[0].table.body[8][1].ol.push(item.targeJabatanLembarDisposisiList[i].jabatan);
+              }
+            else 
+              for(var i = 0; i < item.targetPegawaiLembarDisposisi.length; i++){
+                docDefinition.content[0].table.body[8][1].ol.push(item.targetPegawaiLembarDisposisi[i].nama);
+              }
               vm.openDps(docDefinition, item.kdLembarDisposisi);
           };
 

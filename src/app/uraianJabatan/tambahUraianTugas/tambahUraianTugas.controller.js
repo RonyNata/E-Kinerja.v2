@@ -27,9 +27,9 @@ angular.
         // }
 
         vm.getUrtug = function(){
-          if(vm.item.kdUrtug.length == 8){
+          if(vm.item.kdUrtug.length != 0){
             vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.available_urtug, vm.item.kdUrtug);
-            vm.item.kdUrtug = vm.urtug.kdUrtug;
+            vm.item.kdUrtug = vm.urtug.kdUrtug;debugger
           }
         }
 

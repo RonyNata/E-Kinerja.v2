@@ -38,7 +38,7 @@ angular.
         }
 
         vm.getUrtug = function(){
-          if(vm.item.kdUrtug.length == 8){debugger
+          if(vm.item.kdUrtug.length != 0){debugger
             vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.used_urtug, vm.item.kdUrtug);
             vm.item.kdUrtug = vm.urtug.kdUrtug;
           }
