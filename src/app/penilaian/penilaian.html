@@ -95,7 +95,7 @@
                                                     <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
                                                 </td>
                                                 <td style="vertical-align: middle">
-                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa-file-pdf-o"></i><span> PDF FILE</span></button>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td style="vertical-align: middle">
@@ -160,6 +160,7 @@
                                                 <td>
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-show="penilaian.isAdmin()" ng-click="penilaian.disposisi(surat)" ><i class="fa fa-file-pdf-o"></i><span> Disposisikan</span></button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="penilaian.sortSuratMasuk==0">

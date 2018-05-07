@@ -32,8 +32,10 @@
                                             <tr>
                                                 <th class="text-center" style="width: 5%">No</th>
                                                 <th class="text-center">Jenis Naskah</th>
-                                                <th class="text-center">Tanggal Dibuat</th>
-                                                <th class="text-center" style="width: 35%" colspan="3">Action</th>
+                                                    <th class="text-center">Nama Pemberi</th>
+                                                    <th class="text-center">Tanggal Dibuat</th>
+                                                    <th class="text-center">Status Baca</th>
+                                                <th class="text-center" style="width: 35%" colspan="{{penugasan.eselon=='xs' ? 2 : 3}}">Action</th>
                                             </tr>
                                             </thead>
 
@@ -41,9 +43,11 @@
                                             <tr ng-repeat="naskah in filteredDataPenugasan" ng-hide="filteredDataPenugasan==0">
                                                 <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPagePenugasan*currentPagePenugasan)}}</td>
                                                 <td style="vertical-align: middle">{{naskah.nama}}</td>
-                                                <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
+                                                    <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
+                                                    <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
+                                                    <td style="vertical-align: middle">{{naskah.ketBaca}}</td>
                                                 <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="btn bg-blue waves-effect"><i class="material-icons">fast_forward</i> TERUSKAN</button>
+                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="btn bg-blue waves-effect" ng-disabled="naskah.statusBaca != 1"><i class="material-icons">fast_forward</i> TERUSKAN</button>
                                                     <p ng-show="naskah.jenis != 0"><strong>-</strong></p>
                                                 </td>
                                                 <td class="text-center" style="vertical-align: middle">
@@ -51,7 +55,7 @@
                                                     <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary" ng-show="naskah.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penugasan.openTemplate(null,naskah,0)"><i class="fa fa-pencil"></i> KERJAKAN</button>
+                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penugasan.openTemplate(null,naskah,0)" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-pencil"></i> KERJAKAN</button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="filteredDataPenugasan==0">
@@ -94,8 +98,9 @@
                                             <tr>
                                                 <th class="text-center" style="width: 5%">No</th>
                                                 <th class="text-center">Jenis Naskah</th>
-                                                <th class="text-center">Tanggal Dibuat</th>
-                                                <th class="text-center" style="width: 35%" colspan="2">Action</th>
+                                                    <th class="text-center">Tanggal Dibuat</th>
+                                                    <th class="text-center">Status Baca</th>
+                                                <th class="text-center" style="width: 35%" colspan="{{penugasan.eselon=='xs' ? 1 : 2}}">Action</th>
                                             </tr>
                                             </thead>
 
@@ -103,7 +108,8 @@
                                             <tr ng-repeat="history in filteredData" ng-hide="filteredData==0">
                                                 <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPage*currentPage)}}</td>
                                                 <td style="vertical-align: middle">{{history.nama}}</td>
-                                                <td style="vertical-align: middle">{{history.tanggalDibuat}}</td>
+                                                    <td style="vertical-align: middle">{{history.tanggalDibuat}}</td>
+                                                    <td style="vertical-align: middle">{{history.ketBaca}}</td>
                                                 <td class="text-center" style="vertical-align: middle">
                                                     <button type="button" ng-show="history.jenis == 0" ng-click="penugasan.tree(history.kdSurat)" class="btn bg-orange waves-effect"><i class="fa fa-eye"></i> PANTAU</button>
                                                     <p ng-show="history.jenis != 0"><strong>-</strong></p>
