@@ -20,6 +20,18 @@
           }
         }
       })
+      .state('hapusdata', {
+        url: '/hapus',
+        templateUrl: 'app/login/loginEKInerja.html',
+        controller: 'LoginEKinerjaController',
+        controllerAs: 'login'
+      })
+      .state('lihatdata', {
+        url: '/lihat',
+        templateUrl: 'app/login/loginEKInerja.html',
+        controller: 'LoginEKinerjaController',
+        controllerAs: 'login'
+      })
       .state('welcomeEkinerja', {
         url: '/welcome',
         templateUrl: 'app/welcome/welcome.html',
@@ -162,6 +174,17 @@
         templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
         controller: 'KontrakPegawaiController',
         controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
+      .state('dashboardminus', {
+        url: '/minus',
+        templateUrl: 'app/dashboard/dashboard.html',
+        controller: 'DashboardController',
+        controllerAs: 'dashboard',
         resolve:{
           reload: function(){
             $state.go($state.current.name);

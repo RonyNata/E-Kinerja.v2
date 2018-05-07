@@ -1,55 +1,51 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="page">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive" style="margin: 0px">
-                            <table>
-                                <tr>
-                                    <td><i class="material-icons inline-icon">assignment_ind</i></td>
-                                    <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Report Pegawai</strong></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <hr class="hr-space">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="pull-left header"><i class="fa fa-file-text-o"></i> Report Pegawai</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead class="bg-table">
+                                        <tr>
+                                            <th class="text-center" style="width: 5%">No</th>
+                                            <th class="text-center">Nama Pegawai</th>
+                                            <th class="text-center" style="width: 10%">Action</th>
+                                        </tr>
+                                        </thead>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="bg-table">
-                                <tr>
-                                    <th class="text-center" style="width: 5%">No</th>
-                                    <th class="text-center">Nama Pegawai</th>
-                                    <th class="text-center" style="width: 10%">Action</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr ng-repeat="pgw in reportPegawai.list_pegawai" ng-hide="reportPegawai.list_pegawai==0" class="text-center">
-                                    <td>{{$index + 1}}</td>
-                                    <td class="text-left">{{pgw.namaPegawai}}</td>
-                                    <td>
-                                        <button type="button" ng-click="reportPegawai.open(pgw)" class="btn btn-success waves-effect"><i class="material-icons">assessment</i><span> Lihat Report</span></button>
-                                    </td>
-                                </tr>
-                                <tr ng-show="reportPegawai.list_pegawai==0">
-                                    <td colspan="3" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        <tbody>
+                                        <tr ng-repeat="pgw in reportPegawai.list_pegawai" ng-hide="reportPegawai.list_pegawai==0" class="text-center">
+                                            <td>{{$index + 1}}</td>
+                                            <td class="text-left">{{pgw.namaPegawai}}</td>
+                                            <td>
+                                                <button type="button" ng-click="reportPegawai.open(pgw)" class="btn btn-success waves-effect"><i class="material-icons">assessment</i><span> Lihat Report</span></button>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="reportPegawai.list_pegawai==0">
+                                            <td colspan="3" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="reportPegawai.loading"></div>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- <div class="bg_load animate-show-hide" ng-show="reportPegawai.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="reportPegawai.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
@@ -59,4 +55,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div>
+</div> -->

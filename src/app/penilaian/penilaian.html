@@ -1,78 +1,61 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="page">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive" style="margin: 0px">
-                            <table>
-                                <tr>
-                                    <td><i class="material-icons inline-icon">email</i></td>
-                                    <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Tata Naskah</strong></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-4">
+                <div class="form-group">
+                <label>Lihat Surat Berdasarkan</label>
+                <select class="form-control" ng-model="penilaian.lihat" ng-change="penilaian.sorting()">
+                    <option value="0" selected>Semua</option>
+                    <option value="1">Waktu</option>
+                    <option value="2">Jenis Surat</option>
+                    <option value="3">Belum Dibaca</option>
+                    <option value="4">Sudah Dibaca</option>
+                    <option value="5">Ditolak</option>
+                    <option value="6">Diterima</option>
+                </select>
                 </div>
-                <hr class="hr-space">
-
-                <div class="row space-after">
-                    <div class="col-sm-3">
-                        <p><b>Lihat Surat Berdasarkan</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" ng-model="penilaian.lihat" ng-change="penilaian.sorting()">
-                            <option value="0" selected>Semua</option>
-                            <option value="1">Waktu</option>
-                            <option value="2">Jenis Surat</option>
-                            <option value="3">Belum Dibaca</option>
-                            <option value="4">Sudah Dibaca</option>
-                            <option value="5">Ditolak</option>
-                            <option value="6">Diterima</option>
-                        </select>
-                    </div>
+            </div>
+        </div>
+        <div class="row" ng-show="penilaian.lihat == 1">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Pilih Tanggal</label>
+                    <input type="date" class="form-control" ng-model="penilaian.tanggal" ng-change="penilaian.sortDate()"></input>
                 </div>
-
-                <div class="row" ng-show="penilaian.lihat == 1">
-                    <div class="col-sm-3">
-                        <p><b>Pilih Tanggal</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input type="date" class="form-control" ng-model="penilaian.tanggal" ng-change="penilaian.sortDate()"></input>
-                    </div>
+            </div>
+        </div>
+        <div class="row" ng-show="penilaian.lihat == 2">
+            <div class="col-md-4">
+                <div class="form-group">
+                <label>Pilih Jenis Surat</label>
+                <select class="form-control" ng-model="penilaian.jenis" ng-change="penilaian.sortJenis()">
+                    <option value="0" selected>Berita Acara</option>
+                    <option value="1">Laporan</option>
+                    <option value="2">Memorandum</option>
+                    <option value="3">Nota Dinas</option>
+                    <option value="4">Pengumuman</option>
+                    <option value="5">Surat Dinas</option>
+                    <option value="6">Surat Edaran</option>
+                    <option value="7">Surat Keputusan</option>
+                    <option value="8">Surat Keterangan</option>
+                    <option value="9">Surat Kuasa</option>
+                    <option value="10">Surat Pengantar</option>
+                    <option value="11">Surat Perintah</option>
+                    <option value="12">Surat Tugas</option>
+                    <option value="13">Surat Undangan</option>
+                    <option value="14">Telaahan Staff</option>
+                    <option value="15">Template Lain</option>
+                </select>
                 </div>
-
-                <div class="row" ng-show="penilaian.lihat == 2">
-                    <div class="col-sm-3">
-                        <p><b>Pilih Jenis Surat</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" ng-model="penilaian.jenis" ng-change="penilaian.sortJenis()">
-                            <option value="0">Berita Acara</option>
-                            <option value="1">Laporan</option>
-                            <option value="2">Memorandum</option>
-                            <option value="3">Nota Dinas</option>
-                            <option value="4">Pengumuman</option>
-                            <option value="5">Surat Dinas</option>
-                            <option value="6">Surat Edaran</option>
-                            <option value="7">Surat Keputusan</option>
-                            <option value="8">Surat Keterangan</option>
-                            <option value="9">Surat Kuasa</option>
-                            <option value="10">Surat Pengantar</option>
-                            <option value="11">Surat Perintah</option>
-                            <option value="12">Surat Tugas</option>
-                            <option value="13">Surat Undangan</option>
-                            <option value="14">Telaahan Staff</option>
-                            <option value="15">Template Lain</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                            <li role="presentation" class="active">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li role="presentation" class="active">
                                 <a href="#laporanbawah" data-toggle="tab"><b>Laporan Bawahan</b></a>
                             </li>
                             <li role="presentation">
@@ -81,15 +64,15 @@
                             <li role="presentation">
                                 <a href="#laporanajuan" data-toggle="tab"><b>Draft</b></a>
                             </li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="laporanbawah">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead class="bg-table">
+                        <li class="pull-left header"><i class="fa fa-sliders"></i> Tata Naskah</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="laporanbawah">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
                                                 <tr>
                                                     <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
                                                     <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
@@ -98,121 +81,119 @@
                                                     <th class="text-center" style="vertical-align: middle">Status</th>
                                                     <th class="text-center" style="vertical-align: middle; width: 35%" colspan="3">Action</th>
                                                 </tr>
-                                                </thead>
+                                            </thead>
 
-                                                <tbody>
-                                                <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
-                                                    <td style="vertical-align: middle">{{$index + 1 }}</td>
-                                                    <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
-                                                    <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
-                                                    <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
-                                                    <td style="vertical-align: middle">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
-                                                    <td style="vertical-align: middle">
-                                                        <button type="button" class="btn bg-blue waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="material-icons">fast_forward</i> TERUSKAN</span></button>
-                                                        <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="material-icons">edit</i><span> TANDATANGAN</span></button>
-                                                    </td>
-                                                    <td style="vertical-align: middle">
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
-                                                        <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
-                                                    </td>
-                                                    <td style="vertical-align: middle">
-                                                        <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="material-icons">clear</i> TOLAK</button>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-show="penilaian.sortLaporan==0">
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            <tbody>
+                                            <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
+                                                <td style="vertical-align: middle">{{$index + 1 }}</td>
+                                                <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
+                                                <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
+                                                <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
+                                                <td style="vertical-align: middle">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                <td style="vertical-align: middle">
+                                                    <button type="button" class="btn bg-blue waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="fa fa-arrow-right"></i><span> TERUSKAN</span></button>
+                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
+                                                </td>
+                                                <td style="vertical-align: middle">
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa-file-pdf-o"></i><span> PDF FILE</span></button>
+                                                    <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
+                                                </td>
+                                                <td style="vertical-align: middle">
+                                                    <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="fa fa-times"></i> TOLAK</button>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="penilaian.sortLaporan==0">
+                                                <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="tab-pane" id="suratmasuk">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
+                                            <tr>
+                                                <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
+                                                <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
+                                                <th class="text-center" style="vertical-align: middle">Pemberi Surat</th>
+                                                <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
+                                                <th class="text-center" style="vertical-align: middle">Status</th>
+                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
+                                            </tr>
+                                            </thead>
 
-                            <div role="tabpanel" class="tab-pane fade" id="suratmasuk">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead class="bg-table">
-                                                <tr>
-                                                    <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                    <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
-                                                    <th class="text-center" style="vertical-align: middle">Pemberi Surat</th>
-                                                    <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
-                                                    <th class="text-center" style="vertical-align: middle">Status</th>
-                                                    <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                <tr ng-repeat="surat in penilaian.sortSuratMasuk" ng-hide="penilaian.sortSuratMasuk==0" class="text-center">
-                                                    <td>{{$index + 1 }}</td>
-                                                    <td class="text-left">{{surat.jenisSurat}}</td>
-                                                    <td class="text-left">{{surat.jabatanPemberi}}</td>
-                                                    <td>{{surat.tanggalDibuat}}</td>
-                                                    <td>{{surat.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
-                                                    <td>
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
-                                                        <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-show="penilaian.sortSuratMasuk==0">
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            <tbody>
+                                            <tr ng-repeat="surat in penilaian.sortSuratMasuk" ng-hide="penilaian.sortSuratMasuk==0" class="text-center">
+                                                <td>{{$index + 1 }}</td>
+                                                <td class="text-left">{{surat.jenisSurat}}</td>
+                                                <td class="text-left">{{surat.jabatanPemberi}}</td>
+                                                <td>{{surat.tanggalDibuat}}</td>
+                                                <td>{{surat.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
+                                                <td>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
+                                                    <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="penilaian.sortSuratMasuk==0">
+                                                <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="tab-pane" id="laporanajuan">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
+                                            <tr>
+                                                <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
+                                                <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
+                                                <th class="text-center" style="vertical-align: middle">Type Surat</th>
+                                                <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
+                                                <th class="text-center" style="vertical-align: middle">Status</th>
+                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
+                                            </tr>
+                                            </thead>
 
-                            <div role="tabpanel" class="tab-pane fade" id="laporanajuan">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead class="bg-table">
-                                                <tr>
-                                                    <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                    <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
-                                                    <th class="text-center" style="vertical-align: middle">Type Surat</th>
-                                                    <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
-                                                    <th class="text-center" style="vertical-align: middle">Status</th>
-                                                    <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
-                                                </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                <tr ng-repeat="history in penilaian.sortHistory" ng-hide="penilaian.sortHistory==0" class="text-center">
-                                                    <td>{{$index + 1 }}</td>
-                                                    <td class="text-left">{{history.jenisSurat}}</td>
-                                                    <td>{{history.suratPejabat == true ? 'Pejabat' : 'Non-Pejabat'}}</td>
-                                                    <td>{{history.tanggalDibuat}}</td>
-                                                    <td>{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
-                                                    <td>
-                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="material-icons">picture_as_pdf</i><span> PDF FILE</span></button>
-                                                        <button type="button" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
-                                                    </td>
-                                                </tr>
-                                                <tr ng-show="penilaian.sortHistory==0">
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            <tbody>
+                                            <tr ng-repeat="history in penilaian.sortHistory" ng-hide="penilaian.sortHistory==0" class="text-center">
+                                                <td>{{$index + 1 }}</td>
+                                                <td class="text-left">{{history.jenisSurat}}</td>
+                                                <td>{{history.suratPejabat == true ? 'Pejabat' : 'Non-Pejabat'}}</td>
+                                                <td>{{history.tanggalDibuat}}</td>
+                                                <td>{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                <td>
+                                                    <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
+                                                    <button type="button" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="penilaian.sortHistory==0">
+                                                <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="penilaian.loading"></div>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- <div class="bg_load animate-show-hide" ng-show="penilaian.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="penilaian.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
@@ -222,4 +203,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div>
+</div> -->
