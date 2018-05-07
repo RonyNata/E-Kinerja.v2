@@ -1,342 +1,112 @@
-    <div class="overlay"></div>
-<nav class="navbar navbar-simda" >
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="javascript:void(0);" class="bars"></a>
-                <b class="navbar-brand"><img src="http://ekinerja.bekasikab.go.id/api/get-logo-ekinerja" height="110" width="250" style="margin-top: -35px;padding-left: 30px;"></b>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        <i class="material-icons">notifications</i>
-                        <span class="label-count" ng-show="vm.jmlNotif">{{vm.jmlNotif}}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">Pesan</li>
-                        <li class="body">
-                            <ul class="menu">
-                                <li style="padding-top: 10px; padding-bottom: 10px" ng-hide="vm.pegawai.sudahMembuatKontrak">
-                                    <div class="menu-info" >
-                                        <h4>Anda belum mengajukan kontrak kerja</h4>
-                                        <p>
-                                            <i class="material-icons">access_time</i> 4 hours ago
-                                        </p>
-                                    </div>
-                                </li>
-                                <li ng-repeat="ajuan in vm.ajuan" style="padding-top: 10px; padding-bottom: 10px">
-                                    <a href="#approval">
-                                        <div class="menu-info" >
-                                            <h4> {{ajuan.namaPegawai}} Baru saja mengajukan kontrak kerja</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 4 hours ago
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li ng-repeat="notif in vm.notif" style="padding-top: 10px; padding-bottom: 10px">
-                                    <a href="#penilaian" ng-show="notif.jenisNotif == 1">
-                                        <div class="menu-info" >
-                                            <h4>Laporan baru dari {{notif.namaBawahan}}</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 4 hours ago
-                                            </p>
-                                        </div>
-                                    </a>
-                                    <a href="#ambil-disposisi" ng-show="notif.jenisNotif == 2">
-                                        <div class="menu-info" >
-                                            <h4>Disposisi masuk dari {{notif.namaPengirim}}</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 4 hours ago
-                                            </p>
-                                        </div>
-                                    </a>
-                                    <a href="#penugasan" ng-show="notif.jenisNotif == 3">
-                                        <div class="menu-info" >
-                                            <h4>{{notif.jenisSurat}} masuk dari {{notif.namaPemberi}}</h4>
-                                            <p>
-                                                <i class="material-icons">access_time</i> 4 hours ago
-                                            </p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+<header class="main-header">
+  <div class="logo" style="position: fixed;">
+      <span class="logo-mini"><b class="text-orange">E-K</b></span>
+      <span class="logo-lg"><b class="text-orange" style="font-size: 18px;">E-Kinerja Kab.Bekasi</b> </span>
+  </div>
+  <nav class="navbar navbar-fixed-top">
+      <a class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+      </a>
+      <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+              <li class="dropdown notifications-menu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell-o"></i>
+                    <span class="label label-warning">{{vm.jmlNotif}}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="header">You have {{vm.jmlNotif}} notifications</li>
+                    <li>
+                      <ul class="menu">
+                        <li ng-repeat="notif in vm.notif">
+                          <a href="#penilaian">
+                            <i class="fa fa-envelope-o text-aqua"></i><span style="font-size: 12px;"> Laporan Baru Dari {{notif.namaBawahan}}</span>
+                          </a>
                         </li>
-                        <li class="footer">
-                            <a href="javascript:void(0);">Tampilkan Semua Pesan</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="pull-right">
-                    <a href="javascript:void(0);" class="js-right-sidebar" data-toggle="dropdown" role="button" data-close="true" style="margin-top: 15px;">
-                        <table>
-                            <tr>
-                                <td><span class="material-icons" style="font-size: 14px"><b>{{vm.pegawai.namaPegawai}}</b></span></td>
-                                <td style="padding-left: 5px"><i class="material-icons">expand_more</i></td>
-                            </tr>
-                        </table>
-                        <!-- <i class="material-icons">more_vert</i> -->
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<section>
-    <aside id="leftsidebar" class="sidebar">
-        <div class="menu">
-            <ul class="list">
-                <li class="header">FITUR PEGAWAI</li>
-                <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
-                    <a href="#/dashboard">
-                        <i class="material-icons">home</i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas') || vm.checkLocation('perpindahan')
-                || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) || vm.checkLocation('notadinaspencairan') ? 'active' : '' }}">
-                    <a href="#/kontrak-pegawai">
-                        <i class="material-icons">layers</i>
-                        <span>Kontrak Kerja</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
-                    <a href="#/ambil-disposisi">
-                        <i class="material-icons">assignment</i>
-                        <span>Disposisi</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
-                    <a href="#/penugasan">
-                        <i class="material-icons">format_list_bulleted</i>
-                        <span>Penugasan</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('approval') ? 'active' : ''}}" ng-hide="vm.eselon=='xs'">
-                    <a href="#/approval">
-                        <i class="material-icons">playlist_add_check</i>
-                        <span>Persetujuan Kontrak Kerja</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
-                    <a href="#/penilaian">
-                        <i class="material-icons">email</i>
-                        <span>Tata Naskah</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
-                    <a href="#/reportPegawai">
-                        <i class="material-icons">assignment_ind</i>
-                        <span>Report Pegawai</span>
-                    </a>
-                </li>
-                <!--<li class="{{vm.checkLocation('aktivitas') ? 'active' : ''}}">-->
-                    <!--<a href="#/aktivitas">-->
-                        <!--<i class="material-icons">layers</i>-->
-                        <!--<span>Input Aktivitas</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <li class="header" ng-hide="vm.checkRole('AD003')">FITUR SEBAGAI {{vm.pegawai.role.role}}</li>
-                <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
-                    <a href="#/master/urtug">
-                        <i class="material-icons">storage</i>
-                        <span>Data Master</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
-                    <a href="#/urtug/jabatan">
-                        <i class="material-icons">perm_data_setting</i>
-                        <span>Pemasangan Uraian Tugas Jabatan</span>
-                    </a>
-                </li>
-                <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
-                    <a href="#/master-kegiatan">
-                        <i class="material-icons">library_books</i>
-                        <span>Master Kegiatan</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')">
-                    <a href="#/hak-akses">
-                        <i class="material-icons">people</i>
-                        <span>Atur Hak Akses Pegawai</span>
-                    </a>
-                </li>
-                <li class="{{vm.checkLocation('persuratan') ? 'active' : ''}}" ng-show="vm.checkRole('AD004')">
-                    <a href="#/persuratan">
-                        <i class="material-icons">email</i>
-                        <span>Persuratan</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div class="legal">
-            <div class="copyright">
-                &copy; 2017 <a href="javascript:void(0);">E-Kinerja</a>.
-            </div>
-            <div class="version">
-                <b>Version: </b> 1.0.1
-            </div>
-        </div>
-        <!-- #Footer -->
-    </aside>
-
-    
-    <aside id="rightsidebar" class="right-sidebar" style="position: solid">
-        <ul class="nav nav-tabs tab-nav-right" role="tablist">
-            <li role="presentation" class="active"><a href="#settings" data-toggle="tab">PENGGUNA</a></li>
-            <li role="presentation"><a href="#skins" data-toggle="tab">SKINS NAVBAR</a></li>
-        </ul>
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade " id="skins">
-                <ul class="demo-choose-skin">
-                    <li data-theme="red" class="active">
-                        <div class="red"></div>
-                        <span>Red</span>
+                      </ul>
                     </li>
-                    <li data-theme="pink">
-                        <div class="pink"></div>
-                        <span>Pink</span>
+                    <li class="footer"><a>View all</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown user user-menu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="user-header" style="height: 230px;">
+                      <img src="favicon.ico" width="78" height="78" class="img-circle" alt="User Image" />
+                      <p style="font-size: 12px;">{{vm.pegawai.nipPegawai}}</p>
+                      <p style="font-size: 12px;">{{vm.pegawai.namaPegawai}}</p>
+                      <p style="font-size: 12px;">{{vm.pegawai.jabatan}}</p>
+                      <p style="font-size: 12px;">{{vm.pegawai.unit}}</p>
                     </li>
-                    <li data-theme="purple">
-                        <div class="purple"></div>
-                        <span>Purple</span>
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a class="btn btn-default btn-flat" ng-click="vm.testConnection()">Absensi</a>
+                      </div>
+                      <div class="pull-right">
+                        <a class="btn btn-default btn-flat" ng-click="vm.logout()">Sign out</a>
+                      </div>
                     </li>
-                    <li data-theme="deep-purple">
-                        <div class="deep-purple"></div>
-                        <span>Deep Purple</span>
-                    </li>
-                    <li data-theme="indigo">
-                        <div class="indigo"></div>
-                        <span>Indigo</span>
-                    </li>
-                    <li data-theme="blue">
-                        <div class="blue"></div>
-                        <span>Blue</span>
-                    </li>
-                    <li data-theme="light-blue">
-                        <div class="light-blue"></div>
-                        <span>Light Blue</span>
-                    </li>
-                    <li data-theme="cyan">
-                        <div class="cyan"></div>
-                        <span>Cyan</span>
-                    </li>
-                    <li data-theme="teal">
-                        <div class="teal"></div>
-                        <span>Teal</span>
-                    </li>
-                    <li data-theme="green">
-                        <div class="green"></div>
-                        <span>Green</span>
-                    </li>
-                    <li data-theme="light-green">
-                        <div class="light-green"></div>
-                        <span>Light Green</span>
-                    </li>
-                    <li data-theme="lime">
-                        <div class="lime"></div>
-                        <span>Lime</span>
-                    </li>
-                    <li data-theme="yellow">
-                        <div class="yellow"></div>
-                        <span>Yellow</span>
-                    </li>
-                    <li data-theme="amber">
-                        <div class="amber"></div>
-                        <span>Amber</span>
-                    </li>
-                    <li data-theme="orange">
-                        <div class="orange"></div>
-                        <span>Orange</span>
-                    </li>
-                    <li data-theme="deep-orange">
-                        <div class="deep-orange"></div>
-                        <span>Deep Orange</span>
-                    </li>
-                    <li data-theme="brown">
-                        <div class="brown"></div>
-                        <span>Brown</span>
-                    </li>
-                    <li data-theme="grey">
-                        <div class="grey"></div>
-                        <span>Grey</span>
-                    </li>
-                    <li data-theme="blue-grey">
-                        <div class="blue-grey"></div>
-                        <span>Blue Grey</span>
-                    </li>
-                    <li data-theme="black">
-                        <div class="black"></div>
-                        <span>Black</span>
-                    </li>
-                </ul>
-            </div>
-            <div role="tabpanel" class="tab-pane fade in active" id="settings">
-                <div class="demo-settings">
-                    <div class="image" align="center" style="padding-top: 10px;height: 100px;">
-                        <img src="favicon.ico" width="78" height="78" alt="User" />
-                    </div>
-                    <p>{{vm.pegawai.nipPegawai}}</p>
-                    <p>{{vm.pegawai.namaPegawai}}</p>
-                    <p style="color: grey">{{vm.pegawai.jabatan}}</p>
-                    <p style="color: grey">{{vm.pegawai.unit}}</p>
-                    <ul class="setting-list" >
-                        <li>
-                            <a href="#gantipwd" data-toggle="tab" class="btn btn-info btn-block waves-effect">
-                                <i class="material-icons">vpn_key</i>
-                                <span>GANTI PASSWORD</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="setting-list" style="margin-top: -20px">
-                        <li>
-                            <button class="btn btn-info btn-block waves-effect" ng-click="vm.logout()">
-                                <i class="material-icons">lock</i>
-                                <span>LOGOUT</span>
-                            </button>
-                        </li>
-                    </ul>
-                    <ul class="setting-list" style="margin-top: -20px">
-                        <li>
-                            <button class="btn btn-info btn-block waves-effect" ng-click="vm.testConnection()">
-                                <i class="material-icons">lock</i>
-                                <span>ABSEN</span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="gantipwd">
-                <div style="padding: 20px">
-                    <form>
-                        <div class="form-group">
-                            <label>Password Baru</label>
-                            <input style="border: 1px solid #ccc; border-radius: 4px; padding: 6px 12px" placeholder="password" type="password" class="form-control" ng-model="vm.password" required>
+                  </ul>
+              </li>
+              <li class="dropdown user user-menu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-unlock-alt"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li class="user-header">
+                      <div>
+                        <div class="box-header">
+                          <h3 class="box-title">Change Password</h3>
                         </div>
-                        <div class="form-group">
-                            <label>Tulis Kembali Password Baru</label>
-                            <input style="border: 1px solid #ccc; border-radius: 4px; padding: 6px 12px" placeholder="password" type="password" class="form-control" ng-model="vm.retypePassword" required>
+                        <div class="box-body">
+                          <form action="#">
+                            <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Password Baru....." ng-model="vm.password">
+                            </div>
+                            <div class="form-group">
+                              <input type="password" class="form-control" placeholder="Tulis Kembali Password Baru....." ng-model="vm.retypePassword">
+                            </div>
+                          </form>
                         </div>
-                        <button class="btn btn-info btn-block waves-effect col-md-6" ng-click="vm.gantipwd()">
-                            <span>SIMPAN</span>
-                        </button>
-                        <a href="#settings" data-toggle="tab" class="btn btn-danger btn-block waves-effect">
-                            <span>KEMBALI</span>
-                        </a>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </aside>
-</section>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="assets/js/demo.js"></script>
-<script src="assets/js/admin.js"></script>
-<script src="assets/plugins/node-waves/waves.js"></script>
-<script src="assets/js/hoverDropdown.js"></script>
-<script src="assets/js/metronic.js"></script>
-<script src="assets/js/layout.js"></script>
-<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+                      </div>
+                    </li>
+                    <li class="user-footer">
+                      <div class="pull-right">
+                        <a class="btn btn-default btn-flat" ng-click="vm.gantipwd()">Submit</a>
+                      </div>
+                    </li>
+                  </ul>
+              </li>
+          </ul>
+      </div>
+  </nav>
+</header>
+<aside class="main-sidebar" style="position: fixed;">
+  <section class="sidebar">
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header text-aqua">FITUR PEGAWAI</li>
+      <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}">
+          <a href="#/dashboard">
+              <i class="fa fa-home text-aqua"></i><span style="font-size: 12px" class="text-orange"> Dashboard</span>
+          </a>
+      </li>
+      <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas') || vm.checkLocation('perpindahan')
+          || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) || vm.checkLocation('notadinaspencairan') ? 'active' : '' }}">
+          <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 12px" class="text-orange"> Kontak Kerja</span></a>
+      </li>
+      <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}"><a href="#/ambil-disposisi"><i class="fa fa-list-alt text-aqua"></i><span style="font-size: 12px" class="text-orange"> Disposisi</span></a></li>
+      <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}"><a href="#/penugasan"><i class="fa fa-file-text-o text-aqua"></i><span style="font-size: 12px" class="text-orange"> Penugasan</span></a></li>
+      <li class="{{vm.checkLocation('approval') ? 'active' : ''}}"><a href="#/approval"><i class="fa fa-check-square-o text-aqua"></i><span style="font-size: 12px" class="text-orange"> Persetujuan Kontrak Kerja</span></a></li>
+      <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}"><a href="#/penilaian"><i class="fa  fa-sliders text-aqua"></i><span style="font-size: 12px" class="text-orange"> Tata Naskah</span></a></li>
+      <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}"><a href="#/reportPegawai"><i class="fa fa-history text-aqua"></i><span style="font-size: 12px" class="text-orange"> Report Pegawai</span></a></li>
+      <li class="header text-aqua" ng-hide="vm.checkRole('AD003')">FITUR {{vm.pegawai.role.role}}</li>
+      <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/master/urtug"><i class="fa fa-list-ul text-red"></i> <span style="font-size: 12px" class="text-orange"> Data Master</span></a></li>
+      <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/urtug/jabatan"><i class="fa  fa-cog text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Atur Uraian Tugas Jabatan</span></a></li>
+      <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/master-kegiatan"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Master Kegiatan</span></a></li>
+      <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/hak-akses"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Atur Hak Akses Pegawai</span></a></li>
+    </ul>
+  </section>
+</aside>
+

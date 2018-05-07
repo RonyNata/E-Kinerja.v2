@@ -1,230 +1,210 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <i class="material-icons" style="float: left;">assignment</i>
-                        <h2 style="padding-left: 30px;padding-top: 3px;"><b> PEMBUATAN SURAT DISPOSISI</b></h2>
-                    </div>
-                    <div class="body">
-                        <form ng-submit="perpindahan.save()" class="form-horizontal">
-                        <div class="row clearfix">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <!-- <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nomor Agenda/Registrasi</b></p>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <input type="number" class="form-control" ng-model="instruksipejabat.item.nomorSurat" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tingkat Keamanan</b></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="instruksipejabat.item.judulInstruksi" required style="height: 100px"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tanggal Penerimaan</b></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="instruksipejabat.item.tentang" required style="height: 100px"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tanggal Penyelesaian</b></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="instruksipejabat.item.alasan" required style="height: 100px"></textarea>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Nomor Agenda/Registrasi</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="text" class="form-control" ng-model="perpindahan.item.kdLembarDisposisiParent" ng-required="true" style="text-align: right">
-	                                </div>
-	                            </div> -->
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Sifat Disposisi</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-3">
-	                                    <select type="text" class="form-control" ng-hide="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamanan" ng-required="true">
-	                                            <option value="1">SR (Sangat Rahasia)</option>
-	                                            <option value="2">R (Rahasia)</option>
-	                                            <option value="3">B (Biasa)</option>
-	                                    </select>
-                                        <input type="text" ng-show="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamananKet" disabled="true" class="form-control">
-	                                </div>
-	                            </div>
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Tanggal Penerimaan</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="date" class="form-control" ng-model="perpindahan.item.tanggalPenerimaanMilis" ng-required="true">
-	                                </div>
-	                            </div>
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Tanggal Penyelesaian</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="date" class="form-control" ng-model="perpindahan.item.tglPenyelesaianMilis" ng-required="true">
-	                                </div>
-	                            </div>
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Tanggal Surat Disposisi</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="date" class="form-control" ng-model="perpindahan.item.tanggalSuratDisposisiMilis" ng-required="true">
-	                                </div>
-	                            </div>
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Nomor Surat</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="text" class="form-control" ng-model="perpindahan.item.noSuratDisposisi" ng-required="true">
-	                                </div>
-	                            </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-5" style="margin-top:5px">
-                                        <p><b>Dari</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" ng-model="perpindahan.item.dariSuratDisposisi" ng-required="true">
-                                    </div>
-                                </div>
-	                            <!--<div class="col-md-12" style="margin-bottom:10px">-->
-	                                <!--<div class="col-sm-5" style="margin-top:5px">-->
-	                                    <!--<p><b>Dari</b></p>-->
-	                                <!--</div>-->
-	                                <!--<div class="col-sm-1" style="margin-top:5px"><b>:</b></div>-->
-	                                <!--<div class="col-md-6">-->
-	                                    <!--&lt;!&ndash; <input type="text" class="form-control" ng-model="perpindahan.item.dariSuratDisposisi" ng-required="true"> &ndash;&gt;-->
-	                                    <!--<button class="btn btn-primary waves-effect" ng-click="perpindahan.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>-->
-                                        <!--<div ng-show="perpindahan.item.dariSuratDisposisi">Nama: {{perpindahan.item.dariSuratDisposisi.nama}}</div>-->
-                                        <!--<div ng-show="perpindahan.item.dariSuratDisposisi">Jabatan: {{perpindahan.item.dariSuratDisposisi.jabatan}}</div>-->
-	                                <!--</div>-->
-	                            <!--</div>-->
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Perihal</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="perpindahan.item.ringkasanIsiSuratDisposisi" required style="height: 100px"></textarea>
-                                    </div>
-	                            </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-sm-5" style="margin-top:5px">
-                                        <p><b>Isi Disposisi</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-6">
-                                        <textarea class="form-control" ng-model="perpindahan.item.isiDisposisi" required style="height: 100px"></textarea>
-                                    </div>
-                                </div>
-	                            <div class="col-md-12" style="margin-bottom:10px">
-	                                <div class="col-sm-5" style="margin-top:5px">
-	                                    <p><b>Lampiran</b></p>
-	                                </div>
-	                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-	                                <div class="col-md-6">
-	                                    <input type="text" class="form-control" ng-model="perpindahan.item.lampiran" ng-required="true">
-	                                </div>
-	                            </div>
-                                <div class="col-md-12" style="margin-bottom:10px" ng-show="perpindahan.isUpload">
-                                    <div class="col-sm-5" style="margin-top:5px">
-                                        <p><b>File Disposisi</b></p>
-                                    </div>
-                                    <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
-                                    <div class="col-md-6">
-                                        <form enctype="multipart/form-data">
-                                            <input type="file" name="file" onchange="angular.element(this).scope().uploadPic(this.files)">
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-3" style="margin-top:5px">
-                                        <p><b>Memberi Instruksi Kepada :</b></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <hr>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Diteruskan Kepada</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih {{perpindahan.isEselon4 ? 'Pegawai' : 'Jabatan'}}</button>
-                                            <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPilihan()" type="button" style="margin-left: 5px">{{perpindahan.target.length}} {{perpindahan.isEselon4 ? 'Pegawai' : 'Jabatan'}} Telah Dipilih</button>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="pull-left header"><i class="fa fa-file-text-o"></i> PEMBUATAN SURAT DISPOSISI</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form ng-submit="perpindahan.save()" class="form-horizontal">
+                                    <div class="row clearfix">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Sifat Disposisi</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-3">
+                                                    <select type="text" class="form-control" ng-hide="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamanan" ng-required="true">
+                                                            <option value="1">SR (Sangat Rahasia)</option>
+                                                            <option value="2">R (Rahasia)</option>
+                                                            <option value="3">B (Biasa)</option>
+                                                    </select>
+                                                    <input type="text" ng-show="perpindahan.penerusan" ng-model="perpindahan.item.tktKeamananKet" disabled="true" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Tanggal Penerimaan</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="date" class="form-control" ng-model="perpindahan.item.tanggalPenerimaanMilis" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Tanggal Penyelesaian</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="date" class="form-control" ng-model="perpindahan.item.tglPenyelesaianMilis" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Tanggal Surat Disposisi</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="date" class="form-control" ng-model="perpindahan.item.tanggalSuratDisposisiMilis" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Nomor Surat</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" ng-model="perpindahan.item.noSuratDisposisi" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Dari</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" ng-model="perpindahan.item.dariSuratDisposisi" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Perihal</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <textarea class="form-control" ng-model="perpindahan.item.ringkasanIsiSuratDisposisi" required style="height: 100px"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Isi Disposisi</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <textarea class="form-control" ng-model="perpindahan.item.isiDisposisi" required style="height: 100px"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Lampiran</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" ng-model="perpindahan.item.lampiran" ng-required="true">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>File Disposisi</b></p>
+                                                </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-6">
+                                                    <form enctype="multipart/form-data">
+                                                        <input type="file" name="file" onchange="angular.element(this).scope().uploadPic(this.files)">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px"> 
+                                                <div class="col-md-1"></div> 
+                                                <div class="col-sm-3" style="margin-top:5px">
+                                                    <p><b>Memberi Instruksi Kepada :</b></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <hr>
+                                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                                    <div class="col-md-1"></div> 
+                                                    <div class="col-sm-2" style="margin-top:5px">
+                                                        <p><b>Diteruskan Kepada</b></p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                                        <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPilihan()" type="button" style="margin-left: 5px">{{perpindahan.target.length}} Pegawai Telah Dipilih</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="col-md-7"></div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px">
+                                                <div class="col-md-1"></div> 
+                                                <div class="col-sm-2" style="margin-top:5px">
+                                                    <p><b>Waktu Pembuatan</b></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="col-md-4" style="margin-left: -15px;">
+                                                        <input class="form-control" ng-model="perpindahan.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" required>
+                                                    </div>
+                                                    <div class="col-md-4" style="padding-top: 8px;">
+                                                        <span><b>Menit</b></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom:10px"> 
+                                                <div class="col-md-1"></div> 
+                                                <div class="col-sm-2" style="margin-top:5px">
+                                                    <p><b></b></p>
+                                                </div>
+                                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                                <div class="col-md-6" style="margin-left: 25px">
+                                                    <div class="col-md-5"></div> 
+                                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="perpindahan.openPdf()" style="font-size: 20px">PDF</button>
+                                                    <button type="button" class="btn btn-danger waves-effect" ng-click="perpindahan.back()" style="font-size: 20px">Back</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="col-md-7"></div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Waktu Pembuatan</b></p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="col-md-4" style="margin-left: -15px;">
-                                            <input class="form-control" ng-model="perpindahan.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" required></input>
-                                        </div>
-                                        <div class="col-md-4" style="padding-top: 8px;">
-                                            <span><b>Menit</b></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b></b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6" style="margin-left: 25px">
-                                        <div class="col-md-5"></div>
-                                        <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                        <button type="button" class="btn btn-success waves-effect" ng-click="openPdf()" style="font-size: 20px">PDF</button>
-                                        <button type="button" class="btn btn-danger waves-effect" ng-click="perpindahan.back()" style="font-size: 20px">Back</button>
-                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row animate-show-hide" ng-show="master.pj">
+                            <div class="col-md-12">
+                                <h3>Kegiatan {{master.dpa.ketKegiatan}}</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-hover js-basic-example">
+                                        <thead class="bg-table">
+                                        <tr>
+                                            <th class="text-center" style="width: 5%">No</th>
+                                            <th class="text-center">NIP</th>
+                                            <th class="text-center">Nama Pegawai</th>
+                                            <th class="text-center">Jabatan</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <tr ng-repeat="pj in master.kegiatanPj" class="text-center">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{pj.penanggungJawab.nip}}</td>
+                                            <td class="text-left">{{pj.penanggungJawab.nama}}</td>
+                                            <td>{{pj.statusPenanggungJawab}}</td>
+                                            <td>
+                                                <!-- <button type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button> -->
+                                                <button type="button" ng-click="master.hapusPj(pj)" class="btn btn-danger btn waves waves-effect">Hapus</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="perpindahan.loading"></div>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
+<!-- <div class="bg_load animate-show-hide" ng-show="perpindahan.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="perpindahan.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
@@ -234,4 +214,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div>
+</div> -->

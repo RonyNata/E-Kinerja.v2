@@ -1,283 +1,232 @@
-<ekinerja-navbar></ekinerja-navbar>
-<section style="padding-top: 90px;">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="page">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive" style="margin: 0px">
-                            <table>
-                                <tr>
-                                    <td><i class="material-icons inline-icon">layers</i></td>
-                                    <td class="header-size2" style="vertical-align: middle">&nbsp<strong>Kontrak Kerja</strong></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <hr class="hr-space">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-6"><strong>PEJABAT ATASAN</strong></div>
-                                    <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.nama}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.nipPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-sm-9" ng-show="kontrak.penilai.pangkat">: {{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
-                                    <div class="col-sm-9" ng-hide="kontrak.penilai.pangkat">: </div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.jabatan}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Unit Kerja</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.unitKerja}}</div>
-                                </div>
+<div class="wrapper">
+    <ekinerja-navbar></ekinerja-navbar>
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row" style="margin-top:50px">
+                <div class="col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-6"><strong>PEJABAT PENILAI</strong></div>
+                                <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-success">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-md-6"><strong>PEJABAT PENILAI</strong></div>
-                                    <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.nama}}</div>
+                        <div class="panel-body">
+                            <div class="row" style="font-size: 12px;">
+                                <div class="col-sm-2">Nama</div>
+                                <div class="col-sm-10">: {{kontrak.penilai.nama}}</div>
 
-                                    <div class="w-100"></div>
+                                <div class="w-100"></div>
 
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.nipPegawai}}</div>
+                                <div class="col-sm-2">NIP</div>
+                                <div class="col-sm-10">: {{kontrak.penilai.nipPegawai}}</div>
 
-                                    <div class="w-100"></div>
+                                <div class="w-100"></div>
 
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-sm-9" ng-show="kontrak.penilai.pangkat">: {{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
-                                    <div class="col-sm-9" ng-hide="kontrak.penilai.pangkat">: </div>
+                                <div class="col-sm-2">Pangkat/Gol</div>
+                                <div class="col-sm-10" ng-show="kontrak.penilai.pangkat">: {{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
+                                <div class="col-sm-9" ng-hide="kontrak.penilai.pangkat">: </div>
 
-                                    <div class="w-100"></div>
+                                <div class="w-100"></div>
 
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.jabatan}}</div>
+                                <div class="col-sm-2">Jabatan</div>
+                                <div class="col-sm-10">: {{kontrak.penilai.jabatan}}</div>
 
-                                    <div class="w-100"></div>
+                                <div class="w-100"></div>
 
-                                    <div class="col-sm-3">Unit Kerja</div>
-                                    <div class="col-sm-9">: {{kontrak.penilai.unitKerja}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading"><strong>PEGAWAI NEGERI SIPIL DINILAI</strong></div>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-sm-9">: {{kontrak.pegawai.namaPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-sm-9">: {{kontrak.pegawai.nipPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-sm-9" ng-show="kontrak.pegawai.pangkat">: {{kontrak.pegawai.pangkat + ' / ' + kontrak.pegawai.golongan}}</div>
-                                    <div class="col-sm-9" ng-hide="kontrak.pegawai.pangkat">: </div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-sm-9">: {{kontrak.pegawai.jabatan}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Unit Kerja</div>
-                                    <div class="col-sm-9">: {{kontrak.pegawai.unit}}</div>
-                                </div>
+                                <div class="col-sm-2">Unit Kerja</div>
+                                <div class="col-sm-10">: {{kontrak.penilai.unitKerja}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading"><strong>PEGAWAI NEGERI SIPIL DINILAI</strong></div>
+                        <div class="panel-body">
+                            <div class="row" style="font-size: 12px;">
+                                <div class="col-sm-2">Nama</div>
+                                <div class="col-sm-10">: {{kontrak.pegawai.namaPegawai}}</div>
 
-                <div class="row">
-                    <div class="col-md-6 space-after">
-                        <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-primary btn-xl btn-block"><strong>AJUAN KONTRAK KERJA</strong></button>
-                    </div>
-                    <div class="col-md-6 space-after">
-                        <button type="button" ng-click="kontrak.openHistory()" class="btn btn-primary btn-xl btn-block"><strong>LIHAT REKAP PEKERJAAN</strong></button>
-                    </div>
-                </div>
+                                <div class="w-100"></div>
 
-                <div ng-hide="kontrak.statusKontrak" style="padding: 60px; text-align: center">
-                    <h1>{{kontrak.statusAjuanNonDpa ? 'Kontrak Anda Sedang Diajukan' : 'Anda Belum Mengajukan Kontrak Kerja'}}</h1>
-                </div>
+                                <div class="col-sm-2">NIP</div>
+                                <div class="col-sm-10">: {{kontrak.pegawai.nipPegawai}}</div>
 
-                <div ng-show="kontrak.statusKontrak">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#tahunannon" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#tahunandpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
-                                </li>
-                            </ul>
+                                <div class="w-100"></div>
 
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="tahunannon">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead class="bg-table">
-                                                        <tr>
-                                                            <th rowspan="2" class="text-center" style="vertical-align: middle">No</th>
-                                                            <th rowspan="2" class="text-center" style="vertical-align: middle">Rincian Tugas</th>
-                                                            <th colspan="5" class="text-center">TARGET</th>
-                                                        </tr>
-                                                        <tr class="text-center">
-                                                            <th class="text-center" style="vertical-align: middle">Kuant/ Output</th>
-                                                            <th class="text-center" style="vertical-align: middle">Mutu</th>
-                                                            <th class="text-center" style="vertical-align: middle">Waktu</th>
-                                                            <th class="text-center" style="vertical-align: middle">Biaya</th>
-                                                            <th class="text-center" style="vertical-align: middle">Action</th>
-                                                        </tr>
-                                                    </thead>
+                                <div class="col-sm-2">Pangkat/Gol</div>
+                                <div class="col-sm-10" ng-show="kontrak.pegawai.pangkat">: {{kontrak.pegawai.pangkat + ' / ' + kontrak.pegawai.golongan}}</div>
+                                <div class="col-sm-9" ng-hide="kontrak.pegawai.pangkat">: </div>
 
-                                                    <tbody>
-                                                        <tr ng-repeat="urtug in filteredDataTarget" class="text-center" ng-hide="filteredDataTarget==0">
-                                                            <td>{{$index + 1 + (numPerPageTarget*currentPageTarget)}}</td>
-                                                            <td class="text-left">{{urtug.urtug}}</td>
-                                                            <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                            <td>{{urtug.kualitas + '%'}}</td>
-                                                            <td>{{urtug.waktu + ' Bulan'}}</td>
-                                                            <td>{{'Rp. '+urtug.biayaRp}}</td>
-                                                            <td><button type="button" ng-click="kontrak.openTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
-                                                        </tr>
-                                                        <tr ng-show="filteredDataTarget==0">
-                                                            <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="align-center">
-                                                        <ul style="padding-left: 0px;">
-                                                            <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="padTarget(-1)" ng-disabled="currentPageTarget==0" aria-label="Use Android" style="cursor: pointer;">
-                                                                    &lt; PREV
-                                                                </button>
-                                                            </li>
-                                                            <li style="display: inline-block;">
-                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageTarget+1}} Of {{maxSizeTarget}}</span>
-                                                            </li>
-                                                            <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="padTarget(1)" ng-disabled="maxTarget()" aria-label="Use Android" style="cursor: pointer;">
-                                                                    NEXT &gt;
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade in" id="tahunandpa">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered">
-                                                    <thead class="bg-table">
-                                                        <tr>
-                                                            <th style="width: 5%; text-align: center">No</th>
-                                                            <th style="text-align: center">Rincian Uraian Tugas</th>
-                                                            <th style="text-align: center">Kegiatan</th>
-                                                            <th style="width: 5%;text-align: center">Pejabat</th>
-                                                            <th style="width: 15%;text-align: center">Biaya</th>
-                                                            <th style="width: 5%;text-align: center">Action</th>
-                                                        </tr>
-                                                    </thead>
+                                <div class="w-100"></div>
 
-                                                    <tbody>
-                                                        <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
-                                                            <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
-                                                            <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
-                                                            <td style="text-align: left">{{kegiatan.ketKeg}}</td>
-                                                            <td>{{kegiatan.statusPenanggungJawab}}</td>
-                                                            <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
-                                                            <td><button type="button" ng-click="kontrak.openTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td>
-                                                        </tr>
-                                                        <tr ng-show="filteredDataKegiatan==0">
-                                                            <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="align-center">
-                                                        <ul style="padding-left: 0px;">
-                                                            <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="padKegiatan(-1)" ng-disabled="currentPageKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                                    &lt; PREV
-                                                                </button>
-                                                            </li>
-                                                            <li style="display: inline-block;">
-                                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageKegiatan+1}} Of {{maxSizeKegiatan}}</span>
-                                                            </li>
-                                                            <li style="display: inline-block;">
-                                                                <button class="btn btn-primary" ng-click="padKegiatan(1)" ng-disabled="maxKegiatan()" aria-label="Use Android" style="cursor: pointer;">
-                                                                    NEXT &gt;
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="col-sm-2">Jabatan</div>
+                                <div class="col-sm-10">: {{kontrak.pegawai.jabatan}}</div>
+
+                                <div class="w-100"></div>
+
+                                <div class="col-sm-2">Unit Kerja</div>
+                                <div class="col-sm-10">: {{kontrak.pegawai.unit}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div> 
-</section>
+            <div class="row">
+                <div class="col-md-6 space-after">
+                    <button type="button" ng-click="kontrak.openUrtug()" class="btn btn-primary btn-xl btn-block"><strong>AJUAN KONTRAK KERJA</strong></button>
+                </div>
+                <div class="col-md-6 space-after">
+                    <button type="button" ng-click="kontrak.openHistory()" class="btn btn-primary btn-xl btn-block"><strong>LIHAT REKAP PEKERJAAN</strong></button>
+                </div>
+            </div>
 
-<div class="bg_load animate-show-hide" ng-show="kontrak.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="kontrak.loading">
+            <div ng-hide="kontrak.statusKontrak" style="padding: 60px; text-align: center">
+                <h1>{{kontrak.statusAjuanNonDpa ? 'Kontrak Anda Sedang Diajukan' : 'Anda Belum Mengajukan Kontrak Kerja'}}</h1>
+            </div>
+
+            <div ng-show="kontrak.statusKontrak">
+                <div class="row">
+                    <div class="col-md-12">
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs pull-right">
+                            <li role="presentation" class="active">
+                                <a href="#tahunannon" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#tahunandpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
+                            </li>
+                            <li class="pull-left header"><i class="fa fa-th"></i> Kontrak Kerja</li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="tahunannon">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-table">
+                                                    <tr>
+                                                        <th rowspan="2" class="text-center" style="vertical-align: middle">No</th>
+                                                        <th rowspan="2" class="text-center" style="vertical-align: middle">Rincian Tugas dan Kegiatan</th>
+                                                        <th colspan="5" class="text-center">TARGET</th>
+                                                    </tr>
+                                                    <tr class="text-center">
+                                                        <th class="text-center" style="vertical-align: middle">Kuant/ Output</th>
+                                                        <th class="text-center" style="vertical-align: middle">Mutu</th>
+                                                        <th class="text-center" style="vertical-align: middle">Waktu</th>
+                                                        <th class="text-center" style="vertical-align: middle">Biaya</th>
+                                                        <th class="text-center" style="vertical-align: middle">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr ng-repeat="urtug in filteredDataTarget" class="text-center" ng-hide="filteredDataTarget==0">
+                                                        <td>{{$index + 1 + (numPerPageTarget*currentPageTarget)}}</td>
+                                                        <td class="text-left">{{urtug.urtug}}</td>
+                                                        <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
+                                                        <td>{{urtug.kualitas + '%'}}</td>
+                                                        <td>{{urtug.waktu + ' Bulan'}}</td>
+                                                        <td>{{'Rp. '+urtug.biayaRp}}</td>
+                                                        <td><button type="button" ng-click="kontrak.openTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
+                                                    </tr>
+                                                    <tr ng-show="filteredDataTarget==0">
+                                                        <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="align-center">
+                                                    <ul style="padding-left: 0px;">
+                                                        <li style="display: inline-block;">
+                                                            <button class="btn btn-primary" ng-click="padTarget(-1)" ng-disabled="currentPageTarget==0" aria-label="Use Android" style="cursor: pointer;">
+                                                                &lt; PREV
+                                                            </button>
+                                                        </li>
+                                                        <li style="display: inline-block;">
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageTarget+1}} Of {{maxSizeTarget}}</span>
+                                                        </li>
+                                                        <li style="display: inline-block;">
+                                                            <button class="btn btn-primary" ng-click="padTarget(1)" ng-disabled="maxTarget()" aria-label="Use Android" style="cursor: pointer;">
+                                                                NEXT &gt;
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tahunandpa">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-table">
+                                                    <tr>
+                                                        <th style="width: 5%; text-align: center">No</th>
+                                                        <th style="text-align: center">Rincian Uraian Tugas</th>
+                                                        <th style="text-align: center">Kegiatan</th>
+                                                        <th style="width: 5%;text-align: center">Jabatan</th>
+                                                        <th style="width: 15%;text-align: center">Biaya</th>
+                                                        <th style="width: 5%;text-align: center">Action</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
+                                                        <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                        <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
+                                                        <td style="text-align: left">{{kegiatan.ketKeg}}</td>
+                                                        <td>{{kegiatan.statusPenanggungJawab}}</td>
+                                                        <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
+                                                        <td><button type="button" ng-click="kontrak.openTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td>
+                                                    </tr>
+                                                    <tr ng-show="filteredDataKegiatan==0">
+                                                        <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="align-center">
+                                                    <ul style="padding-left: 0px;">
+                                                        <li style="display: inline-block;">
+                                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                                &lt; PREV
+                                                            </button>
+                                                        </li>
+                                                        <li style="display: inline-block;">
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                        </li>
+                                                        <li style="display: inline-block;">
+                                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                                NEXT &gt;
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- <div ng-show="kontrak.loading"></div>
+<div ng-show="kontrak.loading">
     <div class="inner" style="padding-top: 180px">
         <span>Sedang</span>
         <span>Mengambil</span>
@@ -286,4 +235,4 @@
         <span>.</span>
         <span>.</span>
     </div>
-</div>
+</div> -->
