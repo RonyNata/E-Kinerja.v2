@@ -293,7 +293,7 @@
         }
       })
       .state('perpindahan', {
-        url: '/disposisi/:kdSurat/:kdJenis',
+        url: '/disposisi/:kdSurat/:kdJenis/:kdUrtug/:tahun',
         templateUrl: 'app/disposisi/disposisi.html',
         controller: 'DisposisiController',
         controllerAs: 'perpindahan'
