@@ -256,6 +256,7 @@ debugger
     };
 
     if($state.current.name == "perpindahan"){
+        data.
     	data.kdLembarDisposisiParent = null;
         if($state.params.kdJenis == "")
             data.namaFileSuratLain = vm.name;

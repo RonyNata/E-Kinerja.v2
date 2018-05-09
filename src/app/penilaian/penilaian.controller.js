@@ -55,11 +55,33 @@
                 })
         }
 
-        vm.disposisi = function(surat){
-            $state.go('perpindahan', {
-                kdSurat: surat.kdSurat,
-                kdJenis: surat.kdJenisSurat
-            })
+        vm.disposisi = function(suratt, parentSelector){
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/penilaian/openUrtug/openUrtug.html',
+                controller: 'OpenUrtugController',
+                controllerAs: 'openurtug',
+                // windowClass: 'app-modal-window',
+                // size: 'lg',
+                appendTo: parentElem,
+                resolve: {
+                    surat: function () {
+                        return suratt;
+                    },
+                    isUpload: function () {
+                        return 0;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
         }
 
         vm.terima = function(laporan, kdSurat, isPejabat){debugger

@@ -207,6 +207,35 @@
           $state.go('perpindahan');
         }
 
+        vm.disposisi = function(parentSelector){
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/penilaian/openUrtug/openUrtug.html',
+              controller: 'OpenUrtugController',
+              controllerAs: 'openurtug',
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                  surat: function () {
+                      return 0;
+                  },
+                  isUpload: function () {
+                      return 1;
+                  }
+              }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        }
+
         function template(item){
           if(item.targetjabatan)
             var unitTarget = item.targeJabatanLembarDisposisiList[0].unitKerja.toUpperCase();
