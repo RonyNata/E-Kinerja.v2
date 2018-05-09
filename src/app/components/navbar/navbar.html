@@ -1,7 +1,7 @@
 <header class="main-header">
   <div class="logo" style="position: fixed;">
-      <span class="logo-mini"><b class="text-orange">E-K</b></span>
-      <span class="logo-lg"><b class="text-orange" style="font-size: 18px;">E-Kinerja Kab.Bekasi</b> </span>
+      <span class="logo-mini"><b>E-K</b></span>
+      <span class="logo-lg"><b style="font-size: 18px;">E-Kinerja Kab.Bekasi</b> </span>
   </div>
   <nav class="navbar navbar-fixed-top">
       <a class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -14,7 +14,7 @@
                     <i class="fa fa-bell-o"></i>
                     <span class="label label-warning">{{vm.jmlNotif}}</span>
                   </a>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu" style="margin-top: 4px;">
                     <li class="header">You have {{vm.jmlNotif}} notifications</li>
                     <li>
                       <ul class="menu">
@@ -42,8 +42,8 @@
                   <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-user"></i>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li class="user-header" style="height: 230px;">
+                  <ul class="dropdown-menu" style="margin-top: 4px;">
+                    <li class="user-header" style="height: 250px;">
                       <img src="favicon.ico" width="78" height="78" class="img-circle" alt="User Image" />
                       <p style="font-size: 12px;">{{vm.pegawai.nipPegawai}}</p>
                       <p style="font-size: 12px;">{{vm.pegawai.namaPegawai}}</p>
@@ -64,7 +64,7 @@
                   <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-unlock-alt"></i>
                   </a>
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu" style="margin-top: 4px;">
                     <li class="user-header">
                       <div>
                         <div class="box-header">
@@ -95,28 +95,33 @@
 </header>
 <aside class="main-sidebar" style="position: fixed;">
   <section class="sidebar">
-    <ul class="sidebar-menu" data-widget="tree">
+    <ul class="nav nav-sidebar sidebar-menu" data-widget="tree">
       <li class="header text-aqua">FITUR PEGAWAI</li>
       <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
           <a href="#/dashboard">
-              <i class="fa fa-home text-aqua"></i><span style="font-size: 12px" class="text-orange"> Dashboard</span>
+              <i class="fa fa-home text-aqua"></i><span style="font-size: 10px"> Dashboard</span>
           </a>
       </li>
       <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas') || vm.checkLocation('perpindahan')
           || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) || vm.checkLocation('notadinaspencairan') ? 'active' : '' }}">
-          <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 12px" class="text-orange"> Kontak Kerja</span></a>
+          <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 10px"> Kontak Kerja</span></a>
       </li>
-      <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}"><a href="#/ambil-disposisi" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-list-alt text-aqua"></i><span style="font-size: 12px" class="text-orange"> Disposisi</span></a></li>
-      <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}"><a href="#/penugasan" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-file-text-o text-aqua"></i><span style="font-size: 12px" class="text-orange"> Penugasan</span></a></li>
-      <li class="{{vm.checkLocation('approval') ? 'active' : ''}}"><a href="#/approval"><i class="fa fa-check-square-o text-aqua"></i><span style="font-size: 12px" class="text-orange"> Persetujuan Kontrak Kerja</span></a></li>
-      <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}"><a href="#/penilaian" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa  fa-sliders text-aqua"></i><span style="font-size: 12px" class="text-orange"> Tata Naskah</span></a></li>
-      <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}"><a href="#/reportPegawai" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-history text-aqua"></i><span style="font-size: 12px" class="text-orange"> Report Pegawai</span></a></li>
+      <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}"><a href="#/ambil-disposisi" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-list-alt text-aqua"></i><span style="font-size: 10px"> Disposisi</span></a></li>
+      <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}"><a href="#/penugasan" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-file-text-o text-aqua"></i><span style="font-size: 10px"> Penugasan</span></a></li>
+      <li class="{{vm.checkLocation('approval') ? 'active' : ''}}"><a href="#/approval"><i class="fa fa-check-square-o text-aqua"></i><span style="font-size: 10px"> Persetujuan Kontrak Kerja</span></a></li>
+      <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}"><a href="#/penilaian" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa  fa-sliders text-aqua"></i><span style="font-size: 10px"> Tata Naskah</span></a></li>
+      <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}"><a href="#/reportPegawai" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-history text-aqua"></i><span style="font-size: 10px"> Report Pegawai</span></a></li>
       <li class="header text-aqua" ng-hide="vm.checkRole('AD003')">FITUR {{vm.pegawai.role.role}}</li>
-      <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/master/urtug"><i class="fa fa-list-ul text-red"></i> <span style="font-size: 12px" class="text-orange"> Data Master</span></a></li>
-      <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/urtug/jabatan"><i class="fa  fa-cog text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Pemasangan Uraian Tugas Jabatan</span></a></li>
-      <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/master-kegiatan"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Master Kegiatan</span></a></li>
-      <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/hak-akses"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Atur Hak Akses Pegawai</span></a></li>
-      <li class="{{vm.checkLocation('persuratan') ? 'active' : ''}}" ng-show="vm.checkRole('AD004')"><a href="#/persuratan"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px" class="text-orange"> Persuratan</span></a></li>
+      <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/master/urtug"><i class="fa fa-list-ul text-red"></i> <span style="font-size: 10px"> Data Master</span></a></li>
+      <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
+        <a href="#/urtug/jabatan">
+          <i class="fa  fa-cog text-aqua"></i> 
+          <span style="font-size: 10px;"> Pemasangan Uraian Tugas Jabatan</span>
+        </a>
+      </li>
+      <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/master-kegiatan"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 10px"> Master Kegiatan</span></a></li>
+      <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/hak-akses"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 10px"> Atur Hak Akses Pegawai</span></a></li>
+      <li class="{{vm.checkLocation('persuratan') ? 'active' : ''}}" ng-show="vm.checkRole('AD004')"><a href="#/persuratan"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 10px"> Persuratan</span></a></li>
     </ul>
   </section>
 </aside>
