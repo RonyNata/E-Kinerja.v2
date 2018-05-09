@@ -20,6 +20,19 @@
             return deferred.promise;
         }
 
+        service.SaveDraft = function(data){
+            var deferred = $q.defer();
+            $http.post(API + 'create-draft-lembar-disposisi/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        }
+
         service.UploadFile = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'create-surat-lain-file/', data, {
