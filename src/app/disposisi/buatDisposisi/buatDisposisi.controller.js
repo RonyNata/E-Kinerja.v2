@@ -72,6 +72,20 @@
             })
         }
 
+        getDraft();
+        function getDraft(){
+          AmbilDisposisiService.GetDraftDisposisi($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            function(response){debugger
+              for(var i = 0; i < response.length; i++)
+                response[i].tglTerima = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalPenerimaanSuratDisposisi));
+              vm.draft = response;
+              pagingDraft();
+            }, function(errResponse){
+
+            })
+        }
+
         // $window.localStorage['key'] = 'keuy';
 
         console.log($window.localStorage['key']);
@@ -197,6 +211,36 @@
             });
           }
 
+          function pagingDraft(){
+            $scope.filteredDataDraft = [];
+            $scope.currentPageDraft = 0;
+            $scope.numPerPageDraft = 5;
+            $scope.maxSizeDraft = Math.ceil(vm.draft.length/$scope.numPerPageDraft);
+            function pageDraft(){
+              $scope.pageDraft = [];
+              for(var i = 0; i < vm.draft.length/$scope.numPerPageDraft; i++){
+                  $scope.pageDraft.push(i+1);
+              }
+            }
+            pageDraft();
+            $scope.padDraft = function(i){
+              $scope.currentPageDraft += i;
+            }
+
+            $scope.maxDraft = function(){
+              if($scope.currentPageDraft >= $scope.maxSizeDraft - 1)
+                  return true;
+              else return false;
+            }
+
+            $scope.$watch("currentPageDraft + numPerPageDraft", function() {
+              var begin = (($scope.currentPageDraft) * $scope.numPerPageDraft)
+              , end = begin + $scope.numPerPageDraft;
+
+              $scope.filteredDataDraft = vm.draft.slice(begin, end);
+            });
+          }
+
         vm.forward = function(kdLembarDisposisi){
           $state.go('perpindahandisposisi', {
             "kdSurat": kdLembarDisposisi
@@ -237,9 +281,11 @@
         }
 
         function template(item){
-          if(item.targetjabatan)
+          if(item.targetjabatan && !vm.isDraft)
             var unitTarget = item.targeJabatanLembarDisposisiList[0].unitKerja.toUpperCase();
-          else var unitTarget = item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase();
+          else if(!vm.isDraft) var unitTarget = item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase();
+          else
+            var unitTarget = $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase();
           var pegawai = EkinerjaService.findPegawaiByNip(item.dari,vm.list_pegawai);
           var docDefinition = {
             pageSize: 'A4',
@@ -439,8 +485,9 @@
 
 
 
-            $scope.openPdf = function(kdLembarDisposisi, isOpenRead, statBaca) {
+            $scope.openPdf = function(kdLembarDisposisi, isOpenRead, statBaca, isDraft) {
               var blb;
+              vm.isDraft = isDraft;
               getDokumenDisposisi(kdLembarDisposisi, isOpenRead, statBaca);
               // pdfMake.createPdf(vm.docDefinition).getBuffer(function(buffer) {
               //     // turn buffer into blob
@@ -541,6 +588,22 @@
                 EkinerjaService.showToastrError('Disposisi Gagal Dibatalkan');
               }
             )
+          }
+
+          vm.approve = function(kdSurat, status){
+            var data = {
+              "kdDraftLembarDisposisi": kdSurat,
+              "approved": status
+            }
+            AmbilDisposisiService.Approve(data).then(
+              function(response){
+                if(status)
+                  EkinerjaService.showToastrSuccess("Berhasil Disetujui");
+                else EkinerjaService.showToastrSuccess("Berhasil Ditolak");
+                getDraft();
+              }, function(errResponse){
+                EkinerjaService.showToastrError("Gagal Disetujui");
+              })
           }
         }
 })();

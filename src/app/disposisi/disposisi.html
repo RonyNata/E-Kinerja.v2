@@ -156,7 +156,7 @@
                                                 <div class="col-md-6" style="margin-left: 25px">
                                                     <div class="col-md-5"></div> 
                                                     <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                                    <button type="button" class="btn btn-success waves-effect" ng-click="perpindahan.openPdf()" style="font-size: 20px">PDF</button>
+                                                    <button type="button" class="btn btn-success waves-effect" ng-click="openPdf()" style="font-size: 20px">PDF</button>
                                                     <button type="button" class="btn btn-danger waves-effect" ng-click="perpindahan.back()" style="font-size: 20px">Back</button>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="row animate-show-hide" ng-show="master.pj">
+                        <!-- <div class="row animate-show-hide" ng-show="master.pj">
                             <div class="col-md-12">
                                 <h3>Kegiatan {{master.dpa.ketKegiatan}}</h3>
                                 <div class="table-responsive">
@@ -187,7 +187,6 @@
                                             <td class="text-left">{{pj.penanggungJawab.nama}}</td>
                                             <td>{{pj.statusPenanggungJawab}}</td>
                                             <td>
-                                                <!-- <button type="button" ng-click="master.editPJ(pj)" class="btn btn-success btn waves waves-effect">Ubah</button> -->
                                                 <button type="button" ng-click="master.hapusPj(pj)" class="btn btn-danger btn waves waves-effect">Hapus</button>
                                             </td>
                                         </tr>
@@ -195,7 +194,7 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
