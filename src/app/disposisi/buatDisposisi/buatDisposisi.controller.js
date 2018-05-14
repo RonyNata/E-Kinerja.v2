@@ -605,5 +605,26 @@
                 EkinerjaService.showToastrError("Gagal Disetujui");
               })
           }
+
+      vm.formLengkapiDisposisi = function (kdLembarDisposisi, parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/disposisi/formLengkapDisposisi/formLengkapDisposisi.html',
+              controller: 'FormLengkapDisposisiController',
+              controllerAs: 'formLengkap',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve:{
+                  kdLembar:function () {
+                      return kdLembarDisposisi;
+                  }
+              }
+          });
+      };
         }
 })();

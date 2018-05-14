@@ -118,6 +118,7 @@
                                                     <td style="vertical-align: middle">{{draft.tglTerima}}</td>
                                                     <td style="vertical-align: middle">{{draft.approvedBySekdin ? 'Sudah Disetujui' : 'Belum Disetujui'}}</td>
                                                     <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
+                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-blue waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.formLengkapiDisposisi(draft.kdLembarDisposisi)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> LENGKAPI</span></button>
                                                         <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, true)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> SETUJUI</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">

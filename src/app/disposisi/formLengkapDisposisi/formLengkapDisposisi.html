@@ -1,0 +1,99 @@
+<div class="modal-header background-pop-up">
+    <h3 class="modal-title" id="modal-title" style="font-size: 20px;"><strong>FORM DISPOSISI</strong></h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+    <div class="form-body">
+        <div class="row">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Kode Lembar Disposisi</b></p>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
+                <input type="text" ng-model="formLengkap.item.kdLembarDisposisi" disabled="true" class="form-control">
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Sifat Disposisi</b></p>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
+                <select type="text" class="form-control" ng-model="formLengkap.item.tktKeamanan" ng-required="true">
+                    <option value="" selected>Pilih Jenis Sifat</option>
+                    <option value="1">SR (Sangat Rahasia)</option>
+                    <option value="2">R (Rahasia)</option>
+                    <option value="3">B (Biasa)</option>
+                </select>
+                <input type="text" ng-show="" ng-model="formLengkap.item.tktKeamananKet" disabled="true" class="form-control">
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Tanggal Penyelesaian</b></p>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
+                <input type="date" class="form-control" ng-model="formLengkap.item.tglPenyelesaianMilis" ng-required="true">
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Isi Disposisi</b></p>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
+                <textarea class="form-control" ng-model="formLengkap.item.isiDisposisi" required style="height: 100px"></textarea>
+            </div>
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Memberi Instruksi Kepada :</b></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Diteruskan Kepada</b></p>
+            </div>
+            <div class="col-md-6" style="margin-top:5px; margin-bottom:10px">
+                <button class="btn btn-primary waves-effect" ng-click="formLengkap.openPegawai()" type="button" style="margin-left: 5px">Pilih {{formLengkap.isEselon4 ? 'Pegawai' : 'Jabatan'}}</button>
+                <button class="btn btn-primary waves-effect" ng-click="formLengkap.openPilihan()" type="button" style="margin-left: 5px">{{formLengkap.target.length}} {{formLengkap.isEselon4 ? 'Pegawai' : 'Jabatan'}} Telah Dipilih</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-1" style="margin-top:5px; margin-bottom:10px"></div>
+            <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
+                <p><b>Waktu Pembuatan</b></p>
+            </div>
+            <div class="col-md-6" style="margin-top:5px; margin-bottom:10px">
+                <div class="col-md-4" style="margin-left: -15px;">
+                    <input class="form-control" ng-model="formLengkap.item.durasiPengerjaan" min="1" type="number" pattern="[0-9]{1,4}" required>
+                </div>
+                <div class="col-md-4" style="padding-top: 8px;">
+                    <span><b>Menit</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" ng-click="formLengkap.complate()" class="btn btn-success waves-effect" data-dismiss="modal">Kirim</button>
+    <button type="button" ng-click="formLengkap.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+</div>

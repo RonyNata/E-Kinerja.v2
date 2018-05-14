@@ -122,6 +122,19 @@
             return deferred.promise;
         };
 
+        service.ComplateDisposisi = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'complete-lembar-disposisi/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         return service;
 	}
 
