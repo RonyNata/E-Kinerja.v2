@@ -14,7 +14,7 @@
                                 <form ng-submit="perpindahan.save()" class="form-horizontal">
                                     <div class="row clearfix">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <div class="col-md-12" style="margin-bottom:10px">
+                                            <div class="col-md-12" style="margin-bottom:10px" ng-hide="perpindahan.isCreate">
                                                 <div class="col-sm-5" style="margin-top:5px">
                                                     <p><b>Sifat Disposisi</b></p>
                                                 </div>
@@ -82,7 +82,7 @@
                                                     <textarea class="form-control" ng-model="perpindahan.item.ringkasanIsiSuratDisposisi" required style="height: 100px"></textarea>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" style="margin-bottom:10px">
+                                            <div class="col-md-12" style="margin-bottom:10px" ng-hide="perpindahan.isCreate">
                                                 <div class="col-sm-5" style="margin-top:5px">
                                                     <p><b>Isi Disposisi</b></p>
                                                 </div>
@@ -117,7 +117,7 @@
                                                     <p><b>Memberi Instruksi Kepada :</b></p>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12" ng-hide="perpindahan.isCreate">
                                                 <hr>
                                                 <div class="col-md-12" style="margin-bottom:10px"> 
                                                     <div class="col-md-1"></div> 

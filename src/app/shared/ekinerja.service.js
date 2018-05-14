@@ -304,6 +304,20 @@
               // $log.info('Modal dismissed at: ' + new Date());
             });
         };
+
+        service.isPejabatTinggi = function(eselon, kdUnit){debugger
+            var isPejabat = false;
+            var kdSKPD = kdUnit.split("")[0];
+            switch(kdSKPD){
+                case '3': case '4': case '6': if(eselon == 'II.b' || eselon == 'III.a') isPejabat = true; break;
+                case '2': if(kdUnit.split("")[2] == 0 && eselon == 'II.b') isPejabat = true;
+                            else isPejabat = true; break;
+                case '9': if(eselon == 'III.a') isPejabat = true; break;
+                case '7': if(eselon == 'III.a' || eselon == 'III.b') isPejabat = true; break;
+                case 'B': if(eselon == 'IV.a') isPejabat = true; break;
+            }
+            return isPejabat;
+        }
  
         return service;
     }])
