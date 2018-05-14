@@ -17,8 +17,8 @@
                         <li role="presentation" class="active">
                             <a href="#disposisii" data-toggle="tab">Surat Disposisi Masuk</a>
                         </li>
-                        <li role="presentation">
-                            <a href="#draft" data-toggle="tab">Draft Disposisi</a>
+                        <li role="presentation" ng-show="ambilperpindahan.isPejabat">
+                            <a href="#draft" data-toggle="tab"><b>Draft Disposisi</b></a>
                         </li>
                         <li role="presentation">
                             <a href="#instruksi" data-toggle="tab">Disposisi Yang Pernah Dibuat</a>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="draft">
+                        <div class="tab-pane" id="draft" ng-show="ambilperpindahan.isPejabat">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">

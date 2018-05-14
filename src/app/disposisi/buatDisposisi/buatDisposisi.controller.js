@@ -12,6 +12,8 @@
 
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
       vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
+      vm.isPejabat = EkinerjaService.isPejabatTinggi($.parseJSON(sessionStorage.getItem('credential')).eselon,
+                                      $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
 
       vm.checkRole = function(role){
           if(vm.pegawai.role.id == role)
@@ -72,7 +74,8 @@
             })
         }
 
-        getDraft();
+        if(vm.isPejabat)
+          getDraft();
         function getDraft(){
           AmbilDisposisiService.GetDraftDisposisi($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
