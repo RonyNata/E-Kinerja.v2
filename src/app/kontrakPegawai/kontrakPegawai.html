@@ -232,7 +232,7 @@
 
                                                 <tbody>
                                                     <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
-                                                        <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                        <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                                         <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
                                                         <td style="text-align: left">{{kegiatan.ketKeg}}</td>
                                                         <td>{{kegiatan.statusPenanggungJawab}}</td>
@@ -250,15 +250,15 @@
                                                 <div class="align-center">
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary" ng-click="padKegiatan(-1)" ng-disabled="currentPageKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
                                                                 &lt; PREV
                                                             </button>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageKegiatan+1}} Of {{maxSizeKegiatan}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary" ng-click="padKegiatan(1)" ng-disabled="maxKegiatan()" aria-label="Use Android" style="cursor: pointer;">
                                                                 NEXT &gt;
                                                             </button>
                                                         </li>

@@ -8,17 +8,17 @@
                     <ul class="nav nav-tabs">
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-list-alt"></i> MASTER KEGIATAN</li>
                     </ul>
-                    <div class="row space-after" ng-hide="master.kegiatan">
-                        <div class="col-md-4">
-                            <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <!-- <div class="col-md-2 text-right"><button type="button" ng-click="master.salin()" class="btn btn-info"> <b>Salin Struktur Organisasi</b></button></div> -->
-                        <div class="col-md-4 text-right">
-                            <button type="button" ng-click="master.addPJ()" class="btn btn-info"> <b>Tambah Penanggungjawab</b></button>
-                        </div>
-                    </div>
                     <div class="tab-content">
+                        <div class="row space-after" ng-hide="master.kegiatan">
+                            <div class="col-md-4">
+                                <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <!-- <div class="col-md-2 text-right"><button type="button" ng-click="master.salin()" class="btn btn-info"> <b>Salin Struktur Organisasi</b></button></div> -->
+                            <div class="col-md-4 text-right">
+                                <button type="button" ng-click="master.addPJ()" class="btn btn-info"> <b>Tambah Penanggungjawab</b></button>
+                            </div>
+                        </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -63,9 +63,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row animate-show-hide" ng-show="master.pj">
+                        <div class="row animate-show-hide " ng-show="master.pj">
                             <div class="col-md-12">
-                                <h3>Kegiatan {{master.dpa.ketKegiatan}}</h3>
+                                <h3 class="space-after">Kegiatan {{master.dpa.ketKegiatan}}</h3>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover js-basic-example">
                                         <thead class="bg-table">
