@@ -15,12 +15,12 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
                         <li role="presentation" class="active">
-                            <a href="#masuk" data-toggle="tab"><b>Naskah Penugasan Masuk</b></a>
+                            <a href="#masuk" data-toggle="tab">Naskah Penugasan Masuk</a>
                         </li>
                         <li role="presentation">
-                            <a href="#dibuat" data-toggle="tab"><b>Naskah Penugasan Yang Pernah Dibuat</b></a>
+                            <a href="#dibuat" data-toggle="tab">Naskah Penugasan Yang Pernah Dibuat</a>
                         </li>
-                        <li class="pull-left header"><i class="fa fa-file-text-o"></i> Penugasan</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-file-text-o"></i> PENUGASAN</li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="masuk">
@@ -47,7 +47,7 @@
                                                     <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
                                                     <td style="vertical-align: middle">{{naskah.ketBaca}}</td>
                                                 <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="btn bg-blue waves-effect" ng-disabled="naskah.statusBaca != 1"><i class="material-icons">fast_forward</i> TERUSKAN</button>
+                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="{{naskah.statusBaca != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-forward"></i> TERUSKAN</button>
                                                     <p ng-show="naskah.jenis != 0"><strong>-</strong></p>
                                                 </td>
                                                 <td class="text-center" style="vertical-align: middle">
@@ -55,7 +55,7 @@
                                                     <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary" ng-show="naskah.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penugasan.openTemplate(null,naskah,0)" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-pencil"></i> KERJAKAN</button>
+                                                    <button type="button" class="{{naskah.statusBaca != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penugasan.openTemplate(null,naskah,0)" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-pencil"></i> KERJAKAN</button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="filteredDataPenugasan==0">

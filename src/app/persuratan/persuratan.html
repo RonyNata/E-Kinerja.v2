@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Persuratan</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-circle-o"></i> PERSURATAN</li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="masuk">
@@ -33,7 +33,7 @@
                                                 <td style="vertical-align: middle">{{srt.waktu}}</td>
                                                 <td style="vertical-align: middle">{{srt.statusPenyebaran == 0 ? 'Belum Disebarkan' : 'Sudah Disebarkan'}}</td>
                                                 <td class="text-center" style="vertical-align: middle">
-                                                     <button type="button" class="{{srt.statusPenyebaran == 1 ?'btn waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="persuratan.changeStatus(srt)" ng-disabled="srt.statusPenyebaran == 1"><i class="fa fa-forward"></i> KIRIM</button>
+                                                     <button type="button" class="{{srt.statusPenyebaran == 1 ?'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="persuratan.changeStatus(srt)" ng-disabled="srt.statusPenyebaran == 1"><i class="fa fa-paper-plane" aria-hidden="true"></i> KIRIM</button>
                                                     <!--<p><strong>-</strong></p>-->
                                                 </td>
                                             </tr>
