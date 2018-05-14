@@ -69,8 +69,9 @@ debugger
     function saveDraft(data) {debugger
         DisposisiService.SaveDraft(data).then(
             function(response){
-                EkinerjaService.showToastrSuccess("Draft Disposisi Berhasil Dibuat");
-                $state.go('ambilperpindahan');
+                uploadFile(response);
+                // EkinerjaService.showToastrSuccess("Draft Disposisi Berhasil Dibuat");
+                // $state.go('ambilperpindahan');
             }, function(errResponse){
 
             })
