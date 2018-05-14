@@ -18,7 +18,10 @@
                             <a href="#disposisii" data-toggle="tab">Surat Disposisi Masuk</a>
                         </li>
                         <li role="presentation">
-                            <a href="#instruksi" data-toggle="tab">Disposisi Yang Pernah Dibuat</a>
+                            <a href="#draft" data-toggle="tab"><b>Draft Disposisi</b></a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#instruksi" data-toggle="tab"><b>Disposisi Yang Pernah Dibuat</b></a>
                         </li>
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-list-alt"></i> DISPOSISI</li>
                     </ul>
@@ -81,6 +84,69 @@
                                                     </li>
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary waves-effect" ng-click="padDisposisi(1)" ng-disabled="maxDisposisi()" aria-label="Use Android" style="cursor: pointer;">
+                                                            NEXT &gt;
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="draft">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-table">
+                                                <tr>
+                                                    <th class="text-center">No</th>
+                                                    <th class="text-center">Kode Lembar Disposisi</th>
+                                                    <th class="text-center">Pengirim Surat</th>
+                                                    <th class="text-center">Tanggal Penerimaan</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="draft in filteredDataDraft" ng-hide="filteredDataDraft==0">
+                                                    <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageDisposisi*currentPageDisposisi)}}</td>
+                                                    <td style="vertical-align: middle">{{draft.kdLembarDisposisi}}</td>
+                                                    <td style="vertical-align: middle">{{draft.dariSuratDisposisi}}
+                                                    </td>
+                                                    <td style="vertical-align: middle">{{draft.tglTerima}}</td>
+                                                    <td style="vertical-align: middle">{{draft.approvedBySekdin ? 'Sudah Disetujui' : 'Belum Disetujui'}}</td>
+                                                    <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
+                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, true)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-arrow-right"></i> Setujui</span></button>
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(draft.kdLembarDisposisi, 0, 0, true)"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
+                                                    </td>
+                                                    <td class="text-center" style="vertical-align: middle">
+                                                        <button type="button" class="btn bg-red waves-effect" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, false)"><i class="fa fa-times"></i> Tolak</span></button>
+                                                    </td>
+                                                </tr>
+                                                <tr ng-show="filteredDataDraft==0">
+                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="align-center">
+                                                <ul style="padding-left: 0px;">
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary waves-effect" ng-click="padDraft(-1)" ng-disabled="currentPageDraft==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            &lt; PREV
+                                                        </button>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageDraft+1}} Of {{maxSizeDraft}}</span>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary waves-effect" ng-click="padDraft(1)" ng-disabled="maxDraft()" aria-label="Use Android" style="cursor: pointer;">
                                                             NEXT &gt;
                                                         </button>
                                                     </li>

@@ -292,6 +292,17 @@
           }
         }
       })
+      .state('instruksiii', {
+        url: '/draft',
+        templateUrl: 'app/disposisi/buatDisposisi/buatDisposisi.html',
+        controller: 'AmbilDisposisiController',
+        controllerAs: 'ambilperpindahan',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('perpindahan', {
         url: '/disposisi/:kdSurat/:kdJenis/:kdUrtug/:tahun',
         templateUrl: 'app/disposisi/disposisi.html',

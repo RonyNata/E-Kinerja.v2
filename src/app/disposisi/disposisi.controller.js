@@ -38,39 +38,43 @@ debugger
         vm.file = files[0];
     }
 
+    function uploadFile(response){
+        if($state.params.kdJenis == "" && $state.current.name == "perpindahan"){
+            var namaFile = response.message + '.' + vm.extension; debugger;
+            var formData = new FormData();
+            formData.append('file', vm.file, namaFile);
+
+            DisposisiService.UploadFile(formData).then(
+                function(response){debugger
+                    EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
+                    $state.go('ambilperpindahan');
+                }, function(errResponse){
+
+                })
+        } else {
+            EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
+            $state.go('ambilperpindahan');
+        }
+    }
+
     function uploadTemplate(data) {debugger
         DisposisiService.save(data).then(
             function(response){
-                if($state.params.kdJenis == "" && $state.current.name == "perpindahan"){
-                    var namaFile = response.message + '.' + vm.extension; debugger;
-                    var formData = new FormData();
-                    formData.append('file', vm.file, namaFile);
-
-                    DisposisiService.UploadFile(formData).then(
-                        function(response){debugger
-                            EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
-                            $state.go('ambilperpindahan');
-                        }, function(errResponse){
-
-                        })
-                } else {
-                    EkinerjaService.showToastrSuccess("Disposisi Berhasil Dibuat");
-                    $state.go('ambilperpindahan');
-                }
+                uploadFile(response);
             }, function(errResponse){
 
             })
     };
 
-    // if($.parseJSON(sessionStorage.getItem('pegawai')) != undefined){
-    //     vm.list_pegawai = $.parseJSON(sessionStorage.getItem('pegawai'));
-    //     if($state.params.kdSurat != undefined){
-		  //   	getDisposisi();
-		  //   	vm.penerusan = true;
-		  //   }else {vm.penerusan = false;
-		  //         }
-    //     vm.loading = false;	
-    // }
+    function saveDraft(data) {debugger
+        DisposisiService.SaveDraft(data).then(
+            function(response){
+                EkinerjaService.showToastrSuccess("Draft Disposisi Berhasil Dibuat");
+                $state.go('ambilperpindahan');
+            }, function(errResponse){
+
+            })
+    };
 
     getAllPegawai();
     function getAllPegawai(){
@@ -256,7 +260,9 @@ debugger
     };
 
     if($state.current.name == "perpindahan"){
-        data.
+        data.kdUrtug = $state.params.kdUrtug;
+        data.tahun = $state.params.tahun;
+        data.tanggalSuratDisposisiDiterimaMilis = vm.item.tanggalPenerimaanMilis.getTime();
     	data.kdLembarDisposisiParent = null;
         if($state.params.kdJenis == "")
             data.namaFileSuratLain = vm.name;
@@ -280,7 +286,9 @@ debugger
       console.log(data);
 
     // console.log(data);
-      uploadTemplate(data);
+      if($state.current.name == "perpindahan")
+        saveDraft(data);
+      else uploadTemplate(data);
       // DisposisiService.save(data).then(
       //   function(response){
       //     EkinerjaService.showToastrSuccess('Data Berhasil Disimpan');
