@@ -14,6 +14,8 @@
       vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
       vm.isPejabat = EkinerjaService.isPejabatTinggi($.parseJSON(sessionStorage.getItem('credential')).eselon,
                                       $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
+      vm.isPimpinan = EkinerjaService.isPimpinan($.parseJSON(sessionStorage.getItem('credential')).eselon,
+                                      $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
 
       vm.checkRole = function(role){
           if(vm.pegawai.role.id == role)
@@ -283,7 +285,7 @@
           });
         }
 
-        function template(item){
+        function template(item){debugger
           if(item.targetjabatan && !vm.isDraft)
             var unitTarget = item.targeJabatanLembarDisposisiList[0].unitKerja.toUpperCase();
           else if(!vm.isDraft) var unitTarget = item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase();
