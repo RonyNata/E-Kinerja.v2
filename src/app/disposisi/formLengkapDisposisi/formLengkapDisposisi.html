@@ -70,10 +70,12 @@
             <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
                 <p><b>Diteruskan Kepada</b></p>
             </div>
-            <div class="col-md-6" style="margin-top:5px; margin-bottom:10px">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
                 <button class="btn btn-primary waves-effect" ng-click="formLengkap.openPegawai()" type="button" style="margin-left: 5px">Pilih {{formLengkap.isEselon4 ? 'Pegawai' : 'Jabatan'}}</button>
                 <button class="btn btn-primary waves-effect" ng-click="formLengkap.openPilihan()" type="button" style="margin-left: 5px">{{formLengkap.target.length}} {{formLengkap.isEselon4 ? 'Pegawai' : 'Jabatan'}} Telah Dipilih</button>
             </div>
+            <div class="col-md-1" style="margin-top:5px; margin-bottom:10px"></div>
         </div>
 
         <div class="row">
@@ -81,14 +83,16 @@
             <div class="col-sm-4" style="margin-top:5px; margin-bottom:10px">
                 <p><b>Waktu Pembuatan</b></p>
             </div>
-            <div class="col-md-6" style="margin-top:5px; margin-bottom:10px">
+            <div class="col-sm-1" style="margin-top:5px; margin-bottom:10px"><b>:</b></div>
+            <div class="col-md-5" style="margin-top:5px; margin-bottom:10px">
                 <div class="col-md-4" style="margin-left: -15px;">
-                    <input class="form-control" ng-model="formLengkap.item.durasiPengerjaan" min="1" type="number" pattern="[0-9]{1,4}" required>
+                    <input min="1" type="number" pattern="[0-9]{1,4}" class="form-control" ng-model="formLengkap.item.durasiPengerjaan" required>
                 </div>
                 <div class="col-md-4" style="padding-top: 8px;">
                     <span><b>Menit</b></span>
                 </div>
             </div>
+            <div class="col-md-1" style="margin-top:5px; margin-bottom:10px"></div>
         </div>
     </div>
 </div>
