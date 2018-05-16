@@ -145,12 +145,12 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs pull-right">
                             <li role="presentation" class="active">
-                                <a href="#tahunannon" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
+                                <a href="#tahunannon" data-toggle="tab">Uraian Tugas Non-DPA</a>
                             </li>
                             <li role="presentation">
-                                <a href="#tahunandpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
+                                <a href="#tahunandpa" data-toggle="tab">Uraian Tugas DPA</a>
                             </li>
-                            <li class="pull-left header"><i class="fa fa-th"></i> Kontrak Kerja</li>
+                            <li class="pull-left header" style="font-size: 22px"><i class="fa fa-th"></i> Kontrak Kerja</li>
                         </ul>
 
                         <div class="tab-content">
@@ -232,7 +232,7 @@
 
                                                 <tbody>
                                                     <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
-                                                        <td>{{$index + 1 + (numPerPage*currentPage)}}</td>
+                                                        <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                                         <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
                                                         <td style="text-align: left">{{kegiatan.ketKeg}}</td>
                                                         <td>{{kegiatan.statusPenanggungJawab}}</td>
@@ -250,15 +250,15 @@
                                                 <div class="align-center">
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary" ng-click="padKegiatan(-1)" ng-disabled="currentPageKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
                                                                 &lt; PREV
                                                             </button>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageKegiatan+1}} Of {{maxSizeKegiatan}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                            <button class="btn btn-primary" ng-click="padKegiatan(1)" ng-disabled="maxKegiatan()" aria-label="Use Android" style="cursor: pointer;">
                                                                 NEXT &gt;
                                                             </button>
                                                         </li>

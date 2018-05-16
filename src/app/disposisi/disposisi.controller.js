@@ -8,10 +8,14 @@ function DisposisiController(EkinerjaService, HakAksesService, AmbilDisposisiSer
 	var vm = this;
 	vm.loading = true;
 	vm.item = {};
+    vm.item.isiDisposisi = "-";
 
     if($.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase() == 'iv')
         vm.isEselon4 = true;
     else vm.isEselon4 = false;
+
+    if($state.current.name == "perpindahan")
+        vm.isCreate = true;
 
     if($state.params.kdJenis == "")
       vm.isUpload = true;
@@ -69,8 +73,9 @@ debugger
     function saveDraft(data) {debugger
         DisposisiService.SaveDraft(data).then(
             function(response){
-                EkinerjaService.showToastrSuccess("Draft Disposisi Berhasil Dibuat");
-                $state.go('ambilperpindahan');
+                uploadFile(response);
+                // EkinerjaService.showToastrSuccess("Draft Disposisi Berhasil Dibuat");
+                // $state.go('ambilperpindahan');
             }, function(errResponse){
 
             })
@@ -264,6 +269,7 @@ debugger
         data.tahun = $state.params.tahun;
         data.tanggalSuratDisposisiDiterimaMilis = vm.item.tanggalPenerimaanMilis.getTime();
     	data.kdLembarDisposisiParent = null;
+        vm.target.push({nama: '-',jabatan: '-'});
         if($state.params.kdJenis == "")
             data.namaFileSuratLain = vm.name;
         else {
@@ -306,6 +312,9 @@ debugger
     }
 
     function template(){
+        if($state.current.name == "perpindahan")
+            var unitTarget = $.parseJSON(sessionStorage.getItem('credential')).unit.toUpperCase();
+        else var unitTarget = vm.target[0].unitKerja.toUpperCase();
     	vm.docDefinition = {
     		pageSize: 'A4',
     		content: [
@@ -318,7 +327,7 @@ debugger
                                     border: [true, true, true, false],
                                     text: [
                                         {text: 'PEMERINTAH KABUPATEN BEKASI\n',style: 'header'},
-                                        {text: '' + vm.target[0].unitKerja.toUpperCase(),style: 'header'}
+                                        {text: '' + unitTarget,style: 'header'}
                                     ],
                                     colSpan: 3
                                 }, {}, {}

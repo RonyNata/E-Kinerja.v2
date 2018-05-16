@@ -212,7 +212,7 @@ angular.
       function pagingUrtug(){ 
         $scope.filteredDataTarget = [];
         $scope.currentPageTarget = 0;
-        $scope.numPerPageTarget = 10;
+        $scope.numPerPageTarget = 5;
         $scope.maxSizeTarget = Math.ceil(vm.target.length/$scope.numPerPageTarget);
         function pageUrtug(){
           $scope.pageTarget = [];
@@ -242,7 +242,7 @@ angular.
       function pagingKegiatan(){ 
         $scope.filteredDataKegiatan = [];
         $scope.currentPageKegiatan = 0;
-        $scope.numPerPageKegiatan = 10;
+        $scope.numPerPageKegiatan = 5;
         $scope.maxSizeKegiatan = Math.ceil(vm.kegiatan.length/$scope.numPerPageKegiatan);
         function pageKegiatan(){
           $scope.pageKegiatan = [];

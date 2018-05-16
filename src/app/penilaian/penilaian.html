@@ -7,6 +7,7 @@
                 <div class="form-group">
                 <label>Lihat Surat Berdasarkan</label>
                 <select class="form-control" ng-model="penilaian.lihat" ng-change="penilaian.sorting()">
+                    <option value="">Pilih</option>
                     <option value="0" selected>Semua</option>
                     <option value="1">Waktu</option>
                     <option value="2">Jenis Surat</option>
@@ -31,6 +32,7 @@
                 <div class="form-group">
                 <label>Pilih Jenis Surat</label>
                 <select class="form-control" ng-model="penilaian.jenis" ng-change="penilaian.sortJenis()">
+                    <option value="">Pilih</option>
                     <option value="0" selected>Berita Acara</option>
                     <option value="1">Laporan</option>
                     <option value="2">Memorandum</option>
@@ -56,15 +58,15 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
                         <li role="presentation" class="active">
-                                <a href="#laporanbawah" data-toggle="tab"><b>Laporan Bawahan</b></a>
+                                <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan</a>
                             </li>
                             <li role="presentation">
-                                <a href="#suratmasuk" data-toggle="tab"><b>Surat Masuk</b></a>
+                                <a href="#suratmasuk" data-toggle="tab">Surat Masuk</a>
                             </li>
                             <li role="presentation">
-                                <a href="#laporanajuan" data-toggle="tab"><b>Draft</b></a>
+                                <a href="#laporanajuan" data-toggle="tab">Draft</a>
                             </li>
-                        <li class="pull-left header"><i class="fa fa-sliders"></i> Tata Naskah</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-sliders"></i> TATA NASKAH</li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="laporanbawah">
@@ -91,15 +93,15 @@
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                 <td style="vertical-align: middle">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
                                                 <td style="vertical-align: middle">
-                                                    <button type="button" class="btn bg-blue waves-effect" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="fa fa-arrow-right"></i><span> TERUSKAN</span></button>
-                                                    <button type="button" class="btn bg-green waves-effect" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
+                                                    <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="fa fa-forward"></i> TERUSKAN</span></button>
+                                                    <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
                                                 </td>
                                                 <td style="vertical-align: middle">
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td style="vertical-align: middle">
-                                                    <button type="button" class="btn btn-danger waves-effect" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="fa fa-times"></i> TOLAK</button>
+                                                    <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="fa fa-times"></i> TOLAK</button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="penilaian.sortLaporan==0">

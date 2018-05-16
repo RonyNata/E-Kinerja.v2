@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="pull-left header"><i class="fa fa-file-text-o"></i> Persetujuan Kontrak Kerja Pegawai</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-check-square-o"></i> PERSETUJUAN KONTRAK KERJA PEGAWAI</li>
                     </ul>
                     <div class="tab-content">
                         <div class="row">
@@ -28,7 +28,7 @@
                                             <td>{{pgw.namaPegawai}}</td>
                                             <td>{{pgw.statusPenangangan == 0 ? 'Belum Mengajukan' : pgw.statusPenangangan == 1 ? 'Belum Disetujui' : 'Sudah Disetujui'}}</td>
                                             <td class="text-center">
-                                                <button type="button" ng-click="ajuankontrak.open(pgw)" ng-show="{{pgw.statusPenangangan == 1 ? 'true' : 'false'}}" class="btn btn-success"><i class="material-icons">visibility</i> LIHAT AJUAN</button>
+                                                <button type="button" ng-click="ajuankontrak.open(pgw)" ng-show="{{pgw.statusPenangangan == 1 ? 'true' : 'false'}}" class="btn btn-success"><i class="fa fa-eye" aria-hidden="true"></i> LIHAT AJUAN</button>
                                             </td>
                                         </tr>
                                         <tr ng-show="ajuankontrak.list_pegawai==0">

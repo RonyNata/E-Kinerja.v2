@@ -12,6 +12,10 @@
 
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
       vm.pegawai.role.role = vm.pegawai.role.role.toUpperCase();
+      vm.isPejabat = EkinerjaService.isPejabatTinggi($.parseJSON(sessionStorage.getItem('credential')).eselon,
+                                      $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
+      vm.isPimpinan = EkinerjaService.isPimpinan($.parseJSON(sessionStorage.getItem('credential')).eselon,
+                                      $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
 
       vm.checkRole = function(role){
           if(vm.pegawai.role.id == role)
@@ -72,7 +76,8 @@
             })
         }
 
-        getDraft();
+        if(vm.isPejabat)
+          getDraft();
         function getDraft(){
           AmbilDisposisiService.GetDraftDisposisi($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
@@ -280,7 +285,7 @@
           });
         }
 
-        function template(item){
+        function template(item){debugger
           if(item.targetjabatan && !vm.isDraft)
             var unitTarget = item.targeJabatanLembarDisposisiList[0].unitKerja.toUpperCase();
           else if(!vm.isDraft) var unitTarget = item.targetPegawaiLembarDisposisi[0].unitKerja.toUpperCase();
@@ -605,5 +610,26 @@
                 EkinerjaService.showToastrError("Gagal Disetujui");
               })
           }
+
+      vm.formLengkapiDisposisi = function (kdLembarDisposisi, parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/disposisi/formLengkapDisposisi/formLengkapDisposisi.html',
+              controller: 'FormLengkapDisposisiController',
+              controllerAs: 'formLengkap',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve:{
+                  kdLembar:function () {
+                      return kdLembarDisposisi;
+                  }
+              }
+          });
+      };
         }
 })();
