@@ -1,14 +1,15 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="card">
-                <div class="header">
-                    <h2>Pembuatan Surat Dinas ({{suratdinas.judul}})</h2>
-                </div>
-                <div class="body">
-                    <form ng-submit="suratdinas.save()" class="form-horizontal">
-                        <div class="row clearfix" style="margin-bottom: -45px;">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Pembuatan Surat Dinas ({{suratdinas.judul}})</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
                                 <div class="col-md-2">
@@ -27,7 +28,9 @@
                                     <input type="number" class="form-control" ng-model="suratdinas.item.tahun" disabled required>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Sifat</div>
                                 <div class="col-md-4">
                                     <input class="form-control" ng-model="suratdinas.item.sifat" required>
@@ -37,7 +40,9 @@
                                     <input type="number" class="form-control" ng-model="suratdinas.item.lampiran" required>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
                                 <div class="col-md-4">
                                     <input class="form-control" ng-model="suratdinas.item.tempat" required>
@@ -47,7 +52,21 @@
                                     <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
+                                <div class="col-md-4">
+                                    <input class="form-control" ng-model="suratdinas.item.tempat" required>
+                                </div>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Pembuatan Surat</div>
+                                <div class="col-md-4">
+                                    <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Penerima</div>
                                     <div class="col-md-6" style="margin-left: 10px;"> 
@@ -70,7 +89,9 @@
                                     <input class="form-control" ng-model="suratdinas.item.hal" required>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -50px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-6">
                                     <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
                                     <div class="col-md-6" style="margin-left: 10px;"> 
@@ -98,7 +119,9 @@
                                     <textarea class="form-control" ng-model="suratdinas.item.alineaIsi" required style="height: 100px"></textarea>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tembusan</div>
                                 <div class="col-md-4">
                                     <button class="btn btn-primary waves-effect" ng-click="suratdinas.openTembusan()" type="button">Pilih Jabatan</button>
@@ -110,20 +133,26 @@
                                 </div>
                                 <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -25px;">
-                                <div style="text-align: right;margin-bottom: 20px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div style="text-align: right;">
                                     <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
                                     <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
                                     <button class="btn btn-danger waves-effect" type="button" ng-click="suratdinas.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="row"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
+
 
 <div class="bg_load animate-show-hide" ng-show="suratdinas.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="suratdinas.loading">
