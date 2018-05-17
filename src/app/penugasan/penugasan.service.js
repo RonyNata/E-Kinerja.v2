@@ -72,9 +72,9 @@
             return deferred.promise;
         }
 
-        service.GetNaskahPenugasanPerintahTarget = function(nipPegawai){
+        service.GetNaskahPenugasanPerintahTarget = function(nipPegawai, isPersuratan){
             var deferred = $q.defer();debugger
-            $http.get(API + 'get-daftar-surat-perintah-target/' + nipPegawai).then(
+            $http.get(API + 'get-daftar-surat-perintah-target/' + nipPegawai + '/' + isPersuratan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

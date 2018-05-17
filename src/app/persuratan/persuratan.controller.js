@@ -7,12 +7,62 @@ angular.
 
 
     function PersuratanController(EkinerjaService, PenugasanService, $scope, KontrakPegawaiService,
-     TemplateSuratInstruksiService, TemplateSuratPerintahService, $uibModal, $document, $state, PenilaianService,
-     TemplateSuratTugasService, PersuratanService) {
+     TemplateSuratKeputusanService,
+     TemplateSuratDinasService,
+     TemplateLaporanService,
+     TemplateTelaahanStaffService,
+     TemplateSuratUndanganService,
+     TemplateSuratPengantarService,
+     TemplateSuratEdaranService,
+     TemplatePengumumanService,
+     TemplateMemorandumService,
+     TemplateSuratKuasaService,
+     TemplateSuratKeteranganService,
+     TemplateNotaDinasService,
+     TemplateBeritaAcaraService,
+     TemplateSuratTugasService,
+     TemplateSuratPerintahService, 
+     $uibModal, $document, $state, PenilaianService, PersuratanService) {
         var vm = this;
         vm.loading = true;
 
         getSebaranSurat();
+        getSuratPerintahMasuk();
+
+        vm.getDocument = function(laporan){debugger
+            laporan.loading = true;
+            debugger
+            switch(laporan.kdJenisSurat){
+                case 0: getDocumentBeritaAcara(laporan); break;
+                case 1: getDocumentLaporan(laporan); break;
+                case 2: getDocumentMemorandum(laporan); break;
+                case 3: getDocumentNodin(laporan); break;
+                case 4: getDocumentPengumuman(laporan); break;
+                case 5: getDocumentSuratDinas(laporan); break;
+                case 6: getDocumentEdaran(laporan); break;
+                case 7: getDocumentKeputusan(laporan); break;
+                case 8: getDocumentSuratKeterangan(laporan); break;
+                case 9: getDocumentSuratKuasa(laporan); break;
+                case 10: getDocumentPengantar(laporan); break;
+                case 11: getDocumentPerintah(laporan); break;
+                case 12: getDocumentSuratTugas(laporan); break;
+                case 13: getDocumentUndangan(laporan); break;
+                case 14: getDocumentTelaahanStaff(laporan); break;
+                case 15: getLaporanLain(laporan); break;
+            }
+        }
+
+        function getDocumentPerintah(laporan){
+            PenugasanService.GetDataPerintah(laporan.kdSurat).then(
+                function(response){
+                    var data = response;debugger
+                    var doc = TemplateSuratPerintahService.template(data);
+                    EkinerjaService.lihatPdf(doc, 'Surat Perintah');
+                    laporan.loading = false;
+                }, function(errResponse){
+
+                })
+        };
 
         function getSebaranSurat(){
           PersuratanService.GetSebaranSurat($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
@@ -20,6 +70,7 @@ angular.
               for(var i = 0; i < response.length; i++){
                 response[i].waktu = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
                 response[i].jenisSurat = 'Surat Perintah';
+                response[i].kdJenisSurat = 11;
               }
               vm.surat = response;
 
@@ -27,6 +78,23 @@ angular.
             }, function(errResponse){
 
             })
+        }
+
+        function getSuratPerintahMasuk(){
+            PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai, true).then(
+                function(response){debugger
+                    for(var i = 0; i < response.length;i++){
+                        response[i].nama = "Surat Perintah";
+                        response[i].kdJenisSurat = 11;
+                        response[i].tanggalDibuat = response[i].createdDate;
+                        response[i].tanggalDibuatMilis = response[i].createdDateMilis;
+                        // vm.suratMasuk.push(response[i]);
+                    }
+                    vm.suratMasuk = response;
+                    pagingSuratMasuk();
+                }, function(errResponse){debugger
+
+                })
         }
 
         vm.changeStatus = function (surat) {
@@ -88,6 +156,71 @@ angular.
 
                 $scope.filteredDataSurat = vm.surat.slice(begin, end);
             });
+        }
+
+        function pagingSuratMasuk(){
+            $scope.filteredDataSuratMasuk = [];
+            $scope.currentPageSuratMasuk = 0;
+            $scope.numPerPageSuratMasuk = 10;
+            $scope.maxSizeSuratMasuk = Math.ceil(vm.suratMasuk.length/$scope.numPerPageSuratMasuk);
+            function pageSuratMasuk(){
+                $scope.pageSuratMasuk = [];
+                for(var i = 0; i < vm.suratMasuk.length/$scope.numPerPageSuratMasuk; i++){
+                    $scope.pageSuratMasuk.push(i+1);
+                }
+            }
+            pageSuratMasuk();
+            $scope.padSuratMasuk = function(i){
+                $scope.currentPageSuratMasuk += i;
+            }
+
+            $scope.maxSuratMasuk = function(){
+                if($scope.currentPageSuratMasuk >= $scope.maxSizeSuratMasuk - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageSuratMasuk + numPerPageSuratMasuk", function() {
+                var begin = (($scope.currentPageSuratMasuk) * $scope.numPerPageSuratMasuk)
+                    , end = begin + $scope.numPerPageSuratMasuk;
+
+                $scope.filteredDataSuratMasuk = vm.suratMasuk.slice(begin, end);
+            });
+        }
+
+        vm.disposisi = function(suratt, parentSelector){
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/penilaian/openUrtug/openUrtug.html',
+                controller: 'OpenUrtugController',
+                controllerAs: 'openurtug',
+                // windowClass: 'app-modal-window',
+                // size: 'lg',
+                appendTo: parentElem,
+                resolve: {
+                    surat: function () {
+                        return suratt;
+                    },
+                    isUpload: function () {
+                        return 0;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function () {
+            }, function () {
+
+            });
+        }
+
+        vm.isAdmin = function(){
+            if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD004')
+                return false;
+            else return true;
         }
    	}
 })();

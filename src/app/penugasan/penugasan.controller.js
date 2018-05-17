@@ -20,7 +20,7 @@ angular.
 
         function getNaskahPenugasanPerintahTarget(){
           vm.naskah = [];
-          PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai, false).then(
             function(response){debugger
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Surat Perintah";
