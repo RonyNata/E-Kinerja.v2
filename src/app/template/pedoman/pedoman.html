@@ -1,14 +1,15 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="card">
-                <div class="header">
-                    <h2>Pembuatan Naskah Pedoman ({{pedoman.jenis}})</h2>
-                </div>
-                <div class="body">
-                    <form ng-submit="pedoman.save()" class="form-horizontal">
-                        <div class="row clearfix" style="margin-bottom: -45px;">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Pembuatan Naskah Pedoman ({{pedoman.jenis}})</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nama Menteri</div>
                                 <div class="col-md-4">
@@ -19,6 +20,8 @@
                                     <input class="form-control" type="number" ng-model="pedoman.item.nomorSurat" placeholder="nomor surat" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row" style="padding-top: 30px;">
                             <div class="row col-md-12" style="margin-top: -15px;">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tentang Pedoman</div>
                                 <div class="col-md-4">
@@ -47,13 +50,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -55px;" ng-repeat="bab in pedoman.isiPedoman">
-                                <div class="col-md-12">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12" ng-repeat="bab in pedoman.isiPedoman">
+                                <div class="col-md-12" style="padding-bottom: 10px;">
                                     <hr style="height:3px;border:none;color:#333;background-color:#333;">
                                     <h3 style="text-align: center;">{{bab.bab}}</h3>
                                 </div>
                                 <div class="col-md-4"></div>
-                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Judul Bab</div>
+                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Judul Bab</div>
                                 <div class="col-md-4">
                                     <input class="form-control" ng-model="bab.judul" required>
                                 </div>
@@ -71,14 +76,16 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="row col-md-12" style="margin-top: -35px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-12">
                                     <hr style="height:3px;border:none;color:#333;background-color:#333;">
                                 </div>
-                                <div class="col-md-12" style="text-align: center;">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-9" style="text-align: center;">
                                     <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tambah Form</div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <select class="form-control" ng-model="jenisTambahan" id="sel1">
                                             <option value="0">Bab Baru</option>
                                             <option value="1">Subab Baru</option>
@@ -88,24 +95,32 @@
                                          <button class="btn btn-primary waves-effect" type="button" ng-click="pedoman.addElement(jenisTambahan)">+ Tambahkan</button>
                                     </div>
                                 </div>
-                                <div class="col-md-12" style="margin-top: -15px;">
+                                <div class="col-md-12">
                                     <hr style="height:3px;border:none;color:#333;background-color:#333;">
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -25px;">
-                                <div style="text-align: right;margin-bottom: 20px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div style="text-align: right;">
                                     <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
                                     <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
                                     <button class="btn btn-danger waves-effect" type="button" ng-click="pedoman.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
 
 <div class="bg_load animate-show-hide" ng-show="suratdinas.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="suratdinas.loading">

@@ -1,14 +1,15 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="card">
-                <div class="header">
-                    <h2>Pembuatan Surat Edaran ({{suratedaran.jenis}})</h2>
-                </div>
-                <div class="body">
-                    <form ng-submit="suratedaran.save()" class="form-horizontal">
-                        <div class="row clearfix" style="margin-bottom: -45px;">
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Pembuatan Surat Edaran ({{suratedaran.jenis}})</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
                                 <div class="col-md-2">
@@ -18,6 +19,8 @@
                                     <input type="number" class="form-control" ng-model="suratedaran.item.tahun" disabled required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
                             <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tentang</div>
                                 <div class="col-md-4">
@@ -28,6 +31,8 @@
                                     <input class="form-control" ng-model="suratedaran.item.tempat" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
                             <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Penetapan</div>
                                 <div class="col-md-4">
@@ -39,7 +44,9 @@
                                 </div>
                                 <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -15px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
                                 <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tentang Pedoman</div>
                                 <div class="col-md-4">
                                     <input class="form-control" ng-model="pedoman.item.ttgPedoman" required>
@@ -67,13 +74,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -25px;" ng-repeat="subab in suratedaran.subab">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12" ng-repeat="subab in suratedaran.subab">
                                 <div style="margin-top: 15px;">
                                     <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Judul Subab {{subab.nomor}}</div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <input class="form-control" ng-model="subab.judul" required>
                                     </div>
-                                    <div class="col-md-1"></div>
                                     <div class="col-md-1" style="margin-top:5px;font-weight: bold;padding-left: 10px;">Isi Subab {{subab.nomor}}</div>
                                     <div class="col-md-4">
                                         <textarea class="form-control" ng-model="subab.isi" required style="height: 100px"></textarea>
@@ -82,29 +90,24 @@
                                     <button class="btn btn-primary waves-effect" type="button" ng-click="suratedaran.removeSubab($index)" style="margin-left: 15px" ng-hide="$last">- Hapus Subbab</button>
                                 </div>
                             </div>
-                            <div class="row col-md-12" style="margin-top: -25px;">
-                                <div style="text-align: right;margin-bottom: 20px;">
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div style="text-align: right;">
                                     <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                        <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                        <button class="btn btn-danger waves-effect" type="button" ng-click="suratedaran.back()" style="font-size: 20px">Kembali</button>
+                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect" type="button" ng-click="suratedaran.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                        <div class="row"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- <div class="bg_load animate-show-hide" ng-show="suratdinas.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="suratdinas.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
-</div> -->
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>

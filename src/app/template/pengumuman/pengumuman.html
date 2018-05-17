@@ -1,149 +1,135 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>Pembuatan Pengumuman</h2>
-                    </div>
-                    <div class="body">
-                        <form ng-submit="pengumuman.save()" class="form-horizontal">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Nomor</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="pengumuman.item.nomorUrusan" placeholder="nomor urusan" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="pengumuman.item.nomorUrut" placeholder="nomor urut" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="pengumuman.item.nomorPasanganUrut" placeholder="nomor jabatan" required> 
-                                        </div> 
-                                        <div class="col-md-2"> 
-                                            <input type="text" class="form-control" ng-model="pengumuman.item.nomorUnit" placeholder="nomor unit" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="pengumuman.item.tahun" disabled required>
-                                        </div>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Berita Acara</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Nomor</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="pengumuman.item.nomorUrusan" placeholder="nomor urusan" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="pengumuman.item.nomorUrut" placeholder="nomor urut" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="pengumuman.item.nomorPasanganUrut" placeholder="nomor jabatan" required> 
+                                </div> 
+                                <div class="col-md-2"> 
+                                    <input type="text" class="form-control" ng-model="pengumuman.item.nomorUnit" placeholder="nomor unit" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" ng-model="pengumuman.item.tahun" disabled required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Tentang</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <textarea class="form-control" ng-model="pengumuman.item.tentang" required style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Isi Pengumuman</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <textarea class="form-control" ng-model="pengumuman.item.isipengumuman" required style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Kota Dikeluarkan Pengumuman </b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="pengumuman.item.tempat" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Tanggal Penetapan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-3">
+                                    <input class="form-control" type="date" ng-model="pengumuman.item.tanggal" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Nama Penandatangan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <div class="col-md-3" style="padding: 0px">
+                                        <button class="btn btn-primary waves-effect" ng-click="pengumuman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
                                     </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tentang</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="pengumuman.item.tentang" required style="height: 100px"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Isi Pengumuman</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="pengumuman.item.isipengumuman" required style="height: 100px"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Kota Dikeluarkan Pengumuman </b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="pengumuman.item.tempat" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tanggal Penetapan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-3">
-                                            <input class="form-control" type="date" ng-model="pengumuman.item.tanggal" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:5px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Nama Penandatangan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <div class="col-md-3" style="padding: 0px">
-                                                <button class="btn btn-primary waves-effect" ng-click="pengumuman.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            </div>
-                                            <div ng-show="pengumuman.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
-                                                <table>
-                                                    <tr>
-                                                        <td>Nama</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{pengumuman.item.pegawaiPenandatangan.nama}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jabatan</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{pengumuman.item.pegawaiPenandatangan.jabatan}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Waktu Pembuatan</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="col-md-4" style="margin-left: -15px;">
-                                                <input class="form-control" ng-model="pengumuman.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
-                                            </div>
-                                            <div class="col-md-4" style="padding-top: 8px;">
-                                                <span><b>Menit</b></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b></b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8" style="text-align: right">
-                                            <div class="col-md-4"></div>
-                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                            <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                            <button class="btn btn-danger waves-effect" type="button" ng-click="pengumuman.back()" style="font-size: 20px">Kembali</button>
-                                        </div>
+                                    <div ng-show="pengumuman.item.pegawaiPenandatangan" class="col-md-9" style="margin-bottom: 0px">
+                                        <table>
+                                            <tr>
+                                                <td>Nama</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{pengumuman.item.pegawaiPenandatangan.nama}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jabatan</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{pengumuman.item.pegawaiPenandatangan.jabatan}}</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Waktu Pembuatan</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4" style="margin-left: -15px;">
+                                        <input class="form-control" ng-model="pengumuman.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                    </div>
+                                    <div class="col-md-4" style="padding-top: 8px;">
+                                        <span><b>Menit</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-md-12" style="text-align: right">
+                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                            <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                            <button class="btn btn-danger waves-effect" type="button" ng-click="pengumuman.back()" style="font-size: 20px">Kembali</button>
+                        </div>
+                        <div class="row" style="padding-top: 20px;"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="pengumuman.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="pengumuman.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
 </div>

@@ -1,138 +1,150 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>Pembuatan Naskah Petunjuk ({{petunjuk.jenis}})</h2>
-                    </div>
-                    <div class="body">
-                        <form ng-submit="petunjuk.save()" class="form-horizontal">
-                        <div class="row clearfix">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nama Menteri</b></p>
-                                    </div>  
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" ng-model="petunjuk.item.namaMenteri" required>
-                                    </div>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Berita Acara</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="row col-md-12">
+                                <div class="col-md-1"></div> 
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Nama Menteri</b></p>
+                                </div>  
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" ng-model="petunjuk.item.namaMenteri" required>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nomor Surat</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-2">
-                                        <input class="form-control" type="number" ng-model="petunjuk.item.nomorSurat" required>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12"> 
+                                <div class="col-md-1"></div> 
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Nomor Surat</b></p>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Tentang Petunjuk</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <input class="form-control" ng-model="petunjuk.item.ttgPetunjuk" required>
-                                    </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-2">
+                                    <input class="form-control" type="number" ng-model="petunjuk.item.nomorSurat" required>
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px"> 
-                                    <div class="col-md-1"></div> 
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b>Nama Penandatangan</b></p>
-                                    </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6">
-                                        <button class="btn btn-primary waves-effect" ng-click="petunjuk.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                        <div ng-show="petunjuk.item.pegawaiPembuat">Nama: {{petunjuk.item.pegawaiPembuat.nama}}</div>
-                                        <div ng-show="petunjuk.item.pegawaiPembuat">Jabatan: {{petunjuk.item.pegawaiPembuat.jabatan}}</div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12"> 
+                                <div class="col-md-1"></div> 
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Tentang Petunjuk</b></p>
                                 </div>
-                                <div class="col-md-12" ng-repeat="bab in petunjuk.isiPetunjuk">
-                                    <div class="col-md-12" style="text-align: center">
-                                        <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
-                                        <h3>{{bab.bab}}</h3>
-                                        <div class="col-md-12" style="margin-bottom:10px"> 
-                                            <div class="col-md-1"></div> 
-                                            <div class="col-sm-2" style="margin-top:5px">
-                                                <p><b>Judul Bab</b></p>
-                                            </div>
-                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                            <div class="col-md-6">
-                                                <input class="form-control" ng-model="bab.judul" required>
-                                            </div>
-                                        </div>
-                                        <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
-                                    </div>
-                                    <div class="col-md-12" ng-repeat="subab in bab.subab">
-                                        <div class="col-md-12" style="margin-bottom:10px"> 
-                                            <div class="col-md-1"></div> 
-                                            <div class="col-sm-2" style="margin-top:5px">
-                                                <p><b>Judul Subab {{subab.nomor}}</b></p>
-                                            </div>
-                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                            <div class="col-md-3">
-                                                <input class="form-control" ng-model="subab.judul" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12" style="margin-bottom:10px"> 
-                                            <div class="col-md-1"></div> 
-                                            <div class="col-sm-2" style="margin-top:5px">
-                                                <p><b>Isi Subab {{subab.nomor}}</b></p>
-                                            </div>
-                                            <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                            <div class="col-md-6">
-                                                <textarea class="form-control" ng-model="subab.isi" required style="height: 100px"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6">
+                                    <input class="form-control" ng-model="petunjuk.item.ttgPetunjuk" required>
                                 </div>
-                                <div class="col-md-12">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12"> 
+                                <div class="col-md-1"></div> 
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b>Nama Penandatangan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary waves-effect" ng-click="petunjuk.openDari()" type="button" style="margin-left: 5px">Pilih Pegawai</button>
+                                    <div ng-show="petunjuk.item.pegawaiPembuat">Nama: {{petunjuk.item.pegawaiPembuat.nama}}</div>
+                                    <div ng-show="petunjuk.item.pegawaiPembuat">Jabatan: {{petunjuk.item.pegawaiPembuat.jabatan}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12" ng-repeat="bab in petunjuk.isiPetunjuk">
+                                <div class="col-md-12" style="text-align: center">
                                     <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
-                                    <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-12"><h3>{{bab.bab}}</h3></div>
+                                    <div class="col-md-12"> 
                                         <div class="col-md-1"></div> 
                                         <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tambah Form</b></p>
+                                            <p><b>Judul Bab</b></p>
                                         </div>
                                         <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
                                         <div class="col-md-6">
-                                            <select class="form-control" ng-model="jenisTambahan" id="sel1">
-                                                <option value="0">Bab Baru</option>
-                                                <option value="1">Subab Baru</option>
-                                            </select>
+                                            <input class="form-control" ng-model="bab.judul" required>
                                         </div>
-                                        <button class="btn btn-primary waves-effect" type="button" ng-click="petunjuk.addElement(jenisTambahan)" style="margin-left: 15px">+ Tambahkan</button>
                                     </div>
                                     <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
                                 </div>
-                                <div class="col-md-12" style="margin-bottom:10px">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-sm-2" style="margin-top:5px">
-                                        <p><b></b></p>
+                                <div class="col-md-12" ng-repeat="subab in bab.subab">
+                                    <div class="col-md-12" style="margin-bottom:10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Judul Subab {{subab.nomor}}</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-3">
+                                            <input class="form-control" ng-model="subab.judul" required>
+                                        </div>
                                     </div>
-                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                    <div class="col-md-6" style="text-align: right">
-                                        <div class="col-md-4"></div>
-                                        <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                        <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                        <button class="btn btn-danger waves-effect" type="button" ng-click="petunjuk.back()" style="font-size: 20px">Kembali</button>
+                                    <div class="col-md-12" style="margin-bottom:10px"> 
+                                        <div class="col-md-1"></div> 
+                                        <div class="col-sm-2" style="margin-top:5px">
+                                            <p><b>Isi Subab {{subab.nomor}}</b></p>
+                                        </div>
+                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                        <div class="col-md-6">
+                                            <textarea class="form-control" ng-model="subab.isi" required style="height: 100px"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </form>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
+                                <div class="col-md-12" style="margin-bottom:10px"> 
+                                    <div class="col-md-1"></div> 
+                                    <div class="col-sm-2" style="margin-top:5px">
+                                        <p><b>Tambah Form</b></p>
+                                    </div>
+                                    <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                    <div class="col-md-6">
+                                        <select class="form-control" ng-model="jenisTambahan" id="sel1">
+                                            <option value="0">Bab Baru</option>
+                                            <option value="1">Subab Baru</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary waves-effect" type="button" ng-click="petunjuk.addElement(jenisTambahan)" style="margin-left: 15px">+ Tambahkan</button>
+                                </div>
+                                <hr class="col-md-11" style="height:1px;border:none;color:#333;background-color:#333;margin-left: 10px">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-md-1"></div>
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p><b></b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6" style="text-align: right">
+                                    <div class="col-md-4"></div>
+                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect" type="button" ng-click="petunjuk.back()" style="font-size: 20px">Kembali</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
+</div>
 
 <div class="bg_load animate-show-hide" ng-show="petunjuk.loading"></div>
 <div class="wrapper animate-show-hide" ng-show="petunjuk.loading">
