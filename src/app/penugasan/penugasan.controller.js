@@ -27,8 +27,8 @@ angular.
                 response[i].jenis = 1;
                 response[i].tanggalDibuat = response[i].createdDate;
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
-                vm.naskah.push(response[i]);
                 response[i].ketBaca = statusBaca(response[i].statusBaca);
+                vm.naskah.push(response[i]);
               }
               getNaskahPenugasanPerintah();
             }, function(errResponse){
@@ -144,29 +144,29 @@ angular.
             });
         }
 
-        vm.getDocument = function(naskah, idx, isHistory){
+        vm.getDocument = function(naskah, isHistory){
           if(isHistory)
-            $scope.filteredDataPenugasan[idx].loading = true;
-          else $scope.filteredData[idx].loading = true;
+            naskah.loading = true;
+          else naskah.loading = true;
           switch(naskah.jenis){
-            case 0 : getDocumentInstruksi(naskah.kdSurat, idx, isHistory); break;
-            case 1 : getDocumentPerintah(naskah.kdSurat, idx, isHistory); break;
-            case 2 : getDocumentSuratTugas(naskah.kdSurat, idx, isHistory); break;
+            case 0 : getDocumentInstruksi(naskah, isHistory); break;
+            case 1 : getDocumentPerintah(naskah, isHistory); break;
+            case 2 : getDocumentSuratTugas(naskah, isHistory); break;
           }
         }
 
-        function getDocumentSuratTugas(kdHistory, idx, isHistory){
+        function getDocumentSuratTugas(naskah, isHistory){
             // laporan.loading = true;
-            PenilaianService.GetDataSuratTugas(kdHistory).then(
+            PenilaianService.GetDataSuratTugas(naskah.kdSurat).then(
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateSuratTugasService.template(vm.data);
                     if(isHistory){
-                      $scope.filteredDataPenugasan[idx].loading = false;
+                      naskah.loading = false;
                       openSuratMasuk('open-surat-tugas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                       getNaskahPenugasanPerintahTarget();
                     }
-                    else $scope.filteredData[idx].loading = false;
+                    else naskah.loading = false;
                     // pdfMake.createPdf(doc).open();
                     EkinerjaService.lihatPdf(doc, 'Surat Tugas');
                 }, function(errResponse){
@@ -174,18 +174,18 @@ angular.
                 })
         };
 
-        function getDocumentInstruksi(kdHistory, idx, isHistory){
-          KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
+        function getDocumentInstruksi(naskah, isHistory){
+          KontrakPegawaiService.GetDataInstruksi(naskah.kdSurat).then(
             function(response){
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
               if(isHistory){
-                $scope.filteredDataPenugasan[idx].loading = false;
+                naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-instruksi-pegawai/',
                   kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
-              else $scope.filteredData[idx].loading = false;
+              else naskah.loading = false;
               // pdfMake.createPdf(doc).open();
               EkinerjaService.lihatPdf(doc, 'Surat Instruksi');
             }, function(errResponse){
@@ -193,18 +193,18 @@ angular.
             })
         }
 
-        function getDocumentPerintah(kdHistory, idx, isHistory){
-          PenugasanService.GetDataPerintah(kdHistory).then(
+        function getDocumentPerintah(naskah, isHistory){
+          PenugasanService.GetDataPerintah(naskah.kdSurat).then(
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
               if(isHistory){
-                $scope.filteredDataPenugasan[idx].loading = false;
+                naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-perintah-pegawai/',
                   kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
-              else $scope.filteredData[idx].loading = false;
+              else naskah.loading = false;
               // pdfMake.createPdf(doc).open();
               EkinerjaService.lihatPdf(doc, 'Surat Perintah');
             }, function(errResponse){
