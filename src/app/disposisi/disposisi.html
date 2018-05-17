@@ -111,14 +111,14 @@
                                                     </form>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" ng-hide="perpindahan.isCreate">
                                                 <div class="col-md-12"> 
                                                     <div class="col-sm-3" style="margin-left: 15px;">
                                                         <p><b>Memberi Instruksi Kepada :</b></p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="padding-top: 20px;">
+                                            <div class="row" style="padding-top: 20px;" ng-hide="perpindahan.isCreate">
                                                 <div class="col-md-12">
                                                     <div class="col-md-12" style="margin-left: 10px;"> 
                                                         <button class="btn btn-primary waves-effect" ng-click="perpindahan.openPegawai()" type="button" style="margin-left: 5px">Pilih {{perpindahan.isEselon4 ? 'Pegawai' : 'Jabatan'}}</button>
