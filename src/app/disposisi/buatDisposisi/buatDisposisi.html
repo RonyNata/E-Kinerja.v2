@@ -18,7 +18,7 @@
                             <a href="#disposisii" data-toggle="tab">Surat Disposisi Masuk</a>
                         </li>
                         <li role="presentation" ng-show="ambilperpindahan.isPejabat">
-                            <a href="#draft" data-toggle="tab"><b>Draft Disposisi</b></a>
+                            <a href="#draft" data-toggle="tab">Draft Disposisi</a>
                         </li>
                         <li role="presentation">
                             <a href="#instruksi" data-toggle="tab">Disposisi Yang Pernah Dibuat</a>
@@ -118,7 +118,7 @@
                                                     <td style="vertical-align: middle">{{draft.tglTerima}}</td>
                                                     <td style="vertical-align: middle">{{draft.approvedBySekdin ? 'Sudah Disetujui' : 'Belum Disetujui'}}</td>
                                                     <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
-                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-blue waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.formLengkapiDisposisi(draft.kdLembarDisposisi)" ng-disabled="draft.approvedBySekdin" ng-show="ambilperpindahan.isPimpinan"><i class="fa fa-check" aria-hidden="true"></i> LENGKAPI</span></button>
+                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-blue waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.formLengkapiDisposisi(draft.kdLembarDisposisi)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> LENGKAPI</span></button>
                                                         <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, true)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> SETUJUI</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">

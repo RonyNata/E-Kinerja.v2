@@ -58,7 +58,7 @@
 
                         <tbody class="points_table_scrollbar">
                         <tr ng-repeat="data in temp.result" style="padding-bottom: 3px">
-                            <td class="col-xs-1 text-center">{{$index + 1}}</td>
+                            <td class="col-xs-1 text-center" style="width: 55px;">{{$index + 1}}</td>
                             <td class="col-xs-8">{{data.nmTemplate}} </td>
                             <td class="col-xs-3 text-center"><button type="button" ng-click="temp.gotoTemplate(data.url)" class="btn btn-primary">Template</button></td>
                         </tr>
