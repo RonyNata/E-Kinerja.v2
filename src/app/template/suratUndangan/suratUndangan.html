@@ -1,282 +1,268 @@
+<div class="wrapper">
 <ekinerja-navbar></ekinerja-navbar>
-<section style="width: 90%;padding-left: 10%;padding-top: 100px;">
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="header">
-                        <h2><b>Pembuatan Surat Undangan ({{suratundangan.jenis}})</b></h2>
-                    </div>
-                    <div class="body">
-                        <form ng-submit="suratundangan.save()" class="form-horizontal">
-                            <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <div class="col-md-12" style="margin-bottom: -10px">
-                                        <div class="col-md-5">
-                                            <h4><b>Bagian Kepala Surat</b></h4>
-                                        </div>
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row" style="margin-top:50px">
+            <div class="col-md-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Pembuatan Surat Undangan ({{suratundangan.jenis}})</li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="row">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" >
+                                    <p><b>Nomor</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="suratundangan.item.nomorUrusan" placeholder="nomor urusan" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" ng-model="suratundangan.item.nomorUrut" placeholder="nomor urut" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="suratundangan.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" ng-model="suratundangan.item.nomorUnit" placeholder="nomor unit" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" class="form-control" ng-model="suratundangan.item.tahun" disabled required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" >
+                                    <p><b>Sifat</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.sifat" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" >
+                                    <p><b>Hal</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.hal" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Lampiran </b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6">
+                                    <input class="form-control" ng-model="suratundangan.item.lampiran" required></input>
+                                </div>
+                                <div class="col-sm-2" style="margin-top:5px">
+                                    <p>Halaman</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2" >
+                                    <p><b>Memberi surat undangan kepada</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <div class="col-md-3" style="padding: 0px">
+                                        <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(1)" type="button">Pilih Pegawai</button>
                                     </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Nomor</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="suratundangan.item.nomorUrusan" placeholder="nomor urusan" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.nomorUrut" placeholder="nomor urut" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="suratundangan.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" ng-model="suratundangan.item.nomorUnit" placeholder="nomor unit" required>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="number" class="form-control" ng-model="suratundangan.item.tahun" disabled required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Sifat</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.sifat" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Hal</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.hal" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Lampiran </b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-6">
-                                            <input class="form-control" ng-model="suratundangan.item.lampiran" required></input>
-                                        </div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p>Halaman</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:5px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Memberi surat undangan kepada</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <div class="col-md-3" style="padding: 0px">
-                                                <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(1)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            </div>
-                                            <div ng-show="suratundangan.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
-                                                <table>
-                                                    <tr>
-                                                        <td>Nama</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{suratundangan.item.pegawaiPenerima.nama}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jabatan</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{suratundangan.item.pegawaiPenerima.jabatan}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Kota dikeluarkan surat undangan </b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.tempat" required></input>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom: -10px">
-                                        <div class="col-md-5">
-                                            <h4><b>Bagian Isi Surat</b></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Isi surat undangan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="suratundangan.item.isisuratundangan" required style="height: 100px"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>tanggal pelaksanaan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input type="date" class="form-control" ng-model="suratundangan.item.tanggalpelaksanaan" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>waktu pelaksanaan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.waktupelaksanaan" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>tempat pelaksanaan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.tempatpelaksanaan" required></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>acara</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <input class="form-control" ng-model="suratundangan.item.acara" required></input>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Penutup surat undangan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <textarea class="form-control" ng-model="suratundangan.item.penutupsuratundangan" required style="height: 100px"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom: -10px">
-                                        <div class="col-md-5">
-                                            <h4><b>Bagian Kaki Surat</b></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tembusan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-6" >
-                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openTembusan()" type="button">Pilih Jabatan</button>
-                                            <button class="btn btn-primary waves-effect" ng-click="suratundangan.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratundangan.tembusanSurat.length}} Jabatan Telah Dipilih</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:5px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Penandatangan</b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8">
-                                            <div class="col-md-3" style="padding: 0px">
-                                                <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(0)" type="button" style="margin-left: 5px">Pilih Pegawai</button>
-                                            </div>
-                                            <div ng-show="suratundangan.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px">
-                                                <table>
-                                                    <tr>
-                                                        <td>Nama</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{suratundangan.item.pegawaiPenandatangan.nama}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jabatan</td>
-                                                        <td style="padding: 3px">:</td>
-                                                        <td>{{suratundangan.item.pegawaiPenandatangan.jabatan}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Tanggal penandatanganan</b></p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input class="form-control" type="date" ng-model="suratundangan.item.tanggal1" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b>Waktu Pembuatan</b></p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="col-md-4" style="margin-left: -15px;">
-                                                <input class="form-control" ng-model="suratundangan.item.durasiPengerjaan" type="number" pattern="[0-9]{1,4}" name="quantity" min="1" required></input>
-                                            </div>
-                                            <div class="col-md-4" style="padding-top: 8px;">
-                                                <span><b>Menit</b></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-12" style="margin-bottom:10px">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-sm-2" style="margin-top:5px">
-                                            <p><b></b></p>
-                                        </div>
-                                        <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
-                                        <div class="col-md-8" style="text-align: right">
-                                            <div class="col-md-4"></div>
-                                            <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                            <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                            <button class="btn btn-danger waves-effect" type="button" ng-click="suratundangan.back()" style="font-size: 20px">Kembali</button>
-                                        </div>
+                                    <div ng-show="suratundangan.item.pegawaiPenerima" class="col-md-6" style="margin-bottom: 0px">
+                                        <table>
+                                            <tr>
+                                                <td>Nama</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{suratundangan.item.pegawaiPenerima.nama}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jabatan</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{suratundangan.item.pegawaiPenerima.jabatan}}</td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Kota dikeluarkan surat undangan </b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.tempat" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-md-5">
+                                    <h4><b>Bagian Isi Surat</b></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Isi surat undangan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <textarea class="form-control" ng-model="suratundangan.item.isisuratundangan" required style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>tanggal pelaksanaan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input type="date" class="form-control" ng-model="suratundangan.item.tanggalpelaksanaan" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>waktu pelaksanaan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.waktupelaksanaan" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>tempat pelaksanaan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.tempatpelaksanaan" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>acara</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <input class="form-control" ng-model="suratundangan.item.acara" required></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Penutup surat undangan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <textarea class="form-control" ng-model="suratundangan.item.penutupsuratundangan" required style="height: 100px"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-md-5">
+                                    <h4><b>Bagian Kaki Surat</b></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Tembusan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-6" >
+                                    <button class="btn btn-primary waves-effect" ng-click="suratundangan.openTembusan()" type="button">Pilih Jabatan</button>
+                                    <button class="btn btn-primary waves-effect" ng-click="suratundangan.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratundangan.tembusanSurat.length}} Jabatan Telah Dipilih</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Penandatangan</b></p>
+                                </div>
+                                <!-- <div class="col-sm-1" style="margin-top:5px"><b>:</b></div> -->
+                                <div class="col-md-8">
+                                    <div class="col-md-3" style="padding: 0px">
+                                        <button class="btn btn-primary waves-effect" ng-click="suratundangan.openDari(0)" type="button">Pilih Pegawai</button>
+                                    </div>
+                                    <div ng-show="suratundangan.item.pegawaiPenandatangan" class="col-md-6" style="margin-bottom: 0px">
+                                        <table>
+                                            <tr>
+                                                <td>Nama</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{suratundangan.item.pegawaiPenandatangan.nama}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jabatan</td>
+                                                <td style="padding: 3px">:</td>
+                                                <td>{{suratundangan.item.pegawaiPenandatangan.jabatan}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Tanggal penandatanganan</b></p>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="form-control" type="date" ng-model="suratundangan.item.tanggal1" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="row col-md-12">
+                                <div class="col-sm-2">
+                                    <p><b>Waktu Pembuatan</b></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-4" style="margin-left: -15px;">
+                                        <input class="form-control" ng-model="suratundangan.item.durasiPengerjaan" type="number" pattern="[0-9]{1,4}" name="quantity" min="1" required></input>
+                                    </div>
+                                    <div class="col-md-4" style="padding-top: 8px;">
+                                        <span><b>Menit</b></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-md-12" style="text-align: right">
+                                <div class="col-md-4"></div>
+                                <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
+                                <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                <button class="btn btn-danger waves-effect" type="button" ng-click="suratundangan.back()" style="font-size: 20px">Kembali</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<div class="bg_load animate-show-hide" ng-show="suratundangan.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="suratundangan.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
+    </section>
+</div>
+<div class="control-sidebar-bg"></div>
 </div>
