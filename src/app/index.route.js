@@ -633,6 +633,22 @@
           templateUrl: 'app/persuratan/persuratan.html',
           controller: 'PersuratanController',
           controllerAs: 'persuratan'
+        })
+        .state('persuratanSuratMasuk', {
+            url: '/masuk',
+            resolve:{
+                reload: function(){
+                    $state.go($state.current.name);
+                }
+            }
+        })
+        .state('persuratanSuratKeluar', {
+            url: '/keluar',
+            resolve:{
+                reload: function(){
+                    $state.go($state.current.name);
+                }
+            }
         });
 
     $urlRouterProvider.otherwise('/');

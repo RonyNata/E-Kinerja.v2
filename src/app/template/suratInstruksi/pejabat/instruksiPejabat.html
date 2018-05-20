@@ -11,62 +11,62 @@
                     <div class="tab-content">
                         <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="instruksipejabat.item.nomorSurat" placeholder="nomor surat" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="number" class="form-control" ng-model="instruksipejabat.item.tahun" disabled required>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tentang</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tentang</div>
+                                <div class="col-md-4 space-after">
                                     <textarea class="form-control" ng-model="instruksipejabat.item.tentang" required style="height: 100px"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Judul Instruksi</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Judul Instruksi</div>
+                                <div class="col-md-4 space-after">
                                     <textarea class="form-control" ng-model="instruksipejabat.item.judulInstruksi" required style="height: 100px"></textarea>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Memberi Instruksi Kepada :</div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openPegawai()" type="button">Pilih Pegawai</button>
-                                    <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.openPilihan()" type="button" style="margin-left: 5px">{{instruksipejabat.target.length}} Pegawai Telah Dipilih</button>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Memberi Instruksi Kepada :</div>
+                                <div class="col-md-4 space-after">
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="instruksipejabat.openPegawai()" type="button">Pilih Pegawai</button>
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="instruksipejabat.openPilihan()" type="button" style="margin-left: 5px">{{instruksipejabat.target.length}} Pegawai Telah Dipilih</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Untuk</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Untuk</div>
+                                <div class="col-md-4 space-after">
                                     <div ng-repeat="tujuan in instruksipejabat.maksud" style="padding-top: 5px">
                                         <textarea class="form-control" ng-model="tujuan.deskripsi" style="height: 100px" required></textarea>
                                     </div>
                                     <button class="btn btn-primary waves-effect" ng-click="instruksipejabat.addMaksud()" style="margin-top: 10px;">+ Tambah</button>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Kota Pembuatan Surat</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Kota Pembuatan Surat</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="instruksipejabat.item.tempat" required></input>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
-                                <div class="col-md-1">
-                                    <input class="form-control" ng-model="instruksipejabat.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
+                                <div class="col-md-2 space-after">
+                                    <input class="form-control" ng-model="instruksipejabat.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
-                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                                <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div style="text-align: right;">
-                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                    <button class="btn btn-danger waves-effect" type="button" ng-click="instruksipejabat.back()" style="font-size: 20px">Kembali</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="submit" ng-click="instruksipejabat.save()" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect space-after" type="button" ng-click="instruksipejabat.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
@@ -81,16 +81,4 @@
     </section>
 </div>
 <div class="control-sidebar-bg"></div>
-</div>
-
-<div class="bg_load animate-show-hide" ng-show="instruksipejabat.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="instruksipejabat.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
 </div>

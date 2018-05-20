@@ -252,7 +252,7 @@ debugger
         "tanggalPenerimaanMilis": vm.item.tanggalPenerimaanMilis.getTime(),
         "kdLembarDisposisiParent": "",
         "noSuratDisposisi": vm.item.noSuratDisposisi,
-        "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
+        "tglPenyelesaianMilis": null,
         "lampiran": vm.item.lampiran,
         "dariSuratDisposisi": vm.item.dariSuratDisposisi,
         "ringkasanIsiSuratDisposisi": vm.item.ringkasanIsiSuratDisposisi,

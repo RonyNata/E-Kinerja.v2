@@ -32,6 +32,19 @@
             );
             return deferred.promise;
         };
+
+        service.GetDraftApproval = function (url, kdUnit) {
+            var deferred = $q.defer();
+            $http.get(API + url + kdUnit).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
  
         return service;
     }])

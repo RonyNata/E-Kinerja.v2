@@ -11,26 +11,26 @@
                     <div class="tab-content">
                         <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Nomor Surat</div>
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="beritaacara.item.nomorUrusan" placeholder="nomor urusan" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="beritaacara.item.nomorPasanganUrut" placeholder="nomor pasangan urut" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="beritaacara.item.nomorUnit" placeholder="nomor unit" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="number" class="form-control" ng-model="beritaacara.item.tahun" placeholder="nomor tahun" disabled required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 10px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="font-weight: bold;margin-left: -15px;">PIHAK KESATU</div>
-                                    <div class="col-md-8" style="margin-left: 10px">
+                                    <div class="col-md-4 space-after" style="font-weight: bold;margin-left: -15px;">PIHAK KESATU</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px">
                                         <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(1)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="beritaacara.item.pegawaiKesatu">
@@ -51,10 +51,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="font-weight: bold;margin-left: -15px;">PIHAK KEDUA</div>
-                                    <div class="col-md-8" style="margin-left: 10px">
+                                    <div class="col-md-4 space-after" style="font-weight: bold;margin-left: -15px;">PIHAK KEDUA</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px">
                                         <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(2)" type="button">Pilih Pegawai</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
+                                        <div class="col-md-12" style="margin-left: -15px;">
                                             <div ng-show="beritaacara.item.pegawaiKedua" >
                                                 <table>
                                                     <tr>
@@ -74,40 +74,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 10px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="font-weight: bold;">Peran Pihak Kesatu</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Peran Pihak Kesatu</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="beritaacara.item.peranPihakKesatu" required></input>
                                 </div>
-                                <div class="col-md-2" style="font-weight: bold;">Peran Pihak Kedua</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Peran Pihak Kedua</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="beritaacara.item.peranPihakKedua" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 10px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="font-weight: bold;">Kedua belah pihak sepakat, bahwa :</div>
-                                <div class="col-md-4">
-                                    <div ng-repeat="isisepakat in beritaacara.isiBeritaAcara" style="margin-bottom:5px">
-                                        <textarea class="form-control" ng-model="isisepakat.deskripsiisiberitaacara" required></textarea>
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Kedua belah pihak sepakat, bahwa :</div>
+                                <div class="col-md-4 space-after">
+                                    <div ng-repeat="isisepakat in beritaacara.isiBeritaAcara" class="space-after">
+                                        <textarea class="form-control" ng-model="isisepakat.deskripsiisiberitaacara" style="height: 100px" required></textarea>
                                     </div>
-                                    <button class="btn btn-primary waves-effect" type="button" ng-click="beritaacara.addIsiBeritaAcara()" style="margin-top: 10px">+ Tambah</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="button" ng-click="beritaacara.addIsiBeritaAcara()" style="margin-top: 10px">+ Tambah</button>
                                 </div>
-                                <div class="col-md-2" style="font-weight: bold;">Penutup berita acara</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Penutup berita acara</div>
+                                <div class="col-md-4 space-after">
                                     <textarea class="form-control" ng-model="beritaacara.item.dasarberitaacara" required style="height: 100px" placeholder="Demikian berita acara ini dibuat dengan sesungguhnya berdasarkan ..."></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 10px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="font-weight: bold;margin-left: -15px;">PIHAK PENANDATANGAN</div>
-                                    <div class="col-md-8" style="margin-left: 10px;">
-                                        <button class="btn btn-primary waves-effect" ng-click="beritaacara.openDari(3)" type="button">Pilih Pegawai</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
+                                    <div class="col-md-4 space-after" style="font-weight: bold;margin-left: -15px;">PIHAK PENANDATANGAN</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
+                                        <button class="btn btn-primary waves-effect space-after" ng-click="beritaacara.openDari(3)" type="button">Pilih Pegawai</button>
+                                        <div class="col-md-12 space-after" style="margin-left: -15px">
                                             <div ng-show="beritaacara.item.pegawaiMengetahui" >
                                                 <table>
                                                     <tr>
@@ -125,31 +125,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2" style="font-weight: bold;">Tanggal penandatanganan</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Tanggal penandatanganan</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" type="date" ng-model="beritaacara.item.tanggal1" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="row col-md-12" style="padding-top: 10px;">
-                                <div class="col-md-2" style="font-weight: bold;">Kota dibuatkan berita acara</div>
-                                <div class="col-md-4">
+                            <div class="row col-md-12">
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Kota dibuatkan berita acara</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="beritaacara.item.tempat" required></input>
                                 </div>
-                                <div class="col-md-2" style="font-weight: bold;">Waktu Pembuatan</div>
-                                <div class="col-md-2">
-                                   <input class="form-control" ng-model="beritaacara.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                <div class="col-md-2 space-after" style="font-weight: bold;">Waktu Pembuatan</div>
+                                <div class="col-md-2 space-after">
+                                   <input class="form-control" ng-model="beritaacara.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
                                 <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 10px;">
+                        <div class="row">
                             <div class="row col-md-12" style="text-align: right;">
                                 <div class="col-md-4"></div>
-                                <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                <button class="btn btn-danger waves-effect" type="button" ng-click="beritaacara.back()" style="font-size: 20px">Kembali</button>
+                                <button class="btn btn-primary waves-effect space-after" type="submit" style="font-size: 20px">Simpan</button>
+                                <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                <button class="btn btn-danger waves-effect space-after" type="button" ng-click="beritaacara.back()" style="font-size: 20px">Kembali</button>
                             </div>
                         </div>
                         <div class="row"></div>
@@ -161,27 +161,4 @@
     </section>
 </div>
 <div class="control-sidebar-bg"></div>
-</div>
-<!-- <div class="bg_load animate-show-hide" ng-show="master.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="master.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
-</div> -->
-
-<div class="bg_load animate-show-hide" ng-show="beritaacara.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="beritaacara.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
 </div>

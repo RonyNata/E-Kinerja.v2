@@ -11,70 +11,54 @@
                     <div class="tab-content">
                         <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrusan" placeholder="nomor urusan" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratdinas.item.nomorUrut" placeholder="nomor urut" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratdinas.item.nomorPasanganUrut" placeholder="nomor pasangan urut" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratdinas.item.nomorUnit" placeholder="nomor unit" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="number" class="form-control" ng-model="suratdinas.item.tahun" disabled required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row" >
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Sifat</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Sifat</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="suratdinas.item.sifat" required>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Lampiran</div>
-                                <div class="col-md-1">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Lampiran</div>
+                                <div class="col-md-1 space-after">
                                     <input type="number" class="form-control" ng-model="suratdinas.item.lampiran" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="suratdinas.item.tempat" required>
-                                </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Pembuatan Surat</div>
-                                <div class="col-md-4">
-                                    <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
-                            <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
-                                <div class="col-md-4">
-                                    <input class="form-control" ng-model="suratdinas.item.tempat" required>
-                                </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Pembuatan Surat</div>
-                                <div class="col-md-4">
-                                    <input class="form-control" type="date" ng-model="suratdinas.item.tanggal1" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Penerima</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-4 space-after" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Penerima</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="suratdinas.openTarget()" type="button">Pilih Jabatan</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
+                                        <div class="col-md-12 space-after" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="suratdinas.item.jabatanPenerima" > 
                                                 <table>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratdinas.item.jabatanPenerima.jabatan}}</td>
@@ -84,19 +68,19 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Hal</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Hal</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="suratdinas.item.hal" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-4 space-after" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="suratdinas.openDari(0)" type="button">Pilih Pegawai</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
+                                        <div class="col-md-12 space-after" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="suratdinas.item.pegawaiPenandatangan"> 
                                                 <table>
                                                     <tr>
@@ -104,7 +88,7 @@
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratdinas.item.pegawaiPenandatangan.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratdinas.item.pegawaiPenandatangan.jabatan}}</td>
@@ -114,36 +98,35 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Alinea Isi</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Alinea Isi</div>
+                                <div class="col-md-4 space-after">
                                     <textarea class="form-control" ng-model="suratdinas.item.alineaIsi" required style="height: 100px"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tembusan</div>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tembusan</div>
                                 <div class="col-md-4">
-                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.openTembusan()" type="button">Pilih Jabatan</button>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratdinas.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratdinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratdinas.openTembusan()" type="button">Pilih Jabatan</button>
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratdinas.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratdinas.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
-                                <div class="col-md-1">
-                                    <input class="form-control" ng-model="suratdinas.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
+                                <div class="col-md-2 space-after">
+                                    <input class="form-control" ng-model="suratdinas.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
-                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                                <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div style="text-align: right;">
-                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                    <button class="btn btn-danger waves-effect" type="button" ng-click="suratdinas.back()" style="font-size: 20px">Kembali</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="submit" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect space-after" type="button" ng-click="suratdinas.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row"></div>
                     </div>
                 </div>
             </div>
@@ -151,17 +134,4 @@
     </section>
 </div>
 <div class="control-sidebar-bg"></div>
-</div>
-
-
-<div class="bg_load animate-show-hide" ng-show="suratdinas.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="suratdinas.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
 </div>

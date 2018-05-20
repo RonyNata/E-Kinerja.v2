@@ -11,25 +11,25 @@
                     <div class="tab-content">
                         <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratperintah.item.urusan" placeholder="nomor urusan" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratperintah.item.unit" placeholder="nomor unit" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="number" class="form-control" ng-model="suratperintah.item.tahun" disabled required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
+                                    <div class="col-md-4 space-after" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penandatangan</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
                                         <button class="btn btn-primary waves-effect" ng-click="suratperintah.openDari()" type="button">Pilih Pegawai</button>
-                                        <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
+                                        <div class="col-md-12 space-after" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="suratperintah.item.pegawaiPenandatangan"> 
                                                 <table>
                                                     <tr>
@@ -37,7 +37,7 @@
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratperintah.item.pegawaiPenandatangan.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratperintah.item.pegawaiPenandatangan.jabatan}}</td>
@@ -47,8 +47,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Menimbang</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Menimbang</div>
+                                <div class="col-md-4 space-after">
                                     <div ng-repeat="data1 in suratperintah.menimbang" style="padding-top: 5px">
                                         <textarea class="form-control" style="height: 100px" ng-model="data1.deskripsimenimbang"></textarea>
                                     </div>
@@ -56,71 +56,69 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Dasar</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Dasar</div>
+                                <div class="col-md-4 space-after">
                                     <div ng-repeat="data2 in suratperintah.dasar" style="padding-top: 5px">
                                         <textarea class="form-control" ng-model="data2.deskripsidasar" style="height: 100px"></textarea>  
                                     </div>
                                     <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addDasar()" style="margin-top: 10px;">+ Tambah Dasar</button>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Memberi Perintah Kepada :</div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.openPegawai()" type="button">Pilih Pegawai</button>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.openPilihan()" type="button" style="margin-left: 5px">{{suratperintah.target.length}} Pegawai Telah Dipilih</button>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Memberi Perintah Kepada :</div>
+                                <div class="col-md-4 space-after">
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratperintah.openPegawai()" type="button">Pilih Pegawai</button>
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratperintah.openPilihan()" type="button" style="margin-left: 5px">{{suratperintah.target.length}} Pegawai Telah Dipilih</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Untuk</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Untuk</div>
+                                <div class="col-md-4 space-after">
                                     <div ng-repeat="data3 in suratperintah.untuk" style="padding-top: 5px">
                                         <textarea style="height: 100px" class="form-control" ng-model="data3.deskripsiuntuk"></textarea>
                                     </div>
                                     <button class="btn btn-primary waves-effect" type="button" ng-click="suratperintah.addUntuk()" style="margin-top: 10px;">+ Tambah Maksud</button>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2" space-after style="margin-top:5px;font-weight: bold;">Tempat Pembuatan Surat</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="suratperintah.item.tempat" required></input>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Pembuatan Surat</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tanggal Pembuatan Surat</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" type="date" ng-model="suratperintah.item.tanggal1" required>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tembusan</div>
-                                <div class="col-md-4">
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.openTembusan()" type="button">Pilih Jabatan</button>
-                                    <button class="btn btn-primary waves-effect" ng-click="suratperintah.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratperintah.tembusanSurat.length}} Jabatan Telah Dipilih</button>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tembusan</div>
+                                <div class="col-md-4 space-after">
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratperintah.openTembusan()" type="button">Pilih Jabatan</button>
+                                    <button class="btn btn-primary waves-effect space-after" ng-click="suratperintah.openPilihanTembusan()" type="button" style="margin-left: 5px">{{suratperintah.tembusanSurat.length}} Jabatan Telah Dipilih</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
-                                <div class="col-md-1">
-                                    <input class="form-control" ng-model="suratperintah.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
+                                <div class="col-md-2 space-after">
+                                    <input class="form-control" ng-model="suratperintah.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
-                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                                <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div style="text-align: right;margin-bottom: 20px;">
                                     <div class="col-md-4"></div>
-                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                    <button class="btn btn-danger waves-effect" type="button" ng-click="suratperintah.back()" style="font-size: 20px">Kembali</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="submit" ng-click="suratperintah.save()" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect space-after" type="button" ng-click="suratperintah.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row"></div>
-                        <div class="row"></div>
                     </div>
                 </div>
             </div>
@@ -128,16 +126,4 @@
     </section>
 </div>
 <div class="control-sidebar-bg"></div>
-</div>
-
-<div class="bg_load animate-show-hide" ng-show="suratperintah.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="suratperintah.loading">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
 </div>
