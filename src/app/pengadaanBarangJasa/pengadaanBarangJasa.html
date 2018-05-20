@@ -47,48 +47,19 @@
                                 <tr ng-repeat="pj in sk.jabatanDpa">
                                     <td>{{$index + 1}}</td>
                                     <td>
-                                    	<!-- <input class="form-control" list="pegawai" name="kegiiatan" ng-model="pj.nipPegawai" placeholder="Pilih Pegawai" ng-change="sk.findPegawai(pj)">
-                                        <datalist id="pegawai" style="height: 100px">
-                                                <option ng-repeat="data in sk.pegawai"
-                                         value="{{data.nipPegawai}}">{{data.nama}}</option>
-                                        </datalist> -->
                                         {{pj.nipPegawai}}
                                     </td>
                                     <td>{{pj.namaPegawai}}</td>
                                     <td>{{pj.statusPenanggungJawab}}</td>
                                     <td>
-                                    	<!-- <button type="button" class="btn btn-warning btn-circle waves-circle waves-effect " ng-click="sk.addSop(data)"><i class="material-icons">edit</i></button> -->
                                     	<button type="button" ng-click="sk.remove(pj)" class="btn btn-danger btn-circle waves-circle waves-effect"><i class="material-icons">delete_forever</i></button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- <div layout="row">
-                            <div class="col-md-5"></div>
-                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android">
-                                <i class="material-icons">navigate_before</i>
-                            </button>
-                            <label style="margin-top: 20px">{{currentPage+1 + '/' + maxSize}}</label>
-                            <button class="btn btn-primary btn-circle waves-circle waves-effect" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android">
-                              <i class="material-icons">navigate_next</i>
-                            </button>
-                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-<!-- <div class="bg_load animate-show-hide" ng-show="sk.loading"></div>
-<div class="wrapper animate-show-hide" ng-show="sk.loadData">
-    <div class="inner" style="padding-top: 180px">
-        <span>Sedang</span>
-        <span>Mengambil</span>
-        <span>Data</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-    </div>
-</div>
- -->
