@@ -97,9 +97,9 @@
             return deferred.promise;
         };
 
-        service.GetSuratMasuk = function (url, nipPegawai) {
+        service.GetSuratMasuk = function (url, nipPegawai, isPersuratan) {
             var deferred = $q.defer();
-            $http.get(API + url + nipPegawai).then(
+            $http.get(API + url + nipPegawai + '/' + isPersuratan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

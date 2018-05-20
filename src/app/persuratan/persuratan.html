@@ -8,10 +8,10 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs pull-right">
                             <li role="presentation" class="active">
-                                <a href="#masuk" data-toggle="tab">Surat Masuk</a>
+                                <a href="#masuk" data-toggle="tab">Surat Keluar</a>
                             </li>
                             <li role="presentation">
-                                <a href="#keluar" data-toggle="tab">Surat Keluar</a>
+                                <a href="#keluar" data-toggle="tab">Surat Masuk</a>
                             </li>
                             <li class="pull-left header" style="font-size: 22px"><i class="fa fa-circle-o"></i> PERSURATAN</li>
                         </ul>
@@ -95,7 +95,7 @@
                                                 <tbody>
                                                     <tr ng-repeat="naskah in filteredDataSuratMasuk">
                                                         <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageSuratMasuk*currentPageSuratMasuk)}}</td>
-                                                        <td style="vertical-align: middle">{{naskah.nama}}</td>
+                                                        <td style="vertical-align: middle">{{naskah.jenisSurat}}</td>
                                                         <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
                                                         <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
                                                         <td style="vertical-align: middle">

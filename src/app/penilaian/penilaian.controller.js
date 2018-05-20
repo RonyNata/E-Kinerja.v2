@@ -489,7 +489,7 @@
         }
 
         function getSuratMasuk(url, count){debugger
-            DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, false).then(
                 function(response){
                     for(var i = 0; i < response.length;i++){
                         var date = new Date(response[i].createdDateMilis);

@@ -21,12 +21,12 @@ angular.
      TemplateNotaDinasService,
      TemplateBeritaAcaraService,
      TemplateSuratTugasService,
-     TemplateSuratPerintahService, 
+     TemplateSuratPerintahService, DashboardService,
      $uibModal, $document, $state, PenilaianService, PersuratanService) {
         var vm = this;
         vm.loading = true;
 
-        getSebaranSurat();
+        getDraftApproval();
         getSuratPerintahMasuk();
 
         vm.getDocument = function(laporan){debugger
@@ -80,6 +80,32 @@ angular.
             })
         }
 
+        function getDocumentMemorandum(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataMemorandum(laporan.kdSurat).then(
+                function(response){
+                    var data = response;debugger
+                    var doc = TemplateMemorandumService.template(data);
+                    laporan.loading = false;
+                    EkinerjaService.lihatPdf(doc, 'Memorandum');
+                }, function(errResponse){
+
+                })
+        };
+
+        function getDocumentSuratDinas(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataSuratDinas(laporan.kdSurat).then(
+                function(response){
+                    var data = response;debugger
+                    var doc = TemplateSuratDinasService.template(data);
+                    laporan.loading = false;
+                    EkinerjaService.lihatPdf(doc, 'Surat Dinas');
+                }, function(errResponse){
+
+                })
+        };
+
         function getSuratPerintahMasuk(){
             PenugasanService.GetNaskahPenugasanPerintahTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai, true).then(
                 function(response){debugger
@@ -91,11 +117,24 @@ angular.
                         // vm.suratMasuk.push(response[i]);
                     }
                     vm.suratMasuk = response;
-                    pagingSuratMasuk();
+                    getSurat();
                 }, function(errResponse){debugger
 
                 })
         }
+
+        function getDocumentUndangan(laporan, isLaporan){
+            // laporan.loading = true;
+            PenilaianService.GetDataUndangan(laporan.kdSurat).then(
+                function(response){
+                    var data = response;debugger
+                    var doc = TemplateSuratUndanganService.template(data);
+                    laporan.loading = false;
+                    EkinerjaService.lihatPdf(doc, 'Surat Undangan');
+                }, function(errResponse){
+
+                })
+        };
 
         vm.changeStatus = function (surat) {
             surat.loading = true;
@@ -221,6 +260,54 @@ angular.
             if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD004')
                 return false;
             else return true;
+        }
+
+        function getSurat(){
+          vm.suratMasuk = [];
+          getSuratMasuk('get-nota-dinas-by-target/');
+          getSuratMasuk('get-daftar-memorandum-target/');
+          getSuratMasuk('get-daftar-surat-keterangan-by-target/');
+          getSuratMasuk('get-surat-kuasa-by-penerima-kuasa/');
+          getSuratMasuk('get-daftar-surat-pengantar-by-target/');
+          getSuratMasuk('get-daftar-surat-undangan-target/');
+          // getSuratMasuk('');
+        }
+
+        function getSuratMasuk(url){
+          DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, true).then(
+            function(response){
+              for(var i = 0; i < response.length;i++){
+                var date = new Date(response[i].createdDateMilis);
+                response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+                response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+                vm.suratMasuk.push(response[i]);
+              }
+              vm.suratMasuk = vm.suratMasuk.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } ); 
+              pagingSuratMasuk();
+            }, function(errResponse){
+
+            })
+        }
+
+        function getDraftApproval(){
+            vm.surat = [];
+            getDraft('get-draft-memorandum-approval/');
+            getDraft('get-draft-surat-undangan-approval/');
+            getDraft('get-draft-surat-dinas-approval/');
+            getDraft('get-draft-surat-perintah-approval/');
+        }
+
+        function getDraft(url){
+            PersuratanService.GetDraftApproval(url, $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+            function(response){debugger
+              for(var i = 0; i < response.length; i++){
+                response[i].waktu = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
+                vm.surat.push(response[i]);
+              }
+              pagingSurat();
+            }, function(errResponse){
+
+            })
         }
    	}
 })();
