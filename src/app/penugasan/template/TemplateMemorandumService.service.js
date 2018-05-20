@@ -218,7 +218,7 @@
                             [
                                 {
                                     border: [false, false, false, false],
-                                    text: 'DINAS KOMUNIKASI DAN INFORMATIKA PERSANDIAN DAN STATISTIK',
+                                    text: '' + data.unitKerjaPenandatangan.toUpperCase(),
                                     style: 'header1'
                                 }
                             ]
