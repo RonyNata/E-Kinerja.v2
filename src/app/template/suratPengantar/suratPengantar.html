@@ -6,35 +6,35 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
-                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Berita Acara</li>
+                        <li class="pull-left header"><i class="fa fa-list-alt"></i> Surat Pengantar</li>
                     </ul>
                     <div class="tab-content">
                         <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Nomor Surat</div>
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratpengantar.item.nomorUrusan" placeholder="nomor urusan" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratpengantar.item.nomorUrut" placeholder="nomor urut" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratpengantar.item.nomorPasanganUrut" placeholder="nomor jabatan" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratpengantar.item.nomorUnit" placeholder="nomor unit" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after">
                                     <input type="text" class="form-control" ng-model="suratpengantar.item.tahun" disabled required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Pengirim</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
-                                        <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(0)" type="button">Pilih Pegawai</button>
+                                    <div class="col-md-4 space-after" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Pengirim</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
+                                        <button class="btn btn-primary waves-effect space-after" ng-click="suratpengantar.openDari(0)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="suratpengantar.item.pegawaiPembuat">
                                                 <table>
@@ -43,7 +43,7 @@
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratpengantar.item.pegawaiPembuat.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratpengantar.item.pegawaiPembuat.jabatan}}</td>
@@ -54,9 +54,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="col-md-4" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penerima</div>
-                                    <div class="col-md-6" style="margin-left: 10px;"> 
-                                        <button class="btn btn-primary waves-effect" ng-click="suratpengantar.openDari(1)" type="button">Pilih Pegawai</button>
+                                    <div class="col-md-4 space-after" style="margin-top:5px;font-weight: bold;margin-left: -15px;">Nama Penerima</div>
+                                    <div class="col-md-8 space-after" style="margin-left: 10px;">
+                                        <button class="btn btn-primary waves-effect space-after" ng-click="suratpengantar.openDari(1)" type="button">Pilih Pegawai</button>
                                         <div class="col-md-12" style="margin-left: -15px;margin-top: 5px;">
                                             <div ng-show="suratpengantar.item.pegawaiPenerima">
                                                 <table>
@@ -65,7 +65,7 @@
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratpengantar.item.pegawaiPenerima.nama}}</td>
                                                     </tr>
-                                                    <tr>
+                                                    <tr style="vertical-align: text-top">
                                                         <td>Jabatan</td>
                                                         <td style="padding: 3px">:</td>
                                                         <td>{{suratpengantar.item.pegawaiPenerima.jabatan}}</td>
@@ -77,66 +77,64 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">No. Telephone Pengirim</div>
-                                <div class="col-md-4">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">No. Telephone Pengirim</div>
+                                <div class="col-md-4 space-after">
                                     <input class="form-control" ng-model="suratpengantar.item.telepon" required>
                                 </div>
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Tanggal Dibuat</div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Tanggal Dibuat</div>
+                                <div class="col-md-3 space-after">
                                     <input class="form-control" type="date" ng-model="suratpengantar.item.tanggal" required>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
-                                <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
-                                <div class="col-md-1">
-                                    <input class="form-control" ng-model="suratpengantar.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
+                                <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Waktu Pembuatan</div>
+                                <div class="col-md-2 space-after">
+                                    <input class="form-control" ng-model="suratpengantar.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" title="masukkan angka" required></input>
                                 </div>
-                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                                <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;">Menit</div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
-                            <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 space-after">
                                 <hr style="height:3px;border:none;color:#333;background-color:#333;">
                                 <h3 style="text-align: center;">ISI SURAT</h3>
                                 <hr style="height:3px;border:none;color:#333;background-color:#333;">
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12" ng-repeat="isi in suratpengantar.isi">
                                 <div style="margin-top: 15px;">
-                                    <div class="col-md-2" style="margin-top:5px;font-weight: bold;">Naskah Dinas Yang Dikirimkan</div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 space-after" style="margin-top:5px;font-weight: bold;">Naskah Dinas Yang Dikirimkan</div>
+                                    <div class="col-md-2 space-after">
                                         <input class="form-control" ng-model="isi.naskah" required>
                                         <button class="btn btn-primary waves-effect" ng-click="suratpengantar.addIsi()" type="button" style="margin-top: 10px" ng-show="$last">+ Tambah Point</button>
                                     </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-1" style="margin-top:5px;font-weight: bold;padding-left: 10px;">Banyaknya</div>
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 space-after"></div>
+                                    <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;padding-left: 10px;">Banyaknya</div>
+                                    <div class="col-md-1 space-after">
                                         <input type="number" class="form-control" ng-model="isi.qty" required>
                                     </div>
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-1" style="margin-top:5px;font-weight: bold;padding-left: 10px;">Keterangan</div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-1 space-after"></div>
+                                    <div class="col-md-1 space-after" style="margin-top:5px;font-weight: bold;padding-left: 10px;">Keterangan</div>
+                                    <div class="col-md-3 space-after">
                                         <textarea rows="3" class="form-control" ng-model="isi.keterangan" required></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;">
+                        <div class="row">
                             <div class="row col-md-12">
                                 <div style="text-align: right;margin-bottom: 20px;">
-                                    <button class="btn btn-primary waves-effect" type="submit" style="font-size: 20px">Simpan</button>
-                                    <button class="btn btn-success waves-effect" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
-                                    <button class="btn btn-danger waves-effect" type="button" ng-click="suratpengantar.back()" style="font-size: 20px">Kembali</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="submit" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
+                                    <button class="btn btn-danger waves-effect space-after" type="button" ng-click="suratpengantar.back()" style="font-size: 20px">Kembali</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="padding-top: 20px;"></div>
-                        <div class="row" style="padding-top: 20px;"></div>
                     </div>
                 </div>
             </div>
