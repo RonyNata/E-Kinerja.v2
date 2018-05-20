@@ -480,6 +480,7 @@
         function getSurat(){
             vm.suratMasuk = [];
             getSuratMasuk('get-nota-dinas-by-target/');
+            getSuratMasuk('get-daftar-surat-dinas-by-target/');
             getSuratMasuk('get-daftar-memorandum-target/');
             getSuratMasuk('get-daftar-surat-keterangan-by-target/');
             getSuratMasuk('get-surat-kuasa-by-penerima-kuasa/');

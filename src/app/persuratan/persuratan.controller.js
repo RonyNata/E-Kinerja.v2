@@ -264,7 +264,7 @@ angular.
 
         function getSurat(){
           vm.suratMasuk = [];
-          getSuratMasuk('get-nota-dinas-by-target/');
+          getSuratMasuk('get-daftar-surat-dinas-by-target/');
           getSuratMasuk('get-daftar-memorandum-target/');
           getSuratMasuk('get-daftar-surat-keterangan-by-target/');
           getSuratMasuk('get-surat-kuasa-by-penerima-kuasa/');
@@ -304,6 +304,7 @@ angular.
                 response[i].waktu = EkinerjaService.IndonesianDateFormat(new Date(response[i].createdDateMilis));
                 vm.surat.push(response[i]);
               }
+              vm.surat = vm.surat.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } ); 
               pagingSurat();
             }, function(errResponse){
 
