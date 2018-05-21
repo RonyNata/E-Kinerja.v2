@@ -91,7 +91,7 @@
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
-                                                <td style="vertical-align: middle">{{ambil.statusPenilaian == 0 ? 'Belum Dibaca' : ambil.statusPenilaian == 1 ? 'Sudah Dibaca' : ambil.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
+                                                <td style="vertical-align: middle">{{ambil.status}}</td>
                                                 <td style="vertical-align: middle">
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="fa fa-forward"></i> TERUSKAN</span></button>
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
