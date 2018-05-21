@@ -68,6 +68,8 @@ angular.
                   vm.list_tidakdiajukan[indexPush].terima = true;
                   vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
                   vm.list_tidakdiajukan.splice(indexSplice, 1);
+                  pagingListAjuan();
+                  pagingListTidakAjuan();
             }
 
             vm.save = function(){

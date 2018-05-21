@@ -37,13 +37,13 @@
                                                     <input type="date" class="form-control" ng-model="perpindahan.item.tanggalPenerimaanMilis" ng-required="true">
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" style="margin-bottom:10px">
+                                            <div class="col-md-12" style="margin-bottom:10px" ng-hide="perpindahan.isCreate"> 
                                                 <div class="col-sm-5" style="margin-top:5px">
                                                     <p><b>Tanggal Penyelesaian</b></p>
                                                 </div>
                                                 <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
                                                 <div class="col-md-6">
-                                                    <input type="date" class="form-control" ng-model="perpindahan.item.tglPenyelesaianMilis" ng-required="true">
+                                                    <input type="date" class="form-control" ng-model="perpindahan.item.tglPenyelesaianMilis">
                                                 </div>
                                             </div>
                                             <div class="col-md-12" style="margin-bottom:10px">

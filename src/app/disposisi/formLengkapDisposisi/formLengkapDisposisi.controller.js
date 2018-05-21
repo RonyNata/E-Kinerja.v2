@@ -124,7 +124,8 @@
                 "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
                 "daftarTargetJabatanLembarDisposisi": [],
                 "isiDisposisi": vm.item.isiDisposisi,
-                "durasiPengerjaan": vm.item.durasiPengerjaan
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
+                "nipPelengkap": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai
             };
 
             for(var i = 0; i < vm.target.length; i++)

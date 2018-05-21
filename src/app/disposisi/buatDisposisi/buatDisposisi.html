@@ -101,12 +101,12 @@
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
                                                 <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th class="text-center">Kode Lembar Disposisi</th>
-                                                    <th class="text-center">Pengirim Surat</th>
-                                                    <th class="text-center">Tanggal Penerimaan</th>
-                                                    <th class="text-center">Status</th>
-                                                    <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}">Action</th>
+                                                    <th class="text-center" style="vertical-align: middle">No</th>
+                                                    <th class="text-center" style="vertical-align: middle">Kode Lembar Disposisi</th>
+                                                    <th class="text-center" style="vertical-align: middle">Pengirim Surat</th>
+                                                    <th class="text-center" style="vertical-align: middle">Tanggal Penerimaan</th>
+                                                    <th class="text-center" ng-hide="ambilperpindahan.isPimpinan" style="vertical-align: middle">Status</th>
+                                                    <th class="text-center" style="vertical-align: middle" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -116,10 +116,10 @@
                                                     <td style="vertical-align: middle">{{draft.dariSuratDisposisi}}
                                                     </td>
                                                     <td style="vertical-align: middle">{{draft.tglTerima}}</td>
-                                                    <td style="vertical-align: middle">{{draft.approvedBySekdin ? 'Sudah Disetujui' : 'Belum Disetujui'}}</td>
+                                                    <td style="vertical-align: middle" ng-hide="ambilperpindahan.isPimpinan">{{draft.approvedBySekdin ? 'Sudah Disetujui' : 'Belum Disetujui'}}</td>
                                                     <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
-                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-blue waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.formLengkapiDisposisi(draft.kdLembarDisposisi)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> LENGKAPI</span></button>
-                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, true)" ng-disabled="draft.approvedBySekdin"><i class="fa fa-check" aria-hidden="true"></i> SETUJUI</span></button>
+                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-blue waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.formLengkapiDisposisi(draft.kdLembarDisposisi)" ng-disabled="draft.approvedBySekdin" ng-show="ambilperpindahan.isPimpinan"><i class="fa fa-check" aria-hidden="true"></i> LENGKAPI</span></button>
+                                                        <button type="button" class="{{!draft.approvedBySekdin ? 'btn bg-green waves-effect' : 'btn waves-effect'}}" ng-click="ambilperpindahan.approve(draft.kdLembarDisposisi, true)" ng-disabled="draft.approvedBySekdin" ng-hide="ambilperpindahan.isPimpinan"><i class="fa fa-check" aria-hidden="true"></i> SETUJUI</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(draft.kdLembarDisposisi, 0, 0, true)"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
