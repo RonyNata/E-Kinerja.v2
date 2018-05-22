@@ -611,7 +611,7 @@
               })
           }
 
-      vm.formLengkapiDisposisi = function (kdLembarDisposisi, parentSelector) {
+      vm.formLengkapiDisposisi = function (kdLembarDisposisi, terusan, parentSelector) {
           var parentElem = parentSelector ?
               angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
           var modalInstance = $uibModal.open({
@@ -627,6 +627,9 @@
               resolve:{
                   kdLembar:function () {
                       return kdLembarDisposisi;
+                  },
+                  isTerusan:function () {
+                    return terusan;
                   }
               }
           });

@@ -28,11 +28,7 @@
                                             <tr>
                                                 <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
                                                 <th class="text-center" style="vertical-align: middle">Rincian Tugas dan Kegiatan</th>
-                                                <th class="text-center" style="vertical-align: middle">Kuant/ Output</th>
-                                                <th class="text-center" style="vertical-align: middle">Mutu</th>
-                                                <th class="text-center" style="vertical-align: middle">Waktu</th>
-                                                <th class="text-center" style="vertical-align: middle">Biaya</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
+                                                <th class="text-center" style="vertical-align: middle; width: 800px" colspan="2">Action</th>
                                             </tr>
                                             </thead>
 
@@ -40,14 +36,11 @@
                                             <tr ng-repeat="urtug in filteredDataListAjuan" class="text-center">
                                                 <td>{{$index + 1 + (numPerPageListAjuan*currentPageListAjuan)}}</td>
                                                 <td class="text-left">{{urtug.urtug}}</td>
-                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                <td>{{urtug.kualitas + '%'}}</td>
-                                                <td>{{urtug.waktu + ' Bulan'}}</td>
-                                                <td>{{'Rp. ' + urtug.biayaRp}}</td>
                                                 <td>
                                                     <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 1)" class="btn btn-danger" ng-disabled="!urtug.terima"><i class="fa fa-times" aria-hidden="true"></i> TOLAK</button>
                                                     <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 0)" class="btn btn-success" ng-disabled="urtug.terima"><i class="fa fa-check" aria-hidden="true"></i> TERIMA</button>
                                                 </td>
+                                                <td><button type="button" ng-click="ajuan.openDetailSkp(urtug)" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> DETAIL</button></td>
                                             </tr>
                                             </tbody>
                                         </table>

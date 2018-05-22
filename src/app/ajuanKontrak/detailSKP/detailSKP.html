@@ -1,0 +1,63 @@
+<div class="modal-header background-pop-up">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Detail skp (DPA)</strong></h3>
+</div>
+<form ng-submit="detailskp.save()" class="form-horizontal">
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Uraian Tugas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <textarea class="form-control" type="text" ng-model="detailskp.skp.urtug" disabled></textarea>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kuantitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailskp.skp.displayKuantitas" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kualitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailskp.skp.displayKualitas" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Waktu</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailskp.skp.displayWaktu" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Biaya</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailskp.skp.displayBiaya" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="detailskp.cancel()" data-dismiss="modal">Kembali</button>
+    </div>
+</form>

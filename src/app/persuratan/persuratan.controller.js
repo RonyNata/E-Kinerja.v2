@@ -27,7 +27,6 @@ angular.
         vm.loading = true;
 
         getDraftApproval();
-        getSuratPerintahMasuk();
 
         vm.getDocument = function(laporan){debugger
             laporan.loading = true;
@@ -271,6 +270,7 @@ angular.
           getSuratMasuk('get-daftar-surat-pengantar-by-target/');
           getSuratMasuk('get-daftar-surat-undangan-target/');
           // getSuratMasuk('');
+            vm.loading = false;
         }
 
         function getSuratMasuk(url){
@@ -295,6 +295,7 @@ angular.
             getDraft('get-draft-surat-undangan-approval/');
             getDraft('get-draft-surat-dinas-approval/');
             getDraft('get-draft-surat-perintah-approval/');
+            getSuratPerintahMasuk();
         }
 
         function getDraft(url){

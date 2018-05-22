@@ -22,12 +22,7 @@
                                 <th class="text-center" style="width: 5%; vertical-align: middle">No</th>
                                 <!--<th class="text-center">{{kegiatanlist.isEselon4 ? 'Kegiatan' : 'Program'}}</th>-->
                                 <th class="text-center" style="vertical-align: middle">Kegiatan</th>
-                                <th class="text-center" style="vertical-align: middle">Kuantitas</th>
-                                <th class="text-center" style="vertical-align: middle">Satuan Kuantitas</th>
-                                <th class="text-center" style="vertical-align: middle">Kualitas</th>
-                                <th class="text-center" style="vertical-align: middle">Waktu</th>
-                                <th class="text-center" style="vertical-align: middle">Biaya</th>
-                                <th class="text-center" style="vertical-align: middle">Action</th>
+                                <th class="text-center" colspan="2">Action</th>
                             </tr>
                             </thead>
 
@@ -35,15 +30,11 @@
                             <tr ng-repeat="pj in filteredDataKegiatan" ng-hide="filteredDataKegiatan==0">
                                 <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                 <td style="vertical-align: middle">{{pj.ketKeg}}</td>
-                                <td style="text-align: center; vertical-align: middle">-</td>
-                                <td style="text-align: center; vertical-align: middle">-</td>
-                                <td style="text-align: center; vertical-align: middle">100%</td>
-                                <td style="text-align: center; vertical-align: middle">12 Bulan</td>
-                                <td style="text-align: center; vertical-align: middle">{{'Rp. '+pj.biaya}}</td>
                                 <td class="text-center">
-                                    <!-- <button type="button" class="btn btn-primary" ng-click="kegiatanlist.pj(pj)"><i class="material-icons">edit</i><span> PENANGGUNGJAWAB</span></button> -->
-                                    <!-- <button type="button" class="btn btn-success" ng-click="kegiatanlist.openDetailUrtug(pj)" ng-show="kegiatanlist.isEselon4"><i class="material-icons">visibility</i><span> DETAIL</span></button> -->
-                                    <button type="button" ng-click="kegiatanlist.deleteKegiatanOrProgram(pj)" class="btn btn-danger"><i class="material-icons">delete</i><span> HAPUS</span></button>
+                                    <button type="button" ng-click="kegiatanlist.openDetailKegiatan(pj)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" ng-click="kegiatanlist.deleteKegiatanOrProgram(pj)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i><span> HAPUS</span></button>
                                 </td>
                             </tr>
                             <tr ng-show="filteredDataKegiatan==0">
