@@ -33,14 +33,19 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in filteredDataListAjuan" class="text-center">
+                                            <tr ng-repeat="urtug in filteredDataListAjuan" ng-hide="filteredDataListAjuan==0" class="text-center">
                                                 <td>{{$index + 1 + (numPerPageListAjuan*currentPageListAjuan)}}</td>
                                                 <td class="text-left">{{urtug.urtug}}</td>
                                                 <td>
                                                     <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 1)" class="btn btn-danger" ng-disabled="!urtug.terima"><i class="fa fa-times" aria-hidden="true"></i> TOLAK</button>
+                                                </td>
+                                                <td>
                                                     <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 0)" class="btn btn-success" ng-disabled="urtug.terima"><i class="fa fa-check" aria-hidden="true"></i> TERIMA</button>
                                                 </td>
                                                 <td><button type="button" ng-click="ajuan.openDetailSkp(urtug)" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> DETAIL</button></td>
+                                            </tr>
+                                            <tr ng-show="filteredDataListAjuan==0">
+                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -48,7 +53,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" ng-hide="filteredDataListAjuan==0">
                                 <div class="col-md-12">
                                     <div class="align-center">
                                         <ul style="padding-left: 0px;">
@@ -90,7 +95,7 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in filteredDataListTidakAjuan" class="text-center">
+                                            <tr ng-repeat="urtug in filteredDataListTidakAjuan" ng-hide="filteredDataListTidakAjuan==0" class="text-center">
                                                 <td>{{$index + 1 + (numPerPageListTidakAjuan*currentPageListTidakAjuan)}}</td>
                                                 <td class="text-left">{{urtug.urtug}}</td>
                                                 <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
@@ -101,13 +106,16 @@
                                                     <button type="button" ng-click="ajuan.tambahkan(urtug.kdUrtug)" class="btn btn-success">TAMBAHKAN</button>
                                                 </td>
                                             </tr>
+                                            <tr ng-show="filteredDataListTidakAjuan==0">
+                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" ng-hide="filteredDataListTidakAjuan==0">
                                 <div class="col-md-12">
                                     <div class="align-center">
                                         <ul style="padding-left: 0px;">
@@ -147,12 +155,15 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="kegiatan in filteredDataListKegiatan" class="text-center">
+                                            <tr ng-repeat="kegiatan in filteredDataListKegiatan" ng-hide="filteredDataListKegiatan==0" class="text-center">
                                                 <td>{{$index + 1 + (numPerPageListKegiatan*currentPageListKegiatan)}}</td>
                                                 <td class="text-left">{{kegiatan.deskripsiUrtug}}</td>
                                                 <td class="text-left">{{kegiatan.ketKeg}}</td>
                                                 <td>{{kegiatan.statusPenanggungJawab}}</td>
                                                 <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
+                                            </tr>
+                                            <tr ng-show="filteredDataListKegiatan==0">
+                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -160,7 +171,7 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" ng-hide="filteredDataListKegiatan==0">
                                 <div class="col-md-12">
                                     <div class="align-center">
                                         <ul style="padding-left: 0px;">
