@@ -52,7 +52,7 @@
                                                     <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                     <td style="vertical-align: middle">{{ambil.ketBaca}}</td>
                                                     <td class="text-center" style="vertical-align: middle" ng-hide="ambilperpindahan.eselon=='xs'">
-                                                        <button type="button" class="{{ambil.statusBaca == 1 ? 'btn bg-blue waves-effect' : 'btn bg-gray-active waves-effect'}}" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="fa fa-arrow-right"></i> TERUSKAN</span></button>
+                                                        <button type="button" class="{{ambil.statusBaca == 1 ? 'btn bg-blue waves-effect' : 'btn bg-gray-active waves-effect'}}" ng-click="ambilperpindahan.forward(ambil.kdLembarDisposisi)" ng-disabled="ambil.statusBaca == 1 ? false : true"><i class="fa fa-forward"></i> TERUSKAN</span></button>
                                                     </td>
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="btn bg-purple waves-effect" ng-click="openPdf(ambil.kdLembarDisposisi, 1, ambil.statusBaca)"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>

@@ -126,14 +126,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="padding-top: 30px;">
-                                                <div class="row col-md-12" >
-                                                    <div class="col-md-2" style="margin-left: 30px;"><p><b>Waktu Pembuatan</b></p></div>
-                                                    <div class="col-md-2">
-                                                        <input class="form-control" ng-model="perpindahan.item.durasiPengerjaan" type="text" pattern="[0-9]{1,4}" required>
-                                                    </div>
-                                                    <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
+                                            <div class="col-md-12 space-after" style="padding-top: 30px;">
+                                                <div class="col-sm-5" style="margin-top:5px">
+                                                    <p><b>Waktu Pembuatan Disposisi</b></p>
                                                 </div>
+                                                <div class="col-sm-1" style="margin-top:5px"><b>:</b></div>
+                                                <div class="col-md-5">
+                                                    <input class="form-control" ng-model="perpindahan.item.durasiPengerjaan" type="number" min="1" pattern="[0-9]{1,4}" required>
+                                                </div>
+                                                <div class="col-md-1" style="margin-top:5px;font-weight: bold;">Menit</div>
                                             </div>
                                             <div class="row" style="padding-top: 10px;">
                                                 <div class="col-md-12" style="text-align: right;">
