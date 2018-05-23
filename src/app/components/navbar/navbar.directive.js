@@ -55,6 +55,7 @@
             for(var i = 0; i < response.length; i++){
               response[i].jenisNotif = 1;
               response[i].deskripsi = "Laporan masuk dari " + response[i].namaBawahan;
+              response[i].url = '#penilaian';
             }
             vm.notif = response;
             if(response.length != 0)
@@ -88,6 +89,7 @@
               response[i].tanggalDibuatMilis = response[i].tglPengirimanMilis;
               response[i].jenisNotif = 2;
               response[i].deskripsi = "Disposisi masuk dari " + response[i].namaPemberi;
+              response[i].url = '#ambil-disposisi';
               vm.notif.push(response[i]);
             }
             instruksiNotif();
@@ -105,6 +107,7 @@
               response[i].tanggalDibuatMilis = response[i].createdDateMilis;
               response[i].jenisNotif = 3;
               response[i].deskripsi = "Instruksi masuk dari " + response[i].namaPemberi;
+              response[i].url = '#penugasan';
               vm.notif.push(response[i]);
             }
             tugasNotif();
@@ -122,6 +125,7 @@
               response[i].tanggalDibuatMilis = response[i].createdDateMilis;
               response[i].jenisNotif = 3;
               response[i].deskripsi = "Tugas masuk dari " + response[i].namaPemberi;
+              response[i].url = '#penugasan';
               vm.notif.push(response[i]);
             }
             perintahNotif();
@@ -139,6 +143,7 @@
               response[i].tanggalDibuatMilis = response[i].createdDateMilis;
               response[i].jenisNotif = 3;
               response[i].deskripsi = "Perintah masuk dari " + response[i].namaPemberi;
+              response[i].url = '#penugasan';
               vm.notif.push(response[i]);
             }
             vm.notif.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
