@@ -15,7 +15,7 @@
                     <span class="label label-warning">{{vm.jmlNotif}}</span>
                   </a>
                   <ul class="dropdown-menu">
-                    <li class="header">You have {{vm.jmlNotif}} notifications</li>
+                    <li class="header">Anda memiliki {{vm.jmlNotif}} pemberitahuan</li>
                     <li>
                       <ul class="menu">
                         <li ng-hide="vm.pegawai.sudahMembuatKontrak">
@@ -46,15 +46,15 @@
                       <li class="user-header">
                           <div>
                               <div class="box-header">
-                                  <h3 class="box-title">Change Password</h3>
+                                  <h3 class="box-title">Ganti Password</h3>
                               </div>
                               <div class="box-body">
                                   <form action="#">
                                       <div class="form-group">
-                                          <input type="password" class="form-control" placeholder="Password Baru....." ng-model="vm.password">
+                                          <input type="password" class="form-control" placeholder="password baru" ng-model="vm.password">
                                       </div>
                                       <div class="form-group">
-                                          <input type="password" class="form-control" placeholder="Tulis Kembali Password Baru....." ng-model="vm.retypePassword">
+                                          <input type="password" class="form-control" placeholder="tulis kembali password baru" ng-model="vm.retypePassword">
                                       </div>
                                   </form>
                               </div>
@@ -62,7 +62,7 @@
                       </li>
                       <li class="user-footer">
                           <div class="pull-right">
-                              <a class="btn btn-default btn-flat" ng-click="vm.gantipwd()">Submit</a>
+                              <a class="btn btn-primary btn-flat" ng-click="vm.gantipwd()">Submit</a>
                           </div>
                       </li>
                   </ul>
@@ -75,7 +75,7 @@
                     <li class="user-header" style="height: auto;">
                       <img src="favicon.ico" width="78" height="78" class="img-circle" alt="User Image" />
                       <p style="font-size: 12px;">{{vm.pegawai.nipPegawai}}</p>
-                      <p style="font-size: 12px;">{{vm.pegawai.namaPegawai}}</p>
+                      <p style="font-size: 16px;">{{vm.pegawai.namaPegawai}}</p>
                       <p style="font-size: 12px;">{{vm.pegawai.jabatan}}</p>
                       <p style="font-size: 12px;">{{vm.pegawai.unit}}</p>
                     </li>

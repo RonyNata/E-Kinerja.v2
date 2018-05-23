@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="row col-md-12">
                                 <div style="text-align: right;">
-                                    <button class="btn btn-primary waves-effect space-after" type="submit" style="font-size: 20px">Simpan</button>
+                                    <button class="btn btn-primary waves-effect space-after" type="submit" ng-click="suratdinas.save()" style="font-size: 20px">Simpan</button>
                                     <button class="btn btn-success waves-effect space-after" type="button" ng-click="openPdf()" style="font-size: 20px">Lihat</button>
                                     <button class="btn btn-danger waves-effect space-after" type="button" ng-click="suratdinas.back()" style="font-size: 20px">Kembali</button>
                                 </div>
@@ -135,3 +135,4 @@
 </div>
 <div class="control-sidebar-bg"></div>
 </div>
+<div class="loader loader-default is-active" data-text="Sedang Mengambil Data" ng-show="suratdinas.loading"></div>

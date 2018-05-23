@@ -26,6 +26,7 @@
                                                     <th class="text-center" style="width: 5%">No</th>
                                                     <th classi="text-center">Jenis Surat</th>
                                                     <th class="text-center">Nama Pemberi</th>
+                                                    <th class="text-center">Diberikan Kepada</th>
                                                     <th class="text-center">Tanggal Dibuat</th>
                                                     <th class="text-center">Status Baca</th>
                                                     <th class="text-center" style="width: 15%" colspan="2">Action</th>
@@ -37,8 +38,9 @@
                                                     <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageSurat*currentPageSurat)}}</td>
                                                     <td style="vertical-align: middle">{{srt.jenisSurat}}</td>
                                                     <td style="vertical-align: middle">{{srt.namaPemberi}}</td>
-                                                    <td style="vertical-align: middle">{{srt.waktu}}</td>
-                                                    <td style="vertical-align: middle">{{srt.statusPenyebaran == 0 ? 'Belum Disebarkan' : 'Sudah Disebarkan'}}</td>
+                                                    <td style="vertical-align: middle">SRI ENNY MAINIARTI<br>(Dinas Kesehatan)</td>
+                                                    <td class="text-center" style="vertical-align: middle">{{srt.waktu}}</td>
+                                                    <td class="text-center" style="vertical-align: middle">{{srt.statusPenyebaran == 0 ? 'Belum Disebarkan' : 'Sudah Disebarkan'}}</td>
                                                     <td class="text-center" style="vertical-align: middle">
                                                         <button type="button" class="{{srt.statusPenyebaran == 1 ?'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="persuratan.changeStatus(srt)" ng-disabled="srt.statusPenyebaran == 1"><i class="fa fa-paper-plane" aria-hidden="true"></i> KIRIM</button>
                                                         <!--<p><strong>-</strong></p>-->
@@ -87,26 +89,28 @@
                                                 <tr>
                                                     <th class="text-center" style="width: 5%">No</th>
                                                     <th classi="text-center">Jenis Surat</th>
-                                                    <th class="text-center">Nama Pemberi</th>
-                                                    <th class="text-center">Tanggal Dibuat</th>
+                                                    <th class="text-center">Nama Pengirim</th>
+                                                    <th class="text-center">Unit Kerja</th>
+                                                    <th class="text-center">Tanggal Penerimaan</th>
                                                     <th class="text-center" style="width: 15%" colspan="2">Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr ng-repeat="naskah in filteredDataSuratMasuk">
+                                                    <tr ng-repeat="naskah in filteredDataSuratMasuk" ng-hide="filteredDataSuratMasuk==0">
                                                         <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageSuratMasuk*currentPageSuratMasuk)}}</td>
                                                         <td style="vertical-align: middle">{{naskah.jenisSurat}}</td>
                                                         <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
-                                                        <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
+                                                        <td class="text-center" style="vertical-align: middle">Dinas Kesehatan</td>
+                                                        <td class="text-center" style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
                                                         <td style="vertical-align: middle">
                                                             <button type="button" class="btn bg-purple waves-effect" ng-click="persuratan.getDocument(naskah)" ng-hide="naskah.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                             <button type="button" class="btn btn-secondary" ng-show="naskah.loading" disabled>MOHON TUNGGU...</button>
                                                         </td>
-                                                        <td style="vertical-align: middle"><button type="button" class="btn bg-purple waves-effect" ng-show="persuratan.isAdmin()" ng-click="persuratan.disposisi(naskah)" ><i class="fa fa-file-pdf-o"></i><span> Disposisikan</span></button></td>
+                                                        <td style="vertical-align: middle"><button type="button" class="btn bg-blue waves-effect" ng-show="persuratan.isAdmin()" ng-click="persuratan.disposisi(naskah)" ><i class="fa fa-file-pdf-o"></i><span> DISPOSISIKAN</span></button></td>
                                                     </tr>
-                                                <!-- <tr>
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                                </tr> -->
+                                                    <tr ng-show="filteredDataSuratMasuk==0">
+                                                        <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -143,3 +147,4 @@
     </div>
     <div class="control-sidebar-bg"></div>
 </div>
+<div class="loader loader-default is-active" data-text="Sedang Mengambil Data" ng-show="persuratan.loading"></div>

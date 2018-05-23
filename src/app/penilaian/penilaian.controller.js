@@ -42,6 +42,7 @@
                         var date = new Date(response[i].tanggalDibuatMilis);
                         response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
+                        response[i].status = statusBaca(response[i].statusPenilaian);
                     }
                     vm.laporanbawahan = response;
                     vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
@@ -480,6 +481,7 @@
         function getSurat(){
             vm.suratMasuk = [];
             getSuratMasuk('get-nota-dinas-by-target/');
+            getSuratMasuk('get-daftar-surat-dinas-by-target/');
             getSuratMasuk('get-daftar-memorandum-target/');
             getSuratMasuk('get-daftar-surat-keterangan-by-target/');
             getSuratMasuk('get-surat-kuasa-by-penerima-kuasa/');
@@ -1014,6 +1016,16 @@
             if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD004')
                 return false;
             else return true;
+        }
+
+        function statusBaca(status){
+          switch (status) {
+            case 0 : return 'Belum Dibaca'; break;
+            case 1 : return 'Sudah Dibaca'; break;
+            case 2 : return 'Sudah Dilanjutkan'; break;
+            case 3 : return 'Sudah Ditandatangan'; break;
+            case 4 : return 'Ditolak'; break;
+          }
         }
     }
 })();

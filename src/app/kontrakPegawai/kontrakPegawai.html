@@ -9,11 +9,10 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-md-6"><strong>PEJABAT ATASAN</strong></div>
-                                    <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
                                 </div>
                             </div>
                             <div class="panel-body" style="font-size: 12px;">
-                                <div class="row">
+                                <div class="row" ng-show="kontrak.penilai.nama">
                                     <div class="col-sm-3">Nama</div>
                                     <div class="col-md-1" style="padding-right: 0px;">:</div>
                                     <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nama}}</div>
@@ -42,6 +41,12 @@
                                     <div class="col-sm-3" style="padding-right: 12px;">Unit Kerja</div>
                                     <div class="col-md-1" style="padding-right: 0px;">:</div>
                                     <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.unitKerja}}</div>
+                                </div>
+
+                                <div class="row" ng-hide="kontrak.penilai.nama">
+                                    <div class="col-md-12 text-center" style="padding-top: 50px; padding-bottom: 50px">
+                                        <strong><h4>(BELUM DIPASANGKAN)</h4></strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,11 +56,10 @@
                             <div class="panel-heading">
                                 <div class="row">
                                     <div class="col-md-6"><strong>PEJABAT PENILAI</strong></div>
-                                    <div class="col-md-6 text-right" ng-hide="kontrak.penilai.nama">(BELUM DIPASANGKAN)</div>
                                 </div>
                             </div>
                             <div class="panel-body" style="font-size: 12px;">
-                                <div class="row">
+                                <div class="row" ng-show="kontrak.penilai.nama">
                                     <div class="col-sm-3">Nama</div>
                                     <div class="col-md-1" style="padding-right: 0px;">:</div>
                                     <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nama}}</div>
@@ -84,6 +88,11 @@
                                     <div class="col-sm-3" style="padding-right: 12px;">Unit Kerja</div>
                                     <div class="col-md-1" style="padding-right: 0px;">:</div>
                                     <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.unitKerja}}</div>
+                                </div>
+                                <div class="row" ng-hide="kontrak.penilai.nama">
+                                    <div class="col-md-12 text-center" style="padding-top: 50px; padding-bottom: 50px">
+                                        <strong><h4>(BELUM DIPASANGKAN)</h4></strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,3 +287,4 @@
     </div>
     <div class="control-sidebar-bg"></div>
 </div>
+<div class="loader loader-default is-active" data-text="Sedang Mengambil Data" ng-show="kontrak.loading"></div>

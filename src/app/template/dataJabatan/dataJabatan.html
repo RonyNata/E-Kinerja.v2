@@ -1,4 +1,4 @@
-<div class="modal-header" style="background-color:#F44236; color:#ffff;">
+<div class="modal-header background-pop-up">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><b>DAFTAR JABATAN</b></h3>
 </div>
 <form ng-submit="datajabatan.save()" class="form-horizontal">
@@ -14,8 +14,8 @@
                                 <div class="body table-responsive" style="padding-top: 0px;padding-bottom: 0px;">
                                     <button class="btn btn-primary waves-effect" ng-click="datajabatan.openPilihan()" type="button" style="margin-left: 5px" ng-hide="datajabatan.isPilihan == 1">{{datajabatan.jabatanPilihan.length}} Jabatan Telah Dipilih</button>
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
-                                        <thead>
-                                            <tr style="background:#D32F2F; color:#ffff">
+                                        <thead class="bg-table">
+                                            <tr>
                                                 <th style="width: 6%; text-align: center">
                                                     {{datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2 ? 'No' : ''}}
                                                 </th>

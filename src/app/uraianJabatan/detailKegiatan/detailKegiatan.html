@@ -1,0 +1,63 @@
+<div class="modal-header background-pop-up">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Detail Kegiatan (DPA)</strong></h3>
+</div>
+<form ng-submit="detailKegiatan.save()" class="form-horizontal">
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kegiatan</b></p>
+                </div>
+                <div class="col-md-7">
+                    <textarea class="form-control" type="text" ng-model="detailKegiatan.kegiatan.ketKeg" disabled></textarea>
+                </div>
+            </div>
+
+            <div class="row space-after" ng-hide="detailKegiatan.isEselon4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kuantitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" placeholder="-" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Kualitas</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" placeholder="100%" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Waktu</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" placeholder="12 Bulan" disabled>
+                </div>
+            </div>
+
+            <div class="row space-after">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <p><b>Biaya</b></p>
+                </div>
+                <div class="col-md-7">
+                    <input class="form-control" type="text" ng-model="detailKegiatan.kegiatan.biaya" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="detailKegiatan.cancel()" data-dismiss="modal">Kembali</button>
+    </div>
+</form>

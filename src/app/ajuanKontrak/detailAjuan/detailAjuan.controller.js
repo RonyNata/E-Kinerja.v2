@@ -7,13 +7,25 @@ angular.
 
     
     function DetailAjuanController(list_ajuan, list_tidakdiajukan, $scope, nama, nip, jabatan, isEselon4, unit, EkinerjaService,
-      KontrakPegawaiService, AjuanKontrakService, $uibModalInstance) {
+      KontrakPegawaiService, AjuanKontrakService, $uibModalInstance, $uibModal, $document) {
       	var vm = this;
 
             vm.list_ajuan = angular.copy(list_ajuan);
+            for(var i = 0; i < vm.list_ajuan.length; i++){
+              vm.list_ajuan[i].displayKuantitas = vm.list_ajuan[i].kuantitas + ' ' + vm.list_ajuan[i].satuanKuantitas;
+              vm.list_ajuan[i].displayKualitas = vm.list_ajuan[i].kualitas + '%';
+              vm.list_ajuan[i].displayWaktu = vm.list_ajuan[i].waktu + ' Bulan';
+              vm.list_ajuan[i].displayBiaya = 'Rp. ' + vm.list_ajuan[i].biayaRp;
+            }
             pagingListAjuan();
 
             vm.list_tidakdiajukan = angular.copy(list_tidakdiajukan);
+            for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
+              vm.list_tidakdiajukan[i].displayKuantitas = vm.list_tidakdiajukan[i].kuantitas + ' ' + vm.list_tidakdiajukan[i].satuanKuantitas;
+              vm.list_tidakdiajukan[i].displayKualitas = vm.list_tidakdiajukan[i].kualitas + '%';
+              vm.list_tidakdiajukan[i].displayWaktu = vm.list_tidakdiajukan[i].waktu + ' Bulan';
+              vm.list_tidakdiajukan[i].displayBiaya = 'Rp. ' + vm.list_tidakdiajukan[i].biayaRp;
+            }
             pagingListTidakAjuan();
 
             vm.nama = nama;
@@ -26,9 +38,10 @@ angular.
               // if(vm.isEselon4)
                 KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit, jabatan).then(
                   function(response){
+                    for(var i = 0; i < response.length; i++){
+                      response[i].paguAnggaran = EkinerjaService.FormatRupiah(response[i].paguAnggaran);
+                    }
                     vm.kegiatan = response;debugger
-                    for(var i = 0; i < response.length; i++)
-                      vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
 
                       pagingListKegiatan();
                   }, function(errResponse){
@@ -68,6 +81,8 @@ angular.
                   vm.list_tidakdiajukan[indexPush].terima = true;
                   vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
                   vm.list_tidakdiajukan.splice(indexSplice, 1);
+                  pagingListAjuan();
+                  pagingListTidakAjuan();
             }
 
             vm.save = function(){
@@ -98,6 +113,32 @@ angular.
 
             vm.cancel = function () {
                   $uibModalInstance.dismiss('cancel');
+            };
+
+            vm.openDetailSkp = function (item, parentSelector) {debugger
+              var parentElem = parentSelector ? 
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+              var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/ajuanKontrak/detailSKP/detailSKP.html',
+              controller: 'DetailSKPController',
+              controllerAs: 'detailskp',
+              // windowClass: 'app-modal-window',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                data: function(){
+                  return item;
+                }
+              }
+              });
+
+              modalInstance.result.then(function () {
+              }, function () {
+
+              });
             };
 
         function pagingListAjuan(){

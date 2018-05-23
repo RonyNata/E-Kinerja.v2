@@ -25,6 +25,8 @@ angular.
           // if(isEselon4)
             PengumpulanDataBebanKerjaService.GetUrtugKegiatanByJabatan(data).then(
               function(response){
+                for(var i = 0; i < response.length; i++)
+                  response[i].biaya = EkinerjaService.FormatRupiah(response[i].paguAnggaran);
                 vm.kegiatan = response;debugger
                 vm.loadUrtug = false;
 
@@ -121,6 +123,32 @@ angular.
 
           modalInstance.result.then(function () {
             getUrtugKegiatanByJabatan();
+          }, function () {
+
+          });
+        };
+
+        vm.openDetailKegiatan = function (item, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/uraianJabatan/detailKegiatan/detailKegiatan.html',
+          controller: 'DetailKegiatanController',
+          controllerAs: 'detailKegiatan',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            kegiatan: function(){
+              return item;
+            }
+          }
+          });
+
+          modalInstance.result.then(function () {
           }, function () {
 
           });

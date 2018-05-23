@@ -6,7 +6,8 @@
         .controller('FormLengkapDisposisiController', FormLengkapDisposisiController);
 
 
-    function FormLengkapDisposisiController(EkinerjaService, $scope, AmbilDisposisiService, kdLembar, $uibModal, $uibModalInstance, DisposisiService) {
+    function FormLengkapDisposisiController(EkinerjaService, $scope, AmbilDisposisiService, kdLembar, 
+        isTerusan, $uibModal, $uibModalInstance, DisposisiService) {
         var vm = this;
         vm.item = {};
         vm.target = [];
@@ -124,8 +125,13 @@
                 "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
                 "daftarTargetJabatanLembarDisposisi": [],
                 "isiDisposisi": vm.item.isiDisposisi,
-                "durasiPengerjaan": vm.item.durasiPengerjaan
+                "durasiPengerjaan": vm.item.durasiPengerjaan,
+                "nipPelengkap": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai
             };
+
+            if(isTerusan){
+                data.kdLembarDisposisiParent = kdLembar;
+            }
 
             for(var i = 0; i < vm.target.length; i++)
                 if(vm.isEselon4){
@@ -138,14 +144,38 @@
                 }
             console.log(data);
 
-            AmbilDisposisiService.ComplateDisposisi(data).then(
-                function(response){
-                    EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
-                    vm.cancel();
-                }, function(errResponse){
+            if(isTerusan)
+                DisposisiService.save(data).then(
+                    function(response){
+                        EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
+                        vm.cancel();
+                    }, function(errResponse){
+
+                })
+            else 
+                AmbilDisposisiService.ComplateDisposisi(data).then(
+                    function(response){
+                        EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
+                        vm.cancel();
+                    }, function(errResponse){
 
                 })
         };
+
+        if(isTerusan) getDisposisi();
+
+        function getDisposisi(){
+            AmbilDisposisiService.GetDokumenDisposisi(kdLembar).then(
+                function(response){debugger
+                  // template(response);
+                  vm.item.tktKeamanan = response.tktKeamanan.toString();
+                  vm.item.tglPenyelesaianMilis = new Date(response.tglPenyelesaianMilis);
+                  vm.item.isiDisposisi = response.isiDisposisi;
+                  // vm.getPegawaiDari(); 
+                }, function(errResponse){
+
+                })
+        }
 
         vm.cancel = function () {
             $uibModalInstance.dismiss('cancel');
