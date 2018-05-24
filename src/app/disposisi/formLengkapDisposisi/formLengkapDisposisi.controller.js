@@ -137,11 +137,11 @@
             for(var i = 0; i < vm.target.length; i++)
                 if(vm.isEselon4){
                     data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
-                    data.isTargetJabatan = false;
+                    data.targetJabatan = false;
                 }
                 else {
                     data.daftarTargetLembarDisposisi.push(vm.target[i].kdJabatan);
-                    data.isTargetJabatan = true;
+                    data.targetJabatan = true;
                 }
             console.log(data);
 
