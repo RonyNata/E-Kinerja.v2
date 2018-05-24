@@ -8,39 +8,40 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <div class="row">
-                                    <div class="col-md-6"><strong>PEJABAT ATASAN</strong></div>
+                                    <div class="col-md-12"><strong>PEJABAT ATASAN</strong></div>
                                 </div>
                             </div>
                             <div class="panel-body" style="font-size: 12px;">
                                 <div class="row" ng-show="kontrak.penilai.nama">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nama}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nipPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" ng-show="kontrak.penilai.pangkat" style="padding-left: 0px;">{{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
-                                    <div class="col-sm-8" ng-hide="kontrak.penilai.pangkat">: </div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.jabatan}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3" style="padding-right: 12px;">Unit Kerja</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.unitKerja}}</div>
+                                    <div class="col-md-12">
+                                        <table style="width: 100%">
+                                            <tr style="vertical-align: text-top">
+                                                <td>Nama</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.nama}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>NIP</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.nipPegawai}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Pangkat/Gol</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Jabatan</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.jabatan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Unit Kerja</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.unitKerja}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
 
                                 <div class="row" ng-hide="kontrak.penilai.nama">
@@ -55,39 +56,40 @@
                         <div class="panel panel-success">
                             <div class="panel-heading">
                                 <div class="row">
-                                    <div class="col-md-6"><strong>PEJABAT PENILAI</strong></div>
+                                    <div class="col-md-12"><strong>PEJABAT PENILAI</strong></div>
                                 </div>
                             </div>
                             <div class="panel-body" style="font-size: 12px;">
                                 <div class="row" ng-show="kontrak.penilai.nama">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nama}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.nipPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" ng-show="kontrak.penilai.pangkat" style="padding-left: 0px;">{{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</div>
-                                    <div class="col-sm-8" ng-hide="kontrak.penilai.pangkat">: </div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.jabatan}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3" style="padding-right: 12px;">Unit Kerja</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.penilai.unitKerja}}</div>
+                                    <div class="col-md-12">
+                                        <table style="width: 100%">
+                                            <tr style="vertical-align: text-top">
+                                                <td>Nama</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.nama}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>NIP</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.nipPegawai}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Pangkat/Gol</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.pangkat + ' / ' + kontrak.penilai.golongan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Jabatan</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.jabatan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Unit Kerja</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.penilai.unitKerja}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="row" ng-hide="kontrak.penilai.nama">
                                     <div class="col-md-12 text-center" style="padding-top: 50px; padding-bottom: 50px">
@@ -102,34 +104,35 @@
                             <div class="panel-heading"><strong>PEGAWAI NEGERI SIPIL DINILAI</strong></div>
                             <div class="panel-body" style="font-size: 12px;">
                                 <div class="row">
-                                    <div class="col-sm-3">Nama</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.pegawai.namaPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">NIP</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.pegawai.nipPegawai}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Pangkat/Gol</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" ng-show="kontrak.pegawai.pangkat" style="padding-left: 0px;">{{kontrak.pegawai.pangkat + ' / ' + kontrak.pegawai.golongan}}</div>
-                                    <div class="col-sm-8" ng-hide="kontrak.pegawai.pangkat">: </div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3">Jabatan</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.pegawai.jabatan}}</div>
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col-sm-3" style="padding-right: 12px;">Unit Kerja</div>
-                                    <div class="col-md-1" style="padding-right: 0px;">:</div>
-                                    <div class="col-sm-8" style="padding-left: 0px;">{{kontrak.pegawai.unit}}</div>
+                                    <div class="col-md-12">
+                                        <table style="width: 100%">
+                                            <tr style="vertical-align: text-top">
+                                                <td>Nama</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.pegawai.namaPegawai}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>NIP</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.pegawai.nipPegawai}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Pangkat/Gol</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.pegawai.pangkat + ' / ' + kontrak.pegawai.golongan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Jabatan</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.pegawai.jabatan}}</td>
+                                            </tr>
+                                            <tr style="vertical-align: text-top">
+                                                <td>Unit Kerja</td>
+                                                <td style="padding: 0px 10px">:</td>
+                                                <td>{{kontrak.pegawai.unit}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -153,11 +156,11 @@
                     <div class="col-md-12">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs pull-right">
-                            <li role="presentation" class="active">
-                                <a href="#tahunannon" data-toggle="tab">Uraian Tugas Non-DPA</a>
-                            </li>
                             <li role="presentation">
                                 <a href="#tahunandpa" data-toggle="tab">Uraian Tugas DPA</a>
+                            </li>
+                            <li role="presentation" class="active">
+                                <a href="#tahunannon" data-toggle="tab">Uraian Tugas Non-DPA</a>
                             </li>
                             <li class="pull-left header" style="font-size: 22px"><i class="fa fa-th"></i> Kontrak Kerja</li>
                         </ul>
