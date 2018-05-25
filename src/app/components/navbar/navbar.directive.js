@@ -88,7 +88,7 @@
             for(var i = 0; i < response.length; i++){
               response[i].tanggalDibuatMilis = response[i].tglPengirimanMilis;
               response[i].jenisNotif = 2;
-              response[i].deskripsi = "Disposisi masuk dari " + response[i].namaPemberi;
+              response[i].deskripsi = "Disposisi masuk dari " + response[i].namaPengirim;
               response[i].url = '#ambil-disposisi';
               vm.notif.push(response[i]);
             }

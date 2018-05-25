@@ -100,7 +100,7 @@
                                                         <td class="text-center" style="vertical-align: middle">{{$index + 1 + (numPerPageSuratMasuk*currentPageSuratMasuk)}}</td>
                                                         <td style="vertical-align: middle">{{naskah.jenisSurat}}</td>
                                                         <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
-                                                        <td class="text-center" style="vertical-align: middle">Dinas Kesehatan</td>
+                                                        <td class="text-center" style="vertical-align: middle">{{naskah.unitKerjaPemberi}}</td>
                                                         <td class="text-center" style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
                                                         <td style="vertical-align: middle">
                                                             <button type="button" class="btn bg-purple waves-effect" ng-click="persuratan.getDocument(naskah)" ng-hide="naskah.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
