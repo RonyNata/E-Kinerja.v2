@@ -18,10 +18,10 @@
                             <a href="#instruksi" data-toggle="tab">Disposisi Yang Pernah Dibuat</a>
                         </li>
                         <li role="presentation" ng-show="ambilperpindahan.isPejabat">
-                            <a href="#draft" data-toggle="tab">Draft Disposisi <span class="label label-danger" ng-hide="ambilperpindahan.jmlNotifDrafDisposisi==0">{{ambilperpindahan.jmlNotifDrafDisposisi}}</span></a>
+                            <a href="#draft" data-toggle="tab">Draft Disposisi &nbsp<span class="badge bg-red" ng-hide="ambilperpindahan.jmlNotifDrafDisposisi==0">{{ambilperpindahan.jmlNotifDrafDisposisi}}</span></a>
                         </li>
                         <li role="presentation" class="active">
-                            <a href="#disposisii" data-toggle="tab">Surat Disposisi Masuk <span class="label label-danger" ng-hide="ambilperpindahan.jmlNotifDisposisiMasuk==0">{{ambilperpindahan.jmlNotifDisposisiMasuk}}</span></a>
+                            <a href="#disposisii" data-toggle="tab">Surat Disposisi Masuk &nbsp<span class="badge bg-red" ng-hide="ambilperpindahan.jmlNotifDisposisiMasuk==0">{{ambilperpindahan.jmlNotifDisposisiMasuk}}</span></a>
                         </li>
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-list-alt"></i> DISPOSISI</li>
                     </ul>
@@ -33,12 +33,12 @@
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
                                                 <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th class="text-center">Kode Lembar Disposisi</th>
-                                                    <th class="text-center">Tingkat Keamanan</th>
-                                                    <th class="text-center">Tanggal Dibuat</th>
-                                                    <th class="text-center">Status</th>
-                                                    <th class="text-center" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}">Action</th>
+                                                    <th class="text-center" style="vertical-align: middle">No</th>
+                                                    <th class="text-center" style="vertical-align: middle">Kode Lembar Disposisi</th>
+                                                    <th class="text-center" style="vertical-align: middle">Tingkat Keamanan</th>
+                                                    <th class="text-center" style="vertical-align: middle">Tanggal Dibuat</th>
+                                                    <th class="text-center" style="vertical-align: middle">Status</th>
+                                                    <th class="text-center" style="vertical-align: middle" colspan="{{ambilperpindahan.eselon=='xs' ? 4 : 5}}">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

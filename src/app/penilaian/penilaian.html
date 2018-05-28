@@ -61,10 +61,10 @@
                             <a href="#laporanajuan" data-toggle="tab">Draft</a>
                         </li>
                         <li role="presentation">
-                            <a href="#suratmasuk" data-toggle="tab">Surat Masuk</a>
+                            <a href="#suratmasuk" data-toggle="tab">Surat Masuk &nbsp<span class="badge bg-red" ng-hide="penilaian.jmlNotifSuratMasuk==0">{{penilaian.jmlNotifSuratMasuk}}</span></a>
                         </li>
                         <li role="presentation" class="active">
-                            <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan</a>
+                            <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan &nbsp<span class="badge bg-red" ng-hide="penilaian.jmlNotifLaporanBawahan==0">{{penilaian.jmlNotifLaporanBawahan}}</span></a>
                         </li>
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-sliders"></i> TATA NASKAH</li>
                     </ul>
