@@ -37,12 +37,17 @@
         function getLaporanBawahan(){
             PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
                 function(response){debugger
+                    vm.jmlNotifLaporanBawahan = 0;
+
                     // response = response.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
                     for(var i = 0; i < response.length;i++){
                         var date = new Date(response[i].tanggalDibuatMilis);
                         response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
                         response[i].status = statusBaca(response[i].statusPenilaian);
+                        if (response[i].statusBaca == 0){
+                            vm.jmlNotifLaporanBawahan += 1;
+                        }
                     }
                     vm.laporanbawahan = response;
                     vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
@@ -493,11 +498,18 @@
         function getSuratMasuk(url, count){debugger
             DashboardService.GetSuratMasuk(url, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, false).then(
                 function(response){
+
+                    vm.jmlNotifSuratMasuk = 0;
+
                     for(var i = 0; i < response.length;i++){
                         var date = new Date(response[i].createdDateMilis);
                         response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
                         vm.suratMasuk.push(response[i]);
+
+                        if (response[i].statusBaca == 0){
+                            vm.jmlNotifSuratMasuk += 1;
+                        }
                     }
                     vm.suratMasuk = vm.suratMasuk.sort( function ( a, b ) { return b.createdDateMilis - a.createdDateMilis; } );
                     vm.sortSuratMasuk = angular.copy(vm.suratMasuk);
