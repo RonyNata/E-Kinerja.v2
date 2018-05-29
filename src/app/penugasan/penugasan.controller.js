@@ -161,9 +161,9 @@ angular.
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateSuratTugasService.template(vm.data);
-                    if(isHistory){
+                    if(!isHistory){
                       naskah.loading = false;
-                      openSuratMasuk('open-surat-tugas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                      openSuratMasuk('open-surat-tugas/', naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                       getNaskahPenugasanPerintahTarget();
                     }
                     else naskah.loading = false;
@@ -176,13 +176,13 @@ angular.
 
         function getDocumentInstruksi(naskah, isHistory){
           KontrakPegawaiService.GetDataInstruksi(naskah.kdSurat).then(
-            function(response){
+            function(response){debugger
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
-              if(isHistory){
+              if(!isHistory){
                 naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-instruksi-pegawai/',
-                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                  naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
               else naskah.loading = false;
@@ -198,10 +198,10 @@ angular.
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              if(isHistory){
+              if(!isHistory){
                 naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-perintah-pegawai/',
-                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                  naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
               else naskah.loading = false;
