@@ -3,9 +3,6 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="row" style="margin-top:50px">
-            <div class="col-md-4">
-                <button type="button" ng-click="master.getSK()" class="btn btn-info"> <b>Print SK</b></button>
-            </div>
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -14,17 +11,23 @@
                     <div class="tab-content">
                         <div class="row space-after" ng-hide="master.kegiatan">
                             <div class="col-md-4">
-                                <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
+                                <button type="button" ng-click="master.kembali()" class="btn btn-primary btn waves waves-effect"> <b>Kembali</b></button>
                             </div>
                             <div class="col-md-4"></div>
                             <!-- <div class="col-md-2 text-right"><button type="button" ng-click="master.salin()" class="btn btn-info"> <b>Salin Struktur Organisasi</b></button></div> -->
                             <div class="col-md-4 text-right">
-                                <button type="button" ng-click="master.addPJ()" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Organisasi</b></button>
+                                <button type="button" ng-click="master.addPJ()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Organisasi</b></button>
                             </div>
                         </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
+                            <div class="col-md-4">
+                                <button type="button" ng-click="master.getSK()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-print"></i><b> Print Surat Keputusan</b></button>
+                            </div>
                             <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
-                                <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
