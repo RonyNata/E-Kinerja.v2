@@ -235,10 +235,10 @@
                                   {text: 'KET', alignment : 'center'}
                               ],
                               [
-                                  {text: '1', rowSpan: 5},
-                                  {text: 'Nama\nJabatan\nNIP', rowSpan: 5},
+                                  {text: '1', rowSpan: 1},
+                                  {text: 'Nama\nJabatan\nNIP', rowSpan: 1},
                                   {
-                                      rowSpan: 5,
+                                      rowSpan: 1,
                                       stack: [
                                           {text:'' + data.gelarDepan + data.nama + data.gelarBelakang + '\n', bold:true},
                                           {text:'' + data.jabatan + '\n'},
@@ -246,7 +246,7 @@
                                       ]
                                   },
                                   {
-                                      rowSpan: 3,
+                                      rowSpan: 1,
                                       stack: [
                                           {text:'' + data.pejabatBarjasPPKList[0].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].nama + data.pejabatBarjasPPKList[0].gelarBelakang + '\n', bold:true},
                                           {text: '' + data.pejabatBarjasPPKList[0].jabatan + '\n'},
@@ -264,120 +264,6 @@
                                       stack: [
                                           {
                                               ol: [
-                                              ]
-                                          }
-                                      ]
-                                  },
-                                  {text: ''}
-                              ],
-                              [
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {
-                                      stack: [
-                                          {text:'Syarifrudin, SE, M.Si\n', bold:true},
-                                          {text:'Kasubbag. Perencanaan\n'},
-                                          {text:'NIP. 19750223 200501 1 004\n'}
-                                      ]
-                                  },
-                                  {
-                                      stack: [
-                                          {
-                                              start: 7,
-                                              ol: [
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Penyusunan Indeks Kepuasan Perangkat Daerah'
-                                              ]
-                                          }
-                                      ]
-                                  },
-                                  {text: ''}
-                              ],
-                              [
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {
-                                      stack: [
-                                          {text:'Yanti Novrianti Sari\n', bold:true},
-                                          {text:'Pelaksana Subbag. Keuangan\n'},
-                                          {text:'NIP. 19771130 201001 2 001\n'}
-                                      ]
-                                  },
-                                  {
-                                      stack: [
-                                          {
-                                              start: 9,
-                                              ol: [
-                                                  'Pengelolaan dan Pelaporan Administrasi Keuangan'
-                                              ]
-                                          }
-                                      ]
-                                  },
-                                  {text: ''}
-                              ],
-
-                              [
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {
-                                      rowSpan: 2,
-                                      stack: [
-                                          {text:'Drs. Hj. Sri Dimita Widorini, M.Pd\n', bold:true},
-                                          {text:'Kabid. Statistik dan Diseminasi Informasi\n'},
-                                          {text:'NIP. 19690102 199403 2 004\n'}
-                                      ]
-                                  },
-                                  {
-                                      stack: [
-                                          {text:'Dwiyuni Agung Nugroho, ST, S.Si\n', bold:true},
-                                          {text:'Kasi. Statistik\n'},
-                                          {text:'NIP. 19770913 200901 2 002\n'}
-                                      ]
-                                  },
-                                  {
-                                      stack: [
-                                          {
-                                              start: 10,
-                                              ol: [
-                                                  'Penyediaan Bahan Penyelenggaraan Adm. Perkantoran',
-                                                  'Rapat-Rapat koordinasi dan konsultasi kedalam/luar daerah',
-                                                  'Pengelolaan Adm. Umum dan Kepegawaian',
-                                                  'Penataan Arsip Perangkat Daerah',
-                                                  'Pemeliharaan Rutin/berkala Kendaraan Dinas Operasional'
-                                              ]
-                                          }
-                                      ]
-                                  },
-                                  {text: ''}
-                              ],
-                              [
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {text: ''},
-                                  {
-                                      stack: [
-                                          {text:'Syarifrudin, SE, M.Si\n', bold:true},
-                                          {text:'Kasubbag. Perencanaan\n'},
-                                          {text:'NIP. 19750223 200501 1 004\n'}
-                                      ]
-                                  },
-                                  {
-                                      stack: [
-                                          {
-                                              start: 15,
-                                              ol: [
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Perencanaan dan Evaluasi Kegiatan',
-                                                  'Penyusunan Indeks Kepuasan Perangkat Daerah'
                                               ]
                                           }
                                       ]
@@ -457,11 +343,114 @@
                 }
             }
 
-            for(var i = 0; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList.length;i++)
+            var number = 1;
+            var rowKeuangan = 1;
+            var rowPPK = 1;
+            for(var i = 0; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList.length;i++){
                 docDefinition.content[12].table.body[1][5].stack[0].ol.push(data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList[i].ketKegiatan);
+                number += 1;
+            }
 
-            // for(var i = 0; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList.length;i++)
-            
+            rowPPK = data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.length;
+            for(var i = 1; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.length;i++){
+                var row = [
+                                  {text: ''},
+                                  {text: ''},
+                                  {text: ''},
+                                  {text: ''},
+                                  {
+                                      stack: [
+                                          {text:'' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.gelarBelakang + '\n', bold:true},
+                                          {text:'' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].jabatan + '\n'},
+                                          {text:'NIP. ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nip + '\n'}
+                                      ]
+                                  },
+                                  {
+                                      stack: [
+                                          {
+                                              start: number,
+                                              ol: [
+                                              ]
+                                          }
+                                      ]
+                                  },
+                                  {text: ''}
+                              ];
+                for(var j = 0; j < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].kegiatanWrapperList.length;j++){
+                    row[5].stack[0].ol.push(data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].kegiatanWrapperList[j].ketKegiatan);
+                    number += 1;
+                }
+                docDefinition.content[12].table.body.push(row);
+            }
+
+            for(var k = 1; k < data.pejabatBarjasPPKList.length;k++){
+                var ppk = [
+                                  {text: ''},
+                                  {text: ''},
+                                  {text: ''},
+                                  {
+                                      rowSpan: 1,
+                                      stack: [
+                                          {text:'' + data.pejabatBarjasPPKList[k].gelarDepan + ' ' + data.pejabatBarjasPPKList[k].nama + data.pejabatBarjasPPKList[k].gelarBelakang + '\n', bold:true},
+                                          {text:'' + data.pejabatBarjasPPKList[k].jabatan + '\n'},
+                                          {text:'NIP. ' + data.pejabatBarjasPPKList[k].nip + '\n'}
+                                      ]
+                                  },
+                                  {
+                                      stack: [
+                                          {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].gelarDepan + ' ' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].nama + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].gelarBelakang + '\n', bold:true},
+                                          {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].jabatan + '\n'},
+                                          {text:'NIP. ' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].nip + '\n'}
+                                      ]
+                                  },
+                                  {
+                                      stack: [
+                                          {
+                                              start: number,
+                                              ol: [
+                                              ]
+                                          }
+                                      ]
+                                  },
+                                  {text: ''}
+                              ]
+                for(var l = 0; l < data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].kegiatanWrapperList.length;l++){
+                    ppk[5].stack[0].ol.push(data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[0].kegiatanWrapperList[l].ketKegiatan);
+                    number += 1;
+                }
+                docDefinition.content[12].table.body.push(ppk);
+                for(var i = 1; i < data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList.length;i++){
+                    var row = [
+                                      {text: ''},
+                                      {text: ''},
+                                      {text: ''},
+                                      {text: ''},
+                                      {
+                                          stack: [
+                                              {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarBelakang + '\n', bold:true},
+                                              {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].jabatan + '\n'},
+                                              {text:'NIP. ' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].nip + '\n'}
+                                          ]
+                                      },
+                                      {
+                                          stack: [
+                                              {
+                                                  start: number,
+                                                  ol: [
+                                                  ]
+                                              }
+                                          ]
+                                      },
+                                      {text: ''}
+                                  ];
+                    for(var j = 0; j < data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].kegiatanWrapperList.length;j++){
+                        row[5].stack[0].ol.push(data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].kegiatanWrapperList[j].ketKegiatan);
+                        number += 1;
+                    }
+                    docDefinition.content[12].table.body.push(row);
+                }
+            }
+            console.log(docDefinition);
             
             return docDefinition;
         }
