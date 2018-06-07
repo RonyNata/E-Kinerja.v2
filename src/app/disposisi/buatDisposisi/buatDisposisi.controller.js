@@ -42,7 +42,8 @@
 
               vm.dataHistory = response;debugger
               vm.loading = false;
-              vm.dataLookDisposisi = angular.copy(vm.dataHistory);
+              vm.dataHistory = vm.dataHistory.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
+              vm.sortDisposisi = angular.copy(vm.dataHistory);
               pagingDisposisi();
             }, function(errResponse){
 
@@ -73,7 +74,8 @@
                   response[i].ketBaca = statusBaca(response[i].statusBaca);
               }
               vm.history = response;
-              vm.dataLook = angular.copy(vm.history);
+              vm.history = vm.history.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
+              vm.historyDisposisi = angular.copy(vm.history);
               pagingHistori();
             }, function(errResponse){
 
@@ -94,6 +96,8 @@
                   }
               }
               vm.draft = response;
+              vm.draft = vm.draft.sort( function ( a, b ) { return b.tanggalPenerimaanSuratDisposisi - a.tanggalPenerimaanSuratDisposisi; } );
+              vm.draftDispsosisi = angular.copy(vm.draft);
               pagingDraft();
             }, function(errResponse){
 
@@ -165,14 +169,44 @@
         });
       };
 
+        vm.sortDate = function(){
+          vm.sortDisposisi = [];
+          vm.historyDisposisi = [];
+          vm.draftDispsosisi = [];
+
+          for(var i = 0; i < vm.dataHistory.length; i++){
+            if(vm.tanggal.getDate() == new Date(vm.dataHistory[i].tglPengirimanMilis).getDate() && 
+               vm.tanggal.getMonth() == new Date(vm.dataHistory[i].tglPengirimanMilis).getMonth() &&
+               vm.tanggal.getYear() == new Date(vm.dataHistory[i].tglPengirimanMilis).getYear())
+               vm.sortDisposisi.push(vm.dataHistory[i]);
+          }
+          for(var i = 0; i < vm.history.length; i++){
+            if(vm.tanggal.getDate() == new Date(vm.history[i].tglPengirimanMilis).getDate() && 
+               vm.tanggal.getMonth() == new Date(vm.history[i].tglPengirimanMilis).getMonth() &&
+               vm.tanggal.getYear() == new Date(vm.history[i].tglPengirimanMilis).getYear())
+               vm.historyDisposisi.push(vm.history[i]);
+          }
+          for(var i = 0; i < vm.draft.length; i++){
+            if(vm.tanggal.getDate() == new Date(vm.draft[i].tanggalPenerimaanSuratDisposisi).getDate() && 
+               vm.tanggal.getMonth() == new Date(vm.draft[i].tanggalPenerimaanSuratDisposisi).getMonth() &&
+               vm.tanggal.getYear() == new Date(vm.draft[i].tanggalPenerimaanSuratDisposisi).getYear())
+               vm.draftDispsosisi.push(vm.draft[i]);
+          }
+
+          pagingDisposisi();
+          pagingHistori();
+          pagingDraft();
+
+        }
+
         function pagingDisposisi(){
             $scope.filteredDataDisposisi = [];
             $scope.currentPageDisposisi = 0;
             $scope.numPerPageDisposisi = 5;
-            $scope.maxSizeDisposisi = Math.ceil(vm.dataLookDisposisi.length/$scope.numPerPageDisposisi);
+            $scope.maxSizeDisposisi = Math.ceil(vm.sortDisposisi.length/$scope.numPerPageDisposisi);
             function pageDisposisi(){
               $scope.pageDisposisi = [];
-              for(var i = 0; i < vm.dataLookDisposisi.length/$scope.numPerPageDisposisi; i++){
+              for(var i = 0; i < vm.sortDisposisi.length/$scope.numPerPageDisposisi; i++){
                   $scope.pageDisposisi.push(i+1);
               }
             }
@@ -191,7 +225,7 @@
               var begin = (($scope.currentPageDisposisi) * $scope.numPerPageDisposisi)
               , end = begin + $scope.numPerPageDisposisi;
 
-              $scope.filteredDataDisposisi = vm.dataLookDisposisi.slice(begin, end);
+              $scope.filteredDataDisposisi = vm.sortDisposisi.slice(begin, end);
             });
           }
 
@@ -199,10 +233,10 @@
             $scope.filteredData = [];
             $scope.currentPage = 0;
             $scope.numPerPage = 5;
-            $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
+            $scope.maxSize = Math.ceil(vm.historyDisposisi.length/$scope.numPerPage);
             function page(){
               $scope.page = [];
-              for(var i = 0; i < vm.dataLook.length/$scope.numPerPage; i++){
+              for(var i = 0; i < vm.historyDisposisi.length/$scope.numPerPage; i++){
                   $scope.page.push(i+1);
               }
             }
@@ -221,7 +255,7 @@
               var begin = (($scope.currentPage) * $scope.numPerPage)
               , end = begin + $scope.numPerPage;
 
-              $scope.filteredData = vm.dataLook.slice(begin, end);
+              $scope.filteredData = vm.historyDisposisi.slice(begin, end);
             });
           }
 
@@ -229,10 +263,10 @@
             $scope.filteredDataDraft = [];
             $scope.currentPageDraft = 0;
             $scope.numPerPageDraft = 5;
-            $scope.maxSizeDraft = Math.ceil(vm.draft.length/$scope.numPerPageDraft);
+            $scope.maxSizeDraft = Math.ceil(vm.draftDispsosisi.length/$scope.numPerPageDraft);
             function pageDraft(){
               $scope.pageDraft = [];
-              for(var i = 0; i < vm.draft.length/$scope.numPerPageDraft; i++){
+              for(var i = 0; i < vm.draftDispsosisi.length/$scope.numPerPageDraft; i++){
                   $scope.pageDraft.push(i+1);
               }
             }
@@ -251,7 +285,7 @@
               var begin = (($scope.currentPageDraft) * $scope.numPerPageDraft)
               , end = begin + $scope.numPerPageDraft;
 
-              $scope.filteredDataDraft = vm.draft.slice(begin, end);
+              $scope.filteredDataDraft = vm.draftDispsosisi.slice(begin, end);
             });
           }
 

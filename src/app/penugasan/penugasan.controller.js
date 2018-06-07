@@ -218,6 +218,28 @@ angular.
             })
         }
 
+        vm.sortDate = function(){
+          vm.dataLook = [];
+          vm.dataLookPenugasan = [];
+
+          for(var i = 0; i < vm.naskahHistory.length; i++){
+            if(vm.tanggal.getDate() == new Date(vm.naskahHistory[i].tanggalDibuatMilis).getDate() && 
+               vm.tanggal.getMonth() == new Date(vm.naskahHistory[i].tanggalDibuatMilis).getMonth() &&
+               vm.tanggal.getYear() == new Date(vm.naskahHistory[i].tanggalDibuatMilis).getYear())
+               vm.dataLook.push(vm.naskahHistory[i]);
+          }
+          for(var i = 0; i < vm.naskah.length; i++){
+            if(vm.tanggal.getDate() == new Date(vm.naskah[i].tanggalDibuatMilis).getDate() && 
+               vm.tanggal.getMonth() == new Date(vm.naskah[i].tanggalDibuatMilis).getMonth() &&
+               vm.tanggal.getYear() == new Date(vm.naskah[i].tanggalDibuatMilis).getYear())
+               vm.dataLookPenugasan.push(vm.naskah[i]);
+          }
+
+          pagingPenugasan();
+          pagingHistori();
+
+        }
+
         function pagingPenugasan(){
             $scope.filteredDataPenugasan = [];
             $scope.currentPagePenugasan = 0;
