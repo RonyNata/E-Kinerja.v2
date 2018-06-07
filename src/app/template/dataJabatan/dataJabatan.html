@@ -16,13 +16,13 @@
                                     <table class="table table-bordered table-striped table-hover js-basic-example dataTable" cellspacing="0" style="text-align: center;table-layout: fixed;">
                                         <thead class="bg-table">
                                             <tr>
-                                                <th style="width: 6%; text-align: center">
+                                                <th style="width: 6%; text-align: center;; vertical-align: middle">
                                                     {{datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2 ? 'No' : ''}}
                                                 </th>
                                                 <th style="text-align: center">
                                                     <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Nama Jabatan">
                                                 </th>
-                                                <th style="text-align: center;text-align: center">
+                                                <th style="text-align: center; vertical-align: middle">
                                                     Unit Kerja
                                                 </th>
                                             </tr>
@@ -39,6 +39,9 @@
                                                 <p ng-show="datajabatan.isPilihan == 1 || datajabatan.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td>
                                                 <td>{{data.jabatan}}</td>
                                                 <td>{{data.unitKerja}}</td>
+                                            </tr>
+                                            <tr ng-show="filteredData==0">
+                                                <td colspan="3" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>

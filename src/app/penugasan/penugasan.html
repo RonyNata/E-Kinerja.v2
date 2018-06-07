@@ -2,7 +2,7 @@
 <ekinerja-navbar></ekinerja-navbar>
 <div class="content-wrapper">
     <section class="content">
-        <div class="row">
+        <div class="row" style="margin-top:50px">
             <div class="col-md-2">
                 <button type="button" ng-click="penugasan.openTemplate()" class="btn btn-primary waves-effect">
                     <i class="fa fa-plus"></i><strong> BUAT NASKAH PENUGASAN</strong>
@@ -14,11 +14,11 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
-                        <li role="presentation" class="active">
-                            <a href="#masuk" data-toggle="tab">Naskah Penugasan Masuk</a>
-                        </li>
                         <li role="presentation">
                             <a href="#dibuat" data-toggle="tab">Naskah Penugasan Yang Pernah Dibuat</a>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a href="#masuk" data-toggle="tab">Naskah Penugasan Masuk &nbsp<span class="badge bg-red" ng-hide="penugasan.jmlNotifTugasMasuk==0">{{penugasan.jmlNotifTugasMasuk}}</span></a>
                         </li>
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-file-text-o"></i> PENUGASAN</li>
                     </ul>
@@ -46,15 +46,15 @@
                                                 <td style="vertical-align: middle">{{naskah.namaPemberi}}</td>
                                                 <td style="vertical-align: middle">{{naskah.tanggalDibuat}}</td>
                                                 <td style="vertical-align: middle">{{naskah.ketBaca}}</td>
-                                                <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="{{naskah.statusBaca != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-forward"></i> TERUSKAN</button>
+                                                <td class="text-center" style="vertical-align: middle; width: 10%">
+                                                    <button type="button" ng-show="naskah.jenis == 0" ng-click="penugasan.teruskan(naskah.kdSurat, naskah.suratPejabat)" class="{{naskah.statusBaca != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-forward"></i> TERUSKAN KEATASAN</button>
                                                     <p ng-show="naskah.jenis != 0"><strong>-</strong></p>
                                                 </td>
-                                                <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" ng-click="penugasan.getDocument(naskah, 0)" class="btn bg-purple waves-effect" ng-hide="naskah.loading"><i class="fa fa-file-pdf-o"></i> PDF FILE</button>
+                                                <td class="text-center" style="vertical-align: middle; width: 10%">
+                                                    <button type="button" ng-click="penugasan.getDocument(naskah, 0)" class="btn bg-purple waves-effect" ng-hide="naskah.loading"><i class="fa fa-file-pdf-o"></i> BUKA PDF</button>
                                                     <button type="button" ng-click="penugasan.getDocument(naskah, $index, 0)" class="btn btn-secondary" ng-show="naskah.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
-                                                <td class="text-center" style="vertical-align: middle">
+                                                <td class="text-center" style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="{{naskah.statusBaca != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penugasan.openTemplate(null,naskah,0)" ng-disabled="naskah.statusBaca != 1"><i class="fa fa-pencil"></i> KERJAKAN</button>
                                                 </td>
                                             </tr>
@@ -110,12 +110,12 @@
                                                 <td style="vertical-align: middle">{{history.nama}}</td>
                                                     <td style="vertical-align: middle">{{history.tanggalDibuat}}</td>
                                                     <td style="vertical-align: middle">{{history.ketBaca}}</td>
-                                                <td class="text-center" style="vertical-align: middle">
+                                                <td class="text-center" style="vertical-align: middle; width: 10%">
                                                     <button type="button" ng-show="history.jenis == 0" ng-click="penugasan.tree(history.kdSurat)" class="btn bg-orange waves-effect"><i class="fa fa-eye"></i> PANTAU</button>
                                                     <p ng-show="history.jenis != 0"><strong>-</strong></p>
                                                 </td>
-                                                <td class="text-center" style="vertical-align: middle">
-                                                    <button type="button" ng-click="penugasan.getDocument(history, 1)" class="btn bg-purple waves-effect" ng-hide="history.loading"><i class="fa fa-file-pdf-o"></i> PDF FILE</button>
+                                                <td class="text-center" style="vertical-align: middle; width: 10%">
+                                                    <button type="button" ng-click="penugasan.getDocument(history, 1)" class="btn bg-purple waves-effect" ng-hide="history.loading"><i class="fa fa-file-pdf-o"></i> BUKA PDF</button>
                                                     <button type="button" ng-click="penugasan.getDocument(history, $index, 1)" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                             </tr>

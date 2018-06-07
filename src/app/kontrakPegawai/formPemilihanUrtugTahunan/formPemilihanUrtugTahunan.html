@@ -143,7 +143,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit"  class="btn btn-primary"><strong>Ajukan Sebagai Kontrak</strong></button>
+        <button type="submit"  class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button>
         <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Batal</strong></button>
     </div>
 </form>

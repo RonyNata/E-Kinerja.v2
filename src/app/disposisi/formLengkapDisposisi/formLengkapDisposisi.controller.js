@@ -123,7 +123,7 @@
                 "kdDraftLembarDisposisi" : kdLembar,
                 "tktKeamanan": vm.item.tktKeamanan,
                 "tglPenyelesaianMilis": vm.item.tglPenyelesaianMilis.getTime(),
-                "daftarTargetJabatanLembarDisposisi": [],
+                "daftarTargetLembarDisposisi": [],
                 "isiDisposisi": vm.item.isiDisposisi,
                 "durasiPengerjaan": vm.item.durasiPengerjaan,
                 "nipPelengkap": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai
@@ -131,21 +131,22 @@
 
             if(isTerusan){
                 data.kdLembarDisposisiParent = kdLembar;
+                data.nipPenerus = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
             }
 
             for(var i = 0; i < vm.target.length; i++)
                 if(vm.isEselon4){
-                    data.daftarTargetJabatanLembarDisposisi.push(vm.target[i].nipPegawai);
-                    data.isTargetJabatan = false;
+                    data.daftarTargetLembarDisposisi.push(vm.target[i].nipPegawai);
+                    data.targetJabatan = false;
                 }
                 else {
-                    data.daftarTargetJabatanLembarDisposisi.push(vm.target[i].kdJabatan);
-                    data.isTargetJabatan = true;
+                    data.daftarTargetLembarDisposisi.push(vm.target[i].kdJabatan);
+                    data.targetJabatan = true;
                 }
             console.log(data);
 
             if(isTerusan)
-                DisposisiService.save(data).then(
+                DisposisiService.Teruskan(data).then(
                     function(response){
                         EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
                         vm.cancel();

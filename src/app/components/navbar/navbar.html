@@ -29,7 +29,7 @@
                           </a>
                         </li>
                         <li ng-repeat="notif in vm.notif">
-                          <a href="#penilaian">
+                          <a href="{{notif.url}}">
                             <i class="fa fa-envelope-o text-aqua"></i><span style="font-size: 12px;">{{notif.deskripsi}}</span>
                           </a>
                         </li>
@@ -42,19 +42,19 @@
                   <a class="dropdown-toggle" data-toggle="dropdown">
                       <i class="fa fa-unlock-alt"></i>
                   </a>
-                  <ul class="dropdown-menu" style="margin-top: 4px;">
+                  <ul class="dropdown-menu">
                       <li class="user-header">
                           <div>
                               <div class="box-header">
-                                  <h3 class="box-title">Ganti Password</h3>
+                                  <h5 class="box-title"><strong>Ganti Password</strong></h5>
                               </div>
                               <div class="box-body">
                                   <form action="#">
                                       <div class="form-group">
-                                          <input type="password" class="form-control" placeholder="password baru" ng-model="vm.password">
+                                          <input type="password" class="form-control" placeholder="password baru" ng-model="vm.password" required>
                                       </div>
                                       <div class="form-group">
-                                          <input type="password" class="form-control" placeholder="tulis kembali password baru" ng-model="vm.retypePassword">
+                                          <input type="password" class="form-control" placeholder="tulis kembali password baru" ng-model="vm.retypePassword" required>
                                       </div>
                                   </form>
                               </div>
@@ -62,7 +62,7 @@
                       </li>
                       <li class="user-footer">
                           <div class="pull-right">
-                              <a class="btn btn-primary btn-flat" ng-click="vm.gantipwd()">Submit</a>
+                              <button class="btn btn-primary btn-flat" ng-click="vm.gantipwd()">Submit</button>
                           </div>
                       </li>
                   </ul>
@@ -71,7 +71,7 @@
                   <a class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-user"></i>
                   </a>
-                  <ul class="dropdown-menu" style="margin-top: 4px;">
+                  <ul class="dropdown-menu">
                     <li class="user-header" style="height: auto;">
                       <img src="favicon.ico" width="78" height="78" class="img-circle" alt="User Image" />
                       <p style="font-size: 12px;">{{vm.pegawai.nipPegawai}}</p>

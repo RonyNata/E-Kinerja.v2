@@ -57,15 +57,15 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
+                        <li role="presentation">
+                            <a href="#laporanajuan" data-toggle="tab">Draft</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#suratmasuk" data-toggle="tab">Surat Masuk &nbsp<span class="badge bg-red" ng-hide="penilaian.jmlNotifSuratMasuk==0">{{penilaian.jmlNotifSuratMasuk}}</span></a>
+                        </li>
                         <li role="presentation" class="active">
-                                <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#suratmasuk" data-toggle="tab">Surat Masuk</a>
-                            </li>
-                            <li role="presentation">
-                                <a href="#laporanajuan" data-toggle="tab">Draft</a>
-                            </li>
+                            <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan &nbsp<span class="badge bg-red" ng-hide="penilaian.jmlNotifLaporanBawahan==0">{{penilaian.jmlNotifLaporanBawahan}}</span></a>
+                        </li>
                         <li class="pull-left header" style="font-size: 22px"><i class="fa fa-sliders"></i> TATA NASKAH</li>
                     </ul>
                     <div class="tab-content">
@@ -92,15 +92,15 @@
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                 <td style="vertical-align: middle">{{ambil.status}}</td>
-                                                <td style="vertical-align: middle">
+                                                <td style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="penilaian.terima(ambil, ambil.kdSurat, ambil.suratPejabat)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="ambil.penandatangan"><i class="fa fa-forward"></i> TERUSKAN</span></button>
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.tandatangan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-show="ambil.penandatangan"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
                                                 </td>
-                                                <td style="vertical-align: middle">
+                                                <td style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
-                                                <td style="vertical-align: middle">
+                                                <td style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="fa fa-times"></i> TOLAK</button>
                                                 </td>
                                             </tr>
@@ -148,7 +148,7 @@
                                                 <th class="text-center" style="vertical-align: middle">Pemberi Surat</th>
                                                 <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
                                                 <th class="text-center" style="vertical-align: middle">Status</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
+                                                <th class="text-center" style="vertical-align: middle">Action</th>
                                             </tr>
                                             </thead>
 
@@ -159,7 +159,7 @@
                                                 <td class="text-left">{{surat.jabatanPemberi}}</td>
                                                 <td>{{surat.tanggalDibuat}}</td>
                                                 <td>{{surat.statusBaca == 0 ? 'Belum Dibaca' : 'Sudah Dibaca'}}</td>
-                                                <td>
+                                                <td style="width: 10%">
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(surat, 1)" ng-hide="surat.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="surat.loading" disabled>MOHON TUNGGU...</button>
                                                     <button type="button" class="btn bg-purple waves-effect" ng-show="penilaian.isAdmin()" ng-click="penilaian.disposisi(surat)" ><i class="fa fa-file-pdf-o"></i><span> Disposisikan</span></button>
@@ -209,7 +209,7 @@
                                                 <th class="text-center" style="vertical-align: middle">Type Surat</th>
                                                 <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
                                                 <th class="text-center" style="vertical-align: middle">Status</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
+                                                <th class="text-center" style="vertical-align: middle">Action</th>
                                             </tr>
                                             </thead>
 
@@ -220,7 +220,7 @@
                                                 <td>{{history.suratPejabat == true ? 'Pejabat' : 'Non-Pejabat'}}</td>
                                                 <td>{{history.tanggalDibuat}}</td>
                                                 <td>{{history.statusPenilaian == 0 ? 'Belum Dibaca' : history.statusPenilaian == 1 ? 'Sudah Dibaca' : history.statusPenilaian == 2 ? 'Diterima' : 'Ditolak'}}</td>
-                                                <td>
+                                                <td style="width: 10%">
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(history, 0)" ng-hide="history.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="history.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>

@@ -114,6 +114,8 @@ angular.
         function getNaskahPenugasanTugasTarget(){
           PenugasanService.GetNaskahPenugasanTugasTarget($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
+                vm.jmlNotifTugasMasuk = 0;
+
               for(var i = 0; i < response.length;i++){
                 response[i].nama = "Surat Tugas";
                 response[i].jenis = 2;
@@ -122,6 +124,10 @@ angular.
                 response[i].ketBaca = statusBaca(response[i].statusBaca);
                 response[i].tanggalDibuatMilis = response[i].createdDateMilis;
                 vm.naskah.push(response[i]);
+                if (response[i].statusBaca == 0){
+                    vm.jmlNotifTugasMasuk += 1;
+                }
+
               }
               vm.loading = false;
               vm.naskah = vm.naskah.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
@@ -161,9 +167,9 @@ angular.
                 function(response){
                     vm.data = response;debugger
                     var doc = TemplateSuratTugasService.template(vm.data);
-                    if(isHistory){
+                    if(!isHistory){
                       naskah.loading = false;
-                      openSuratMasuk('open-surat-tugas/', laporan.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                      openSuratMasuk('open-surat-tugas/', naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                       getNaskahPenugasanPerintahTarget();
                     }
                     else naskah.loading = false;
@@ -176,13 +182,13 @@ angular.
 
         function getDocumentInstruksi(naskah, isHistory){
           KontrakPegawaiService.GetDataInstruksi(naskah.kdSurat).then(
-            function(response){
+            function(response){debugger
               vm.data = response;
               var doc = TemplateSuratInstruksiService.template(vm.data);
-              if(isHistory){
+              if(!isHistory){
                 naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-instruksi-pegawai/',
-                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                  naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
               else naskah.loading = false;
@@ -198,10 +204,10 @@ angular.
             function(response){
               vm.data = response;debugger
               var doc = TemplateSuratPerintahService.template(vm.data);
-              if(isHistory){
+              if(!isHistory){
                 naskah.loading = false;
                 DashboardService.ChangeRead('open-surat-perintah-pegawai/',
-                  kdHistory, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
+                  naskah.kdSurat, $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
                 getNaskahPenugasanPerintahTarget();
               }
               else naskah.loading = false;

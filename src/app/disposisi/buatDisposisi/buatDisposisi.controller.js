@@ -29,11 +29,15 @@
         function getAllDisposisi(){
           AmbilDisposisiService.GetAllDisposisi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
+              vm.jmlNotifDisposisiMasuk = 0;
               response = response.sort( function ( a, b ) { return b.tglPengirimanMilis - a.tglPengirimanMilis; } );
               for(var i = 0; i < response.length; i++){
                   var date = new Date(response[i].tglPengirimanMilis);
                   response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
                   response[i].ketBaca = statusBaca(response[i].statusBaca);
+                  if (response[i].statusBaca == 0){
+                      vm.jmlNotifDisposisiMasuk += 1;
+                  }
               }
 
               vm.dataHistory = response;debugger
@@ -82,8 +86,13 @@
           AmbilDisposisiService.GetDraftDisposisi($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){debugger
-              for(var i = 0; i < response.length; i++)
-                response[i].tglTerima = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalPenerimaanSuratDisposisi));
+              vm.jmlNotifDrafDisposisi = 0;
+              for(var i = 0; i < response.length; i++){
+                  response[i].tglTerima = EkinerjaService.IndonesianDateFormat(new Date(response[i].tanggalPenerimaanSuratDisposisi));
+                  if (!response[i].approvedBySekdin){
+                      vm.jmlNotifDrafDisposisi += 1;
+                  }
+              }
               vm.draft = response;
               pagingDraft();
             }, function(errResponse){
