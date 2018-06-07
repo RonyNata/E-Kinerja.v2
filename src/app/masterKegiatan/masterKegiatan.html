@@ -3,9 +3,6 @@
 <div class="content-wrapper">
     <section class="content">
         <div class="row" style="margin-top:50px">
-            <div class="col-md-4">
-                <button type="button" ng-click="master.getSK()" class="btn btn-info"> <b>Print SK</b></button>
-            </div>
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
@@ -14,17 +11,23 @@
                     <div class="tab-content">
                         <div class="row space-after" ng-hide="master.kegiatan">
                             <div class="col-md-4">
-                                <button type="button" ng-click="master.kembali()" class="btn btn-info"> <b>Kembali</b></button>
+                                <button type="button" ng-click="master.kembali()" class="btn btn-primary btn waves waves-effect"> <b>Kembali</b></button>
                             </div>
                             <div class="col-md-4"></div>
                             <div class="col-md-2 text-right"><button type="button" ng-click="master.salin()" class="btn btn-info"> <b>Salin Struktur Organisasi</b></button></div>
                             <div class="col-md-4 text-right">
-                                <button type="button" ng-click="master.addPJ()" class="btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Organisasi</b></button>
+                                <button type="button" ng-click="master.addPJ()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Organisasi</b></button>
                             </div>
                         </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
+                            <div class="col-md-4">
+                                <button type="button" ng-click="master.getSK()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-print"></i><b> Print Surat Keputusan</b></button>
+                            </div>
                             <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
-                                <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -68,6 +71,27 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <ul style="padding-left: 0px;">
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                    &lt; PREV
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
+                                                    NEXT &gt;
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row animate-show-hide " ng-show="master.pj">
                             <div class="col-md-12">
@@ -97,27 +121,6 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="align-center">
-                                    <ul style="padding-left: 0px;">
-                                        <li style="display: inline-block;">
-                                            <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                &lt; PREV
-                                            </button>
-                                        </li>
-                                        <li style="display: inline-block;">
-                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
-                                        </li>
-                                        <li style="display: inline-block;">
-                                            <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
-                                                NEXT &gt;
-                                            </button>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
