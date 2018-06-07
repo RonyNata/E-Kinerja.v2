@@ -42,7 +42,13 @@
         url: '/master/urtug',
         templateUrl: 'app/formMaster/urtug/masterUrtug.html',
         controller: 'MasterUrtugController',
-        controllerAs: 'urtug'
+        controllerAs: 'urtug',
+        resolve:{
+          reload: function(){
+            if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD001')
+              $state.go('dashboard');
+          }
+        }
       })
       .state('master-urtugg', {
         url: '/sop',
@@ -81,7 +87,13 @@
         url: '/urtug/jabatan',
         templateUrl: 'app/uraianJabatan/pengumpulanDataBebanKerja.html',
         controller: 'PengumpulanDataBebanKerjaController',
-        controllerAs: 'urtug_jabatan'
+        controllerAs: 'urtug_jabatan',
+        resolve:{
+          reload: function(){
+            if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD002')
+              $state.go('dashboard');
+          }
+        }
       })
       .state('urtug-jabatann', {
         url: '/urtugjab',
@@ -590,7 +602,13 @@
           url: '/master-kegiatan',
           templateUrl: 'app/masterKegiatan/masterKegiatan.html',
           controller: 'MasterKegiatanController',
-          controllerAs: 'master'
+          controllerAs: 'master',
+          resolve:{
+            reload: function(){
+              if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD002')
+                $state.go('dashboard');
+            }
+          }
         })
         .state('notadinaspencairan', {
           url: '/nota-dinas-pencairan/:kdSurat/:jenisNaskah/:tahun/:kdUrtug/:kdSuratBawahan',
@@ -632,7 +650,13 @@
           url: '/persuratan',
           templateUrl: 'app/persuratan/persuratan.html',
           controller: 'PersuratanController',
-          controllerAs: 'persuratan'
+          controllerAs: 'persuratan',
+          resolve:{
+            reload: function(){
+              if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD004')
+                $state.go('dashboard');
+            }
+          }
         })
         .state('persuratanSuratMasuk', {
             url: '/masuk',

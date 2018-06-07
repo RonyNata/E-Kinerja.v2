@@ -7,7 +7,7 @@ angular.
 
     
     function MasterKegiatanController(EkinerjaService, KontrakUrtugDpaService, $scope, $timeout, $uibModal, 
-      $document, MasterKegiatanService, PengumpulanDataBebanKerjaService) {
+      $document, MasterKegiatanService, PengumpulanDataBebanKerjaService, SKPPKService) {
       	var vm = this;
         vm.loading = true;
         vm.kegiatan = true;
@@ -27,6 +27,15 @@ angular.
               )
         }
 
+        vm.getSK = function(){
+          SKPPKService.GetSKBarjas($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+            function(response){debugger
+              var doc = SKPPKService.template(response);
+              EkinerjaService.lihatPdf(doc, 'SK Barjas');
+            }, function(errResponse){
+              
+            })
+        }
 
         getUrtugDpa();
 

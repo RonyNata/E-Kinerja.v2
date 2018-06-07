@@ -149,7 +149,7 @@
                 DisposisiService.Teruskan(data).then(
                     function(response){
                         EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
-                        vm.cancel();
+                        $uibModalInstance.close();
                     }, function(errResponse){
 
                 })
@@ -157,7 +157,7 @@
                 AmbilDisposisiService.ComplateDisposisi(data).then(
                     function(response){
                         EkinerjaService.showToastrSuccess("Disposisi Berhasil Dikirim");
-                        vm.cancel();
+                        $uibModalInstance.close();
                     }, function(errResponse){
 
                 })

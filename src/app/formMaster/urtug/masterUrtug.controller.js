@@ -7,7 +7,7 @@ angular.
 
 	function MasterUrtugController(MasterUrtugService, $uibModal, $document, toastr, EkinerjaService, $scope){
 		var vm = this;
-		vm.loading = false;
+		$scope.loading = false;
 
 		// EkinerjaService.checkCredential();
       	// EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);
@@ -29,7 +29,7 @@ angular.
 					vm.data_urtug = response;
 					vm.dataLook = angular.copy(vm.data_urtug);
 					paging();
-					// vm.loading = true;
+					$scope.loading = true;
 					// debugger
 				},function(errResponse){
 					// vam.loading = true;
@@ -44,10 +44,10 @@ angular.
 					vm.data_sop = response;
 					vm.dataLookSop = angular.copy(vm.data_sop);
 					pagingSop();
-					vm.loading = true;
+					$scope.loading = true;
 					// debugger
 				},function(errResponse){
-					vam.loading = true;
+					$scope.loading = true;
 				}
 			)
 		}
