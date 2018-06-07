@@ -34,43 +34,33 @@
         $uibModalInstance.dismiss('cancel'); 
       };
 
-      // vm.salin = function(dataKegiatan){
-      //   var item = {
-      //       "kdUrusan": dataKegiatan.kdUrusan,
-      //       "kdBidang": dataKegiatan.kdBIdang,
-      //       "kdUnit": dataKegiatan.kdUnit,
-      //       "kdSub": dataKegiatan.kdSub,
-      //       "tahun": dataKegiatan.tahun,
-      //       "kdProg": dataKegiatan.kdProg,
-      //       "idProg": dataKegiatan.idProg,
-      //       "kdKeg": dataKegiatan.kdKegiatan,
-      //       "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
-      //     }
-      //     var success = 0;
-      //     var i = 0;
-      //     var lock = false;
-      //   while(i != pj.length-1){debugger
-      //       if(!lock){
-      //         item.nipPegawai = pj[i].penanggungJawab.nip;
-      //         item.kdStatusPenanggungJawab = pj[i].kdStatusPenanggungJawab;
-      //         lock = true;
-      //         MasterKegiatanService.CreatePJ(item).then(
-      //           function(response){
-      //             success += 1;
-      //             i += 1;
-      //             lock = false;
-      //             // EkinerjaService.showToastrSuccess(" ");
-      //             if(i == (pj.length-1))
-      //               checkSuccess(success);
-      //           }, function(errResponse){
-      //             // EkinerjaService.showToastrDanger(" ");
-      //             lock = false;
-      //             if(i == (pj.length-1))
-      //               checkSuccess(success);
-      //           })
-      //       }
-      //   } 
-      // }
+      vm.salin = function(dataKegiatan){
+        var item = {
+          "kdUrusan": dataKegiatan.kdUrusan,
+          "kdBidang": dataKegiatan.kdBIdang,
+          "kdUnit": dataKegiatan.kdUnit,
+          "kdSub": dataKegiatan.kdSub,
+          "tahun": dataKegiatan.tahun,
+          "kdProg": dataKegiatan.kdProg,
+          "idProg": dataKegiatan.idProg,
+          "kdKeg": dataKegiatan.kdKegiatan,
+          "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
+        }
+        var list = [];
+        for(var i = 0; i < pj.length;i++){
+          item.nipPegawai = pj[i].penanggungJawab.nip;
+          item.kdStatusPenanggungJawab = pj[i].kdStatusPenanggungJawab;
+          list.push(angular.copy(item));
+        }
+
+        MasterKegiatanService.SalinPj(list).then(
+          function(response){
+            EkinerjaService.showToastrSuccess('Berhasil Disalin');
+            getData();
+          }, function(errResponse){
+
+          })
+      }
 
       function checkSuccess(param){
         if(param == (pj.length-1)){

@@ -246,7 +246,7 @@
                                       ]
                                   },
                                   {
-                                      rowSpan: 1,
+                                      rowSpan: data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.length,
                                       stack: [
                                           {text:'' + data.pejabatBarjasPPKList[0].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].nama + data.pejabatBarjasPPKList[0].gelarBelakang + '\n', bold:true},
                                           {text: '' + data.pejabatBarjasPPKList[0].jabatan + '\n'},
@@ -345,14 +345,13 @@
 
             var number = 1;
             var rowKeuangan = 1;
-            var rowPPK = 1;
             for(var i = 0; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList.length;i++){
                 docDefinition.content[12].table.body[1][5].stack[0].ol.push(data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[0].kegiatanWrapperList[i].ketKegiatan);
                 number += 1;
             }
 
-            rowPPK = data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.length;
             for(var i = 1; i < data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.length;i++){
+                rowKeuangan += 1;
                 var row = [
                                   {text: ''},
                                   {text: ''},
@@ -360,7 +359,7 @@
                                   {text: ''},
                                   {
                                       stack: [
-                                          {text:'' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList.gelarBelakang + '\n', bold:true},
+                                          {text:'' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarBelakang + '\n', bold:true},
                                           {text:'' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].jabatan + '\n'},
                                           {text:'NIP. ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nip + '\n'}
                                       ]
@@ -384,12 +383,13 @@
             }
 
             for(var k = 1; k < data.pejabatBarjasPPKList.length;k++){
+                rowKeuangan += 1;
                 var ppk = [
                                   {text: ''},
                                   {text: ''},
                                   {text: ''},
                                   {
-                                      rowSpan: 1,
+                                      rowSpan: data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList.length,
                                       stack: [
                                           {text:'' + data.pejabatBarjasPPKList[k].gelarDepan + ' ' + data.pejabatBarjasPPKList[k].nama + data.pejabatBarjasPPKList[k].gelarBelakang + '\n', bold:true},
                                           {text:'' + data.pejabatBarjasPPKList[k].jabatan + '\n'},
@@ -420,6 +420,7 @@
                 }
                 docDefinition.content[12].table.body.push(ppk);
                 for(var i = 1; i < data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList.length;i++){
+                    rowKeuangan += 1;
                     var row = [
                                       {text: ''},
                                       {text: ''},
@@ -427,7 +428,7 @@
                                       {text: ''},
                                       {
                                           stack: [
-                                              {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[0].pejabatBarjasPPTKList[i].gelarBelakang + '\n', bold:true},
+                                              {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].gelarDepan + ' ' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].nama + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].gelarBelakang + '\n', bold:true},
                                               {text:'' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].jabatan + '\n'},
                                               {text:'NIP. ' + data.pejabatBarjasPPKList[k].pejabatBarjasPPTKList[i].nip + '\n'}
                                           ]
@@ -450,6 +451,9 @@
                     docDefinition.content[12].table.body.push(row);
                 }
             }
+            docDefinition.content[12].table.body[1][0].rowSpan = rowKeuangan;
+            docDefinition.content[12].table.body[1][1].rowSpan = docDefinition.content[12].table.body[1][0].rowSpan;
+            docDefinition.content[12].table.body[1][2].rowSpan = docDefinition.content[12].table.body[1][0].rowSpan;
             console.log(docDefinition);
             
             return docDefinition;
