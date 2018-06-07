@@ -56,8 +56,12 @@
               template(response);
               if(isOpenRead && statBaca == 0)
                 DashboardService.ChangeRead('open-lembar-disposisi/', kdLembarDisposisi,
-                  $.parseJSON(sessionStorage.getItem('credential')).nipPegawai);
-              getAllDisposisi();
+                  $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+                  function(response){
+                    getAllDisposisi();
+                  }, function(errResponse){
+                    
+                  });
               getHistoryDisposisi();
             }, function(errResponse){
                   EkinerjaService.showToastrError('Terjadi Kesalahan');
@@ -676,6 +680,14 @@
                   }
               }
           });
+
+          modalInstance.result.then(function () {
+              getAllDisposisi();
+              // vm.selected = selectedItem;
+            }, function () {
+              // showToastrFailed('menambahkan data');
+              // $log.info('Modal dismissed at: ' + new Date());
+            });
       };
         }
 })();
