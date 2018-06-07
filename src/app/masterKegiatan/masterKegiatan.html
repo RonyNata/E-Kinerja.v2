@@ -71,6 +71,27 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="align-center">
+                                        <ul style="padding-left: 0px;">
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                    &lt; PREV
+                                                </button>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                            </li>
+                                            <li style="display: inline-block;">
+                                                <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
+                                                    NEXT &gt;
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row animate-show-hide " ng-show="master.pj">
                             <div class="col-md-12">
@@ -100,27 +121,6 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="align-center">
-                                    <ul style="padding-left: 0px;">
-                                        <li style="display: inline-block;">
-                                            <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                &lt; PREV
-                                            </button>
-                                        </li>
-                                        <li style="display: inline-block;">
-                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
-                                        </li>
-                                        <li style="display: inline-block;">
-                                            <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
-                                                NEXT &gt;
-                                            </button>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
