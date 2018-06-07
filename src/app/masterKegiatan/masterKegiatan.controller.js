@@ -36,7 +36,7 @@ angular.
           SKPPKService.GetSKBarjas($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
             function(response){debugger
               var doc = SKPPKService.template(response);
-              EkinerjaService.lihatPdf(doc, 'SK Barjas');
+              EkinerjaService.lihatPdf(doc, 'Surat Keputusan Barjas');
             }, function(errResponse){
               
             })
