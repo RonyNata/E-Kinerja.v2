@@ -45,7 +45,7 @@
                         response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
                         response[i].status = statusBaca(response[i].statusPenilaian);
-                        if (response[i].statusBaca == 0){
+                        if (response[i].statusPenilaian == 0){
                             vm.jmlNotifLaporanBawahan += 1;
                         }
                     }

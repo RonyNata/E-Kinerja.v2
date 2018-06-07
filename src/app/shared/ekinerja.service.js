@@ -83,6 +83,17 @@
             return result;
         }
 
+        service.searchByKegiatan = function(ketKegiatan, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                // console.log(array[i].ketKegiatan.toLowerCase());
+                if (array[i].ketKegiatan.toLowerCase().search(ketKegiatan.toLowerCase()) != -1){
+                    result.push(array[i]);
+                } 
+            }
+            return result;
+        }
+
         service.searchByJabatan = function(jabatan, array){
             var result = [];
             for(var i = 0; i<array.length; i++){

@@ -176,7 +176,7 @@
                                                         <th class="text-center" style="width: 5%">No</th>
                                                         <th class="text-center">Rincian Tugas</th>
                                                         <th class="text-center" style="width: 10%">Jenis</th>
-                                                        <th class="text-center" style="width: 25%" colspan="2">Action</th>
+                                                        <th class="text-center" colspan="2">Action</th>
                                                     </tr>
                                                     </thead>
 
@@ -185,11 +185,11 @@
                                                         <td class="text-center">{{$index + 1 + (numPerPage*currentPageJenis)}}</td>
                                                         <td>{{urtug.urtug}}</td>
                                                         <td class="text-center">{{urtug.jenisUrtug}}</td>
-                                                        <td class="text-center">
+                                                        <td class="text-center" style="width: 10%">
                                                             <button type="button" class="btn btn-primary" ng-click="urtug_jabatan.kegiatan(urtug)" ng-show="urtug.jenis"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span> PASANG KEGIATAN </span></button>
-                                                            <button type="button" class="btn btn-success" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis"><i class="fa fa-eye" aria-hidden="true"></i><span> DETAIL</span></button>
+                                                            <button type="button" class="btn btn-success" ng-click="urtug_jabatan.openDetailUrtug(urtug)" ng-show="!urtug.jenis" style="width: 100%"><i class="fa fa-eye" aria-hidden="true"></i><span> DETAIL</span></button>
                                                         </td>
-                                                        <td class="text-center">
+                                                        <td class="text-center" style="width: 10%">
                                                             <button type="button" ng-click="urtug_jabatan.deleteUrtugJenis(urtug)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i><span> HAPUS</span></button>
                                                         </td>
                                                     </tr>

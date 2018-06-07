@@ -23,6 +23,9 @@
                             </div>
                         </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
+                            <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
+                                <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                            </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover js-basic-example">
@@ -46,7 +49,7 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr ng-repeat="kegiatan in master.list_kegiatan" class="text-center">
+                                        <tr ng-repeat="kegiatan in filteredDataListKegiatan" class="text-center">
                                             <td>{{$index + 1}}</td>
                                             <td class="text-left">{{kegiatan.ketKegiatan}}</td>
                                             <td class="text-center"><i class="material-icons">{{kegiatan.penggunaAnggaranExist ? 'check' : 'remove'}}</i></td>
@@ -83,7 +86,7 @@
 
                                         <tbody>
                                         <tr ng-repeat="pj in master.kegiatanPj" class="text-center">
-                                            <td>{{$index + 1}}</td>
+                                            <td>{{$index + 1 + (numPerPageListKegiatan*currentPageListKegiatan)}}</td>
                                             <td>{{pj.penanggungJawab.nip}}</td>
                                             <td class="text-left">{{pj.penanggungJawab.nama}}</td>
                                             <td>{{pj.statusPenanggungJawab}}</td>
@@ -94,6 +97,27 @@
                                         </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="align-center">
+                                    <ul style="padding-left: 0px;">
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                &lt; PREV
+                                            </button>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
+                                                NEXT &gt;
+                                            </button>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

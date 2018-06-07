@@ -12,17 +12,22 @@ angular.
         vm.loading = true;
         vm.kegiatan = true;
         var dataUrtug, dataKegiatan;
-        getAllKegiatan()
+        $scope.searchKegiatan = '';
+        $scope.entries = 10;
+        $scope.currentPageListKegiatan = 0;
+
+        getAllKegiatan();
 
         function getAllKegiatan(){
           PengumpulanDataBebanKerjaService.GetAllKegiatan($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
                 function(response){
                   vm.list_kegiatan = response;debugger
+                  vm.datalook = angular.copy(vm.list_kegiatan);
                   vm.loading = false;
                     pagingListKegiatan();
                 },
                 function(errResponse){
-
+  
                 }
               )
         }
@@ -49,6 +54,19 @@ angular.
 
             })
         }
+
+        $scope.$watch('searchKegiatan', function(){
+          if($scope.searchKegiatan != ''){
+            $scope.currentPage = 0;
+            vm.datalook = EkinerjaService.searchByKegiatan($scope.searchKegiatan, vm.list_kegiatan);
+          }
+          pagingListKegiatan();
+        })
+
+        $scope.$watch('entries', function(){
+          pagingListKegiatan();
+          debugger
+        })
 
         vm.gotoKegiatan = function(dpa){
           vm.urtugKegiatan = dpa.urtugKegiatanApprovalList;
@@ -254,12 +272,11 @@ angular.
 
         function pagingListKegiatan(){
             $scope.filteredDataListKegiatan = [];
-            $scope.currentPageListKegiatan = 0;
-            $scope.numPerPageListKegiatan = 25;
-            $scope.maxSizeListKegiatan = Math.ceil(vm.list_kegiatan.length/$scope.numPerPageListKegiatan);
+            $scope.numPerPageListKegiatan = $scope.entries;
+            $scope.maxSizeListKegiatan = Math.ceil(vm.datalook.length/$scope.numPerPageListKegiatan);
             function pageListKegiatan(){
                 $scope.pageListKegiatan = [];
-                for(var i = 0; i < vm.list_kegiatan.length/$scope.numPerPageListKegiatan; i++){
+                for(var i = 0; i < vm.datalook.length/$scope.numPerPageListKegiatan; i++){
                     $scope.pageListKegiatan.push(i+1);
                 }
             }
@@ -276,9 +293,9 @@ angular.
 
             $scope.$watch("currentPageListKegiatan + numPerPageListKegiatan", function() {
                 var begin = (($scope.currentPageListKegiatan) * $scope.numPerPageListKegiatan)
-                    , end = begin + $scope.numPerPageListKegiatan;
+                    , end = begin + parseInt($scope.numPerPageListKegiatan);
 
-                $scope.filteredDataListKegiatan = vm.list_kegiatan.slice(begin, end);
+                $scope.filteredDataListKegiatan = vm.datalook.slice(begin, end);
             });
         }
 
