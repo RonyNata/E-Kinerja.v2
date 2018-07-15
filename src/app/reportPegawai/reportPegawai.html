@@ -15,19 +15,17 @@
                                     <table class="table table-bordered">
                                         <thead class="bg-table">
                                         <tr>
-                                            <th class="text-center">Kehadiran</th>
-                                            <th class="text-center">Kinerja</th>
-                                            <th class="text-center">Penyerapan Naggaran</th>
+                                            <th class="text-center">Kehadiran (85%)</th>
+                                            <th class="text-center">Kinerja (15%)</th>
                                             <th class="text-center"><b>Total TPP</b></th>
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                         <tr class="text-center">
-                                            <td>{{reportPegawai.kehadiran}}%</td>
-                                            <td>{{reportPegawai.kinerja}}%</td>
-                                            <td>{{reportPegawai.serapan}}%</td>
-                                            <td><b>{{reportPegawai.kehadiran + reportPegawai.kinerja + reportPegawai.serapan}}%</b></td>
+                                            <td>{{reportPegawai.kehadiran | number:1}}%</td>
+                                            <td>{{reportPegawai.kinerja | number:1}}%</td>
+                                            <td><b>{{reportPegawai.kehadiran + reportPegawai.kinerja + reportPegawai.serapan | number:1}}%</b></td>
                                         </tr>
                                         <tr ng-show="reportPegawai.list_pegawai==0">
                                             <td colspan="3" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
@@ -71,4 +69,4 @@
 </div>
 <div class="control-sidebar-bg"></div>
 </div>
-<!-- <div class="loader loader-default is-active" data-text="Sedang Mengambil Data" ng-show="reportPegawai.loading"></div> -->
+<div class="loader loader-default is-active" data-text="Sedang Mengambil Data" ng-show="reportPegawai.loading"></div>
