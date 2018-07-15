@@ -113,6 +113,7 @@ angular.
           var statDpa = false, statNon = false;
           for(var i = 0; i<vm.urtugNonDpa.length; i++){
             if(vm.urtugNonDpa[i].checked){
+          debugger
               vm.urtugNonDpa[i].statusApproval = 0;
             } else vm.urtugNonDpa[i].statusApproval = 3;
             vm.urtugNonDpa[i].alasan = "";
@@ -120,27 +121,27 @@ angular.
             data.push(vm.urtugNonDpa[i]);
           }
 
-          for(var i = 0; i < vm.urtugDpa.length; i++){
-            if(vm.urtugDpa[i].checked)
-              vm.urtugDpa[i].statusApproval = 1;
-            else vm.urtugDpa[i].statusApproval = 2;
-            vm.urtugDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-            dpa.push(vm.urtugDpa[i]);
-          }
 
-          console.log(JSON.stringify(vm.urtugDpa));
+          // console.log(JSON.stringify(vm.urtugDpa));
 
-          if(vm.urtugDpa.length != 0)
-          KontrakPegawaiService.ApproveKegiatan(dpa).then(
-            function(response){
-              EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
-              statDpa = true;
-              successChecker(statDpa, statNon);
-            }, function(errResponse){
-              EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
+          if(vm.urtugDpa.length != 0 || vm.urtugDpa == undefined){
+            for(var i = 0; i < vm.urtugDpa.length; i++){
+              if(vm.urtugDpa[i].checked)
+                vm.urtugDpa[i].statusApproval = 1;
+              else vm.urtugDpa[i].statusApproval = 2;
+              vm.urtugDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+              dpa.push(vm.urtugDpa[i]);
+            }
+            KontrakPegawaiService.ApproveKegiatan(dpa).then(
+              function(response){
+                EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
+                statDpa = true;
+                successChecker(statDpa, statNon);
+              }, function(errResponse){
+                EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
             })
+          }
           else statDpa = true;
-
           KontrakPegawaiService.ChooseUrtug(data).then(
             function(response){
               EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");

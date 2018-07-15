@@ -85,6 +85,19 @@
             return deferred.promise;
         };
 
+        service.SalinPj = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-daftar-penanggung-jawab-kegiatan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.DeletePj = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'delete-penanggung-jawab-kegiatan/', data).then(

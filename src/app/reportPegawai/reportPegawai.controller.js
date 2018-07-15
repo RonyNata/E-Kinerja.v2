@@ -11,7 +11,6 @@
         vm.loading = true;
         vm.kehadiran = 0;
         vm.kinerja = 0;
-        vm.serapan = 5;
 
         getPegawaiPengaju();
         kehadiran();
@@ -84,7 +83,7 @@
             for(var i = 0; i < data.length; i++)
                 if(data[i].daftarKinerjaPegawaiWrapper.length)
                     kinerja += 1;
-            vm.kinerja = (kinerja/hariKerja)*10;
+            vm.kinerja = (kinerja/hariKerja)*15;
         }
 
         vm.cancel = function () {
