@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-5 text-right">
                                 <button type="button" ng-click="master.salin()" class="btn btn-info"> <b>Salin Struktur Organisasi</b></button>   
-                                <button type="button" ng-click="master.addPJ()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Organisasi</b></button>
+                                <button type="button" ng-click="master.addPJ()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i><b> Tambah Pejabat</b></button>
                             </div>
                         </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
@@ -52,7 +52,7 @@
 
                                         <tbody>
                                         <tr ng-repeat="kegiatan in filteredDataListKegiatan" class="text-center">
-                                            <td>{{$index + 1}}</td>
+                                            <td>{{kegiatan.kdUnit + '.' + kegiatan.idProg + '.' + kegiatan.kdKegiatan}}</td>
                                             <td class="text-left">{{kegiatan.ketKegiatan}}</td>
                                             <td class="text-center"><i class="material-icons">{{kegiatan.penggunaAnggaranExist ? 'check' : 'remove'}}</i></td>
                                             <td class="text-center"><i class="material-icons">{{kegiatan.pelaksanaAdministrasiExist ? 'check' : 'remove'}}</i></td>
