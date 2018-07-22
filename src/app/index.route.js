@@ -587,16 +587,17 @@
             controller: 'ReportPegawaiController',
             controllerAs: 'reportPegawai'
         })
-        .state('suratmasuk', {
-          url: '/suratmasuk',
-          templateUrl: 'app/penilaian/penilaian.html',
-          controller: 'PenilaianController',
-          controllerAs: 'penilaian',
-          resolve:{
-            reload: function(){
-              $state.go($state.current.name);
-            }
-          }
+        .state('reportperilaku', {
+          url: '/report-perilaku',
+          templateUrl: 'app/reportPerilaku/reportPerilaku.html',
+          controller: 'ReportPerilakuController',
+          controllerAs: 'reportPerilaku'
+          // resolve:{
+          //   reload: function(){
+          //     if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD002')
+          //       $state.go('dashboard');
+          //   }
+          // }
         })
         .state('masterkegiatan', {
           url: '/master-kegiatan',
@@ -607,6 +608,17 @@
             reload: function(){
               if($.parseJSON(sessionStorage.getItem('credential')).role.id != 'AD002')
                 $state.go('dashboard');
+            }
+          }
+        })
+        .state('suratmasuk', {
+          url: '/suratmasuk',
+          templateUrl: 'app/penilaian/penilaian.html',
+          controller: 'PenilaianController',
+          controllerAs: 'penilaian',
+          resolve:{
+            reload: function(){
+              $state.go($state.current.name);
             }
           }
         })
