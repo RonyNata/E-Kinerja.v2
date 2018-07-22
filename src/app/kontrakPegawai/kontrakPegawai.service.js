@@ -136,9 +136,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugByNip = function(nip) {
+        service.GetUrtugByNip = function(nip, bulan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-uraian-tugas-pegawai-tahunan-by-nip/' + nip).then(
+            $http.get(API + 'get-uraian-tugas-pegawai-bulanan-by-nip/' + nip + '/' + bulan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -178,6 +178,19 @@
         service.ChooseUrtug = function (data) {
             var deferred = $q.defer();
             $http.post(API + 'create-daftar-uraian-tugas-pegawai-tahunan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.ChooseUrtugBulanan = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-daftar-urtug-pegawai-bulanan/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

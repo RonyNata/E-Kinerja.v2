@@ -88,6 +88,9 @@ angular.
             vm.save = function(){
                   var data = [];
                   for(var i = 0; i < vm.list_ajuan.length; i++){
+                        vm.list_ajuan[i].bulanUrtug = (new Date()).getMonth();
+                        vm.list_ajuan[i].targetKuantitas = vm.list_ajuan[i].kuantitas;
+                        vm.list_ajuan[i].targetKualitas = vm.list_ajuan[i].kualitas;
                         if(vm.list_ajuan[i].terima){
                               vm.list_ajuan[i].statusApproval = 1;debugger
                         }

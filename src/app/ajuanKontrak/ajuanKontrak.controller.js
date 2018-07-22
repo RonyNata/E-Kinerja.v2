@@ -58,7 +58,7 @@ angular.
 
         function getPegawaiPengaju(){
           AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, (new Date()).getMonth()).then(
             function(response){
               vm.list_pegawai = response;debugger
               vm.loading = false;
@@ -82,7 +82,7 @@ angular.
             vm.list_tidakdiajukan[i].statusApproval = 2;
             vm.list_tidakdiajukan[i].nipPegawai = $scope.nipPegawai;
             data.push(vm.list_tidakdiajukan[i]);
-          }console.log(JSON.stringify(data));
+          }console.log(data);
 
           AjuanKontrakService.ApproveKontrak(data).then(
             function(response){

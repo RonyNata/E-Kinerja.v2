@@ -6,11 +6,14 @@ angular.
 	.controller('FormPemilihanUrtugTahunanController', FormPemilihanUrtugTahunanController);
 
     
-    function FormPemilihanUrtugTahunanController($scope, EkinerjaService, KontrakPegawaiService, isEselon4, $uibModalInstance, $document, $uibModal) {
+    function FormPemilihanUrtugTahunanController($scope, isAjuan, EkinerjaService, KontrakPegawaiService, isEselon4, $uibModalInstance, $document, $uibModal) {
       	var vm = this;
         $scope.urtugnon = false;
         $scope.dpaurtug = false;
         vm.isEselon4 = isEselon4;
+        vm.isAjuan = isAjuan;
+        vm.bulan = EkinerjaService.IndonesianMonth(new Date()).toUpperCase();
+        vm.tahun = EkinerjaService.IndonesianYear(new Date());
 
         getUrtug();
 
@@ -113,12 +116,22 @@ angular.
           var statDpa = false, statNon = false;
           for(var i = 0; i<vm.urtugNonDpa.length; i++){
             if(vm.urtugNonDpa[i].checked){
-          debugger
-              vm.urtugNonDpa[i].statusApproval = 0;
-            } else vm.urtugNonDpa[i].statusApproval = 3;
-            vm.urtugNonDpa[i].alasan = "";
-            vm.urtugNonDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-            data.push(vm.urtugNonDpa[i]);
+              data.push({
+                "kdUrtug": vm.urtugNonDpa[i].kdUrtug,
+                "kdJabatan": vm.urtugNonDpa[i].kdJabatan,
+                "kdJenisUrtug": vm.urtugNonDpa[i].kdJenisUrtug,
+                "tahunUrtug": vm.urtugNonDpa[i].tahunUrtug,
+                "bulanUrtug": (new Date()).getMonth(),
+                "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+                "targetKuantitas": vm.urtugNonDpa[i].kuantitas,
+                "satuanKuantitas": vm.urtugNonDpa[i].satuanKuantitas,
+                "targetKualitas": vm.urtugNonDpa[i].kualitas,
+                "waktu": vm.urtugNonDpa[i].waktu,
+                "biaya": vm.urtugNonDpa[i].biaya,
+                "alasan": "",
+                "statusApproval": 0
+              }); 
+            }
           }
 
 
@@ -142,7 +155,7 @@ angular.
             })
           }
           else statDpa = true;
-          KontrakPegawaiService.ChooseUrtug(data).then(
+          KontrakPegawaiService.ChooseUrtugBulanan(data).then(
             function(response){
               EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");
               statNon = true;

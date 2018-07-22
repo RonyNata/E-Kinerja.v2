@@ -8,6 +8,8 @@ angular.
     function KontrakPegawaiController(KontrakPegawaiService, EkinerjaService, $scope, $document, $uibModal) {
       var vm = this;
       vm.loading = true;
+      vm.bulan = EkinerjaService.IndonesianMonth(new Date());
+      vm.tahun = EkinerjaService.IndonesianYear(new Date());
 
       var eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
       switch(eselon){
@@ -68,9 +70,9 @@ angular.
 
 
       function getUrtugByJabatan(){
-        KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai).then(
+        KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
           function(response){
-            vm.target = response;
+            vm.target = response;debugger
             if(response.length != 0)
               vm.statusKontrak = true;
             for(var i = 0; i<vm.target.length; i++)
@@ -123,7 +125,7 @@ angular.
         //   })
       }
 
-      vm.openUrtug = function (parentSelector) {
+      vm.openUrtug = function (ajuan, parentSelector) {
         var parentElem = parentSelector ? 
         angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
         var modalInstance = $uibModal.open({
@@ -139,6 +141,9 @@ angular.
         resolve: {
           isEselon4: function(){
             return vm.isEselon4;
+          },
+          isAjuan: function(){
+            return ajuan;
           }
         }
         });
@@ -187,26 +192,33 @@ angular.
         });
       };
 
-      vm.openHistory = function (parentSelector) {
-        var parentElem = parentSelector ? 
-        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-        var modalInstance = $uibModal.open({
-        animation: true,
-        ariaLabelledBy: 'modal-title',
-        ariaDescribedBy: 'modal-body',
-        templateUrl: 'app/kontrakPegawai/history/history.html',
-        controller: 'HistoryController',
-        controllerAs: 'history',
-        // windowClass: 'app-modal-window',
-        // size: 'lg',
-        appendTo: parentElem
-        });
+      vm.openUploadTemplate = function (urtug, isDPA, parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/kontrakPegawai/uploadTemplate/uploadTemplate.html',
+              controller: 'UploadTemplateController',
+              controllerAs: 'uptemp',
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                  urtug: function () {
+                      return urtug;
+                  },
+                  isDPA: function () {
+                      return isDPA;
+                  }
+              }
+          });
 
-        modalInstance.result.then(function () {
+          modalInstance.result.then(function () {
+          }, function () {
 
-        }, function () {
-
-        });
+          });
       };
 
       function pagingUrtug(){ 
