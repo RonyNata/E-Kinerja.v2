@@ -5,7 +5,7 @@ angular.
     module('eKinerja')
     .controller('KontrakPegawaiController', KontrakPegawaiController);
 
-    function KontrakPegawaiController(KontrakPegawaiService, EkinerjaService, $scope, $document, $uibModal) {
+    function KontrakPegawaiController(KontrakPegawaiService, EkinerjaService, TemplateLaporanSKPService, $scope, $document, $uibModal) {
       var vm = this;
       vm.loading = true;
       vm.bulan = EkinerjaService.IndonesianMonth(new Date());
@@ -27,6 +27,17 @@ angular.
       getUrtugKegiatanApproval();
       getStatAjuan();
       // getUrtugByJabatan();
+
+      vm.getSKP = function(){
+        KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
+          function(response){debugger
+            var doc = TemplateLaporanSKPService.template(response, vm.pegawai, vm.penilai);
+            EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan');
+          }, function(errResponse){
+            
+          })
+      }
+
       function getStatAjuan(){
         KontrakPegawaiService.GetUrtugNonDPA(
           $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,

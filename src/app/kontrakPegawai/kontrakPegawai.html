@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <section class="content">
             <div class="row" style="margin-top:50px">
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="col-md-6 col-sm-6">
                         <div class="panel panel-info">
                             <div class="panel-heading">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                         <div class="panel panel-info">
                             <div class="panel-heading">
@@ -181,7 +181,7 @@
                     <button type="button" ng-click="kontrak.openUrtug(1)" class="btn btn-primary btn-xl btn-block"><strong>PENGAJUAN TARGET BULANAN</strong></button>
                 </div>
                 <div class="col-md-6 space-after">
-                    <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
+                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
                 </div>
             </div>
 
@@ -230,8 +230,8 @@
                                                         <td class="text-left">{{urtug.urtug}}</td>
                                                         <td>{{urtug.satuanKuantitas}}</td>
                                                         <td>{{urtug.targetkuantitas}}</td>
-                                                        <td>0</td>
-                                                        <td>{{urtug.realisasiKuantitas/urtug.targetkuantitas}}</td>
+                                                        <td>{{urtug.realisasiKuantitas}}</td>
+                                                        <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas}}</td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
                                                     </tr>
                                                     <tr ng-show="filteredDataTarget==0">

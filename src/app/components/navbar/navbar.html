@@ -120,6 +120,7 @@
         </a>
       </li>
       <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/master-kegiatan"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px"> Master Kegiatan</span></a></li>
+      <li class="{{(vm.checkLocation('reportperilaku') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/report-perilaku"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px"> Report Perilaku</span></a></li>
       <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/hak-akses"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px"> Atur Hak Akses Pegawai</span></a></li>
       <li class="{{vm.checkLocation('persuratan') ? 'active' : ''}}" ng-show="vm.checkRole('AD004')"><a href="#/persuratan"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px"> Persuratan</span></a></li>
     </ul>

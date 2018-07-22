@@ -5,12 +5,20 @@ angular.
 	module('eKinerja')
 	.controller('FormPerilakuController', FormPerilakuController);
 
-    function FormPerilakuController(perilaku, ReportPerilakuService, $uibModalInstance, EkinerjaService) {
+    function FormPerilakuController(perilaku, $scope, ReportPerilakuService, $uibModalInstance, EkinerjaService) {
       	var vm = this;
             vm.pegawai = angular.copy(perilaku);
             vm.pegawai.nipPegawai = vm.pegawai.rekapitulasiPerilakuKerjaPegawaiId.nipPegawai;
             vm.pegawai.bulanTahunRekapitulasi = vm.pegawai.rekapitulasiPerilakuKerjaPegawaiId.bulanTahunRekapulasi;
             console.log(vm.pegawai);
+            $scope.manipulasi = vm.pegawai.dataManipulasiData;
+
+            $scope.$watch('manipulasi', function(){
+                  vm.pegawai.dataManipulasiData = $scope.manipulasi;
+                  if($scope.manipulasi == 'false') vm.pegawai.nilaiManipulasiData = 1;
+                  else vm.pegawai.nilaiManipulasiData = 0;
+                  debugger
+            })
 
             vm.save = function setPerilakuPns(){
       		// console.log(JSON.stringify(vm.rincian));

@@ -59,11 +59,11 @@
                         <p><b>Manipulasi Data Kinerja</b></p>
                     </div>
                     <div class="col-md-6">
-                        <select type="text" class="form-control" ng-model="form_perilaku.pegawai.dataManipulasiData" ng-required="true">
-                            <option value="true">Tidak</option>
-                            <option value="false">Iya</option>
+                        <select class="form-control" ng-model="manipulasi" ng-required="true">
+                            <option value="true">Ya</option>
+                            <option value="false">Tidak</option>
                         </select>
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiManipulasiData" placeholder="Nilai" disabled="true">
+                        <input class="form-control" ng-model="form_perilaku.pegawai.nilaiManipulasiData" placeholder="Nilai" disabled="true">
                     </div>
                 </div>
             </div>
