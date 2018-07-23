@@ -11,6 +11,9 @@
 		var date = new Date(EkinerjaService.IndonesianYear(date), date.getMonth());
 		var milliseconds = date.getTime();
 		getAllPegawaiPerilaku();
+		// $scope.searchPerilaku = '';
+		$scope.entries = 5;
+        $scope.currentPageListPerilaku = 0;
 
 		function getAllPegawaiPerilaku(){
 			vm.loading = true;
@@ -19,8 +22,9 @@
 					var data = responce;
 					vm.dataPerilaku = angular.copy(data);
 					vm.loading = false;
+					paging();
 				}, function(errResponce){
-					
+				
 				})
 		}
 
@@ -63,5 +67,47 @@
 
 				})
 		}
+
+		// $scope.$watch('searchPerilaku', function(){
+  //         if($scope.searchPerilaku != ''){
+  //           $scope.currentPage = 0;
+  //           vm.dataPerilaku = EkinerjaService.searchByPerilaku($scope.searchPerilaku, responce);
+  //         }
+  //         paging();
+  //       })
+
+		$scope.$watch('entries', function(){
+          paging();
+          debugger
+        })
+
+		function paging(){
+            $scope.filteredDataListPerilaku = [];
+            $scope.numPerPageListPerilaku = $scope.entries;
+            $scope.maxSizeListPerilaku = Math.ceil(vm.dataPerilaku.length/$scope.numPerPageListPerilaku);
+            function pageListPerilaku(){
+                $scope.pageListPerilaku = [];
+                for(var i = 0; i < vm.dataPerilaku.length/$scope.numPerPageListPerilaku; i++){
+                    $scope.pageListPerilaku.push(i+1);
+                }
+            }
+            pageListPerilaku();
+            $scope.padListPerilaku = function(i){
+                $scope.currentPageListPerilaku += i;
+            }
+
+            $scope.maxListPerilaku = function(){
+                if($scope.currentPageListPerilaku >= $scope.maxSizeListPerilaku - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListPerilaku + numPerPageListPerilaku", function() {
+                var begin = (($scope.currentPageListPerilaku) * $scope.numPerPageListPerilaku)
+                    , end = begin + parseInt($scope.numPerPageListPerilaku);
+
+                $scope.filteredDataListPerilaku = vm.dataPerilaku.slice(begin, end);
+            });
+        }
 	}
 })();
