@@ -7,11 +7,12 @@ angular.
 
     
     function OpenUrtugController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $scope,
-      $uibModal, $document, $state, surat, isUpload, PengumpulanDataBebanKerjaService) {
+      $uibModal, $document, $state, laporan, PengumpulanDataBebanKerjaService) {
       	var vm = this;
+        vm.laporan = angular.copy(laporan);debugger
         getUrtugByJabatan();
           function getUrtugByJabatan(){
-          KontrakPegawaiService.GetUrtugByNip($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+          KontrakPegawaiService.GetUrtugByNip($.parseJSON(sessionStorage.getItem('credential')).nipPegawai, (new Date()).getMonth()).then(
             function(response){
               for(var i = 0; i < response.length; i++)
                 response[i].deskripsi = response[i].urtug;
@@ -56,18 +57,40 @@ angular.
   	    };
 
         vm.pilihUrtug = function(urtug){
-          if(!isUpload)
-            $state.go('perpindahan', {
-                kdSurat: surat.kdSurat,
-                kdJenis: surat.kdJenisSurat,
-                kdUrtug: urtug.kdUrtug,
-                tahun: urtug.tahunUrtug
-            })
-          else $state.go('perpindahan', {
-                kdUrtug: urtug.kdUrtug,
-                tahun: urtug.tahunUrtug
-            })
-          vm.cancel();
+          vm.laporan;debugger
+          var data = {
+            "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            "keterangan": "",
+            "durasiPengerjaan": 0,
+            "kdUrtug": urtug.kdUrtug,
+            "kdJabatan": urtug.kdJabatan,
+            "tahunUrtug": urtug.tahunUrtug,
+            "kdJenisUrtug": urtug.kdJenisUrtug,
+            "bulanUrtug": urtug.bulanUrtug,
+            "kdTemplateLainBawahan": vm.laporan.kdSurat,
+            "namaFileLaporanBawahan": vm.laporan.namaFileTemplateLain + '.' + vm.laporan.extensiFile
+          };
+
+          KontrakPegawaiService.UploadTemplateData(data).then(
+            function(response){debugger
+                EkinerjaService.showToastrSuccess("File Berhasil Diteruskan");
+                $uibModalInstance.close();
+            }, function(errResponse){
+
+            })  
+          // if(!isUpload)
+          //   $state.go('perpindahan', {
+          //       kdSurat: surat.kdSurat,
+          //       kdJenis: surat.kdJenisSurat,
+          //       kdUrtug: urtug.kdUrtug,
+          //       tahun: urtug.tahunUrtug
+          //   })
+          // else $state.go('perpindahan', {
+          //       kdUrtug: urtug.kdUrtug,
+          //       tahun: urtug.tahunUrtug
+          //   })
+          // vm.cancel();
         }
 
         function pagingUrtug(){ 

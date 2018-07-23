@@ -34,6 +34,9 @@
         getLaporanBawahan();
         getPerintahHistory();
 
+        vm.isKepalaSKPD = EkinerjaService.isPimpinan($.parseJSON(sessionStorage.getItem('credential')).eselon,
+            $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
+
         function getLaporanBawahan(){
             PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
                 function(response){debugger
@@ -61,7 +64,7 @@
                 })
         }
 
-        vm.disposisi = function(suratt, parentSelector){
+        vm.teruskanLaporan = function(laporan, parentSelector){
             var parentElem = parentSelector ?
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
@@ -75,19 +78,27 @@
                 // size: 'lg',
                 appendTo: parentElem,
                 resolve: {
-                    surat: function () {
-                        return suratt;
-                    },
-                    isUpload: function () {
-                        return 0;
+                    laporan: function () {
+                        return laporan;
                     }
                 }
             });
 
             modalInstance.result.then(function () {
+                getLaporanBawahan();
             }, function () {
 
             });
+        }
+
+        vm.approveReport = function(kdSurat){
+            PenilaianService.Approve('approve-template-lain/', kdSurat).then(
+                function(response){
+                    EkinerjaService.showToastrSuccess('Laporan telah diterima');
+                    getLaporanBawahan();
+                }, function(errResponse){
+                    EkinerjaService.showToastrSuccess('Terjadi kesalahan');
+                })
         }
 
         vm.terima = function(laporan, kdSurat, isPejabat){debugger

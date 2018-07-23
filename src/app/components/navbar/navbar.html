@@ -104,13 +104,13 @@
       </li>
       <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas') || vm.checkLocation('perpindahan')
           || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) || vm.checkLocation('notadinaspencairan') ? 'active' : '' }}">
-          <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 12px"> Kontak Kerja</span></a>
+          <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 12px">Kinerja Pegawai</span></a>
       </li>
-      <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}"><a href="#/ambil-disposisi" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-list-alt text-aqua"></i><span style="font-size: 12px"> Disposisi</span></a></li>
-      <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}"><a href="#/penugasan" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-file-text-o text-aqua"></i><span style="font-size: 12px"> Penugasan</span></a></li>
-      <li class="{{vm.checkLocation('approval') ? 'active' : ''}}"><a href="#/approval"><i class="fa fa-check-square-o text-aqua"></i><span style="font-size: 12px"> Persetujuan Kontrak Kerja</span></a></li>
+      <!-- <li class="{{vm.checkLocation('ambilperpindahan') || vm.checkLocation('perpindahan') || vm.checkLocation('perpindahandisposisi') ? 'active' : ''}}"><a href="#/ambil-disposisi" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-list-alt text-aqua"></i><span style="font-size: 12px"> Disposisi</span></a></li> -->
+      <!-- <li class="{{vm.checkLocation('penugasan') ? 'active' : ''}}"><a href="#/penugasan" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-file-text-o text-aqua"></i><span style="font-size: 12px"> Penugasan</span></a></li> -->
+      <li class="{{vm.checkLocation('approval') ? 'active' : ''}}"><a href="#/approval"><i class="fa fa-check-square-o text-aqua"></i><span style="font-size: 12px">Persetujuan SKP Bulanan</span></a></li>
       <li class="{{vm.checkLocation('penilaian') ? 'active' : ''}}"><a href="#/penilaian" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa  fa-sliders text-aqua"></i><span style="font-size: 12px"> Tata Naskah</span></a></li>
-      <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}"><a href="#/reportPegawai" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-history text-aqua"></i><span style="font-size: 12px"> Report Pegawai</span></a></li>
+      <!-- <li class="{{vm.checkLocation('reportPegawai') ? 'active' : ''}}"><a href="#/reportPegawai" ng-show="vm.pegawai.sudahMembuatKontrak"><i class="fa fa-history text-aqua"></i><span style="font-size: 12px"> Report Pegawai</span></a></li> -->
       <li class="header text-aqua" ng-hide="vm.checkRole('AD003')">FITUR {{vm.pegawai.role.role}}</li>
       <li class="{{vm.checkLocation('master-urtug') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/master/urtug"><i class="fa fa-list-ul text-aqua"></i><span style="font-size: 12px"> Data Master</span></a></li>
       <li class="{{vm.checkLocation('urtug-jabatan') ? 'active' : ''}}" ng-show="vm.checkRole('AD002')">
@@ -120,6 +120,7 @@
         </a>
       </li>
       <li class="{{(vm.checkLocation('masterkegiatan') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/master-kegiatan"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px"> Master Kegiatan</span></a></li>
+      <li class="{{(vm.checkLocation('reportperilaku') ) ? 'active' : ''}}" ng-show="vm.checkRole('AD002')"><a href="#/report-perilaku"><i class="fa fa-list-alt text-aqua"></i> <span style="font-size: 12px"> Report Perilaku</span></a></li>
       <li class="{{vm.checkLocation('hakakses') ? 'active' : ''}}" ng-show="vm.checkRole('AD001')"><a href="#/hak-akses"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px"> Atur Hak Akses Pegawai</span></a></li>
       <li class="{{vm.checkLocation('persuratan') ? 'active' : ''}}" ng-show="vm.checkRole('AD004')"><a href="#/persuratan"><i class="fa fa-circle-o text-aqua"></i> <span style="font-size: 12px"> Persuratan</span></a></li>
     </ul>

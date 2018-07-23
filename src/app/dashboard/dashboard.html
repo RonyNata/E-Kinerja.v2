@@ -12,138 +12,29 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="col-md-3">
-                                        <div class="panel panel-blue">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h4><strong>DISPOSISI MASUK</strong></h4>
-                                                        <hr class="hr-panel">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <i class="material-icons" style="font-size: 70px">assignment</i>
-                                                    </div>
-                                                    <div class="col-xs-6 text-right">
-                                                        <div class="huge">{{dashboard.naskahDisposisi.length}}</div>
-                                                        <div>Belum dibaca</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="" ng-click="dashboard.openDetail(1)">
-                                                <div class="panel-footer announcement-bottom">
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            Lihat Detail...
-                                                        </div>
-                                                        <div class="col-xs-6 text-right">
-                                                            <i class="fa fa-arrow-circle-right"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="progress blue">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">90%</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="panel panel-cyan">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h4><strong>PENUGASAN MASUK</strong></h4>
-                                                        <hr class="hr-panel">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <i class="material-icons" style="font-size: 70px">format_list_bulleted</i>
-                                                    </div>
-                                                    <div class="col-xs-6 text-right">
-                                                        <div class="huge">{{dashboard.naskah.length}}</div>
-                                                        <div>Belum dibaca</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="" ng-click="dashboard.openDetail(2)">
-                                                <div class="panel-footer announcement-bottom">
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            Lihat Detail...
-                                                        </div>
-                                                        <div class="col-xs-6 text-right">
-                                                            <i class="fa fa-arrow-circle-right"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="progress yellow">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">Day</div>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="panel panel-red">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h4><strong>LAPORAN MASUK</strong></h4>
-                                                        <hr class="hr-panel">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <i class="material-icons" style="font-size: 70px">assignment_turned_in</i>
-                                                    </div>
-                                                    <div class="col-xs-6 text-right">
-                                                        <div class="huge">{{dashboard.laporan.length}}</div>
-                                                        <div>Belum dibaca</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="" ng-click="dashboard.openDetail(3)">
-                                                <div class="panel-footer announcement-bottom">
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            Lihat Detail...
-                                                        </div>
-                                                        <div class="col-xs-6 text-right">
-                                                            <i class="fa fa-arrow-circle-right"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="panel panel-green">
-                                            <div class="panel-heading">
-                                                <div class="row">
-                                                    <div class="col-xs-12">
-                                                        <h4><strong>SURAT MASUK</strong></h4>
-                                                        <hr class="hr-panel">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-6">
-                                                        <i class="material-icons" style="font-size: 70px">email</i>
-                                                    </div>
-                                                    <div class="col-xs-6 text-right">
-                                                        <div class="huge">{{dashboard.suratMasuk.length}}</div>
-                                                        <div>Belum dibaca</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a href="" ng-click="dashboard.openDetail(4)">
-                                                <div class="panel-footer announcement-bottom">
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            Lihat Detail...
-                                                        </div>
-                                                        <div class="col-xs-6 text-right">
-                                                            <i class="fa fa-arrow-circle-right"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

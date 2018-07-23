@@ -18,6 +18,8 @@
         vm.data.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
         vm.data.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
         vm.data.kdUrtug = vm.urtug.kdUrtug;
+        vm.data.kdJenisUrtug = vm.urtug.kdJenisUrtug;
+        vm.data.bulanUrtug = vm.urtug.bulanUrtug;
         vm.data.kdJabatan = $.parseJSON(sessionStorage.getItem('credential')).kdJabatan;
         vm.data.tahunUrtug = urtug.tahunUrtug;
 

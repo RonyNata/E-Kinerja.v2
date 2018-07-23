@@ -1,6 +1,6 @@
 <div class="modal-header background-pop-up">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">
-        <strong>PILIH URAIAN TUGAS</strong>
+        <strong>{{pilihurtug.isAjuan? 'PENGAJUAN SASARAN KERJA PEGAWAI BULAN' + pilihurtug.bulan : 'SASARAN KERJA PEGAWAI TAHUN' + kontrak.tahun}}</strong>
     </h3>
 </div>
 
@@ -28,27 +28,42 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                                <tr>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Pilih</th>
+                                                <tr ng-show="pilihurtug.isAjuan">
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Kuant/ Output</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Mutu</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Biaya</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
+                                                </tr>
+                                                <tr ng-hide="pilihurtug.isAjuan">
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</th>
+                                                    <th style="text-align: center; vertical-align: middle" rowspan="2">Rincian Tugas</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle" rowspan="2">Volume</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle" colspan="2">Output</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">Waktu</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">Beban Kerja</th>
+                                                </tr>
+                                                <tr ng-hide="pilihurtug.isAjuan">
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Sasaran</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Realisasi</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 <tr ng-repeat="urtug in filteredDataUrtugNonDpa" ng-hide="filteredDataUrtugNonDpa==0" class="text-center">
-                                                    <td><input type="checkbox" ng-model="urtug.checked"></td>
+                                                    <td ng-show="pilihurtug.isAjuan"><input type="checkbox" ng-model="urtug.checked"></td>
+                                                    <td ng-hide="pilihurtug.isAjuan">{{$index + 1 + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa)}}</td>
                                                     <td class="text-left">{{urtug.urtug}}</td>
-                                                    <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                    <td>{{urtug.kualitas + '%'}}</td>
+                                                    <td>{{urtug.satuanKuantitas}}</td>
+                                                    <td ng-hide="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
+                                                    <td ng-hide="pilihurtug.isAjuan">0</td>
+                                                    <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.kuantitas"></td>
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
-                                                    <td>{{'Rp. '+urtug.biayaRp}}</td>
+                                                    <td>{{500 * urtug.kuantitas | number}}</td>
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugNonDpa==0">
-                                                    <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                    <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -58,7 +73,7 @@
                                             <div class="align-center">
                                                 <ul style="padding-left: 0px;">
                                                     <li style="display: inline-block;">
-                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(-1)" ng-disabled="currentPageUrtugNonDpa==0" aria-label="Use Android" style="cursor: pointer;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(-1)" ng-disabled="currentPageUrtugNonDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
                                                             &lt; PREV
                                                         </button>
                                                     </li>
@@ -66,7 +81,7 @@
                                                         <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugNonDpa+1}} Of {{maxSizeUrtugNonDpa}}</span>
                                                     </li>
                                                     <li style="display: inline-block;">
-                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(1)" ng-disabled="maxUrtugNonDpa()" aria-label="Use Android" style="cursor: pointer;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(1)" ng-disabled="maxUrtugNonDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
                                                             NEXT &gt;
                                                         </button>
                                                     </li>
@@ -87,7 +102,7 @@
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
                                                 <tr>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle"><label>Pilih</label></th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</label></th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
                                                     <th style="width: 12%; text-align: center; vertical-align: middle">Jumlah Kegiatan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
@@ -99,7 +114,8 @@
 
                                             <tbody>
                                                 <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
-                                                    <td><input type="checkbox" ng-model="dpa.checked"></td>
+                                                    <td ng-show="pilihurtug.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
+                                                    <td ng-hide="pilihurtug.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
                                                     <td class="text-left">{{dpa.urtug}}</td>
                                                     <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
                                                     <td>{{dpa.kualitas + '%'}}</td>
@@ -118,7 +134,7 @@
                                             <div class="align-center">
                                                 <ul style="padding-left: 0px;">
                                                     <li style="display: inline-block;">
-                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" style="cursor: pointer;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
                                                             &lt; PREV
                                                         </button>
                                                     </li>
@@ -126,7 +142,7 @@
                                                         <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugDpa+1}} Of {{maxSizeUrtugDpa}}</span>
                                                     </li>
                                                     <li style="display: inline-block;">
-                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" style="cursor: pointer;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
                                                             NEXT &gt;
                                                         </button>
                                                     </li>

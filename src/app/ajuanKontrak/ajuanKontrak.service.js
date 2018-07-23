@@ -19,9 +19,9 @@
             return deferred.promise;
         };
 
-        service.GetPegawaiPengaju = function (kdUnitKerja, nipPegawai) {
+        service.GetPegawaiPengaju = function (kdUnitKerja, nipPegawai, bulan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-uraian-tugas-tahunan-by-penilai/' + kdUnitKerja + '/' + nipPegawai).then(
+            $http.get(API + 'get-uraian-tugas-bulanan-by-penilai/' + kdUnitKerja + '/' + nipPegawai + '/' + bulan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -34,7 +34,7 @@
 
         service.ApproveKontrak = function (data) {
             var deferred = $q.defer();
-            $http.put(API + 'approval-urtug-tahunan-non-dpa-pegawai/', data).then(
+            $http.put(API + 'approval-urtug-bulanan-non-dpa-pegawai/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

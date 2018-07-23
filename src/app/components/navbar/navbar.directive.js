@@ -51,7 +51,7 @@
       // console.log(vm.pegawai);
       function getNotif(){
         EkinerjaService.GetNotifLaporan(vm.pegawai.nipPegawai).then(
-          function(response){debugger
+          function(response){
             for(var i = 0; i < response.length; i++){
               response[i].jenisNotif = 1;
               response[i].deskripsi = "Laporan masuk dari " + response[i].namaBawahan;
@@ -70,7 +70,7 @@
           vm.jmlNotif += 1;
 
         EkinerjaService.GetNotifAjuan(vm.pegawai.kdUnitKerja, vm.pegawai.nipPegawai).then(
-          function(response){debugger
+          function(response){
             vm.ajuan = response;
             if(response.length != 0)
               vm.jmlNotif += response.length;
