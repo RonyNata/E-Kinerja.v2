@@ -1,0 +1,81 @@
+  var app = angular.module('pdfDemo', []);
+  var controller = app.controller('pdfCtrl', pdfController);
+
+  function pdfController($scope) {
+    // prepare the document definition using declarative approach
+    var docDefinition = {
+      pageSize: 'LETTER',
+        pageOrientation: "landscape",
+        pageMargins: [20,40,20,40],
+      content: [
+        {
+          text: 'REKAPITULASI PERILAKU KERJA PEGAWAI (NAMA SKPD)', style: 'nama_judul'
+        },
+
+        {
+          style: 'demoTable', margin: [0,10,0,0],
+          table: {
+            body: [
+              [{text: 'BULAN', bold: true},{text: ':'},{text: 'MARET TAHUN 2018'}]
+            ]
+          },
+            layout: 'noBorders'
+        },
+
+          {
+              style: 'demoTable', margin: [0,10,0,0], alignment:'center',
+              table: {
+                  widths:['auto',130,130,'auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto'],
+                  body: [
+                      [{text: 'No', rowSpan:2, bold:true, margin:[0,45,0,0]},{text: 'Nama', rowSpan:2, bold:true, margin:[0,45,0,0]},{text : 'Jabatan', rowSpan:2, bold:true, margin:[0,45,0,0]},{text: 'Tidak Hadir (hari)', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text: 'Perekaman Datang/Pulang Saja/Datang Terlambat dan Pulang Sebelum Waktunya (menit)', colSpan:2, bold:true}, {text:''},{text: 'Tidak Hadir Apel (kali)', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text : 'Tidak Hadir Rapat/Sidang Paripurna (kali)', colSpan:2, bold:true, margin:[0,20,0,0]}, {text:''},{text: 'Razia Gerakan Disiplin Aparatur (kali)/Pelanggaran Disiplin Lain', colSpan:2, bold:true, margin:[0,15,0,0]}, {text:''},{text: 'Manipulasi Data Kinerja', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text: 'Total Faktor Pengurangan TPP', bold:true, margin:[0,30,0,0]},{text: 'Nilai (Kebalikan pengurangan)', bold:true, margin:[0,30,0,0]}],
+                      [{text: '', bold:true},{text: '', bold:true},{text : '', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Data', bold:true}, {text: 'Nilai', bold:true},{text: 'Jumlah', bold:true},{text: '100-Faktor',bold:true}],
+                      [{text: '1', bold:true},{text: '2', bold:true},{text : '3', bold:true},{text: '4', colSpan:2, bold:true}, {text:''},{text: '5', colSpan:2, bold:true}, {text:''},{text: '6', colSpan:2, bold:true}, {text:''},{text : '7', colSpan:2, bold:true}, {text:''},{text: '8', colSpan:2, bold:true}, {text:''},{text: '9', colSpan:2, bold:true}, {text:''},{text: '10', bold:true},{text: '11', bold:true}],
+
+
+                  ]
+              }
+          }
+
+      ],
+
+      styles: {
+        nama_judul: {
+          alignment : 'center',
+          bold: true,
+          fontSize: 12
+        },
+        judul_nomor: {
+            alignment : 'center',
+            bold: true,
+            fontSize: 11
+        },
+        header: {
+          bold: true,
+          color: '#000',
+          fontSize: 10
+        },
+        demoTable: {
+          color: '#000',
+          fontSize: 8
+        },
+        tandaTangan: {
+          color: '#000',
+          fontSize: 10,
+          alignment:'right'
+        }
+      }
+    };
+
+    for (var i=1; i<31; i++){
+        docDefinition.content[2].table.body.push([{text: '' + i},{text: 'Nama Pegawai', alignment:'left'},{text : 'Nama Jabatan', alignment:'left'},{text: '0'}, {text: '0'},{text: '0'}, {text: '0'},{text: '0'}, {text: '0'},{text: '0'}, {text: '0,0'},{text: '0'}, {text: '0'},{text: 'Tidak'}, {text: '1'},{text: '0,000', alignment:'right'},{text: '100,00', alignment:'right'}]);
+    }
+
+    $scope.openPdf = function() {
+      pdfMake.createPdf(docDefinition).open();
+    };
+
+    $scope.downloadPdf = function() {
+      pdfMake.createPdf(docDefinition).download();
+    };
+  }
+

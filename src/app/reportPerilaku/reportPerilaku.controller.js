@@ -4,7 +4,7 @@
 		module('eKinerja')
 		.controller('ReportPerilakuController', ReportPerilakuController);
 
-	function ReportPerilakuController(EkinerjaService, $scope, $uibModal, ReportPerilakuService) {
+	function ReportPerilakuController(EkinerjaService, $scope, $uibModal, ReportPerilakuService, SPPNSService, $document) {
 		var vm = this;
 		vm.loading = true;
 		var date = new Date();
@@ -52,6 +52,16 @@
 		        // $log.info('Modal dismissed at: ' + new Date());
 		      });
 
+		}
+
+		vm.getSP = function(){
+			ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
+				function(responce){debugger
+					var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date));
+					EkinerjaService.lihatPdf(doc, 'Surat Perilaku PNS');
+				}, function(errResponce){
+
+				})
 		}
 	}
 })();
