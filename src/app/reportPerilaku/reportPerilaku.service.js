@@ -16,6 +16,19 @@
 				return deferred.promise;
 			};
 
+			service.GetPegawai = function(kdUnit){
+				var deferred = $q.defer();
+	            $http.get(API + 'get-pegawai/' + kdUnit).then(
+	                function (response){
+	                    deferred.resolve(response.data);
+	                },
+	                function(errResponse){
+	                    deferred.reject(errResponse);
+	                }
+	            );
+	            return deferred.promise;
+			}
+
 			service.CreatePerilaku = function (data) {
 				var deferred = $q.defer();
 				$http.post(API + 'create-rekapitulasi-perilaku-kerja-pegawai/', data).then(

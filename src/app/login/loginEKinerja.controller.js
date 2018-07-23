@@ -30,10 +30,10 @@ angular
                     // LoginEKinerjaService.SetCredentials($scope.nip, $scope.password);
                     debugger;
                     sessionStorage.setItem('credential', JSON.stringify(response.data));
-                    if(!response.data.sudahMembuatKontrak){
+                    // if(!response.data.sudahMembuatKontrak){
                         sessionStorage.setItem('kontrak', 'false');
                         $state.go('kontrak');
-                    }else $state.go('dashboard');
+                    // }else $state.go('dashboard');
                     // EkinerjaService.checkRole(response.data.role.id);
                     $scope.dataLoading = false;
                     // $state.go('master-urtug');

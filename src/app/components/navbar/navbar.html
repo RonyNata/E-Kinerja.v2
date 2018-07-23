@@ -97,11 +97,11 @@
   <section class="sidebar">
     <ul class="nav nav-sidebar sidebar-menu" data-widget="tree">
       <li class="header text-aqua">FITUR PEGAWAI</li>
-      <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
+      <!-- <li class="{{vm.checkLocation('dashboard') ? 'active' : ''}}" ng-show="vm.pegawai.sudahMembuatKontrak">
           <a href="#/dashboard">
               <i class="fa fa-home text-aqua"></i><span style="font-size: 12px"> Dashboard</span>
           </a>
-      </li>
+      </li> -->
       <li class="{{(vm.checkLocation('kontrak') || vm.checkLocation('notadinas') || vm.checkLocation('perpindahan')
           || vm.checkLocation('suratperintahpejabat')|| vm.checkLocation('suratperintahnonpejabat')|| vm.checkLocation('instruksipejabat')|| vm.checkLocation('instruksinonpejabat')|| vm.checkLocation('surattugas')|| vm.checkLocation('suratdinaspejabat')|| vm.checkLocation('suratdinasnonpejabat')|| vm.checkLocation('suratkeputusan')|| vm.checkLocation('naskahpedoman')|| vm.checkLocation('pedomannonpejabat')|| vm.checkLocation('naskahpetunjuk')|| vm.checkLocation('petunjuknonpejabat')|| vm.checkLocation('suratedaran')|| vm.checkLocation('suratedarannonpejabat')|| vm.checkLocation('suratpengantar')|| vm.checkLocation('pengumuman')|| vm.checkLocation('laporan')|| vm.checkLocation('suratkuasa')|| vm.checkLocation('suratketerangan')|| vm.checkLocation('suratundanganpejabat')|| vm.checkLocation('suratundangannonpejabat')|| vm.checkLocation('beritaacara')|| vm.checkLocation('telaahanstaff')|| vm.checkLocation('memorandumpejabat')|| vm.checkLocation('memorandumnonpejabat')|| vm.checkLocation('suratperjanjianantarinstansidalamnegeri')|| vm.checkLocation('suratperjanjiankerjasamapemerintahlingkupnasional')) || vm.checkLocation('notadinaspencairan') ? 'active' : '' }}">
           <a href="#/kontrak-pegawai"><i class="fa fa-th text-aqua"></i><span style="font-size: 12px">Kinerja Pegawai</span></a>

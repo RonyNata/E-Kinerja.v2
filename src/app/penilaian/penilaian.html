@@ -94,7 +94,7 @@
                                                 <td style="vertical-align: middle">{{ambil.status}}</td>
                                                 <td style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="penilaian.teruskanLaporan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="penilaian.isKepalaSKPD"><i class="fa fa-forward"></i> TERUSKAN</span></button>
-                                                    <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.approveReport(ambil.kdSurat)" ng-disabled="ambil.statusPenilaian !=1" ng-show="penilaian.isKepalaSKPD"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
+                                                    <button type="button" class="{{ambil.statusApproval ==1 || ambil.statusPenilaian != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.approveReport(ambil.kdSurat)" ng-disabled="ambil.statusApproval ==1 || ambil.statusPenilaian != 1" ng-show="penilaian.isKepalaSKPD"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
                                                 </td>
                                                 <td style="vertical-align: middle; width: 10%">
                                                     <button type="button" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa fa-file-pdf-o"></i><span> PDF FILE</span></button>

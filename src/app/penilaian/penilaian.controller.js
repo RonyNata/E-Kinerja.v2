@@ -48,6 +48,7 @@
                         response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
                         response[i].status = statusBaca(response[i].statusPenilaian);
+                        if(response[i].statusApproval) response[i].status = 'Sudah Ditandatangan';
                         if (response[i].statusPenilaian == 0){
                             vm.jmlNotifLaporanBawahan += 1;
                         }

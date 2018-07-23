@@ -20,6 +20,38 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                <div class="row space-after">
+                                    <div class="col-md-4">
+                                        <span>Kepala Dinas</span>
+                                        <form method="get">
+                                            <input class="form-control" list="pegawaiskpd" name="pegawaiskpd" ng-model="reportPerilaku.kadin" placeholder="Pilih Jabatan" ng-click="reportPerilaku.kadin = ''">
+                                            <datalist id="pegawaiskpd">
+                                                <option ng-repeat="pgw in reportPerilaku.pegawaiSKPD"
+                                                        value="{{pgw.nipPegawai}}" ng-selected="selected">{{pgw.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Verifikator</span>
+                                        <form method="get">
+                                            <input class="form-control" list="pegawaidinas" name="pegawaidinas" ng-model="reportPerilaku.verifikator" placeholder="Pilih Jabatan" ng-click="reportPerilaku.verifikator = ''">
+                                            <datalist id="pegawaidinas">
+                                                <option ng-repeat="pgwDinas in reportPerilaku.pegawaiDinas"
+                                                        value="{{pgwDinas.nipPegawai}}" ng-selected="selected">{{pgwDinas.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <span>Penanggung Jawab</span>
+                                        <form method="get">
+                                            <input class="form-control" list="pgwSKPD" name="pgwSKPD" ng-model="reportPerilaku.pj" placeholder="Pilih Jabatan" ng-click="reportPerilaku.pj = ''">
+                                            <datalist id="pgwSKPD">
+                                                <option ng-repeat="pgwPJ in reportPerilaku.pegawaiSKPD"
+                                                        value="{{pgwPJ.nipPegawai}}" ng-selected="selected">{{pgwPJ.nama}}</option>
+                                            </datalist>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-striped table-hover js-basic-example">
                                         <thead class="bg-table">

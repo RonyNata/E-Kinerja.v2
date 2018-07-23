@@ -4,7 +4,7 @@
 		module('eKinerja')
 		.controller('ReportPerilakuController', ReportPerilakuController);
 
-	function ReportPerilakuController(EkinerjaService, $scope, $uibModal, ReportPerilakuService, SPPNSService, $document) {
+	function ReportPerilakuController(HakAksesService, EkinerjaService, $scope, $uibModal, ReportPerilakuService, SPPNSService, $document) {
 		var vm = this;
 		vm.loading = true;
 		var date = new Date();
@@ -24,6 +24,31 @@
 				})
 		}
 
+		getAllPegawai();
+
+		function getAllPegawai(){
+			// vm.loading = true;
+			HakAksesService.GetAllPegawai().then(
+				function(response){
+					// console.log(JSON.stringify(response));
+					vm.pegawaiDinas = response;
+				}, function(errResponse){
+
+				})
+		}
+
+		getPegawai();
+
+		function getPegawai(){
+			vm.loading = true;
+			ReportPerilakuService.GetPegawai($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+				function(response){
+					// console.log(JSON.stringify(response));
+					vm.pegawaiSKPD = response;
+				}, function(errResponse){
+
+				})
+		}		
 
 		vm.open = function(perilaku, parentSelector) {
 			var parentElem = parentSelector ?
@@ -55,9 +80,13 @@
 		}
 
 		vm.getSP = function(){
+			var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiSKPD);
+			var pgwSKPD = EkinerjaService.findPegawaiByNip(vm.verifikator, vm.pegawaiDinas);
+			var pj = EkinerjaService.findPegawaiByNip(vm.pj, vm.pegawaiSKPD);
 			ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
 				function(responce){debugger
-					var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date));
+					var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date),
+						kepalaSKPD, pgwSKPD, pj);
 					EkinerjaService.lihatPdf(doc, 'Surat Perilaku PNS');
 				}, function(errResponce){
 
