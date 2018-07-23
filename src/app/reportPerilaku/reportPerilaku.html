@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" ng-model="searchKegiatan" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                    <input type="text" class="form-control" ng-model="searchPerilaku" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
                                     <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
                                 </div>
                             </div>
@@ -102,26 +102,26 @@
                                             <td class="text-center" style="font-weight: bold;">11</td>
                                             <td class="text-center" style="font-weight: bold;">12</td> 
                                         </tr>
-                                        <tr ng-repeat="data in reportPerilaku.dataPerilaku" class="text-center">
-                                            <td>{{$index + 1}}</td>
-                                            <td class="text-center">{{data.namaPegawai}}</td>
-                                            <td class="text-center">{{data.namaJabatan}}</td>
-                                            <td class="text-center">{{data.dataHadir}}</td>
-                                            <td class="text-center">{{data.nilaiHadir}}</td>
-                                            <td class="text-center">{{data.dataPerekamanDatangPulang}}</td>
-                                            <td class="text-center">{{data.nilaiPerekamanDatangPulang}}</td>
-                                            <td class="text-center">{{data.dataHadirApel}}</td>
-                                            <td class="text-center">{{data.nilaiHadirApel}}</td>
-                                            <td class="text-center">{{data.dataHadirRapat}}</td>
-                                            <td class="text-center">{{data.nilaiHadirRapat}}</td>
-                                            <td class="text-center">{{data.dataRazia}}</td>
-                                            <td class="text-center">{{data.nilaiRazia}}</td>
-                                            <td class="text-center">{{data.dataManipulasiData ? 'iya' : 'tidak' }}</td>
-                                            <td class="text-center">{{data.nilaiManipulasiData ? '1' : '0'}}</td>
-                                            <td class="text-center">{{data.totalFaktorPeuranganTpp}}</td>
-                                            <td class="text-center">{{data.nilaiKebalikan}}</td>
+                                        <tr ng-repeat="perilaku in filteredDataListPerilaku" class="text-center">
+                                            <td>{{$index + 1 + (numPerPageListPerilaku*currentPageListPerilaku)}}</td>
+                                            <td class="text-center">{{perilaku.namaPegawai}}</td>
+                                            <td class="text-center">{{perilaku.namaJabatan}}</td>
+                                            <td class="text-center">{{perilaku.dataHadir}}</td>
+                                            <td class="text-center">{{perilaku.nilaiHadir}}</td>
+                                            <td class="text-center">{{perilaku.dataPerekamanDatangPulang}}</td>
+                                            <td class="text-center">{{perilaku.nilaiPerekamanDatangPulang}}</td>
+                                            <td class="text-center">{{perilaku.dataHadirApel}}</td>
+                                            <td class="text-center">{{perilaku.nilaiHadirApel}}</td>
+                                            <td class="text-center">{{perilaku.dataHadirRapat}}</td>
+                                            <td class="text-center">{{perilaku.nilaiHadirRapat}}</td>
+                                            <td class="text-center">{{perilaku.dataRazia}}</td>
+                                            <td class="text-center">{{perilaku.nilaiRazia}}</td>
+                                            <td class="text-center">{{perilaku.dataManipulasiData ? 'iya' : 'tidak' }}</td>
+                                            <td class="text-center">{{perilaku.nilaiManipulasiData ? '1' : '0'}}</td>
+                                            <td class="text-center">{{perilaku.totalFaktorPeuranganTpp}}</td>
+                                            <td class="text-center">{{perilaku.nilaiKebalikan}}</td>
                                             <td class="text-center">
-                                                <button type="button" ng-click="reportPerilaku.open(data)" class="btn btn-success btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i> Input</button>
+                                                <button type="button" ng-click="reportPerilaku.open(perilaku)" class="btn btn-success btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i> Input</button>
                                             </td>
                                         </tr>
                                         
@@ -129,27 +129,27 @@
                                     </table>
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="align-center">
                                         <ul style="padding-left: 0px;">
                                             <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
+                                                <button class="btn btn-primary" ng-click="padListPerilaku(-1)" ng-disabled="currentPageListPerilaku==0" aria-label="Use Android" style="cursor: pointer;">
                                                     &lt; PREV
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListPerilaku+1}} Of {{maxSizeListPerilaku}}</span>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
+                                                <button class="btn btn-primary" ng-click="padListPerilaku(1)" ng-disabled="maxListPerilaku()" aria-label="Use Android" style="cursor: pointer;">
                                                     NEXT &gt;
                                                 </button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </div>
                 </div>
