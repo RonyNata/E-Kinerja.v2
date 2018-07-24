@@ -31,8 +31,9 @@ angular.
       vm.getSKP = function(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
           function(response){debugger
-            var doc = TemplateLaporanSKPService.template(response, vm.pegawai, vm.penilai);
-            EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan');
+            var doc = TemplateLaporanSKPService.template(response, vm.pegawai, vm.penilai, EkinerjaService.IndonesianMonth(new Date()),
+              EkinerjaService.IndonesianYear(new Date()));
+            EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
           }, function(errResponse){
             
           })

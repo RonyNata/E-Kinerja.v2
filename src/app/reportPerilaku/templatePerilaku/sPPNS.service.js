@@ -125,7 +125,12 @@
 			    };
 
 			    for (var i=0; i<data.length; i++){
-			        docDefinition.content[2].table.body.push([{text: '' + i},{text: '' + data[i].namaPegawai, alignment:'left'},{text : '' + data[i].namaJabatan, alignment:'left'},{text: '' + data[i].dataHadir}, {text: '' + data[i].nilaiHadir},{text: '' + data[i].dataPerekamanDatangPulang}, {text: '' + data[i].nilaiPerekamanDatangPulang},{text: '' + data[i].dataHadirApel}, {text: '' + data[i].nilaiHadirApel},{text: '' + data[i].dataHadirRapat}, {text: '' + data[i].nilaiHadirRapat},{text: '' + data[i].dataRazia}, {text: '' + data[i].nilaiRazia},{text: '' + data[i].dataManipulasiData}, {text: '' + data[i].nilaiManipulasiData},{text: '' + data[i].totalFaktorPeuranganTpp, alignment:'right'},{text: '' + data[i].nilaiKebalikan, alignment:'right'}]);
+			    	var dataManipulasi, nilaiManipulasi;
+			    	if(data[i].dataManipulasiData) dataManipulasi = 'Ya';
+			    	else dataManipulasi = 'Tidak';
+			    	if(data[i].nilaiManipulasiData) nilaiManipulasi = '1';
+			    	else nilaiManipulasi = '0';
+			        docDefinition.content[2].table.body.push([{text: '' + i},{text: '' + data[i].namaPegawai, alignment:'left'},{text : '' + data[i].namaJabatan, alignment:'left'},{text: '' + data[i].dataHadir}, {text: '' + data[i].nilaiHadir},{text: '' + data[i].dataPerekamanDatangPulang}, {text: '' + data[i].nilaiPerekamanDatangPulang},{text: '' + data[i].dataHadirApel}, {text: '' + data[i].nilaiHadirApel},{text: '' + data[i].dataHadirRapat}, {text: '' + data[i].nilaiHadirRapat},{text: '' + data[i].dataRazia}, {text: '' + data[i].nilaiRazia},{text: '' + dataManipulasi}, {text: '' + nilaiManipulasi},{text: '' + data[i].totalFaktorPeuranganTpp, alignment:'right'},{text: '' + data[i].nilaiKebalikan, alignment:'right'}]);
 
 			    }
 			    return docDefinition;

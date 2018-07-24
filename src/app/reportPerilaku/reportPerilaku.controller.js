@@ -84,9 +84,9 @@
 		}
 
 		vm.getSP = function(){
-			var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiSKPD);
+			var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiDinas);
 			var pgwSKPD = EkinerjaService.findPegawaiByNip(vm.verifikator, vm.pegawaiDinas);
-			var pj = EkinerjaService.findPegawaiByNip(vm.pj, vm.pegawaiSKPD);
+			var pj = EkinerjaService.findPegawaiByNip(vm.pj, vm.pegawaiDinas);
 			ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
 				function(responce){debugger
 					var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date),

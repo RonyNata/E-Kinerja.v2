@@ -7,37 +7,69 @@
                 function (EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
-                    service.template = function (data, pegawai, penilai){
+                    service.template = function (data, pegawai, penilai, bulan, tahun){
                         var docDefinition = {
                           pageSize: 'LETTER',
                           content: [
                             {
-                              text: 'REKAPITULASI PERILAKU KERJA PEGAWAI (NAMA SKPD)', style: 'nama_judul'
+                              text: 'REALISASI SASARAN KERJA PEGAWAI', style: 'nama_judul'
                             },
 
                             {
                               style: 'demoTable', margin: [0,10,0,0],
                               table: {
                                 body: [
-                                  [{text: 'Jangka Waktu Penilaian', bold: true},{text: ':'},{text: 'Maret 2018'}]
+                                  [{text: 'Jangka Waktu Penilaian', bold: true},{text: ':'},{text: '' + bulan + ' ' + tahun}]
                                 ]
                               },
                                 layout: 'noBorders'
                             },
 
                             {
-                              style: 'demoTable', margin: [0,5,0,0],
-                              table: {
-                                body: [
-                                  [{text: 'No', bold:true},{text: 'I. PEJABAT PENILAI', colSpan:2, bold:true},{text : ''},{text : 'No', bold:true},{text: 'II. PEGAWAI NEGERI SIPIL YANG DINILAI', bold:true, colSpan:2},{text : ''}],
-                                  [{text: '1'},{text: 'Nama'},{text : '' + penilai.nama},{text : '1'},{text: 'Nama'},{text : '' + pegawai.namaPegawai}],
-                                  [{text: '2'},{text: 'NIP'},{text : '' + penilai.nipPegawai},{text : '2'},{text: 'NIP'},{text : '' + pegawai.nipPegawai}],
-                                  [{text: '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + penilai.pangkat + '/' + penilai.golongan},{text : '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + pegawai.pangkat + '/' + pegawai.golongan}],
-                                  [{text: '4'},{text: 'Jabatan'},{text : '' + penilai.jabatan},{text : '4'},{text: 'Jabatan'},{text : '' + pegawai.jabatan}],
-                                  [{text: '5'},{text: 'Unit Kerja'},{text : '' + penilai.unit},{text : '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
+                                margin: [0,5,0,0],
+                                columns: [
+                                    {
+                                        style: 'demoTable', margin: [0,0,5,0],
+                                        table: {
+                                            body: [
+                                              [{text: 'No', bold:true},{text: 'I. PEJABAT PENILAI', bold:true, colSpan:2},{text : ''}],
+                                              [{text: '1'},{text: 'Nama'},{text : '' + penilai.nama}],
+                                              [{text: '2'},{text: 'NIP'},{text : '' + penilai.nipPegawai}],
+                                              [{text: '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + penilai.pangkat + '/' + penilai.golongan}],
+                                              [{text: '4'},{text: 'Jabatan'},{text : '' + penilai.jabatan}],
+                                              [{text: '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        style: 'demoTable',
+                                        table: {
+                                            body: [
+                                              [{text : 'No', bold:true},{text: 'II. PEGAWAI NEGERI SIPIL YANG DINILAI', bold:true, colSpan:2},{text : ''}],
+                                              [{text : '1'},{text: 'Nama'},{text : '' + pegawai.namaPegawai}],
+                                              [{text : '2'},{text: 'NIP'},{text : '' + pegawai.nipPegawai}],
+                                              [{text : '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + pegawai.pangkat + '/' + pegawai.golongan}],
+                                              [{text : '4'},{text: 'Jabatan'},{text : '' + pegawai.jabatan}],
+                                              [{text : '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
+                                            ]
+                                        }
+                                    }
                                 ]
-                              }
                             },
+
+                            // {
+                            //   style: 'demoTable', margin: [0,5,0,0],
+                            //   table: {
+                            //     body: [
+                            //       [{text: 'No', bold:true},{text: 'I. PEJABAT PENILAI', colSpan:2, bold:true},{text : ''},{text : 'No', bold:true},{text: 'II. PEGAWAI NEGERI SIPIL YANG DINILAI', bold:true, colSpan:2},{text : ''}],
+                            //       [{text: '1'},{text: 'Nama'},{text : '' + penilai.nama},{text : '1'},{text: 'Nama'},{text : '' + pegawai.namaPegawai}],
+                            //       [{text: '2'},{text: 'NIP'},{text : '' + penilai.nipPegawai},{text : '2'},{text: 'NIP'},{text : '' + pegawai.nipPegawai}],
+                            //       [{text: '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + penilai.pangkat + '/' + penilai.golongan},{text : '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + pegawai.pangkat + '/' + pegawai.golongan}],
+                            //       [{text: '4'},{text: 'Jabatan'},{text : '' + penilai.jabatan},{text : '4'},{text: 'Jabatan'},{text : '' + pegawai.jabatan}],
+                            //       [{text: '5'},{text: 'Unit Kerja'},{text : '' + penilai.unit},{text : '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
+                            //     ]
+                            //   }
+                            // },
 
                               {
                                   style: 'demoTable', margin: [0,10,0,0], alignment: "center", 
