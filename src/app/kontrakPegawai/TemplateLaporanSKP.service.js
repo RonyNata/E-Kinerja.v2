@@ -74,6 +74,7 @@
                               {
                                   style: 'demoTable', margin: [0,10,0,0], alignment: "center", 
                                   table: {
+                                      headerRows:2,
                                       widths: [12, 126, 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
                                       body: [
                                           [{text: 'No', rowSpan:2, bold:true},{text: 'III. KEGIATAN TUGAS JABATAN', rowSpan:2, bold:true},{text : 'TARGET', colSpan:4, bold:true},{text: ''},{text: ''},{text: ''},{text : 'REALISASI', colSpan:4, bold:true},{text: ''},{text: ''},{text: ''},{text: 'DATA', rowSpan:2, bold:true},{text : 'NILAI CAPAIAN SKP', rowSpan:2, bold:true}],
@@ -86,6 +87,7 @@
                               {
                                   style: 'demoTable', margin: [0,10,0,0], alignment:'center',
                                   table: {
+                                      headerRows:1,
                                       widths: [12, 400, '*'],
                                       body: [
                                           [{text: 'No', bold:true},{text: 'IV. TUGAS TAMBAHAN', bold:true},{text : 'NILAI', bold:true}]

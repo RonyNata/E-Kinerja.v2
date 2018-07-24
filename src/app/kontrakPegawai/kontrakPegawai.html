@@ -177,15 +177,15 @@
                     </div>
             </div>
             <div class="row">
-                <div class="col-md-6 space-after">
+                <div class="col-md-6 space-after" ng-hide="kontrak.statusKontrak">
                     <button type="button" ng-click="kontrak.openUrtug(1)" class="btn btn-primary btn-xl btn-block"><strong>PENGAJUAN TARGET BULANAN</strong></button>
                 </div>
                 <div class="col-md-6 space-after">
+                    <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
+                </div>
+                <div class="col-md-6 space-after" ng-show="kontrak.statusKontrak">
                     <button type="button" ng-click="kontrak.getSKP()" class="btn btn-primary btn-xl btn-block"><strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI</strong></button>
                 </div>
-                <!-- <div class="col-md-6 space-after">
-                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
-                </div> -->
             </div>
 
             <div ng-hide="kontrak.statusKontrak" style="padding: 60px; text-align: center">
@@ -203,7 +203,7 @@
                             <li role="presentation" class="active">
                                 <a href="#tahunannon" data-toggle="tab">Uraian Tugas Non-DPA</a>
                             </li>
-                            <li class="pull-left header" style="font-size: 22px"><i class="fa fa-th"></i>Sasaran Kerja Bulan {{kontrak.bulan}}</li>
+                            <li class="pull-left header" style="font-size: 22px"><i class="fa fa-th"></i>Sasaran Kerja Bulan {{kontrak.bulan}} {{kontrak.tahun}}</li>
                         </ul>
 
                         <div class="tab-content">

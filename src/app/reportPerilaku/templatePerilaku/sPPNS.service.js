@@ -31,6 +31,7 @@
 		          {
 		              style: 'demoTable', margin: [0,10,0,0], alignment:'center',
 		              table: {
+		              		headerRows:3,
 		                  widths:['auto',130,130,'auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto','auto'],
 		                  body: [
 		                      [{text: 'No', rowSpan:2, bold:true, margin:[0,45,0,0]},{text: 'Nama', rowSpan:2, bold:true, margin:[0,45,0,0]},{text : 'Jabatan', rowSpan:2, bold:true, margin:[0,45,0,0]},{text: 'Tidak Hadir (hari)', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text: 'Perekaman Datang/Pulang Saja/Datang Terlambat dan Pulang Sebelum Waktunya (menit)', colSpan:2, bold:true}, {text:''},{text: 'Tidak Hadir Apel (kali)', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text : 'Tidak Hadir Rapat/Sidang Paripurna (kali)', colSpan:2, bold:true, margin:[0,20,0,0]}, {text:''},{text: 'Razia Gerakan Disiplin Aparatur (kali)/Pelanggaran Disiplin Lain', colSpan:2, bold:true, margin:[0,15,0,0]}, {text:''},{text: 'Manipulasi Data Kinerja', colSpan:2, bold:true, margin:[0,35,0,0]}, {text:''},{text: 'Total Faktor Pengurangan TPP', bold:true, margin:[0,30,0,0]},{text: 'Nilai (Kebalikan pengurangan)', bold:true, margin:[0,30,0,0]}],
@@ -130,7 +131,7 @@
 			    	else dataManipulasi = 'Tidak';
 			    	if(data[i].nilaiManipulasiData) nilaiManipulasi = '1';
 			    	else nilaiManipulasi = '0';
-			        docDefinition.content[2].table.body.push([{text: '' + i},{text: '' + data[i].namaPegawai, alignment:'left'},{text : '' + data[i].namaJabatan, alignment:'left'},{text: '' + data[i].dataHadir}, {text: '' + data[i].nilaiHadir},{text: '' + data[i].dataPerekamanDatangPulang}, {text: '' + data[i].nilaiPerekamanDatangPulang},{text: '' + data[i].dataHadirApel}, {text: '' + data[i].nilaiHadirApel},{text: '' + data[i].dataHadirRapat}, {text: '' + data[i].nilaiHadirRapat},{text: '' + data[i].dataRazia}, {text: '' + data[i].nilaiRazia},{text: '' + dataManipulasi}, {text: '' + nilaiManipulasi},{text: '' + data[i].totalFaktorPeuranganTpp, alignment:'right'},{text: '' + data[i].nilaiKebalikan, alignment:'right'}]);
+			        docDefinition.content[2].table.body.push([{text: '' + (i+1)},{text: '' + data[i].namaPegawai, alignment:'left'},{text : '' + data[i].namaJabatan, alignment:'left'},{text: '' + data[i].dataHadir}, {text: '' + data[i].nilaiHadir},{text: '' + data[i].dataPerekamanDatangPulang}, {text: '' + data[i].nilaiPerekamanDatangPulang},{text: '' + data[i].dataHadirApel}, {text: '' + data[i].nilaiHadirApel},{text: '' + data[i].dataHadirRapat}, {text: '' + data[i].nilaiHadirRapat},{text: '' + data[i].dataRazia}, {text: '' + data[i].nilaiRazia},{text: '' + dataManipulasi}, {text: '' + nilaiManipulasi},{text: '' + data[i].totalFaktorPeuranganTpp, alignment:'right'},{text: '' + data[i].nilaiKebalikan, alignment:'right'}]);
 
 			    }
 			    return docDefinition;

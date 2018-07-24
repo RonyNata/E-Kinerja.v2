@@ -101,7 +101,7 @@
                                                     <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td style="vertical-align: middle; width: 10%">
-                                                    <button type="button" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1"><i class="fa fa-times"></i> TOLAK</button>
+                                                    <button type="button" class="{{ambil.statusPenilaian !=1 || ambil.statusApproval ==1? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1 || ambil.statusApproval ==1"><i class="fa fa-times"></i> TOLAK</button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="penilaian.sortLaporan==0">

@@ -31,6 +31,10 @@ angular.
             array[i].checked = angular.copy(status);
         }
 
+        vm.validation = function(qty, target, idx){debugger
+          if(qty > target || qty == undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
+        }
+
         function getUrtug(){
           KontrakPegawaiService.GetUrtugNonDPA(
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
@@ -41,6 +45,7 @@ angular.
               for(var i = 0; i < vm.urtugNonDpa.length; i++){
                 vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
                 vm.urtugNonDpa[i].checked = false;
+                vm.urtugNonDpa[i].targetKuantitas = vm.urtugNonDpa[i].kuantitas;
               }
                 pagingUrtugNonDpa();
             }, function(errResponse){
@@ -123,7 +128,7 @@ angular.
                 "tahunUrtug": vm.urtugNonDpa[i].tahunUrtug,
                 "bulanUrtug": (new Date()).getMonth(),
                 "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-                "targetKuantitas": vm.urtugNonDpa[i].kuantitas,
+                "targetKuantitas": vm.urtugNonDpa[i].targetKuantitas,
                 "satuanKuantitas": vm.urtugNonDpa[i].satuanKuantitas,
                 "targetKualitas": vm.urtugNonDpa[i].kualitas,
                 "waktu": vm.urtugNonDpa[i].waktu,
