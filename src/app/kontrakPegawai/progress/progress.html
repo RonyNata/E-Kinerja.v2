@@ -1,5 +1,5 @@
 <div class="modal-header background-pop-up">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>HISTORY</strong></h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Dokumen Yang Sudah Dilaporkan</strong></h3>
 </div>
 
 <div class="modal-body" id="modal-body">
@@ -11,29 +11,31 @@
                         <thead class="bg-table">
                             <tr>
                                 <th style="width: 5%; text-align: center">No</th>
-                                <th style="text-align: center">Nama File</th>
+                                <th style="text-align: center">Keterangan</th>
                                 <th style="text-align: center">Tanggal Pembuatan</th>
-                                <th style="width: 10%; text-align: center">Action</th>
+                                <th style="text-align: center">Status</th>
+                                <!-- <th style="width: 10%; text-align: center">Action</th> -->
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="data in history.dataHistory" ng-hide="history.dataHistory==0">
+                            <tr ng-repeat="data in progress.dataprogress" ng-hide="progress.dataprogress==0">
                                 <td class="text-center">{{$index + 1}}</td>
-                                <td>{{data.nama}}</td>
+                                <td>{{data.keterangan}}</td>
                                 <td>{{data.tanggalDibuat}}</td>
-                                <td><button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary" ng-hide="data.loading"><strong>Lihat Dokumen</strong></button>
-                                    <button type="button" ng-click="history.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary" ng-show="data.loading" disabled><strong>Mohon Tunggu</strong></button>
-                                </td>
+                                <td>Sudah Ditandatangani</td>
+                                <!-- <td><button type="button" ng-click="progress.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary" ng-hide="data.loading"><strong>Lihat Dokumen</strong></button>
+                                    <button type="button" ng-click="progress.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary" ng-show="data.loading" disabled><strong>Mohon Tunggu</strong></button>
+                                </td> -->
                             </tr>
-                            <tr ng-show="history.dataHistory==0">
+                            <tr ng-show="progress.dataprogress==0">
                                 <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="row" ng-hide="history.dataHistory==0">
+                <div class="row" ng-hide="progress.dataprogress==0">
                     <div class="col-md-12">
                         <div class="align-center">
                             <ul style="padding-left: 0px;">
@@ -60,5 +62,5 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" ng-click="history.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
+    <button type="button" ng-click="progress.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
 </div>

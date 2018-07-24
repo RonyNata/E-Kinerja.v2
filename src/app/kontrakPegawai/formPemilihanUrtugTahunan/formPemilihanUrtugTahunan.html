@@ -57,8 +57,8 @@
                                                     <td class="text-left">{{urtug.urtug}}</td>
                                                     <td>{{urtug.satuanKuantitas}}</td>
                                                     <td ng-hide="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
-                                                    <td ng-hide="pilihurtug.isAjuan">0</td>
-                                                    <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number"  ng-model="urtug.targetKuantitas" ng-change="pilihurtug.validation(urtug.targetKuantitas, urtug.kuantitas, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
+                                                    <td ng-hide="pilihurtug.isAjuan">{{urtug.totalRealisasi}}</td>
+                                                    <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="pilihurtug.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
                                                     <td>{{500 * urtug.targetKuantitas | number}}</td>
                                                 </tr>

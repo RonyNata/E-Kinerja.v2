@@ -3,14 +3,14 @@
  
 angular.
 	module('eKinerja')
-	.controller('HistoryController', HistoryController);
+	.controller('ProgressController', ProgressController);
 
     
-    function HistoryController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, InstruksiPejabatService, $scope, logo_bekasi, logo_garuda) {
+    function ProgressController(urtug, EkinerjaService, KontrakPegawaiService, $uibModalInstance, InstruksiPejabatService, $scope, logo_bekasi, logo_garuda) {
       	var vm = this;
 
         // getAllHistory();
-        getHistoryInstruksi();
+        getProgress();
         // function getAllHistory(){
         //   KontrakPegawaiService.GetAllHistory($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
         //     function(response){
@@ -42,14 +42,17 @@ angular.
             })
         }
 
-        function getHistoryInstruksi(){
-          KontrakPegawaiService.GetHistoryInstruksi($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+        function getProgress(){
+          urtug.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
+          KontrakPegawaiService.GetProgress(urtug).then(
             function(response){
-              debugger
-              // vm.dataHistory = response;
-              for(var i = 0; i < response.length;i++)
-                response[i].nama = "Surat Instruksi";
-              vm.dataHistory = response;
+                for(var i = 0; i < response.length; i++){
+                    var date = new Date(response[i].tanggalPembuatanMilis);
+                    response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
+                    response[i].tanggalDibuat += " pukul " + date.getHours() + ":" + date.getMinutes();
+                }
+                vm.dataprogress = response;
+                vm.dataprogress = vm.dataprogress.sort( function ( a, b ) { return b.tanggalPembuatanMilis - a.tanggalPembuatanMilis; } );
             }, function(errResponse){
 
             })

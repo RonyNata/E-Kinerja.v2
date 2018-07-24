@@ -228,6 +228,20 @@
             return deferred.promise;
         };
 
+        service.GetProgress = function (data) {
+            debugger
+            var deferred = $q.defer();
+            $http.post(API + 'get-progress-urtug-bulanan/',data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.GetDataInstruksi = function (kdSurat) {
             debugger
             var deferred = $q.defer();

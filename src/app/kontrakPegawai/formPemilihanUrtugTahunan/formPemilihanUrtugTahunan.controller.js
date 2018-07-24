@@ -33,6 +33,7 @@ angular.
 
         vm.validation = function(qty, target, idx){debugger
           if(qty > target || qty == undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
+          if(qty < 1) vm.urtugNonDpa[idx].targetKuantitas = 1;
         }
 
         function getUrtug(){
@@ -45,7 +46,7 @@ angular.
               for(var i = 0; i < vm.urtugNonDpa.length; i++){
                 vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
                 vm.urtugNonDpa[i].checked = false;
-                vm.urtugNonDpa[i].targetKuantitas = vm.urtugNonDpa[i].kuantitas;
+                vm.urtugNonDpa[i].targetKuantitas = vm.urtugNonDpa[i].kuantitas - vm.urtugNonDpa[i].totalRealisasi;
               }
                 pagingUrtugNonDpa();
             }, function(errResponse){
