@@ -1,6 +1,6 @@
 <div class="modal-header background-pop-up">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">
-        <strong>{{pilihurtug.isAjuan? 'PENGAJUAN SASARAN KERJA PEGAWAI BULAN' + pilihurtug.bulan : 'SASARAN KERJA PEGAWAI TAHUN' + kontrak.tahun}}</strong>
+        <strong>{{pilihurtug.isAjuan? 'PENGAJUAN SASARAN KERJA PEGAWAI BULAN' + pilihurtug.bulan : 'SASARAN KERJA PEGAWAI TAHUN' + pilihurtug.tahun}}</strong>
     </h3>
 </div>
 
@@ -160,6 +160,6 @@
     </div>
     <div class="modal-footer">
         <button type="submit"  class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button>
-        <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Batal</strong></button>
+        <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
     </div>
 </form>
