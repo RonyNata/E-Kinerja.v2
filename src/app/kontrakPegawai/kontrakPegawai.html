@@ -234,7 +234,7 @@
                                                         <td>{{urtug.satuanKuantitas}}</td>
                                                         <td>{{urtug.targetkuantitas}}</td>
                                                         <td>{{urtug.realisasiKuantitas}}</td>
-                                                        <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas}}</td>
+                                                        <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.progress(urtug)" class="btn btn-info">PROGRESS</button></td>
                                                     </tr>

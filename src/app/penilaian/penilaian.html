@@ -77,7 +77,7 @@
                                             <thead class="bg-table">
                                                 <tr>
                                                     <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                    <th class="text-center" style="vertical-align: middle">Jenis Surat</th>
+                                                    <th class="text-center" style="vertical-align: middle">Keterangan</th>
                                                     <th class="text-center" style="vertical-align: middle">Nama Pelapor</th>
                                                     <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
                                                     <th class="text-center" style="vertical-align: middle">Status</th>
@@ -88,7 +88,7 @@
                                             <tbody>
                                             <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
                                                 <td style="vertical-align: middle">{{$index + 1 }}</td>
-                                                <td class="text-left" style="vertical-align: middle">{{ambil.jenisSurat}}</td>
+                                                <td class="text-left" style="vertical-align: middle">{{ambil.keteranganTemplateLain}}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                 <td style="vertical-align: middle">{{ambil.status}}</td>
