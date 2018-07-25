@@ -2,7 +2,7 @@
 <ekinerja-navbar></ekinerja-navbar>
 <div class="content-wrapper">
     <section class="content">
-        <div class="row" style="margin-top:50px">
+        <!-- <div class="row" style="margin-top:50px">
             <div class="col-md-4">
                 <div class="form-group">
                 <label>Lihat Surat Berdasarkan</label>
@@ -18,8 +18,8 @@
                 </select>
                 </div>
             </div>
-        </div>
-        <div class="row" ng-show="penilaian.lihat == 1">
+        </div> -->
+        <div class="row" style="margin-top:50px">
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Pilih Tanggal</label>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-show="penilaian.lihat == 2">
+        <!-- <div class="row" ng-show="penilaian.lihat == 2">
             <div class="col-md-4">
                 <div class="form-group">
                 <label>Pilih Jenis Surat</label>
@@ -52,7 +52,7 @@
                 </select>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
@@ -66,7 +66,7 @@
                         <li role="presentation" class="active">
                             <a href="#laporanbawah" data-toggle="tab">Laporan Bawahan &nbsp<span class="badge bg-red" ng-hide="penilaian.jmlNotifLaporanBawahan==0">{{penilaian.jmlNotifLaporanBawahan}}</span></a>
                         </li>
-                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-sliders"></i> TATA NASKAH</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-sliders"></i> Pelaporan</li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="laporanbawah">
