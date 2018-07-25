@@ -22,7 +22,7 @@
                         <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="checkbox space-after">
+                                    <div class="checkbox space-after" ng-show="pilihurtug.isAjuan">
                                         <label><input type="checkbox" ng-model="urtugnon">Pilih Semua</label>
                                     </div>
                                     <div class="table-responsive">
@@ -159,7 +159,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit"  class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button>
+        <button type="submit" ng-show="pilihurtug.isAjuan" class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button>
         <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
     </div>
 </form>
