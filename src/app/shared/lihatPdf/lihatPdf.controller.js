@@ -8,7 +8,7 @@ angular.
     
     function LihatPDFController(EkinerjaService, doc, dokumen, $uibModalInstance) {
       	var vm = this;
-
+        vm.tahun = EkinerjaService.IndonesianYear(new Date());
         vm.dokumen = dokumen;
 
         pdfMake.createPdf(doc).getDataUrl(function (outDoc) {

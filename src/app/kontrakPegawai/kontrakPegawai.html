@@ -184,7 +184,7 @@
                     <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
                 </div>
                 <div class="col-md-6 space-after" ng-show="kontrak.statusKontrak">
-                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-primary btn-xl btn-block"><strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI</strong></button>
+                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI {{kontrak.tahun}}</strong></button>
                 </div>
             </div>
 
@@ -236,7 +236,7 @@
                                                         <td>{{urtug.realisasiKuantitas}}</td>
                                                         <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas}}</td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
-                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.progress(urtug)" class="btn btn-info">PROGRESS</button></td>
+                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.progress(urtug)" class="btn btn-default">PROGRESS</button></td>
                                                     </tr>
                                                     <tr ng-show="filteredDataTarget==0">
                                                         <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
