@@ -191,7 +191,7 @@
                         };
 
                         for (var i=0; i<data.length; i++){
-                            docDefinition.content[3].table.body.push([{text: '' + (i +1)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : ''},{text : '' + data[i].realisasiKuantitas},{text : '100'},{text: ''},{text : ''},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas)}]);
+                            docDefinition.content[3].table.body.push([{text: '' + (i +1)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : ''},{text : '' + data[i].realisasiKuantitas},{text : '100'},{text: ''},{text : ''},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
                         }
 
                         for (var i=1; i<1; i++){

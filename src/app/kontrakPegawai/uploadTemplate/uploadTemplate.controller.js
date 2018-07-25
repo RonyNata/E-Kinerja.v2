@@ -34,6 +34,10 @@
         }
  
         vm.uploadTemplate = function () {debugger
+            if(vm.item.keterangan == undefined || vm.item.keterangan.length == 0)
+                EkinerjaService.showToastrError('Keterangan tidak boleh kosong');
+            else if(vm.file == undefined) EkinerjaService.showToastrError('Pilih file terlebih dahulu');
+            else
             KontrakPegawaiService.UploadTemplateData(vm.data).then(
                 function(response){
                     var namaFile = response.message + '.' + vm.extension; debugger;
