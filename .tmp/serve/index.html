@@ -20,8 +20,8 @@
     <!-- build:css({.tmp/serve,src}) styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="app/index.css">
-    <link rel="stylesheet" href="app/components/malarkey/malarkey.css">
     <link rel="stylesheet" href="app/components/navbar/navbar.css">
+    <link rel="stylesheet" href="app/components/malarkey/malarkey.css">
     <!-- endinject -->
     <!-- endbuild -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -46,6 +46,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/logoNavbar.css">
     <link rel="stylesheet" type="text/css" href="assets/css/util.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/progressbar.css">
     <link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="assets/plugins/css-loader-master/dist/css-loader.css">
@@ -131,9 +132,9 @@
     <script src="app/template/notaDinasPencairan/notaDinasPencairan.controller.js"></script>
     <script src="app/template/notaDinas/notaDinas.service.js"></script>
     <script src="app/template/notaDinas/notaDinas.controller.js"></script>
+    <script src="app/template/lampiran/lampiran.controller.js"></script>
     <script src="app/template/memorandum/memorandum.service.js"></script>
     <script src="app/template/memorandum/memorandum.controller.js"></script>
-    <script src="app/template/lampiran/lampiran.controller.js"></script>
     <script src="app/template/kerangkaAcuanKerja/kaa.service.js"></script>
     <script src="app/template/kerangkaAcuanKerja/kaa.controller.js"></script>
     <script src="app/template/dataPegawai/dataPegawai.controller.js"></script>
@@ -143,6 +144,7 @@
     <script src="app/template/Laporan/laporan.service.js"></script>
     <script src="app/template/Laporan/laporan.controller.js"></script>
     <script src="app/shared/lihatPdf/lihatPdf.controller.js"></script>
+    <script src="app/reportPerilaku/templatePerilaku/sPPNS.service.js"></script>
     <script src="app/reportPegawai/detailReportPegawaiKegiatan/detailReportPegawaiKegiatan.controller.js"></script>
     <script src="app/reportPegawai/detailReportPegawai/detailReportPegawai.controller.js"></script>
     <script src="app/penugasan/template/templateTelaahanStaffService.service.js"></script>
@@ -166,36 +168,39 @@
     <script src="app/penilaian/openUrtug/openUrtug.controller.js"></script>
     <script src="app/penilaian/alasan/alasan.controller.js"></script>
     <script src="app/masterKegiatan/dataSalin/dataSalin.controller.js"></script>
-    <script src="app/kontrakUrtugDpa/formGantiPj/fomGantiPj.controller.js"></script>
     <script src="app/kontrakPegawai/uploadTemplate/uploadTemplate.controller.js"></script>
     <script src="app/kontrakPegawai/uploadTemplate/upload.directive.js"></script>
     <script src="app/kontrakPegawai/template/listTemplate.controller.js"></script>
-    <script src="app/kontrakPegawai/history/history.controller.js"></script>
+    <script src="app/kontrakPegawai/progress/progress.controller.js"></script>
     <script src="app/kontrakPegawai/formPemilihanUrtugTahunan/formPemilihanUrtugTahunan.controller.js"></script>
     <script src="app/kontrakPegawai/detailUrtugDpa/detailUrtugDpa.controller.js"></script>
     <script src="app/kontrakPegawai/detailPejabat/detailPejabat.controller.js"></script>
+    <script src="app/kontrakUrtugDpa/formGantiPj/fomGantiPj.controller.js"></script>
     <script src="app/formMaster/urtug/masterUrtug.service.js"></script>
     <script src="app/formMaster/urtug/masterUrtug.controller.js"></script>
     <script src="app/formMaster/urtug/formMasterUrtug.controller.js"></script>
     <script src="app/formMaster/sop/sop.controller.js"></script>
     <script src="app/formMaster/sop/formSop.controller.js"></script>
     <script src="app/formMaster/penanggungjawab/penanggungjawab.controller.js"></script>
-    <script src="app/disposisi/lihatTree/lihatTree.controller.js"></script>
     <script src="app/disposisi/lihatPdf/lihatPdfDisposisi.controller.js"></script>
+    <script src="app/disposisi/lihatTree/lihatTree.controller.js"></script>
     <script src="app/disposisi/formLengkapDisposisi/formLengkapDisposisi.controller.js"></script>
     <script src="app/disposisi/buatDisposisi/buatDisposisi.service.js"></script>
     <script src="app/disposisi/buatDisposisi/buatDisposisi.controller.js"></script>
     <script src="app/dashboard/lihatSurat/lihatSurat.controller.js"></script>
     <script src="app/components/webDevTec/webDevTec.service.js"></script>
-    <script src="app/components/navbar/navbar.directive.js"></script>
-    <script src="app/components/malarkey/malarkey.directive.js"></script>
     <script src="app/components/githubContributor/githubContributor.service.js"></script>
+    <script src="app/components/malarkey/malarkey.directive.js"></script>
+    <script src="app/components/navbar/navbar.directive.js"></script>
     <script src="app/ajuanKontrak/detailSKP/detailSKP.controller.js"></script>
     <script src="app/ajuanKontrak/detailAjuan/detailAjuan.controller.js"></script>
     <script src="app/welcome/welcome.controller.js"></script>
     <script src="app/uraianJabatan/pengumpulanDataBebanKerja.service.js"></script>
     <script src="app/uraianJabatan/pengumpulanDataBebanKerja.controller.js"></script>
     <script src="app/shared/ekinerja.service.js"></script>
+    <script src="app/reportPerilaku/reportPerilaku.service.js"></script>
+    <script src="app/reportPerilaku/reportPerilaku.controller.js"></script>
+    <script src="app/reportPerilaku/formPerilaku.controller.js"></script>
     <script src="app/reportPegawai/reportPegawai.service.js"></script>
     <script src="app/reportPegawai/reportPegawai.controller.js"></script>
     <script src="app/persuratan/persuratan.service.js"></script>
@@ -214,10 +219,11 @@
     <script src="app/login/userEKinerja.service.js"></script>
     <script src="app/login/loginEKinerja.service.js"></script>
     <script src="app/login/loginEKinerja.controller.js"></script>
-    <script src="app/kontrakUrtugDpa/kontrakUrtugDpa.service.js"></script>
-    <script src="app/kontrakUrtugDpa/kontrakUrtugDpa.controller.js"></script>
     <script src="app/kontrakPegawai/kontrakPegawai.service.js"></script>
     <script src="app/kontrakPegawai/kontrakPegawai.controller.js"></script>
+    <script src="app/kontrakPegawai/TemplateLaporanSKP.service.js"></script>
+    <script src="app/kontrakUrtugDpa/kontrakUrtugDpa.service.js"></script>
+    <script src="app/kontrakUrtugDpa/kontrakUrtugDpa.controller.js"></script>
     <script src="app/homeEKinerja/homeEKinerja.controller.js"></script>
     <script src="app/hakAkses/hakAkses.service.js"></script>
     <script src="app/hakAkses/hakAkses.controller.js"></script>

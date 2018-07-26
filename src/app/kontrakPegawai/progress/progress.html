@@ -1,5 +1,5 @@
 <div class="modal-header background-pop-up">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Dokumen Yang Sudah Dilaporkan</strong></h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Dokumen Yang Sudah Dilaporkan Pada Bulan {{progress.bulan}} {{progress.tahun}}</strong></h3>
 </div>
 
 <div class="modal-body" id="modal-body">
@@ -19,7 +19,7 @@
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="data in progress.dataprogress" ng-hide="progress.dataprogress==0">
+                            <tr ng-repeat="data in filteredDataListProgress" ng-hide="progress.dataprogress==0">
                                 <td class="text-center">{{$index + 1}}</td>
                                 <td>{{data.keterangan}}</td>
                                 <td>{{data.tanggalDibuat}}</td>
@@ -35,20 +35,20 @@
                     </table>
                 </div>
 
-                <div class="row" ng-hide="progress.dataprogress==0">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="align-center">
                             <ul style="padding-left: 0px;">
                                 <li style="display: inline-block;">
-                                    <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                    <button class="btn btn-primary" ng-click="padListProgress(-1)" ng-disabled="currentPageListProgress==0" aria-label="Use Android" style="cursor: pointer;">
                                         &lt; PREV
                                     </button>
                                 </li>
                                 <li style="display: inline-block;">
-                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListProgress+1}} Of {{maxSizeListProgress}}</span>
                                 </li>
                                 <li style="display: inline-block;">
-                                    <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                    <button class="btn btn-primary" ng-click="padListProgress(1)" ng-disabled="maxListProgress()" aria-label="Use Android" style="cursor: pointer;">
                                         NEXT &gt;
                                     </button>
                                 </li>
