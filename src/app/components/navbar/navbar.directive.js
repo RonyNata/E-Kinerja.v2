@@ -60,7 +60,7 @@
             vm.notif = response;
             if(response.length != 0)
               vm.jmlNotif += response.length;
-            disposisiNotif();
+            // disposisiNotif();
             // else vm.jmlNotif = undefined;
           },function(errResponse){
 

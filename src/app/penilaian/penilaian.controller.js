@@ -30,15 +30,21 @@
                                  TemplateSuratTugasService){
         var vm = this;
         vm.loading = true;
+        vm.bulan = (new Date()).getMonth().toString();
+        vm.tahun = parseInt(EkinerjaService.IndonesianYear(new Date()));
 
         getLaporanBawahan();
         getPerintahHistory();
+
+        vm.search = function(){
+            getLaporanBawahan();
+        }
 
         vm.isKepalaSKPD = EkinerjaService.isPimpinan($.parseJSON(sessionStorage.getItem('credential')).eselon,
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja);
 
         function getLaporanBawahan(){
-            PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
+            PenilaianService.GetLaporanBawahan($.parseJSON(sessionStorage.getItem('credential')).nipPegawai, vm.bulan, vm.tahun).then(
                 function(response){debugger
                     vm.jmlNotifLaporanBawahan = 0;
 

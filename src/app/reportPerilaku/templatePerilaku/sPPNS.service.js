@@ -43,56 +43,21 @@
 		              }
 		          },
 		          {
-	                margin: [30,20,0,0],
-	                columns: [
-	                    {
-	                        style: 'demoTable',
-	                        table: {
-	                            widths: [200],
-	                            body: [
-	                                [{text: ' '}],
-	                                [{text: '' + kadin.jabatan.toUpperCase() + '\n' + kadin.unitKerja.toUpperCase(), alignment : 'left'}],
-	                                [{text: ' ',margin: [0,20]}],
-	                                [{text: '' + kadin.gelarDepan + ' ' + kadin.nama + ', ' + kadin.gelarBelakang, alignment : 'left', bold:true}],
-	                                [{text: '' + kadin.pangkat, alignment : 'left', bold:true}],
-	                                [{text: 'NIP. ' + kadin.nipPegawai, alignment : 'left'}]
-	                            ]
-	                        },
-	                        layout: 'noBorders'
-	                    },
-	                    {
-	                        margin: [50,0,0,0],
-	                        style: 'demoTable',
-	                        table: {
-	                            widths: [200],
-	                            body: [
-	                                [{text: ' '}],
-	                                [{text: 'Diverifikasi olehBKPPD Kab. Bekasi\nTanggal\nVerifikator', alignment : 'left'}],
-	                                [{text: ' ',margin: [0,20]}],
-	                                [{text: '' + verifikator.gelarDepan + ' ' + verifikator.nama + ', ' + verifikator.gelarBelakang, alignment : 'left', bold:true}],
-	                                [{text: '' + verifikator.pangkat, alignment : 'left', bold:true}],
-	                                [{text: 'NIP. ' + verifikator.nipPegawai, alignment : 'left'}]
-	                            ]
-	                        },
-	                        layout: 'noBorders'
-	                    },
-	                    {
-	                        margin: [50,0,0,0],
-	                        style: 'demoTable',
-	                        table: {
-	                            widths: [200],
-	                            body: [
-	                                [{text: 'Bekasi,', alignment : 'left'}],
-	                                [{text: '' + pj.jabatan.toUpperCase() + '\n ', alignment : 'left'}],
-	                                [{text: ' ',margin: [0,20]}],
-	                                [{text: '' + pj.gelarDepan + ' ' + pj.nama + ', ' + pj.gelarBelakang, alignment : 'left', bold:true}],
-	                                [{text: '' + pj.pangkat, alignment : 'left', bold:true}],
-	                                [{text: 'NIP. ' + pj.nipPegawai, alignment : 'left'}]
-	                            ]
-	                        },
-	                        layout: 'noBorders'
-	                    }
-	                ]
+	                margin: [30,20,30,0],
+	                style: 'demoTable',
+	                table: {
+	                	headerRows:6,
+	                    widths: [200,'*','*',200,'*','*',200],
+	                    body: [
+	                        [{text: ' '}, {text: ' '},{text: ' '}, {text: ' '}, {text: ' '}, {text: ' '}, {text: 'Bekasi,'}],
+	                        [{text: '' + kadin.jabatan.toUpperCase() + '\n' + kadin.unitKerja.toUpperCase(), alignment : 'left'}, {text: ' '}, {text: ' '}, {text: 'Diverifikasi oleh BKPPD Kab. Bekasi\nTanggal\nVerifikator', alignment : 'left'}, {text: ' '},{text: ' '}, {text: '' + pj.jabatan.toUpperCase() + '\n ', alignment : 'left'}],
+	                        [{text: ' ',margin: [0,20]}, {text: ' '}, {text: ' '}, {text: ' ',margin: [0,20]}, {text: ' '}, {text: ' '}, {text: ' ',margin: [0,20]}],
+	                        [{text: '' + kadin.gelarDepan + ' ' + kadin.nama + ', ' + kadin.gelarBelakang, alignment : 'left', bold:true}, {text: ' '}, {text: ' '}, {text: '' + verifikator.gelarDepan + ' ' + verifikator.nama + ', ' + verifikator.gelarBelakang, alignment : 'left', bold:true}, {text: ' '}, {text: ' '}, {text: '' + pj.gelarDepan + ' ' + pj.nama + ', ' + pj.gelarBelakang, alignment : 'left', bold:true}],
+	                        [{text: '' + kadin.pangkat, alignment : 'left', bold:true}, {text: ' '}, {text: ' '}, {text: '' + verifikator.pangkat, alignment : 'left', bold:true}, {text: ' '}, {text: ' '}, {text: '' + pj.pangkat, alignment : 'left', bold:true}],
+	                        [{text: 'NIP. ' + kadin.nipPegawai, alignment : 'left'}, {text: ' '}, {text: ' '}, {text: 'NIP. ' + verifikator.nipPegawai, alignment : 'left'}, {text: ' '}, {text: ' '}, {text: 'NIP. ' + verifikator.nipPegawai, alignment : 'left'}]
+	                    ]
+	                },
+	                layout: 'noBorders'
 	            }
 
 			      ],

@@ -5,9 +5,9 @@
 
 	function PenilaianService($http, $q, API){
 		var service = {};
-		service.GetLaporanBawahan = function (nipPegawai) {
+		service.GetLaporanBawahan = function (nipPegawai, bulan, tahun) {
             var deferred = $q.defer();
-            $http.get(API + 'get-laporan-bawahan/' + nipPegawai).then(
+            $http.get(API + 'get-laporan-bawahan-bulanan/' + nipPegawai + '/' + bulan + '/' + tahun).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
