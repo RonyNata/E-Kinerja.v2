@@ -8,6 +8,8 @@ angular.
     
     function ProgressController(urtug, EkinerjaService, KontrakPegawaiService, $uibModalInstance, InstruksiPejabatService, $scope, logo_bekasi, logo_garuda) {
       	var vm = this;
+        vm.bulan = EkinerjaService.IndonesianMonth(new Date());
+        vm.tahun = EkinerjaService.IndonesianYear(new Date());
         $scope.entries = 5;
         $scope.currentPageListProgress = 0;
 
