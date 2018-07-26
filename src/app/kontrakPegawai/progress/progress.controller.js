@@ -8,6 +8,8 @@ angular.
     
     function ProgressController(urtug, EkinerjaService, KontrakPegawaiService, $uibModalInstance, InstruksiPejabatService, $scope, logo_bekasi, logo_garuda) {
       	var vm = this;
+        $scope.entries = 5;
+        $scope.currentPageListProgress = 0;
 
         // getAllHistory();
         getProgress();
@@ -54,6 +56,7 @@ angular.
                 }
                 vm.dataprogress = response;
                 vm.dataprogress = vm.dataprogress.sort( function ( a, b ) { return b.tanggalPembuatanMilis - a.tanggalPembuatanMilis; } );
+                paging();
             }, function(errResponse){
 
             })
@@ -78,5 +81,35 @@ angular.
         vm.reset = function(){
           vm.item = angular.copy(items);
         }
+
+        function paging(){
+            $scope.filteredDataListProgress = [];
+            $scope.numPerPageListProgress = $scope.entries;
+            $scope.maxSizeListProgress = Math.ceil(vm.dataprogress.length/$scope.numPerPageListProgress);
+            function pageListProgress(){
+                $scope.pageListProgress = [];
+                for(var i = 0; i < vm.dataprogress.length/$scope.numPerPageListProgress; i++){
+                    $scope.pageListProgress.push(i+1);
+                }
+            }
+            pageListProgress();
+            $scope.padListProgress = function(i){
+                $scope.currentPageListProgress += i;
+            }
+
+            $scope.maxListProgress = function(){
+                if($scope.currentPageListProgress >= $scope.maxSizeListProgress - 1)
+                    return true;
+                else return false;
+            }
+
+            $scope.$watch("currentPageListProgress + numPerPageListProgress", function() {
+                var begin = (($scope.currentPageListProgress) * $scope.numPerPageListProgress)
+                    , end = begin + parseInt($scope.numPerPageListProgress);
+
+                $scope.filteredDataListProgress = vm.dataprogress.slice(begin, end);
+            });
+        }
+
    	} 
 })();
