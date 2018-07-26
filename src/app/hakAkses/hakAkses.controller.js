@@ -6,7 +6,7 @@
 		controller('HakAksesController', HakAksesController);
 
 		function HakAksesController(EkinerjaService, $scope, HakAksesService, $uibModal, $document){
-			EkinerjaService.checkCredential();
+			// EkinerjaService.checkCredential();
 			var vm = this;
 
 			$scope.searchName = '';
