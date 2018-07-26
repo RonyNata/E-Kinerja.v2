@@ -9,6 +9,8 @@
     function UploadTemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, 
         $scope, $state, urtug, isDPA, API, $http) {
         var vm = this;
+        vm.bulan = EkinerjaService.IndonesianMonth(new Date());
+        vm.tahun = EkinerjaService.IndonesianYear(new Date());
         vm.loading = true;
         vm.item = {};
         vm.data = {};
