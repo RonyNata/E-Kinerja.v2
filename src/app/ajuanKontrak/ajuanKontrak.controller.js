@@ -6,99 +6,126 @@ angular.
 	.controller('AjuanKontrakController', AjuanKontrakController);
 
     
-    function AjuanKontrakController(EkinerjaService, AjuanKontrakService, $document, $uibModal, $scope) {
+    function AjuanKontrakController(EkinerjaService, KontrakPegawaiService, AjuanKontrakService, $document, $uibModal, $scope) {
       	var vm = this;
         vm.loading = true;
 
         getPegawaiPengaju();
 
-        $scope.$watch('nipPegawai', function(){
-          if($scope.nipPegawai != ''){
-            vm.namaPegawai = EkinerjaService.searchByNip($scope.nipPegawai, vm.list_pegawai);
-            vm.namaPegawai = vm.namaPegawai[0].namaPegawai;
-            searchPegawaiByNip();
-          }
-        })
-
-        function searchPegawaiByNip(pegawai){
-          vm.list_ajuan = pegawai.uraianTugasDiajukan;
-          vm.list_tidakdiajukan = pegawai.uraianTugasTidakDipilih;
-          for(var i = 0; i < vm.list_ajuan.length; i++){
-            vm.list_ajuan[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_ajuan[i].biaya);
-            vm.list_ajuan[i].terima = true;
-          }
-          for(var i = 0; i < vm.list_tidakdiajukan.length; i++)
-            vm.list_tidakdiajukan[i].biayaRp = EkinerjaService.FormatRupiah(vm.list_tidakdiajukan[i].biaya);
-        }
-
-        vm.gantiStatusUrtug = function(urtug, terima){
-          if(terima){
-            urtug.terima = false;
-            // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-            // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-            // vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
-            // vm.list_tidakdiajukan.splice(indexSplice, 1);
-          }else{
-            urtug.terima = true;
-            // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-            // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-            // vm.list_tidakdiajukan.push(angular.copy(vm.list_ajuan[indexPush]));
-            // vm.list_ajuan.splice(indexSplice, 1);
-          }
-            console.log(urtug);
-        }
-
-        vm.tambahkan = function(kdUrtug){
-          var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-          var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-          vm.list_tidakdiajukan[indexPush].terima = true;
-          vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
-          vm.list_tidakdiajukan.splice(indexSplice, 1);
-        }
-
         function getPegawaiPengaju(){
           AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, (new Date()).getMonth()).then(
             function(response){
-              vm.list_pegawai = response;debugger
+              vm.list_pegawai = response;
+              getPegawaiAtasan();
               vm.loading = false;
             }, function(errResponse){
 
             })
         }
 
-        vm.approve = function(){
-          var data = [];
-          for(var i = 0; i < vm.list_ajuan.length; i++){
-            if(vm.list_ajuan[i].terima){
-              vm.list_ajuan[i].statusApproval = 1;debugger
-            }
-            else
-              vm.list_ajuan[i].statusApproval = 2;
-            vm.list_ajuan[i].nipPegawai = $scope.nipPegawai;
-            data.push(vm.list_ajuan[i]);
-          }
-          for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
-            vm.list_tidakdiajukan[i].statusApproval = 2;
-            vm.list_tidakdiajukan[i].nipPegawai = $scope.nipPegawai;
-            data.push(vm.list_tidakdiajukan[i]);
-          }console.log(data);
-
-          AjuanKontrakService.ApproveKontrak(data).then(
+        function getPegawaiAtasan(){
+          KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
             function(response){
-              EkinerjaService.showToastrSuccess("Kontrak Tahunan Berhasil Disetujui");
+              response.namaPegawai = response.nama;
+              vm.list_pegawai.push(response);
+              getAtasanPenilai(response.kdJabatan);
             }, function(errResponse){
-              EkinerjaService.showToastrError("Kontrak Tahunan Gagal Disetujui");
+
             })
+
         }
 
-        vm.open = function (pegawai, parentSelector) {
-          searchPegawaiByNip(pegawai);
-          var eselon = pegawai.eselon.split('.')[0].toLowerCase();
-          switch(eselon){
-            case 'i' : case 'ii' : case 'iii' : vm.isEselon4 = false; break;
-            default : vm.isEselon4 = true; break;
-          }
+        function getAtasanPenilai(kdJabatan){
+          KontrakPegawaiService.GetPejabatPenilai(kdJabatan).then(
+            function(response){debugger
+              response.namaPegawai = response.nama;
+              vm.list_pegawai.push(response);
+              createSelfData();
+              for(var i = 0; i < vm.list_pegawai.length;i++){
+                getUrtug(vm.list_pegawai[i].nipPegawai, vm.list_pegawai[i].kdJabatan, vm.list_pegawai[i]);
+                getUrtugByJabatan(vm.list_pegawai[i].nipPegawai, vm.list_pegawai[i]);
+              }
+              debugger
+            }, function(errResponse){
+
+            })
+
+        }
+
+        function createSelfData(){
+          vm.list_pegawai.push({
+            'nipPegawai': $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            'kdJabatan': $.parseJSON(sessionStorage.getItem('credential')).kdJabatan,
+            'namaPegawai': $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
+            'jabatan': $.parseJSON(sessionStorage.getItem('credential')).jabatan
+          })
+        }
+
+        function getUrtug(nipPegawai,kdJabatan, pegawai){
+          KontrakPegawaiService.GetUrtugNonDPA(nipPegawai,kdJabatan).then(
+            function(response){
+              vm.urtugNonDpa = response.urtugTidakDipilihList; debugger
+              for(var i = 0; i < vm.urtugNonDpa.length; i++){
+                vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
+                vm.urtugNonDpa[i].checked = false;
+                vm.urtugNonDpa[i].targetKuantitas = vm.urtugNonDpa[i].kuantitas - vm.urtugNonDpa[i].totalRealisasi;
+              }
+              pegawai.urtugNonDpa = vm.urtugNonDpa;
+            }, function(errResponse){
+
+            }
+          );
+
+          // if(isEselon4)
+            // KontrakPegawaiService.GetUrtugDPA(nipPegawai,
+            //   $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,kdJabatan).then(
+            //   function(response){
+            //     vm.urtugDpa = response; debugger
+            //     for(var i = 0; i < response.length; i++){ 
+            //       vm.urtugDpa[i].checked = false;
+            //       vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+            //     }
+            //       pagingUrtugDpa();
+            //   }, function(errResponse){
+
+            //   }
+            // );
+          // else
+          //   KontrakPegawaiService.GetUrtugProgram(
+          //     $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          //     $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
+          //     function(response){
+          //       vm.urtugDpa = response; debugger
+          //       for(var i = 0; i < response.length; i++){ 
+          //         vm.urtugDpa[i].checked = false;
+          //         vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+          //       }
+          //     }, function(errResponse){
+
+          //     }
+          //   );
+        }
+
+        function getUrtugByJabatan(nipPegawai, pegawai){
+          KontrakPegawaiService.GetUrtugByNip(nipPegawai, (new Date()).getMonth()).then(
+            function(response){
+              for(var i = 0; i<response.length; i++)
+                response[i].biayaRp = EkinerjaService.FormatRupiah(response[i].biaya);
+              pegawai.skp = response;
+              // vm.dataLook = response;
+              // debugger
+            }, function(errResponse){
+              vm.loading = false;
+
+            }
+          )
+        }
+
+        vm.open = function (pegawai, isAjuan, parentSelector) {
+          if(isAjuan)
+            var utg = pegawai.urtugNonDpa;
+          else var utg = pegawai.skp;
           var parentElem = parentSelector ? 
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
           var modalInstance = $uibModal.open({
@@ -111,26 +138,17 @@ angular.
             size: 'lg',
             appendTo: parentElem,
             resolve: {
-              list_ajuan: function () {
-                return vm.list_ajuan;
-              },
-              list_tidakdiajukan: function () {
-                return vm.list_tidakdiajukan;
-              },
-              nama: function(){
+              nama: function () {
                 return pegawai.namaPegawai;
               },
-              nip: function(){
+              isAjuan: function(){
+                return isAjuan;
+              },
+              urtug: function(){
+                return utg;
+              },
+              nipPegawai: function(){
                 return pegawai.nipPegawai;
-              },
-              jabatan: function(){
-                return pegawai.kdJabatan;
-              },
-              isEselon4: function(){
-                return vm.isEselon4;
-              },
-              unit: function(){
-                return pegawai.kdUnitKerja;
               }
             }
           });
@@ -139,7 +157,6 @@ angular.
             // showToastrSuccess('ditambahkan');
             // getUrtugByJabatan();
             getPegawaiPengaju();
-            EkinerjaService.showToastrSuccess('Ajuan Berhasil Disetujui');
             // vm.selected = selectedItem;
           }, function () {
             // showToastrFailed('menambahkan data');

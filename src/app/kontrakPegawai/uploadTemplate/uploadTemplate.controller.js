@@ -7,7 +7,7 @@
 
 
     function UploadTemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, 
-        $scope, $state, urtug, isDPA, API, $http) {
+        $scope, $state, urtug, isDPA, API, $http, $uibModal) {
         var vm = this;
         vm.bulan = EkinerjaService.IndonesianMonth(new Date());
         vm.tahun = EkinerjaService.IndonesianYear(new Date());
@@ -24,6 +24,7 @@
         vm.data.bulanUrtug = vm.urtug.bulanUrtug;
         vm.data.kdJabatan = $.parseJSON(sessionStorage.getItem('credential')).kdJabatan;
         vm.data.tahunUrtug = urtug.tahunUrtug;
+        vm.data.daftarUrtugAtasan = [];
 
         $scope.uploadPic = function(files) {
             console.log(files[0].name);
@@ -33,6 +34,58 @@
             vm.extension = vm.data.namaFile.split('.');
             vm.extension = vm.extension[vm.extension.length - 1];
             vm.file = files[0];
+        }
+
+        getPegawaiAtasan();
+
+        function getPegawaiAtasan(){
+          KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
+            function(response){
+              response.namaPegawai = response.nama;
+              vm.penilai = response;
+              getAtasanPenilai(response.kdJabatan);
+            }, function(errResponse){
+
+            })
+
+        }
+
+        function getAtasanPenilai(kdJabatan){
+          KontrakPegawaiService.GetPejabatPenilai(kdJabatan).then(
+            function(response){debugger
+              response.namaPegawai = response.nama;
+              vm.atasanPenilai = response;
+            }, function(errResponse){
+
+            })
+        }
+
+        vm.openUrtug = function(pegawai, parentSelector){
+            var parentElem = parentSelector ?
+                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'app/kontrakPegawai/urtug/urtug.html',
+                controller: 'UrtugController',
+                controllerAs: 'urtug',
+                // windowClass: 'app-modal-window',
+                // size: 'lg',
+                appendTo: parentElem,
+                resolve: {
+                    pegawai: function () {
+                        return pegawai;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (data) {
+                vm.data.daftarUrtugAtasan.push(data);
+                debugger
+            }, function () {
+
+            });
         }
  
         vm.uploadTemplate = function () {debugger

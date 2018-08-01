@@ -6,231 +6,174 @@ angular.
 	.controller('DetailAjuanController', DetailAjuanController);
 
     
-    function DetailAjuanController(list_ajuan, list_tidakdiajukan, $scope, nama, nip, jabatan, isEselon4, unit, EkinerjaService,
-      KontrakPegawaiService, AjuanKontrakService, $uibModalInstance, $uibModal, $document) {
+    function DetailAjuanController(nipPegawai, isAjuan, urtug, $scope, EkinerjaService, nama, 
+      KontrakPegawaiService, $uibModalInstance, $uibModal, $document) {
       	var vm = this;
 
-            vm.list_ajuan = angular.copy(list_ajuan);
-            for(var i = 0; i < vm.list_ajuan.length; i++){
-              vm.list_ajuan[i].displayKuantitas = vm.list_ajuan[i].kuantitas + ' ' + vm.list_ajuan[i].satuanKuantitas;
-              vm.list_ajuan[i].displayKualitas = vm.list_ajuan[i].kualitas + '%';
-              vm.list_ajuan[i].displayWaktu = vm.list_ajuan[i].waktu + ' Bulan';
-              vm.list_ajuan[i].displayBiaya = 'Rp. ' + vm.list_ajuan[i].biayaRp;
+        $scope.urtugnon = false;
+        $scope.dpaurtug = false;
+        vm.urtugNonDpa = angular.copy(urtug);
+        pagingUrtugNonDpa();
+        vm.nama = nama;
+        vm.isAjuan = isAjuan;
+        vm.bulan = EkinerjaService.IndonesianMonth(new Date()).toUpperCase();
+        vm.tahun = EkinerjaService.IndonesianYear(new Date());
+
+        $scope.$watch('urtugnon', function(){
+          checkAll($scope.urtugnon, vm.urtugNonDpa);
+        });
+
+        $scope.$watch('dpaurtug', function(){
+          debugger
+          checkAll($scope.dpaurtug, vm.urtugDpa);
+        });
+
+        function checkAll(status, array){
+          for(var i = 0; i < array.length; i++)
+            array[i].checked = angular.copy(status);
+        }
+
+        vm.validation = function(qty, target, idx){debugger
+          if(qty > target || qty == undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
+          if(qty < 1) vm.urtugNonDpa[idx].targetKuantitas = 1;
+        }
+
+        vm.openKegiatan = function (item, parentSelector) {
+          var parentElem = parentSelector ? 
+          angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+          animation: true,
+          ariaLabelledBy: 'modal-title',
+          ariaDescribedBy: 'modal-body',
+          templateUrl: 'app/kontrakPegawai/detailUrtugDpa/detailUrtugDpa.html',
+          controller: 'DetailUrtugDpaController',
+          controllerAs: 'urtugkegiatan',
+          // windowClass: 'app-modal-window',
+          size: 'lg',
+          appendTo: parentElem,
+          resolve: {
+            urtug: function () {
+              return item;
             }
-            pagingListAjuan();
+          }
+          });
 
-            vm.list_tidakdiajukan = angular.copy(list_tidakdiajukan);
-            for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
-              vm.list_tidakdiajukan[i].displayKuantitas = vm.list_tidakdiajukan[i].kuantitas + ' ' + vm.list_tidakdiajukan[i].satuanKuantitas;
-              vm.list_tidakdiajukan[i].displayKualitas = vm.list_tidakdiajukan[i].kualitas + '%';
-              vm.list_tidakdiajukan[i].displayWaktu = vm.list_tidakdiajukan[i].waktu + ' Bulan';
-              vm.list_tidakdiajukan[i].displayBiaya = 'Rp. ' + vm.list_tidakdiajukan[i].biayaRp;
+          modalInstance.result.then(function () {
+
+          }, function () {
+
+          });
+        };
+
+        vm.save = function(){
+          var data = [];
+          var dpa = [];debugger
+          var statDpa = false, statNon = false;
+          for(var i = 0; i<vm.urtugNonDpa.length; i++){
+            if(vm.urtugNonDpa[i].checked){
+              data.push({
+                "kdUrtug": vm.urtugNonDpa[i].kdUrtug,
+                "kdJabatan": vm.urtugNonDpa[i].kdJabatan,
+                "kdJenisUrtug": vm.urtugNonDpa[i].kdJenisUrtug,
+                "tahunUrtug": vm.urtugNonDpa[i].tahunUrtug,
+                "bulanUrtug": (new Date()).getMonth(),
+                "nipPegawai": nipPegawai,
+                "targetKuantitas": vm.urtugNonDpa[i].targetKuantitas,
+                "satuanKuantitas": vm.urtugNonDpa[i].satuanKuantitas,
+                "targetKualitas": vm.urtugNonDpa[i].kualitas,
+                "waktu": vm.urtugNonDpa[i].waktu,
+                "biaya": vm.urtugNonDpa[i].biaya,
+                "alasan": "",
+                "statusApproval": 0
+              }); 
             }
-            pagingListTidakAjuan();
+          }
 
-            vm.nama = nama;
 
-            vm.isEselon4 = isEselon4;
+          // console.log(JSON.stringify(vm.urtugDpa));
 
-            getUrtugKegiatanApproval();
+          
+          KontrakPegawaiService.ChooseUrtugBulanan(data).then(
+            function(response){
+              EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");
+              // statNon = true;
+              // successChecker(statDpa, statNon);
+              $uibModalInstance.close();
+            }, function(errResponse){
+              EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
+            })
+        }
 
-            function getUrtugKegiatanApproval(){
-              // if(vm.isEselon4)
-                KontrakPegawaiService.GetUrtugKegiatanApproval(nip,unit, jabatan).then(
-                  function(response){
-                    for(var i = 0; i < response.length; i++){
-                      response[i].paguAnggaran = EkinerjaService.FormatRupiah(response[i].paguAnggaran);
-                    }
-                    vm.kegiatan = response;debugger
+        function successChecker(dpa,non){
+          if(dpa && non)
+            $uibModalInstance.close();          
+        }
 
-                      pagingListKegiatan();
-                  }, function(errResponse){
-                    // vm.penilai = "";
-                  })
-              // else
-              //   KontrakPegawaiService.GetUrtugProgramApproval(nip,unit).then(
-              //   function(response){
-              //     vm.kegiatan = response;debugger
-              //     for(var i = 0; i < response.length; i++)
-              //       vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
-              //   }, function(errResponse){
-              //     // vm.penilai = "";
-              //   })
-            }
+        vm.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
 
-            vm.gantiStatusUrtug = function(urtug, terima){
-                if(terima){
-                  urtug.terima = false;
-                  // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-                  // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-                  // vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
-                  // vm.list_tidakdiajukan.splice(indexSplice, 1);
-                }else{
-                  urtug.terima = true;
-                  // var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-                  // var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_ajuan);
-                  // vm.list_tidakdiajukan.push(angular.copy(vm.list_ajuan[indexPush]));
-                  // vm.list_ajuan.splice(indexSplice, 1);
-                }
-                  console.log(urtug);
-            }
+        vm.reset = function(){
+          vm.item = angular.copy(items);
+        }
 
-            vm.tambahkan = function(kdUrtug){
-                  var indexPush = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-                  var indexSplice = AjuanKontrakService.GetIndexUrtugById(kdUrtug, vm.list_tidakdiajukan);
-                  vm.list_tidakdiajukan[indexPush].terima = true;
-                  vm.list_ajuan.push(vm.list_tidakdiajukan[indexPush]);
-                  vm.list_tidakdiajukan.splice(indexSplice, 1);
-                  pagingListAjuan();
-                  pagingListTidakAjuan();
-            }
-
-            vm.save = function(){
-                  var data = [];
-                  for(var i = 0; i < vm.list_ajuan.length; i++){
-                        vm.list_ajuan[i].bulanUrtug = (new Date()).getMonth();
-                        vm.list_ajuan[i].targetKuantitas = vm.list_ajuan[i].kuantitas;
-                        vm.list_ajuan[i].targetKualitas = vm.list_ajuan[i].kualitas;
-                        if(vm.list_ajuan[i].terima){
-                              vm.list_ajuan[i].statusApproval = 1;debugger
-                        }
-                        else
-                              vm.list_ajuan[i].statusApproval = 2;
-                        vm.list_ajuan[i].nipPegawai = nip;
-                        data.push(vm.list_ajuan[i]);
-                  }
-                  for(var i = 0; i < vm.list_tidakdiajukan.length; i++){
-                        vm.list_tidakdiajukan[i].statusApproval = 2;
-                        vm.list_tidakdiajukan[i].nipPegawai = nip;
-                        data.push(vm.list_tidakdiajukan[i]);
-                  }console.log(JSON.stringify(data));
-
-                  AjuanKontrakService.ApproveKontrak(data).then(
-                  function(response){
-                        // EkinerjaService.showToastrSuccess("Kontrak Tahunan Berhasil Disetujui");
-                        $uibModalInstance.close();
-                  }, function(errResponse){
-                    EkinerjaService.showToastrError("Kontrak Tahunan Gagal Disetujui");
-                  })
-            }
-
-            vm.cancel = function () {
-                  $uibModalInstance.dismiss('cancel');
-            };
-
-            vm.openDetailSkp = function (item, parentSelector) {debugger
-              var parentElem = parentSelector ? 
-              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-              var modalInstance = $uibModal.open({
-              animation: true,
-              ariaLabelledBy: 'modal-title',
-              ariaDescribedBy: 'modal-body',
-              templateUrl: 'app/ajuanKontrak/detailSKP/detailSKP.html',
-              controller: 'DetailSKPController',
-              controllerAs: 'detailskp',
-              // windowClass: 'app-modal-window',
-              size: 'lg',
-              appendTo: parentElem,
-              resolve: {
-                data: function(){
-                  return item;
-                }
-              }
-              });
-
-              modalInstance.result.then(function () {
-              }, function () {
-
-              });
-            };
-
-        function pagingListAjuan(){
-            $scope.filteredDataListAjuan = [];
-            $scope.currentPageListAjuan = 0;
-            $scope.numPerPageListAjuan = 5;
-            $scope.maxSizeListAjuan = Math.ceil(vm.list_ajuan.length/$scope.numPerPageListAjuan);
-            function pageListAjuan(){
-                $scope.pageListAjuan = [];
-                for(var i = 0; i < vm.list_ajuan.length/$scope.numPerPageListAjuan; i++){
-                    $scope.pageListAjuan.push(i+1);
+        function pagingUrtugNonDpa(){
+            $scope.filteredDataUrtugNonDpa = [];
+            $scope.currentPageUrtugNonDpa = 0;
+            $scope.numPerPageUrtugNonDpa = 5;
+            $scope.maxSizeUrtugNonDpa = Math.ceil(vm.urtugNonDpa.length/$scope.numPerPageUrtugNonDpa);
+            function pageUrtugNonDpa(){
+                $scope.pageUrtugNonDpa = [];
+                for(var i = 0; i < vm.urtugNonDpa.length/$scope.numPerPageUrtugNonDpa; i++){
+                    $scope.pageUrtugNonDpa.push(i+1);
                 }
             }
-            pageListAjuan();
-            $scope.padListAjuan = function(i){
-                $scope.currentPageListAjuan += i;
+            pageUrtugNonDpa();
+            $scope.padUrtugNonDpa = function(i){
+                $scope.currentPageUrtugNonDpa += i;
             }
 
-            $scope.maxListAjuan = function(){
-                if($scope.currentPageListAjuan >= $scope.maxSizeListAjuan - 1)
+            $scope.maxUrtugNonDpa = function(){
+                if($scope.currentPageUrtugNonDpa >= $scope.maxSizeUrtugNonDpa - 1)
                     return true;
                 else return false;
             }
 
-            $scope.$watch("currentPageListAjuan + numPerPageListAjuan", function() {
-                var begin = (($scope.currentPageListAjuan) * $scope.numPerPageListAjuan)
-                    , end = begin + $scope.numPerPageListAjuan;
+            $scope.$watch("currentPageUrtugNonDpa + numPerPageUrtugNonDpa", function() {
+                var begin = (($scope.currentPageUrtugNonDpa) * $scope.numPerPageUrtugNonDpa)
+                    , end = begin + $scope.numPerPageUrtugNonDpa;
 
-                $scope.filteredDataListAjuan = vm.list_ajuan.slice(begin, end);
+                $scope.filteredDataUrtugNonDpa = vm.urtugNonDpa.slice(begin, end);
             });
         }
 
-        function pagingListTidakAjuan(){
-            $scope.filteredDataListTidakAjuan = [];
-            $scope.currentPageListTidakAjuan = 0;
-            $scope.numPerPageListTidakAjuan = 5;
-            $scope.maxSizeListTidakAjuan = Math.ceil(vm.list_tidakdiajukan.length/$scope.numPerPageListTidakAjuan);
-            function pageListTidakAjuan(){
-                $scope.pageListTidakAjuan = [];
-                for(var i = 0; i < vm.list_tidakdiajukan.length/$scope.numPerPageListTidakAjuan; i++){
-                    $scope.pageListTidakAjuan.push(i+1);
+        function pagingUrtugDpa(){
+            $scope.filteredDataUrtugDpa = [];
+            $scope.currentPageUrtugDpa = 0;
+            $scope.numPerPageUrtugDpa = 5;
+            $scope.maxSizeUrtugDpa = Math.ceil(vm.urtugDpa.length/$scope.numPerPageUrtugDpa);
+            function pageUrtugDpa(){
+                $scope.pageUrtugDpa = [];
+                for(var i = 0; i < vm.urtugDpa.length/$scope.numPerPageUrtugDpa; i++){
+                    $scope.pageUrtugDpa.push(i+1);
                 }
             }
-            pageListTidakAjuan();
-            $scope.padListTidakAjuan = function(i){
-                $scope.currentPageListTidakAjuan += i;
+            pageUrtugDpa();
+            $scope.padUrtugDpa = function(i){
+                $scope.currentPageUrtugDpa += i;
             }
 
-            $scope.maxListTidakAjuan = function(){
-                if($scope.currentPageListTidakAjuan >= $scope.maxSizeListTidakAjuan - 1)
+            $scope.maxUrtugDpa = function(){
+                if($scope.currentPageUrtugDpa >= $scope.maxSizeUrtugDpa - 1)
                     return true;
                 else return false;
             }
 
-            $scope.$watch("currentPageListTidakAjuan + numPerPageListTidakAjuan", function() {
-                var begin = (($scope.currentPageListTidakAjuan) * $scope.numPerPageListTidakAjuan)
-                    , end = begin + $scope.numPerPageListTidakAjuan;
+            $scope.$watch("currentPageUrtugDpa + numPerPageUrtugDpa", function() {
+                var begin = (($scope.currentPageUrtugDpa) * $scope.numPerPageUrtugDpa)
+                    , end = begin + $scope.numPerPageUrtugDpa;
 
-                $scope.filteredDataListTidakAjuan = vm.list_tidakdiajukan.slice(begin, end);
-            });
-        }
-
-        function pagingListKegiatan(){
-            $scope.filteredDataListKegiatan = [];
-            $scope.currentPageListKegiatan = 0;
-            $scope.numPerPageListKegiatan = 5;
-            $scope.maxSizeListKegiatan = Math.ceil(vm.kegiatan.length/$scope.numPerPageListKegiatan);
-            function pageListKegiatan(){
-                $scope.pageListKegiatan = [];
-                for(var i = 0; i < vm.kegiatan.length/$scope.numPerPageListKegiatan; i++){
-                    $scope.pageListKegiatan.push(i+1);
-                }
-            }
-            pageListKegiatan();
-            $scope.padListKegiatan = function(i){
-                $scope.currentPageListKegiatan += i;
-            }
-
-            $scope.maxListKegiatan = function(){
-                if($scope.currentPageListKegiatan >= $scope.maxSizeListKegiatan - 1)
-                    return true;
-                else return false;
-            }
-
-            $scope.$watch("currentPageListKegiatan + numPerPageListKegiatan", function() {
-                var begin = (($scope.currentPageListKegiatan) * $scope.numPerPageListKegiatan)
-                    , end = begin + $scope.numPerPageListKegiatan;
-
-                $scope.filteredDataListKegiatan = vm.kegiatan.slice(begin, end);
+                $scope.filteredDataUrtugDpa = vm.urtugDpa.slice(begin, end);
             });
         }
    	} 

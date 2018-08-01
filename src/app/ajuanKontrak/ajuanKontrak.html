@@ -17,8 +17,9 @@
                                         <tr>
                                             <th class="text-center" style="width: 5%">No</th>
                                             <th class="text-center">Nama Pegawai</th>
-                                            <th class="text-center" style="width: 20%">Status</th>
-                                            <th class="text-center" style="width: 15%">Action</th>
+                                            <th class="text-center" style="width: 20%">Jabatan</th>
+                                            <th class="text-center" style="width: 10%">Status</th>
+                                            <th class="text-center" style="width: 15%" colspan="2">Action</th>
                                         </tr>
                                         </thead>
 
@@ -26,9 +27,13 @@
                                         <tr ng-repeat="pgw in ajuankontrak.list_pegawai" ng-hide="ajuankontrak.list_pegawai==0">
                                             <td class="text-center">{{$index + 1}}</td>
                                             <td>{{pgw.namaPegawai}}</td>
-                                            <td>{{pgw.statusPenangangan == 0 ? 'Belum Mengajukan' : pgw.statusPenangangan == 1 ? 'Belum Disetujui' : 'Sudah Disetujui'}}</td>
+                                            <td>{{pgw.jabatan}}</td>
+                                            <td>{{pgw.skp.length ? 'Sudah Diatur' : 'Belum Diatur'}}</td>
                                             <td class="text-center">
-                                                <button type="button" ng-click="ajuankontrak.open(pgw)" ng-disabled="pgw.statusPenangangan == 1 ? false : true" class="{{pgw.statusPenangangan == 1 ? 'btn bg-green waves-effect' : 'btn bg-gray-active waves-effect'}}"><i class="fa fa-eye" aria-hidden="true"></i> LIHAT AJUAN</button>
+                                                <button type="button" ng-click="ajuankontrak.open(pgw, 0)" ng-disabled="!pgw.skp.length" class="{{pgw.skp.length ? 'btn bg-blue waves-effect' : 'btn bg-gray-active waves-effect'}}"><i class="fa fa-eye" aria-hidden="true"></i>LIHAT SKP</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" ng-click="ajuankontrak.open(pgw, 1)" class="btn bg-green waves-effect"><i class="fa fa-eye" aria-hidden="true"></i>ATUR SKP</button>
                                             </td>
                                         </tr>
                                         <tr ng-show="ajuankontrak.list_pegawai==0">

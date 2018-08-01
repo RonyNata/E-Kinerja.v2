@@ -6,24 +6,21 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <div class="animate-show-hide" ng-show="openurtug.pgw == 0 || openurtug.pgw == 2 || openurtug.pgw == 4">
-                        <p>{{openurtug.pgw == 0 ? openurtug.nama : openurtug.pgw == 2 ? openurtug.penilai.namaPegawai : openurtug.pgw == 4 ? openurtug.atasanPenilai.namaPegawai : ''}}</p>
-                        <table class="table table-bordered">
-                            <thead class="bg-table">
-                            <tr>
-                                <th style="width: 30%; text-align: center; vertical-align: middle">
-                                    <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
-                                </th>
-                            </tr>
-                            </thead>
+                    <table class="table table-bordered">
+                        <thead class="bg-table">
+                        <tr>
+                            <th style="width: 30%; text-align: center; vertical-align: middle">
+                                <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
+                            </th>
+                        </tr>
+                        </thead>
 
-                            <tbody>
-                            <tr ng-repeat="data in filteredData" ng-click="openurtug.pilihUrtug(data, openurtug.pgw == 2 ? openurtug.penilai : openurtug.atasanPenilai)">
-                                <td style="vertical-align: middle">{{data.urtug}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                        <tbody>
+                        <tr ng-repeat="data in filteredData" ng-click="urtug.pilihUrtug(data, urtug.pgw == 2 ? urtug.penilai : urtug.atasanPenilai)">
+                            <td style="vertical-align: middle">{{data.urtug}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
                 </div>
 
@@ -53,6 +50,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" ng-click="openurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
+    <button type="button" ng-click="urtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
 
 </div>

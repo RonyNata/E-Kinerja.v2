@@ -1,199 +1,155 @@
 <div class="modal-header background-pop-up">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Ajuan Kontrak {{ajuan.nama}}</strong></h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Pengaturan SKP {{ajuan.nama}}</strong></h3>
 </div>
-<!--<form ng-submit="ajuan.save()" class="form-horizontal">-->
+<form ng-submit="ajuan.save()" class="form-horizontal">
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
                         <li role="presentation" class="active">
-                            <a href="#pengajuan" data-toggle="tab"><b>Uraian Tugas non-DPA Yang Diajukan</b></a>
+                            <a href="#nondpa" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
                         </li>
-                        <li role="presentation">
-                            <a href="#tidakdiajukan" data-toggle="tab"><b>Uraian Tugas non-DPA Yang Tidak Diajukan</b></a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#ajuanDpa" data-toggle="tab"><b>Uraian Tugas DPA Yang Diterima</b></a>
-                        </li>
+                        <!-- <li role="presentation">
+                            <a href="#dpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
+                        </li> -->
                     </ul>
 
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="pengajuan">
+                        <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="checkbox space-after" ng-show="ajuan.isAjuan">
+                                        <label><input type="checkbox" ng-model="urtugnon">Pilih Semua</label>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                            <tr>
-                                                <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                <th class="text-center" style="vertical-align: middle">Rincian Tugas dan Kegiatan</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 800px" colspan="3">Action</th>
-                                            </tr>
+                                                <tr ng-show="ajuan.isAjuan">
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">{{ajuan.isAjuan ? 'Pilih' : 'No'}}</th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
+                                                </tr>
+                                                <tr ng-hide="ajuan.isAjuan">
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">{{ajuan.isAjuan ? 'Pilih' : 'No'}}</th>
+                                                    <th style="text-align: center; vertical-align: middle" rowspan="2">Rincian Tugas</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle" rowspan="2">Volume</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle" colspan="2">Output</th>
+                                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Nilai (Realisasi/Sasaran)</th>
+                                                </tr>
+                                                <tr ng-hide="ajuan.isAjuan">
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Sasaran</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Realisasi</th>
+                                                </tr>
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in filteredDataListAjuan" ng-hide="filteredDataListAjuan==0" class="text-center">
-                                                <td>{{$index + 1 + (numPerPageListAjuan*currentPageListAjuan)}}</td>
-                                                <td class="text-left">{{urtug.urtug}}</td>
-                                                <td>
-                                                    <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 1)" class="btn btn-danger" ng-disabled="!urtug.terima"><i class="fa fa-times" aria-hidden="true"></i> TOLAK</button>
-                                                </td>
-                                                <td>
-                                                    <button type="button" ng-click="ajuan.gantiStatusUrtug(urtug, 0)" class="btn btn-success" ng-disabled="urtug.terima"><i class="fa fa-check" aria-hidden="true"></i> TERIMA</button>
-                                                </td>
-                                                <td><button type="button" ng-click="ajuan.openDetailSkp(urtug)" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i> DETAIL</button></td>
-                                            </tr>
-                                            <tr ng-show="filteredDataListAjuan==0">
-                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                            </tr>
+                                                <tr ng-repeat="urtug in filteredDataUrtugNonDpa" ng-hide="filteredDataUrtugNonDpa==0" class="text-center">
+                                                    <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="urtug.checked"></td>
+                                                    <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa)}}</td>
+                                                    <td class="text-left">{{urtug.urtug}}</td>
+                                                    <td>{{urtug.satuanKuantitas}}</td>
+                                                    <td ng-hide="ajuan.isAjuan">{{urtug.targetkuantitas}}</td>
+                                                    <td ng-hide="ajuan.isAjuan">{{urtug.realisasiKuantitas}}</td>
+                                                    <td ng-hide="ajuan.isAjuan">{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
+                                                    <td ng-show="ajuan.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="ajuan.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
+                                                    <td ng-show="ajuan.isAjuan">{{urtug.waktu + ' Bulan'}}</td>
+                                                    <td ng-show="ajuan.isAjuan">{{500 * urtug.targetKuantitas | number}}</td>
+                                                </tr>
+                                                <tr ng-show="filteredDataUrtugNonDpa==0">
+                                                    <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row" ng-hide="filteredDataListAjuan==0">
-                                <div class="col-md-12">
-                                    <div class="align-center">
-                                        <ul style="padding-left: 0px;">
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListAjuan(-1)" ng-disabled="currentPageListAjuan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                    &lt; PREV
-                                                </button>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListAjuan+1}} Of {{maxSizeListAjuan}}</span>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListAjuan(1)" ng-disabled="maxListAjuan()" aria-label="Use Android" style="cursor: pointer;">
-                                                    NEXT &gt;
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="align-center">
+                                                <ul style="padding-left: 0px;">
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(-1)" ng-disabled="currentPageUrtugNonDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
+                                                            &lt; PREV
+                                                        </button>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugNonDpa+1}} Of {{maxSizeUrtugNonDpa}}</span>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugNonDpa(1)" ng-disabled="maxUrtugNonDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
+                                                            NEXT &gt;
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
-                        <div role="tabpanel" class="tab-pane fade" id="tidakdiajukan">
+                        <!-- <div role="tabpanel" class="tab-pane fade in" id="dpa">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="checkbox space-after">
+                                        <label><input type="checkbox" ng-model="dpaurtug">Pilih Semua</label>
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                            <tr>
-                                                <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                <th class="text-center" style="vertical-align: middle">Rincian Tugas dan Kegiatan</th>
-                                                <th class="text-center" style="vertical-align: middle">Kuant/ Output</th>
-                                                <th class="text-center" style="vertical-align: middle">Mutu</th>
-                                                <th class="text-center" style="vertical-align: middle">Waktu</th>
-                                                <th class="text-center" style="vertical-align: middle">Biaya</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 25%">Action</th>
-                                            </tr>
+                                                <tr>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{ajuan.isAjuan ? 'Pilih' : 'No'}}</label></th>
+                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
+                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Jumlah Kegiatan</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
+                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Action</th>
+                                                </tr>
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="urtug in filteredDataListTidakAjuan" ng-hide="filteredDataListTidakAjuan==0" class="text-center">
-                                                <td>{{$index + 1 + (numPerPageListTidakAjuan*currentPageListTidakAjuan)}}</td>
-                                                <td class="text-left">{{urtug.urtug}}</td>
-                                                <td>{{urtug.kuantitas + ' ' + urtug.satuanKuantitas}}</td>
-                                                <td>{{urtug.kualitas + '%'}}</td>
-                                                <td>{{urtug.waktu + ' Bulan'}}</td>
-                                                <td>{{'Rp. ' + urtug.biayaRp}}</td>
-                                                <td>
-                                                    <button type="button" ng-click="ajuan.tambahkan(urtug.kdUrtug)" class="btn btn-success">TAMBAHKAN</button>
-                                                </td>
-                                            </tr>
-                                            <tr ng-show="filteredDataListTidakAjuan==0">
-                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                            </tr>
+                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
+                                                    <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
+                                                    <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
+                                                    <td class="text-left">{{dpa.urtug}}</td>
+                                                    <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
+                                                    <td>{{dpa.kualitas + '%'}}</td>
+                                                    <td>{{dpa.waktu + ' Bulan'}}</td>
+                                                    <td>{{'Rp. '+dpa.biayaRp}}</td>
+                                                    <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td>
+                                                </tr>
+                                                <tr ng-show="filteredDataUrtugDpa==0">
+                                                    <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row" ng-hide="filteredDataListTidakAjuan==0">
-                                <div class="col-md-12">
-                                    <div class="align-center">
-                                        <ul style="padding-left: 0px;">
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListTidakAjuan(-1)" ng-disabled="currentPageListTidakAjuan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                    &lt; PREV
-                                                </button>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListTidakAjuan+1}} Of {{maxSizeListTidakAjuan}}</span>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListTidakAjuan(1)" ng-disabled="maxListTidakAjuan()" aria-label="Use Android" style="cursor: pointer;">
-                                                    NEXT &gt;
-                                                </button>
-                                            </li>
-                                        </ul>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="align-center">
+                                                <ul style="padding-left: 0px;">
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
+                                                            &lt; PREV
+                                                        </button>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugDpa+1}} Of {{maxSizeUrtugDpa}}</span>
+                                                    </li>
+                                                    <li style="display: inline-block;">
+                                                        <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
+                                                            NEXT &gt;
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane fade" id="ajuanDpa">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead class="bg-table">
-                                            <tr>
-                                                <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
-                                                <th class="text-center" style="vertical-align: middle">Rincian Uraian Tugas</th>
-                                                <th class="text-center" style="vertical-align: middle">Kegiatan</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 15%">Jabatan</th>
-                                                <th class="text-center" style="vertical-align: middle; width: 15%">Biaya</th>
-                                            </tr>
-                                            </thead>
-
-                                            <tbody>
-                                            <tr ng-repeat="kegiatan in filteredDataListKegiatan" ng-hide="filteredDataListKegiatan==0" class="text-center">
-                                                <td>{{$index + 1 + (numPerPageListKegiatan*currentPageListKegiatan)}}</td>
-                                                <td class="text-left">{{kegiatan.deskripsiUrtug}}</td>
-                                                <td class="text-left">{{kegiatan.ketKeg}}</td>
-                                                <td>{{kegiatan.statusPenanggungJawab}}</td>
-                                                <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
-                                            </tr>
-                                            <tr ng-show="filteredDataListKegiatan==0">
-                                                <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" ng-hide="filteredDataListKegiatan==0">
-                                <div class="col-md-12">
-                                    <div class="align-center">
-                                        <ul style="padding-left: 0px;">
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                    &lt; PREV
-                                                </button>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
-                                            </li>
-                                            <li style="display: inline-block;">
-                                                <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
-                                                    NEXT &gt;
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -201,6 +157,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="button" ng-click="ajuan.save()" class="btn btn-success waves-effect" data-dismiss="modal">Setujui</button>
-        <button type="button" ng-click="ajuan.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Cancel</button>
+        <button type="submit" ng-show="ajuan.isAjuan" class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Pilih Sebagai SKP Bulan {{ajuan.bulan}}</strong></button>
+        <button type="button" ng-click="ajuan.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
     </div>
+</form>
