@@ -3,8 +3,8 @@
     angular
     .module('eKinerja')
     .service('EkinerjaService',
-    ['$state', 'toastr', '$q', 'API', '$http', '$document', '$uibModal',
-    function ($state, toastr, $q, API, $http, $document, $uibModal) {
+    ['$state', 'toastr', '$q', 'API', '$http', '$document', '$uibModal', 'PengumpulanDataBebanKerjaService',
+    function ($state, toastr, $q, API, $http, $document, $uibModal, PengumpulanDataBebanKerjaService) {
         var service = {}; 
         
         service.checkCredential = function(){
@@ -100,6 +100,17 @@
                 if (array[i].jabatan.toLowerCase().search(jabatan.toLowerCase()) != -1) {
                     result.push(array[i]);
                 }
+            }
+            return result;
+        }
+
+        service.searchByNamaJabatan = function(namaJabatan, array){
+            var result = [];
+            for(var i = 0; i<array.length; i++){
+                if (array[i].namaJabatan.toLowerCase().search(namaJabatan.toLowerCase()) != -1) {
+                    result.push(array[i]);
+                }
+                return vm.dataPerilaku;
             }
             return result;
         }

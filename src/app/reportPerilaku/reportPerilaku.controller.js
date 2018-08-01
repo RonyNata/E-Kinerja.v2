@@ -11,7 +11,7 @@
 		var date = new Date(EkinerjaService.IndonesianYear(date), date.getMonth());
 		var milliseconds = date.getTime();
 		getAllPegawaiPerilaku();
-		// $scope.searchPerilaku = '';
+		$scope.searchNamaJabatan = '';
 		$scope.entries = 5;
         $scope.currentPageListPerilaku = 0;
 
@@ -19,8 +19,8 @@
 			vm.loading = true;
 			ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
 				function(responce){
-					var data = responce;
-					vm.dataPerilaku = angular.copy(data);
+					vm.data = responce;
+					vm.dataPerilaku = angular.copy(vm.data);
 					vm.loading = false;
 					paging();
 				}, function(errResponce){
@@ -97,13 +97,12 @@
 				})
 		}
 
-		// $scope.$watch('searchPerilaku', function(){
-  //         if($scope.searchPerilaku != ''){
-  //           $scope.currentPage = 0;
-  //           vm.dataPerilaku = EkinerjaService.searchByPerilaku($scope.searchPerilaku, responce);
-  //         }
-  //         paging();
-  //       })
+		$scope.$watch('searchNamaJabatan', function(){
+          if($scope.searchNamaJabatan != ''){
+            $scope.currentPageListPerilaku = 0;
+            vm.dataPerilaku = EkinerjaService.searchByNamaJabatan($scope.searchNamaJabatan, vm.data);
+          }
+        })
 
 		$scope.$watch('entries', function(){
           paging();
