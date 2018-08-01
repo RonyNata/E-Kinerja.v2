@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" ng-model="searchPerilaku" ng-required="true" placeholder="Cari berdasarkan Kegiatan...">
+                                    <input type="text" class="form-control" ng-model="searchNamaJabatan" ng-required="true" placeholder="Cari berdasarkan jabatan...">
                                     <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
                                 </div>
                             </div>
@@ -102,7 +102,7 @@
                                             <td class="text-center" style="font-weight: bold;">11</td>
                                             <td class="text-center" style="font-weight: bold;">12</td> 
                                         </tr>
-                                        <tr ng-repeat="perilaku in filteredDataListPerilaku" class="text-center">
+                                        <tr ng-repeat="perilaku in filteredDataListPerilaku | filter:searchNamaJabatan" class="text-center">
                                             <td>{{$index + 1 + (numPerPageListPerilaku*currentPageListPerilaku)}}</td>
                                             <td class="text-center">{{perilaku.namaPegawai}}</td>
                                             <td class="text-center">{{perilaku.namaJabatan}}</td>
