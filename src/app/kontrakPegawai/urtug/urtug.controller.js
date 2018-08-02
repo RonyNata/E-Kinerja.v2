@@ -7,10 +7,11 @@ angular.
 
     
     function UrtugController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $scope,
-      $uibModal, $document, $state, pegawai, PengumpulanDataBebanKerjaService, $timeout) {
+      $uibModal, $document, $state, pegawai, isPenilai, PengumpulanDataBebanKerjaService, $timeout) {
       	var vm = this;
 
         vm.pegawai = pegawai;
+        var penilai = isPenilai;debugger
 
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
           function(response){
@@ -34,7 +35,8 @@ angular.
               'kdJenisUrtug': urtug.kdJenisUrtug,
               'tahunUrtug': urtug.tahunUrtug,
               'bulanUrtug': urtug.bulanUrtug,
-              'nipPegawai': pegawai.nipPegawai
+              'nipPegawai': pegawai.nipPegawai,
+              'penilai': penilai
             };
             $uibModalInstance.close(data);
         }

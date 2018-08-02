@@ -13,7 +13,7 @@ angular.
 
       var eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
       switch(eselon){
-        case 'i' : case 'ii' : case 'iii' : vm.isEselon4 = false; break;
+        case 'i' : case 'ii' : case 'iii' : case 'xs': vm.isEselon4 = false; break;
         default : vm.isEselon4 = true; break;
       }
       EkinerjaService.checkCredential();
@@ -214,6 +214,9 @@ angular.
                   },
                   isDPA: function () {
                       return isDPA;
+                  },
+                  isEselon4:function(){
+                    return vm.isEselon4;
                   }
               }
           });

@@ -45,16 +45,16 @@
                                 <p style="margin-top: 10px">menit</p>
                             </div>
                         </div> -->
-                        <div class="col-md-12" style="margin-top: 10px">
+                        <div class="col-md-12" style="margin-top: 10px" ng-show="uptemp.isEselon4">
                             <div class="col-sm-4">
                                 <p><b>Urtug Atasan</b></p>
                             </div>
                             <div class="col-md-8">
                                 <div class="col-md-12">
-                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.penilai)" class="btn btn-success">Pilih Urtug Penilai</button>
+                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.penilai, true)" class="btn btn-success">Pilih Urtug Penilai</button><i class="material-icons">{{uptemp.isPenilai ? 'check' : 'remove'}}</i>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.atasanPenilai)" class="btn btn-success">Pilih Urtug Atasan Penilai</button>
+                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.atasanPenilai, false)" class="btn btn-success">Pilih Urtug Atasan Penilai</button><i class="material-icons">{{uptemp.isAtasanPenilai ? 'check' : 'remove'}}</i>
                                 </div>
                             </div>
                         </div> 

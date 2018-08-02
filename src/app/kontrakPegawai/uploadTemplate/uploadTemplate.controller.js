@@ -7,11 +7,14 @@
 
 
     function UploadTemplateController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, 
-        $scope, $state, urtug, isDPA, API, $http, $uibModal) {
+        $scope, $state, urtug, isDPA, isEselon4, API, $http, $uibModal) {
         var vm = this;
         vm.bulan = EkinerjaService.IndonesianMonth(new Date());
         vm.tahun = EkinerjaService.IndonesianYear(new Date());
         vm.loading = true;
+        vm.isPenilai = false;
+        vm.isEselon4 = isEselon4;
+        vm.isAtasanPenilai = false;
         vm.item = {};
         vm.data = {};
         
@@ -60,7 +63,7 @@
             })
         }
 
-        vm.openUrtug = function(pegawai, parentSelector){
+        vm.openUrtug = function(pegawai, isPenilai, parentSelector){debugger
             var parentElem = parentSelector ?
                 angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
             var modalInstance = $uibModal.open({
@@ -76,11 +79,16 @@
                 resolve: {
                     pegawai: function () {
                         return pegawai;
+                    },
+                    isPenilai: function(){
+                        return isPenilai;
                     }
                 }
             });
 
             modalInstance.result.then(function (data) {
+                if(data.penilai) vm.isPenilai = true;
+                else vm.isAtasanPenilai = true;
                 vm.data.daftarUrtugAtasan.push(data);
                 debugger
             }, function () {
