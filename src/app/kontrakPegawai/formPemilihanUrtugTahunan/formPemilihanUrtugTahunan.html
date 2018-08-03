@@ -32,7 +32,8 @@
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Sasaran</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
                                                 </tr>
@@ -59,6 +60,7 @@
                                                     <td ng-hide="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
                                                     <td ng-hide="pilihurtug.isAjuan">{{urtug.totalRealisasi}}</td>
                                                     <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="pilihurtug.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
+                                                    <td ng-show="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
                                                     <td>{{500 * urtug.targetKuantitas | number}}</td>
                                                 </tr>

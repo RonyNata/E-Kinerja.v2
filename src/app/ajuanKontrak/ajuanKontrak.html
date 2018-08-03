@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-check-square-o"></i> Persetujuan SKP Bulanan</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-check-square-o"></i> Pengaturan SKP Bulanan</li>
                     </ul>
                     <div class="tab-content">
                         <div class="row">
@@ -24,8 +24,23 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr ng-repeat="pgw in ajuankontrak.list_pegawai" ng-hide="ajuankontrak.list_pegawai==0">
-                                            <td class="text-center">{{$index + 1}}</td>
+                                        <tr>
+                                            <td class="text-center">1</td>
+                                            <td>{{ajuankontrak.pegawai.namaPegawai}}</td>
+                                            <td>{{ajuankontrak.pegawai.jabatan}}</td>
+                                            <td>{{ajuankontrak.pegawai.skp.length ? 'Sudah Diatur' : 'Belum Diatur'}}</td>
+                                            <td class="text-center">
+                                                <button type="button" ng-click="ajuankontrak.open(ajuankontrak.pegawai, 0)" ng-disabled="!ajuankontrak.pegawai.skp.length" class="{{ajuankontrak.pegawai.skp.length ? 'btn bg-blue waves-effect' : 'btn bg-gray-active waves-effect'}}"><i class="fa fa-eye" aria-hidden="true"></i>LIHAT SKP</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" ng-click="ajuankontrak.open(ajuankontrak.pegawai, 1)" class="btn bg-green waves-effect"><i class="fa fa-eye" aria-hidden="true"></i>ATUR SKP</button>
+                                            </td>
+                                        </tr>   
+                                        <tr ng-hide="ajuankontrak.pegawai_atasan==0">
+                                            <td colspan="6" style="font-size: 16px"><strong>Pegawai Atasan</strong></td>
+                                        </tr> 
+                                        <tr ng-repeat="pgw in ajuankontrak.pegawai_atasan" ng-hide="ajuankontrak.pegawai_atasan==0">
+                                            <td class="text-center">{{$index + 2}}</td>
                                             <td>{{pgw.namaPegawai}}</td>
                                             <td>{{pgw.jabatan}}</td>
                                             <td>{{pgw.skp.length ? 'Sudah Diatur' : 'Belum Diatur'}}</td>
@@ -36,8 +51,23 @@
                                                 <button type="button" ng-click="ajuankontrak.open(pgw, 1)" class="btn bg-green waves-effect"><i class="fa fa-eye" aria-hidden="true"></i>ATUR SKP</button>
                                             </td>
                                         </tr>
-                                        <tr ng-show="ajuankontrak.list_pegawai==0">
-                                            <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                        <tr ng-hide="ajuankontrak.list_pegawai==0">
+                                            <td colspan="6" style="font-size: 16px"><strong>Pegawai Bawahan</strong></td>
+                                        </tr>
+                                        <tr ng-repeat="pgw in ajuankontrak.list_pegawai" ng-hide="ajuankontrak.list_pegawai==0">
+                                            <td class="text-center">{{ajuankontrak.pegawai_atasan.length + $index + 2}}</td>
+                                            <td>{{pgw.namaPegawai}}</td>
+                                            <td>{{pgw.jabatan}}</td>
+                                            <td>{{pgw.skp.length ? 'Sudah Diatur' : 'Belum Diatur'}}</td>
+                                            <td class="text-center">
+                                                <button type="button" ng-click="ajuankontrak.open(pgw, 0)" ng-disabled="!pgw.skp.length" class="{{pgw.skp.length ? 'btn bg-blue waves-effect' : 'btn bg-gray-active waves-effect'}}"><i class="fa fa-eye" aria-hidden="true"></i>LIHAT SKP</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" ng-click="ajuankontrak.open(pgw, 1)" class="btn bg-green waves-effect"><i class="fa fa-eye" aria-hidden="true"></i>ATUR SKP</button>
+                                            </td>
+                                        </tr>
+                                        <tr ng-show="ajuankontrak.list_pegawai==0 && ajuankontrak.pegawai_atasan==0">
+                                            <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                         </tr>
                                         </tbody>
                                     </table>

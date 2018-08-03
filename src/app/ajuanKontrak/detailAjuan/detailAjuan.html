@@ -29,7 +29,8 @@
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">{{ajuan.isAjuan ? 'Pilih' : 'No'}}</th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Maksimal</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
                                                 </tr>
@@ -56,6 +57,7 @@
                                                     <td ng-hide="ajuan.isAjuan">{{urtug.realisasiKuantitas}}</td>
                                                     <td ng-hide="ajuan.isAjuan">{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
                                                     <td ng-show="ajuan.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="ajuan.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
+                                                    <td ng-show="ajuan.isAjuan">{{urtug.kuantitas - urtug.totalRealisasi}}</td>
                                                     <td ng-show="ajuan.isAjuan">{{urtug.waktu + ' Bulan'}}</td>
                                                     <td ng-show="ajuan.isAjuan">{{500 * urtug.targetKuantitas | number}}</td>
                                                 </tr>
