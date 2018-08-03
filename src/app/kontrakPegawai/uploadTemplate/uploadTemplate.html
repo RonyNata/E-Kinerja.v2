@@ -49,13 +49,21 @@
                             <div class="col-sm-4">
                                 <p><b>Urtug Atasan</b></p>
                             </div>
-                            <div class="col-md-8">
-                                <div class="col-md-12">
-                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.penilai, true)" class="btn btn-success">Pilih Urtug Penilai</button><i class="material-icons">{{uptemp.isPenilai ? 'check' : 'remove'}}</i>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="button" ng-click="uptemp.openUrtug(uptemp.atasanPenilai, false)" class="btn btn-success">Pilih Urtug Atasan Penilai</button><i class="material-icons">{{uptemp.isAtasanPenilai ? 'check' : 'remove'}}</i>
-                                </div>
+                            <div class="col-sm-8">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <button type="button" ng-click="uptemp.openUrtug(uptemp.penilai, true)" style="font-size: 13px;" class="btn btn-success">Pilih Urtug Penilai</button>
+                                        </td>
+                                        <td style="padding-left: 10px;">
+                                            <button type="button" ng-click="uptemp.openUrtug(uptemp.atasanPenilai, false)" style="font-size: 13px;" class="btn btn-success">Pilih Urtug Atasan Penilai</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center"><i class="material-icons">{{uptemp.isPenilai ? 'check' : 'remove'}}</i></td>
+                                        <td align="center"><i class="material-icons">{{uptemp.isAtasanPenilai ? 'check' : 'remove'}}</i></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div> 
                         <div class="col-md-12" style="margin-top: 10px">
