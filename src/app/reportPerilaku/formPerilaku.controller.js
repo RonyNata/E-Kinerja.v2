@@ -8,8 +8,8 @@ angular.
     function FormPerilakuController(perilaku, $scope, ReportPerilakuService, $uibModalInstance, EkinerjaService) {
       	var vm = this;
             vm.pegawai = angular.copy(perilaku);
-            vm.pegawai.nipPegawai = vm.pegawai.rekapitulasiPerilakuKerjaPegawaiId.nipPegawai;
-            vm.pegawai.bulanTahunRekapitulasi = vm.pegawai.rekapitulasiPerilakuKerjaPegawaiId.bulanTahunRekapulasi;
+            vm.pegawai.nipPegawai = vm.pegawai.nipPegawai;
+            vm.pegawai.bulanTahunRekapitulasi = vm.pegawai.bulanTahunRekapulasi;
             console.log(vm.pegawai);
             $scope.manipulasi = vm.pegawai.dataManipulasiData;
 
