@@ -4,11 +4,12 @@
 angular.
 	module('eKinerja')
 	.controller('OpenUrtugController', OpenUrtugController);
-
     
     function OpenUrtugController(EkinerjaService, KontrakPegawaiService, $uibModalInstance, $scope,
       $uibModal, $document, $state, laporan, PengumpulanDataBebanKerjaService, $timeout) {
       	var vm = this;
+        $scope.entries = 5;
+        $scope.currentPage = 0;
         vm.pgw = 0;
         vm.daftarUrtugAtasan = [];
         vm.nama = $.parseJSON(sessionStorage.getItem('credential')).namaPegawai;
@@ -137,7 +138,6 @@ angular.
               'bulanUrtug': urtug.bulanUrtug,
               'nipPegawai': pgw.nipPegawai
             });
-debugger
           vm.pgw += 1;
 
           if(vm.pgw < 5)
@@ -147,7 +147,6 @@ debugger
             else vm.dataLook = vm.atasanPenilai.skp;
             pagingUrtug();
           }, 499);
-          else vm.save();
         }
 
         vm.save = function(){
@@ -161,15 +160,22 @@ debugger
             })  
         }
 
+        $scope.$watch('entries', function(){
+          // if($scope.searchNip != '')
+          //  vm.dataLook = EkinerjaService.searchByNip($scope.searchNip, data);
+          paging();
+          debugger
+        })
+
         function pagingUrtug(){ 
           $scope.filteredData = [];
-          $scope.currentPage = 0;
-          $scope.numPerPage = 5;
-          $scope.maxSizeTarget = Math.ceil(vm.dataLook.length/$scope.numPerPage);
+          // $scope.currentPage = 0;
+          $scope.numPerPage = $scope.entries;
+          $scope.maxSize = Math.ceil(vm.dataLook.length/$scope.numPerPage);
           function pageUrtug(){
-            $scope.page = [];
+            $scope.pageUrtug = [];
             for(var i = 0; i < vm.dataLook.length/$scope.numPerPage; i++){
-                $scope.page.push(i+1);
+                $scope.pageUrtug.push(i+1);
             }
           }
           pageUrtug();
@@ -178,7 +184,7 @@ debugger
           }
 
           $scope.max = function(){
-            if($scope.currentPage >= $scope.maxSizeTarget - 1)
+            if($scope.currentPage >= $scope.maxSize - 1)
                 return true;
             else return false;
           }

@@ -1,50 +1,80 @@
 <div class="modal-header background-pop-up">
-    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Pilih Uraian Tugas</h3>
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">Pilih Uraian Tugas Atasan</h3>
 </div>
 <div class="modal-body" id="modal-body">
     <div class="form-body">
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 90%;text-align: center;">Nama</th>
+                                <th style="width: 10%">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{openurtug.nama}}</td>
+                                <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 1 ? 'check' : 'remove'}}</i></td>
+                            </tr>
+                            <tr>
+                                <td>{{openurtug.penilai.namaPegawai}}</td>
+                                <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 3 ? 'check' : 'remove'}}</i></td>
+                            </tr>
+                            <tr>
+                                <td>{{openurtug.atasanPenilai.namaPegawai}}</td>
+                                <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 5 ? 'check' : 'remove'}}</i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="table table-bordered">
                     <div class="animate-show-hide" ng-show="openurtug.pgw == 0 || openurtug.pgw == 2 || openurtug.pgw == 4">
-                        <p>{{openurtug.pgw == 0 ? openurtug.nama : openurtug.pgw == 2 ? openurtug.penilai.namaPegawai : openurtug.pgw == 4 ? openurtug.atasanPenilai.namaPegawai : ''}}</p>
                         <table class="table table-bordered">
                             <thead class="bg-table">
                             <tr>
-                                <th style="width: 30%; text-align: center; vertical-align: middle">
+                                <th style="width: 30%; text-align: center; vertical-align: middle" colspan="2">
                                     <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
                                 </th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr ng-repeat="data in filteredData" ng-click="openurtug.pilihUrtug(data, openurtug.pgw == 2 ? openurtug.penilai : openurtug.atasanPenilai)">
+                            <tr>
+                                <td style="font-weight: bold;text-align: center;width: 90%">Nama Uraian Tugas {{openurtug.pgw == 0 ? openurtug.nama : openurtug.pgw == 2 ? openurtug.penilai.namaPegawai : openurtug.pgw == 4 ? openurtug.atasanPenilai.namaPegawai : ''}}</td>
+                                <td style="font-weight: bold;text-align: center;width: 10%">Action</td>
+                            </tr>
+                            <tr ng-repeat="data in filteredData" >
                                 <td style="vertical-align: middle">{{data.urtug}}</td>
+                                <td align="center">
+                                    <button class="btn bg-blue waves-effect" ng-click="openurtug.pilihUrtug(data, openurtug.pgw == 2 ? openurtug.penilai : openurtug.atasanPenilai)" title="Tambahkan Urtug"><i class="fa fa-plus"></i></button>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="align-center">
-                            <ul style="padding-left: 0px;">
-                                <li style="display: inline-block;">
-                                    <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
-                                        &lt; PREV
-                                    </button>
-                                </li>
-                                <li style="display: inline-block;">
-                                    <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
-                                </li>
-                                <li style="display: inline-block;">
-                                    <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
-                                        NEXT &gt;
-                                    </button>
-                                </li>
-                            </ul>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="align-center">
+                                    <ul style="padding-left: 0px;">
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                                &lt; PREV
+                                            </button>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPage+1}} Of {{maxSize}}</span>
+                                        </li>
+                                        <li style="display: inline-block;">
+                                            <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                                NEXT &gt;
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,6 +83,7 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" ng-click="openurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
+    <button type="button" ng-click="openurtug.save()" class="btn btn-info" data-dismiss="modal"><strong>Save</strong></button>
+    <button type="button" ng-click="openurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Close</strong></button>
 
 </div>
