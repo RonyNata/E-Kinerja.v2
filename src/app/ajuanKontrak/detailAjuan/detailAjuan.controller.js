@@ -6,14 +6,16 @@ angular.
 	.controller('DetailAjuanController', DetailAjuanController);
 
     
-    function DetailAjuanController(nipPegawai, isAjuan, urtug, $scope, EkinerjaService, nama, 
+    function DetailAjuanController(nipPegawai, isAjuan, urtug, dpa, $scope, EkinerjaService, nama, 
       KontrakPegawaiService, $uibModalInstance, $uibModal, $document) {
       	var vm = this;
 
         $scope.urtugnon = false;
         $scope.dpaurtug = false;
         vm.urtugNonDpa = angular.copy(urtug);
+        vm.urtugDpa = angular.copy(dpa);
         pagingUrtugNonDpa();
+        pagingUrtugDpa();
         vm.nama = nama;
         vm.isAjuan = isAjuan;
         vm.bulan = EkinerjaService.IndonesianMonth(new Date()).toUpperCase();
@@ -91,17 +93,36 @@ angular.
 
 
           // console.log(JSON.stringify(vm.urtugDpa));
+          if(vm.urtugDpa.length != 0 || vm.urtugDpa == undefined){
+            for(var i = 0; i < vm.urtugDpa.length; i++){
+              if(vm.urtugDpa[i].checked){
+                vm.urtugDpa[i].bulan = (new Date()).getMonth();
+                dpa.push(vm.urtugDpa[i]);
+              }
+            }
+            if(dpa.length) 
+            KontrakPegawaiService.ApproveKegiatan(dpa).then(
+              function(response){
+                EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
+                statDpa = true;
+                successChecker(statDpa, statNon);
+              }, function(errResponse){
+                EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
+            })
+          else statDpa = true;
+          }
+          else statDpa = true;
 
           
           KontrakPegawaiService.ChooseUrtugBulanan(data).then(
             function(response){
               EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");
-              // statNon = true;
-              // successChecker(statDpa, statNon);
+              statNon = true;
+              successChecker(statDpa, statNon);
               $uibModalInstance.close();
             }, function(errResponse){
               EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
-            })
+            });
         }
 
         function successChecker(dpa,non){

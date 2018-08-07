@@ -9,11 +9,11 @@ angular.
     function AjuanKontrakController(EkinerjaService, KontrakPegawaiService, AjuanKontrakService, $document, $uibModal, $scope) {
         var vm = this;
         vm.loading = true;
-        vm.list_pegawai = [];
         vm.pegawai_atasan = [];
         createSelfData();
 
         function getPegawaiPengaju(){
+          vm.list_pegawai = [];
           AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai, (new Date()).getMonth()).then(
             function(response){
@@ -68,6 +68,7 @@ angular.
             'nipPegawai': $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             'kdJabatan': $.parseJSON(sessionStorage.getItem('credential')).kdJabatan,
             'namaPegawai': $.parseJSON(sessionStorage.getItem('credential')).namaPegawai,
+            'kdUnitKerja': $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
             'jabatan': $.parseJSON(sessionStorage.getItem('credential')).jabatan
           };
           getUrtug(vm.pegawai.nipPegawai, vm.pegawai.kdJabatan, vm.pegawai);
@@ -90,34 +91,24 @@ angular.
             }
           );
 
-          // if(isEselon4)
-            // KontrakPegawaiService.GetUrtugDPA(nipPegawai,
-            //   $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,kdJabatan).then(
-            //   function(response){
-            //     vm.urtugDpa = response; debugger
-            //     for(var i = 0; i < response.length; i++){ 
-            //       vm.urtugDpa[i].checked = false;
-            //       vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
-            //     }
-            //       pagingUrtugDpa();
-            //   }, function(errResponse){
+          KontrakPegawaiService.GetUrtugKegiatanApproval(
+              nipPegawai,pegawai.kdUnitKerja,kdJabatan).then(
+              function(response){
+                vm.urtugDpa = response; debugger
+                for(var i = 0; i < vm.urtugDpa.length; i++){ 
+                  vm.urtugDpa[i].checked = false;
+                  vm.urtugDpa[i].targetKuantitas = 0;
+                  vm.urtugDpa[i].waktu = 0;
+                  vm.urtugDpa[i].targetKualitas = 100;
+                  vm.urtugDpa[i].biaya = vm.urtugDpa[i].paguAnggaran;
+                  vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].paguAnggaran);
+                }
+                pegawai.urtugDpa = vm.urtugDpa;
+                  // pagingUrtugDpa();
+              }, function(errResponse){
 
-            //   }
-            // );
-          // else
-          //   KontrakPegawaiService.GetUrtugProgram(
-          //     $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-          //     $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-          //     function(response){
-          //       vm.urtugDpa = response; debugger
-          //       for(var i = 0; i < response.length; i++){ 
-          //         vm.urtugDpa[i].checked = false;
-          //         vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
-          //       }
-          //     }, function(errResponse){
-
-          //     }
-          //   );
+              }
+            );
         }
 
         function getUrtugByJabatan(nipPegawai, pegawai){
@@ -135,10 +126,15 @@ angular.
           )
         }
 
-        vm.open = function (pegawai, isAjuan, parentSelector) {
-          if(isAjuan)
+        vm.open = function (pegawai, isAjuan, parentSelector) {debugger
+          if(isAjuan){
             var utg = pegawai.urtugNonDpa;
-          else var utg = pegawai.skp;
+            var dpa = pegawai.urtugDpa;
+          }
+          else {
+            var utg = pegawai.skp;
+            var dpa = pegawai.skpDpa;
+          }
           var parentElem = parentSelector ? 
             angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
           var modalInstance = $uibModal.open({
@@ -159,6 +155,9 @@ angular.
               },
               urtug: function(){
                 return utg;
+              },
+              dpa: function(){
+                return dpa;
               },
               nipPegawai: function(){
                 return pegawai.nipPegawai;

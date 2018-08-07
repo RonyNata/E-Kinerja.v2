@@ -57,8 +57,8 @@ angular.
           // if(isEselon4)
             KontrakPegawaiService.GetUrtugDPA(
               $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-              $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-              $.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
+              $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, 
+              (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
               function(response){
                 vm.urtugDpa = response; debugger
                 for(var i = 0; i < response.length; i++){ 

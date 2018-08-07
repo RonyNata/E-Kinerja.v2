@@ -10,9 +10,9 @@
                         <li role="presentation" class="active">
                             <a href="#nondpa" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
                         </li>
-                        <!-- <li role="presentation">
+                        <li role="presentation">
                             <a href="#dpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
-                        </li> -->
+                        </li>
                     </ul>
 
                     <div class="tab-content">
@@ -28,7 +28,7 @@
                                                 <tr ng-show="ajuan.isAjuan">
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">{{ajuan.isAjuan ? 'Pilih' : 'No'}}</th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Satuan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Output Maksimal</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div role="tabpanel" class="tab-pane fade in" id="dpa">
+                        <div role="tabpanel" class="tab-pane fade in" id="dpa">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="checkbox space-after">
@@ -103,11 +103,10 @@
                                                 <tr>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{ajuan.isAjuan ? 'Pilih' : 'No'}}</label></th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Jumlah Kegiatan</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
-                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 20%; text-align: center; vertical-align: middle">Satuan</th>
+                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
                                                     <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Action</th>
+                                                    <!-- <th style="width: 5%; text-align: center; vertical-align: middle">Action</th> -->
                                                 </tr>
                                             </thead>
 
@@ -115,12 +114,11 @@
                                                 <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
                                                     <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
                                                     <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
-                                                    <td class="text-left">{{dpa.urtug}}</td>
-                                                    <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
-                                                    <td>{{dpa.kualitas + '%'}}</td>
-                                                    <td>{{dpa.waktu + ' Bulan'}}</td>
+                                                    <td class="text-left">{{dpa.ketKeg}}</td>
+                                                    <td> <input class="form-control" type="text" ng-model="dpa.targetSatuanKuantitas"></td>
+                                                    <td> <input class="form-control" type="number" ng-model="dpa.targetKuantitas"></td>
                                                     <td>{{'Rp. '+dpa.biayaRp}}</td>
-                                                    <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td>
+                                                    <!-- <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td> -->
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugDpa==0">
                                                     <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
@@ -151,7 +149,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>

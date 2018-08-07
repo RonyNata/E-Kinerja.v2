@@ -71,9 +71,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugDPA = function (nipPegawai, kdUnitKerja, kdJabatan) {
-            var deferred = $q.defer();console.log(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + kdJabatan);
-            $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + kdJabatan).then(
+        service.GetUrtugDPA = function (nipPegawai, kdUnitKerja, bulan, tahun) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-urtug-dpa-ajuan-by-pegawai/' + nipPegawai + '/' + kdUnitKerja + '/' + bulan + '/' + tahun).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -87,19 +87,6 @@
         service.GetUrtugProgram = function (nipPegawai, kdUnitKerja) {
             var deferred = $q.defer();
             $http.get(API + 'get-urtug-program-pegawai/' + nipPegawai + '/' + kdUnitKerja).then(
-                function (response){
-                    deferred.resolve(response.data);
-                },
-                function(errResponse){
-                    deferred.reject(errResponse);
-                }
-            );
-            return deferred.promise;
-        };
-
-        service.GetUrtugKegiatan = function (data) {
-            var deferred = $q.defer();
-            $http.post(API + 'get-kegiatan-pegawai-by-urtug/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -149,9 +136,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja, kdJabatan) {
-            var deferred = $q.defer();
-            $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja + '/' + kdJabatan).then(
+        service.GetUrtugKegiatan = function(nip, kdUnitKerja, bulan, tahun) {
+            var deferred = $q.defer();console.log('get-kegiatan-bulanan-pegawai/' + nip + '/' + kdUnitKerja + '/' + bulan + '/' + tahun);
+            $http.get(API + 'get-kegiatan-bulanan-pegawai/' + nip + '/' + kdUnitKerja + '/' + bulan + '/' + tahun).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -162,9 +149,9 @@
             return deferred.promise;
         };
 
-        service.GetUrtugProgramApproval = function(nip, kdUnitKerja) {
+        service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja, kdJabatan) {
             var deferred = $q.defer();
-            $http.get(API + 'get-urtug-program-pegawai-approval/' + nip + '/' + kdUnitKerja).then(
+            $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja + '/' + kdJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },
@@ -203,7 +190,7 @@
 
         service.ApproveKegiatan = function (data) {
             var deferred = $q.defer();
-            $http.put(API + 'approve-urtug-kegiatan/', data).then(
+            $http.post(API + 'create-kegiatan-bulanan-pegawai/', data).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

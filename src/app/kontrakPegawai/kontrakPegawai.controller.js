@@ -22,15 +22,15 @@ angular.
       // vm.list_urtug = [];
       vm.pegawai = $.parseJSON(sessionStorage.getItem('credential'));
 
+      getUrtugKegiatanApproval();
       getUrtugByJabatan();
       getPejabatPenilai();
-      getUrtugKegiatanApproval();
       getStatAjuan();
       // getUrtugByJabatan();
 
       vm.getSKP = function(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
-          function(response){debugger
+          function(response){
             var doc = TemplateLaporanSKPService.template(response, vm.pegawai, vm.penilai, EkinerjaService.IndonesianMonth(new Date()),
               EkinerjaService.IndonesianYear(new Date()));
             EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
@@ -84,7 +84,7 @@ angular.
       function getUrtugByJabatan(){
         KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
           function(response){
-            vm.target = response;debugger
+            vm.target = response;
             if(response.length != 0)
               vm.statusKontrak = true;
             for(var i = 0; i<vm.target.length; i++)
@@ -111,10 +111,10 @@ angular.
 
       function getUrtugKegiatanApproval(){
         // if(vm.isEselon4)
-          KontrakPegawaiService.GetUrtugKegiatanApproval(
+          KontrakPegawaiService.GetUrtugKegiatan(
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
-            $.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
+            (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
             function(response){
               vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)
@@ -123,18 +123,6 @@ angular.
             }, function(errResponse){
               // vm.penilai = "";
             })
-        // else
-        //   KontrakPegawaiService.GetUrtugProgramApproval(
-        //   $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-        //   $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-        //   function(response){
-        //     vm.kegiatan = response;
-        //     for(var i = 0; i < response.length; i++)
-        //       vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
-        //       pagingKegiatan();
-        //   }, function(errResponse){
-        //     // vm.penilai = "";
-        //   })
       }
 
       vm.openUrtug = function (ajuan, parentSelector) {
