@@ -117,6 +117,7 @@ angular.
               for(var i = 0; i<response.length; i++)
                 response[i].biayaRp = EkinerjaService.FormatRupiah(response[i].biaya);
               pegawai.skp = response;
+              getUrtugKegiatanApproval(pegawai);
               // vm.dataLook = response;
               // debugger
             }, function(errResponse){
@@ -124,6 +125,19 @@ angular.
 
             }
           )
+        }
+
+        function getUrtugKegiatanApproval(pegawai){
+          // if(vm.isEselon4)
+          KontrakPegawaiService.GetUrtugKegiatan(pegawai.nipPegawai,pegawai.kdUnitKerja,
+            (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
+            function(response){
+              pegawai.skpDpa = response;debugger
+              for(var i = 0; i < response.length; i++)
+                pegawai.skpDpa[i].biaya = EkinerjaService.FormatRupiah(pegawai.skpDpa[i].biaya);
+            }, function(errResponse){
+              // vm.penilai = "";
+            })
         }
 
         vm.open = function (pegawai, isAjuan, parentSelector) {debugger

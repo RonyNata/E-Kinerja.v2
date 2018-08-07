@@ -118,7 +118,7 @@ angular.
             function(response){
               vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)
-                vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
+                vm.kegiatan[i].biaya = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
                 pagingKegiatan();
             }, function(errResponse){
               // vm.penilai = "";

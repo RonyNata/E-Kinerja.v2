@@ -34,7 +34,6 @@
         vm.tahun = parseInt(EkinerjaService.IndonesianYear(new Date()));
 
         getLaporanBawahan();
-        getPerintahHistory();
 
         vm.search = function(){
             getLaporanBawahan();
@@ -498,8 +497,6 @@
                     laporan.loading = false;
                 })
         }
-
-        getSurat();
 
         function getSurat(){
             vm.suratMasuk = [];
