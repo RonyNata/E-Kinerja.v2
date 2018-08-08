@@ -59,18 +59,19 @@
                                             <th class="text-center" style="width: 5%; vertical-align: middle" rowspan="2">No</th>
                                             <th class="text-center" style="vertical-align: middle" rowspan="2">Nama</th>
                                             <th class="text-center" style="vertical-align: middle" rowspan="2">Jabatan</th>
-                                            <th class="text-center" style="vertical-align: middle" colspan="2">Tidak Hadir (Hari)</th>
+                                            <th class="text-center" style="vertical-align: middle" rowspan="2">Detail</th>
+                                            <!-- <th class="text-center" style="vertical-align: middle" colspan="2">Tidak Hadir (Hari)</th>
                                             <th class="text-center" style="vertical-align: middle" colspan="2">Perekaman Datang/Pulang Saja/Datang Terlambat dan Pulang Sebelum Waktunya (menit)</th>
                                             <th class="text-center" style="vertical-align: middle" colspan="2">Tidak Hadir Apel</th>
                                             <th class="text-center" style="vertical-align: middle" colspan="2">Tidak Hadir Rapat/Sidang Paripurna (kali)</th>
                                             <th class="text-center" style="vertical-align: middle" colspan="2">Razia Gerakan Disiplin Aparatur (kali)/Pelanggaran Disiplin lain</th>
                                             <th class="text-center" style="vertical-align: middle" colspan="2">Manipulasi Data Kinerja</th>
                                             <th class="text-center" style="vertical-align: middle">Total Faktor Pengurang TPP</th>
-                                            <th class="text-center" style="vertical-align: middle">Nilai (Kebalikan dari pengurangan)</th>
+                                            <th class="text-center" style="vertical-align: middle">Nilai (Kebalikan dari pengurangan)</th> -->
                                             <th class="text-center" style="vertical-align: middle" rowspan="2">Action</th>
                                         </tr>
                                         <tr>
-                                            <th class="text-center" style="vertical-align: middle">Data</th>
+                                            <!-- <th class="text-center" style="vertical-align: middle">Data</th>
                                             <th class="text-center" style="vertical-align: middle">Nilai</th>
                                             <th class="text-center" style="vertical-align: middle">Data</th>
                                             <th class="text-center" style="vertical-align: middle">Nilai</th>
@@ -83,13 +84,13 @@
                                             <th class="text-center" style="vertical-align: middle">Data</th>
                                             <th class="text-center" style="vertical-align: middle">Nilai</th>
                                             <th class="text-center" style="vertical-align: middle">Jumlah(Σ)</th>
-                                            <th class="text-center" style="vertical-align: middle">100-Σ Faktor</th>
+                                            <th class="text-center" style="vertical-align: middle">100-Σ Faktor</th> -->
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                         <tr  class="text-center">
-                                            <td class="text-center" style="font-weight: bold;">1</td>
+                                            <!-- <td class="text-center" style="font-weight: bold;">1</td>
                                             <td class="text-center" style="font-weight: bold;">2</td>
                                             <td class="text-center" style="font-weight: bold;">3</td>
                                             <td class="text-center" colspan="2" style="font-weight: bold;">4</td>
@@ -100,13 +101,13 @@
                                             <td class="text-center" colspan="2" style="font-weight: bold;">9</td>
                                             <td class="text-center" style="font-weight: bold;">10</td>
                                             <td class="text-center" style="font-weight: bold;">11</td>
-                                            <td class="text-center" style="font-weight: bold;">12</td> 
+                                            <td class="text-center" style="font-weight: bold;">12</td>  -->
                                         </tr>
                                         <tr ng-repeat="perilaku in filteredDataListPerilaku | filter:searchNamaJabatan" class="text-center">
                                             <td>{{$index + 1 + (numPerPageListPerilaku*currentPageListPerilaku)}}</td>
                                             <td class="text-center">{{perilaku.namaPegawai}}</td>
                                             <td class="text-center">{{perilaku.namaJabatan}}</td>
-                                            <td class="text-center">{{perilaku.dataHadir}}</td>
+                                            <!-- <td class="text-center">{{perilaku.dataHadir}}</td>
                                             <td class="text-center">{{perilaku.nilaiHadir}}</td>
                                             <td class="text-center">{{perilaku.dataPerekamanDatangPulang}}</td>
                                             <td class="text-center">{{perilaku.nilaiPerekamanDatangPulang}}</td>
@@ -119,7 +120,10 @@
                                             <td class="text-center">{{perilaku.dataManipulasiData ? 'iya' : 'tidak' }}</td>
                                             <td class="text-center">{{perilaku.nilaiManipulasiData ? '1' : '0'}}</td>
                                             <td class="text-center">{{perilaku.totalFaktorPeuranganTpp}}</td>
-                                            <td class="text-center">{{perilaku.nilaiKebalikan}}</td>
+                                            <td class="text-center">{{perilaku.nilaiKebalikan}}</td> -->
+                                            <td class="text-center">
+                                                <button type="button" ng-click="reportPerilaku.opendetail(perilaku)" class="btn btn-info btn waves waves-effect"><i class="fa fa-search" aria-hidden="true"></i> Detail</button>
+                                            </td>
                                             <td class="text-center">
                                                 <button type="button" ng-click="reportPerilaku.open(perilaku)" class="btn btn-success btn waves waves-effect"><i class="fa fa-plus" aria-hidden="true"></i> Input</button>
                                             </td>
@@ -135,15 +139,15 @@
                                         <ul style="padding-left: 0px;">
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="padListPerilaku(-1)" ng-disabled="currentPageListPerilaku==0" aria-label="Use Android" style="cursor: pointer;">
-                                                    &lt; PREV
+                                                    &lt; Sebelumnya
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListPerilaku+1}} Of {{maxSizeListPerilaku}}</span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageListPerilaku+1}} Dari {{maxSizeListPerilaku}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="padListPerilaku(1)" ng-disabled="maxListPerilaku()" aria-label="Use Android" style="cursor: pointer;">
-                                                    NEXT &gt;
+                                                    Selanjutnya &gt;
                                                 </button>
                                             </li>
                                         </ul>

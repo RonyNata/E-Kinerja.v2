@@ -100,22 +100,22 @@
                                             </thead>
 
                                             <tbody>
-                                            <tr ng-repeat="ambil in penilaian.sortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
+                                            <tr ng-repeat="ambil in filteredDataSortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
                                                 <td style="vertical-align: middle">{{$index + 1 }}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.keteranganTemplateLain}}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                 <td style="vertical-align: middle">{{ambil.status}}</td>
                                                 <td style="vertical-align: middle; width: 2%">
-                                                    <button type="button" style="border-radius: 50%" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-blue waves-effect'}}" ng-click="penilaian.teruskanLaporan(ambil)" ng-disabled="ambil.statusPenilaian !=1" ng-hide="penilaian.isKepalaSKPD"><i class="fa fa-forward"></i></span></button>
+                                                    <button type="button" style="border-radius: 50%" class="{{ambil.statusPenilaian !=1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.teruskanLaporan(ambil)" ng-disabled="ambil.statusPenilaian !=1" title="Teruskan" ng-hide="penilaian.isKepalaSKPD"><i class="fa fa fa-check"></i></span></button>
                                                     <button type="button" class="{{ambil.statusApproval ==1 || ambil.statusPenilaian != 1 ? 'btn bg-gray-active waves-effect' : 'btn bg-green waves-effect'}}" ng-click="penilaian.approveReport(ambil.kdSurat)" ng-disabled="ambil.statusApproval ==1 || ambil.statusPenilaian != 1" ng-show="penilaian.isKepalaSKPD"><i class="fa fa-paint-brush"></i><span> TANDATANGAN</span></button>
                                                 </td>
                                                 <td style="vertical-align: middle; width: 2%">
-                                                    <button type="button" style="border-radius: 50%" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading"><i class="fa fa-file-pdf-o"></i></button>
+                                                    <button type="button" style="border-radius: 50%" class="btn bg-purple waves-effect" ng-click="penilaian.getDocument(ambil, 1)" ng-hide="ambil.loading" title="File Bawahan"><i class="fa fa-file-pdf-o"></i></button>
                                                     <button type="button" class="btn btn-secondary" ng-show="ambil.loading" disabled>MOHON TUNGGU...</button>
                                                 </td>
                                                 <td style="vertical-align: middle; width: 2%">
-                                                    <button type="button" style="border-radius: 50%" class="{{ambil.statusPenilaian !=1 || ambil.statusApproval ==1? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1 || ambil.statusApproval ==1"><i class="fa fa-times"></i></button>
+                                                    <button type="button" style="border-radius: 50%" class="{{ambil.statusPenilaian !=1 || ambil.statusApproval ==1? 'btn bg-gray-active waves-effect' : 'btn bg-red waves-effect'}}" ng-click="penilaian.tolak(ambil)" ng-disabled="ambil.statusPenilaian !=1 || ambil.statusApproval ==1" title="Tolak"><i class="fa fa-times"></i></button>
                                                 </td>
                                             </tr>
                                             <tr ng-show="penilaian.sortLaporan==0">
@@ -124,7 +124,6 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="align-center">

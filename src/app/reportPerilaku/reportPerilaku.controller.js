@@ -83,6 +83,35 @@
 
 		}
 
+		vm.opendetail = function(perilaku, parentSelector) {
+			var parentElem = parentSelector ?
+			angular.element($doscument[0].querySelector('modal-demo' + parentSelector)) : undefined;
+			var modalInstance = $uibModal.open({
+				animation: true,
+		        ariaLabelledBy: 'modal-title',
+		        ariaDescribedBy: 'modal-body',
+		        templateUrl: 'app/reportPerilaku/detailPerilaku/detailPerilaku.html',
+		        controller: 'DetailPerilakuController',
+		        controllerAs: 'detail_perilaku',
+		        size: 'lg',
+		        appendTo: parentElem,
+		        resolve: {
+		        	perilaku:function () {
+		        		return perilaku;
+		        	}
+		        }
+			});
+
+			modalInstance.result.then(function () {		      	
+		      	getAllPegawaiPerilaku()
+		        // vm.selected = selectedItem;
+		      }, function () {
+		      	// showToastrFailed('menambahkan data');
+		        // $log.info('Modal dismissed at: ' + new Date());
+		      });
+
+		}
+
 		vm.getSP = function(){
 			var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiDinas);
 			var pgwSKPD = EkinerjaService.findPegawaiByNip(vm.verifikator, vm.pegawaiDinas);
