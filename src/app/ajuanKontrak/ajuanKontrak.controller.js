@@ -9,7 +9,6 @@ angular.
     function AjuanKontrakController(EkinerjaService, KontrakPegawaiService, AjuanKontrakService, $document, $uibModal, $scope) {
         var vm = this;
         vm.loading = true;
-        vm.pegawai_atasan = [];
         createSelfData();
 
         function getPegawaiPengaju(){
@@ -34,6 +33,7 @@ angular.
         }
 
         function getPegawaiAtasan(){
+          vm.pegawai_atasan = [];
           KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
             function(response){
               response.namaPegawai = response.nama;
@@ -117,6 +117,7 @@ angular.
               for(var i = 0; i<response.length; i++)
                 response[i].biayaRp = EkinerjaService.FormatRupiah(response[i].biaya);
               pegawai.skp = response;
+              getUrtugKegiatanApproval(pegawai);
               // vm.dataLook = response;
               // debugger
             }, function(errResponse){
@@ -124,6 +125,19 @@ angular.
 
             }
           )
+        }
+
+        function getUrtugKegiatanApproval(pegawai){
+          // if(vm.isEselon4)
+          KontrakPegawaiService.GetUrtugKegiatan(pegawai.nipPegawai,pegawai.kdUnitKerja,
+            (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
+            function(response){
+              pegawai.skpDpa = response;debugger
+              for(var i = 0; i < response.length; i++)
+                pegawai.skpDpa[i].biaya = EkinerjaService.FormatRupiah(pegawai.skpDpa[i].biaya);
+            }, function(errResponse){
+              // vm.penilai = "";
+            })
         }
 
         vm.open = function (pegawai, isAjuan, parentSelector) {debugger
@@ -169,6 +183,7 @@ angular.
             // showToastrSuccess('ditambahkan');
             // getUrtugByJabatan();
             getPegawaiPengaju();
+            createSelfData();
             // vm.selected = selectedItem;
           }, function () {
             // showToastrFailed('menambahkan data');

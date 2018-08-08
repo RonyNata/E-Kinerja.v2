@@ -34,7 +34,6 @@
         vm.tahun = parseInt(EkinerjaService.IndonesianYear(new Date()));
 
         getLaporanBawahan();
-        getPerintahHistory();
 
         vm.search = function(){
             getLaporanBawahan();
@@ -54,7 +53,7 @@
                         response[i].tglPengiriman = EkinerjaService.IndonesianDateFormat(date);
                         response[i].tglPengiriman += " pukul " + date.getHours() + ":" + date.getMinutes();
                         response[i].status = statusBaca(response[i].statusPenilaian);
-                        if(response[i].statusApproval) response[i].status = 'Sudah Ditandatangan';
+                        // if(response[i].statusApproval) response[i].status = 'Sudah Ditandatangan';
                         if (response[i].statusPenilaian == 0){
                             vm.jmlNotifLaporanBawahan += 1;
                         }
@@ -498,8 +497,6 @@
                     laporan.loading = false;
                 })
         }
-
-        getSurat();
 
         function getSurat(){
             vm.suratMasuk = [];
@@ -1052,9 +1049,8 @@
           switch (status) {
             case 0 : return 'Belum Dibaca'; break;
             case 1 : return 'Sudah Dibaca'; break;
-            case 2 : return 'Sudah Dilanjutkan'; break;
-            case 3 : return 'Sudah Ditandatangan'; break;
-            case 4 : return 'Ditolak'; break;
+            case 2 : return 'Sudah Diterima'; break;
+            case 3 : return 'Ditolak'; break;
           }
         }
     }

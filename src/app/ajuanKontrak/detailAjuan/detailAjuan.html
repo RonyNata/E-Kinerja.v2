@@ -31,8 +31,8 @@
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Satuan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Output Maksimal</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
+                                                    <!-- <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th> -->
                                                 </tr>
                                                 <tr ng-hide="ajuan.isAjuan">
                                                     <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">{{ajuan.isAjuan ? 'Pilih' : 'No'}}</th>
@@ -58,8 +58,6 @@
                                                     <td ng-hide="ajuan.isAjuan">{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
                                                     <td ng-show="ajuan.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="ajuan.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
                                                     <td ng-show="ajuan.isAjuan">{{urtug.kuantitas - urtug.totalRealisasi}}</td>
-                                                    <td ng-show="ajuan.isAjuan">{{urtug.waktu + ' Bulan'}}</td>
-                                                    <td ng-show="ajuan.isAjuan">{{500 * urtug.targetKuantitas | number}}</td>
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugNonDpa==0">
                                                     <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
@@ -100,25 +98,46 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                                <tr>
+                                                <tr ng-show="ajuan.isAjuan">
                                                     <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{ajuan.isAjuan ? 'Pilih' : 'No'}}</label></th>
                                                     <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 20%; text-align: center; vertical-align: middle">Satuan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
-                                                    <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th>
+                                                    <th style="width: 20%; text-align: center; vertical-align: middle">Satuan</th>
+                                                    <!-- <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th> -->
                                                     <!-- <th style="width: 5%; text-align: center; vertical-align: middle">Action</th> -->
+                                                </tr>
+                                                <tr ng-hide="ajuan.isAjuan">
+                                                    <th rowspan="2" style="width: 5%; text-align: center">No</th>
+                                                    <th rowspan="2" style="text-align: center;width: 40%">Kegiatan</th>
+                                                    <th rowspan="2" style="width: 5%;text-align: center">Satuan</th>
+                                                    <th colspan="2" class="text-center">Output</th>
+                                                    <th rowspan="2" class="text-center" style="vertical-align: middle">Nilai (Realisasi/Sasaran)</th>
+                                                    <!-- <th rowspan="2" style="width: 15%;text-align: center">Biaya</th> -->
+                                                </tr>
+                                                <tr class="text-center" ng-hide="ajuan.isAjuan">
+                                                    <th class="text-center" style="vertical-align: middle">Sasaran</th>
+                                                    <th class="text-center" style="vertical-align: middle">Realisasi</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
+                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0 || !ajuan.isAjuan" class="text-center">
                                                     <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
                                                     <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
                                                     <td class="text-left">{{dpa.ketKeg}}</td>
-                                                    <td> <input class="form-control" type="text" ng-model="dpa.targetSatuanKuantitas"></td>
                                                     <td> <input class="form-control" type="number" ng-model="dpa.targetKuantitas"></td>
-                                                    <td>{{'Rp. '+dpa.biayaRp}}</td>
+                                                    <td> <input class="form-control" type="text" ng-model="dpa.targetSatuanKuantitas"></td>
+                                                    <!-- <td>{{'Rp. '+dpa.biayaRp}}</td> -->
                                                     <!-- <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td> -->
+                                                </tr>
+                                                <tr ng-repeat="kegiatan in filteredDataUrtugDpa" class="text-center" ng-hide="filteredDataUrtugDpa==0 || ajuan.isAjuan">
+                                                    <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
+                                                    <td style="text-align: left">{{kegiatan.ketKeg}}</td>
+                                                    <td>{{kegiatan.targetSatuanKuantitas}}</td>
+                                                    <td>{{kegiatan.targetKuantitas}}</td>
+                                                    <td>{{kegiatan.realisasiKuantitas}}</td>
+                                                    <td>{{kegiatan.realisasiKuantitas/kegiatan.targetKuantitas | number:2}}</td>
+                                                    <!-- <td>{{'Rp. ' + kegiatan.biaya}}</td> -->
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugDpa==0">
                                                     <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>

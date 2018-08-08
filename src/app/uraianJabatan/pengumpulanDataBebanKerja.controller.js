@@ -167,6 +167,7 @@ angular.
       	)
       }
 
+
       function getAllDpa(){
       	vm.urtugDpa = [];
       	for(var i = 0; i < vm.list_jenis_urtug.length; i++)
@@ -179,6 +180,10 @@ angular.
       function getJenisUrtugJabatan(){
       	PengumpulanDataBebanKerjaService.GetJenisUrtugJabatan($scope.jabatan).then(
       		function(response){
+      			for(var i = 0; i < response.length; i++){
+      				if(response[i].kdJenisUrtug != 'KJU001') break;
+      				getUrtugKegiatanByJabatan(response[i]);
+      			}debugger
       			vm.dataLookJenis = response;
       			vm.list_jenis_urtug = response;
       			getAllDpa();
@@ -188,6 +193,31 @@ angular.
 
       		})
       }
+
+      function getUrtugKegiatanByJabatan(urtug){
+          var data = {
+            "kdUrtug": urtug.kdUrtug,
+            "kdJabatan": $scope.jabatan,
+            "kdJenisUrtug": urtug.kdJenisUrtug,
+            "tahunUrtug": urtug.tahunUrtug,
+            "kdUnitKerja": $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja
+          };
+          // if(isEselon4)
+            PengumpulanDataBebanKerjaService.GetUrtugKegiatanByJabatan(data).then(
+              function(response){
+                urtug.adaDpa = response.length;
+              }, function(errResponse){
+
+              })
+          // else 
+          //   PengumpulanDataBebanKerjaService.GetUrtugProgramByJabatan(data).then(
+          //     function(response){
+          //       vm.kegiatan = response;debugger
+          //       vm.loadUrtug = false;
+          //     }, function(errResponse){
+
+          //     })
+        }
 
       vm.deleteUrtug = function(kdUrtug){
       	PengumpulanDataBebanKerjaService.DeleteUrtugJabatan(vm.jabatan.kdJabatan, kdUrtug)
@@ -319,7 +349,9 @@ angular.
 	      	// getUrtugByJabatan();
 	      	// getUrtugKegiatanByJabatan();
 	        // vm.selected = selectedItem;
+	        getUrtugByJabatan()
 	      }, function () {
+	      	getUrtugByJabatan()
 	      	// showToastrFailed('menambahkan data');
 	        // $log.info('Modal dismissed at: ' + new Date());
 	      });

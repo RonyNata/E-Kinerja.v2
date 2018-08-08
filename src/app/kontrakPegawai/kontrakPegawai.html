@@ -101,7 +101,7 @@
                                         <tr style="vertical-align: text-top">
                                             <td style="width: 80px">Unit Kerja</td>
                                             <td style="padding: 0px 10px;width: 20px">:</td>
-                                            <td>DINAS KOMUNIKASI INFORMATIKA PERSANDIAN DAN STATISTIK</td>
+                                            <td>{{kontrak.penilai.unitKerja}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -154,13 +154,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 space-after" ng-hide="kontrak.statusKontrak">
+               <!--  <div class="col-md-6 space-after" ng-hide="kontrak.statusKontrak">
                     <button type="button" ng-click="kontrak.openUrtug(1)" class="btn btn-primary btn-xl btn-block"><strong>PENGAJUAN TARGET BULANAN</strong></button>
-                </div>
+                </div> -->
                 <div class="col-md-6 space-after">
                     <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
                 </div>
-                <div class="col-md-6 space-after" ng-show="kontrak.statusKontrak">
+                <div class="col-md-6 space-after">
                     <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI {{kontrak.tahun}}</strong></button>
                 </div>
             </div>
@@ -252,12 +252,17 @@
                                             <table class="table table-bordered">
                                                 <thead class="bg-table">
                                                     <tr>
-                                                        <th style="width: 5%; text-align: center">No</th>
-                                                        <th style="text-align: center;width: 30%">Kegiatan</th>
-                                                        <th style="text-align: center">Rincian Uraian Tugas</th>
-                                                        <th style="width: 5%;text-align: center">Jabatan</th>
-                                                        <th style="width: 15%;text-align: center">Biaya</th>
-                                                        <th style="width: 5%;text-align: center">Action</th>
+                                                        <th rowspan="2" style="width: 5%; text-align: center">No</th>
+                                                        <th rowspan="2" style="text-align: center;width: 50%">Kegiatan</th>
+                                                        <th rowspan="2" style="width: 5%;text-align: center">Satuan</th>
+                                                        <th colspan="2" class="text-center">Output</th>
+                                                        <th rowspan="2" class="text-center" style="vertical-align: middle">Nilai (Realisasi/Sasaran)</th>
+                                                        <th rowspan="2" style="width: 15%;text-align: center">Biaya</th>
+                                                        <th rowspan="2" style="width: 5%;text-align: center">Action</th>
+                                                    </tr>
+                                                    <tr class="text-center">
+                                                        <th class="text-center" style="vertical-align: middle">Sasaran</th>
+                                                        <th class="text-center" style="vertical-align: middle">Realisasi</th>
                                                     </tr>
                                                 </thead>
 
@@ -265,9 +270,11 @@
                                                     <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
                                                         <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                                         <td style="text-align: left">{{kegiatan.ketKeg}}</td>
-                                                        <td style="text-align: left">{{kegiatan.deskripsiUrtug}}</td>
-                                                        <td>{{kegiatan.statusPenanggungJawab}}</td>
-                                                        <td>{{'Rp. ' + kegiatan.paguAnggaran}}</td>
+                                                        <td>{{kegiatan.targetSatuanKuantitas}}</td>
+                                                        <td>{{kegiatan.targetKuantitas}}</td>
+                                                        <td>{{kegiatan.realisasiKuantitas}}</td>
+                                                        <td>{{kegiatan.realisasiKuantitas/kegiatan.targetKuantitas | number:2}}</td>
+                                                        <td>{{'Rp. ' + kegiatan.biaya}}</td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td>
                                                     </tr>
                                                     <tr ng-show="filteredDataKegiatan==0">
