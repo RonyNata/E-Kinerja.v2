@@ -9,7 +9,6 @@ angular.
     function AjuanKontrakController(EkinerjaService, KontrakPegawaiService, AjuanKontrakService, $document, $uibModal, $scope) {
         var vm = this;
         vm.loading = true;
-        vm.pegawai_atasan = [];
         createSelfData();
 
         function getPegawaiPengaju(){
@@ -34,6 +33,7 @@ angular.
         }
 
         function getPegawaiAtasan(){
+          vm.pegawai_atasan = [];
           KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
             function(response){
               response.namaPegawai = response.nama;
@@ -183,6 +183,7 @@ angular.
             // showToastrSuccess('ditambahkan');
             // getUrtugByJabatan();
             getPegawaiPengaju();
+            createSelfData();
             // vm.selected = selectedItem;
           }, function () {
             // showToastrFailed('menambahkan data');

@@ -14,15 +14,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr style="{{openurtug.pgw == 0 ? 'background-color:lightgrey;' : ''}}">
                                 <td>{{openurtug.nama}}</td>
                                 <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 1 ? 'check' : 'remove'}}</i></td>
                             </tr>
-                            <tr>
+                            <tr style="{{openurtug.pgw == 2 ? 'background-color:lightgrey;' : ''}}">
                                 <td>{{openurtug.penilai.namaPegawai}}</td>
                                 <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 3 ? 'check' : 'remove'}}</i></td>
                             </tr>
-                            <tr>
+                            <tr style="{{openurtug.pgw == 4 ? 'background-color:lightgrey;' : ''}}">
                                 <td>{{openurtug.atasanPenilai.namaPegawai}}</td>
                                 <td style="text-align: center;"><i class="material-icons" >{{openurtug.pgw >= 5 ? 'check' : 'remove'}}</i></td>
                             </tr>

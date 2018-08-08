@@ -14,6 +14,7 @@
                                 <th style="text-align: center">Keterangan</th>
                                 <th style="text-align: center">Tanggal Pembuatan</th>
                                 <th style="text-align: center">Status</th>
+                                <th style="text-align: center">Keterangan</th>
                                 <!-- <th style="width: 10%; text-align: center">Action</th> -->
                             </tr>
                         </thead>
@@ -24,6 +25,7 @@
                                 <td>{{data.keterangan}}</td>
                                 <td>{{data.tanggalDibuat}}</td>
                                 <td>{{data.status}}</td>
+                                <td>{{data.statusPenilaian == 2 ? '-' : data.alasanPenolakan}}</td>
                                 <!-- <td><button type="button" ng-click="progress.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-primary" ng-hide="data.loading"><strong>Lihat Dokumen</strong></button>
                                     <button type="button" ng-click="progress.getDocumentInstruksi(data.kdInstruksi, $index)" class="btn btn-secondary" ng-show="data.loading" disabled><strong>Mohon Tunggu</strong></button>
                                 </td> -->

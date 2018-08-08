@@ -16,6 +16,7 @@
         vm.isEselon4 = isEselon4;
         vm.isAtasanPenilai = false;
         vm.item = {};
+        vm.isProccess = false;
         vm.data = {};
         
         vm.urtug=urtug;
@@ -97,6 +98,7 @@
         }
  
         vm.uploadTemplate = function () {debugger
+            vm.isProccess = true;
             if(vm.item.keterangan == undefined || vm.item.keterangan.length == 0)
                 EkinerjaService.showToastrError('Keterangan tidak boleh kosong');
             else if(vm.file == undefined) EkinerjaService.showToastrError('Pilih file terlebih dahulu');
@@ -112,10 +114,13 @@
                             EkinerjaService.showToastrSuccess("File Berhasil Diupload");
                             $uibModalInstance.close();
                         }, function(errResponse){
+                            EkinerjaService.showToastrError("File Gagal Diupload");
+                            vm.isProccess = false;
 
                         })
                 }, function(errResponse){
-
+                    EkinerjaService.showToastrError("File Gagal Diupload");
+                    vm.isProccess = false;
                 })
         };
 

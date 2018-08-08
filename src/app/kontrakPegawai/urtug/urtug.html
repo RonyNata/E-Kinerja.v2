@@ -12,12 +12,16 @@
                             <th style="width: 30%; text-align: center; vertical-align: middle">
                                 <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
                             </th>
+                            <th style="font-weight: bold;text-align: center;width: 10%">Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr ng-repeat="data in filteredData" ng-click="urtug.pilihUrtug(data, urtug.pgw == 2 ? urtug.penilai : urtug.atasanPenilai)">
+                        <tr ng-repeat="data in filteredData">
                             <td style="vertical-align: middle">{{data.urtug}}</td>
+                            <td align="center" style="vertical-align: middle">
+                                <button class="btn bg-blue waves-effect" ng-click="urtug.pilihUrtug(data, urtug.pgw == 2 ? urtug.penilai : urtug.atasanPenilai)" title="Tambahkan Urtug"><i class="fa fa-plus"></i></button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

@@ -143,7 +143,7 @@
         debugger
       })
 
-      vm.check = function(dat){
+      vm.check = function(dat){debugger
         if(dat.checked)
           vm.kegiatanPilihan.push(dat);
         else vm.kegiatanPilihan.splice(findkegiatanByNip(dat.nipkegiatan, vm.kegiatanPilihan),1);

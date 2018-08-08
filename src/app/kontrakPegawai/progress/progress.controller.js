@@ -65,15 +65,12 @@ angular.
         }
 
         function statusBaca(status, isDone){
-          if(!isDone)
-              switch (status) {
-                case 0 : return 'Belum Dibaca'; break;
-                case 1 : return 'Sudah Dibaca'; break;
-                case 2 : return 'Sudah Dilanjutkan'; break;
-                case 3 : return 'Sudah Ditandatangan'; break;
-                case 4 : return 'Ditolak'; break;
-              }
-          else return 'Sudah Ditandatangan';
+          switch (status) {
+            case 0 : return 'Belum Dibaca'; break;
+            case 1 : return 'Sudah Dibaca'; break;
+            case 2 : return 'Sudah Diterima'; break;
+            case 3 : return 'Ditolak'; break;
+          }
         }
 
       	vm.cancel = function () {
