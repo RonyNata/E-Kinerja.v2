@@ -5,91 +5,89 @@
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row space-after">
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Tidak Hadir (Hari)</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadir" placeholder="Data">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadir" placeholder="Nilai">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Perekaman Datang/Pulang Saja/Datang Terlambat dan Pulang Sebelum Waktunya (menit)</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataPerekamanDatangPulang" placeholder="Data">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiPerekamanDatangPulang" placeholder="Nilai">
-                    </div>
-                </div>
-            </div>
-            <div class="row space-after">
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Tidak Hadir Apel</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadirApel" placeholder="Data">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadirApel" placeholder="Nilai">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Tidak Hadir Rapat/Sidang Paripurna (kali)</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadirRapat" placeholder="Data">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadirRapat" placeholder="Nilai">
-                    </div>
-                </div>
-            </div>
-            <div class="row space-after">
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Razia Gerakan Disiplin Aparatur (kali)/Pelanggaran Disiplin lain</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataRazia" placeholder="Data">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiRazia" placeholder="Nilai">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Manipulasi Data Kinerja</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <select class="form-control" ng-model="manipulasi" ng-required="true">
-                            <option value="true">Ya</option>
-                            <option value="false">Tidak</option>
-                        </select>
-                        <input class="form-control" ng-model="form_perilaku.pegawai.nilaiManipulasiData" placeholder="Nilai" disabled="true">
-                    </div>
-                </div>
-            </div>
-            <div class="row space-after">
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Total Faktor Pengurang TPP</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.totalFaktorPeuranganTpp" placeholder="Data">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-6">
-                        <p><b>Nilai (Kebalikan dari pengurangan)</b></p>
-                    </div>
-                    <div class="col-md-6">
-                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiKebalikan" placeholder="Data">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover js-basic-example">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;"></th>
+                                    <th style="text-align: center;">Tidak Hadir (Hari)</th>
+                                    <th style="text-align: center;">Perekaman Datang/Pulang Saja/Datang Terlambat dan Pulang Sebelum Waktunya (menit)</th>
+                                    <th style="text-align: center;">Tidak Hadir Apel</th>
+                                    <th style="text-align: center;">Tidak Hadir Rapat/
+                                    Sidang Paripurna (kali)</th>
+                                    <th style="text-align: center;">Razia Gerakan Disiplin Aparatur (kali)/
+                                    Pelanggaran Disiplin lain</th>
+                                    <th style="text-align: center;">Manipulasi Data Kinerja</th>
+                                    <th style="text-align: center;">Razia Gerakan Disiplin Aparatur (kali)/
+                                    Pelanggaran Disiplin lain</th>
+                                    <th style="text-align: center;">Manipulasi Data Kinerja</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: bold;">Data</td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" type="number" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadir" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" type="number" name="aktivitas" ng-model="form_perilaku.pegawai.dataPerekamanDatangPulang" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" type="number" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadirApel" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" type="number" name="aktivitas" ng-model="form_perilaku.pegawai.dataHadirRapat" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.dataRazia" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <select class="form-control" ng-model="manipulasi" ng-required="true">
+                                            <option value="true">Ya</option>
+                                            <option value="false">Tidak</option>
+                                        </select>
+                                    </td>
+                                    <td style="text-align: center;font-weight: bold;">Jumlah(Σ)</td>
+                                    <td style="text-align: center;font-weight: bold;">100-Σ Faktor</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold;">Nilai</td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadir" placeholder="Nilai">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiPerekamanDatangPulang" placeholder="Nilai">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadirApel" placeholder="Nilai">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiHadirRapat" placeholder="Nilai">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiRazia" placeholder="Nilai">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" ng-model="form_perilaku.pegawai.nilaiManipulasiData" placeholder="Nilai" disabled="true">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.totalFaktorPeuranganTpp" placeholder="Data">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" list="aktivitas" name="aktivitas" ng-model="form_perilaku.pegawai.nilaiKebalikan" placeholder="Data">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal-footer">
+    <div class="modal-footer" style="margin-top: -30px;">
         <button type="submit"  class="btn btn-primary">Simpan</button>
-        <button type="button" ng-click="form_perilaku.cancel()" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="button" ng-click="form_perilaku.cancel()" class="btn btn-danger" data-dismiss="modal">Keluar</button>
     </div>
 </form>
