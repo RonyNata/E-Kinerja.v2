@@ -71,15 +71,15 @@
                                                 <ul style="padding-left: 0px;">
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugNonDpa(-1)" ng-disabled="currentPageUrtugNonDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            &lt; PREV
+                                                            &lt; Sebelumnya
                                                         </button>
                                                     </li>
                                                     <li style="display: inline-block;">
-                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugNonDpa+1}} Of {{maxSizeUrtugNonDpa}}</span>
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageUrtugNonDpa+1}} Dari {{maxSizeUrtugNonDpa}}</span>
                                                     </li>
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugNonDpa(1)" ng-disabled="maxUrtugNonDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            NEXT &gt;
+                                                            Selanjutnya &gt;
                                                         </button>
                                                     </li>
                                                 </ul>
@@ -107,9 +107,9 @@
                                                     <!-- <th style="width: 5%; text-align: center; vertical-align: middle">Action</th> -->
                                                 </tr>
                                                 <tr ng-hide="ajuan.isAjuan">
-                                                    <th rowspan="2" style="width: 5%; text-align: center">No</th>
-                                                    <th rowspan="2" style="text-align: center;width: 40%">Kegiatan</th>
-                                                    <th rowspan="2" style="width: 5%;text-align: center">Satuan</th>
+                                                    <th rowspan="2" style="width: 5%; text-align: center; vertical-align: middle">No</th>
+                                                    <th rowspan="2" style="text-align: center;width: 40%; vertical-align: middle">Kegiatan</th>
+                                                    <th rowspan="2" style="width: 5%;text-align: center; vertical-align: middle">Satuan</th>
                                                     <th colspan="2" class="text-center">Output</th>
                                                     <th rowspan="2" class="text-center" style="vertical-align: middle">Nilai (Realisasi/Sasaran)</th>
                                                     <!-- <th rowspan="2" style="width: 15%;text-align: center">Biaya</th> -->
@@ -123,7 +123,7 @@
                                             <tbody>
                                                 <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0 || !ajuan.isAjuan" class="text-center">
                                                     <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
-                                                    <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
+                                                    <td ng-hide="ajuan.isAjuan">{{$index + 1 + (numPerPageUrtugDpa * currentPageUrtugDpa)}}</td>
                                                     <td class="text-left">{{dpa.ketKeg}}</td>
                                                     <td> <input class="form-control" type="number" ng-model="dpa.targetKuantitas"></td>
                                                     <td> <input class="form-control" type="text" ng-model="dpa.targetSatuanKuantitas"></td>
@@ -131,7 +131,7 @@
                                                     <!-- <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td> -->
                                                 </tr>
                                                 <tr ng-repeat="kegiatan in filteredDataUrtugDpa" class="text-center" ng-hide="filteredDataUrtugDpa==0 || ajuan.isAjuan">
-                                                    <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
+                                                    <td>{{$index + 1 + (numPerPageUrtugDpa*currentPageUrtugDpa)}}</td>
                                                     <td style="text-align: left">{{kegiatan.ketKeg}}</td>
                                                     <td>{{kegiatan.targetSatuanKuantitas}}</td>
                                                     <td>{{kegiatan.targetKuantitas}}</td>
@@ -151,15 +151,15 @@
                                                 <ul style="padding-left: 0px;">
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            &lt; PREV
+                                                            &lt; Sebelumnya
                                                         </button>
                                                     </li>
                                                     <li style="display: inline-block;">
-                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugDpa+1}} Of {{maxSizeUrtugDpa}}</span>
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageUrtugDpa+1}} Dari {{maxSizeUrtugDpa}}</span>
                                                     </li>
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            NEXT &gt;
+                                                            Selanjutnya &gt;
                                                         </button>
                                                     </li>
                                                 </ul>

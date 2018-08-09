@@ -158,10 +158,10 @@
                     <button type="button" ng-click="kontrak.openUrtug(1)" class="btn btn-primary btn-xl btn-block"><strong>PENGAJUAN TARGET BULANAN</strong></button>
                 </div> -->
                 <div class="col-md-6 space-after">
-                    <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
+                    <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><i class="fa fa-list-alt"></i> <strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
                 </div>
                 <div class="col-md-6 space-after">
-                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI {{kontrak.tahun}}</strong></button>
+                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><i class="fa fa-print"></i> <strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI {{kontrak.tahun}}</strong></button>
                 </div>
             </div>
 
@@ -227,15 +227,15 @@
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
                                                             <button class="btn btn-primary" ng-click="padTarget(-1)" ng-disabled="currentPageTarget==0" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                                &lt; PREV
+                                                                &lt; Sebelumnya
                                                             </button>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageTarget+1}} Of {{maxSizeTarget}}</span>
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageTarget+1}} Dari {{maxSizeTarget}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
                                                             <button class="btn btn-primary" ng-click="padTarget(1)" ng-disabled="maxTarget()" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                                NEXT &gt;
+                                                                Selanjutnya &gt;
                                                             </button>
                                                         </li>
                                                     </ul>
@@ -289,15 +289,15 @@
                                                     <ul style="padding-left: 0px;">
                                                         <li style="display: inline-block;">
                                                             <button class="btn btn-primary" ng-click="padKegiatan(-1)" ng-disabled="currentPageKegiatan==0" type="button" aria-label="Use Android" style="cursor: pointer;">
-                                                                &lt; PREV
+                                                                &lt; Sebelumnya
                                                             </button>
                                                         </li>
                                                         <li style="display: inline-block;">
-                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageKegiatan+1}} Of {{maxSizeKegiatan}}</span>
+                                                            <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageKegiatan+1}} Dari {{maxSizeKegiatan}}</span>
                                                         </li>
                                                         <li style="display: inline-block;">
                                                             <button class="btn btn-primary" ng-click="padKegiatan(1)" ng-disabled="maxKegiatan()" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                                NEXT &gt;
+                                                                Selanjutnya &gt;
                                                             </button>
                                                         </li>
                                                     </ul>

@@ -20,7 +20,7 @@
                         </div>
                         <div class="row animate-show-hide" ng-show="master.kegiatan">
                             <div class="col-md-4">
-                                <button type="button" ng-click="master.getSK()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-print"></i><b> Print Surat Keputusan</b></button>
+                                <!-- <button type="button" ng-click="master.getSK()" class="btn btn-primary btn waves waves-effect"><i class="fa fa-print"></i><b> Print Surat Keputusan</b></button> -->
                             </div>
                             <div class="col-md-4 pull-right" style="padding-bottom: 10px;">
                                 <div class="input-group">
@@ -76,15 +76,15 @@
                                         <ul style="padding-left: 0px;">
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="padListKegiatan(-1)" ng-disabled="currentPageListKegiatan==0" aria-label="Use Android" style="cursor: pointer;">
-                                                    &lt; PREV
+                                                    &lt; Sebelumnya
                                                 </button>
                                             </li>
                                             <li style="display: inline-block;">
-                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageListKegiatan+1}} Of {{maxSizeListKegiatan}}</span>
+                                                <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageListKegiatan+1}} Dari {{maxSizeListKegiatan}}</span>
                                             </li>
                                             <li style="display: inline-block;">
                                                 <button class="btn btn-primary" ng-click="padListKegiatan(1)" ng-disabled="maxListKegiatan()" aria-label="Use Android" style="cursor: pointer;">
-                                                    NEXT &gt;
+                                                    Selanjutnya &gt;
                                                 </button>
                                             </li>
                                         </ul>
