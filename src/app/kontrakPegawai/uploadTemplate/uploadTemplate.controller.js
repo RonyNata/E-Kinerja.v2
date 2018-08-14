@@ -99,9 +99,14 @@
  
         vm.uploadTemplate = function () {debugger
             vm.isProccess = true;
-            if(vm.item.keterangan == undefined || vm.item.keterangan.length == 0)
+            if(vm.item.keterangan == undefined || vm.item.keterangan.length == 0){
                 EkinerjaService.showToastrError('Keterangan tidak boleh kosong');
-            else if(vm.file == undefined) EkinerjaService.showToastrError('Pilih file terlebih dahulu');
+                vm.isProccess = false;     
+            }
+            else if(vm.file == undefined) {
+                EkinerjaService.showToastrError('Pilih file terlebih dahulu');
+                vm.isProccess = false;
+            }
             else
             KontrakPegawaiService.UploadTemplateData(vm.data).then(
                 function(response){

@@ -37,7 +37,7 @@
                                               [{text: '2'},{text: 'NIP'},{text : '' + penilai.nipPegawai}],
                                               [{text: '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + penilai.pangkat + '/' + penilai.golongan}],
                                               [{text: '4'},{text: 'Jabatan'},{text : '' + penilai.jabatan}],
-                                              [{text: '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
+                                              [{text: '5'},{text: 'Unit Kerja'},{text : '' + penilai.unitKerja}]
                                             ]
                                         }
                                     },
