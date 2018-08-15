@@ -9,7 +9,7 @@
       $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService, MasterKegiatanService){
       EkinerjaService.checkCredential();
       var vm = this;
-
+      $scope.kegiatandpa = false;
       $scope.searchName = '';
       $scope.searchJabatan = '';
       $scope.entries = 5;
@@ -42,7 +42,7 @@
         vm.dataLook = kegiatan;
         paging();
       } else getAllKegiatan();
-      vm.kegiatanPilihan = kegiatanPilihan;
+      // vm.kegiatanPilihan = kegiatanPilihan;
 
       // getAllkegiatan();
 
@@ -59,27 +59,57 @@
       //     })
       // }
 
-      vm.addKegiatan = function(){
-        var items = angular.copy(urtug);
-        for(var i = 0; i < vm.kegiatanPilihan.length;i++){
-          vm.kegiatanPilihan[i].kdKeg = vm.kegiatanPilihan[i].kdKegiatan;
-          vm.kegiatanPilihan[i].kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
-          vm.kegiatanPilihan[i].kdBidang = vm.kegiatanPilihan[i].kdBIdang;
-        }
-        items.kegiatanList = vm.kegiatanPilihan;
-        console.log(JSON.stringify(items));
-        PengumpulanDataBebanKerjaService.CreateUrtugKegiatan(items).then(
-              function(response){
-                EkinerjaService.showToastrSuccess("Kegiatan Berhasil Ditambahkan");
-                $uibModalInstance.close();
-                // setPJ();
-              }, function(errResponse){
+      $scope.$watch('kegiatandpa', function(){
+        checkAll($scope.kegiatandpa, vm.dataLook);
+      });
 
-              })
+      function checkAll(status, array){
+        for(var i = 0; i < array.length; i++)
+          array[i].checked = angular.copy(status);
+      }
+
+      vm.addKegiatan = function(){
+        // var items = angular.copy(urtug);
+        // for(var i = 0; i < vm.kegiatanPilihan.length;i++){
+        //   vm.kegiatanPilihan[i].kdKeg = vm.kegiatanPilihan[i].kdKegiatan;
+        //   vm.kegiatanPilihan[i].kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
+        //   vm.kegiatanPilihan[i].kdBidang = vm.kegiatanPilihan[i].kdBIdang;
+        // }
+        // items.kegiatanList = vm.kegiatanPilihan;
+        // console.log(JSON.stringify(items));
+        // PengumpulanDataBebanKerjaService.CreateUrtugKegiatan(items).then(
+        //       function(response){
+        //         EkinerjaService.showToastrSuccess("Kegiatan Berhasil Ditambahkan");
+        //         $uibModalInstance.close();
+        //         // setPJ();
+        //       }, function(errResponse){
+
+        //       })
+
+        var items = angular.copy(urtug);
+        items.kegiatanList = [];
+        for(var i = 0; i < vm.dataLook.length;i++){
+          if(vm.dataLook[i].checked){
+            vm.dataLook[i].kdKeg = vm.dataLook[i].kdKegiatan;
+            vm.dataLook[i].kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
+            vm.dataLook[i].kdBidang = vm.dataLook[i].kdBIdang;
+            items.kegiatanList.push(vm.dataLook[i])
+          }
+        }
+        console.log(items);
+        PengumpulanDataBebanKerjaService.CreateUrtugKegiatan(items).then(
+        function(response){
+          EkinerjaService.showToastrSuccess("Kegiatan Berhasil Ditambahkan");
+          $uibModalInstance.close();
+          // setPJ();
+        }, function(errResponse){
+
+        })
+        
       }
 
       vm.cancel = function () { 
-        $uibModalInstance.dismiss('cancel'); 
+        $uibModalInstance.dismiss('cancel');
       };
 
       vm.openPilihan = function (parentSelector) {
@@ -143,11 +173,11 @@
         debugger
       })
 
-      vm.check = function(dat){debugger
-        if(dat.checked)
-          vm.kegiatanPilihan.push(dat);
-        else vm.kegiatanPilihan.splice(findkegiatanByNip(dat.nipkegiatan, vm.kegiatanPilihan),1);
-      }
+      // vm.check = function(dat){debugger
+      //   if(dat.checked)
+      //     vm.kegiatanPilihan.push(dat);
+      //   else vm.kegiatanPilihan.splice(findkegiatanByNip(dat.nipkegiatan, vm.kegiatanPilihan),1);
+      // }
 
       function paging(){ 
             $scope.filteredData = [];
