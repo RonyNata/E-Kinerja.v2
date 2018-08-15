@@ -140,8 +140,13 @@ angular.
       }
 
       function collectUsedUrtug(){
-      	for(var i = 0; i<vm.list_used_urtug.length;i++)
-		  	vm.urtug_used.push(vm.list_used_urtug[i].uraianTugas);
+      	for(var i = 0; i<vm.list_used_urtug.length;i++){
+          var data = vm.list_used_urtug[i].uraianTugas;
+          data.volume = vm.list_used_urtug[i].kuantitas;
+          data.satuanVolume = vm.list_used_urtug[i].satuanKuantitas;
+		  	  vm.urtug_used.push(data);
+        }
+        debugger
       }
 
       function getUrtugByJabatan(){
@@ -359,6 +364,7 @@ angular.
 
 	    vm.status = function (tahun, parentSelector) {
 	      // console.log(items);
+        debugger
 	      var item = {
 	      	"kdJabatan": vm.jabatan.kdJabatan,
 	      	"tahunUrtug": tahun,

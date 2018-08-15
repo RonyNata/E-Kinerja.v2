@@ -147,7 +147,8 @@
       $scope.$watch('searchName', function(){
         if($scope.searchName != ''){
           $scope.currentPage = 0;debugger
-          vm.dataLook = findUrtug($scope.searchName, available_urtug);
+          vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, available_urtug);
+          vm.dataLook = findUrtug($scope.searchName, vm.dataLook);
         }
         paging();
         debugger
@@ -156,7 +157,8 @@
       $scope.$watch('searchJabatan', function(){
         if($scope.searchJabatan != ''){
           $scope.currentPage = 0;
-          vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, data);
+          vm.dataLook = findUrtug($scope.searchName, available_urtug);
+          vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, vm.dataLook);
         }
         paging();
         debugger

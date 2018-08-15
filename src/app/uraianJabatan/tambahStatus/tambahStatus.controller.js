@@ -9,11 +9,12 @@ angular.
     function TambahStatusController(EkinerjaService, $scope, items, used_urtug, PengumpulanDataBebanKerjaService, $uibModalInstance) {
       	var vm = this;
 
-        debugger
         vm.item = angular.copy(items);
+        var usedurtug = used_urtug;
+        debugger
         vm.target = {
-          "kuantitas": 1,
-          "satuanKuantitas": "",
+          "kuantitas": vm.item.volume,
+          "satuanKuantitas": vm.item.satuanVolume,
           "kualitas": 100,
           "kualitasDisplay": "100%",
           "waktu": 12,
@@ -38,9 +39,12 @@ angular.
         }
 
         vm.getUrtug = function(){
-          if(vm.item.kdUrtug.length != 0){debugger
+          if(vm.item.kdUrtug.length != 0){
             vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.used_urtug, vm.item.kdUrtug);
-            vm.item.kdUrtug = vm.urtug.kdUrtug;
+            var utg = PengumpulanDataBebanKerjaService.GetUrtugByyId(usedurtug, vm.item.kdUrtug);
+            vm.target.kuantitas = utg.volume;
+            vm.target.satuanKuantitas = utg.satuanVolume;
+            vm.item.kdUrtug = vm.urtug.kdUrtug;debugger
           }
         }
 
@@ -60,8 +64,8 @@ angular.
           else {
             vm.isDpa = false
             vm.target = {
-              "kuantitas": 1,
-              "satuanKuantitas": "",
+              "kuantitas": vm.target.kuantitas,
+              "satuanKuantitas": vm.target.satuanKuantitas,
               "kualitas": 100,
               "kualitasDisplay": "100%",
               "waktu": 12,

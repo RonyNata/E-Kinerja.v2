@@ -13,9 +13,14 @@
                                 <!-- <th style="width: 6%; text-align: center; vertical-align: middle">
                                     {{dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2 ? 'No' : ''}}
                                 </th> -->
-                                <th style="width: 30%; text-align: center; vertical-align: middle">
+                                <th style="text-align: center; vertical-align: middle">
                                     <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
                                 </th>
+                                <th style="text-align: center; vertical-align: middle">
+                                    <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Jabatan">
+                                </th>
+                                <th>Satuan</th>
+                                <th>Volume</th>
                             </tr>
                             </thead>
 
@@ -24,6 +29,9 @@
                                 <!-- <td style="text-align: center; vertical-align: middle"><input type="checkbox" ng-model="data.checked" ng-change="dataurtug.check(data)" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">
                                     <p ng-show="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td> -->
                                 <td style="vertical-align: middle">{{data.deskripsi}}</td>
+                                <td style="vertical-align: middle">{{data.jabatan}}</td>
+                                <td style="vertical-align: middle">{{data.satuanVolume}}</td>
+                                <td style="vertical-align: middle">{{data.volume}}</td>
                             </tr>
                             </tbody>
                         </table>

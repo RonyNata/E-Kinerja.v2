@@ -11,6 +11,8 @@ angular.
         vm.loading = true;
         createSelfData();
 
+        console.log("WebSocket" in window);
+
         function getPegawaiPengaju(){
           vm.list_pegawai = [];
           AjuanKontrakService.GetPegawaiPengaju($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,

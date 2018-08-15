@@ -2,7 +2,8 @@
   "name": "eKinerja",
   "version": "0.0.0",
   "dependencies": {
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "npm": "^6.3.0"
   },
   "scripts": {
     "test": "gulp test"
