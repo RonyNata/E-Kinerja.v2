@@ -16,14 +16,14 @@
                                 <textarea style="text-align: justify; height: 150px; margin-top: 5px" class="form-control" ng-model="uptemp.urtug.urtug" disabled required></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12" ng-show="uptemp.isDPA">
+                        <!-- <div class="col-md-12" ng-show="uptemp.isDPA">
                             <div class="col-sm-4">
                                 <p><b>Nama Uraian Tugas</b></p>
                             </div>
                             <div class="col-md-8">
                                 <textarea style="text-align: justify; height: 150px; margin-top: 5px" class="form-control" ng-model="uptemp.urtug.deskripsiUrtug" disabled required></textarea>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-12" ng-show="uptemp.isDPA">
                             <div class="col-sm-4">
@@ -33,7 +33,7 @@
                                 <textarea style="text-align: justify; height: 150px; margin-top: 5px" class="form-control" ng-model="uptemp.urtug.ketKeg" disabled required></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12" style="margin-top: 10px" ng-show="uptemp.isEselon4">
+                        <div class="col-md-12" style="margin-top: 10px" ng-show="uptemp.isEselon4 && !uptemp.isDpa">
                             <div class="col-sm-4">
                                 <p><b>Urtug Atasan</b></p>
                             </div>

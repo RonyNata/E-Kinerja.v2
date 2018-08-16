@@ -22,7 +22,7 @@ angular.
         });
 
         $scope.$watch('dpaurtug', function(){
-          debugger
+          
           checkAll($scope.dpaurtug, vm.urtugDpa);
         });
 
@@ -31,7 +31,7 @@ angular.
             array[i].checked = angular.copy(status);
         }
 
-        vm.validation = function(qty, target, idx){debugger
+        vm.validation = function(qty, target, idx){
           if(qty > target || qty == undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
           if(qty < 1) vm.urtugNonDpa[idx].targetKuantitas = 1;
         }
@@ -42,7 +42,7 @@ angular.
             $.parseJSON(sessionStorage.getItem('credential')).kdJabatan
             ).then(
             function(response){
-              vm.urtugNonDpa = response.urtugTidakDipilihList; debugger
+              vm.urtugNonDpa = response.urtugTidakDipilihList; 
               for(var i = 0; i < vm.urtugNonDpa.length; i++){
                 vm.urtugNonDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugNonDpa[i].biaya);
                 vm.urtugNonDpa[i].checked = false;
@@ -55,35 +55,27 @@ angular.
           );
 
           // if(isEselon4)
-            KontrakPegawaiService.GetUrtugDPA(
+            KontrakPegawaiService.GetUrtugKegiatanApproval(
               $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
               $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, 
-              (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
+              $.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
               function(response){
                 vm.urtugDpa = response; debugger
                 for(var i = 0; i < response.length; i++){ 
-                  vm.urtugDpa[i].checked = false;
-                  vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
+                  for(var i = 0; i < vm.urtugDpa.length; i++){ 
+                    vm.urtugDpa[i].checked = false;
+                    vm.urtugDpa[i].targetKuantitas = 0;
+                    vm.urtugDpa[i].waktu = 0;
+                    vm.urtugDpa[i].targetKualitas = 100;
+                    vm.urtugDpa[i].biaya = vm.urtugDpa[i].paguAnggaran;
+                    vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].paguAnggaran);
+                  }
                 }
                   pagingUrtugDpa();
               }, function(errResponse){
 
               }
             );
-          // else
-          //   KontrakPegawaiService.GetUrtugProgram(
-          //     $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-          //     $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
-          //     function(response){
-          //       vm.urtugDpa = response; debugger
-          //       for(var i = 0; i < response.length; i++){ 
-          //         vm.urtugDpa[i].checked = false;
-          //         vm.urtugDpa[i].biayaRp = EkinerjaService.FormatRupiah(vm.urtugDpa[i].biaya);
-          //       }
-          //     }, function(errResponse){
-
-          //     }
-          //   );
         }
 
         vm.openKegiatan = function (item, parentSelector) {
@@ -117,59 +109,50 @@ angular.
         };
 
         vm.save = function(){
-          var data = [];
-          var dpa = [];
-          var statDpa = false, statNon = false;
-          for(var i = 0; i<vm.urtugNonDpa.length; i++){
-            if(vm.urtugNonDpa[i].checked){
-              data.push({
-                "kdUrtug": vm.urtugNonDpa[i].kdUrtug,
-                "kdJabatan": vm.urtugNonDpa[i].kdJabatan,
-                "kdJenisUrtug": vm.urtugNonDpa[i].kdJenisUrtug,
-                "tahunUrtug": vm.urtugNonDpa[i].tahunUrtug,
-                "bulanUrtug": (new Date()).getMonth(),
-                "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-                "targetKuantitas": vm.urtugNonDpa[i].targetKuantitas,
-                "satuanKuantitas": vm.urtugNonDpa[i].satuanKuantitas,
-                "targetKualitas": vm.urtugNonDpa[i].kualitas,
-                "waktu": vm.urtugNonDpa[i].waktu,
-                "biaya": vm.urtugNonDpa[i].biaya,
-                "alasan": "",
-                "statusApproval": 0
-              }); 
-            }
-          }
+          // var data = [];
+          // var dpa = [];
+          // var statDpa = false, statNon = false;
+          // for(var i = 0; i<vm.urtugNonDpa.length; i++){
+          //   if(vm.urtugNonDpa[i].checked){
+          //     data.push({
+          //       "kdUrtug": vm.urtugNonDpa[i].kdUrtug,
+          //       "kdJabatan": vm.urtugNonDpa[i].kdJabatan,
+          //       "kdJenisUrtug": vm.urtugNonDpa[i].kdJenisUrtug,
+          //       "tahunUrtug": vm.urtugNonDpa[i].tahunUrtug,
+          //       "bulanUrtug": (new Date()).getMonth(),
+          //       "nipPegawai": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+          //       "targetKuantitas": vm.urtugNonDpa[i].targetKuantitas,
+          //       "satuanKuantitas": vm.urtugNonDpa[i].satuanKuantitas,
+          //       "targetKualitas": vm.urtugNonDpa[i].kualitas,
+          //       "waktu": vm.urtugNonDpa[i].waktu,
+          //       "biaya": vm.urtugNonDpa[i].biaya,
+          //       "alasan": "",
+          //       "statusApproval": 0
+          //     }); 
+          //   }
+          // }
 
 
           // console.log(JSON.stringify(vm.urtugDpa));
 
+          var dpa = [];
+
           if(vm.urtugDpa.length != 0 || vm.urtugDpa == undefined){
             for(var i = 0; i < vm.urtugDpa.length; i++){
-              if(vm.urtugDpa[i].checked)
-                vm.urtugDpa[i].statusApproval = 1;
-              else vm.urtugDpa[i].statusApproval = 2;
-              vm.urtugDpa[i].nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-              dpa.push(vm.urtugDpa[i]);
+              if(vm.urtugDpa[i].checked){
+                vm.urtugDpa[i].bulan = (new Date()).getMonth();
+                dpa.push(vm.urtugDpa[i]);
+              }
             }
             KontrakPegawaiService.ApproveKegiatan(dpa).then(
               function(response){
-                EkinerjaService.showToastrSuccess("Penerimaan Urtug DPA Berhasil");
-                statDpa = true;
+                EkinerjaService.showToastrSuccess("Kegiatan Berhasil Ditambahkan");
+                $uibModalInstance.close();          
                 successChecker(statDpa, statNon);
               }, function(errResponse){
                 EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
             })
           }
-          else statDpa = true;
-          KontrakPegawaiService.ChooseUrtugBulanan(data).then(
-            function(response){
-              EkinerjaService.showToastrSuccess("Daftar Urtug Non-DPA Berhasil Diajukan");
-              statNon = true;
-              successChecker(statDpa, statNon);
-              // $uibModalInstance.close();
-            }, function(errResponse){
-              EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
-            })
         }
 
         function successChecker(dpa,non){
@@ -184,6 +167,38 @@ angular.
         vm.reset = function(){
           vm.item = angular.copy(items);
         }
+
+        vm.openUploadTemplate = function (urtug, isDPA, parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/kontrakPegawai/uploadTemplate/uploadTemplate.html',
+              controller: 'UploadTemplateController',
+              controllerAs: 'uptemp',
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+                  urtug: function () {
+                      return urtug;
+                  },
+                  isDPA: function () {
+                      return isDPA;
+                  },
+                  isEselon4:function(){
+                    return vm.isEselon4;
+                  }
+              }
+          });
+
+          modalInstance.result.then(function () {
+          }, function () {
+
+          });
+        };
 
         function pagingUrtugNonDpa(){
             $scope.filteredDataUrtugNonDpa = [];

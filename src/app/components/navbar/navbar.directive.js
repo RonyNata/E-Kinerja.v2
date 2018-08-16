@@ -24,6 +24,16 @@
     function NavbarController(EkinerjaService, $state, $interval, $document, $uibModal, $scope, toastr, DashboardService) {
       var vm = this;
       vm.jmlNotif = 0;
+      // console.log(ws);
+
+      // if(ws.onmessage == null){
+      //   ws.onmessage = function(event){
+      //     console.log(event.data);
+      //   }
+      //   ws.onopen = function(){
+      //     ws.send('Halo');
+      //   }
+      // }
 
       // "vm.creationDate" is available by directive option "bindToController: true"
 

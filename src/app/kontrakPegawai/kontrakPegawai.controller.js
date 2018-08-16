@@ -118,7 +118,7 @@ angular.
             function(response){
               vm.kegiatan = response;debugger
               for(var i = 0; i < response.length; i++)
-                vm.kegiatan[i].biaya = EkinerjaService.FormatRupiah(vm.kegiatan[i].biaya);
+                // vm.kegiatan[i].biaya = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
                 pagingKegiatan();
             }, function(errResponse){
               // vm.penilai = "";
@@ -148,11 +148,11 @@ angular.
         }
         });
 
-        modalInstance.result.then(function () {
+        modalInstance.result.then(function () {debugger
+        }, function () {
           getUrtugKegiatanApproval();
           getUrtugByJabatan();
           getStatAjuan();
-        }, function () {
 
         });
       };
@@ -210,8 +210,10 @@ angular.
           });
 
           modalInstance.result.then(function () {
+            getUrtugKegiatanApproval();
+            getUrtugByJabatan();
+            getStatAjuan();
           }, function () {
-
           });
       };
 

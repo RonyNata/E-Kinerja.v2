@@ -23,11 +23,24 @@
         vm.isDPA=isDPA;
         vm.data.kdUnitKerja = $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja;
         vm.data.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-        vm.data.kdUrtug = vm.urtug.kdUrtug;
-        vm.data.kdJenisUrtug = vm.urtug.kdJenisUrtug;
-        vm.data.bulanUrtug = vm.urtug.bulanUrtug;
-        vm.data.kdJabatan = $.parseJSON(sessionStorage.getItem('credential')).kdJabatan;
-        vm.data.tahunUrtug = urtug.tahunUrtug;
+        if(vm.urtug.kdUrusan == undefined){
+            vm.data.kdUrtug = vm.urtug.kdUrtug;
+            vm.data.kdJenisUrtug = vm.urtug.kdJenisUrtug;
+            vm.data.bulanUrtug = vm.urtug.bulanUrtug;
+            vm.data.kdJabatan = $.parseJSON(sessionStorage.getItem('credential')).kdJabatan;
+            vm.data.tahunUrtug = urtug.tahunUrtug;
+        }else{
+            vm.data.kdUrusan = vm.urtug.kdUrusan;
+            vm.data.kdBidang = vm.urtug.kdBidang;
+            vm.data.kdUnit = vm.urtug.kdUnit;
+            vm.data.kdSub = vm.urtug.kdSub;
+            vm.data.tahun = vm.urtug.tahun;
+            vm.data.kdProg = vm.urtug.kdProg;
+            vm.data.idProg = vm.urtug.idProg;
+            vm.data.kdKeg = vm.urtug.kdKeg;
+            vm.data.kdStatusPenanggungJawab = vm.urtug.kdStatusPenanggungJawab;
+            vm.isDpa = true;
+        }
         vm.data.daftarUrtugAtasan = [];
 
         $scope.uploadPic = function(files) {
@@ -99,6 +112,7 @@
  
         vm.uploadTemplate = function () {debugger
             vm.isProccess = true;
+            console.log(JSON.stringify(vm.data));
             if(vm.item.keterangan == undefined || vm.item.keterangan.length == 0){
                 EkinerjaService.showToastrError('Keterangan tidak boleh kosong');
                 vm.isProccess = false;     

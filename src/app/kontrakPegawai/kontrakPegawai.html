@@ -166,7 +166,7 @@
             </div>
 
             <div ng-hide="kontrak.statusKontrak" style="padding: 60px; text-align: center">
-                <h1>{{kontrak.statusAjuanNonDpa ? 'Kontrak Anda Sedang Diajukan' : 'Anda Belum Mengajukan Kontrak Kerja'}}</h1>
+                <h1>Target Bulanan Anda Belum Diatur</h1>
             </div>
 
             <div ng-show="kontrak.statusKontrak">
@@ -247,18 +247,22 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="tahunandpa">
                                 <div class="row">
+                                    <div class="col-md-2 space-after">
+                                        <button type="button" ng-click="kontrak.openUrtug(1)" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary"><i class="fa fa-cog"></i><span> Laporkan Kegiatan</span>
+                                        </button>
+                                    </div>
                                     <div class="col-md-12">
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead class="bg-table">
                                                     <tr>
-                                                        <th rowspan="2" style="width: 5%; text-align: center">No</th>
-                                                        <th rowspan="2" style="text-align: center;width: 50%">Kegiatan</th>
-                                                        <th rowspan="2" style="width: 5%;text-align: center">Satuan</th>
+                                                        <th rowspan="2" style="width: 5%; text-align: center;vertical-align: middle">No</th>
+                                                        <th rowspan="2" style="text-align: center;width: 50%;vertical-align: middle">Kegiatan</th>
+                                                        <!-- <th rowspan="2" style="width: 5%;text-align: center">Satuan</th> -->
                                                         <th colspan="2" class="text-center">Output</th>
                                                         <th rowspan="2" class="text-center" style="vertical-align: middle">Nilai (Realisasi/Sasaran)</th>
-                                                        <th rowspan="2" style="width: 15%;text-align: center">Biaya</th>
-                                                        <th rowspan="2" style="width: 5%;text-align: center">Action</th>
+                                                        <!-- <th rowspan="2" style="width: 15%;text-align: center">Biaya</th> -->
+                                                        <!-- <th rowspan="2" style="width: 5%;text-align: center">Action</th> -->
                                                     </tr>
                                                     <tr class="text-center">
                                                         <th class="text-center" style="vertical-align: middle">Sasaran</th>
@@ -270,12 +274,12 @@
                                                     <tr ng-repeat="kegiatan in filteredDataKegiatan" class="text-center" ng-hide="filteredDataKegiatan==0">
                                                         <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
                                                         <td style="text-align: left">{{kegiatan.ketKeg}}</td>
-                                                        <td>{{kegiatan.targetSatuanKuantitas}}</td>
+                                                        <!-- <td>{{kegiatan.targetSatuanKuantitas}}</td> -->
                                                         <td>{{kegiatan.targetKuantitas}}</td>
                                                         <td>{{kegiatan.realisasiKuantitas}}</td>
-                                                        <td>{{kegiatan.realisasiKuantitas/kegiatan.targetKuantitas | number:2}}</td>
-                                                        <td>{{'Rp. ' + kegiatan.biaya}}</td>
-                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td>
+                                                        <td>{{kegiatan.realisasiKuantitas/kegiatan.targetKuantitas *100 | number:2}}</td>
+                                                        <!-- <td>{{'Rp. ' + kegiatan.biaya}}</td> -->
+                                                        <!-- <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td> -->
                                                     </tr>
                                                     <tr ng-show="filteredDataKegiatan==0">
                                                         <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>

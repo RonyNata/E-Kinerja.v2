@@ -1,6 +1,6 @@
 <div class="modal-header background-pop-up">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;">
-        <strong>{{pilihurtug.isAjuan? 'PENGAJUAN SASARAN KERJA PEGAWAI BULAN' + pilihurtug.bulan : 'SASARAN KERJA PEGAWAI TAHUN' + pilihurtug.tahun}}</strong>
+        <strong>{{'SASARAN KERJA PEGAWAI TAHUN' + pilihurtug.tahun}}</strong>
     </h3>
 </div>
 
@@ -10,16 +10,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
-                        <li role="presentation" class="active">
+                        <li role="presentation" class="{{pilihurtug.isAjuan ? '' : 'active'}}" ng-hide="pilihurtug.isAjuan">
                             <a href="#nondpa" data-toggle="tab"><b>Uraian Tugas Non-DPA</b></a>
                         </li>
-                        <!-- <li role="presentation">
+                        <li role="presentation" class="{{pilihurtug.isAjuan ? 'active' : ''}}">
                             <a href="#dpa" data-toggle="tab"><b>Uraian Tugas DPA</b></a>
-                        </li> -->
+                        </li>
                     </ul>
 
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
+                        <div role="tabpanel" class="tab-pane fade in {{pilihurtug.isAjuan ? '' : 'active'}}" id="nondpa">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="checkbox space-after" ng-show="pilihurtug.isAjuan">
@@ -28,16 +28,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                                <tr ng-show="pilihurtug.isAjuan">
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</th>
-                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Volume</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Ajuan</th>
-                                                    <th style="width: 10%; text-align: center; vertical-align: middle">Output Sasaran</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Waktu</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Beban Kerja</th>
-                                                </tr>
-                                                <tr ng-hide="pilihurtug.isAjuan">
+                                                <tr>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</th>
                                                     <th style="text-align: center; vertical-align: middle" rowspan="2">Rincian Tugas</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle" rowspan="2">Volume</th>
@@ -45,7 +36,7 @@
                                                     <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">Waktu</th>
                                                     <th style="width: 5%; text-align: center; vertical-align: middle" rowspan="2">Beban Kerja</th>
                                                 </tr>
-                                                <tr ng-hide="pilihurtug.isAjuan">
+                                                <tr>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Sasaran</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Realisasi</th>
                                                 </tr>
@@ -57,10 +48,10 @@
                                                     <td ng-hide="pilihurtug.isAjuan">{{$index + 1 + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa)}}</td>
                                                     <td class="text-left">{{urtug.urtug}}</td>
                                                     <td>{{urtug.satuanKuantitas}}</td>
-                                                    <td ng-hide="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
-                                                    <td ng-hide="pilihurtug.isAjuan">{{urtug.totalRealisasi}}</td>
-                                                    <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="pilihurtug.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
-                                                    <td ng-show="pilihurtug.isAjuan">{{urtug.kuantitas}}</td>
+                                                    <td >{{urtug.kuantitas}}</td>
+                                                    <td >{{urtug.totalRealisasi}}</td>
+                                                    <!-- <td ng-show="pilihurtug.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="pilihurtug.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td> -->
+                                                    <!-- <td ng-show="pilihurtug.isAjuan">{{urtug.kuantitas}}</td> -->
                                                     <td>{{urtug.waktu + ' Bulan'}}</td>
                                                     <td>{{500 * urtug.targetKuantitas | number}}</td>
                                                 </tr>
@@ -94,36 +85,45 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div role="tabpanel" class="tab-pane fade in" id="dpa">
+                        <div role="tabpanel" class="tab-pane fade in {{pilihurtug.isAjuan ? 'active' : ''}}" id="dpa">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="checkbox space-after">
-                                        <label><input type="checkbox" ng-model="dpaurtug">Pilih Semua</label>
-                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
-                                                <tr>
+                                                <tr class="text-center" ng-hide="pilihurtug.isAjuan">
                                                     <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</label></th>
-                                                    <th style="text-align: center; vertical-align: middle">Rincian Tugas</th>
-                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Jumlah Kegiatan</th>
+                                                    <th style="text-align: center; vertical-align: middle">Kegiatan</th>
+                                                    <!-- <th style="width: 12%; text-align: center; vertical-align: middle">Jumlah Kegiatan</th>
                                                     <th style="width: 10%; text-align: center; vertical-align: middle">Mutu</th>
-                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th>
+                                                    <th style="width: 12%; text-align: center; vertical-align: middle">Waktu</th> -->
                                                     <th style="width: 15%; text-align: center; vertical-align: middle">Biaya</th>
-                                                    <th style="width: 5%; text-align: center; vertical-align: middle">Action</th>
+                                                    <!-- <th style="width: 5%; text-align: center; vertical-align: middle">Action</th> -->
+                                                </tr>
+                                                <tr class="text-center" ng-hide="!pilihurtug.isAjuan">
+                                                    <th style="width: 5%; text-align: center; vertical-align: middle"><label>{{pilihurtug.isAjuan ? 'Pilih' : 'No'}}</label></th>
+                                                    <th style="text-align: center; vertical-align: middle">Kegiatan</th>
+                                                    <th class="text-center" style="width: 10%; vertical-align: middle">Action</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
-                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0" class="text-center">
-                                                    <td ng-show="pilihurtug.isAjuan"><input type="checkbox" ng-model="dpa.checked"></td>
-                                                    <td ng-hide="pilihurtug.isAjuan">{{$index + 1 + (currentPageUrtugDpa * currentPageUrtugDpa)}}</td>
-                                                    <td class="text-left">{{dpa.urtug}}</td>
-                                                    <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
+                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0 || pilihurtug.isAjuan" class="text-center">
+                                                    <td >{{$index + 1 + (currentPageUrtugDpa * numPerPageUrtugDpa)}}</td>
+                                                    <td class="text-left">{{dpa.ketKeg}}</td>
+                                                    <!-- <td>{{dpa.kuantitas + ' ' + dpa.satuanKuantitas}}</td>
                                                     <td>{{dpa.kualitas + '%'}}</td>
-                                                    <td>{{dpa.waktu + ' Bulan'}}</td>
+                                                    <td>{{dpa.waktu + ' Bulan'}}</td> -->
                                                     <td>{{'Rp. '+dpa.biayaRp}}</td>
-                                                    <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td>
+                                                    <!-- <td><button type="button" ng-click="pilihurtug.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td> -->
+                                                </tr>
+                                                <tr ng-repeat="dpa in filteredDataUrtugDpa" ng-hide="filteredDataUrtugDpa==0 || !pilihurtug.isAjuan" class="text-center">
+                                                    <td >{{$index + 1 + (currentPageUrtugDpa * numPerPageUrtugDpa)}}</td>
+                                                    <!-- <td ><input type="checkbox" ng-model="dpa.checked"></td> -->
+                                                    <td class="text-left">{{dpa.ketKeg}}</td>
+                                                    <td style="width: 10%"><button type="button" ng-click="pilihurtug.openUploadTemplate(dpa,1)" class="btn btn-success">LAPORKAN</button></td>
+                                                    <!-- <td>{{'Rp. '+dpa.biayaRp}}</td> -->
+                                                    <!-- <td><button type="button" ng-click="ajuan.openKegiatan(dpa)" class="btn btn-success"><i class="fa fa-eye"></i><span> Detail</span></button></td> -->
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugDpa==0">
                                                     <td colspan="7" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
@@ -137,15 +137,15 @@
                                                 <ul style="padding-left: 0px;">
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugDpa(-1)" ng-disabled="currentPageUrtugDpa==0" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            &lt; PREV
+                                                            &lt; Sebelumnya
                                                         </button>
                                                     </li>
                                                     <li style="display: inline-block;">
-                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Page {{currentPageUrtugDpa+1}} Of {{maxSizeUrtugDpa}}</span>
+                                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPageUrtugDpa+1}} Dari {{maxSizeUrtugDpa}}</span>
                                                     </li>
                                                     <li style="display: inline-block;">
                                                         <button class="btn btn-primary" ng-click="padUrtugDpa(1)" ng-disabled="maxUrtugDpa()" aria-label="Use Android" type="button" style="cursor: pointer;">
-                                                            NEXT &gt;
+                                                            Selanjutnya &gt;
                                                         </button>
                                                     </li>
                                                 </ul>
@@ -154,14 +154,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="submit" ng-show="pilihurtug.isAjuan" class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button>
+        <!-- <button type="submit" ng-show="pilihurtug.isAjuan" class="{{filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0 ? 'btn bg-gray-active waves-effect' : 'btn btn-primary'}}" ng-disabled="filteredDataUrtugNonDpa==0 && filteredDataUrtugDpa==0"><strong>Ajukan Sebagai Kontrak</strong></button> -->
         <button type="button" ng-click="pilihurtug.cancel()" class="btn btn-danger" data-dismiss="modal"><strong>Kembali</strong></button>
     </div>
 </form>

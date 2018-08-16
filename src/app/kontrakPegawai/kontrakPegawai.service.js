@@ -150,7 +150,7 @@
         };
 
         service.GetUrtugKegiatanApproval = function(nip, kdUnitKerja, kdJabatan) {
-            var deferred = $q.defer();
+            var deferred = $q.defer();debugger
             $http.get(API + 'get-urtug-dpa-pegawai-approval/' + nip + '/' + kdUnitKerja + '/' + kdJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
