@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "pure-css-loader",
+        "scope": null,
+        "escapedName": "pure-css-loader",
+        "name": "pure-css-loader",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "D:\\Kerja\\DISKOMINFO\\Ekinerja\\E-Kinerja.v2"
+    ]
+  ],
+  "_from": "pure-css-loader@latest",
+  "_id": "pure-css-loader@3.1.2",
+  "_inCache": true,
+  "_location": "/pure-css-loader",
+  "_nodeVersion": "6.12.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/pure-css-loader_3.1.2_1523884018321_0.6838306351977406"
+  },
+  "_npmUser": {
+    "name": "raphaelfabeni",
+    "email": "rapha.fabeni@gmail.com"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "pure-css-loader",
+    "scope": null,
+    "escapedName": "pure-css-loader",
+    "name": "pure-css-loader",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/pure-css-loader/-/pure-css-loader-3.1.2.tgz",
+  "_shasum": "34076313777c752f2db23c5aac50c4ff31872dc5",
+  "_shrinkwrap": null,
+  "_spec": "pure-css-loader",
+  "_where": "D:\\Kerja\\DISKOMINFO\\Ekinerja\\E-Kinerja.v2",
+  "author": {
+    "name": "Raphael Fabeni"
+  },
+  "bugs": {
+    "url": "https://github.com/raphaelfabeni/css-loader/issues"
+  },
+  "dependencies": {},
+  "description": "Simple loaders for your web applications using only one div and pure CSS ♥.",
+  "devDependencies": {
+    "css-loader": "^0.28.5",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "node-sass": "^4.5.3",
+    "rimraf": "^2.6.1",
+    "sass-lint": "^1.8.0",
+    "sass-loader": "^6.0.6",
+    "sasslint-webpack-plugin": "^1.0.4",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1",
+    "webpack-livereload-plugin": "^0.11.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "34076313777c752f2db23c5aac50c4ff31872dc5",
+    "tarball": "https://registry.npmjs.org/pure-css-loader/-/pure-css-loader-3.1.2.tgz",
+    "fileCount": 62,
+    "unpackedSize": 241329,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJa1J/zCRA9TVsSAnZWagAAxcsP/jOgA8wbFlOsKaVK4shE\nb4jafxSr4KIuK7AC89lBROh4QXJbHfRM6guNv8510YBTLr2IbJzjZq/5frmB\nYGzQT26GP/YgpECxCw+izBl0YaONkK8/ooM+1elmYiZZ4sdk2cDlqiNpzkHp\nPqhBgz6pufb4lKstC8WaJMlKu9rrmsCBiM7+i+1QBK8B/HsS0F6Dh+V8NR//\nWbHPC0/WncNqbubmKLpP+fCG/R66z9kGcyA8I0yMLwqkGirZB8PB/CgxGZJ3\n6g8fb7cXuRvamQtWhEA2LzFNfd9Qn67MI2xE81hVoGzoVZzdWwSaVSqskeX3\nhp9DMS2PatfFgWvjIQMHqcfTL8zbnuQwFaKToWwuuKeXCa/tnl8uYzDyGObO\ngdMxBiDj0CO7P4CmbpivAh5w93HTj3Kff6/tq9ANEDOL6qbzISsNuLLJDcko\n0jrflbkzELBH2vUHfrkMG2sqe0R/Op9ZZ0lbeXklXIrxeM/3qPwp2O/qbvEB\n36UOnbdzfjUjxMzzr78yPzXg3f7MDUUNr7YO5C6G+QH7uIhi3HJzwIFWJ+vG\nEzFiDQx1Mzswu30QLtbq4a52N8cNm9Wvl1R7vK5ShRBKscU5keGkXLTxJwMv\n2rEGNDdWludhjoriclgEuSoQugFLNWesMM/OBH92qQVE57XC9hMgcNtG5tdG\newxH\r\n=oSFK\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "gitHead": "ad4e18701f7532200831e33fbbccdb8dd3d6b3c5",
+  "homepage": "https://github.com/raphaelfabeni/css-loader#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "raphaelfabeni",
+      "email": "rapha.fabeni@gmail.com"
+    }
+  ],
+  "name": "pure-css-loader",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelfabeni/css-loader.git"
+  },
+  "scripts": {
+    "build": "rimraf dist && webpack && rimraf dist/*.js",
+    "serve": "webpack-dev-server"
+  },
+  "version": "3.1.2"
+}

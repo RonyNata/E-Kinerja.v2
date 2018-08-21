@@ -272,6 +272,32 @@
             return deferred.promise;
         };
 
+        service.AddTugasTambahan = function (data) {
+            var deferred = $q.defer();
+            $http.post(API + 'create-tugas-tambahan/', data).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetTugasTambahan = function (nip,bulan,tahun) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-tugas-tambahan/' + nip + '/' + bulan + '/' + tahun).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.SearchTemplate = function(template, array){
             var result = [];
             for(var i = 0; i<array.length; i++){

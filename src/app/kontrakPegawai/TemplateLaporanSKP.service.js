@@ -7,7 +7,7 @@
                 function (EkinerjaService, logo_bekasi, logo_garuda) {
                     var service = {};
 
-                    service.template = function (data, pegawai, penilai, bulan, tahun){
+                    service.template = function (data, dpa, tambahan, pegawai, penilai, bulan, tahun){
                         var docDefinition = {
                           pageSize: 'LETTER',
                           content: [
@@ -56,20 +56,6 @@
                                     }
                                 ]
                             },
-
-                            // {
-                            //   style: 'demoTable', margin: [0,5,0,0],
-                            //   table: {
-                            //     body: [
-                            //       [{text: 'No', bold:true},{text: 'I. PEJABAT PENILAI', colSpan:2, bold:true},{text : ''},{text : 'No', bold:true},{text: 'II. PEGAWAI NEGERI SIPIL YANG DINILAI', bold:true, colSpan:2},{text : ''}],
-                            //       [{text: '1'},{text: 'Nama'},{text : '' + penilai.nama},{text : '1'},{text: 'Nama'},{text : '' + pegawai.namaPegawai}],
-                            //       [{text: '2'},{text: 'NIP'},{text : '' + penilai.nipPegawai},{text : '2'},{text: 'NIP'},{text : '' + pegawai.nipPegawai}],
-                            //       [{text: '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + penilai.pangkat + '/' + penilai.golongan},{text : '3'},{text: 'Pangkat/Gol. Ruang'},{text : '' + pegawai.pangkat + '/' + pegawai.golongan}],
-                            //       [{text: '4'},{text: 'Jabatan'},{text : '' + penilai.jabatan},{text : '4'},{text: 'Jabatan'},{text : '' + pegawai.jabatan}],
-                            //       [{text: '5'},{text: 'Unit Kerja'},{text : '' + penilai.unit},{text : '5'},{text: 'Unit Kerja'},{text : '' + pegawai.unit}]
-                            //     ]
-                            //   }
-                            // },
 
                               {
                                   style: 'demoTable', margin: [0,10,0,0], alignment: "center", 
@@ -190,12 +176,19 @@
                           }
                         };
 
-                        for (var i=0; i<data.length; i++){
-                            docDefinition.content[3].table.body.push([{text: '' + (i +1)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : ''},{text : '' + data[i].realisasiKuantitas},{text : '100'},{text: ''},{text : ''},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
+                        var kualitas = 100;
+                        if(tambahan.length) kualitas -= 10;
+
+                        for (var i=0; i<dpa.length; i++){
+                            docDefinition.content[3].table.body.push([{text: '' + (i +1)},{text: '' + dpa[i].ketKeg, alignment:'left'},{text : '' + dpa[i].targetKuantitas},{text : '100'},{text: ''},{text : '' + dpa[i].biayaRp},{text : '' + dpa[i].realisasiKuantitas},{text : '' + kualitas},{text: ''},{text : ''},{text:'1.0'},{text:'' + (100*dpa[i].realisasiKuantitas/dpa[i].targetKuantitas).toFixed(2)}]);
                         }
 
-                        for (var i=1; i<1; i++){
-                            docDefinition.content[4].table.body.push([{text: '' + i},{text: 'Nama Tugas'},{text : '10%'}]);
+                        for (var i=0; i<data.length; i++){
+                            docDefinition.content[3].table.body.push([{text: '' + (dpa.length +1)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : '0'},{text : '' + data[i].realisasiKuantitas},{text : '' + kualitas},{text: ''},{text : '0'},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
+                        }
+
+                        for (var i=0; i<tambahan.length; i++){
+                            docDefinition.content[4].table.body.push([{text: '' + (i + 1)},{text: '' + tambahan[i].deskripsi},{text : '10%'}]);
                         }
 
                         return docDefinition;

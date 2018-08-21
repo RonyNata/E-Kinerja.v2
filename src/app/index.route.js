@@ -192,6 +192,17 @@
           }
         }
       })
+      .state('tambahan', {
+        url: '/tambahan',
+        templateUrl: 'app/kontrakPegawai/kontrakPegawai.html',
+        controller: 'KontrakPegawaiController',
+        controllerAs: 'kontrak',
+        resolve:{
+          reload: function(){
+            $state.go($state.current.name);
+          }
+        }
+      })
       .state('dashboardminus', {
         url: '/minus',
         templateUrl: 'app/dashboard/dashboard.html',

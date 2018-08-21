@@ -175,6 +175,9 @@
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs pull-right">
                             <li role="presentation">
+                                <a href="#tambahan" data-toggle="tab">Uraian Tugas Tambahan</a>
+                            </li>
+                            <li role="presentation">
                                 <a href="#tahunandpa" data-toggle="tab">Uraian Tugas DPA</a>
                             </li>
                             <li role="presentation" class="active">
@@ -212,7 +215,7 @@
                                                         <td>{{urtug.targetkuantitas}}</td>
                                                         <td>{{urtug.realisasiKuantitas}}</td>
                                                         <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
-                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">KERJAKAN</button></td>
+                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">LAPORKAN</button></td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.progress(urtug)" class="btn btn-default">PROGRESS</button></td>
                                                     </tr>
                                                     <tr ng-show="filteredDataTarget==0">
@@ -282,7 +285,7 @@
                                                         <!-- <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td> -->
                                                     </tr>
                                                     <tr ng-show="filteredDataKegiatan==0">
-                                                        <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                        <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>BELUM ADA KEGIATAN YANG DISELESAIKAN</strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -307,6 +310,36 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tambahan">
+                                <div class="row">
+                                    <div class="col-md-2 space-after">
+                                        <button type="button" ng-click="kontrak.openTugasTambahan()" class="btn btn-primary"><i class="fa fa-cog"></i><span> Tambah Tugas Tambahan</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead class="bg-table">
+                                                    <tr>
+                                                        <th rowspan="2" style="width: 5%; text-align: center;vertical-align: middle">No</th>
+                                                        <th rowspan="2" style="text-align: center;width: 50%;vertical-align: middle">Tugas Tambahan</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr ng-repeat="tambahan in kontrak.tugasTambahan" class="text-center" ng-hide="kontrak.tugasTambahan==0">
+                                                        <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
+                                                        <td style="text-align: left">{{tambahan.deskripsi}}</td>
+                                                    </tr>
+                                                    <tr ng-show="kontrak.tugasTambahan==0">
+                                                        <td colspan="2" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

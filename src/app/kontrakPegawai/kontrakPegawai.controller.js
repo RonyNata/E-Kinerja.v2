@@ -10,6 +10,7 @@ angular.
       vm.loading = true;
       vm.bulan = EkinerjaService.IndonesianMonth(new Date());
       vm.tahun = EkinerjaService.IndonesianYear(new Date());
+      vm.tugasTambahan = [];
 
       var eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
       switch(eselon){
@@ -29,14 +30,25 @@ angular.
       // getUrtugByJabatan();
 
       vm.getSKP = function(){
-        KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
-          function(response){
-            var doc = TemplateLaporanSKPService.template(response, vm.pegawai, vm.penilai, EkinerjaService.IndonesianMonth(new Date()),
-              EkinerjaService.IndonesianYear(new Date()));
-            EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
-          }, function(errResponse){
-            
-          })
+        KontrakPegawaiService.GetUrtugKegiatan(
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
+            (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
+            function(response){debugger
+              for(var i = 0; i < response.length; i++)
+                response[i].biayaRp = EkinerjaService.FormatRupiah(response[i].biaya);
+              var data = response;
+              KontrakPegawaiService.GetUrtugByNip(vm.pegawai.nipPegawai, (new Date()).getMonth()).then(
+                function(response){
+                  var doc = TemplateLaporanSKPService.template(response, data, vm.tugasTambahan, vm.pegawai, vm.penilai, EkinerjaService.IndonesianMonth(new Date()),
+                    EkinerjaService.IndonesianYear(new Date()));
+                  EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
+                }, function(errResponse){
+                  
+                })
+            }, function(errResponse){
+
+            })
       }
 
       function getStatAjuan(){
@@ -120,6 +132,19 @@ angular.
               for(var i = 0; i < response.length; i++)
                 // vm.kegiatan[i].biaya = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
                 pagingKegiatan();
+            }, function(errResponse){
+              // vm.penilai = "";
+            })
+      }
+
+      getTugasTambahan();
+      function getTugasTambahan(){
+        // if(vm.isEselon4)
+          KontrakPegawaiService.GetTugasTambahan(
+            $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+            (new Date()).getMonth(), EkinerjaService.IndonesianYear(new Date())).then(
+            function(response){
+              vm.tugasTambahan = response;
             }, function(errResponse){
               // vm.penilai = "";
             })
@@ -213,6 +238,27 @@ angular.
             getUrtugKegiatanApproval();
             getUrtugByJabatan();
             getStatAjuan();
+          }, function () {
+          });
+      };
+
+      vm.openTugasTambahan = function (parentSelector) {
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/kontrakPegawai/tugasTambahan/tugasTambahan.html',
+              controller: 'TugasTambahanController',
+              controllerAs: 'tambahan',
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+              appendTo: parentElem
+          });
+
+          modalInstance.result.then(function () {
+            getTugasTambahan();
           }, function () {
           });
       };
