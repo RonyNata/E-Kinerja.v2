@@ -215,7 +215,7 @@
                                                         <td>{{urtug.targetkuantitas}}</td>
                                                         <td>{{urtug.realisasiKuantitas}}</td>
                                                         <td>{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
-                                                        <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">LAPORKAN</button></td>
+                                                        <td style="width: 10%" ng-show="kontrak.laporan"><button type="button" ng-click="kontrak.openUploadTemplate(urtug,0)" class="btn btn-success">LAPORKAN</button></td>
                                                         <td style="width: 10%"><button type="button" ng-click="kontrak.progress(urtug)" class="btn btn-default">PROGRESS</button></td>
                                                     </tr>
                                                     <tr ng-show="filteredDataTarget==0">
@@ -284,7 +284,7 @@
                                                         <!-- <td>{{'Rp. ' + kegiatan.biaya}}</td> -->
                                                         <!-- <td style="width: 10%"><button type="button" ng-click="kontrak.openUploadTemplate(kegiatan,1)" class="btn btn-success">KERJAKAN</button></td> -->
                                                     </tr>
-                                                    <tr ng-show="filteredDataKegiatan==0">
+                                                    <tr ng-show="!filteredDataKegiatan">
                                                         <td colspan="6" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>BELUM ADA KEGIATAN YANG DISELESAIKAN</strong></td>
                                                     </tr>
                                                 </tbody>
@@ -332,7 +332,7 @@
 
                                                 <tbody>
                                                     <tr ng-repeat="tambahan in kontrak.tugasTambahan" class="text-center" ng-hide="kontrak.tugasTambahan==0">
-                                                        <td>{{$index + 1 + (numPerPageKegiatan*currentPageKegiatan)}}</td>
+                                                        <td>{{$index + 1 }}</td>
                                                         <td style="text-align: left">{{tambahan.deskripsi}}</td>
                                                     </tr>
                                                     <tr ng-show="kontrak.tugasTambahan==0">

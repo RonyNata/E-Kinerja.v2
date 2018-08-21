@@ -14,8 +14,9 @@ angular.
 
       var eselon = $.parseJSON(sessionStorage.getItem('credential')).eselon.split('.')[0].toLowerCase();
       switch(eselon){
-        case 'i' : case 'ii' : case 'iii' : case 'xs': vm.isEselon4 = false; break;
-        default : vm.isEselon4 = true; break;
+        case 'i' : case 'ii' : case 'iii' : vm.isEselon4 = false; break;
+        case 'xs': case 'xf': vm.isEselon4 = false; vm.laporan = true; break;
+        default : vm.isEselon4 = true; vm.laporan = true; break;
       }
       EkinerjaService.checkCredential();
       // EkinerjaService.checkRole($.parseJSON(sessionStorage.getItem('credential')).id);
