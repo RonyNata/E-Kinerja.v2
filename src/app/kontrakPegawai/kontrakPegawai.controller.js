@@ -193,8 +193,8 @@ angular.
         templateUrl: 'app/kontrakPegawai/progress/progress.html',
         controller: 'ProgressController',
         controllerAs: 'progress',
+        size: 'lg',
         // windowClass: 'app-modal-window',
-        // size: 'lg',
         appendTo: parentElem,
             resolve: {
                 urtug: function () {

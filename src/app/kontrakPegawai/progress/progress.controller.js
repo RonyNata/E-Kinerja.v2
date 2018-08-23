@@ -6,7 +6,7 @@ angular.
 	.controller('ProgressController', ProgressController);
 
     
-    function ProgressController(urtug, EkinerjaService, KontrakPegawaiService, $uibModalInstance, InstruksiPejabatService, $scope, logo_bekasi, logo_garuda) {
+    function ProgressController(urtug, EkinerjaService, KontrakPegawaiService, $uibModalInstance, $scope, API, $window) {
       	var vm = this;
         vm.bulan = EkinerjaService.IndonesianMonth(new Date());
         vm.tahun = EkinerjaService.IndonesianYear(new Date());
@@ -24,32 +24,35 @@ angular.
         //     })
         // }
 
-        vm.getDocument = function(kdHistory){
-          KontrakPegawaiService.GetHistory(kdHistory).then(
-            function(response){
-              debugger
-            }, function(errResponse){
+        // vm.getDocument = function(kdHistory){
+        //   KontrakPegawaiService.GetHistory(kdHistory).then(
+        //     function(response){
+        //       debugger
+        //     }, function(errResponse){
 
-            })
-        }
+        //     })
+        // }
 
-        vm.getDocumentInstruksi = function(kdHistory, idx){
-          vm.dataHistory[idx].loading = true;
-          KontrakPegawaiService.GetDataInstruksi(kdHistory).then(
-            function(response){
-              vm.data = response;
-              template();
-              vm.dataHistory[idx].loading = false;
-              pdfMake.createPdf(vm.docDefinition).open();
-            }, function(errResponse){
+        vm.getDocument = function(progress){
+          // progress.loading = true;
+            // DashboardService.GetprogressLain(progress.pathFile, progress.pathFileExtension, progress.kdTemplateLain).then(
+            //     function(response){
+            //         progress.loading = false;debugger
+                    var landingUrl = API + 'get-template-lain-file-revisi/' + progress.pathFile + '/' + progress.pathFileExtension + '/' + progress.kdTemplateLain;
+                    $window.location.href = landingUrl;
+                //     getprogressBawahan();
 
-            })
+                // }, function(errResponse){
+                //     progress.loading = false;
+                //     getprogressBawahan();
+                //     // EkinerjaService.showToastrError("Gagal Mengambil Data");
+                // })
         }
 
         function getProgress(){
           urtug.nipPegawai = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
           KontrakPegawaiService.GetProgress(urtug).then(
-            function(response){
+            function(response){debugger
                 for(var i = 0; i < response.length; i++){
                     var date = new Date(response[i].tanggalPembuatanMilis);
                     response[i].tanggalDibuat = EkinerjaService.IndonesianDateFormat(date);
