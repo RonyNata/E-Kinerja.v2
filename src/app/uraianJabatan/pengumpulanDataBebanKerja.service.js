@@ -222,7 +222,7 @@
 
         service.SetUrtugAndJabatan = function(urtugJabatan){
           var deferred = $q.defer();
-            $http.post(API + 'add-uraian-tugas-jabatan/', urtugJabatan).then(
+            $http.post(API + 'add-daftar-uraian-tugas-jabatan/', urtugJabatan).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

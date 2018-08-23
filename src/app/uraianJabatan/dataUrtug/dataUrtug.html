@@ -1,11 +1,14 @@
 <div class="modal-header background-pop-up">
     <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>Tambah Uraian Tugas kepada <b>{{dataurtug.jabatan}}</b></strong></h3>
 </div>
-<form ng-submit="dataurtug.save()" class="form-horizontal">
+<!-- <form ng-submit="dataurtug.pilihUrtug()" class="form-horizontal"> -->
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="checkbox space-after">
+                        <label><input type="checkbox" ng-model="dataurtug.pilih" ng-change="dataurtug.checkAll()">Pilih Semua</label>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="bg-table">
@@ -13,6 +16,8 @@
                                 <!-- <th style="width: 6%; text-align: center; vertical-align: middle">
                                     {{dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2 ? 'No' : ''}}
                                 </th> -->
+                                <th style="width: 6%; text-align: center; vertical-align: middle">
+                                </th>
                                 <th style="text-align: center; vertical-align: middle">
                                     <input type="text" class="form-control" ng-model="searchName" placeholder="Uraian Tugas">
                                 </th>
@@ -28,6 +33,7 @@
                             <tr ng-repeat="data in filteredData" ng-click="dataurtug.pilihUrtug(data)">
                                 <!-- <td style="text-align: center; vertical-align: middle"><input type="checkbox" ng-model="data.checked" ng-change="dataurtug.check(data)" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">
                                     <p ng-show="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td> -->
+                                <td style="text-align: center; vertical-align: middle"><input ng-change="dataurtug.check(data)" type="checkbox" ng-model="data.checked"></td>
                                 <td style="vertical-align: middle">{{data.deskripsi}}</td>
                                 <td style="vertical-align: middle">{{data.jabatan}}</td>
                                 <td style="vertical-align: middle">{{data.satuanVolume}}</td>
@@ -64,7 +70,7 @@
     </div>
 
     <div class="modal-footer">
-        <!--<button type="button" ng-click="dataurtug.addKegiatan()" class="btn btn-success waves-effect" data-dismiss="modal" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">Tambahkan</button>-->
+        <button type="button" ng-click="dataurtug.pilihUrtug()" class="btn btn-success waves-effect" data-dismiss="modal">Tambahkan</button>
         <button type="button" ng-click="dataurtug.cancel()" class="btn btn-danger waves-effect" data-dismiss="modal">Batal</button>
     </div>
-</form>
+<!-- </form> -->

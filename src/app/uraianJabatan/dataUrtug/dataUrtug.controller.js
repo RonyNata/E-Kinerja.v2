@@ -14,11 +14,13 @@
       vm.item = angular.copy(items);
       vm.dataLook = vm.dataUrtug;
       paging();
+      vm.pilih = false;
 
       $scope.searchName = '';
       vm.jabatan = jabatan;
       $scope.entries = 5;
       $scope.currentPage = 0;
+      vm.urtugPilihan = [];
       // vm.isPilihan = isPilihan;
       var data;
 
@@ -64,10 +66,27 @@
       //     })
       // }
 
-      vm.pilihUrtug = function(data){
-        vm.item.kdUrtug = data.kdUrtug;
-        console.log(vm.item);
-        PengumpulanDataBebanKerjaService.SetUrtugAndJabatan(vm.item).then(
+      vm.checkAll = function(){debugger
+        for(var i = 0; i < vm.dataLook.length;i++){
+          if(!vm.dataLook[i].checked){
+            vm.dataLook[i].checked = true;
+          }else {
+            vm.dataLook[i].checked = false;
+          }
+            vm.check(vm.dataLook[i]);
+        }
+      }
+
+      vm.pilihUrtug = function(){
+        var urtug = [];
+        var temp;
+        for(var i = 0; i < vm.urtugPilihan.length;i++){
+          temp = angular.copy(vm.item);
+          temp.kdUrtug = vm.urtugPilihan[i].kdUrtug;
+          urtug.push(temp);
+        }
+        console.log(urtug);
+        PengumpulanDataBebanKerjaService.SetUrtugAndJabatan(urtug).then(
               function(response){
                 $uibModalInstance.close();
               },function(errResponse){
@@ -164,10 +183,17 @@
         debugger
       })
 
+      function findByKdUrtug(kdUrtug){
+        for(var i = 0; i < vm.urtugPilihan; i++)
+          if(kdUrtug == vm.urtugPilihan[i].kdUrtug){
+            return i; break;
+          }
+      }
+
       vm.check = function(dat){
         if(dat.checked)
-          vm.kegiatanPilihan.push(dat);
-        else vm.kegiatanPilihan.splice(findkegiatanByNip(dat.nipkegiatan, vm.kegiatanPilihan),1);
+          vm.urtugPilihan.push(dat);
+        else vm.urtugPilihan.splice(findByKdUrtug(dat.kdUrtug, vm.urtugPilihan),1);
       }
 
       function paging(){ 
