@@ -36,8 +36,8 @@ angular.
         }
 
         vm.validation = function(qty, target, idx){debugger
-          if(qty > target || qty == undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
-          if(qty < 1) vm.urtugNonDpa[idx].targetKuantitas = 1;
+          if(qty > target && qty != undefined) vm.urtugNonDpa[idx].targetKuantitas = target;
+          if(qty < 1 && qty != undefined) vm.urtugNonDpa[idx].targetKuantitas = 1;
         }
 
         vm.openKegiatan = function (item, parentSelector) {
