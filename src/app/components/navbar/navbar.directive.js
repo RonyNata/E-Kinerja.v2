@@ -175,10 +175,10 @@
         // $state.go('setting');
       }
 
-      if(!vm.pegawai.sudahMembuatKontrak && !$.parseJSON(sessionStorage.getItem('kontrak'))){
-        sessionStorage.setItem('kontrak', 'true');
-        EkinerjaService.changeToastrOpt();
-      }
+      // if(!vm.pegawai.sudahMembuatKontrak && !$.parseJSON(sessionStorage.getItem('kontrak'))){
+      //   sessionStorage.setItem('kontrak', 'true');
+      //   EkinerjaService.changeToastrOpt();
+      // }
       
       $scope.openStep = function (parentSelector) {
         var parentElem = parentSelector ? 
