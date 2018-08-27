@@ -31,6 +31,7 @@ angular.
       // getUrtugByJabatan();
 
       vm.getSKP = function(){
+        console.log(EkinerjaService.IndonesianMonth(new Date()));
         KontrakPegawaiService.GetUrtugKegiatan(
             $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
             $.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja,
@@ -43,7 +44,7 @@ angular.
                 function(response){
                   var doc = TemplateLaporanSKPService.template(response, data, vm.tugasTambahan, vm.pegawai, vm.penilai, EkinerjaService.IndonesianMonth(new Date()),
                     EkinerjaService.IndonesianYear(new Date()));
-                  EkinerjaService.lihatPdf(doc, 'Laporan SKP Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
+                  EkinerjaService.lihatPdf(doc, 'Laporan Kinerja Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
                 }, function(errResponse){
                   
                 })
