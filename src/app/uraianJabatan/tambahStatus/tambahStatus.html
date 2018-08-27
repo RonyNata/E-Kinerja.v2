@@ -10,10 +10,46 @@
                     <p><b>Uraian Tugas</b></p>
                 </div>
                 <div class="col-md-7">
-                    <input class="form-control" list="aktivitass" name="aktivitas" ng-model="status.item.kdUrtug" autocomplete="off" ng-change="status.getUrtug()">
+                    <!-- <input class="form-control" list="aktivitass" name="aktivitas" ng-model="status.item.kdUrtug" autocomplete="off" ng-change="status.getUrtug()">
                     <datalist id="aktivitass">
                         <option ng-repeat="aktivitas in status.used_urtug" value="{{aktivitas.kdUrtug}}" ng-selected="selected">{{aktivitas.urtug}}</option>
-                    </datalist>
+                    </datalist> -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-table">
+                            <tr>
+                                <th style="text-align: center; vertical-align: middle">Uraian Tugas</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="aktivitas in filteredData" >
+                                <td ng-click="status.getUrtug(aktivitas.kdUrtug)" style="vertical-align: middle">{{aktivitas.urtug}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="align-center">
+                                <ul style="padding-left: 0px;">
+                                    <li style="display: inline-block;">
+                                        <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                            &lt; Sebelumnya
+                                        </button>
+                                    </li>
+                                    <li style="display: inline-block;">
+                                        <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPage+1}} Dari {{maxSize}}</span>
+                                    </li>
+                                    <li style="display: inline-block;">
+                                        <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                            Selanjutnya &gt;
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
