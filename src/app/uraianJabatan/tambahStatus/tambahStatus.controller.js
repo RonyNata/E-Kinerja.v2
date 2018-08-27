@@ -8,7 +8,8 @@ angular.
     
     function TambahStatusController(EkinerjaService, $scope, items, used_urtug, PengumpulanDataBebanKerjaService, $uibModalInstance) {
       	var vm = this;
-
+        $scope.entries = 2;
+        $scope.currentPage = 0;
         vm.item = angular.copy(items);
         var usedurtug = used_urtug;
         debugger
@@ -38,20 +39,20 @@ angular.
             )
         }
 
-        vm.getUrtug = function(){
-          if(vm.item.kdUrtug.length != 0){
-            vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.used_urtug, vm.item.kdUrtug);
-            var utg = PengumpulanDataBebanKerjaService.GetUrtugByyId(usedurtug, vm.item.kdUrtug);
+        vm.getUrtug = function(kdUrtug){
+            vm.urtug = PengumpulanDataBebanKerjaService.GetUrtugByyId(vm.used_urtug, kdUrtug);
+            var utg = PengumpulanDataBebanKerjaService.GetUrtugByyId(usedurtug, kdUrtug);
             vm.target.kuantitas = utg.volume;
             vm.target.satuanKuantitas = utg.satuanVolume;
             vm.item.kdUrtug = vm.urtug.kdUrtug;debugger
-          }
         }
 
         function getUrtugJabatan(){
           PengumpulanDataBebanKerjaService.GetUrtugForStatus(items.kdJabatan).then(
             function(response){
+              debugger;
               vm.used_urtug = response;
+              paging();
             }, function(errResponse){
 
             })
@@ -104,6 +105,43 @@ angular.
 
         vm.calculateBeban = function(){
           vm.item.bebanKerja = vm.item.volumeKerja * vm.item.normaWaktu;
+        }
+
+        $scope.$watch('entries', function(){
+          // if($scope.searchNip != '')
+          //  vm.dataLook = EkinerjaService.searchByNip($scope.searchNip, data);
+          paging();
+          debugger
+        })
+
+        function paging(){ 
+          $scope.filteredData = [];
+          // $scope.currentPage = 0;
+          $scope.numPerPage = $scope.entries;
+          $scope.maxSize = Math.ceil(vm.used_urtug.length/$scope.numPerPage);
+          function pageUrtug(){
+            $scope.pageUrtug = [];
+            for(var i = 0; i < vm.used_urtug.length/$scope.numPerPage; i++){
+                $scope.pageUrtug.push(i+1);
+            }
+          }
+          pageUrtug();
+          $scope.pad = function(i){
+            $scope.currentPage += i;
+          }
+
+          $scope.max = function(){
+            if($scope.currentPage >= $scope.maxSize - 1)
+                return true;
+            else return false;
+          }
+
+          $scope.$watch("currentPage + numPerPage", function() {
+            var begin = (($scope.currentPage) * $scope.numPerPage)
+            , end = begin + $scope.numPerPage;
+
+            $scope.filteredData = vm.used_urtug.slice(begin, end);
+          });
         }
    	} 
 })();
