@@ -184,7 +184,7 @@
                         }
 
                         for (var i=0; i<data.length; i++){
-                            docDefinition.content[3].table.body.push([{text: '' + (dpa.length +1)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : '0'},{text : '' + data[i].realisasiKuantitas},{text : '' + kualitas},{text: ''},{text : '0'},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
+                            docDefinition.content[3].table.body.push([{text: '' + (dpa.length +1 + i)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : '0'},{text : '' + data[i].realisasiKuantitas},{text : '' + kualitas},{text: ''},{text : '0'},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
                         }
 
                         for (var i=0; i<tambahan.length; i++){
