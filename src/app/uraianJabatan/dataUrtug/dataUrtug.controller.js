@@ -66,6 +66,50 @@
       //     })
       // }
 
+      // vm.openPilihan = function (parentSelector) {
+      //   var parentElem = parentSelector ? 
+      //   angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+      //   var modalInstance = $uibModal.open({
+      //   animation: true,
+      //   ariaLabelledBy: 'modal-title',
+      //   ariaDescribedBy: 'modal-body',
+      //   templateUrl: 'app/uraianJabatan/urtugDipilih/dataDipilih.html',
+      //   controller: 'DataUrtugDipilihController',
+      //   controllerAs: 'dataurtugdipilih',
+      //   // windowClass: 'app-modal-window',
+      //   size: 'lg',
+      //   appendTo: parentElem,
+      //   resolve: {
+      //     urtug: function(){
+      //       return vm.tempUrtug.kdUrtug;
+      //     },
+      //     urtugDipilih: function(){
+      //       return vm.tempUrtug.kdUrtug;
+      //     },
+      //     isPilihan: function(){
+      //       return 1;
+      //     },
+      //     urtug: function(){
+      //       return 0;
+      //     }
+      //   }
+      //   });
+
+      //   modalInstance.result.then(function () {
+      //   }, function () {
+
+      //   });
+      // };
+
+      // vm.urtugDipilih = function(){
+      //   var urtug = [];
+      //   vm.tempUrtug;
+      //   for(var i = 0; i < vm.urtugPilihan.length;i++){
+      //     vm.tempUrtug = angular.copy(vm.item);
+      //     vm.tempUrtug.kdUrtug = vm.urtugPilihan[i].kdUrtug;
+      //   }
+      // }
+
       vm.checkAll = function(){debugger
         for(var i = 0; i < vm.dataLook.length;i++){
           if(!vm.dataLook[i].checked){
