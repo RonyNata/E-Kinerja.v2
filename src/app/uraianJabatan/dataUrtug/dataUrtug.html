@@ -34,6 +34,9 @@
                                 <th style="text-align: center; vertical-align: middle">
                                     Jabatan
                                 </th>
+                                <th style="text-align: center; vertical-align: middle">
+                                    <input type="text" class="form-control" ng-model="searchUnit" placeholder="Unit Kerja">
+                                </th>
                                 <th style="text-align: center; vertical-align: middle">Satuan</th>
                                 <th style="text-align: center; vertical-align: middle">Volume</th>
                             </tr>
@@ -46,6 +49,7 @@
                                 <td style="text-align: center; vertical-align: middle"><input ng-change="dataurtug.check(data)" type="checkbox" ng-model="data.checked"></td>
                                 <td style="vertical-align: middle">{{data.deskripsi}}</td>
                                 <td style="vertical-align: middle">{{data.jabatan}}</td>
+                                <td style="vertical-align: middle">{{data.unitKerja}}</td>
                                 <td style="vertical-align: middle">{{data.satuanVolume}}</td>
                                 <td style="vertical-align: middle">{{data.volume}}</td>
                             </tr>

@@ -97,8 +97,10 @@
         service.searchByJabatan = function(jabatan, array){
             var result = [];
             for(var i = 0; i<array.length; i++){
-                if (array[i].jabatan.toLowerCase().search(jabatan.toLowerCase()) != -1) {
-                    result.push(array[i]);
+                if(array[i].jabatan != null){
+                    if (array[i].jabatan.toLowerCase().search(jabatan.toLowerCase()) != -1) {
+                        result.push(array[i]);
+                    }
                 }
             }
             return result;
@@ -118,9 +120,11 @@
         service.searchByUnitKerja = function(unitKerja, array){
             var result = [];
             for(var i = 0; i<array.length; i++){
-                if (array[i].unitKerja.toLowerCase().search(unitKerja.toLowerCase()) != -1) {
-                    debugger
-                    result.push(array[i]);
+                if(array[i].unitKerja != null){
+                    if (array[i].unitKerja.toLowerCase().search(unitKerja.toLowerCase()) != -1) {
+                        debugger
+                        result.push(array[i]);
+                    }
                 }
             }
             return result;

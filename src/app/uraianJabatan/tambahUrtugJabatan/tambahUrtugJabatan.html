@@ -1,0 +1,33 @@
+<div class="modal-header background-pop-up">
+    <h3 class="modal-title" id="modal-title" style="padding-bottom: 15px;font-size: 20px;"><strong>TAMBAH DATA URAIAN TUGAS</strong></h3>
+</div>
+<form ng-submit="addurjab.save()" class="form-horizontal">
+    <div class="modal-body" id="modal-body">
+        <div class="form-body">
+
+            <div class="row space-after">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <label>Deskripsi Uraian Tugas</label>
+                        <textarea type="text" class="form-control" ng-model="addurjab.item.deskripsiUrtug" ng-required="true" rows="5" cols="20" ></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label>Kuantitas</label>
+                        <input class="form-control" type="number" ng-model="addurjab.item.kuantitas" ng-required="true">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Satuan Kuantitas</label>
+                        <input class="form-control" type="text" ng-model="addurjab.item.satuanKuantitas" ng-required="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit"  class="btn btn-success">Simpan</button>
+        <button type="button" ng-click="addurjab.cancel()" class="btn btn-danger" data-dismiss="modal">Batal</button>
+    </div>
+</form>

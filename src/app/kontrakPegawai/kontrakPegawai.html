@@ -161,7 +161,7 @@
                     <button type="button" ng-click="kontrak.openUrtug(0)" class="btn btn-primary btn-xl btn-block"><i class="fa fa-list-alt"></i> <strong>SASARAN KERJA PEGAWAI TAHUN {{kontrak.tahun}}</strong></button>
                 </div>
                 <div class="col-md-6 space-after">
-                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><i class="fa fa-print"></i> <strong>LAPORAN REALISASI SASARAN KERJA PEGAWAI {{kontrak.tahun}}</strong></button>
+                    <button type="button" ng-click="kontrak.getSKP()" class="btn btn-info btn-xl btn-block"><i class="fa fa-print"></i> <strong>PRINT DOKUMEN KINERJA PEGAWAI BULAN {{kontrak.bulan  + ' ' + kontrak.tahun | uppercase}}</strong></button>
                 </div>
             </div>
 
