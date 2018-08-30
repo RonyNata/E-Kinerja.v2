@@ -28,7 +28,7 @@ angular.
       // getUrtugByJabatan();
 
       $scope.$watch('jabatan', function(){
-      	if($scope.jabatan.length == 8 || $scope.jabatan.length == 7){
+      	if($scope.jabatan.length == 12 || $scope.jabatan.length == 11){
       		vm.loadUrtug = true;
       		vm.loadUrJab = true;
       		findJabatan();
@@ -169,7 +169,9 @@ angular.
       			paging();
       			// console.log(JSON.stringify(PengumpulanDataBebanKerjaService.SetDataUrtug(vm.list_used_urtug, vm.list_available_urtug)));
       		}, function(errResponse){
-      			vm.loadUrJab = false;
+      			vm.loadUrtug = false;
+            vm.loadUrJab = false;
+            vm.loading = false;
       		}
       	)
       }

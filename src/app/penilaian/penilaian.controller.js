@@ -66,7 +66,8 @@
 
                     pagingSortLaporan();
                 }, function(errResponse){
-
+                    vm.loading = false;
+                    EkinerjaService.showToastrError('Terjadi Kesalahan');
                 })
         }
 
