@@ -98,9 +98,14 @@
                                                             <button type="button" ng-click="urtug_jabatan.open()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary"><i class="fa fa-cog"></i><span> ATUR URAIAN TUGAS</span>
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-7"></div>
+                                                        <div class="col-md-2 space-after">
+                                                            <button type="button" ng-click="urtug_jabatan.addUrtugJabatan()" ng-disabled="urtug_jabatan.loadUrtug" class="btn btn-primary"><i class="fa fa-plus"></i><span> TAMBAH URAIAN TUGAS</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-md-5"></div>
                                                         <div class="col-md-3 space-after">
                                                             <input type="text" class="form-control" ng-model="searchNameUrtug" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
+                                                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -196,7 +201,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr ng-show="filteredDataJenis==0">
-                                                        <td colspan="4" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
+                                                        <td colspan="5" class="text-center" style="vertical-align: middle; font-size: 25px"><strong>DATA KOSONG</strong></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>

@@ -71,12 +71,12 @@
                               },
 
                               {
-                                  style: 'demoTable', margin: [0,10,0,0], alignment:'center',
+                                  style: 'demoTable', margin: [0,10,0,0],
                                   table: {
                                       headerRows:1,
                                       widths: [12, 400, '*'],
                                       body: [
-                                          [{text: 'No', bold:true},{text: 'IV. TUGAS TAMBAHAN', bold:true},{text : 'NILAI', bold:true}]
+                                          [{text: 'No', bold:true},{text: 'IV. TUGAS TAMBAHAN', bold:true},{text : 'NILAI', bold:true, alignment: 'center'}]
 
                                       ]
                                   }
@@ -187,8 +187,10 @@
                             docDefinition.content[3].table.body.push([{text: '' + (dpa.length +1 + i)},{text: '' + data[i].urtug, alignment:'left'},{text : '' + data[i].targetkuantitas},{text : '100'},{text: ''},{text : '0'},{text : '' + data[i].realisasiKuantitas},{text : '' + kualitas},{text: ''},{text : '0'},{text:'1.0'},{text:'' + (100*data[i].realisasiKuantitas/data[i].targetkuantitas).toFixed(2)}]);
                         }
 
-                        for (var i=0; i<tambahan.length; i++){
-                            docDefinition.content[4].table.body.push([{text: '' + (i + 1)},{text: '' + tambahan[i].deskripsi},{text : '10%'}]);
+                        for (var i=0; i<4; i++){
+                            if(tambahan[i])
+                              docDefinition.content[4].table.body.push([{text: '' + (i + 1)},{text: '' + tambahan[i].deskripsi},{text : '10%'}]);
+                            else docDefinition.content[4].table.body.push([{text: ' '},{text: ' ' },{text : ' '}]);
                         }
 
                         return docDefinition;

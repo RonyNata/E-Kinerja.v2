@@ -42,7 +42,7 @@ angular.
               vm.pegawai_atasan.push(response);
               getAtasanPenilai(response.kdJabatan);
             }, function(errResponse){
-
+              vm.loading = false;
             })
 
         }
@@ -60,7 +60,8 @@ angular.
               }
               getPegawaiPengaju();
             }, function(errResponse){
-
+              vm.loading = false;
+              getPegawaiPengaju();
             })
 
         }

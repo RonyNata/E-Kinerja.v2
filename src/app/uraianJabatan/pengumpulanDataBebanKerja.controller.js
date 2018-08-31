@@ -28,7 +28,7 @@ angular.
       // getUrtugByJabatan();
 
       $scope.$watch('jabatan', function(){
-      	if($scope.jabatan.length == 8 || $scope.jabatan.length == 7){
+      	if($scope.jabatan.length == 12 || $scope.jabatan.length == 11){
       		vm.loadUrtug = true;
       		vm.loadUrJab = true;
       		findJabatan();
@@ -151,6 +151,7 @@ angular.
 
       function getUrtugByJabatan(){
       	vm.loadUrtug = false;
+        vm.loading = true;
       	PengumpulanDataBebanKerjaService.GetUrtugByJabatan($scope.jabatan).then(
       		function(response){
       			if(response.jabatanUraianTugasList == undefined)
@@ -164,10 +165,13 @@ angular.
       			getJenisUrtugJabatan();
       			vm.loadUrtug = false;
       			vm.loadUrJab = false;
+            vm.loading = false;
       			paging();
       			// console.log(JSON.stringify(PengumpulanDataBebanKerjaService.SetDataUrtug(vm.list_used_urtug, vm.list_available_urtug)));
       		}, function(errResponse){
-      			vm.loadUrJab = false;
+      			vm.loadUrtug = false;
+            vm.loadUrJab = false;
+            vm.loading = false;
       		}
       	)
       }
@@ -249,33 +253,15 @@ angular.
 	      // console.log(items);
 		  	// var urtug_used = [];
 	      // if(items == undefined){
-		      var item = {
-		      	"kdJabatan": $scope.jabatan,
-		      	"createdBy": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
-		      	"kuantitas": 0,
-		      	"satuanKuantitas": ' ',
-		      	"kualitas": 0,
-		      	"waktu": 0,
-		      	"biaya": 0
-		      };
-		      // var stat = 'create';
-		  // }
-		  // else {
-		  // 	var item = angular.copy(items);
-		  // 	var stat = 'edit';
-		  // 	item.kdJabatan = $scope.jabatan;
-		  // 	item.createdBy = $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
-		  // 	item.kdUrtug = item.uraianTugas.deskripsi;
-		  // 	item.kdJenisUrtug = item.jenisUraianTugas.kdJenisUrtug;
-		  // 	var biaya = item.biaya.split(".");
-		  // 	item.biaya = '';
-		  // 	for(var i = 0; i<biaya.length;i++) item.biaya += biaya[i];
-	   //    	console.log(item.biaya);
-	   //    	console.log(biaya);
-		  // 	item.biaya = parseInt(item.biaya);
-		  // 	for(var i = 0; i<vm.list_used_urtug.length;i++)
-		  // 		urtug_used.push(vm.list_used_urtug[i].uraianTugas);
-		  // }
+	      var item = {
+	      	"kdJabatan": $scope.jabatan,
+	      	"createdBy": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai,
+	      	"kuantitas": 0,
+	      	"satuanKuantitas": ' ',
+	      	"kualitas": 0,
+	      	"waktu": 0,
+	      	"biaya": 0
+	      };
 	      var parentElem = parentSelector ? 
 	        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
 	        // console.log(urtug_used);
@@ -350,15 +336,9 @@ angular.
 	      });
 
 	      modalInstance.result.then(function () {
-	      	// showToastrSuccess('ditambahkan');
-	      	// getUrtugByJabatan();
-	      	// getUrtugKegiatanByJabatan();
-	        // vm.selected = selectedItem;
-	        getUrtugByJabatan()
+	        getUrtugByJabatan();
 	      }, function () {
-	      	getUrtugByJabatan()
-	      	// showToastrFailed('menambahkan data');
-	        // $log.info('Modal dismissed at: ' + new Date());
+	      	getUrtugByJabatan();
 	      });
 	    };
 
@@ -441,59 +421,55 @@ angular.
 	      });
 	    };
 
-        vm.openDetailUrtug = function (urtug, parentSelector) {
-        	console.log(urtug);
-            var parentElem = parentSelector ?
-                angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
-            var modalInstance = $uibModal.open({
-                animation: true,
-                ariaLabelledBy: 'modal-title',
-                ariaDescribedBy: 'modal-body',
-                templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
-                controller: 'DetailUrtugController',
-                controllerAs: 'detailUrtug',
-                size: 'lg',
-                appendTo: parentElem,
-                resolve: {
-                	urtug: function(){
-                		return urtug;
-                	}
-                }
-                // windowClass: 'app-modal-window',
-                // size: 'lg',
-            });
+      vm.openDetailUrtug = function (urtug, parentSelector) {
+      	console.log(urtug);
+          var parentElem = parentSelector ?
+              angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+          var modalInstance = $uibModal.open({
+              animation: true,
+              ariaLabelledBy: 'modal-title',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: 'app/uraianJabatan/detailUrtug/detailUrtug.html',
+              controller: 'DetailUrtugController',
+              controllerAs: 'detailUrtug',
+              size: 'lg',
+              appendTo: parentElem,
+              resolve: {
+              	urtug: function(){
+              		return urtug;
+              	}
+              }
+              // windowClass: 'app-modal-window',
+              // size: 'lg',
+          });
 
-            modalInstance.result.then(function () {
-            }, function () {
+          modalInstance.result.then(function () {
+          }, function () {
 
-            });
-        };
+          });
+      };
 
-	    vm.addSop = function (kdUrtug, parentSelector) {
+	    vm.addUrtugJabatan = function (parentSelector) {
 	      var parentElem = parentSelector ? 
 	        angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
 	      var modalInstance = $uibModal.open({
 	        animation: true,
 	        ariaLabelledBy: 'modal-title',
 	        ariaDescribedBy: 'modal-body',
-	        templateUrl: 'app/uraianJabatan/tambahSOP/formSop.html',
-	        controller: 'FormSOPController',
-	        controllerAs: 'sop',
-	        size: 'lg',
+	        templateUrl: 'app/uraianJabatan/tambahUrtugJabatan/tambahUrtugJabatan.html',
+	        controller: 'TambahUrtugJabatanController',
+	        controllerAs: 'addurjab',
 	        appendTo: parentElem,
 	        resolve: {
-	          kdUrtug: function () {
-	            return kdUrtug;
+	          kdJabatan: function () {
+	            return $scope.jabatan;
 	          }
 	        }
 	      });
 
 	      modalInstance.result.then(function () {
-      		// getJenisUrtugJabatan();
-	        // vm.selected = selectedItem;
+          getUrtugByJabatan();
 	      }, function () {
-	      	// showToastrFailed('menambahkan data');
-	        // $log.info('Modal dismissed at: ' + new Date());
 	      });
 	    };
 

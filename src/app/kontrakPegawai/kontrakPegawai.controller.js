@@ -254,9 +254,9 @@ angular.
               templateUrl: 'app/kontrakPegawai/tugasTambahan/tugasTambahan.html',
               controller: 'TugasTambahanController',
               controllerAs: 'tambahan',
+              appendTo: parentElem
               // windowClass: 'app-modal-window',
               // size: 'lg',
-              appendTo: parentElem
           });
 
           modalInstance.result.then(function () {

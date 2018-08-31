@@ -34,7 +34,7 @@
                             <div class="align-center">
                                 <ul style="padding-left: 0px;">
                                     <li style="display: inline-block;">
-                                        <button class="btn btn-primary" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
+                                        <button class="btn btn-primary" type="button" ng-click="pad(-1)" ng-disabled="currentPage==0" aria-label="Use Android" style="cursor: pointer;">
                                             &lt; Sebelumnya
                                         </button>
                                     </li>
@@ -42,7 +42,7 @@
                                         <span style="margin-left:15px;margin-right: 15px;display: inline-block;">Halaman {{currentPage+1}} Dari {{maxSize}}</span>
                                     </li>
                                     <li style="display: inline-block;">
-                                        <button class="btn btn-primary" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
+                                        <button class="btn btn-primary" type="button" ng-click="pad(1)" ng-disabled="max()" aria-label="Use Android" style="cursor: pointer;">
                                             Selanjutnya &gt;
                                         </button>
                                     </li>

@@ -17,6 +17,7 @@
       vm.pilih = false;
 
       $scope.searchName = '';
+      $scope.searchUnit = '';
       vm.jabatan = jabatan;
       $scope.entries = 5;
       $scope.currentPage = 0;
@@ -211,20 +212,33 @@
         if($scope.searchName != ''){
           $scope.currentPage = 0;debugger
           vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, available_urtug);
+          vm.dataLook = EkinerjaService.searchByUnitKerja($scope.searchUnit, vm.dataLook);
           vm.dataLook = findUrtug($scope.searchName, vm.dataLook);
-        }
+        }else debugger;
         paging();
-        debugger
+        // debugger
       })
 
       $scope.$watch('searchJabatan', function(){
         if($scope.searchJabatan != ''){
           $scope.currentPage = 0;
           vm.dataLook = findUrtug($scope.searchName, available_urtug);
+          vm.dataLook = EkinerjaService.searchByUnitKerja($scope.searchUnit, vm.dataLook);
           vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, vm.dataLook);
-        }
+        }else debugger;
         paging();
-        debugger
+        // debugger
+      })
+
+      $scope.$watch('searchUnit', function(){
+        if($scope.searchUnit != ''){
+          $scope.currentPage = 0;
+          vm.dataLook = findUrtug($scope.searchName, available_urtug);
+          vm.dataLook = EkinerjaService.searchByJabatan($scope.searchJabatan, vm.dataLook);
+          vm.dataLook = EkinerjaService.searchByUnitKerja($scope.searchUnit, vm.dataLook);
+        }else debugger;
+        paging();
+        // debugger
       })
 
       function findByKdUrtug(kdUrtug){

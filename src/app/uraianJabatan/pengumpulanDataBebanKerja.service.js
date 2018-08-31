@@ -233,6 +233,19 @@
             return deferred.promise;  
         }
 
+        service.AddUrtugJabatan = function(urtugJabatan){
+          var deferred = $q.defer();
+            $http.post(API + 'add-uraian-tugas-jabatan-custom/', urtugJabatan).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;  
+        }
+
         service.SetJenisUrtugJabatan = function(data){
           var deferred = $q.defer();
             $http.post(API + 'create-urtug-jabatan-jenis/', data).then(
