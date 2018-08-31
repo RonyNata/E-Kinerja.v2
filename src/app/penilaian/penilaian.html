@@ -92,6 +92,7 @@
                                                 <tr>
                                                     <th class="text-center" style="vertical-align: middle; width: 5%">No</th>
                                                     <th class="text-center" style="vertical-align: middle">Keterangan</th>
+                                                    <th class="text-center" style="vertical-align: middle">Uraian Tugas</th>
                                                     <th class="text-center" style="vertical-align: middle">Nama Pelapor</th>
                                                     <th class="text-center" style="vertical-align: middle">Waktu Penerimaan</th>
                                                     <th class="text-center" style="vertical-align: middle">Status</th>
@@ -103,6 +104,7 @@
                                             <tr ng-repeat="ambil in filteredDataSortLaporan" class="text-center" ng-hide="penilaian.sortLaporan==0">
                                                 <td style="vertical-align: middle">{{$index + 1 }}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.keteranganTemplateLain}}</td>
+                                                <td class="text-left" style="vertical-align: middle">{{ambil.uraianTugasPegawaiBulananWrapper.urtug}}</td>
                                                 <td class="text-left" style="vertical-align: middle">{{ambil.namaBawahan}}</td>
                                                 <td style="vertical-align: middle">{{ambil.tglPengiriman}}</td>
                                                 <td style="vertical-align: middle">{{ambil.status}}</td>

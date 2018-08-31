@@ -61,12 +61,14 @@
                     vm.laporanbawahan = response;
                     vm.laporanbawahan = vm.laporanbawahan.sort( function ( a, b ) { return b.tanggalDibuatMilis - a.tanggalDibuatMilis; } );
                     vm.sortLaporan = angular.copy(vm.laporanbawahan);
+                    console.log(vm.sortLaporan);
                     vm.loading = false;
                     vm.sorting();
 
                     pagingSortLaporan();
                 }, function(errResponse){
-
+                    vm.loading = false;
+                    EkinerjaService.showToastrError('Terjadi Kesalahan');
                 })
         }
 
