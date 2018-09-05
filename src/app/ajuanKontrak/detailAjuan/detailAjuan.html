@@ -17,11 +17,15 @@
 
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="nondpa">
+                            <div ng-show="ajuan.isAjuan">
+                                <label style="margin-top: 5px;">Pilih Semua</label>
+                                <label class="switch" style="float: left;margin-top: 5px;margin-bottom: 10px;">
+                                  <input type="checkbox" class="primary" ng-model="urtugnon">
+                                  <span class="slider"></span>
+                                </label>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="checkbox space-after" ng-show="ajuan.isAjuan">
-                                        <label><input type="checkbox" ng-model="urtugnon">Pilih Semua</label>
-                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead class="bg-table">
@@ -49,7 +53,12 @@
 
                                             <tbody>
                                                 <tr ng-repeat="urtug in filteredDataUrtugNonDpa" ng-hide="filteredDataUrtugNonDpa==0" class="text-center">
-                                                    <td ng-show="ajuan.isAjuan"><input type="checkbox" ng-model="urtug.checked"></td>
+                                                    <td ng-show="ajuan.isAjuan">
+                                                        <label class="switch">
+                                                          <input type="checkbox" class="primary" ng-model="urtug.checked">
+                                                          <span class="slider"></span>
+                                                        </label>
+                                                    </td>
                                                     <td ng-hide="ajuan.isAjuan">{{$index + 1 + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa)}}</td>
                                                     <td class="text-left">{{urtug.urtug}}</td>
                                                     <td>{{urtug.satuanKuantitas}}</td>
