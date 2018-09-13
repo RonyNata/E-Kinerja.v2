@@ -6,7 +6,7 @@ angular
     .controller('LoginEKinerjaController', LoginEKinerjaController);
 
     function LoginEKinerjaController($scope, $rootScope, $location, LoginEKinerjaService, $cookieStore, $state,
-        EkinerjaService, TemplateSuratPerintahService, $uibModal){
+        EkinerjaService, TemplateSuratPerintahService, $uibModal, API){
         // reset login status
         // LoginEKinerjaService.ClearCredentials();
         // var ses = {
@@ -20,6 +20,7 @@ angular
         // checkCredentials();
 
         var vm = this;
+        vm.logo = API + 'get-logo-bekasi';
         // debugger
  
         vm.login = function() {

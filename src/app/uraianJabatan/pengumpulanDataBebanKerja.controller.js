@@ -5,10 +5,12 @@ angular.
 	module('eKinerja')
 	.controller('PengumpulanDataBebanKerjaController', PengumpulanDataBebanKerjaController);
 
-    function PengumpulanDataBebanKerjaController(PengumpulanDataBebanKerjaService, $uibModal,$state, $document, $scope, EkinerjaService) {
+    function PengumpulanDataBebanKerjaController(PengumpulanDataBebanKerjaService, $uibModal,$state, 
+      $document, $scope, EkinerjaService, API) {
       var vm = this;
       vm.loading = true;
       vm.loadUrtug = true;
+      vm.user = API + 'get-logo-user';
       console.log(JSON.stringify($.parseJSON(sessionStorage.getItem('credential'))));
 
       // EkinerjaService.checkCredential();
