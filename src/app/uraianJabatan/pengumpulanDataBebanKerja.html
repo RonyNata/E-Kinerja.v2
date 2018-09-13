@@ -19,6 +19,13 @@
                                         </datalist>
                                     </form>
                                 </div>
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2" ng-show="jabatan">
+                                    <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info" style="float: right;">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <span>UBAH</span>
+                                    </button>
+                                </div>
                             </div>
                             <div ng-hide="jabatan" class="row">
                                 <div class="col-md-12">
@@ -29,51 +36,45 @@
                             </div>
                             <div ng-show="jabatan">
                                 <div class="row">
-                                    <div class="col-md-4 space-after">
-                                        <div class="table-responsive">
-                                            <table>
-                                                <tr>
-                                                    <td>Nama Jabatan :</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>{{urtug_jabatan.jabatan.jabatan}}</b></td>
-                                                </tr>
-                                            </table>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-bottom: -50px">
+                                        <div class="our-services-wrapper mb-60">
+                                            <div class="services-inner">
+                                                <div class="our-services-img">
+                                                    <img src="assets/images/user.png" width="68px" alt="">
+                                                </div>
+                                                <div class="our-services-text">
+                                                    <h4>Nama Jabatan :</h4>
+                                                    <p>{{urtug_jabatan.jabatan.jabatan}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 space-after">
-                                        <div class="table-responsive">
-                                            <table>
-                                                <tr>
-                                                    <td>Jabatan Atasan :</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><b>{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</b></td>
-                                                </tr>
-                                            </table>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-bottom: -50px">
+                                        <div class="our-services-wrapper mb-60">
+                                            <div class="services-inner">
+                                                <div class="our-services-img">
+                                                <img src="assets/images/user.png" width="68px" alt="">
+                                                </div>
+                                                <div class="our-services-text">
+                                                    <h4>Jabatan Atasan :</h4>
+                                                    <p ng-show="urtug_jabatan.penilai">{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</p>
+                                                    <p ng-hide="urtug_jabatan.penilai">(Belum Dipasangkan)</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 space-after">
-                                        <div class="table-responsive">
-                                            <table>
-                                                <tr>
-                                                    <td colspan="2">Pejabat Penilai :</td>
-                                                </tr>
-                                                <tr>
-                                                    <td ng-show="urtug_jabatan.penilai" >
-                                                        <b>{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</b>&nbsp&nbsp&nbsp
-                                                    </td>
-                                                    <td ng-hide="urtug_jabatan.penilai" >
-                                                        <b>(Belum Dipasangkan)</b>&nbsp&nbsp&nbsp
-                                                    </td>
-                                                    <td style="width: 30%">
-                                                        <button type="button" ng-click="urtug_jabatan.changePenilai()" class="btn btn-info">
-                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                            <span>UBAH</span>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" style="margin-bottom: -50px">
+                                        <div class="our-services-wrapper mb-60">
+                                            <div class="services-inner">
+                                                <div class="our-services-img">
+                                                <img src="assets/images/user.png" width="68px" alt="">
+                                                </div>
+                                                <div class="our-services-text">
+                                                    <h4>Pejabat Penilai :</h4>
+                                                    <p ng-show="urtug_jabatan.penilai">{{urtug_jabatan.penilai.nama}}<br>({{urtug_jabatan.penilai.jabatan}})</p>
+                                                    <p ng-hide="urtug_jabatan.penilai">(Belum Dipasangkan)</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +104,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="col-md-5"></div>
-                                                        <div class="col-md-3 space-after">
+                                                        <div class="col-md-3 space-after input-group" style="padding-right: 15px;">
                                                             <input type="text" class="form-control" ng-model="searchNameUrtug" ng-required="true" placeholder="Cari berdasarkan Rincian Tugas...">
                                                             <!-- <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span> -->
                                                         </div>

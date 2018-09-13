@@ -45,7 +45,12 @@
 
                             <tbody>
                             <tr ng-repeat="data in filteredData" ng-show="datakegiatan.isPilihan != 2">
-                                <td style="text-align: center; vertical-align: middle"><input type="checkbox" ng-model="data.checked"></td>
+                                <td style="text-align: center; vertical-align: middle">
+                                    <label class="switch">
+                                      <input type="checkbox" class="primary" ng-model="data.checked">
+                                      <span class="slider"></span>
+                                    </label>
+                                </td>
                                 <td style="vertical-align: middle">{{data.ketKegiatan}}</td>
                                 <td style="text-align: center; vertical-align: middle"> <strong>-</strong> </td>
                                 <td style=" text-align: center;vertical-align: middle"> <strong>-</strong> </td>

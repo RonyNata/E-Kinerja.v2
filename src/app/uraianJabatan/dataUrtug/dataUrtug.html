@@ -46,7 +46,12 @@
                             <tr ng-repeat="data in filteredData" >
                                 <!-- ng-click="dataurtug.pilihUrtug(data)" <td style="text-align: center; vertical-align: middle"><input type="checkbox" ng-model="data.checked" ng-change="dataurtug.check(data)" ng-hide="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">
                                     <p ng-show="dataurtug.isPilihan == 1 || dataurtug.isPilihan == 2">{{$index + 1 + (numPerPage*currentPage)}}</p></td> -->
-                                <td style="text-align: center; vertical-align: middle"><input ng-change="dataurtug.check(data)" type="checkbox" ng-model="data.checked"></td>
+                                <td style="text-align: center; vertical-align: middle">
+                                    <label class="switch">
+                                      <input type="checkbox" class="primary" ng-change="dataurtug.check(data)" ng-model="data.checked">
+                                      <span class="slider"></span>
+                                    </label>
+                                </td>
                                 <td style="vertical-align: middle">{{data.deskripsi}}</td>
                                 <td style="vertical-align: middle">{{data.jabatan}}</td>
                                 <td style="vertical-align: middle">{{data.unitKerja}}</td>
