@@ -86,7 +86,8 @@ angular.
                 "waktu": vm.urtugNonDpa[i].waktu,
                 "biaya": vm.urtugNonDpa[i].biaya,
                 "alasan": "",
-                "statusApproval": 0
+                "statusApproval": 0,
+                "nipPengaju": $.parseJSON(sessionStorage.getItem('credential')).nipPegawai
               }); 
             }
           }

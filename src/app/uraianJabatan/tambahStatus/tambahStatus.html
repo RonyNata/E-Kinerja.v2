@@ -75,14 +75,14 @@
                 </div>
             </div>
 
-            <div ng-hide="status.isDpa">
+            <div ng-if="!status.isDpa">
                 <div class="row space-after">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-3">
                         <p><b>Kuantitas</b></p>
                     </div>
                     <div class="col-md-7">
-                        <input class="form-control" ng-model="status.target.kuantitas" type="number" min="1">
+                        <input class="form-control" ng-model="status.target.kuantitas" type="number" min="1" ng-required="true">
                     </div>
                 </div>
 
@@ -92,7 +92,7 @@
                         <p><b>Satuan Kuantitas</b></p>
                     </div>
                     <div class="col-md-7">
-                        <input class="form-control" ng-model="status.target.satuanKuantitas" type="text">
+                        <input class="form-control" ng-model="status.target.satuanKuantitas" type="text" ng-required="true">
                     </div>
                 </div>
 

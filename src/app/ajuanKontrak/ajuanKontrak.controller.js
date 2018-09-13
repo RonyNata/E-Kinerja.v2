@@ -39,6 +39,7 @@ angular.
           KontrakPegawaiService.GetPejabatPenilai($.parseJSON(sessionStorage.getItem('credential')).kdJabatan).then(
             function(response){
               response.namaPegawai = response.nama;
+              response.sudahDiatur = false;
               vm.pegawai_atasan.push(response);
               getAtasanPenilai(response.kdJabatan);
             }, function(errResponse){
@@ -51,6 +52,7 @@ angular.
           KontrakPegawaiService.GetPejabatPenilai(kdJabatan).then(
             function(response){
               response.namaPegawai = response.nama;
+              response.sudahDiatur = false;
               vm.pegawai_atasan.push(response);
               for(var i = 0; i < vm.pegawai_atasan.length;i++){
                 if(vm.pegawai_atasan[i].jabatan){
@@ -115,10 +117,13 @@ angular.
         }
 
         function getUrtugByJabatan(nipPegawai, pegawai){
-          KontrakPegawaiService.GetUrtugByNip(nipPegawai, (new Date()).getMonth()).then(
+          AjuanKontrakService.GetUrtugAtasanPengatur(nipPegawai, (new Date()).getMonth(), $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
             function(response){
-              for(var i = 0; i<response.length; i++)
+              for(var i = 0; i<response.length; i++){
                 response[i].biayaRp = EkinerjaService.FormatRupiah(response[i].biaya);
+                if(!pegawai.sudahDiatur && pegawai.sudahDiatur != undefined)
+                  pegawai.sudahDiatur = response[i].sudahDiatur;
+              }
               pegawai.skp = response;
               getUrtugKegiatanApproval(pegawai);
               // vm.dataLook = response;
@@ -185,7 +190,7 @@ angular.
           modalInstance.result.then(function () {
             // showToastrSuccess('ditambahkan');
             // getUrtugByJabatan();
-            getPegawaiPengaju();
+            // getPegawaiPengaju();
             createSelfData();
             // vm.selected = selectedItem;
           }, function () {

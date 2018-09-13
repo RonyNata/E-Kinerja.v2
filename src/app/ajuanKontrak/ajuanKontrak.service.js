@@ -32,6 +32,19 @@
             return deferred.promise;
         };
 
+        service.GetUrtugAtasanPengatur = function (nipPegawai, bulan, nipPengaju) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-uraian-tugas-pegawai-bulanan-by-nip-pengaju/' + nipPegawai + '/' + bulan + '/' + nipPengaju).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.ApproveKontrak = function (data) {
             var deferred = $q.defer();
             $http.put(API + 'approval-urtug-bulanan-non-dpa-pegawai/', data).then(

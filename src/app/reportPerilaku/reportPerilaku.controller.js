@@ -11,6 +11,9 @@
 		var date = new Date(EkinerjaService.IndonesianYear(date), date.getMonth());
 		var milliseconds = date.getTime();
 		getAllPegawaiPerilaku();
+		vm.kadin = '';
+		vm.verifikator = '';
+		vm.pj = '';
 		$scope.searchNamaJabatan = '';
 		$scope.entries = 5;
         $scope.currentPageListPerilaku = 0;
@@ -113,17 +116,21 @@
 		}
 
 		vm.getSP = function(){
-			var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiDinas);
-			var pgwSKPD = EkinerjaService.findPegawaiByNip(vm.verifikator, vm.pegawaiDinas);
-			var pj = EkinerjaService.findPegawaiByNip(vm.pj, vm.pegawaiDinas);
-			ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
-				function(responce){debugger
-					var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date),
-						kepalaSKPD, pgwSKPD, pj);
-					EkinerjaService.lihatPdf(doc, 'Surat Perilaku PNS');
-				}, function(errResponce){
+			if(vm.kadin.length != 18 || vm.verifikator.length != 18 || vm.pj.length != 18)
+				EkinerjaService.showToastrError("Pastikan semua penandatangan sudah dipilih");
+			else{	
+				var kepalaSKPD = EkinerjaService.findPegawaiByNip(vm.kadin, vm.pegawaiDinas);
+				var pgwSKPD = EkinerjaService.findPegawaiByNip(vm.verifikator, vm.pegawaiDinas);
+				var pj = EkinerjaService.findPegawaiByNip(vm.pj, vm.pegawaiDinas);
+				ReportPerilakuService.GetPerilaku($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja, milliseconds).then(
+					function(responce){debugger
+						var doc = SPPNSService.template(responce, EkinerjaService.IndonesianYear(date), EkinerjaService.IndonesianMonth(date),
+							kepalaSKPD, pgwSKPD, pj);
+						EkinerjaService.lihatPdf(doc, 'Surat Perilaku PNS');
+					}, function(errResponce){
 
-				})
+					})
+			}
 		}
 
 		$scope.$watch('searchNamaJabatan', function(){
