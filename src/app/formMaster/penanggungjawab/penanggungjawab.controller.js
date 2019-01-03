@@ -5,8 +5,12 @@ angular.
 	module('eKinerja')
 	.controller('PenanggungJawabController', PenanggungJawabController);
 
-	function PenanggungJawabController(MasterUrtugService, $uibModalInstance, items, toastr){
+	function PenanggungJawabController(MasterUrtugService, $uibModalInstance, EkinerjaService, items, toastr){
 		var vm = this;
+		
+		if(items == undefined)
+			vm.judul = 'TAMBAH';
+		else vm.judul = 'EDIT';
 
 		if(items == undefined){
 			vm.data_pj = {"kdStatus": null};
@@ -26,10 +30,13 @@ angular.
 		function edit(){
 			MasterUrtugService.UpdatePj(vm.data_pj).then(
 				function(response){
+	      			EkinerjaService.showToastrSuccess("Data jabatan organisasi berhasil diubah");
 	      			$uibModalInstance.close();
 					// debugger
 				},function(errResponse){
-					toastr.error("Terjadi Kesalahan");
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              		else toastr.error("Terjadi Kesalahan");
 				}
 			);
 		}
@@ -38,10 +45,13 @@ angular.
 			console.log(vm.data_pj);
 			MasterUrtugService.CreatePj(vm.data_pj).then(
 				function(response){
+	      			EkinerjaService.showToastrSuccess("Data jabatan organisasi berhasil ditambahkan");
 	      			$uibModalInstance.close();
 					// debugger
 				},function(errResponse){
-					toastr.error("Terjadi Kesalahan");
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              		else toastr.error("Terjadi Kesalahan");
 				}
 			);
 		}

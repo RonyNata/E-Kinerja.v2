@@ -26,7 +26,9 @@ angular.
       			function(response){
       				$uibModalInstance.close();
       			},function(errResponse){
-                              EkinerjaService.showToastrError('Terjadi Kesalahan');
+                              if(errResponse.status == -1)
+                                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                              else EkinerjaService.showToastrError('Terjadi Kesalahan');
       			}
       		)
       	}

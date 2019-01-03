@@ -25,7 +25,8 @@
             vm.loading = false;
           },
           function(errResponse){
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           }
         )
       }
@@ -58,7 +59,8 @@
             EkinerjaService.showToastrSuccess('Berhasil Disalin');
             getData();
           }, function(errResponse){
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           })
       }
 

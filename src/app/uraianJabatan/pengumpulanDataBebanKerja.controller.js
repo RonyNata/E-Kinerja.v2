@@ -87,7 +87,9 @@ angular.
   				vm.loadUrtug = false;
   				pagingKegiatan();
   			}, function(errResponse){
-
+          if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+            
   			})
       }
 
@@ -96,7 +98,9 @@ angular.
       		function(response){
       			vm.list_pegawai = response;
       		}, function(errResponse){
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+            
       		})
       }
 
@@ -116,6 +120,8 @@ angular.
       			vm.loading = false;
       			vm.loadUrtug = false;
       		}, function(errResponse){
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
       			vm.loading = false;
       		}
       	)
@@ -132,7 +138,9 @@ angular.
       		function(response){
       			vm.penilai = response;
       		}, function(errResponse){
-      			vm.penilai = "";
+      			if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+            vm.penilai = "";
       		})
       }
 
@@ -155,16 +163,17 @@ angular.
       	vm.loadUrtug = false;
         vm.loading = true;
       	PengumpulanDataBebanKerjaService.GetUrtugByJabatan($scope.jabatan).then(
-      		function(response){
+      		function(response){debugger
       			if(response.jabatanUraianTugasList == undefined)
       				vm.list_used_urtug = [];
       			else vm.list_used_urtug = response.jabatanUraianTugasList;
-      			vm.list_available_urtug = response.notJabatanUraianTugasList;
+      			// vm.list_available_urtug = response.notJabatanUraianTugasList;
       			vm.dataLook = vm.list_used_urtug;
       			vm.urtug_used = [];
       			parseMoney();
       			collectUsedUrtug();
       			getJenisUrtugJabatan();
+            getUnitUrtug();
       			vm.loadUrtug = false;
       			vm.loadUrJab = false;
             vm.loading = false;
@@ -174,8 +183,20 @@ angular.
       			vm.loadUrtug = false;
             vm.loadUrJab = false;
             vm.loading = false;
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
       		}
       	)
+      }
+
+      function getUnitUrtug(){
+        PengumpulanDataBebanKerjaService.GetUnitUrtug().then(
+          function(response){
+            vm.unitUrtug = response;
+          }, function(errResponse){
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+          })
       }
 
 
@@ -201,7 +222,8 @@ angular.
       			// debugger
       			pagingJenis();
       		}, function(errResponse){
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
       		})
       }
 
@@ -218,7 +240,8 @@ angular.
               function(response){
                 urtug.adaDpa = response.length;
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               })
           // else 
           //   PengumpulanDataBebanKerjaService.GetUrtugProgramByJabatan(data).then(
@@ -236,7 +259,9 @@ angular.
       			EkinerjaService.showToastrSuccess('Urtug Berhasil Dihapus');
       			getUrtugByJabatan();
       		},function(errResponse){
-      			EkinerjaService.showToastrError('Gagal Menghapus Urtug');
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+      			else EkinerjaService.showToastrError('Gagal Menghapus Urtug');
       		})
       };
 
@@ -246,8 +271,10 @@ angular.
       		.then(function(response){
       			EkinerjaService.showToastrSuccess('Urtug Berhasil Dihapus');
       			getUrtugByJabatan();
-      		},function(errResponse){
-      			EkinerjaService.showToastrError('Gagal Menghapus Urtug');
+      		},function(errResponse){debugger
+      			if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+            else EkinerjaService.showToastrError(errResponse.data.message);
       		})
       };
 
@@ -281,8 +308,8 @@ angular.
 	          items: function () {
 	            return item;
 	          },
-	          available_urtug: function(){
-	          	return vm.list_available_urtug;
+	          instansi_urtug: function(){
+	          	return vm.unitUrtug;
 	          },
 	          jabatan: function(){
 	          	return vm.jabatan.jabatan;

@@ -26,7 +26,8 @@ angular.
               // debugger
             }, function(errResponse){
               vm.loading = false;
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             }
           )
         }
@@ -60,7 +61,8 @@ angular.
               getAtasanPenilai(response.kdJabatan);
               getUrtug(vm.penilai.nipPegawai, vm.penilai);
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
 
         }
@@ -72,7 +74,8 @@ angular.
               vm.atasanPenilai = response;
               getUrtug(vm.atasanPenilai.nipPegawai, vm.atasanPenilai);
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -86,7 +89,8 @@ angular.
               // debugger
             }, function(errResponse){
               vm.loading = false;
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             }
           )
         }
@@ -103,6 +107,8 @@ angular.
                   vm.kegiatan[i].paguAnggaran = EkinerjaService.FormatRupiah(vm.kegiatan[i].paguAnggaran);
                   pagingKegiatan();
               }, function(errResponse){
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
                 // vm.penilai = "";
               })
         }
@@ -156,7 +162,8 @@ angular.
                 EkinerjaService.showToastrSuccess("File Berhasil Diteruskan");
                 $uibModalInstance.close();
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })  
         }
 

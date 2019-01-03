@@ -42,7 +42,9 @@ angular.
         			function(response){
         				$uibModalInstance.close();
         			},function(errResponse){
-                EkinerjaService.showToastrError('terjadi kesalahan');
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError('terjadi kesalahan');
         			}
         		)
           // }

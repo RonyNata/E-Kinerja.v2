@@ -35,7 +35,8 @@ angular.
                 
               },
               function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             )
         }
@@ -48,7 +49,8 @@ angular.
                 
               },
               function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             )
         }
@@ -66,7 +68,8 @@ angular.
             function(response){
               vm.list_pj = response;
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -94,7 +97,8 @@ angular.
         				$uibModalInstance.close();
                 // setPJ();
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               })
           // }
           // else 

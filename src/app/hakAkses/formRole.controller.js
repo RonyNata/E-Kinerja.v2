@@ -19,7 +19,8 @@ angular.
                         // vm.dataRole.unshift(response.currentRole);
                         debugger
                   }, function(errResponse){
-
+                        if(errResponse.status == -1)
+                              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
                   })
 
             vm.save = function setUrtugAndJabatan(){
@@ -28,7 +29,9 @@ angular.
       			function(response){
       				$uibModalInstance.close(HakAksesService.findRole(vm.pegawai.role.id, vm.dataRole).role);
       			},function(errResponse){
-                              EkinerjaService.showToastrError('Terjadi Kesalahan');
+                              if(errResponse.status == -1)
+                                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                              else EkinerjaService.showToastrError('Terjadi Kesalahan');
       			}
       		)
       	}

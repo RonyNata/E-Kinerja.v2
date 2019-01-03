@@ -46,10 +46,12 @@ angular.
                     EkinerjaService.IndonesianYear(new Date()));
                   EkinerjaService.lihatPdf(doc, 'Laporan Kinerja Bulan ' + EkinerjaService.IndonesianMonth(new Date()));
                 }, function(errResponse){
-                  
+                  if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
                 })
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
       }
 
@@ -64,7 +66,8 @@ angular.
             }
             else vm.statusAjuanNonDpa = false;
           }, function(errResponse){
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           }
         );
       }
@@ -78,7 +81,8 @@ angular.
               vm.statusAjuanDpa = false;
             else vm.statusAjuanDpa = true;
           }, function(errResponse){
-
+            // if(errResponse.status == -1)
+            //   EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           }
         );
       // else
@@ -109,7 +113,8 @@ angular.
             // debugger
           }, function(errResponse){
             vm.loading = false;
-
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           }
         )
       }
@@ -120,6 +125,8 @@ angular.
             vm.penilai = response;
           }, function(errResponse){
             vm.penilai = "";
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
           })
       }
 
@@ -136,6 +143,8 @@ angular.
                 pagingKegiatan();
             }, function(errResponse){
               // vm.penilai = "";
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
       }
 
@@ -149,6 +158,8 @@ angular.
               vm.tugasTambahan = response;
             }, function(errResponse){
               // vm.penilai = "";
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
       }
 

@@ -31,7 +31,8 @@
 						paging();
 						vm.loading = false;
 					}, function(errResponse){
-
+						if(errResponse.status == -1)
+              				EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 					})
 			}
 

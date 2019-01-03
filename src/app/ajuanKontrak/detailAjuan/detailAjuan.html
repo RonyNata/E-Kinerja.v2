@@ -61,7 +61,7 @@
                                                     <td ng-hide="ajuan.isAjuan">{{urtug.targetkuantitas}}</td>
                                                     <td ng-hide="ajuan.isAjuan">{{urtug.realisasiKuantitas}}</td>
                                                     <td ng-hide="ajuan.isAjuan">{{100*urtug.realisasiKuantitas/urtug.targetkuantitas | number:2}}</td>
-                                                    <td ng-show="ajuan.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="ajuan.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))"></td>
+                                                    <td ng-show="ajuan.isAjuan" style="width: 10px"><input class="form-control" type="number" ng-model="urtug.targetKuantitas" ng-change="ajuan.validation(urtug.targetKuantitas, urtug.kuantitas - urtug.totalRealisasi, $index + (currentPageUrtugNonDpa * numPerPageUrtugNonDpa))" ng-disabled="!urtug.checked"></td>
                                                     <td ng-show="ajuan.isAjuan">{{urtug.kuantitas - urtug.totalRealisasi}}</td>
                                                 </tr>
                                                 <tr ng-show="filteredDataUrtugNonDpa==0">

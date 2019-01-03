@@ -62,7 +62,8 @@
               vm.penilai = response;
               getAtasanPenilai(response.kdJabatan);
             }, function(errResponse){
-
+                if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
 
         }
@@ -73,7 +74,8 @@
               response.namaPegawai = response.nama;
               vm.atasanPenilai = response;
             }, function(errResponse){
-
+                if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -133,12 +135,16 @@
                             EkinerjaService.showToastrSuccess("File Berhasil Diupload");
                             $uibModalInstance.close();
                         }, function(errResponse){
-                            EkinerjaService.showToastrError("File Gagal Diupload");
+                            if(errResponse.status == -1)
+                                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                            else EkinerjaService.showToastrError("File Gagal Diupload");
                             vm.isProccess = false;
 
                         })
                 }, function(errResponse){
-                    EkinerjaService.showToastrError("File Gagal Diupload");
+                    if(errResponse.status == -1)
+                        EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                    else EkinerjaService.showToastrError("File Gagal Diupload");
                     vm.isProccess = false;
                 })
         };

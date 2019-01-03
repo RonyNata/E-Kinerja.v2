@@ -17,7 +17,8 @@ angular.
           vm.list_pegawai = response;
           vm.loading = false;
         }, function(errResponse){
-
+          if(errResponse.status == -1)
+            EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
         })
         // vm.list_pegawai = pegawai;
         getAllStatusPJ();
@@ -27,7 +28,8 @@ angular.
             function(response){
               vm.datajabatan = response; debugger
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -41,7 +43,9 @@ angular.
                 EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
                 $uibModalInstance.close();
               }, function(errResponse){
-                EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
               })
           else
             if(isEselon4)
@@ -50,7 +54,9 @@ angular.
                   EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
                   $uibModalInstance.close();
                 }, function(errResponse){
-                  EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+                  if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                  else EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
                 })
             else 
               PengadaanBarangJasaService.AddPJProgram(items).then(
@@ -58,7 +64,9 @@ angular.
                 EkinerjaService.showToastrSuccess("Data Penanggung Jawab Berhasil Disimpan");
                 $uibModalInstance.close();
               }, function(errResponse){
-                EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError("Data Penanggung Jawab Gagal Disimpan");
               })
       	}
 

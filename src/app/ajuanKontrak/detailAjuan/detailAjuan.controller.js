@@ -108,7 +108,9 @@ angular.
                 statDpa = true;
                 successChecker(statDpa, statNon);
               }, function(errResponse){
-                EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
             })
           else statDpa = true;
           }
@@ -122,7 +124,9 @@ angular.
               successChecker(statDpa, statNon);
               $uibModalInstance.close();
             }, function(errResponse){
-              EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              else EkinerjaService.showToastrError("Daftar Urtug Non-DPA Gagal Diajukan");
             });
         }
 

@@ -27,7 +27,8 @@ angular.
                     pagingListKegiatan();
                 },
                 function(errResponse){
-  
+                  if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
                 }
               )
         }
@@ -38,7 +39,8 @@ angular.
               var doc = SKPPKService.template(response);
               EkinerjaService.lihatPdf(doc, 'Surat Keputusan Barjas');
             }, function(errResponse){
-              
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -51,7 +53,8 @@ angular.
               count();
               vm.loading = false;
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -128,7 +131,8 @@ angular.
               vm.kegiatanPj = response; debugger
                 pagingKegiatanPj();
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -141,7 +145,9 @@ angular.
               EkinerjaService.showToastrSuccess("Berhasil Dihapus");
               getAllStatusPJ(vm.dpa);
             }, function(errResponse){
-              EkinerjaService.showToastrError("Gagal Dihapus");
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              else EkinerjaService.showToastrError("Gagal Dihapus");
             })
         }
 

@@ -30,7 +30,8 @@ angular.
               debugger
               vm.loading = false;
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -43,6 +44,8 @@ angular.
               vm.pegawai_atasan.push(response);
               getAtasanPenilai(response.kdJabatan);
             }, function(errResponse){
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               vm.loading = false;
             })
 
@@ -62,6 +65,8 @@ angular.
               }
               getPegawaiPengaju();
             }, function(errResponse){
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               vm.loading = false;
               getPegawaiPengaju();
             })
@@ -92,7 +97,8 @@ angular.
               }
               pegawai.urtugNonDpa = vm.urtugNonDpa;
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             }
           );
 
@@ -111,7 +117,8 @@ angular.
                 pegawai.urtugDpa = vm.urtugDpa;
                   // pagingUrtugDpa();
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             );
         }
@@ -130,7 +137,8 @@ angular.
               // debugger
             }, function(errResponse){
               vm.loading = false;
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             }
           )
         }
@@ -144,6 +152,8 @@ angular.
               for(var i = 0; i < response.length; i++)
                 pegawai.skpDpa[i].biaya = EkinerjaService.FormatRupiah(pegawai.skpDpa[i].biaya);
             }, function(errResponse){
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               // vm.penilai = "";
             })
         }

@@ -5,17 +5,36 @@
     <div class="modal-body" id="modal-body">
         <div class="form-body">
             <div class="row">
-                <div class="col-md-5">
-                    <span>Masukkan Jabatan</span>
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Jabatan">
-                        <span class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <div class="col-md-4">
+                    <span>Masukkan Instansi</span>
+                    <div>
+                        <!-- <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Jabatan"> -->
+                        <input class="form-control" list="unit" name="unit" ng-model="dataurtug.unitKerja" placeholder="Pilih Unit Kerja" ng-click="dataurtug.unitKerja = ''; dataurtug.jabatanPilihan = ''" ng-change="dataurtug.getJabatanUnit(dataurtug.unitKerja)">
+                        <datalist id="unit">
+                            <option ng-repeat="unit in dataurtug.instansiJabatan"
+                                    value="{{unit}}" ng-selected="selected"></option>
+                        </datalist>
+                        <!-- <span class="input-group-addon" id="basic-addon2" ng-click="dataurtug.getJabatanUnit()"><button><i class="fa fa-search" aria-hidden="true"></i></button></span> -->
                     </div>          
                 </div>
+                <div class="col-md-4" ng-if="dataurtug.unitKerja.length > 10 || dataurtug.unitKerja == 'dummy'">
+                    <span>Masukkan Jabatan</span>
+                    <div>
+                        <!-- <input type="text" class="form-control" ng-model="searchJabatan" placeholder="Jabatan"> -->
+                        <input class="form-control" list="jabatan" name="jabatan" ng-model="dataurtug.jabatanPilihan" placeholder="Pilih Jabatan" ng-click="dataurtug.jabatanPilihan = ''">
+                        <datalist id="jabatan">
+                            <option ng-repeat="jabatan in dataurtug.jabatanUrtug"
+                                    value="{{jabatan}}" ng-selected="selected"></option>
+                        </datalist>
+                        <!-- <span class="input-group-addon" id="basic-addon2" ng-click="dataurtug.getUrtug()"><button><i class="fa fa-search" aria-hidden="true"></i></button></span> -->
+                    </div>          
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-2" ng-if="dataurtug.unitKerja.length > 10 || dataurtug.unitKerja == 'dummy'"><span>&nbsp;</span><button style="width: 100%" type="button" class="btn btn-success" ng-click="dataurtug.getUrtug()" data-dismiss="modal">Cari</button></div>
                 <!-- <div class="col-md-9" style="padding-top: 20px;">
                     <button class="btn btn-info waves-effect" ng-click="dataurtug.urtugDipilih" style="float: right;" ng-show="searchJabatan" type="button">Tambahkan Sementara</button>
                 </div> --> 
-                <div class="col-md-12" ng-show="searchJabatan">
+                <div class="col-md-12" ng-show="dataurtug.dataLook">
                     <div class="checkbox space-after">
                         <label><input type="checkbox" ng-model="dataurtug.pilih" ng-change="dataurtug.checkAll()">Pilih Semua</label>
                     </div>

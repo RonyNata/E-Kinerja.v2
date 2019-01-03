@@ -34,7 +34,8 @@ angular.
                 // debugger
               },
               function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             )
         }
@@ -54,7 +55,8 @@ angular.
               vm.used_urtug = response;
               paging();
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 
@@ -90,7 +92,9 @@ angular.
               function(response){
                 $uibModalInstance.close();
               },function(errResponse){
-                EkinerjaService.showToastrError('terjadi kesalahan');
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError('terjadi kesalahan');
               }
             )
           }

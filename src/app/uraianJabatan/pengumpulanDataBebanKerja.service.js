@@ -129,6 +129,45 @@
             return deferred.promise;
         };
 
+        service.GetUnitUrtug = function () {
+            var deferred = $q.defer();
+            $http.get(API + 'get-unitkerja-uraian-tugas/').then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetJabatanUnit = function (unit) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-jabatan-by-unitkerja/' + unit).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
+        service.GetUrtugByJabatanInstansi = function (jabatan, unit) {
+            var deferred = $q.defer();
+            $http.get(API + 'get-urtug-by-nama-jabatan-unitkerja/' + jabatan + '/' + unit).then(
+                function (response){
+                    deferred.resolve(response.data);
+                },
+                function(errResponse){
+                    deferred.reject(errResponse);
+                }
+            );
+            return deferred.promise;
+        };
+
         service.GetUrtugKegiatanByJabatan = function (urjab) {//get-urtug-kegiatan-by-jabatan
             var deferred = $q.defer();console.log(JSON.stringify(urjab));
             $http.post(API + 'get-kegiatan-by-urtug/', urjab).then(

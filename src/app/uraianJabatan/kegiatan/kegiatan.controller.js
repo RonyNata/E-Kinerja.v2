@@ -32,7 +32,8 @@ angular.
 
                   pagingKegiatan();
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               })
           // else 
           //   PengumpulanDataBebanKerjaService.GetUrtugProgramByJabatan(data).then(
@@ -221,7 +222,8 @@ angular.
 
               });
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         };
 
@@ -234,7 +236,9 @@ angular.
                         EkinerjaService.showToastrSuccess('Kegiatan Berhasil Dihapus');
                         getUrtugKegiatanByJabatan();
                     },function(errResponse){
-                        EkinerjaService.showToastrError('Gagal Menghapus Urtug');
+                        if(errResponse.status == -1)
+                          EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                        else EkinerjaService.showToastrError('Gagal Menghapus Urtug');
                     })
             // } else {
             //     console.log(data);

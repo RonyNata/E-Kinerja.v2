@@ -6,16 +6,16 @@
             <div class="col-md-12">
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs pull-right">
-                        <li role="presentation" class="active">
+                        <!-- <li role="presentation" class="active">
                             <a href="#urtug" data-toggle="tab">Uraian Tugas</a>
-                        </li>
-                        <li role="presentation">
+                        </li> -->
+                        <li role="presentation" class="active">
                             <a href="#pj" data-toggle="tab">Organisasi Pengadaan Barang dan Jasa</a>
                         </li>
-                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-list-ul"></i> MASTER DATA URAIAN TUGAS</li>
+                        <li class="pull-left header" style="font-size: 22px"><i class="fa fa-list-ul"></i> MASTER DATA JABATAN ORGANISASI</li>
                     </ul>
                     <div class="tab-content">
-                        <div class="tab-pane active" id="urtug">
+                        <div class="tab-pane" id="urtug">
                             <div class="row space-after">
                                 <div class="col-md-2">
                                     <button type="button" ng-click="urtug.open()" class="btn btn-primary"><i class="fa fa-plus"></i><span> TAMBAH DATA</span></button>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="pj">
+                        <div role="tabpanel" class="tab-pane active" id="pj">
                              <div class="row space-after">
                                 <div class="col-md-2">
                                     <button type="button" ng-click="urtug.openPj()" class="btn btn-primary"><i class="fa fa-plus"></i><span> TAMBAH DATA</span></button>

@@ -38,7 +38,7 @@ angular.
             // DashboardService.GetprogressLain(progress.pathFile, progress.pathFileExtension, progress.kdTemplateLain).then(
             //     function(response){
             //         progress.loading = false;debugger
-                    var landingUrl = API + 'get-template-lain-file-revisi/' + progress.pathFile + '/' + progress.pathFileExtension + '/' + progress.kdTemplateLain;
+                    var landingUrl = API + 'get-template-lain-file-revisi/' + progress.pathFile + '/' + progress.pathFileExtension + '/' + progress.kdTemplateLain + '/' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai;
                     $window.location.href = landingUrl;
                 //     getprogressBawahan();
 
@@ -63,7 +63,8 @@ angular.
                 vm.dataprogress = vm.dataprogress.sort( function ( a, b ) { return b.tanggalPembuatanMilis - a.tanggalPembuatanMilis; } );
                 paging();
             }, function(errResponse){
-
+                if(errResponse.status == -1)
+                    EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             })
         }
 

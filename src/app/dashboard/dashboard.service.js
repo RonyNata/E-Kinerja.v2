@@ -86,7 +86,7 @@
 
         service.GetLaporanLain = function (nama, ekstensi, kdSurat) {
             var deferred = $q.defer();
-            $http.get(API + 'get-template-lain-file-revisi/' + nama + "/" + ekstensi + '/' + kdSurat).then(
+            $http.get(API + 'get-template-lain-file-revisi/' + nama + "/" + ekstensi + '/' + kdSurat + '/' + $.parseJSON(sessionStorage.getItem('credential')).nipPegawai).then(
                 function (response){
                     deferred.resolve(response.data);
                 },

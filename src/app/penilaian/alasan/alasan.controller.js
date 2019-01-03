@@ -15,7 +15,8 @@ angular.
 				function(response){
 					$uibModalInstance.close();
 				}, function(errResponse){
-
+					if(errResponse.status == -1)
+             			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 				})
 		}
 

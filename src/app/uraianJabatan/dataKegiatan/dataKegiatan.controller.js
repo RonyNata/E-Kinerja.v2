@@ -32,7 +32,8 @@
                 paging();
               },
               function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             )
         }
@@ -103,7 +104,8 @@
           $uibModalInstance.close();
           // setPJ();
         }, function(errResponse){
-
+          if(errResponse.status == -1)
+            EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
         })
         
       }

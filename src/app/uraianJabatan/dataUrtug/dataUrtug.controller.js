@@ -5,17 +5,17 @@
     module('eKinerja').
     controller('DataUrtugController', DataUrtugController);
 
-    function DataUrtugController(EkinerjaService, $scope, items, available_urtug, jabatan, 
+    function DataUrtugController(EkinerjaService, $scope, items, instansi_urtug, jabatan, 
       $uibModalInstance, $uibModal, $document, PengumpulanDataBebanKerjaService){
       EkinerjaService.checkCredential();
       var vm = this;
 
-      vm.dataUrtug = angular.copy(available_urtug);
       vm.item = angular.copy(items);
-      vm.dataLook = vm.dataUrtug;
-      paging();
-      vm.pilih = false;
-
+      // paging();
+      vm.pilih = false;debugger
+      vm.instansiJabatan = instansi_urtug;
+      vm.unitKerja = '';
+      vm.jabatanPilihan = '';
       $scope.searchName = '';
       $scope.searchUnit = '';
       vm.jabatan = jabatan;
@@ -24,6 +24,17 @@
       vm.urtugPilihan = [];
       // vm.isPilihan = isPilihan;
       var data;
+
+      vm.getJabatanUnit = function(data){
+        if(data.length > 10 || data == 'dummy')
+          PengumpulanDataBebanKerjaService.GetJabatanUnit(vm.unitKerja).then(
+            function(response){debugger
+              vm.jabatanUrtug = response;
+            }, function(errResponse){
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+            })
+      }
 
       function getAllKegiatan(){debugger
           MasterKegiatanService.GetKegiatanSimda($.parseJSON(sessionStorage.getItem('credential')).kdUnitKerja).then(
@@ -40,10 +51,22 @@
                 paging();
               },
               function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             )
         }
+
+      vm.getUrtug = function(){debugger
+        PengumpulanDataBebanKerjaService.GetUrtugByJabatanInstansi(vm.jabatanPilihan, vm.unitKerja).then(
+          function(response){debugger
+            vm.dataLook = response;
+            paging();
+          }, function(errResponse){
+            if(errResponse.status == -1)
+              EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+          })
+      }
 
       // if(kegiatan.length != 0){
       //   var data = kegiatan;
@@ -135,7 +158,9 @@
               function(response){
                 $uibModalInstance.close();
               },function(errResponse){
-                EkinerjaService.showToastrError('terjadi kesalahan');
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError('terjadi kesalahan');
               }
             )
       }
@@ -155,7 +180,8 @@
                 $uibModalInstance.close();
                 // setPJ();
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               })
       }
 

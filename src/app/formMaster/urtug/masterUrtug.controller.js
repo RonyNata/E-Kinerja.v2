@@ -32,6 +32,8 @@ angular.
 					$scope.loading = true;
 					// debugger
 				},function(errResponse){
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 					// vam.loading = true;
 				}
 			)
@@ -47,6 +49,8 @@ angular.
 					$scope.loading = true;
 					// debugger
 				},function(errResponse){
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 					$scope.loading = true;
 				}
 			)
@@ -68,7 +72,8 @@ angular.
 					vm.dataLookPj = response;
 					pagingPj();
 				}, function(errResponse){
-
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 				})
 		}
 
@@ -91,7 +96,9 @@ angular.
 					vm.data_urtug = response;
 					// debugger
 				},function(errResponse){
-					showToastrFailed('menghapus data');
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              		else showToastrFailed('menghapus data');
 				}
 			)
 		}
@@ -145,7 +152,9 @@ angular.
 					// vm.data_urtug = response;
 					// debugger
 				},function(errResponse){
-					EkinerjaService.showToastrError('Gagal Menghapus Data SOP');
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              		else EkinerjaService.showToastrError('Gagal Menghapus Data SOP');
 				}
 			)
 		}
@@ -154,13 +163,15 @@ angular.
 			console.log(kd_pj);
 			MasterUrtugService.DeletePj(kd_pj).then(
 				function(response){
-					EkinerjaService.showToastrSuccess('Data Penanggungjawab Berhasil Dihapus');
+					EkinerjaService.showToastrSuccess('Data jabatan organisasi berhasil dihapus');
 					getStatusPj();
 					// vm.data_pegawai = response;
 					// vm.data_urtug = response;
 					// debugger
 				},function(errResponse){
-					EkinerjaService.showToastrFailed('Gagal Menghapus Data Penanggungjawab');
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+              		else EkinerjaService.showToastrFailed('Gagal Menghapus Data Jabatan Organisasi');
 				}
 			)
 		}
@@ -218,7 +229,7 @@ angular.
 	      });
 
 	      modalInstance.result.then(function () {
-	      	EkinerjaService.showToastrSuccess("Data SOP berhasil ditambahkan");
+	      	// EkinerjaService.showToastrSuccess("Data SOP berhasil ditambahkan");
 			getStatusPj();
 	        // vm.selected = selectedItem;
 	      }, function () {

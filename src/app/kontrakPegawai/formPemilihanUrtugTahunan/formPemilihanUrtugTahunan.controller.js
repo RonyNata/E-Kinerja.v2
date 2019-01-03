@@ -50,7 +50,8 @@ angular.
               }
                 pagingUrtugNonDpa();
             }, function(errResponse){
-
+              if(errResponse.status == -1)
+                EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
             }
           );
 
@@ -73,7 +74,8 @@ angular.
                 }
                   pagingUrtugDpa();
               }, function(errResponse){
-
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
               }
             );
         }
@@ -150,7 +152,9 @@ angular.
                 $uibModalInstance.close();          
                 successChecker(statDpa, statNon);
               }, function(errResponse){
-                EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
+                if(errResponse.status == -1)
+                  EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
+                else EkinerjaService.showToastrError("Penerimaan Urtug DPA Gagal");
             })
           }
         }

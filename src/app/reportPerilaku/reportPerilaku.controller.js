@@ -27,7 +27,8 @@
 					vm.loading = false;
 					paging();
 				}, function(errResponce){
-				
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 				})
 		}
 
@@ -40,7 +41,8 @@
 					// console.log(JSON.stringify(response));
 					vm.pegawaiDinas = response;
 				}, function(errResponse){
-
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 				})
 		}
 
@@ -53,7 +55,8 @@
 					// console.log(JSON.stringify(response));
 					vm.pegawaiSKPD = response;
 				}, function(errResponse){
-
+					if(errResponse.status == -1)
+              			EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 				})
 		}		
 
@@ -128,7 +131,8 @@
 							kepalaSKPD, pgwSKPD, pj);
 						EkinerjaService.lihatPdf(doc, 'Surat Perilaku PNS');
 					}, function(errResponce){
-
+						if(errResponse.status == -1)
+              				EkinerjaService.showToastrError('Gagal Terhubung Ke Server');
 					})
 			}
 		}
